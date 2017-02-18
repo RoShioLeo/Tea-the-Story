@@ -1,8 +1,8 @@
 package starryskyline.teastory.item;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemEnchantedBook;
@@ -33,8 +33,8 @@ public class ItemLoader
     public static Item tea_seeds = new TeaSeeds();
     public static Item tea_residue = new TeaResidue();
     
-    public static Item dirty_sieve =new DirtySieve();//工具
-    public static Item sieve = new TSItem("sieve", 64).setContainerItem(dirty_sieve);
+    public static Item sieve = new TSItem("sieve", 64);//工具
+    public static Item dirty_sieve =new DirtySieve();
     public static Item brush = new Brush();
     public static Item mortar_and_pestle = new MortarAndPestle();
     public static Item soil_detection_meter = new SoilDetectionMeter();

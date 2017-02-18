@@ -3,18 +3,14 @@ package starryskyline.teastory.item;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import starryskyline.teastory.achievement.AchievementLoader;
 import starryskyline.teastory.common.ConfigLoader;
@@ -30,7 +26,7 @@ public class GreenTea extends ItemTeaDrink
     
     public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
-        list.add(I18n.translateToLocal("teastory.tooltip.green_tea"));
+        list.add(StatCollector.translateToLocal("teastory.tooltip.green_tea"));
     }
 
     protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
@@ -40,18 +36,18 @@ public class GreenTea extends ItemTeaDrink
         	int tier = itemstack.getItemDamage();
         	if (tier == 0)
         	{
-        		entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, Math.max(0, ConfigLoader.TeaDrink_Time), 0));
+        		entityplayer.addPotionEffect(new PotionEffect(Potion.resistance.id, Math.max(0, ConfigLoader.TeaDrink_Time), 0));
         		if(world.rand.nextFloat() < 0.4F)
         		{
-        			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
+        			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility.id, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
         		}
         	}
         	else
         	{
-        		entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1)); 
+        		entityplayer.addPotionEffect(new PotionEffect(Potion.resistance.id, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1)); 
         		if(world.rand.nextFloat() < 0.4F)
         		{
-        			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
+        			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility.id, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
         		}
         	}
         }
@@ -65,10 +61,9 @@ public class GreenTea extends ItemTeaDrink
         }
     }
     
-    @Nullable
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
     {
-    	((EntityPlayer) entityLiving).addStat(AchievementLoader.greenTea);
-        return super.onItemUseFinish(stack, worldIn, entityLiving);
+		playerIn.triggerAchievement(AchievementLoader.greenTea);
+        return super.onItemUseFinish(stack, worldIn, playerIn);
     }
 }

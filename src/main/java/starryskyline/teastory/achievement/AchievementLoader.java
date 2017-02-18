@@ -15,7 +15,7 @@ public class AchievementLoader
 	public static Achievement teaLeaf = new Achievement("achievement.teastory.teaLeaf", "teastory.teaLeaf", 0, 2, ItemLoader.tea_leaf, null);
 	public static Achievement burntLeaf = new Achievement("achievement.teastory.burntLeaf", "teastory.burntLeaf", 2, 2, ItemLoader.burnt_tea, teaLeaf);
 	public static Achievement teaBasket = new Achievement("achievement.teastory.teaBasket", "teastory.teaBasket", -2, 2, BlockLoader.teapan, teaLeaf);
-	public static Achievement teaPlant = new Achievement("achievement.teastory.teaPlant", "teastory.teaPlant", 0, -2, Items.STONE_HOE, null);
+	public static Achievement teaPlant = new Achievement("achievement.teastory.teaPlant", "teastory.teaPlant", 0, -2, Items.stone_hoe, null);
 	public static Achievement halfDriedTea = new Achievement("achievement.teastory.halfDriedTea", "teastory.halfDriedTea", -2, 4, ItemLoader.half_dried_tea, teaBasket);
 	public static Achievement teaDryingPan = new Achievement("achievement.teastory.teaDryingPan", "teastory.teaDryingPan", -2, 6, BlockLoader.tea_drying_pan, halfDriedTea);
 	public static Achievement teaStove = new Achievement("achievement.teastory.teaStove", "teastory.teaStove", -2, 8, BlockLoader.tea_stove, teaDryingPan);

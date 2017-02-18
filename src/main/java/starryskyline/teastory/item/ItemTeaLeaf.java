@@ -3,10 +3,8 @@ package starryskyline.teastory.item;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,11 +19,11 @@ public class ItemTeaLeaf extends TSItem
 		this.kettle = kettle;
 	}
 	
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (worldIn.isRemote)
 		{
-			return EnumActionResult.SUCCESS;
+			return true;
 		}
 		else if ((worldIn.getBlockState(pos).getBlock() == BlockLoader.empty_kettle) && (stack.stackSize >=8))
 		{
@@ -37,10 +35,10 @@ public class ItemTeaLeaf extends TSItem
                 {
             	    stack.stackSize = stack.stackSize - 8;
                 }
-                return EnumActionResult.SUCCESS;
+                return true;
 			}
-			else return EnumActionResult.PASS;
+			else return false;
 		}
-		else return EnumActionResult.PASS;
+		else return false;
 	}
 }

@@ -3,19 +3,18 @@ package starryskyline.teastory.item;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import starryskyline.teastory.achievement.AchievementLoader;
 import starryskyline.teastory.common.ConfigLoader;
 import starryskyline.teastory.creativetab.CreativeTabsLoader;
@@ -34,7 +33,7 @@ public class HotWater extends ItemFood
     
     public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
-        list.add(I18n.translateToLocal("teastory.tooltip.hot_water"));
+        list.add(StatCollector.translateToLocal("teastory.tooltip.hot_water"));
     }
     
     @Override
@@ -69,7 +68,7 @@ public class HotWater extends ItemFood
 
     public void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
-        entityplayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100, 0));
+        entityplayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 0));
     }
   
     public EnumAction getItemUseAction(ItemStack itemStackIn)
@@ -77,10 +76,10 @@ public class HotWater extends ItemFood
         return EnumAction.DRINK;
     }
     
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
     {
-        super.onItemUseFinish(stack, worldIn, entityLiving);
-        ((EntityPlayer) entityLiving).addStat(AchievementLoader.hotWater);
+        super.onItemUseFinish(stack, worldIn, playerIn);
+        playerIn.triggerAchievement(AchievementLoader.hotWater);
         return new ItemStack(ItemLoader.cup, 1, stack.getItemDamage());
     }
 }

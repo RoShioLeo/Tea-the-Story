@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.util.StatCollector;
 
 public class ItemHasTooltip extends TSItem
 {
@@ -17,6 +17,6 @@ public class ItemHasTooltip extends TSItem
 	
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
-        list.add(I18n.translateToLocal("teastory.tooltip." + name));
+        list.add(StatCollector.translateToLocal("teastory.tooltip." + name));
     }
 }

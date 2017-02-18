@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import starryskyline.teastory.TeaStory;
@@ -71,7 +71,7 @@ public class GuiContainerTeaStove extends GuiContainer
 	@Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        String title = I18n.translateToLocal("teastory.container.tea_stove");
+        String title = StatCollector.translateToLocal("teastory.container.tea_stove");
         this.fontRendererObj.drawString(title, (this.xSize - this.fontRendererObj.getStringWidth(title)) / 2, 6, 0x404040);
     }
 }

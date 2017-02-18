@@ -2,10 +2,7 @@ package starryskyline.teastory.item;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
@@ -56,10 +53,9 @@ public class ItemTeaDrink extends ItemFood
 	    return super.getUnlocalizedName() + "." + name;
 	}
 	
-	@Nullable
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
     {
-        super.onItemUseFinish(stack, worldIn, entityLiving);
+        super.onItemUseFinish(stack, worldIn, playerIn);
         return new ItemStack(ItemLoader.cup, 1, stack.getItemDamage());
     }
 	

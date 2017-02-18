@@ -25,17 +25,17 @@ public class CraftingLoader
     {
     	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.sieve, 1), new Object[]{new ItemStack(ItemLoader.brush, 1, 32767), new ItemStack(ItemLoader.dirty_sieve, 1, 32767)});
     	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha, 1), new Object[]{ItemLoader.matcha_leaf, new ItemStack(ItemLoader.mortar_and_pestle, 1, 32767)});
-    	GameRegistry.addShapelessRecipe(new ItemStack(BlockLoader.empty_kettle, 1, 4), new Object[]{Items.WATER_BUCKET, new ItemStack(BlockLoader.empty_kettle, 1, 0)});
+    	GameRegistry.addShapelessRecipe(new ItemStack(BlockLoader.empty_kettle, 1, 4), new Object[]{Items.water_bucket, new ItemStack(BlockLoader.empty_kettle, 1, 0)});
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.tea_leaf, 1), new Object[]
     	        {"###", "###", "###", '#', "treeLeaves"}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.tea_leaf, 3), new Object[]
-    	        {"###", "#*#", "###", '#',"treeLeaves", '*', new ItemStack(ItemLoader.sieve, 1, 32767)}));
+    	        {"###", "#*#", "###", '#',"treeLeaves", '*', new ItemStack(ItemLoader.sieve.setContainerItem(ItemLoader.dirty_sieve), 1, 32767)}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.brush, 1), new Object[]
-    	        {"#", "*", '#', Items.STRING, '*', "stickWood"}));
+    	        {"#", "*", '#', Items.string, '*', "stickWood"}));
     	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.tea_leaf, 1), new Object[]
     	        {"###", "###", "###", '#', ItemLoader.broken_tea});
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.mortar_and_pestle, 1), new Object[]
-    	        {"#", "*", "+", '#', "stickWood", '*',"plankWood", '+',Items.BOWL}));
+    	        {"#", "*", "+", '#', "stickWood", '*',"plankWood", '+',Items.bowl}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.teapan, 1, 0), new Object[]
     	        {"#*#", "***", "#*#", '#', "plankWood", '*', "stickWood"}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.teapan, 1, 0), new Object[]
@@ -43,9 +43,9 @@ public class CraftingLoader
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.barrel, 1, 0), new Object[]
     	        {"# #", "***", "###", '#', "plankWood", '*', "ingotIron"}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.sieve, 1), new Object[]
-    	        {"#*#", "***", "#*#", '#', "stickWood", '*',Items.STRING}));
+    	        {"#*#", "***", "#*#", '#', "stickWood", '*',Items.string}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.sieve, 1), new Object[]
-    	        {"*#*", "#*#", "*#*", '#', "stickWood", '*',Items.STRING}));
+    	        {"*#*", "#*#", "*#*", '#', "stickWood", '*',Items.string}));
     	GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.burntgreentea_kettle, 1, 0), new Object[]
     	        {"###", "#*#", "###", '#', ItemLoader.burnt_tea, '*',new ItemStack(BlockLoader.empty_kettle, 1, 12)});
     	GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.greentea_kettle, 1, 0), new Object[]
@@ -55,19 +55,19 @@ public class CraftingLoader
     	GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.blacktea_kettle, 1, 0), new Object[]
     	        {"###", "#*#", "###", '#', ItemLoader.black_tea_leaf, '*',new ItemStack(BlockLoader.empty_kettle, 1, 12)});
     	GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.clay_kettle, 1, 0), new Object[]
-    	        {" # ", "#*#", "###", '#', Blocks.CLAY, '*', Items.BUCKET});
+    	        {" # ", "#*#", "###", '#', Blocks.clay, '*', Items.bucket});
     	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.clay_cup, 1), new Object[]
-    			{"#+#", "*#*", '#', Blocks.CLAY, '*', Items.CLAY_BALL, '+', new ItemStack(ItemLoader.cup, 1, 2)});
+    			{"#+#", "*#*", '#', Blocks.clay, '*', Items.clay_ball, '+', new ItemStack(ItemLoader.cup, 1, 2)});
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.cup, 1, 0), new Object[]
     	        {"# #", "*#*", '#', "plankWood", '*', "stickWood"}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.cup, 1, 1), new Object[]
     	        {"#+#", "*#*", '#', "stone", '*', "cobblestone", '+', new ItemStack(ItemLoader.cup, 1, 0)}));
     	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.cup, 1, 2), new Object[]
-    	        {"#+#", "*#*", '#', Blocks.GLASS, '*', Blocks.GLASS_PANE, '+', new ItemStack(ItemLoader.cup, 1, 1)});
+    	        {"#+#", "*#*", '#', Blocks.glass, '*', Blocks.glass_pane, '+', new ItemStack(ItemLoader.cup, 1, 1)});
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.tea_drying_pan, 1), new Object[]
     	        {"# #", "###", "***", '#', "ingotIron", '*', "logWood"}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.tea_stove, 1), new Object[]
-    	        {"#+#", "#-#", "#*#", '#', "cobblestone", '*', Blocks.FURNACE, '+', "gemQuartz", '-', BlockLoader.tea_drying_pan}));
+    	        {"#+#", "#-#", "#*#", '#', "cobblestone", '*', Blocks.furnace, '+', "gemQuartz", '-', BlockLoader.tea_drying_pan}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.soil_detection_meter, 1), new Object[]
     	        {"#+#", "#-#", "*#*", '#', "cobblestone", '+', "dustRedstone", '*', "gemQuartz", '-', "treeLeaves"}));
     }

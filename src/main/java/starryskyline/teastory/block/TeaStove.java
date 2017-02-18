@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,11 +21,9 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -51,9 +46,9 @@ public class TeaStove extends BlockContainer
 	
 	public TeaStove(float lightLevel, String name, boolean isBurning)
 	{
-		super(Material.ROCK);
+		super(Material.rock);
 		this.setHardness(3.5F);
-        this.setSoundType(SoundType.STONE);
+        this.setStepSound(soundTypeStone);
         this.setUnlocalizedName(name);
         this.setLightLevel(lightLevel);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -67,9 +62,9 @@ public class TeaStove extends BlockContainer
     }
 	
 	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state)
+    public int getRenderType()
     {
-        return EnumBlockRenderType.MODEL;
+        return 3;
     }
 	
 	@Override
@@ -80,7 +75,7 @@ public class TeaStove extends BlockContainer
 		return drops;
 	}
 	
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (!worldIn.isRemote)
         {
@@ -92,11 +87,11 @@ public class TeaStove extends BlockContainer
 	
 	@SideOnly(Side.CLIENT)
     @SuppressWarnings("incomplete-switch")
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
+    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (this.isBurning)
         {
-            EnumFacing enumfacing = (EnumFacing)stateIn.getValue(FACING);
+            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
             double d0 = (double)pos.getX() + 0.5D;
             double d1 = (double)pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
             double d2 = (double)pos.getZ() + 0.5D;
@@ -127,9 +122,9 @@ public class TeaStove extends BlockContainer
     }
 	
 	@Override
-    protected BlockStateContainer createBlockState()
+    protected BlockState createBlockState()
     {
-        return new BlockStateContainer(this, FACING);
+        return new BlockState(this, FACING);
     }
 	
 	@Override
@@ -158,7 +153,7 @@ public class TeaStove extends BlockContainer
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
             int meta, EntityLivingBase placer)
     {
-    	((EntityPlayer) placer).addStat(AchievementLoader.teaStove);
+    	((EntityPlayer) placer).triggerAchievement(AchievementLoader.teaStove);
         IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
         return origin.withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }

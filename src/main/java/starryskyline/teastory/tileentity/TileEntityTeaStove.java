@@ -13,9 +13,9 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -73,8 +73,9 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    public void writeToNBT(NBTTagCompound compound)
     {
+        super.writeToNBT(compound);
         compound.setTag("Inventory0", this.Inventory0.serializeNBT());
         compound.setTag("Inventory1", this.Inventory1.serializeNBT());
         compound.setTag("Inventory2", this.Inventory2.serializeNBT());
@@ -83,7 +84,6 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
         compound.setInteger("FuelTime", this.fuelTime);
         compound.setInteger("FuelTotalTime", this.fuelTotalTime);
         compound.setInteger("SteamTime", this.steamTime);
-		return super.writeToNBT(compound);
     }
     
     @Override
@@ -119,7 +119,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     					if(this.isBurning())
     					{
     						this.steamTime = 1600;
-    						this.worldObj.setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater - 1));
+    						this.worldObj.setBlockState(pos.up(), Blocks.cauldron.getStateFromMeta(this.hasWater - 1));
     						teaLeafKind = 2;
     					}
     					else
@@ -128,7 +128,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     						if(this.isBurning())
     						{
     							this.steamTime = 1600;
-    							this.worldObj.setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater - 1));
+    							this.worldObj.setBlockState(pos.up(), Blocks.cauldron.getStateFromMeta(this.hasWater - 1));
     							teaLeafKind = 2;
     						}
     					}
@@ -211,31 +211,36 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     	}
     }
     
-    public static int getItemBurnTime(ItemStack stack)
+    public static boolean isItemFuel(ItemStack p_145954_0_)
     {
-        if (stack == null)
+        return getItemBurnTime(p_145954_0_) > 0;
+    }
+    
+    public static int getItemBurnTime(ItemStack p_145952_0_)
+    {
+        if (p_145952_0_ == null)
         {
             return 0;
         }
         else
         {
-            Item item = stack.getItem();
+            Item item = p_145952_0_.getItem();
 
-            if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.AIR)
+            if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air)
             {
                 Block block = Block.getBlockFromItem(item);
 
-                if (block == Blocks.WOODEN_SLAB)
+                if (block == Blocks.wooden_slab)
                 {
                     return 150;
                 }
 
-                if (block.getDefaultState().getMaterial() == Material.WOOD)
+                if (block.getMaterial() == Material.wood)
                 {
                     return 300;
                 }
 
-                if (block == Blocks.COAL_BLOCK)
+                if (block == Blocks.coal_block)
                 {
                     return 16000;
                 }
@@ -244,18 +249,13 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
             if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
             if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
             if (item instanceof ItemHoe && ((ItemHoe)item).getMaterialName().equals("WOOD")) return 200;
-            if (item == Items.STICK) return 100;
-            if (item == Items.COAL) return 1600;
-            if (item == Items.LAVA_BUCKET) return 20000;
-            if (item == Item.getItemFromBlock(Blocks.SAPLING)) return 100;
-            if (item == Items.BLAZE_ROD) return 2400;
-            return net.minecraftforge.fml.common.registry.GameRegistry.getFuelValue(stack);
+            if (item == Items.stick) return 100;
+            if (item == Items.coal) return 1600;
+            if (item == Items.lava_bucket) return 20000;
+            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
+            if (item == Items.blaze_rod) return 2400;
+            return net.minecraftforge.fml.common.registry.GameRegistry.getFuelValue(p_145952_0_);
         }
-    }
-
-    public static boolean isItemFuel(ItemStack stack)
-    {
-        return getItemBurnTime(stack) > 0;
     }
     
     public int getDryTime()
@@ -286,9 +286,9 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     public int hasWater()
     {
     	IBlockState state = this.worldObj.getBlockState(pos.up());
-    	if(state.getBlock() == Blocks.CAULDRON)
+    	if(state.getBlock() == Blocks.cauldron)
     	{
-    		this.hasWater = Blocks.CAULDRON.getMetaFromState(state);
+    		this.hasWater = Blocks.cauldron.getMetaFromState(state);
     	}
     	else this.hasWater = -1;
     	return this.hasWater;

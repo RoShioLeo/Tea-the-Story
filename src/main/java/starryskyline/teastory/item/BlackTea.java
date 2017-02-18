@@ -2,18 +2,14 @@ package starryskyline.teastory.item;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemSoup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import starryskyline.teastory.achievement.AchievementLoader;
 import starryskyline.teastory.common.ConfigLoader;
@@ -29,7 +25,7 @@ public class BlackTea extends ItemTeaDrink
 	
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
-        list.add(I18n.translateToLocal("teastory.tooltip.black_tea"));
+        list.add(StatCollector.translateToLocal("teastory.tooltip.black_tea"));
     }
 	
 	protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
@@ -39,26 +35,26 @@ public class BlackTea extends ItemTeaDrink
         	int tier = itemstack.getItemDamage();
         	if (tier == 0)
         	{
-        		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, Math.max(0, ConfigLoader.TeaDrink_Time), 0)); 
+        		entityplayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, Math.max(0, ConfigLoader.TeaDrink_Time), 0)); 
         		if(world.rand.nextFloat() < 0.2F)
         		{
-        			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
+        			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain.id, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
         		}
         		else if(world.rand.nextFloat() >= 0.8F)
         		{
-        			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
+        			entityplayer.addPotionEffect(new PotionEffect(Potion.healthBoost.id, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
         		}
         	}
         	else
         	{
-        		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1)); 
+        		entityplayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1)); 
         		if(world.rand.nextFloat() < 0.4F)
         		{
-        			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
+        			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain.id, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
         		}
         		else if(world.rand.nextFloat() >= 0.8F)
         		{
-        			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
+        			entityplayer.addPotionEffect(new PotionEffect(Potion.healthBoost.id, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
         		}
         	}
         }
@@ -72,10 +68,9 @@ public class BlackTea extends ItemTeaDrink
         }
     }
 	
-	@Nullable
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
     {
-    	((EntityPlayer) entityLiving).addStat(AchievementLoader.blackTea);
-        return super.onItemUseFinish(stack, worldIn, entityLiving);
+		playerIn.triggerAchievement(AchievementLoader.blackTea);
+        return super.onItemUseFinish(stack, worldIn, playerIn);
     }
 }

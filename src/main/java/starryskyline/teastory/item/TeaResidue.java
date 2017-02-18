@@ -7,11 +7,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import starryskyline.teastory.creativetab.CreativeTabsLoader;
 
@@ -25,7 +23,7 @@ public class TeaResidue extends TSItem
 	
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
-        list.add(I18n.translateToLocal("teastory.tooltip.tea_residue"));
+        list.add(StatCollector.translateToLocal("teastory.tooltip.tea_residue"));
     }
 	
 	@Override
@@ -41,16 +39,16 @@ public class TeaResidue extends TSItem
 	    subItems.add(new ItemStack(itemIn, 1, 1));
 	}
 	
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
 		if (ItemDye.applyBonemeal(stack, worldIn, pos, playerIn))
         {
-			if (!worldIn.isRemote)
+            if (!worldIn.isRemote)
             {
-                worldIn.playEvent(2005, pos, 0);
+                worldIn.playAuxSFX(2005, pos, 0);
             }
-            return EnumActionResult.SUCCESS;
+            return true;
         }
-		else return EnumActionResult.FAIL;
+		else return false;
     }
 }

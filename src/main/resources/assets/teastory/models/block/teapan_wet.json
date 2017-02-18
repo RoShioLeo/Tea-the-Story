@@ -1,37 +1,4 @@
 {
-    "ambientocclusion": false,
-	"display": {
-        "gui": {
-            "rotation": [ 30, 225, 0 ],
-            "translation": [ 0, 0, 0],
-            "scale":[ 0.625, 0.625, 0.625 ]
-        },
-        "ground": {
-            "rotation": [ 0, 0, 0 ],
-            "translation": [ 0, 3, 0],
-            "scale":[ 0.25, 0.25, 0.25 ]
-        },
-        "fixed": {
-            "rotation": [ 0, 0, 0 ],
-            "translation": [ 0, 0, 0],
-            "scale":[ 0.5, 0.5, 0.5 ]
-        },
-        "thirdperson_righthand": {
-            "rotation": [ 75, 45, 0 ],
-            "translation": [ 0, 2.5, 0],
-            "scale": [ 0.375, 0.375, 0.375 ]
-        },
-        "firstperson_righthand": {
-            "rotation": [ 0, 45, 0 ],
-            "translation": [ 0, 0, 0 ],
-            "scale": [ 0.40, 0.40, 0.40 ]
-        },
-        "firstperson_lefthand": {
-            "rotation": [ 0, 225, 0 ],
-            "translation": [ 0, 0, 0 ],
-            "scale": [ 0.40, 0.40, 0.40 ]
-        }
-    },
     "textures": {
         "side": "blocks/planks_oak",
         "top": "blocks/planks_oak",
@@ -45,11 +12,11 @@
             "to": [16,1,16],
             "faces": {
                 "up": {"texture": "#up"},
-                "down": {"texture": "#bottom"},
-                "west": {"uv": [0,15,16,16], "texture": "#side"},
-                "east": {"texture": "#side"},
-                "north": {"texture": "#side"},
-                "south": {"uv": [0,15,16,16], "texture": "#side"}
+                "down": {"texture": "#bottom", "cullface": down},
+                "west": {"uv": [0,15,16,16], "texture": "#side", "cullface": west},
+                "east": {"texture": "#side", "cullface": east},
+                "north": {"texture": "#side", "cullface": north},
+                "south": {"uv": [0,15,16,16], "texture": "#side", "cullface": south}
             }
         },
         {
@@ -57,10 +24,10 @@
             "to": [16,6,16],
             "faces": {
                 "up": {"texture": "#top"},
-                "west": {"texture": "#side"},
-                "east": {"texture": "#side"},
+                "west": {"texture": "#side", "cullface": west},
+                "east": {"texture": "#side", "cullface": east},
                 "north": {"texture": "#side"},
-                "south": {"texture": "#side"}
+                "south": {"texture": "#side", "cullface": south}
             }
         },
         {
@@ -68,9 +35,9 @@
             "to": [16,6,2],
             "faces": {
                 "up": {"texture": "#top"},
-                "west": {"texture": "#side"},
-                "east": {"texture": "#side"},
-                "north": {"texture": "#side"},
+                "west": {"texture": "#side", "cullface": west},
+                "east": {"texture": "#side", "cullface": east},
+                "north": {"texture": "#side", "cullface": north},
                 "south": {"texture": "#side"}
             }
         },
@@ -80,7 +47,7 @@
             "faces": {
                 "up": {"texture": "#top"},
                 "west": {"texture": "#side"},
-                "east": {"texture": "#side"}
+                "east": {"texture": "#side", "cullface": east}
             }
         },
         {
@@ -88,7 +55,7 @@
             "to": [2,6,14],
             "faces": {
                 "up": {"texture": "#top"},
-                "west": {"texture": "#side"},
+                "west": {"texture": "#side", "cullface": west},
                 "east": {"texture": "#side"}
             }
         }

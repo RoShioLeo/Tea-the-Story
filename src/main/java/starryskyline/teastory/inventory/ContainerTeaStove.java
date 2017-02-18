@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -148,7 +148,7 @@ public class ContainerTeaStove extends Container
         this.hasWater = tileEntity.hasWater();
         this.steamTime = tileEntity.getSteamTime();
 
-        for (IContainerListener i : this.listeners)
+        for (ICrafting i : this.crafters)
         {
             i.sendProgressBarUpdate(this, 0, this.dryTime);
             i.sendProgressBarUpdate(this, 1, this.fuelTime);

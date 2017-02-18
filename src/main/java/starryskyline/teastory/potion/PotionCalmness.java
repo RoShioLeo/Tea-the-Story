@@ -10,9 +10,8 @@ public class PotionCalmness extends Potion
 
     public PotionCalmness()
     {
-        super(false, 0x7F0000);
+        super(new ResourceLocation(TeaStory.MODID + ":" + "calmness"), false, 0x7F0000);
         this.setPotionName("potion.calmness");
-        this.setRegistryName(TeaStory.MODID, "calmness");
         this.setIconIndex(0, 0);
     }
 }
