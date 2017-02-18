@@ -189,6 +189,12 @@ public class LitTeaDryingPan extends Block
 	    list.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
 	}
 	
+	@SideOnly(Side.CLIENT)
+    public Item getItem(World worldIn, BlockPos pos)
+    {
+        return Item.getItemFromBlock(BlockLoader.tea_drying_pan);
+    }
+	
 	@Override
     protected BlockState createBlockState()
     {
