@@ -153,6 +153,11 @@ public class TeaStove extends BlockContainer
     {
         list.add(new ItemStack(BlockLoader.tea_stove, 1, 0));
     }
+    
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+    {
+        return new ItemStack(BlockLoader.tea_stove);
+    }
 
     @Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
