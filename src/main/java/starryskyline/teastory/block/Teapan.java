@@ -133,7 +133,7 @@ public class Teapan extends Block
 	protected static float getChance(Block blockIn, World worldIn, BlockPos pos)
     {
         float f;
-        Biome biome = worldIn.getBiome(pos);
+        Biome biome = worldIn.getBiomeGenForCoords(pos);
         boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
         float humidity = biome.getRainfall();
         float temperature = biome.getFloatTemperature(pos);      

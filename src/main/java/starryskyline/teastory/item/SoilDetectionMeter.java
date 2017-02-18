@@ -35,7 +35,7 @@ public class SoilDetectionMeter extends TSItem
     {
 		if(worldIn.isRemote)
 		{
-		    Biome biome = worldIn.getBiome(pos);
+		    Biome biome = worldIn.getBiomeGenForCoords(pos);
             float humidity = biome.getRainfall();
             float temperature = biome.getFloatTemperature(pos);
             String temp = (temperature >= 0.15F) ? (temperature >= 0.5F) ? (temperature > 0.95F) ? I18n.translateToLocal("teastory.soil_detection_meter.temperature.hot") : I18n.translateToLocal("teastory.soil_detection_meter.temperature.warm") : I18n.translateToLocal("teastory.soil_detection_meter.temperature.cold") : I18n.translateToLocal("teastory.soil_detection_meter.temperature.snowy");
