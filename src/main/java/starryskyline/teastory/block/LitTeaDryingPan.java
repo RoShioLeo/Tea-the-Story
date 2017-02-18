@@ -199,6 +199,11 @@ public class LitTeaDryingPan extends Block
 	    list.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
 	}
 	
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+    {
+        return new ItemStack(BlockLoader.tea_drying_pan);
+    }
+	
 	@Override
     protected BlockStateContainer createBlockState()
     {
