@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "teastory:items/shennong_ruler"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "variants": {
+	    "type=0": { "model":"teastory:tea_drying_pan" },
+        "type=1": { "model":"teastory:tea_drying_pan" },
+		"type=2": { "model":"teastory:tea_drying_pan2" },
+		"type=3": { "model":"teastory:tea_drying_pan3" },
+		"type=4": { "model":"teastory:tea_drying_pan3" },
+		"type=5": { "model":"teastory:tea_drying_pan3" },
+        "type=6": { "model":"teastory:tea_drying_pan4" },
+		"type=7": { "model":"teastory:tea_drying_pan5" },
+		"type=8": { "model":"teastory:tea_drying_pan5" },
+		"type=9": { "model":"teastory:tea_drying_pan5" },
+		"type=10": { "model":"teastory:tea_drying_pan6" },
+        "type=11": { "model":"teastory:tea_drying_pan6" },
+		"type=12": { "model":"teastory:tea_drying_pan7" }
+    }
+}

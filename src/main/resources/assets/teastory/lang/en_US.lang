@@ -1,0 +1,62 @@
+#Tab
+itemGroup.tabteastory=Tea，the Story of a Leaf
+
+#Items
+item.sieve.name=Sieve
+item.dirty_sieve.name=Dirty Sieve
+item.brush.name=Brush
+item.tea_leaf.name=Tea Leaf
+item.dried_tea.name=Dried Tea
+item.hot_water.name=Hot Water
+item.green_tea.name=Green Tea
+item.burnt_green_tea.name=Burnt Green Tea
+item.burnt_tea.name=Burnt Tea
+item.broken_tea.name=Broken Tea
+item.wet_tea.name=Wet Tea
+item.matcha.name=Matcha
+item.matcha_leaf.name=Matcha Leaf
+item.matcha_drink.name=Matcha Drink
+item.black_tea_leaf.name=Black Tea Leaf
+item.black_tea.name=Black Tea
+item.tea_residue.green.name=Tea Residue
+item.tea_residue.black.name=Tea Residue
+item.tea_seeds.name=Tea Seeds
+item.mortar_and_pestle.name=Mortar and Pestle
+
+#Blocks
+tile.teapan.empty.name=Basket
+tile.teapan.full.name=Basket
+tile.teapan.dried.name=Basket
+tile.teapan.matcha.name=Basket
+tile.teapan.wet.name=Basket
+tile.barrel.empty.name=Barrel
+tile.barrel.full.name=Barrel
+tile.barrel.full2.name=Barrel
+tile.barrel.fermentation.name=Barrel
+tile.barrel.blacktea.name=Barrel
+tile.teaplant.name=Tea Plant
+tile.testblock.name=Test Block
+
+#Achievements
+achievement.teastory.teaAStoryOfLeaves=Tea,A Story Of Leaves
+achievement.teastory.teaAStoryOfLeaves.desc=Get tea from leaves
+achievement.teastory.whatsThis=What's This?
+achievement.teastory.whatsThis.desc=Use the furnace to burn tea
+achievement.teastory.isItEdible=Is It Edible?
+achievement.teastory.isItEdible.desc=Use the burnt tea to make tea
+achievement.teastory.dryingTea=Drying Tea
+achievement.teastory.dryingTea.desc=Make basket to dry tea
+achievement.teastory.wet=Get Wet
+achievement.teastory.wet.desc=Get wet tea
+achievement.teastory.popularDrink=Popular Drink
+achievement.teastory.popularDrink.desc=Make a cup of green tea
+achievement.teastory.anotherDrink=Another Drink
+achievement.teastory.anotherDrink.desc=Make a cup of matcha drink
+achievement.teastory.warmthOrHarm=Warmth Or Harm
+achievement.teastory.warmthOrHarm.desc=Drink hot water in different biomes
+achievement.teastory.blackTea=British Style
+achievement.teastory.blackTea.desc=Use barrel to make black tea
+
+#Info
+teastory.info.welcome.1=[TS]Thanks for using§2§oTea，the Story of a Leaf§f，Version：§6%1$s
+teastory.info.welcome.2=[TS]Access URL to get the latest version and instructions for use! The message can be turned off in the configuration file.

@@ -1,0 +1,9 @@
+{
+    "variants": {
+	    "type=empty": { "model":"teastory:barrel_empty" },
+        "type=full": { "model":"teastory:barrel_full" },
+		"type=full2": { "model":"teastory:barrel_full2" },
+		"type=fermentation": { "model":"teastory:barrel_fermentation" },
+		"type=blacktea": { "model":"teastory:barrel_blacktea" }
+    }
+}

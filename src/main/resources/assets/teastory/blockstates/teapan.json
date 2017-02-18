@@ -1,0 +1,9 @@
+{
+    "variants": {
+	    "type=empty": { "model":"teastory:teapan_empty" },
+        "type=full": { "model":"teastory:teapan_full" },
+		"type=dried": { "model":"teastory:teapan_dried" },
+		"type=matcha": { "model":"teastory:teapan_matcha" },
+		"type=wet": { "model":"teastory:teapan_wet" }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "records.caichawuqu": {
+        "category": "record", 
+        "sounds": [
+          {
+            "name": "teastory:records/caichawuqu",
+            "stream": true
+          }
+        ] 
+    }
+}

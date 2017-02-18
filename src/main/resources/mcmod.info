@@ -1,0 +1,16 @@
+[
+{
+  "modid": "teastory",
+  "name": "Tea,the Story of a Leaf",
+  "description": "茶，一片树叶的故事。在Minecraft中，领略茶文化吧。",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://www.mcbbs.net/thread-562372-1-1.html",
+  "updateUrl": "https://github.com/LuoXiao-Wing/Tea-TheStoryofaLeaf/releases",
+  "authorList": ["LuoXiao_Wings"],
+  "credits": "Made by Star-S(星之碧落工作室 Starry Skyline Studio)",
+  "logoFile": "logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

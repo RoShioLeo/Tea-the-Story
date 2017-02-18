@@ -1,0 +1,8 @@
+{
+    "variants": {
+	    "facing=east": { "model":"teastory:clay_kettle", "y": 90 },
+        "facing=north": { "model":"teastory:clay_kettle" },
+		"facing=south": { "model":"teastory:clay_kettle", "y": 180 },
+		"facing=west": { "model":"teastory:clay_kettle", "y": 270 }
+    }
+}
