@@ -93,7 +93,7 @@ public class Teapan extends Block
     {
         super.updateTick(worldIn, pos, state, rand);
         int meta = getMetaFromState(worldIn.getBlockState(pos));
-        if (worldIn.isRainingAt(pos.up()) && meta != 4)
+        if (worldIn.isRainingAt(pos.up()) && meta > 0)
         {
         	worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(4));
         }
@@ -136,7 +136,12 @@ public class Teapan extends Block
         Biome biome = worldIn.getBiomeGenForCoords(pos);
         boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
         float humidity = biome.getRainfall();
-        float temperature = biome.getFloatTemperature(pos);      
+        float temperature = biome.getFloatTemperature(pos);
+        boolean isRaining = worldIn.isRaining();
+        if (isRaining)
+        {
+        	return 0.0F;
+        }
         if (isDaytime)
        	{
        		f = worldIn.getLightFromNeighbors(pos.up()) * 0.07F;
