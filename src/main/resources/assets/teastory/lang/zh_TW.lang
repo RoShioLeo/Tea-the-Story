@@ -162,7 +162,7 @@ achievement.teastory.soilDetectionMeter=土地和手掌的溫度
 achievement.teastory.soilDetectionMeter.desc=使用一次土壤檢測計
 
 #Info
-teastory.info.welcome.1=[TS]感謝安裝§2§o茶，一片樹葉的故事§f，當前模組版本：§6%1$s
+teastory.info.welcome.1=[§2§oTeaStory§f]感謝安裝§2§o茶，一片樹葉的故事§f，當前模組版本：§6%1$s
 
 #Message
 teastory.teapan.message=請放入8片茶葉來曬制。陽光下可以獲得綠茶幹葉，非陽光直射下可以獲得綠茶青葉。
