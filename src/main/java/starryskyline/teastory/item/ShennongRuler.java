@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -64,6 +65,10 @@ public class ShennongRuler extends ItemSword
 		if(!playerIn.capabilities.isCreativeMode)
 		{
 		    itemStackIn.setItemDamage(itemStackIn.getItemDamage() + 5);
+		    if (itemStackIn.getItemDamage() > 768)
+		    {
+		    	--itemStackIn.stackSize;
+		    }
 		}
         return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
     }
