@@ -64,6 +64,10 @@ public class ShennongRuler extends ItemSword
 		if(!playerIn.capabilities.isCreativeMode)
 		{
 		    itemStackIn.setItemDamage(itemStackIn.getItemDamage() + 5);
+		    if (itemStackIn.getItemDamage() > 768)
+		    {
+		    	--itemStackIn.stackSize;
+		    }
 		}
         return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
     }
