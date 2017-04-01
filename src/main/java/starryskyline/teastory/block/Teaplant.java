@@ -21,7 +21,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.IPlantable;
 import starryskyline.teastory.achievement.AchievementLoader;
 import starryskyline.teastory.block.Teapan.EnumType;
@@ -70,9 +69,8 @@ public class Teaplant extends BlockCrops
 	public static float environmentChance(World worldIn, BlockPos pos)
     {
 		float c = 1.0F;
-		Biome biome = worldIn.getBiome(pos);
-        float temperature = biome.getFloatTemperature(pos);
-        float humidity = biome.getRainfall();
+        float temperature = worldIn.getBiome(pos).getFloatTemperature(pos);
+        float humidity = worldIn.getBiome(pos).getRainfall();
         float height = pos.getY();
         if (height <= 79)
         {

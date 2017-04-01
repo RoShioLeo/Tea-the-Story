@@ -7,6 +7,8 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import starryskyline.teastory.TeaStory;
@@ -39,8 +41,9 @@ public class PotionPhotosynthesis extends Potion
     	{
     	    if (this == PotionLoader.PotionPhotosynthesis)
             {
-    		    boolean isDaytime = entityLivingBaseIn.worldObj.getWorldTime() % 24000L < 12000L;
-                if (isDaytime && (!entityLivingBaseIn.worldObj.isRainingAt(entityLivingBaseIn.getPosition().up())) && (entityLivingBaseIn.worldObj.getLight(entityLivingBaseIn.getPosition().up()) >= 14 - 2 * p_76394_2_))
+    	    	boolean isDaytime = entityLivingBaseIn.worldObj.getWorldTime() % 24000L < 12000L;
+        		BlockPos pos = entityLivingBaseIn.getPosition();
+        		if ((!entityLivingBaseIn.worldObj.isRainingAt(pos)) && ((isDaytime && (entityLivingBaseIn.worldObj.getLight(pos) >= 13 - 2 * p_76394_2_)) || ((!isDaytime) && (entityLivingBaseIn.worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) >= 13 - 2 * p_76394_2_))))
                 {
                 	if (p_76394_2_ > 2)
                 	{

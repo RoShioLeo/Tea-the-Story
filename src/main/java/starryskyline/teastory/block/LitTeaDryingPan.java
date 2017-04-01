@@ -61,11 +61,6 @@ public class LitTeaDryingPan extends Block
         return false;
     }
     
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return TEADRYINGPAN_AABB;
-    }
-    
     @Override
 	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
 	{
@@ -73,6 +68,11 @@ public class LitTeaDryingPan extends Block
 	    drops.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
 		return drops;
 	}
+    
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return TEADRYINGPAN_AABB;
+    }
 	
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {

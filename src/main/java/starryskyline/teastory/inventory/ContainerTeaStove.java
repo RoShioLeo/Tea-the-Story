@@ -49,15 +49,7 @@ public class ContainerTeaStove extends Container
             }
         });
         this.addSlotToContainer(new SlotItemHandler(this.fuelItem, 0, 53, 56));
-        this.addSlotToContainer(new SlotItemHandler(this.driedItem, 0, 116, 23)
-        {
-        	@Override
-            public boolean isItemValid(ItemStack stack)
-            {
-                return false;
-            }
-        });
-        this.addSlotToContainer(new SlotItemHandler(this.matchaItem, 0, 116, 53)
+        this.addSlotToContainer(new SlotItemHandler(this.matchaItem, 0, 116, 38)
         {
         	@Override
             public boolean isItemValid(ItemStack stack)
@@ -95,21 +87,21 @@ public class ContainerTeaStove extends Container
 
         boolean isMerged = false;
         
-        if (index >= 0 && index < 3)
+        if (index >= 0 && index < 2)
         {
-            isMerged = mergeItemStack(newStack, 4, 40, true);
+            isMerged = mergeItemStack(newStack, 3, 39, true);
         }
-        else if (index >= 4 && index < 31)
+        else if (index >= 3 && index < 30)
         {
             isMerged = mergeItemStack(newStack, 0, 1, false)
                     || TileEntityTeaStove.isItemFuel(newStack) && mergeItemStack(newStack, 1, 2, false)
-                    || mergeItemStack(newStack, 31, 40, false);
+                    || mergeItemStack(newStack, 30, 39, false);
         }
-        else if (index >= 31 && index < 40)
+        else if (index >= 30 && index < 39)
         {
         	isMerged = mergeItemStack(newStack, 0, 1, false)
                     || TileEntityTeaStove.isItemFuel(newStack) && mergeItemStack(newStack, 1, 2, false)
-                    || mergeItemStack(newStack, 4, 31, false);
+                    || mergeItemStack(newStack, 3, 30, false);
         }
 
         if (!isMerged)
