@@ -110,7 +110,7 @@ public class EventLoader
         	PotionEffect effect1 = event.entityLiving.getActivePotionEffect(PotionLoader.PotionAgility);
             if (effect1 != null)
             {
-                if (event.entityLiving.getRNG().nextFloat() < (effect1.getAmplifier() + 1) * 0.1F)
+                if (event.entityLiving.getRNG().nextFloat() < ((effect1.getAmplifier() + 1) * 0.15F + 0.05F))
                 {
                     event.ammount = 0;
                 }
@@ -140,7 +140,7 @@ public class EventLoader
         		int level = effect.getAmplifier() + 1;
             	float r = event.entityPlayer.getRNG().nextFloat();
             	float health = event.entityPlayer.getHealth();
-                if (health < event.entityPlayer.getMaxHealth() && r <= level*0.1F)
+                if (health < event.entityPlayer.getMaxHealth() && r <= level*0.2F)
                 {
                 	event.entityPlayer.heal(4.0F - 6.0F/(level + 1.0F));
                 }

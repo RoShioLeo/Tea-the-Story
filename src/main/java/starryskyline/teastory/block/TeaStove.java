@@ -172,7 +172,6 @@ public class TeaStove extends BlockContainer
     	    TileEntityTeaStove te = (TileEntityTeaStove) worldIn.getTileEntity(pos);
             IItemHandler inventory0 = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
             IItemHandler inventory1 = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
-            IItemHandler inventory2 = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
             IItemHandler inventory3 = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
 
             for (int i = inventory0.getSlots() - 1; i >= 0; --i)
@@ -190,15 +189,6 @@ public class TeaStove extends BlockContainer
                 {
                     Block.spawnAsEntity(worldIn, pos, inventory1.getStackInSlot(i));
                     ((IItemHandlerModifiable) inventory1).setStackInSlot(i, null);
-                }
-            }
-        
-            for (int i = inventory2.getSlots() - 1; i >= 0; --i)
-            {
-                if (inventory2.getStackInSlot(i) != null)
-                {
-                    Block.spawnAsEntity(worldIn, pos, inventory2.getStackInSlot(i));
-                    ((IItemHandlerModifiable) inventory2).setStackInSlot(i, null);
                 }
             }
         

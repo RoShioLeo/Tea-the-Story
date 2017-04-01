@@ -6,16 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,7 +32,7 @@ public class ShennongRuler extends ItemSword
 	
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
-        list.add(I18n.translateToLocal("teastory.tooltip.shennong_ruler"));
+        list.add(StatCollector.translateToLocal("teastory.tooltip.shennong_ruler"));
     }
 	
 	@SideOnly(Side.CLIENT)
@@ -50,16 +46,16 @@ public class ShennongRuler extends ItemSword
     {
 		if(!player.worldObj.isRemote)
         {
-		    ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 100, 1));
+		    ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 100, 1));
         }
         return false;
     }
 	
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
     {
 		if(!worldIn.isRemote)
         {
-        	playerIn.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0)); 
+        	playerIn.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0)); 
         }
 		if(!playerIn.capabilities.isCreativeMode)
 		{
@@ -69,6 +65,7 @@ public class ShennongRuler extends ItemSword
 		    	--itemStackIn.stackSize;
 		    }
 		}
-        return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+        playerIn.setItemInUse(itemStackIn, this.getMaxItemUseDuration(itemStackIn));
+        return itemStackIn;
     }
 }
