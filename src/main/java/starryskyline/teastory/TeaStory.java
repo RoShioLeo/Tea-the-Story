@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import starryskyline.teastory.common.CommonProxy;
 
-@Mod(modid = TeaStory.MODID, name = TeaStory.NAME, version = TeaStory.VERSION, updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStoryofaLeaf/1.8.9/update.json")
+@Mod(modid = TeaStory.MODID, name = TeaStory.NAME, version = TeaStory.VERSION, updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStoryOfALeaf/1.10.2/update.json")
 public class TeaStory
 {
     public static final String MODID = "teastory";

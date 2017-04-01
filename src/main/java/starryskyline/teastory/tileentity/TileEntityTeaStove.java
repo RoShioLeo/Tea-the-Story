@@ -33,7 +33,6 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 
 	protected ItemStackHandler Inventory0 = new ItemStackHandler();
 	protected ItemStackHandler Inventory1 = new ItemStackHandler();
-	protected ItemStackHandler Inventory2 = new ItemStackHandler();
 	protected ItemStackHandler Inventory3 = new ItemStackHandler();
 
     @Override
@@ -52,7 +51,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
         if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(capability))
         {
             @SuppressWarnings("unchecked")
-            T result = (T) (facing == EnumFacing.DOWN ? Inventory3 : facing == EnumFacing.UP ? Inventory0 : (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH || facing == EnumFacing.WEST || facing == EnumFacing.EAST) ? Inventory1 : Inventory2);
+            T result = (T) (facing == EnumFacing.DOWN ? Inventory3 : facing == EnumFacing.UP ? Inventory0 : Inventory1);
             return result;
         }
         return super.getCapability(capability, facing);
@@ -64,7 +63,6 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
         super.readFromNBT(compound);
         this.Inventory0.deserializeNBT(compound.getCompoundTag("Inventory0"));
         this.Inventory1.deserializeNBT(compound.getCompoundTag("Inventory1"));
-        this.Inventory2.deserializeNBT(compound.getCompoundTag("Inventory2"));
         this.Inventory3.deserializeNBT(compound.getCompoundTag("Inventory3"));
         this.dryTime = compound.getInteger("DryTime");
         this.fuelTime = compound.getInteger("FuelTime");
@@ -77,7 +75,6 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     {
         compound.setTag("Inventory0", this.Inventory0.serializeNBT());
         compound.setTag("Inventory1", this.Inventory1.serializeNBT());
-        compound.setTag("Inventory2", this.Inventory2.serializeNBT());
         compound.setTag("Inventory3", this.Inventory3.serializeNBT());
         compound.setInteger("DryTime", this.dryTime);
         compound.setInteger("FuelTime", this.fuelTime);
@@ -92,7 +89,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     	if(!this.worldObj.isRemote)
     	{
     		int teaLeafKind = 0;
-    		ItemStack teaLeaf = Inventory0.extractItem(0, 1, true);//获取茶叶栏0中的物品
+    		ItemStack teaLeaf = Inventory0.extractItem(0, 1, true);
     		IBlockState state = this.worldObj.getBlockState(pos);
     		if((teaLeaf == null) || (teaLeaf.getItem() != ItemLoader.half_dried_tea))
     		{
@@ -133,7 +130,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     						}
     					}
     				}
-    				else if((Inventory2.insertItem(0, new ItemStack(ItemLoader.dried_tea), true) == null) && (this.hasWater() <= 0))
+    				else if((Inventory3.insertItem(0, new ItemStack(ItemLoader.dried_tea), true) == null) && (this.hasWater() <= 0))
     				{
     					if(this.isBurning())
     					{
@@ -148,6 +145,10 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
         					}
     					}
     				}
+    				else
+    				{
+    					this.dryTime = 0;
+    				}
     			}
     		}
     		if((this.isBurning()) && (teaLeafKind != 0))
@@ -160,7 +161,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     				switch(teaLeafKind)
     				{
     				    case 1:
-    				    	Inventory2.insertItem(0, new ItemStack(ItemLoader.dried_tea), false);
+    				    	Inventory3.insertItem(0, new ItemStack(ItemLoader.dried_tea), false);
     				    	break;
     				    case 2:
     				    	Inventory3.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), false);
