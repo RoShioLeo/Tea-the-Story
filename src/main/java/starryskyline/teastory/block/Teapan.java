@@ -217,7 +217,7 @@ public class Teapan extends Block
         	    	}
         	    	return true;
         	    default:
-        	    	return false;
+        	    	return true;
         	}
         }
         else
