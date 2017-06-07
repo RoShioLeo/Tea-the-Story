@@ -9,6 +9,8 @@ import cateam.teastory.item.MatchaDrink;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.audio.SoundCategory;
+import net.minecraft.client.audio.SoundList;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -18,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -114,7 +117,8 @@ public class TeaDrinkFull extends TeaDrink
 		        default:
 		        	worldIn.setBlockState(pos, BlockLoader.wood_cup.getDefaultState());
 	        }
+			worldIn.playSoundAtEntity(playerIn, "random.burp", 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
+			return true;
 		}
-		return false;
     }
 }

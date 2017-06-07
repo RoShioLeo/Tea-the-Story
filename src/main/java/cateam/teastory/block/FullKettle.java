@@ -138,7 +138,6 @@ public class FullKettle extends Kettle
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list) {
-		itemIn.setMaxDamage(16);
 	    list.add(new ItemStack(itemIn, 1, 0));
 	}
 	

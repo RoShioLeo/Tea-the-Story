@@ -118,7 +118,7 @@ public class BlockLoader
                 return "";
             }
         }), "clay_kettle");
-    	register(empty_kettle, new ItemBlockMeta(empty_kettle, empty_kettle, new Function<ItemStack, String>()
+    	register(empty_kettle, new ItemBlockEmptyKettle(empty_kettle, empty_kettle, new Function<ItemStack, String>()
         {
             @Override
             public String apply(ItemStack input)
@@ -126,38 +126,38 @@ public class BlockLoader
                 return EmptyKettle.getSpecialName(input);
             }
         }), "empty_kettle");
-    	register(burntgreentea_kettle, new ItemBlockMeta(burntgreentea_kettle, burntgreentea_kettle, new Function<ItemStack, String>()
+    	register(burntgreentea_kettle, new ItemBlockFullKettle(burntgreentea_kettle, burntgreentea_kettle, new Function<ItemStack, String>()
         {
             @Override
             public String apply(ItemStack input)
             {
                 return FullKettle.getSpecialName(input);
             }
-        }), "burntgreentea_kettle");
-    	register(greentea_kettle, new ItemBlockMeta(greentea_kettle, greentea_kettle, new Function<ItemStack, String>()
+        }, 0), "burntgreentea_kettle");
+    	register(greentea_kettle, new ItemBlockFullKettle(greentea_kettle, greentea_kettle, new Function<ItemStack, String>()
         {
             @Override
             public String apply(ItemStack input)
             {
                 return FullKettle.getSpecialName(input);
             }
-        }), "greentea_kettle");
-    	register(matcha_kettle, new ItemBlockMeta(matcha_kettle, matcha_kettle, new Function<ItemStack, String>()
+        }, 1), "greentea_kettle");
+    	register(matcha_kettle, new ItemBlockFullKettle(matcha_kettle, matcha_kettle, new Function<ItemStack, String>()
         {
             @Override
             public String apply(ItemStack input)
             {
                 return FullKettle.getSpecialName(input);
             }
-        }), "matcha_kettle");
-    	register(blacktea_kettle, new ItemBlockMeta(blacktea_kettle, blacktea_kettle, new Function<ItemStack, String>()
+        }, 2), "matcha_kettle");
+    	register(blacktea_kettle, new ItemBlockFullKettle(blacktea_kettle, blacktea_kettle, new Function<ItemStack, String>()
         {
             @Override
             public String apply(ItemStack input)
             {
                 return FullKettle.getSpecialName(input);
             }
-        }), "blacktea_kettle");
+        }, 3), "blacktea_kettle");
         register(teaplant, "teaplant");
     }
     

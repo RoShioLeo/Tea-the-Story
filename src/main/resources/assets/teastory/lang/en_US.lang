@@ -1,5 +1,5 @@
 #Tab
-itemGroup.tabteastory=Tea, the Story of a Leaf
+itemGroup.tabteastory=Tea: A Long Story
 
 #Tooltip
 teastory.tooltip.tea_leaf=All start from here
@@ -162,7 +162,7 @@ achievement.teastory.soilDetectionMeter=The temperature of the soils and the han
 achievement.teastory.soilDetectionMeter.desc=Use soilmeter once
 
 #Info
-teastory.info.welcome.1=[§2§oTeaStory§f] Thanks for using §2§oTea, a Story of Leaf§f, version %1$s
+teastory.info.welcome.1=[§2§oTeaStory§f] Thanks for using §2§oTea: A Long Story§f, version %1$s
 
 #Message
 teastory.teapan.message=To start drying, put 8 tea leaves into the tea pan. 

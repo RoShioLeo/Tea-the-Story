@@ -1,5 +1,5 @@
 #Tab
-itemGroup.tabteastory=茶，一片树叶的故事
+itemGroup.tabteastory=茶风：悠悠往事
 
 #Tooltip
 teastory.tooltip.tea_leaf=一切的开始
@@ -162,7 +162,7 @@ achievement.teastory.soilDetectionMeter=土地和手掌的温度
 achievement.teastory.soilDetectionMeter.desc=使用一次土壤检测计
 
 #Info
-teastory.info.welcome.1=[§2§oTeaStory§f]感谢安装§2§o茶，一片树叶的故事§f，当前模组版本：%1$s
+teastory.info.welcome.1=[§2§oTeaStory§f]感谢安装§2§o茶风：悠悠往事§f，当前模组版本：%1$s
 
 #Message
 teastory.teapan.message=请放入8片茶叶来晒制。
