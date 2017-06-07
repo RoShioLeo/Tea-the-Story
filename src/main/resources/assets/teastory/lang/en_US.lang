@@ -55,7 +55,7 @@ item.burnt_green_tea.glass.name=Burnt Green Tea (Glass)
 item.burnt_green_tea.porcelain.name=Burnt Green Tea (Porcelain)
 item.matcha_drink.wood.name=Matcha (Wooden)
 item.matcha_drink.stone.name=Matcha (Stone)
-item.matcha_drink.glass.name=Matchap (Glass)
+item.matcha_drink.glass.name=Matcha (Glass)
 item.matcha_drink.porcelain.name=Matcha (Porcelain)
 item.black_tea.wood.name=Black Tea (Wooden)
 item.black_tea.stone.name=Black Tea (Stone)
@@ -158,7 +158,7 @@ achievement.teastory.glassCup=Crystal, pure
 achievement.teastory.glassCup.desc=Craft a glass cup
 achievement.teastory.porcelainCup=Porcelain, flawless
 achievement.teastory.porcelainCup.desc=Fire a white porcelain cup
-achievement.teastory.soilDetectionMeter=The temperature of the soils and the hands
+achievement.teastory.soilDetectionMeter=The heat of the soils and the hands
 achievement.teastory.soilDetectionMeter.desc=Use soilmeter once
 
 #Info
