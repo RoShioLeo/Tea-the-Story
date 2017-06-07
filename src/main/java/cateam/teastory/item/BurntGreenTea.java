@@ -27,11 +27,13 @@ public class BurntGreenTea extends ItemTeaDrink
         super("burnt_green_tea");
     }
 	
+	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
         list.add(StatCollector.translateToLocal("teastory.tooltip.burnt_green_tea"));
     }
 
+	@Override
     protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
     	if(!world.isRemote)
@@ -76,6 +78,7 @@ public class BurntGreenTea extends ItemTeaDrink
 		}
 	}
 	
+    @Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (playerIn.isSneaking())

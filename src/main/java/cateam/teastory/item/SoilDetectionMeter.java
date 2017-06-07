@@ -23,6 +23,7 @@ public class SoilDetectionMeter extends TSItem
 		super("soil_detection_meter", 1);
 	}
 	
+	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
         list.add(StatCollector.translateToLocal("teastory.tooltip.soil_detection_meter"));

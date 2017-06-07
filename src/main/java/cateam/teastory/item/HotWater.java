@@ -31,6 +31,7 @@ public class HotWater extends ItemFood
         this.setUnlocalizedName("hot_water");
     }
     
+    @Override
     public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
         list.add(StatCollector.translateToLocal("teastory.tooltip.hot_water"));
@@ -66,16 +67,19 @@ public class HotWater extends ItemFood
 	    return super.getUnlocalizedName() + "." + name;
 	}
 
+    @Override
     public void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
         entityplayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 0));
     }
   
+    @Override
     public EnumAction getItemUseAction(ItemStack itemStackIn)
     {
         return EnumAction.DRINK;
     }
     
+    @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
     {
         super.onItemUseFinish(stack, worldIn, playerIn);

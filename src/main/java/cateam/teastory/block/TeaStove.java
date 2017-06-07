@@ -75,6 +75,7 @@ public class TeaStove extends BlockContainer
 		return drops;
 	}
 	
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (!worldIn.isRemote)
@@ -85,6 +86,7 @@ public class TeaStove extends BlockContainer
 		return true;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
@@ -149,6 +151,7 @@ public class TeaStove extends BlockContainer
         list.add(new ItemStack(BlockLoader.tea_stove, 1, 0));
     }
     
+    @Override
     @SideOnly(Side.CLIENT)
     public Item getItem(World worldIn, BlockPos pos)
     {

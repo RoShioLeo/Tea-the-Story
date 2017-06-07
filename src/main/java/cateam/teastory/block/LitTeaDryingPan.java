@@ -46,11 +46,13 @@ public class LitTeaDryingPan extends Block
         this.isBurning = true;
 	}
 
+	@Override
 	public boolean isOpaqueCube()
 	{
 	    return false;
 	}
 	
+	@Override
 	public boolean isFullCube()
     {
         return false;
@@ -64,6 +66,7 @@ public class LitTeaDryingPan extends Block
 		return drops;
 	}
 	
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
 		if(!worldIn.isRemote)
@@ -80,6 +83,7 @@ public class LitTeaDryingPan extends Block
 		}
     }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
     public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
@@ -101,6 +105,7 @@ public class LitTeaDryingPan extends Block
 		}
     }
 	
+	@Override
 	public  boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		int meta = getMetaFromState(worldIn.getBlockState(pos));
@@ -189,6 +194,7 @@ public class LitTeaDryingPan extends Block
 	    list.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
     public Item getItem(World worldIn, BlockPos pos)
     {

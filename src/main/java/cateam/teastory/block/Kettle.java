@@ -29,11 +29,13 @@ public class Kettle extends Block
         this.setUnlocalizedName(name);
 	}
 	
+	@Override
 	public boolean isOpaqueCube()
 	{
 	    return false;
 	}
 	
+	@Override
 	public boolean isFullCube()
     {
         return false;

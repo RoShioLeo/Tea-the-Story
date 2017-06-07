@@ -13,6 +13,7 @@ public class Record extends ItemRecord
 		this.setCreativeTab(CreativeTabsLoader.tabteastory);
 	}
 	
+	@Override
 	public ResourceLocation getRecordResource(String name)
     {
         return new ResourceLocation(TeaStory.MODID, name);

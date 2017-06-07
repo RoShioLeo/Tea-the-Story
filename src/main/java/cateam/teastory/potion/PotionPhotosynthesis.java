@@ -20,6 +20,7 @@ public class PotionPhotosynthesis extends Potion
         this.setPotionName("potion.photosynthesis");
     }
     
+    @Override
     public boolean isReady(int p_76397_1_, int p_76397_2_)
     {
         if (this.id == PotionLoader.PotionPhotosynthesis.id)
@@ -30,6 +31,7 @@ public class PotionPhotosynthesis extends Potion
         return false;
     }
     
+    @Override
     public void performEffect(EntityLivingBase entityLivingBaseIn, int p_76394_2_)
     {
     	if(!entityLivingBaseIn.worldObj.isRemote)

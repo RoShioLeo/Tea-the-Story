@@ -47,11 +47,13 @@ public class Barrel extends Block
         this.setCreativeTab(CreativeTabsLoader.tabteastory);
 	}
 	
+	@Override
 	public boolean isOpaqueCube()
 	{
 	    return false;
 	}
 	
+	@Override
 	public boolean isFullCube()
     {
         return false;
@@ -74,6 +76,7 @@ public class Barrel extends Block
 	    return drops;
 	}
 	
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         int meta = getMetaFromState(worldIn.getBlockState(pos));
@@ -153,6 +156,7 @@ public class Barrel extends Block
         return type.getID();
     }
     
+    @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)

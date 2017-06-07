@@ -45,11 +45,13 @@ public class Teapan extends Block
         this.setCreativeTab(CreativeTabsLoader.tabteastory);
 	}
 	
+	@Override
 	public boolean isOpaqueCube()
 	{
 	    return false;
 	}
 	
+	@Override
 	public boolean isFullCube()
     {
         return false;
@@ -80,6 +82,7 @@ public class Teapan extends Block
 	    return drops;
 	}
 	
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         super.updateTick(worldIn, pos, state, rand);

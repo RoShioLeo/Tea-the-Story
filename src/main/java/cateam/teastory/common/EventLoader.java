@@ -177,6 +177,16 @@ public class EventLoader
         		}
             }
         }
+        else if(event.crafting.getItem() == ItemLoader.brush)
+        {
+        	for (int i = 0; i < 9; ++i)
+            {
+        		if ((event.craftMatrix.getStackInSlot(i) != null) && (event.craftMatrix.getStackInSlot(i).getItem() == ItemLoader.brush))
+        		{
+        			event.craftMatrix.removeStackFromSlot(i);
+        		}
+            }
+        }
     }
     
     @SubscribeEvent

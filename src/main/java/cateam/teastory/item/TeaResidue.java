@@ -21,6 +21,7 @@ public class TeaResidue extends TSItem
         this.setHasSubtypes(true);
 	}
 	
+	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
         list.add(StatCollector.translateToLocal("teastory.tooltip.tea_residue"));
@@ -39,6 +40,7 @@ public class TeaResidue extends TSItem
 	    subItems.add(new ItemStack(itemIn, 1, 1));
 	}
 	
+	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
 		if (ItemDye.applyBonemeal(stack, worldIn, pos, playerIn))

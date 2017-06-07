@@ -27,11 +27,13 @@ public class MatchaDrink extends ItemTeaDrink
         super("matcha_drink");
     }
 	
+	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
         list.add(StatCollector.translateToLocal("teastory.tooltip.matcha_drink"));
     }
 
+	@Override
     protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
         if(!world.isRemote)
@@ -61,6 +63,7 @@ public class MatchaDrink extends ItemTeaDrink
     	}
 	}
     
+    @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
     {
 		playerIn.triggerAchievement(AchievementLoader.matchaDrink);
@@ -82,6 +85,7 @@ public class MatchaDrink extends ItemTeaDrink
 		}
 	}
 	
+    @Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (playerIn.isSneaking())
@@ -100,6 +104,6 @@ public class MatchaDrink extends ItemTeaDrink
 				stack.stackSize--;
 			return true;
 		}
-		else return false;
+		return false;
 	}
 }

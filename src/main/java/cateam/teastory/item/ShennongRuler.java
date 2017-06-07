@@ -30,11 +30,13 @@ public class ShennongRuler extends ItemSword
 		this.setUnlocalizedName("shennong_ruler");
 	}
 	
+	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
         list.add(StatCollector.translateToLocal("teastory.tooltip.shennong_ruler"));
     }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack stack)
     {
@@ -51,6 +53,7 @@ public class ShennongRuler extends ItemSword
         return false;
     }
 	
+	@Override
 	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
     {
 		if(!worldIn.isRemote)

@@ -29,6 +29,7 @@ public class TeaSeeds extends ItemSeeds
         this.setCreativeTab(CreativeTabsLoader.tabteastory);
 	}
 	
+	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
         list.add(StatCollector.translateToLocal("teastory.tooltip.tea_seeds"));

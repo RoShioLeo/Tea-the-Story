@@ -53,12 +53,14 @@ public class ItemTeaDrink extends ItemFood
 	    return super.getUnlocalizedName() + "." + name;
 	}
 	
+	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
     {
         super.onItemUseFinish(stack, worldIn, playerIn);
         return new ItemStack(ItemLoader.cup, 1, stack.getItemDamage());
     }
 	
+	@Override
 	public EnumAction getItemUseAction(ItemStack itemStackIn)
     {
         return EnumAction.DRINK;

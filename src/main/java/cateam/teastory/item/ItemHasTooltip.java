@@ -15,6 +15,7 @@ public class ItemHasTooltip extends TSItem
 		this.name = name;
 	}
 	
+	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
         list.add(StatCollector.translateToLocal("teastory.tooltip." + name));

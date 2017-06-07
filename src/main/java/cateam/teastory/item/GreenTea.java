@@ -29,11 +29,13 @@ public class GreenTea extends ItemTeaDrink
         super("green_tea");
     }
     
+    @Override
     public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
         list.add(StatCollector.translateToLocal("teastory.tooltip.green_tea"));
     }
 
+    @Override
     protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
         if(!world.isRemote)
@@ -71,6 +73,7 @@ public class GreenTea extends ItemTeaDrink
         }
 	}
     
+    @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn)
     {
 		playerIn.triggerAchievement(AchievementLoader.greenTea);
@@ -92,6 +95,7 @@ public class GreenTea extends ItemTeaDrink
 		}
 	}
 	
+    @Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (playerIn.isSneaking())
