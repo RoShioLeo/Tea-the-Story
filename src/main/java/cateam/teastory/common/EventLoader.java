@@ -33,6 +33,8 @@ import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.common.versioning.ArtifactVersion;
+import net.minecraftforge.fml.common.versioning.VersionRange;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -177,14 +179,28 @@ public class EventLoader
         		}
             }
         }
-        else if(event.crafting.getItem() == ItemLoader.brush)
+        else if(event.crafting.getItem() == ItemLoader.green_tea)
         {
-        	for (int i = 0; i < 9; ++i)
+        	if (!event.player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.tea_residue, 1, 0)))
             {
-        		if ((event.craftMatrix.getStackInSlot(i) != null) && (event.craftMatrix.getStackInSlot(i).getItem() == ItemLoader.brush))
-        		{
-        			event.craftMatrix.removeStackFromSlot(i);
-        		}
+                 event.player.getEntityWorld().spawnEntityInWorld(new EntityItem(event.player.getEntityWorld(), event.player.posX + 0.5D, event.player.posY + 1.5D, event.player.posZ + 0.5D, 
+                     new ItemStack(ItemLoader.tea_residue, 1, 0)));
+            }
+			if (event.player instanceof EntityPlayerMP)
+            {
+                ((EntityPlayerMP)event.player).sendContainerToPlayer(event.player.inventoryContainer);
+            }
+        }
+        else if(event.crafting.getItem() == ItemLoader.black_tea)
+        {
+        	if (!event.player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.tea_residue, 1, 1)))
+            {
+                 event.player.getEntityWorld().spawnEntityInWorld(new EntityItem(event.player.getEntityWorld(), event.player.posX + 0.5D, event.player.posY + 1.5D, event.player.posZ + 0.5D, 
+                     new ItemStack(ItemLoader.tea_residue, 1, 1)));
+            }
+			if (event.player instanceof EntityPlayerMP)
+            {
+                ((EntityPlayerMP)event.player).sendContainerToPlayer(event.player.inventoryContainer);
             }
         }
     }

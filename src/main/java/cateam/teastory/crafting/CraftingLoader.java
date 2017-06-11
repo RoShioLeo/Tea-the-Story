@@ -23,15 +23,24 @@ public class CraftingLoader
 
     private static void registerRecipe()
     {
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.sieve, 1), new Object[]{new ItemStack(ItemLoader.brush, 1, 32767), new ItemStack(ItemLoader.dirty_sieve, 1, 32767)});
     	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha, 1), new Object[]{ItemLoader.matcha_leaf, new ItemStack(ItemLoader.mortar_and_pestle, 1, 32767)});
     	GameRegistry.addShapelessRecipe(new ItemStack(BlockLoader.empty_kettle, 1, 4), new Object[]{Items.water_bucket, new ItemStack(BlockLoader.empty_kettle, 1, 0)});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_drink, 1, 0), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 0), ItemLoader.matcha, ItemLoader.matcha, ItemLoader.matcha});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_drink, 1, 1), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 1), ItemLoader.matcha, ItemLoader.matcha, ItemLoader.matcha});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_drink, 1, 2), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 2), ItemLoader.matcha, ItemLoader.matcha, ItemLoader.matcha});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_drink, 1, 3), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 3), ItemLoader.matcha, ItemLoader.matcha, ItemLoader.matcha});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.green_tea, 1, 0), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 0), new ItemStack(ItemLoader.tea_bag, 1, 0)});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.green_tea, 1, 1), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 1), new ItemStack(ItemLoader.tea_bag, 1, 0)});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.green_tea, 1, 2), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 2), new ItemStack(ItemLoader.tea_bag, 1, 0)});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.green_tea, 1, 3), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 3), new ItemStack(ItemLoader.tea_bag, 1, 0)});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, 0), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 0), new ItemStack(ItemLoader.tea_bag, 1, 1)});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, 1), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 1), new ItemStack(ItemLoader.tea_bag, 1, 1)});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, 2), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 2), new ItemStack(ItemLoader.tea_bag, 1, 1)});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, 3), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 3), new ItemStack(ItemLoader.tea_bag, 1, 1)});
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.tea_leaf, 1), new Object[]
     	        {"###", "###", "###", '#', "treeLeaves"}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.tea_leaf, 3), new Object[]
-    	        {"###", "#*#", "###", '#',"treeLeaves", '*', new ItemStack(ItemLoader.sieve.setContainerItem(ItemLoader.dirty_sieve), 1, 32767)}));
-    	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.brush, 1), new Object[]
-    	        {"#", "*", '#', Items.string, '*', "stickWood"}));
+    	        {"###", "#*#", "###", '#',"treeLeaves", '*', ItemLoader.sieve.setContainerItem(ItemLoader.sieve)}));
     	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.tea_leaf, 1), new Object[]
     	        {"###", "###", "###", '#', ItemLoader.broken_tea});
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.mortar_and_pestle, 1), new Object[]
@@ -70,12 +79,20 @@ public class CraftingLoader
     	        {"#+#", "#-#", "#*#", '#', "cobblestone", '*', Blocks.furnace, '+', "gemQuartz", '-', BlockLoader.tea_drying_pan}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.soil_detection_meter, 1), new Object[]
     	        {"#+#", "#-#", "*#*", '#', "cobblestone", '+', "dustRedstone", '*', "gemQuartz", '-', "treeLeaves"}));
+    	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.tea_bag, 1, 0), new Object[]
+    	        {"###", "***", "###", '#', Items.paper, '*', ItemLoader.dried_tea});
+    	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.tea_bag, 1, 1), new Object[]
+    	        {"###", "***", "###", '#', Items.paper, '*', ItemLoader.black_tea_leaf});
     }
     
     private static void registerSmelting()
     {
     	GameRegistry.addSmelting(ItemLoader.wet_tea, new ItemStack(ItemLoader.tea_leaf), 0.1f);
     	GameRegistry.addSmelting(ItemLoader.tea_leaf, new ItemStack(ItemLoader.burnt_tea), 0.1f);
+    	GameRegistry.addSmelting(new ItemStack(ItemLoader.cold_water, 1, 0), new ItemStack(ItemLoader.hot_water, 1, 0), 0.1f);
+    	GameRegistry.addSmelting(new ItemStack(ItemLoader.cold_water, 1, 1), new ItemStack(ItemLoader.hot_water, 1, 1), 0.1f);
+    	GameRegistry.addSmelting(new ItemStack(ItemLoader.cold_water, 1, 2), new ItemStack(ItemLoader.hot_water, 1, 2), 0.1f);
+    	GameRegistry.addSmelting(new ItemStack(ItemLoader.cold_water, 1, 3), new ItemStack(ItemLoader.hot_water, 1, 3), 0.1f);
         GameRegistry.addSmelting(new ItemStack(BlockLoader.empty_kettle, 1, 4), new ItemStack(BlockLoader.empty_kettle, 1, 12), 0.1f);
         GameRegistry.addSmelting(new ItemStack(BlockLoader.clay_kettle, 1, 0), new ItemStack(BlockLoader.empty_kettle, 1, 0), 0.1f);
         GameRegistry.addSmelting(new ItemStack(ItemLoader.clay_cup, 1), new ItemStack(ItemLoader.cup, 1, 3), 0.1f);

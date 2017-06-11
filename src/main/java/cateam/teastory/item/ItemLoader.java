@@ -32,10 +32,9 @@ public class ItemLoader
     public static Item broken_tea = new ItemHasTooltip("broken_tea", 64);
     public static Item tea_seeds = new TeaSeeds();
     public static Item tea_residue = new TeaResidue();
+    public static Item tea_bag = new TeaBag();
     
     public static Item sieve = new TSItem("sieve", 64);//工具
-    public static Item dirty_sieve =new DirtySieve();
-    public static Item brush = new Brush();
     public static Item mortar_and_pestle = new MortarAndPestle();
     public static Item soil_detection_meter = new SoilDetectionMeter();
     
@@ -43,6 +42,7 @@ public class ItemLoader
     public static Item cup = new ItemCup();
     
     public static ItemFood hot_water = new HotWater();//茶饮
+    public static Item cold_water = new ColdWater();
     public static ItemTeaDrink green_tea = new GreenTea();
     public static ItemTeaDrink burnt_green_tea = new BurntGreenTea();
     public static ItemTeaDrink matcha_drink = new MatchaDrink();
@@ -64,14 +64,14 @@ public class ItemLoader
         register(broken_tea);
         register(tea_seeds);
         register(tea_residue);
+        register(tea_bag);
         register(sieve);
-        register(dirty_sieve);
-        register(brush);
         register(mortar_and_pestle);
         register(soil_detection_meter);
         register(clay_cup);
         register(cup);
         register(hot_water);
+        register(cold_water);
         register(green_tea);
         register(burnt_green_tea);
         register(matcha_drink);
@@ -88,6 +88,8 @@ public class ItemLoader
         ModelBakery.registerItemVariants(matcha_drink,  new ResourceLocation(TeaStory.MODID, "matcha_drink_wood"),  new ResourceLocation(TeaStory.MODID, "matcha_drink_stone"), new ResourceLocation(TeaStory.MODID, "matcha_drink_glass"), new ResourceLocation(TeaStory.MODID, "matcha_drink_porcelain"));
         ModelBakery.registerItemVariants(black_tea,  new ResourceLocation(TeaStory.MODID, "black_tea_wood"),  new ResourceLocation(TeaStory.MODID, "black_tea_stone"), new ResourceLocation(TeaStory.MODID, "black_tea_glass"), new ResourceLocation(TeaStory.MODID, "black_tea_porcelain"));
         ModelBakery.registerItemVariants(hot_water,  new ResourceLocation(TeaStory.MODID, "hot_water_wood"),  new ResourceLocation(TeaStory.MODID, "hot_water_stone"), new ResourceLocation(TeaStory.MODID, "hot_water_glass"), new ResourceLocation(TeaStory.MODID, "hot_water_porcelain"));
+        ModelBakery.registerItemVariants(cold_water,  new ResourceLocation(TeaStory.MODID, "hot_water_wood"),  new ResourceLocation(TeaStory.MODID, "hot_water_stone"), new ResourceLocation(TeaStory.MODID, "hot_water_glass"), new ResourceLocation(TeaStory.MODID, "hot_water_porcelain"));
+        ModelBakery.registerItemVariants(tea_bag,  new ResourceLocation(TeaStory.MODID, "green_tea_bag"),  new ResourceLocation(TeaStory.MODID, "black_tea_bag"));
     }
     
     @SideOnly(Side.CLIENT)
@@ -100,13 +102,15 @@ public class ItemLoader
         registerRender(hot_water, 1, "hot_water_stone");
         registerRender(hot_water, 2, "hot_water_glass");
         registerRender(hot_water, 3, "hot_water_porcelain");
+        registerRender(cold_water, 0, "hot_water_wood");
+        registerRender(cold_water, 1, "hot_water_stone");
+        registerRender(cold_water, 2, "hot_water_glass");
+        registerRender(cold_water, 3, "hot_water_porcelain");
         registerRender(green_tea, 0, "green_tea_wood");
         registerRender(green_tea, 1, "green_tea_stone");
         registerRender(green_tea, 2, "green_tea_glass");
         registerRender(green_tea, 3, "green_tea_porcelain");
         registerRender(sieve);
-        registerRender(dirty_sieve);
-        registerRender(brush);
         registerRender(burnt_tea);
         registerRender(wet_tea);
         registerRender(broken_tea);
@@ -135,6 +139,8 @@ public class ItemLoader
         registerRender(black_tea, 3, "black_tea_porcelain");
         registerRender(tea_residue, 0, "tea_residue_green");
         registerRender(tea_residue, 1, "tea_residue_black");
+        registerRender(tea_bag, 0, "green_tea_bag");
+        registerRender(tea_bag, 1, "black_tea_bag");
         registerRender(shennongruler);
         registerRender(caichawuqu);
     }

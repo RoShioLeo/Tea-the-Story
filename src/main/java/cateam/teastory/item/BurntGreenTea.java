@@ -6,6 +6,7 @@ import cateam.teastory.block.BlockLoader;
 import cateam.teastory.common.ConfigLoader;
 import cateam.teastory.creativetab.CreativeTabsLoader;
 import cateam.teastory.potion.PotionLoader;
+import cateam.teastory.tileentity.TileEntityTeaDrink;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -93,8 +94,7 @@ public class BurntGreenTea extends ItemTeaDrink
 			IBlockState state = block.onBlockPlaced(worldIn, blockPos, side, 0, 0, 0, 0, playerIn);
 			worldIn.setBlockState(blockPos, state);
 			block.onBlockPlacedBy(worldIn, blockPos, state, playerIn, stack);			
-			if (!playerIn.capabilities.isCreativeMode)
-				stack.stackSize--;
+			stack.stackSize--;
 			return true;
 		}
 		else return false;

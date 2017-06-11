@@ -100,8 +100,7 @@ public class MatchaDrink extends ItemTeaDrink
 			IBlockState state = block.onBlockPlaced(worldIn, blockPos, side, 0, 0, 0, 0, playerIn);
 			worldIn.setBlockState(blockPos, state);
 			block.onBlockPlacedBy(worldIn, blockPos, state, playerIn, stack);			
-			if (!playerIn.capabilities.isCreativeMode)
-				stack.stackSize--;
+			stack.stackSize--;
 			return true;
 		}
 		return false;

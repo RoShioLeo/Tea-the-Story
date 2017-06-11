@@ -8,11 +8,13 @@ import cateam.teastory.block.BlockLoader;
 import cateam.teastory.common.ConfigLoader;
 import cateam.teastory.creativetab.CreativeTabsLoader;
 import cateam.teastory.potion.PotionLoader;
+import cateam.teastory.tileentity.TileEntityTeaDrink;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
@@ -70,6 +72,10 @@ public class GreenTea extends ItemTeaDrink
                 world.spawnEntityInWorld(new EntityItem(world, entityplayer.posX + 0.5D, entityplayer.posY + 1.5D, entityplayer.posZ + 0.5D, 
                 		new ItemStack(ItemLoader.tea_residue, 1, 0)));
             }
+        	if (entityplayer instanceof EntityPlayerMP)
+            {
+                ((EntityPlayerMP)entityplayer).sendContainerToPlayer(entityplayer.inventoryContainer);
+            }
         }
 	}
     
@@ -110,8 +116,7 @@ public class GreenTea extends ItemTeaDrink
 			IBlockState state = block.onBlockPlaced(worldIn, blockPos, side, 0, 0, 0, 0, playerIn);
 			worldIn.setBlockState(blockPos, state);
 			block.onBlockPlacedBy(worldIn, blockPos, state, playerIn, stack);			
-			if (!playerIn.capabilities.isCreativeMode)
-				stack.stackSize--;
+			stack.stackSize--;
 			return true;
 		}
 		else return false;

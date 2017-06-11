@@ -53,10 +53,6 @@ public class FullKettle extends Kettle
     		{
     			if (playerIn.getHeldItem().getItem() instanceof ItemCup)
     			{
-    				if (!playerIn.capabilities.isCreativeMode)
-                    {
-    					playerIn.getHeldItem().stackSize--;
-        		    }
     				int meta = playerIn.getHeldItem().getItemDamage();
         	    	if (!playerIn.inventory.addItemStackToInventory(new ItemStack(this.getDrink(this), 1, meta)))
                     {

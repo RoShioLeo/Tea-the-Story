@@ -21,6 +21,7 @@ public class ItemBlockFullKettle extends ItemMultiTexture
 		this.setMaxStackSize(1);
 		this.setMaxDamage(16);
 		this.drink = drink;
+		this.setNoRepair();
 	}
 
     @Override

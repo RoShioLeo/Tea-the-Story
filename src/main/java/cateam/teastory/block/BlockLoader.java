@@ -48,18 +48,22 @@ public class BlockLoader
     public static TeaDrinkFull greentea_wood_cup = new TeaDrinkFull(1.0F, "greentea_wood_cup", Material.wood, Block.soundTypeWood, 1, 0);
     public static TeaDrinkFull matchadrink_wood_cup = new TeaDrinkFull(1.0F, "matchadrink_wood_cup", Material.wood, Block.soundTypeWood, 2, 0);
     public static TeaDrinkFull blacktea_wood_cup = new TeaDrinkFull(1.0F, "blacktea_wood_cup", Material.wood, Block.soundTypeWood, 3, 0);
+    public static TeaDrinkFull hotwater_wood_cup = new TeaDrinkFull(1.0F, "hotwater_wood_cup", Material.wood, Block.soundTypeWood, 4, 0);
     public static TeaDrinkFull burntgreentea_stone_cup = new TeaDrinkFull(1.3F, "burntgreentea_stone_cup", Material.rock, Block.soundTypePiston, 0, 1);
     public static TeaDrinkFull greentea_stone_cup = new TeaDrinkFull(1.3F, "greentea_stone_cup", Material.rock, Block.soundTypePiston, 1, 1);
     public static TeaDrinkFull matchadrink_stone_cup = new TeaDrinkFull(1.3F, "matchadrink_stone_cup", Material.rock, Block.soundTypePiston, 2, 1);
     public static TeaDrinkFull blacktea_stone_cup = new TeaDrinkFull(1.3F, "blacktea_stone_cup", Material.rock, Block.soundTypePiston, 3, 1);
+    public static TeaDrinkFull hotwater_stone_cup = new TeaDrinkFull(1.3F, "hotwater_stone_cup", Material.rock, Block.soundTypePiston, 4, 1);
     public static TeaDrinkFull burntgreentea_glass_cup = new TeaDrinkFull(0.8F, "burntgreentea_glass_cup", Material.glass, Block.soundTypeGlass, 0, 2);
     public static TeaDrinkFull greentea_glass_cup = new TeaDrinkFull(0.8F, "greentea_glass_cup", Material.glass, Block.soundTypeGlass, 1, 2);
     public static TeaDrinkFull matchadrink_glass_cup = new TeaDrinkFull(0.8F, "matchadrink_glass_cup", Material.glass, Block.soundTypeGlass, 2, 2);
     public static TeaDrinkFull blacktea_glass_cup = new TeaDrinkFull(0.8F, "blacktea_glass_cup", Material.glass, Block.soundTypeGlass, 3, 2);
+    public static TeaDrinkFull hotwater_glass_cup = new TeaDrinkFull(0.8F, "hotwater_glass_cup", Material.glass, Block.soundTypeGlass, 4, 2);
     public static TeaDrinkFull burntgreentea_porcelain_cup = new TeaDrinkFull(1.5F, "burntgreentea_porcelain_cup", Material.rock, Block.soundTypePiston, 0, 3);
     public static TeaDrinkFull greentea_porcelain_cup = new TeaDrinkFull(1.5F, "greentea_porcelain_cup", Material.rock, Block.soundTypePiston, 1, 3);
     public static TeaDrinkFull matchadrink_porcelain_cup = new TeaDrinkFull(1.5F, "matchadrink_porcelain_cup", Material.rock, Block.soundTypePiston, 2, 3);
     public static TeaDrinkFull blacktea_porcelain_cup = new TeaDrinkFull(1.5F, "blacktea_porcelain_cup", Material.rock, Block.soundTypePiston, 3, 3);
+    public static TeaDrinkFull hotwater_porcelain_cup = new TeaDrinkFull(1.5F, "hotwater_porcelain_cup", Material.rock, Block.soundTypePiston, 4, 3);
 
     public BlockLoader(FMLPreInitializationEvent event)
     {
@@ -83,6 +87,10 @@ public class BlockLoader
     	register(greentea_porcelain_cup, "greentea_porcelain_cup");
     	register(matchadrink_porcelain_cup, "matchadrink_porcelain_cup");
     	register(blacktea_porcelain_cup, "blacktea_porcelain_cup");
+    	register(hotwater_wood_cup, "hotwater_wood_cup");
+    	register(hotwater_stone_cup, "hotwater_stone_cup");
+    	register(hotwater_glass_cup, "hotwater_glass_cup");
+    	register(hotwater_porcelain_cup, "hotwater_porcelain_cup");
     	register(lit_tea_drying_pan, new ItemBlockMeta(lit_tea_drying_pan, lit_tea_drying_pan, new Function<ItemStack, String>()
         {
             @Override
@@ -220,6 +228,7 @@ public class BlockLoader
         registerRender(lit_tea_drying_pan, 11, "tea_drying_pan6");
         registerRender(lit_tea_drying_pan, 12, "tea_drying_pan7");
         registerRender(tea_stove, "tea_stove");
+        registerRender(lit_tea_drying_pan, "lit_tea_drying_pan");
         registerRender(teaplant, "teaplant");
         registerRender(wood_cup, "wood_cup");
     	registerRender(stone_cup, "stone_cup");
@@ -229,19 +238,23 @@ public class BlockLoader
     	registerRender(greentea_wood_cup, "greentea_wood_cup");
     	registerRender(matchadrink_wood_cup, "matchadrink_wood_cup");
     	registerRender(blacktea_wood_cup, "blacktea_wood_cup");
-    	registerRender(burntgreentea_stone_cup, "stone_cup");
-    	registerRender(greentea_stone_cup, "stone_cup");
-    	registerRender(matchadrink_stone_cup, "stone_cup");
-    	registerRender(blacktea_stone_cup, "stone_cup");
-    	registerRender(burntgreentea_glass_cup, "glass_cup");
-    	registerRender(greentea_glass_cup, "glass_cup");
-    	registerRender(matchadrink_glass_cup, "glass_cup");
-    	registerRender(blacktea_glass_cup, "glass_cup");
-    	registerRender(burntgreentea_porcelain_cup, "porcelain_cup");
-    	registerRender(greentea_porcelain_cup, "porcelain_cup");
-    	registerRender(matchadrink_porcelain_cup, "porcelain_cup");
-    	registerRender(blacktea_porcelain_cup, "porcelain_cup");
-	}
+    	registerRender(burntgreentea_stone_cup, "burntgreentea_stone_cup");
+    	registerRender(greentea_stone_cup, "greentea_stone_cup");
+    	registerRender(matchadrink_stone_cup, "matchadrink_stone_cup");
+    	registerRender(blacktea_stone_cup, "blacktea_stone_cup");
+    	registerRender(burntgreentea_glass_cup, "burntgreentea_glass_cup");
+    	registerRender(greentea_glass_cup, "greentea_glass_cup");
+    	registerRender(matchadrink_glass_cup, "matchadrink_glass_cup");
+    	registerRender(blacktea_glass_cup, "blacktea_glass_cup");
+    	registerRender(burntgreentea_porcelain_cup, "burntgreentea_porcelain_cup");
+    	registerRender(greentea_porcelain_cup, "greentea_porcelain_cup");
+    	registerRender(matchadrink_porcelain_cup, "matchadrink_porcelain_cup");
+    	registerRender(blacktea_porcelain_cup, "blacktea_porcelain_cup");
+    	registerRender(hotwater_wood_cup, "hotwater_wood_cup");
+    	registerRender(hotwater_stone_cup, "hotwater_stone_cup");
+    	registerRender(hotwater_glass_cup, "hotwater_glass_cup");
+    	registerRender(hotwater_porcelain_cup, "hotwater_porcelain_cup");
+    }
     
     private static void register(Block block, String name)
     {

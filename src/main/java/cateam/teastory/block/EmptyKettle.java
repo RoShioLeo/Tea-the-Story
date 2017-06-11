@@ -98,10 +98,6 @@ public class EmptyKettle extends Kettle
     			{
     				if (playerIn.getHeldItem().getItem() instanceof ItemCup)
     				{
-    					if (!playerIn.capabilities.isCreativeMode)
-                        {
-    						playerIn.getHeldItem().stackSize--;
-        		    	}
     					int meta2 = playerIn.getHeldItem().getItemDamage();
         	    		if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.hot_water, 1, meta2)))
                         {

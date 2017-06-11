@@ -4,17 +4,22 @@ import java.util.List;
 
 import cateam.teastory.block.BlockLoader;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 public class ItemCup extends TSItem
@@ -93,6 +98,102 @@ public class ItemCup extends TSItem
 				stack.stackSize--;
 			return true;
 		}
-		else return false;
+		else
+		{
+			MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(worldIn, playerIn, true);
+
+	        if (movingobjectposition == null)
+	        {
+	            return false;
+	        }
+	        else
+	        {
+	            if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+	            {
+	                BlockPos blockpos = movingobjectposition.getBlockPos();
+
+	                if (!worldIn.isBlockModifiable(playerIn, blockpos))
+	                {
+	                    return false;
+	                }
+
+	                if (!playerIn.canPlayerEdit(blockpos.offset(movingobjectposition.sideHit), movingobjectposition.sideHit, stack))
+	                {
+	                    return false;
+	                }
+
+	                if (worldIn.getBlockState(blockpos).getBlock().getMaterial() == Material.water)
+	                {
+	                    --stack.stackSize;
+
+	                    if (stack.stackSize <= 0)
+	                    {
+	                        stack = new ItemStack(ItemLoader.cold_water, 1, stack.getItemDamage());
+	                    }
+
+	                    if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.cold_water, 1, stack.getItemDamage())))
+	                    {
+	                        playerIn.dropPlayerItemWithRandomChoice(new ItemStack(ItemLoader.cold_water, 1, stack.getItemDamage()), false);
+	                    }
+	                    if (playerIn instanceof EntityPlayerMP)
+                        {
+                            ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
+                        }
+	                    return true;
+	                }
+	            }
+
+	            return false;
+	        }
+		}
 	}
+	
+	@Override
+	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    {
+        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(worldIn, playerIn, true);
+
+        if (movingobjectposition == null)
+        {
+            return itemStackIn;
+        }
+        else
+        {
+            if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+            {
+                BlockPos blockpos = movingobjectposition.getBlockPos();
+
+                if (!worldIn.isBlockModifiable(playerIn, blockpos))
+                {
+                    return itemStackIn;
+                }
+
+                if (!playerIn.canPlayerEdit(blockpos.offset(movingobjectposition.sideHit), movingobjectposition.sideHit, itemStackIn))
+                {
+                    return itemStackIn;
+                }
+
+                if (worldIn.getBlockState(blockpos).getBlock().getMaterial() == Material.water)
+                {
+                    --itemStackIn.stackSize;
+
+                    if (itemStackIn.stackSize <= 0)
+                    {
+                        return new ItemStack(ItemLoader.cold_water, 1, itemStackIn.getItemDamage());
+                    }
+
+                    if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.cold_water, 1, itemStackIn.getItemDamage())))
+                    {
+                        playerIn.dropPlayerItemWithRandomChoice(new ItemStack(ItemLoader.cold_water, 1, itemStackIn.getItemDamage()), false);
+                    }
+                    else if (playerIn instanceof EntityPlayerMP)
+                    {
+                        ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
+                    }
+                }
+            }
+
+            return itemStackIn;
+        }
+    }
 }

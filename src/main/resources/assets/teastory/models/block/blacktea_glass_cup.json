@@ -2,7 +2,8 @@
     "textures": {
         "0": "teastory:blocks/glass_side",
 		"1": "teastory:blocks/glass_top",
-		"-1": "teastory:blocks/blacktea"
+		"-1": "teastory:blocks/blacktea",
+		"particle":"blocks/glass"
     },
     "elements": [
         {
