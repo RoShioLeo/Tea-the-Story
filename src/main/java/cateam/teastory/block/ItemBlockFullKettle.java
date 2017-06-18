@@ -1,5 +1,7 @@
 package cateam.teastory.block;
 
+import java.util.List;
+
 import com.google.common.base.Function;
 
 import cateam.teastory.item.ItemLoader;
@@ -9,6 +11,7 @@ import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemBlockFullKettle extends ItemMultiTexture
@@ -28,6 +31,12 @@ public class ItemBlockFullKettle extends ItemMultiTexture
     public String getUnlocalizedName(ItemStack stack)
     {
         return super.getUnlocalizedName() + (String)this.nameFunction.apply(stack);
+    }
+    
+    @Override
+	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
+    {
+        list.add(StatCollector.translateToLocal("teastory.tooltip.kettle"));
     }
     
     public void pourTeaDrink(ItemStack stack, int meta)

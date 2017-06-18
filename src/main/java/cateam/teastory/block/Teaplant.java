@@ -43,12 +43,6 @@ public class Teaplant extends BlockCrops
     {
         return ItemLoader.tea_leaf;
     }
-	
-	@Override
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
-    {
-        return false;
-    }
     
 	@Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
@@ -94,7 +88,7 @@ public class Teaplant extends BlockCrops
     }
     
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -108,6 +102,7 @@ public class Teaplant extends BlockCrops
             	playerIn.triggerAchievement(AchievementLoader.teaPlant);
     	    	worldIn.setBlockState(pos, BlockLoader.teaplant.getStateFromMeta(4));
     	    	worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, new ItemStack(ItemLoader.tea_leaf, playerIn.getRNG().nextInt(4) + 1)));
+    	    	worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, new ItemStack(ItemLoader.tea_seeds, 1)));
     	        return true;
         	}
             else return false;
@@ -115,10 +110,23 @@ public class Teaplant extends BlockCrops
     }
     
     @Override
+    public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        java.util.List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
+        int age = ((Integer)state.getValue(AGE)).intValue();
+        Random rand = world instanceof World ? ((World)world).rand : new Random();
+
+        if (age >= 7)
+        {
+        	ret.add(new ItemStack(this.getSeed(), 1, 0));
+        }
+        return ret;
+    }
+    
+    @Override
     public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
     {
-        super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
-        if (worldIn.getBlockState(pos.down()).getBlock() != Blocks.air && !this.canPlaceBlockOn(worldIn.getBlockState(pos.down()).getBlock()))
+        if (!worldIn.getBlockState(pos.down()).getBlock().canSustainPlant(worldIn, pos.down(), EnumFacing.UP, ItemLoader.tea_seeds))
         {
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockState(pos, Blocks.air.getDefaultState(), 3);

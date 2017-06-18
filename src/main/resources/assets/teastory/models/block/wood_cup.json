@@ -1,6 +1,7 @@
 {
     "textures": {
-        "0": "teastory:blocks/wood_cup"
+        "0": "teastory:blocks/wood_cup",
+		"particle":"teastory:blocks/wood_cup"
     },
     "elements": [
         {

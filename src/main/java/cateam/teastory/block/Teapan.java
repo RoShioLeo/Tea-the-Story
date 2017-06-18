@@ -25,6 +25,7 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -93,7 +94,7 @@ public class Teapan extends Block
         }
         else if (meta == 1 || meta == 3 || meta == 4)
        	{
-            float f = getChance(this, worldIn, pos);
+            float f = getDryingChance(worldIn, pos);
             if (f == 0.0F)
             { 
               	return;
@@ -124,7 +125,7 @@ public class Teapan extends Block
        	}
     }
 	
-	protected static float getChance(Block blockIn, World worldIn, BlockPos pos)
+	public static float getDryingChance(World worldIn, BlockPos pos)
     {
         float f;
         BiomeGenBase biome = worldIn.getBiomeGenForCoords(pos);
@@ -138,11 +139,11 @@ public class Teapan extends Block
         }
         if (isDaytime)
        	{
-       		f = worldIn.getLightFromNeighbors(pos.up()) * 0.07F;
+       		f = worldIn.getLight(pos.up()) * 0.07F;
        	}
        	else
        	{
-       		f = worldIn.getLightFromNeighbors(pos.up()) * 0.025F;
+       		f = worldIn.getLightFor(EnumSkyBlock.BLOCK, pos.up()) * 0.025F;
        	}
         f = (float)((double)f * ((double)humidity >= 0.2D ? (double)humidity >= 0.5D ? (double)humidity >= 0.8D ? 0.3D : 0.7D : 1.0D : 1.4D));
         f = (float)((double)f * ((double)temperature >= 0.15D ? (double)temperature >= 0.5D ? (double)temperature > 0.95D ? 1.3D : 0.9D : 0.5D : 0.1D));

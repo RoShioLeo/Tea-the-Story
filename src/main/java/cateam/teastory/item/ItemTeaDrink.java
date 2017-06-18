@@ -10,6 +10,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemTeaDrink extends ItemFood
@@ -31,6 +32,12 @@ public class ItemTeaDrink extends ItemFood
 	    subItems.add(new ItemStack(itemIn, 1, 2));
 	    subItems.add(new ItemStack(itemIn, 1, 3));
 	}
+	
+	@Override
+	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
+    {
+        list.add(StatCollector.translateToLocal("teastory.tooltip.cup"));
+    }
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) 

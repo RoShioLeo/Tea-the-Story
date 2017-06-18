@@ -10,10 +10,12 @@ import cateam.teastory.potion.PotionLoader;
 import cateam.teastory.tileentity.TileEntityTeaDrink;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSoup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -113,19 +115,55 @@ public class BlackTea extends ItemTeaDrink
 	{
 		if (playerIn.isSneaking())
 		{
-			IBlockState s = worldIn.getBlockState(pos);
-			Block block = getBlock(stack.getItemDamage());
-			BlockPos blockPos = pos.offset(side);
-			if(s.getBlock().isReplaceable(worldIn, pos))
-				blockPos = pos;
-			if(!playerIn.canPlayerEdit(pos, side, null) || !block.canPlaceBlockAt(worldIn, blockPos) || !block.canPlaceBlockOnSide(worldIn, blockPos, side))
-			    return false;
-			IBlockState state = block.onBlockPlaced(worldIn, blockPos, side, 0, 0, 0, 0, playerIn);
-			worldIn.setBlockState(blockPos, state);
-			block.onBlockPlacedBy(worldIn, blockPos, state, playerIn, stack);			
-		    stack.stackSize--;
-			return true;
+			Block drinkblock = getBlock(stack.getItemDamage());
+			IBlockState iblockstate = worldIn.getBlockState(pos);
+	        Block block = iblockstate.getBlock();
+
+	        if (!block.isReplaceable(worldIn, pos))
+	        {
+	            pos = pos.offset(side);
+	        }
+
+	        if (stack.stackSize == 0)
+	        {
+	            return false;
+	        }
+	        else if (!playerIn.canPlayerEdit(pos, side, stack))
+	        {
+	            return false;
+	        }
+	        else if (worldIn.canBlockBePlaced(drinkblock, pos, false, side, (Entity)null, stack))
+	        {
+	            int i = this.getMetadata(stack.getMetadata());
+	            IBlockState iblockstate1 = drinkblock.onBlockPlaced(worldIn, pos, side, hitX, hitY, hitZ, i, playerIn);
+
+	            if (placeBlockAt(stack, playerIn, worldIn, pos, side, hitX, hitY, hitZ, iblockstate1))
+	            {
+	                worldIn.playSoundEffect((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), drinkblock.stepSound.getPlaceSound(), (drinkblock.stepSound.getVolume() + 1.0F) / 2.0F, drinkblock.stepSound.getFrequency() * 0.8F);
+	                --stack.stackSize;
+	            }
+
+	            return true;
+	        }
+	        else
+	        {
+	            return false;
+	        }
 		}
 		else return false;
 	}
+	
+	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState)
+    {
+        if (!world.setBlockState(pos, newState, 3)) return false;
+
+        IBlockState state = world.getBlockState(pos);
+        if (state.getBlock() == getBlock(stack.getItemDamage()))
+        {
+            ItemBlock.setTileEntityNBT(world, player, pos, stack);
+            getBlock(stack.getItemDamage()).onBlockPlacedBy(world, pos, state, player, stack);
+        }
+
+        return true;
+    }
 }

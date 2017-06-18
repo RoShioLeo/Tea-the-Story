@@ -72,7 +72,7 @@ public class LitTeaDryingPan extends Block
 		if(!worldIn.isRemote)
 		{
 		    int meta = getMetaFromState(worldIn.getBlockState(pos));
-		    if (((meta >= 2) && (meta <= 11)) && (worldIn.rand.nextFloat() < 0.5F))
+		    if (((meta >= 2) && (meta <= 11)) && (worldIn.rand.nextFloat() < 0.8F))
 		    {
 			    if((meta != 5) && (meta != 9))
 			    {

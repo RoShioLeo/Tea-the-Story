@@ -1,6 +1,7 @@
 {
     "textures": {
-        "0": "teastory:blocks/kettle"
+        "0": "teastory:blocks/kettle",
+		"particle":"teastory:blocks/kettle"
     },
     "elements": [
         {

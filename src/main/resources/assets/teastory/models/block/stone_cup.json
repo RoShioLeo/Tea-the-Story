@@ -1,6 +1,7 @@
 {
     "textures": {
-        "0": "blocks/stone"
+        "0": "blocks/stone",
+		"particle":"blocks/stone"
     },
     "elements": [
         {

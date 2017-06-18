@@ -25,21 +25,21 @@ public class CraftingLoader
     {
     	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha, 1), new Object[]{ItemLoader.matcha_leaf, new ItemStack(ItemLoader.mortar_and_pestle, 1, 32767)});
     	GameRegistry.addShapelessRecipe(new ItemStack(BlockLoader.empty_kettle, 1, 4), new Object[]{Items.water_bucket, new ItemStack(BlockLoader.empty_kettle, 1, 0)});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_drink, 1, 0), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 0), ItemLoader.matcha, ItemLoader.matcha, ItemLoader.matcha});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_drink, 1, 1), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 1), ItemLoader.matcha, ItemLoader.matcha, ItemLoader.matcha});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_drink, 1, 2), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 2), ItemLoader.matcha, ItemLoader.matcha, ItemLoader.matcha});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_drink, 1, 3), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 3), ItemLoader.matcha, ItemLoader.matcha, ItemLoader.matcha});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.green_tea, 1, 0), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 0), new ItemStack(ItemLoader.tea_bag, 1, 0)});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.green_tea, 1, 1), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 1), new ItemStack(ItemLoader.tea_bag, 1, 0)});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.green_tea, 1, 2), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 2), new ItemStack(ItemLoader.tea_bag, 1, 0)});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.green_tea, 1, 3), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 3), new ItemStack(ItemLoader.tea_bag, 1, 0)});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, 0), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 0), new ItemStack(ItemLoader.tea_bag, 1, 1)});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, 1), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 1), new ItemStack(ItemLoader.tea_bag, 1, 1)});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, 2), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 2), new ItemStack(ItemLoader.tea_bag, 1, 1)});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, 3), new Object[]{new ItemStack(ItemLoader.hot_water, 1, 3), new ItemStack(ItemLoader.tea_bag, 1, 1)});
-    	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.tea_leaf, 1), new Object[]
+    	for (int i = 0; i < 4; ++i)
+        {
+    		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_drink, 1, i), new Object[]{new ItemStack(ItemLoader.hot_water, 1, i), ItemLoader.matcha, ItemLoader.matcha, ItemLoader.matcha});
+        }
+    	for (int i = 0; i < 4; ++i)
+        {
+    		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.green_tea, 1, i), new Object[]{new ItemStack(ItemLoader.hot_water, 1, i), new ItemStack(ItemLoader.tea_bag, 1, 0)});
+        }
+    	for (int i = 0; i < 4; ++i)
+        {
+    		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, i), new Object[]{new ItemStack(ItemLoader.hot_water, 1, i), new ItemStack(ItemLoader.tea_bag, 1, 1)});
+        }
+    	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.broken_tea, 6), new Object[]
     	        {"###", "###", "###", '#', "treeLeaves"}));
-    	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.tea_leaf, 3), new Object[]
+    	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.tea_leaf, 1), new Object[]
     	        {"###", "#*#", "###", '#',"treeLeaves", '*', ItemLoader.sieve.setContainerItem(ItemLoader.sieve)}));
     	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.tea_leaf, 1), new Object[]
     	        {"###", "###", "###", '#', ItemLoader.broken_tea});

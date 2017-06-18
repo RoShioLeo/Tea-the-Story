@@ -82,7 +82,7 @@ public class Barrel extends Block
         int meta = getMetaFromState(worldIn.getBlockState(pos));
         if ((meta == 3) || (meta == 2))
        	{
-            float f = getChance(this, worldIn, pos);
+            float f = getFermentationChance(worldIn, pos);
             if (f == 0.0F)
             { 
               	return;
@@ -94,11 +94,10 @@ public class Barrel extends Block
        	}
     }
 	
-	protected static float getChance(Block blockIn, World worldIn, BlockPos pos)
+	public static float getFermentationChance(World worldIn, BlockPos pos)
     {
         float f = 1.0F;
         BiomeGenBase biome = worldIn.getBiomeGenForCoords(pos);
-        boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
         float humidity = biome.rainfall;
         float temperature = biome.getFloatTemperature(pos);
         f = (float)((double)f * ((double)humidity >= 0.2D ? (double)humidity >= 0.5D ? (double)humidity >= 0.8D ? 1.8D : 1.6D : 1.0D : 0.4D));
@@ -164,25 +163,25 @@ public class Barrel extends Block
         	switch(getMetaFromState(worldIn.getBlockState(pos)))
         	{
         	    case 1:
-        	    	if ((playerIn.getHeldItem() != null) && !(playerIn.getHeldItem().getItem() instanceof ItemSpade))
+        	    	if (!(playerIn.isSneaking()))
         	    	{
         	    		playerIn.addChatMessage(new ChatComponentTranslation("teastory.barrel.message.2"));
         	    	}
         	    	return true;
         	    case 2:
-        	    	if ((playerIn.getHeldItem() == null) || (playerIn.getHeldItem() != null) && !(playerIn.getHeldItem().getItem() instanceof ItemSpade))
+        	    	if (!(playerIn.isSneaking()))
         	    	{
         	    		playerIn.addChatMessage(new ChatComponentTranslation("teastory.barrel.message.3"));
         	    	}
         	    	return true;
         	    case 3:
-        	    	if ((playerIn.getHeldItem() == null) || (playerIn.getHeldItem() != null) && !(playerIn.getHeldItem().getItem() instanceof ItemSpade))
+        	    	if (!(playerIn.isSneaking()))
         	    	{
         	    		playerIn.addChatMessage(new ChatComponentTranslation("teastory.barrel.message.4"));
         	    	}
         	    	return true;
         	    case 4:
-        	    	if ((playerIn.getHeldItem() == null) || (playerIn.getHeldItem() != null) && !(playerIn.getHeldItem().getItem() instanceof ItemSpade))
+        	    	if (!(playerIn.isSneaking()))
         	    	{
         	    		playerIn.addChatMessage(new ChatComponentTranslation("teastory.barrel.message.5"));
         	    	}
@@ -200,9 +199,9 @@ public class Barrel extends Block
             switch(getMetaFromState(worldIn.getBlockState(pos)))
         	{
         	    case 1:
-        	    	if (playerIn.getHeldItem() != null)
+        	    	if (playerIn.getHeldItem() == null)
                     {
-        	    		if (playerIn.getHeldItem().getItem() instanceof ItemSpade)
+        	    		if (playerIn.isSneaking())
         	    		{
         	    			if (!playerIn.capabilities.isCreativeMode)
                             {
@@ -222,9 +221,9 @@ public class Barrel extends Block
                 	}
         	       	else return false;
         	    case 2:
-        	    	if (playerIn.getHeldItem() != null)
+        	    	if (playerIn.getHeldItem() == null)
                     {
-        	    		if (playerIn.getHeldItem().getItem() instanceof ItemSpade)
+        	    		if (playerIn.isSneaking())
         	    		{
         	    			if (!playerIn.capabilities.isCreativeMode)
                             {
@@ -239,9 +238,9 @@ public class Barrel extends Block
                     }
         	    	
         	    case 3:
-        	    	if (playerIn.getHeldItem() != null)
+        	    	if (playerIn.getHeldItem() == null)
                     {
-            	    	if (playerIn.getHeldItem().getItem() instanceof ItemSpade)
+            	    	if (playerIn.isSneaking())
     	        		{
             	    		if (!playerIn.capabilities.isCreativeMode)
                             {
@@ -256,9 +255,9 @@ public class Barrel extends Block
                     }
         	    	else return false;
         	    case 4:
-        	    	if (playerIn.getHeldItem() != null)
+        	    	if (playerIn.getHeldItem() == null)
                     {
-        	    	    if (playerIn.getHeldItem().getItem() instanceof ItemSpade)
+        	    	    if (playerIn.isSneaking())
     	    		    {
         	    	    	if (!playerIn.capabilities.isCreativeMode)
                             {

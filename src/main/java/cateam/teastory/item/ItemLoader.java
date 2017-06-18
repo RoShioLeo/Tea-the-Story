@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemRecord;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemSoup;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.ResourceLocation;
@@ -30,7 +31,7 @@ public class ItemLoader
     public static ItemTeaLeaf black_tea_leaf = new ItemTeaLeaf("black_tea_leaf", 64, BlockLoader.blacktea_kettle);
     public static Item wet_tea = new ItemHasTooltip("wet_tea", 64);
     public static Item broken_tea = new ItemHasTooltip("broken_tea", 64);
-    public static Item tea_seeds = new TeaSeeds();
+    public static ItemSeeds tea_seeds = new TeaSeeds();
     public static Item tea_residue = new TeaResidue();
     public static Item tea_bag = new TeaBag();
     

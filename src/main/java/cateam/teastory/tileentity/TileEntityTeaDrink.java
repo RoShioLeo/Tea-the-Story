@@ -76,12 +76,12 @@ public class TileEntityTeaDrink extends TileEntity
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
-		drunk = compound.getInteger("drunk");
+		
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound compound)
 	{
-		compound.setInteger("drunk", drunk);
+		
 	}
 }

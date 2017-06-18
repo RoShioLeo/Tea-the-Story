@@ -12,7 +12,16 @@ public class TeaBag extends TSItem
 	{
 		super("tea_bag", 64);
 		this.setHasSubtypes(true);
+		this.setContainerItem(ItemLoader.tea_residue);
 	}
+	
+	@Override
+	public ItemStack getContainerItem(ItemStack itemStack)
+    {
+		int meta = itemStack.getItemDamage();
+        ItemStack stack = new ItemStack(ItemLoader.tea_residue, 1, meta);
+        return stack;
+    }
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) 

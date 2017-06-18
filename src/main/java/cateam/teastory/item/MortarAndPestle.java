@@ -9,6 +9,7 @@ public class MortarAndPestle extends TSItem
 		super("mortar_and_pestle", 1);
 		this.setContainerItem(this);
         this.setMaxDamage(64);
+        this.setNoRepair();
 	}
 	
 	@Override

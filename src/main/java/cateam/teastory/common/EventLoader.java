@@ -7,6 +7,7 @@ import cateam.teastory.item.ItemLoader;
 import cateam.teastory.potion.PotionLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -55,7 +56,7 @@ public class EventLoader
     	if(!event.world.isRemote)
     	{
             Block theblock = event.state.getBlock();
-            if(theblock == Blocks.leaves || theblock == Blocks.leaves2 || OreDictionary.getOres("treeLeaves").contains(new ItemStack(theblock)))
+            if(theblock == Blocks.leaves || theblock == Blocks.leaves2 || theblock instanceof BlockLeavesBase)
             {
                 BlockLeaves leaves = (BlockLeaves)theblock;
                 if(((Boolean)event.state.getValue(PropertyBool.create("decayable"))).booleanValue())
@@ -83,7 +84,7 @@ public class EventLoader
         if(!event.world.isRemote)
         {
             Block theblock = event.state.getBlock();
-            if(theblock == Blocks.leaves || theblock == Blocks.leaves2 || OreDictionary.getOres("treeLeaves").contains(new ItemStack(theblock)))
+            if(theblock == Blocks.leaves || theblock == Blocks.leaves2 || theblock instanceof BlockLeavesBase)
             {
                 BlockLeaves leaves = (BlockLeaves)theblock;
                 if(((Boolean)event.state.getValue(PropertyBool.create("decayable"))).booleanValue())
@@ -94,7 +95,7 @@ public class EventLoader
                         EntityItem entityitem = new EntityItem(event.world, (double)event.pos.getX(), (double)event.pos.getY(), (double)event.pos.getZ(), new ItemStack(ItemLoader.tea_seeds, 1));
                         event.world.spawnEntityInWorld(entityitem);
                 	}
-                	else if(rand >=190)
+                	else if(rand >=196)
                 	{
                 		EntityItem entityitem = new EntityItem(event.world, (double)event.pos.getX(), (double)event.pos.getY(), (double)event.pos.getZ(), new ItemStack(ItemLoader.broken_tea, 1));
                         event.world.spawnEntityInWorld(entityitem);
@@ -168,40 +169,6 @@ public class EventLoader
         else if((event.crafting.getItem() == ItemLoader.cup) && event.crafting.getItemDamage() == 2)
         {
         	event.player.triggerAchievement(AchievementLoader.glassCup);
-        }
-        else if(event.crafting.getItem() == ItemLoader.mortar_and_pestle)
-        {
-        	for (int i = 0; i < 9; ++i)
-            {
-        		if ((event.craftMatrix.getStackInSlot(i) != null) && (event.craftMatrix.getStackInSlot(i).getItem() == ItemLoader.mortar_and_pestle))
-        		{
-        			event.craftMatrix.removeStackFromSlot(i);
-        		}
-            }
-        }
-        else if(event.crafting.getItem() == ItemLoader.green_tea)
-        {
-        	if (!event.player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.tea_residue, 1, 0)))
-            {
-                 event.player.getEntityWorld().spawnEntityInWorld(new EntityItem(event.player.getEntityWorld(), event.player.posX + 0.5D, event.player.posY + 1.5D, event.player.posZ + 0.5D, 
-                     new ItemStack(ItemLoader.tea_residue, 1, 0)));
-            }
-			if (event.player instanceof EntityPlayerMP)
-            {
-                ((EntityPlayerMP)event.player).sendContainerToPlayer(event.player.inventoryContainer);
-            }
-        }
-        else if(event.crafting.getItem() == ItemLoader.black_tea)
-        {
-        	if (!event.player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.tea_residue, 1, 1)))
-            {
-                 event.player.getEntityWorld().spawnEntityInWorld(new EntityItem(event.player.getEntityWorld(), event.player.posX + 0.5D, event.player.posY + 1.5D, event.player.posZ + 0.5D, 
-                     new ItemStack(ItemLoader.tea_residue, 1, 1)));
-            }
-			if (event.player instanceof EntityPlayerMP)
-            {
-                ((EntityPlayerMP)event.player).sendContainerToPlayer(event.player.inventoryContainer);
-            }
         }
     }
     

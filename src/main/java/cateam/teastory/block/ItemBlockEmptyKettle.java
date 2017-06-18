@@ -1,5 +1,7 @@
 package cateam.teastory.block;
 
+import java.util.List;
+
 import com.google.common.base.Function;
 
 import cateam.teastory.item.ItemLoader;
@@ -14,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemBlockEmptyKettle extends ItemMultiTexture
@@ -28,6 +31,12 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
     public String getUnlocalizedName(ItemStack stack)
     {
         return super.getUnlocalizedName() + (String)this.nameFunction.apply(stack);
+    }
+	
+	@Override
+	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
+    {
+        list.add(StatCollector.translateToLocal("teastory.tooltip.kettle"));
     }
 	
 	@Override
@@ -57,12 +66,12 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
 
                 if (worldIn.getBlockState(blockpos).getBlock().getMaterial() == Material.water)
                 {
-                	itemStackIn.setItemDamage(4);
+                	ItemStack itemStack = new ItemStack(BlockLoader.empty_kettle, 1, 4);
                 	if (playerIn instanceof EntityPlayerMP)
                     {
                         ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
                     }
-                    return itemStackIn;
+                    return itemStack;
                 }
             }
 
@@ -102,7 +111,8 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
                     }
                     if (worldIn.getBlockState(blockpos).getBlock().getMaterial() == Material.water)
                     {
-                    	stack.setItemDamage(4);
+                    	stack.stackSize--;
+                    	stack = new ItemStack(BlockLoader.empty_kettle, 1, 4);
                     	if (playerIn instanceof EntityPlayerMP)
                         {
                             ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
