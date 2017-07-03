@@ -250,27 +250,21 @@ public class Teapan extends Block
                     		{
                 	                worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(1));
                 	                if (!playerIn.capabilities.isCreativeMode)
-                                    {
-                	            	    playerIn.getHeldItem().stackSize = playerIn.getHeldItem().stackSize - 8;
-                                    }
+                                        playerIn.getHeldItem().stackSize = playerIn.getHeldItem().stackSize - 8;
         	                        return true;
                 	    	}
                 			else if (playerIn.getHeldItem().getItem() == ItemLoader.wet_tea)
                  	      	{	
                 		        worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(4));
-                		        if (!playerIn.capabilities.isCreativeMode)
-                                {
-            	            	    playerIn.getHeldItem().stackSize = playerIn.getHeldItem().stackSize - 8;
-                                }
+                		        if(!playerIn.capabilities.isCreativeMode)
+                            	    playerIn.getHeldItem().stackSize = playerIn.getHeldItem().stackSize - 8;
                	                return true;
              	    	    }
                     		else if (playerIn.getHeldItem().getItem() == ItemLoader.half_dried_tea)
                         	{	
                     	        worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(3));
-                    	        if (!playerIn.capabilities.isCreativeMode)
-                                {
-            	            	    playerIn.getHeldItem().stackSize = playerIn.getHeldItem().stackSize - 8;
-                                }
+                    	        if(!playerIn.capabilities.isCreativeMode)
+                            	    playerIn.getHeldItem().stackSize = playerIn.getHeldItem().stackSize - 8;
                                 return true;
                     	    }
                     		else return false;

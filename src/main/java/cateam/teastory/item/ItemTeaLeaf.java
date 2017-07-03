@@ -32,10 +32,8 @@ public class ItemTeaLeaf extends TSItem
 			if ((meta & 12) == 12)
 			{
 				worldIn.setBlockState(pos, kettle.getStateFromMeta(meta & 3));
-                if (!playerIn.capabilities.isCreativeMode)
-                {
+				if(!playerIn.capabilities.isCreativeMode)
             	    stack.stackSize = stack.stackSize - 8;
-                }
                 return true;
 			}
 			else return false;

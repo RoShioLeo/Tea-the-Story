@@ -33,12 +33,6 @@ public class BlackTea extends ItemTeaDrink
 	}
 	
 	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
-    {
-        list.add(StatCollector.translateToLocal("teastory.tooltip.black_tea"));
-    }
-	
-	@Override
 	protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
         if(!world.isRemote)

@@ -37,6 +37,7 @@ public class CraftingLoader
         {
     		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.black_tea, 1, i), new Object[]{new ItemStack(ItemLoader.hot_water, 1, i), new ItemStack(ItemLoader.tea_bag, 1, 1)});
         }
+    	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.tea_egg, 1), new Object[]{new ItemStack(ItemLoader.dried_tea, 1), new ItemStack(ItemLoader.dried_tea, 1), new ItemStack(ItemLoader.dried_tea, 1), new ItemStack(Items.egg, 1)});
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.broken_tea, 6), new Object[]
     	        {"###", "###", "###", '#', "treeLeaves"}));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.tea_leaf, 1), new Object[]
@@ -89,10 +90,10 @@ public class CraftingLoader
     {
     	GameRegistry.addSmelting(ItemLoader.wet_tea, new ItemStack(ItemLoader.tea_leaf), 0.1f);
     	GameRegistry.addSmelting(ItemLoader.tea_leaf, new ItemStack(ItemLoader.burnt_tea), 0.1f);
-    	GameRegistry.addSmelting(new ItemStack(ItemLoader.cold_water, 1, 0), new ItemStack(ItemLoader.hot_water, 1, 0), 0.1f);
-    	GameRegistry.addSmelting(new ItemStack(ItemLoader.cold_water, 1, 1), new ItemStack(ItemLoader.hot_water, 1, 1), 0.1f);
-    	GameRegistry.addSmelting(new ItemStack(ItemLoader.cold_water, 1, 2), new ItemStack(ItemLoader.hot_water, 1, 2), 0.1f);
-    	GameRegistry.addSmelting(new ItemStack(ItemLoader.cold_water, 1, 3), new ItemStack(ItemLoader.hot_water, 1, 3), 0.1f);
+    	for (int i = 0; i < 4; ++i)
+        {
+    	    GameRegistry.addSmelting(new ItemStack(ItemLoader.cold_water, 1, i), new ItemStack(ItemLoader.hot_water, 1, i), 0.1f);
+        }
         GameRegistry.addSmelting(new ItemStack(BlockLoader.empty_kettle, 1, 4), new ItemStack(BlockLoader.empty_kettle, 1, 12), 0.1f);
         GameRegistry.addSmelting(new ItemStack(BlockLoader.clay_kettle, 1, 0), new ItemStack(BlockLoader.empty_kettle, 1, 0), 0.1f);
         GameRegistry.addSmelting(new ItemStack(ItemLoader.clay_cup, 1), new ItemStack(ItemLoader.cup, 1, 3), 0.1f);

@@ -204,6 +204,7 @@ public class EventLoader
     	if(ConfigLoader.info)
     	{
     	    event.player.addChatMessage(new ChatComponentTranslation("teastory.info.welcome.1", "\u00a7a" + TeaStory.VERSION));
+    	    ConfigLoader.info = false;
     	}
     }
 }

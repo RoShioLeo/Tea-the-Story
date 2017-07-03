@@ -9,11 +9,11 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = TeaStory.MODID, name = TeaStory.NAME, version = TeaStory.VERSION, updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStoryOfALeaf/1.10.2/update.json")
+@Mod(modid = TeaStory.MODID, name = TeaStory.NAME, version = TeaStory.VERSION, updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2/update.json")
 public class TeaStory
 {
     public static final String MODID = "teastory";
-    public static final String NAME = "Tea: A Long Story";
+    public static final String NAME = "Tea: The Story";
     public static final String VERSION = "@version@";
 
     @Instance(TeaStory.MODID)

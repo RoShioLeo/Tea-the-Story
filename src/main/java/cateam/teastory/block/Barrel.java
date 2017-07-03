@@ -163,7 +163,7 @@ public class Barrel extends Block
         	switch(getMetaFromState(worldIn.getBlockState(pos)))
         	{
         	    case 1:
-        	    	if (!(playerIn.isSneaking()))
+        	    	if (!(playerIn.isSneaking()) && (playerIn.getHeldItem() != null))
         	    	{
         	    		playerIn.addChatMessage(new ChatComponentTranslation("teastory.barrel.message.2"));
         	    	}
@@ -191,6 +191,10 @@ public class Barrel extends Block
         	    	{
         	    		playerIn.addChatMessage(new ChatComponentTranslation("teastory.barrel.message.1"));
         	    	}
+        	    	else if((playerIn.getHeldItem() != null) && (playerIn.getHeldItem().getItem() == ItemLoader.half_dried_tea && playerIn.getHeldItem().stackSize >=8))
+        	    	{
+        	    		playerIn.addChatMessage(new ChatComponentTranslation("teastory.barrel.message.2"));
+        	    	}
         	    	return true;
         	}
         }
@@ -203,32 +207,23 @@ public class Barrel extends Block
                     {
         	    		if (playerIn.isSneaking())
         	    		{
-        	    			if (!playerIn.capabilities.isCreativeMode)
-                            {
-        	    			    playerIn.getHeldItem().setItemDamage(playerIn.getHeldItem().getItemDamage() + 1);
-                            }
         	    			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
         	                playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
         	                        new ItemStack(ItemLoader.half_dried_tea, 8)));
         	    			return true;
         	    		}
-        	    		else return false;
-                    }
-        	    	else if (playerIn.getRNG().nextFloat() < 0.5F)
-                	{
+        	    		else
+                	    {
         	       		worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(2));
         	       		return true;
-                	}
-        	       	else return false;
+                	    }
+                    }
+        	       	return false;
         	    case 2:
         	    	if (playerIn.getHeldItem() == null)
                     {
         	    		if (playerIn.isSneaking())
         	    		{
-        	    			if (!playerIn.capabilities.isCreativeMode)
-                            {
-            	    			playerIn.getHeldItem().setItemDamage(playerIn.getHeldItem().getItemDamage() + 1);
-                		    }
         	    			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
         	                playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
         	                   		new ItemStack(ItemLoader.half_dried_tea, 8)));
@@ -242,10 +237,6 @@ public class Barrel extends Block
                     {
             	    	if (playerIn.isSneaking())
     	        		{
-            	    		if (!playerIn.capabilities.isCreativeMode)
-                            {
-            	    			playerIn.getHeldItem().setItemDamage(playerIn.getHeldItem().getItemDamage() + 1);
-                		    }
     	        			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
         	                playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
         	                   		new ItemStack(ItemLoader.half_dried_tea, 8)));
@@ -259,10 +250,6 @@ public class Barrel extends Block
                     {
         	    	    if (playerIn.isSneaking())
     	    		    {
-        	    	    	if (!playerIn.capabilities.isCreativeMode)
-                            {
-            	    			playerIn.getHeldItem().setItemDamage(playerIn.getHeldItem().getItemDamage() + 1);
-                		    }
     	    			    worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
     	                    playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
     	                    	    new ItemStack(ItemLoader.black_tea_leaf, 8)));
@@ -277,10 +264,8 @@ public class Barrel extends Block
                 		if (playerIn.getHeldItem().getItem() == ItemLoader.half_dried_tea && playerIn.getHeldItem().stackSize >=8)
                 		{
         	                worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(1));
-        	                if (!playerIn.capabilities.isCreativeMode)
-                            {
+        	                if(!playerIn.capabilities.isCreativeMode)
         	            	    playerIn.getHeldItem().stackSize = playerIn.getHeldItem().stackSize - 8;
-                            }
                             return true;
                 		}
                 		else return false;

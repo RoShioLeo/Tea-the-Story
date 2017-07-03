@@ -11,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -111,8 +112,8 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
                     }
                     if (worldIn.getBlockState(blockpos).getBlock().getMaterial() == Material.water)
                     {
-                    	stack.stackSize--;
-                    	stack = new ItemStack(BlockLoader.empty_kettle, 1, 4);
+                    	stack.setItemDamage(4);
+                    	stack.setItem(stack.getItem());
                     	if (playerIn instanceof EntityPlayerMP)
                         {
                             ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);

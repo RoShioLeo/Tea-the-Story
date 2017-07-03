@@ -54,6 +54,8 @@ public class FullKettle extends Kettle
     			if (playerIn.getHeldItem().getItem() instanceof ItemCup)
     			{
     				int meta = playerIn.getHeldItem().getItemDamage();
+    				if(!playerIn.capabilities.isCreativeMode)
+                	    playerIn.getHeldItem().stackSize--;
         	    	if (!playerIn.inventory.addItemStackToInventory(new ItemStack(this.getDrink(this), 1, meta)))
                     {
                         playerIn.getEntityWorld().spawnEntityInWorld(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 

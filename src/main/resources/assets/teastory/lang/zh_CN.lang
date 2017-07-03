@@ -1,5 +1,5 @@
 #Tab
-itemGroup.tabteastory=茶风：悠悠往事
+itemGroup.tabteastory=茶风·纪事
 
 #Tooltip
 teastory.tooltip.tea_leaf=一切的开始
@@ -11,19 +11,12 @@ teastory.tooltip.tea_seeds=丘陵地带的作物
 teastory.tooltip.tea_residue=可以当骨粉催熟
 teastory.tooltip.soil_detection_meter=右击方块查询
 teastory.tooltip.clay_cup=要烧制后才可以使用
-teastory.tooltip.hot_water=弱疗型饮品
-teastory.tooltip.green_tea=防御型饮品
-teastory.tooltip.burnt_green_tea=弱防型饮品
-teastory.tooltip.matcha_drink=治疗型饮品
-teastory.tooltip.black_tea=助攻型饮品
 teastory.tooltip.shennong_ruler=毒性攻击，右键回血
 teastory.tooltip.kettle=空手右键取回
 teastory.tooltip.cup=Shift + (空手) 右键摆放/取回
 
 #Items
 item.sieve.name=筛网
-item.dirty_sieve.name=脏筛网
-item.brush.name=刷子
 item.tea_leaf.name=绿茶鲜叶
 item.half_dried_tea.name=绿茶青叶
 item.dried_tea.name=绿茶干叶
@@ -47,6 +40,10 @@ item.hot_water.wood.name=开水-木茶杯
 item.hot_water.stone.name=开水-石茶杯
 item.hot_water.glass.name=开水-玻璃杯
 item.hot_water.porcelain.name=开水-白瓷杯
+item.cold_water.wood.name=冷水-木茶杯
+item.cold_water.stone.name=冷水-石茶杯
+item.cold_water.glass.name=冷水-玻璃杯
+item.cold_water.porcelain.name=冷水-白瓷杯
 item.green_tea.wood.name=绿茶-木茶杯
 item.green_tea.stone.name=绿茶-石茶杯
 item.green_tea.glass.name=绿茶-玻璃杯
@@ -66,7 +63,9 @@ item.black_tea.porcelain.name=红茶-白瓷杯
 item.shennong_ruler.name=神农尺
 item.record_caichawuqu.name=音乐唱片
 item.record.caichawuqu.desc=采茶舞曲
-
+item.tea_egg.name=茶叶蛋
+item.tea_bag.green_tea.name=绿茶包
+item.tea_bag.black_tea.name=红茶包
 
 #Blocks
 tile.teapan.empty.name=茶簸箕
@@ -164,7 +163,7 @@ achievement.teastory.soilDetectionMeter=土地和手掌的温度
 achievement.teastory.soilDetectionMeter.desc=使用一次土壤检测计
 
 #Info
-teastory.info.welcome.1=[§2§oTeaStory§f]感谢安装§2§o茶风：悠悠往事§f，当前模组版本：%1$s
+teastory.info.welcome.1=[§2§oTeaStory§f]感谢安装§2§o茶风·纪事§f，当前模组版本：%1$s
 
 #Message
 teastory.teapan.message=请放入8片茶叶来晒制。
@@ -176,7 +175,7 @@ teastory.barrel.message.5=红茶发酵已完成，用铲子取出红茶。
 teastory.soil_detection_meter.message.total=当前土壤温度状况：%1$s，干湿度状况：%2$s，海拔高度：%3$s§8米§r，气候：%4$s。
 teastory.soil_detection_meter.message.drying=此处茶叶晒制速率：白天：%1$s ( %2$s )； 夜晚：%3$s ( %4$s ，夜间需要火把光照 )。
 teastory.soil_detection_meter.message.fermentation=此处红茶发酵速率：非露天情况下：%1$s ( %2$s )； 露天情况下：%3$s ( %4$s )。
-teastory.soil_detection_meter.message.teaplant=此处茶树生长适宜程度为%1$s ，%2$s
+teastory.soil_detection_meter.message.teaplant=此处茶树生长适宜程度为%1$s，%2$s
 teastory.soil_detection_meter.temperature.snowy=§1雪区
 teastory.soil_detection_meter.temperature.cold=§9寒冷
 teastory.soil_detection_meter.temperature.warm=§c温暖

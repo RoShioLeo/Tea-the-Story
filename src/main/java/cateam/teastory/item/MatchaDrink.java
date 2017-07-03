@@ -28,12 +28,6 @@ public class MatchaDrink extends ItemTeaDrink
 	{
         super("matcha_drink");
     }
-	
-	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
-    {
-        list.add(StatCollector.translateToLocal("teastory.tooltip.matcha_drink"));
-    }
 
 	@Override
     protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "teastory:items/bag"
+        "layer0": "teastory:items/tea_egg"
     },
     "display": {
         "thirdperson": {

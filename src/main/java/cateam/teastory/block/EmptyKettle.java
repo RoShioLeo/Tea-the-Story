@@ -99,10 +99,36 @@ public class EmptyKettle extends Kettle
     				if (playerIn.getHeldItem().getItem() instanceof ItemCup)
     				{
     					int meta2 = playerIn.getHeldItem().getItemDamage();
+    					if(!playerIn.capabilities.isCreativeMode)
+    	            	    playerIn.getHeldItem().stackSize--;
         	    		if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.hot_water, 1, meta2)))
                         {
                             playerIn.getEntityWorld().spawnEntityInWorld(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
                             		new ItemStack(ItemLoader.hot_water, 1, meta2)));
+                        }
+                		else if (playerIn instanceof EntityPlayerMP)
+                        {
+                            ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
+                        }
+        	    		return true;
+    				}
+    				else return false;
+    			}
+    			else return false;
+    		}
+    		else if((meta & 12) == 4)
+    		{
+    			if (playerIn.getHeldItem() != null)
+    			{
+    				if (playerIn.getHeldItem().getItem() instanceof ItemCup)
+    				{
+    					int meta2 = playerIn.getHeldItem().getItemDamage();
+    					if(!playerIn.capabilities.isCreativeMode)
+    	            	    playerIn.getHeldItem().stackSize--;
+        	    		if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.cold_water, 1, meta2)))
+                        {
+                            playerIn.getEntityWorld().spawnEntityInWorld(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
+                            		new ItemStack(ItemLoader.cold_water, 1, meta2)));
                         }
                 		else if (playerIn instanceof EntityPlayerMP)
                         {

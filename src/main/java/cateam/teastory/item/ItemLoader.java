@@ -48,6 +48,7 @@ public class ItemLoader
     public static ItemTeaDrink burnt_green_tea = new BurntGreenTea();
     public static ItemTeaDrink matcha_drink = new MatchaDrink();
     public static ItemTeaDrink black_tea = new BlackTea();
+    public static ItemFood tea_egg = new TeaEgg();
     
     public static ItemSword shennongruler = new ShennongRuler();//其他
     public static ItemRecord caichawuqu = new Record("caichawuqu", "record_caichawuqu");
@@ -77,6 +78,7 @@ public class ItemLoader
         register(burnt_green_tea);
         register(matcha_drink);
         register(black_tea);
+        register(tea_egg);
         register(shennongruler);
         register(caichawuqu);
     }
@@ -142,6 +144,7 @@ public class ItemLoader
         registerRender(tea_residue, 1, "tea_residue_black");
         registerRender(tea_bag, 0, "green_tea_bag");
         registerRender(tea_bag, 1, "black_tea_bag");
+        registerRender(tea_egg);
         registerRender(shennongruler);
         registerRender(caichawuqu);
     }
@@ -165,4 +168,3 @@ public class ItemLoader
                 new ModelResourceLocation(TeaStory.MODID + ":" + file, "inventory"));
     }
 }
-

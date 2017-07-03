@@ -41,7 +41,7 @@ public class HotWater extends ItemFood
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
-        list.add(StatCollector.translateToLocal("teastory.tooltip.hot_water"));
+    	list.add(StatCollector.translateToLocal("teastory.tooltip.cup"));
     }
     
     @Override

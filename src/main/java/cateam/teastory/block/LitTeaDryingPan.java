@@ -72,7 +72,7 @@ public class LitTeaDryingPan extends Block
 		if(!worldIn.isRemote)
 		{
 		    int meta = getMetaFromState(worldIn.getBlockState(pos));
-		    if (((meta >= 2) && (meta <= 11)) && (worldIn.rand.nextFloat() < 0.8F))
+		    if (((meta >= 2) && (meta <= 11)))
 		    {
 			    if((meta != 5) && (meta != 9))
 			    {
@@ -116,10 +116,7 @@ public class LitTeaDryingPan extends Block
 				if((playerIn.getHeldItem().getItem() == ItemLoader.tea_leaf) && (playerIn.getHeldItem().stackSize >=8))
 				{
 				    worldIn.setBlockState(pos, this.getStateFromMeta(2));
-				    if (!playerIn.capabilities.isCreativeMode)
-                    {
-	            	    playerIn.getHeldItem().stackSize = playerIn.getHeldItem().stackSize - 8;
-                    }
+                    playerIn.getHeldItem().stackSize = playerIn.getHeldItem().stackSize - 8;
 				    return true;
 				}
 			}

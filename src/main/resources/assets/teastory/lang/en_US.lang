@@ -1,5 +1,5 @@
 #Tab
-itemGroup.tabteastory=Tea: A Long Story
+itemGroup.tabteastory=Tea: The Story
 
 #Tooltip
 teastory.tooltip.tea_leaf=All start from here
@@ -11,17 +11,12 @@ teastory.tooltip.tea_seeds=Plants from hilly area
 teastory.tooltip.tea_residue=Can be used as bonemeal
 teastory.tooltip.soil_detection_meter=Right click for details
 teastory.tooltip.clay_cup=Must be fired before use
-teastory.tooltip.hot_water=Has a little regeneration effect
-teastory.tooltip.green_tea=Defense reinforcement
-teastory.tooltip.burnt_green_tea=Minor Defense reinforcement
-teastory.tooltip.matcha_drink=Regeneration
-teastory.tooltip.black_tea=Strength
 teastory.tooltip.shennong_ruler=Right click for regeneration; poison attacks
+teastory.tooltip.kettle=
+teastory.tooltip.cup=
 
 #Items
 item.sieve.name=Sieve
-item.dirty_sieve.name=Dirty Sieve
-item.brush.name=Brush
 item.tea_leaf.name=Fresh Tea Leaf
 item.half_dried_tea.name=Half-dried Tea Leaf
 item.dried_tea.name=Dried Tea Leaf
@@ -64,7 +59,13 @@ item.black_tea.porcelain.name=Black Tea (Porcelain)
 item.shennong_ruler.name=Ruler of Shennong
 item.record_caichawuqu.name=Music Disc
 item.record.caichawuqu.desc=Dance of Tea Harvesting
-
+item.cold_water.wood.name=Unboiled Water (Wooden)
+item.cold_water.stone.name=Unboiled Water (Stone)
+item.cold_water.glass.name=Unboiled Water (Glass)
+item.cold_water.porcelain.name=Unboiled Water (Porcelain)
+item.tea_egg.name=Tea Egg
+item.tea_bag.green_tea.name=Green Tea Bag
+item.tea_bag.black_tea.name=Black Tea Bag
 
 #Blocks
 tile.teapan.empty.name=Tea Pan
@@ -162,7 +163,7 @@ achievement.teastory.soilDetectionMeter=The temperature of the soils and the han
 achievement.teastory.soilDetectionMeter.desc=Use soilmeter once
 
 #Info
-teastory.info.welcome.1=[§2§oTeaStory§f] Thanks for using §2§oTea: A Long Story§f, version %1$s
+teastory.info.welcome.1=[§2§oTeaStory§f] Thanks for using §2§oTea: The Story§f, version %1$s
 
 #Message
 teastory.teapan.message=To start drying, put 8 tea leaves into the tea pan. 
@@ -172,8 +173,8 @@ teastory.barrel.message.3=The fermentation has started; you can use a shovel to 
 teastory.barrel.message.4=The fermentation will finish soon; you can use a shovel to get tea leaves back.
 teastory.barrel.message.5=The fermentation finished, use a shovel to get black tea.
 teastory.soil_detection_meter.message.total=Soil temperature: %1$s; humidity: %2$s; altitude: %3$s §8m§r; climate: %4$s.
-teastory.soil_detection_meter.message.drying=Here is a good place to dry tea leaves!
-teastory.soil_detection_meter.message.fermentation=Here is a good place to make black tea!
+teastory.soil_detection_meter.message.drying=
+teastory.soil_detection_meter.message.fermentation=
 teastory.soil_detection_meter.message.teaplant=Tea plants have a %1$s chance of growing here; %2$s
 teastory.soil_detection_meter.temperature.snowy=§1Snowy
 teastory.soil_detection_meter.temperature.cold=§9Cold
@@ -186,6 +187,9 @@ teastory.soil_detection_meter.humidity.humid=§2Wet
 teastory.soil_detection_meter.height.low=§cthe altitude is too low!
 teastory.soil_detection_meter.height.medium=§athe altitude is suitable.
 teastory.soil_detection_meter.height.high=§cthe altitude is too high!
+teastory.soil_detection_meter.fast=§aFast
+teastory.soil_detection_meter.normal=§eNormal
+teastory.soil_detection_meter.slow=§cSlow
 teastory.tea_drying_pan.message.1=Light it with flint and steel first!
 teastory.tea_drying_pan.message.2=Put 8 fresh tea leaves in.
 teastory.tea_drying_pan.message.3=Wait until color changed; then do the first drying.
@@ -196,4 +200,3 @@ teastory.tea_drying_pan.message.7=Oops, leaves are burnt, sorry! And please try 
 
 #Container Title
 teastory.container.tea_stove=Tea Stove
-

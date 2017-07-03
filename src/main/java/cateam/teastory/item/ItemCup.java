@@ -118,7 +118,7 @@ public class ItemCup extends TSItem
 	            if (placeBlockAt(stack, playerIn, worldIn, pos, side, hitX, hitY, hitZ, iblockstate1))
 	            {
 	                worldIn.playSoundEffect((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), drinkblock.stepSound.getPlaceSound(), (drinkblock.stepSound.getVolume() + 1.0F) / 2.0F, drinkblock.stepSound.getFrequency() * 0.8F);
-	                --stack.stackSize;
+	                stack.stackSize--;
 	            }
 
 	            return true;
@@ -154,11 +154,12 @@ public class ItemCup extends TSItem
 
 	                if (worldIn.getBlockState(blockpos).getBlock().getMaterial() == Material.water)
 	                {
-	                    --stack.stackSize;
-
+	                	if(!playerIn.capabilities.isCreativeMode)
+	                		--stack.stackSize;
 	                    if (stack.stackSize <= 0)
 	                    {
-	                        stack = new ItemStack(ItemLoader.cold_water, 1, stack.getItemDamage());
+	                        stack.setItem(ItemLoader.cold_water);
+	                        return true;
 	                    }
 
 	                    if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.cold_water, 1, stack.getItemDamage())))
@@ -219,7 +220,8 @@ public class ItemCup extends TSItem
 
                 if (worldIn.getBlockState(blockpos).getBlock().getMaterial() == Material.water)
                 {
-                    --itemStackIn.stackSize;
+                	if(!playerIn.capabilities.isCreativeMode)
+                	    --itemStackIn.stackSize;
 
                     if (itemStackIn.stackSize <= 0)
                     {

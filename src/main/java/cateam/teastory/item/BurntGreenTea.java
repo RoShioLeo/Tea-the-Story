@@ -29,12 +29,6 @@ public class BurntGreenTea extends ItemTeaDrink
     {
         super("burnt_green_tea");
     }
-	
-	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
-    {
-        list.add(StatCollector.translateToLocal("teastory.tooltip.burnt_green_tea"));
-    }
 
 	@Override
     protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
