@@ -75,7 +75,7 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
                 if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER)
                 {
                     worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                    return new ActionResult(EnumActionResult.SUCCESS, this.turnKettleIntoItem(itemStackIn, playerIn, new ItemStack(BlockLoader.empty_kettle, 1, 4)));
+                    return new ActionResult(EnumActionResult.SUCCESS, new ItemStack(BlockLoader.empty_kettle, 1, 4));
                 }
             }
             return new ActionResult(EnumActionResult.PASS, itemStackIn);
@@ -84,21 +84,7 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
 	
 	protected ItemStack turnKettleIntoItem(ItemStack stackIn, EntityPlayer player, ItemStack stack)
     {
-        --stackIn.stackSize;
-
-        if (stackIn.stackSize < 0)
-        {
-            return stack;
-        }
-        else
-        {
-            if (!player.inventory.addItemStackToInventory(stack))
-            {
-                player.dropItem(stack, false);
-            }
-
-            return stackIn;
-        }
+		return stack;
     }
 	
 	@Override
@@ -128,7 +114,12 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
                     if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER)
                     {
                         worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                        this.turnKettleIntoItem(stack, playerIn, new ItemStack(BlockLoader.empty_kettle, 1, 4));
+                        stack.setItemDamage(4);
+                    	stack.setItem(stack.getItem());
+                    	if (playerIn instanceof EntityPlayerMP)
+                        {
+                            ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
+                        }
                         return EnumActionResult.SUCCESS;
                     }
                 }

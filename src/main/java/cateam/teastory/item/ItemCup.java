@@ -129,7 +129,7 @@ public class ItemCup extends TSItem
                     if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER)
                     {
                         worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                        this.turnCupIntoItem(stack, playerIn, new ItemStack(ItemLoader.cold_water, 1, stack.getItemDamage()));
+                        stack = this.turnCupIntoItem(stack, playerIn, new ItemStack(ItemLoader.cold_water, 1, stack.getItemDamage()));
                         return EnumActionResult.SUCCESS;
                     }
                 }
@@ -170,9 +170,10 @@ public class ItemCup extends TSItem
 	
 	protected ItemStack turnCupIntoItem(ItemStack stackIn, EntityPlayer player, ItemStack stack)
     {
-        --stackIn.stackSize;
+		if(!player.capabilities.isCreativeMode)
+    	    --stackIn.stackSize;
 
-        if (stackIn.stackSize < 0)
+        if (stackIn.stackSize <= 0)
         {
             return stack;
         }
