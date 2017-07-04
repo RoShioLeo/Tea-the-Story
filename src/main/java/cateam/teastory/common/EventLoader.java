@@ -50,7 +50,7 @@ public class EventLoader
         EventLoader.EVENT_BUS.register(this);
     }
     
-    @SubscribeEvent
+    /*@SubscribeEvent
     public void onDrops(net.minecraftforge.event.world.BlockEvent.BreakEvent event)
     {
     	if(!event.world.isRemote)
@@ -67,7 +67,7 @@ public class EventLoader
                         EntityItem entityitem = new EntityItem(event.world, (double)event.pos.getX(), (double)event.pos.getY(), (double)event.pos.getZ(), new ItemStack(ItemLoader.tea_seeds, 1));
                         event.world.spawnEntityInWorld(entityitem);
                 	}
-                	else if(rand >= 190)
+                	else if(rand >= 196)
                 	{
                 		EntityItem entityitem = new EntityItem(event.world, (double)event.pos.getX(), (double)event.pos.getY(), (double)event.pos.getZ(), new ItemStack(ItemLoader.broken_tea, 1));
                         event.world.spawnEntityInWorld(entityitem);
@@ -76,7 +76,7 @@ public class EventLoader
             }
     	}
     	else return;
-    }
+    }*/
     
     @SubscribeEvent
     public void onDrops2(net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent event)

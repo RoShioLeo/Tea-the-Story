@@ -228,7 +228,7 @@ public class BlockLoader
         registerRender(lit_tea_drying_pan, 11, "tea_drying_pan6");
         registerRender(lit_tea_drying_pan, 12, "tea_drying_pan7");
         registerRender(tea_stove, "tea_stove");
-        registerRender(lit_tea_drying_pan, "lit_tea_drying_pan");
+        registerRender(lit_tea_stove, "lit_tea_stove");
         registerRender(teaplant, "teaplant");
         registerRender(wood_cup, "wood_cup");
     	registerRender(stone_cup, "stone_cup");

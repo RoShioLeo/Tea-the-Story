@@ -1,5 +1,5 @@
 #Tab
-itemGroup.tabteastory=茶風：悠悠往事
+itemGroup.tabteastory=茶風·紀事
 
 #Tooltip
 teastory.tooltip.tea_leaf=一切的開始
@@ -11,17 +11,12 @@ teastory.tooltip.tea_seeds=丘陵地帶的作物
 teastory.tooltip.tea_residue=可以當骨粉催熟
 teastory.tooltip.soil_detection_meter=右擊方塊查詢
 teastory.tooltip.clay_cup=要燒制後才可以使用
-teastory.tooltip.hot_water=弱療型飲品
-teastory.tooltip.green_tea=防禦型飲品
-teastory.tooltip.burnt_green_tea=弱防型飲品
-teastory.tooltip.matcha_drink=治療型飲品
-teastory.tooltip.black_tea=助攻型飲品
 teastory.tooltip.shennong_ruler=毒性攻擊，右鍵回血
+teastory.tooltip.kettle=空手右鍵取回
+teastory.tooltip.cup=Shift + (空手) 右鍵擺放/取回
 
 #Items
 item.sieve.name=篩網
-item.dirty_sieve.name=髒篩網
-item.brush.name=刷子
 item.tea_leaf.name=綠茶鮮葉
 item.half_dried_tea.name=綠茶青葉
 item.dried_tea.name=綠茶幹葉
@@ -45,6 +40,10 @@ item.hot_water.wood.name=開水-木茶杯
 item.hot_water.stone.name=開水-石茶杯
 item.hot_water.glass.name=開水-玻璃杯
 item.hot_water.porcelain.name=開水-白瓷杯
+item.cold_water.wood.name=冷水-木茶杯
+item.cold_water.stone.name=冷水-石茶杯
+item.cold_water.glass.name=冷水-玻璃杯
+item.cold_water.porcelain.name=冷水-白瓷杯
 item.green_tea.wood.name=綠茶-木茶杯
 item.green_tea.stone.name=綠茶-石茶杯
 item.green_tea.glass.name=綠茶-玻璃杯
@@ -64,7 +63,9 @@ item.black_tea.porcelain.name=紅茶-白瓷杯
 item.shennong_ruler.name=神農尺
 item.record_caichawuqu.name=音樂唱片
 item.record.caichawuqu.desc=採茶舞曲
-
+item.tea_egg.name=茶葉蛋
+item.tea_bag.green_tea.name=綠茶包
+item.tea_bag.black_tea.name=紅茶包
 
 #Blocks
 tile.teapan.empty.name=茶簸箕
@@ -162,18 +163,18 @@ achievement.teastory.soilDetectionMeter=土地和手掌的溫度
 achievement.teastory.soilDetectionMeter.desc=使用一次土壤檢測計
 
 #Info
-teastory.info.welcome.1=[§2§oTeaStory§f]感謝安裝§2§o茶風：悠悠往事§f，當前模組版本：§6%1$s
+teastory.info.welcome.1=[§2§oTeaStory§f]感謝安裝§2§o茶風·紀事§f，當前模組版本：%1$s
 
 #Message
-teastory.teapan.message=請放入8片茶葉來曬制。陽光下可以獲得綠茶幹葉，非陽光直射下可以獲得綠茶青葉。
+teastory.teapan.message=請放入8片茶葉來曬制。
 teastory.barrel.message.1=請放入8片綠茶青葉來發酵，用鏟子可以取出茶葉。
 teastory.barrel.message.2=請使用空手右鍵來揉撚茶葉。
 teastory.barrel.message.3=正在發酵第一階段，用鏟子可以中途取出茶葉。
 teastory.barrel.message.4=正在發酵第二階段，即將完成發酵，用鏟子可以中途取出茶葉。
 teastory.barrel.message.5=紅茶發酵已完成，用鏟子取出紅茶。
 teastory.soil_detection_meter.message.total=當前土壤溫度狀況：%1$s，幹濕度狀況：%2$s，海拔高度：%3$s§8米§r，氣候：%4$s。
-teastory.soil_detection_meter.message.drying=此處適宜曬制茶葉哦！
-teastory.soil_detection_meter.message.fermentation=此處適宜發酵紅茶哦！
+teastory.soil_detection_meter.message.drying=此處茶葉曬制速率：白天：%1$s ( %2$s )； 夜晚：%3$s ( %4$s ，夜間需要火把光照 )。
+teastory.soil_detection_meter.message.fermentation=此處紅茶發酵速率：非露天情況下：%1$s ( %2$s )； 露天情況下：%3$s ( %4$s )。
 teastory.soil_detection_meter.message.teaplant=此處茶樹生長適宜程度為%1$s，%2$s
 teastory.soil_detection_meter.temperature.snowy=§1雪區
 teastory.soil_detection_meter.temperature.cold=§9寒冷
@@ -183,9 +184,12 @@ teastory.soil_detection_meter.humidity.arid=§6乾旱
 teastory.soil_detection_meter.humidity.semi-arid=§e半乾旱
 teastory.soil_detection_meter.humidity.semi-humid=§a半濕潤
 teastory.soil_detection_meter.humidity.humid=§2濕潤
-teastory.soil_detection_meter.height.low=§c海拔過低！
+teastory.soil_detection_meter.height.low=§c海拔較低！
 teastory.soil_detection_meter.height.medium=§a海拔適中。
-teastory.soil_detection_meter.height.high=§c海拔過高！
+teastory.soil_detection_meter.height.high=§c海拔較高！
+teastory.soil_detection_meter.fast=§a快速
+teastory.soil_detection_meter.normal=§e一般
+teastory.soil_detection_meter.slow=§c緩慢
 teastory.tea_drying_pan.message.1=請先使用打火石點火！
 teastory.tea_drying_pan.message.2=請放入8片綠茶鮮葉來炒制。
 teastory.tea_drying_pan.message.3=請待變色後再進行第1次炒制。
