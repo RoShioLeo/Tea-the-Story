@@ -168,10 +168,10 @@ teastory.info.welcome.1=[§2§oTeaStory§f] Thanks for using §2§oTea: The Stor
 #Message
 teastory.teapan.message=To start drying, put 8 tea leaves into the tea pan. 
 teastory.barrel.message.1=To start, put 8 half-dried tea leaves into the barrel.
-teastory.barrel.message.2=Right click with empty hand to rolling the tea leaves.
-teastory.barrel.message.3=The fermentation has started; you can use a shovel to get tea leaves back.
-teastory.barrel.message.4=The fermentation will finish soon; you can use a shovel to get tea leaves back.
-teastory.barrel.message.5=The fermentation finished, use a shovel to get black tea.
+teastory.barrel.message.2=
+teastory.barrel.message.3=
+teastory.barrel.message.4=
+teastory.barrel.message.5=
 teastory.soil_detection_meter.message.total=Soil temperature: %1$s; humidity: %2$s; altitude: %3$s §8m§r; climate: %4$s.
 teastory.soil_detection_meter.message.drying=
 teastory.soil_detection_meter.message.fermentation=
