@@ -76,16 +76,4 @@ public class TileEntityTeaDrink extends TileEntity
 		}
 		return false;
 	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound compound)
-	{
-		
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-	{
-		return compound;
-	}
 }

@@ -215,13 +215,12 @@ public class Barrel extends Block
         	                        new ItemStack(ItemLoader.half_dried_tea, 8)));
         	    			return true;
         	    		}
-        	    		else return false;
+        	    		else
+                    	{
+            	       		worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(2));
+            	       		return true;
+                    	}
                     }
-        	    	else if (playerIn.getRNG().nextFloat() < 0.5F)
-                	{
-        	       		worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(2));
-        	       		return true;
-                	}
         	       	else return false;
         	    case 2:
         	    	if (heldItem == null)

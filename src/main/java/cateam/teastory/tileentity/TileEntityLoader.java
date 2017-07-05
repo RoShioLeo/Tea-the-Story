@@ -10,6 +10,7 @@ public class TileEntityLoader
 	public TileEntityLoader(FMLPreInitializationEvent event)
     {
         registerTileEntity(TileEntityTeaStove.class, "TeaStove");
+        registerTileEntity(TileEntityTeaDrink.class, "TeaDrink");
     }
 
     public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id)
