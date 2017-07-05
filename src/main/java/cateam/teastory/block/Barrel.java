@@ -214,8 +214,8 @@ public class Barrel extends Block
         	    		}
         	    		else
                 	    {
-        	       		worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(2));
-        	       		return true;
+        	       		    worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(2));
+        	       		    return true;
                 	    }
                     }
         	       	return false;
