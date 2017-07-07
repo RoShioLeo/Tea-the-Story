@@ -111,20 +111,6 @@ public class Teaplant extends BlockCrops
     }
     
     @Override
-    public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
-        java.util.List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
-        int age = ((Integer)state.getValue(AGE)).intValue();
-        Random rand = world instanceof World ? ((World)world).rand : new Random();
-
-        if (age >= 7)
-        {
-        	ret.add(new ItemStack(this.getSeed(), 1, 0));
-        }
-        return ret;
-    }
-    
-    @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
     {
         if (!worldIn.getBlockState(pos.down()).getBlock().canSustainPlant(state, worldIn, pos.down(), EnumFacing.UP, (IPlantable) ItemLoader.tea_seeds))
