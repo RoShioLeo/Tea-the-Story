@@ -103,11 +103,23 @@ public class Teaplant extends BlockCrops
             	playerIn.addStat(AchievementLoader.teaPlant);
     	    	worldIn.setBlockState(pos, BlockLoader.teaplant.getStateFromMeta(4));
     	    	worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, new ItemStack(ItemLoader.tea_leaf, playerIn.getRNG().nextInt(4) + 1)));
-    	    	worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, new ItemStack(ItemLoader.tea_seeds, 1)));
     	        return true;
         	}
             else return false;
         }
+    }
+    
+    @Override
+    public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        java.util.List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
+        int age = ((Integer)state.getValue(AGE)).intValue();
+        Random rand = world instanceof World ? ((World)world).rand : new Random();
+        if (age >= 7)
+        {
+         	ret.add(new ItemStack(this.getSeed(), 1, 0));
+        }
+        return ret;
     }
     
     @Override
