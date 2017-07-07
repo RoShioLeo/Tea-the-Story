@@ -21,43 +21,23 @@ public class PotionPhotosynthesis extends Potion
     }
     
     @Override
-    public boolean isReady(int p_76397_1_, int p_76397_2_)
+    public boolean isReady(int duration, int amplifier)
     {
-        if (this.id == PotionLoader.PotionPhotosynthesis.id)
-        {
-        	int k = 60 >> p_76397_2_;
-            return k > 0 ? p_76397_1_ % k == 0 : true;
-        }
-        return false;
+    	return duration % 60 == 0;
     }
     
     @Override
     public void performEffect(EntityLivingBase entityLivingBaseIn, int p_76394_2_)
     {
-    	if(!entityLivingBaseIn.worldObj.isRemote)
-    	{
-        	if (this.id == PotionLoader.PotionPhotosynthesis.id)
+    	    if (this == PotionLoader.PotionPhotosynthesis)
             {
-        		boolean isDaytime = entityLivingBaseIn.worldObj.getWorldTime() % 24000L < 12000L;
+    	    	boolean isDaytime = entityLivingBaseIn.worldObj.getWorldTime() % 24000L < 12000L;
         		BlockPos pos = entityLivingBaseIn.getPosition();
         		if ((!entityLivingBaseIn.worldObj.canLightningStrike(pos)) && ((isDaytime && (entityLivingBaseIn.worldObj.getLight(pos) >= 13 - 2 * p_76394_2_)) || ((!isDaytime) && (entityLivingBaseIn.worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) >= 13 - 2 * p_76394_2_))))
                 {
-                	if (p_76394_2_ > 2)
-                	{
-                		p_76394_2_ = 3;
-                	}
-                	if (p_76394_2_%2!=0)
-                	{
-                		p_76394_2_ = (p_76394_2_ - 1)/2;
-                	}
-                	else
-                	{
-                		p_76394_2_ =p_76394_2_/2;
-                	}
-                	entityLivingBaseIn.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, p_76394_2_)); 
+                	entityLivingBaseIn.heal(4);
                 }
             }
-    	}
     }
     
     @Override
