@@ -59,7 +59,7 @@ public class BlackTea extends ItemTeaDrink
     	else
     	{
     		entityplayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1)); 
-    		if(world.rand.nextFloat() < 0.4F)
+    		if(world.rand.nextFloat() < 0.2F)
     		{
     			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain.id, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
     		}
