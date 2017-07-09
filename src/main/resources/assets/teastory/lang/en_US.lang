@@ -12,8 +12,8 @@ teastory.tooltip.tea_residue=Can be used as bonemeal
 teastory.tooltip.soil_detection_meter=Right click for details
 teastory.tooltip.clay_cup=Must be fired before use
 teastory.tooltip.shennong_ruler=Right click for regeneration; poison attacks
-teastory.tooltip.kettle=
-teastory.tooltip.cup=
+teastory.tooltip.kettle=Right click to pick up
+teastory.tooltip.cup=Right click with empty hand while sneaking to place or pick up
 
 #Items
 item.sieve.name=Sieve
@@ -50,7 +50,7 @@ item.burnt_green_tea.glass.name=Burnt Green Tea (Glass)
 item.burnt_green_tea.porcelain.name=Burnt Green Tea (Porcelain)
 item.matcha_drink.wood.name=Matcha (Wooden)
 item.matcha_drink.stone.name=Matcha (Stone)
-item.matcha_drink.glass.name=Matchap (Glass)
+item.matcha_drink.glass.name=Matcha (Glass)
 item.matcha_drink.porcelain.name=Matcha (Porcelain)
 item.black_tea.wood.name=Black Tea (Wooden)
 item.black_tea.stone.name=Black Tea (Stone)
@@ -58,7 +58,7 @@ item.black_tea.glass.name=Black Tea (Glass)
 item.black_tea.porcelain.name=Black Tea (Porcelain)
 item.shennong_ruler.name=Ruler of Shennong
 item.record_caichawuqu.name=Music Disc
-item.record.caichawuqu.desc=Dance of Tea Harvesting
+item.record.caichawuqu.desc=§o§nTea Picking§r
 item.cold_water.wood.name=Cold Water (Wooden)
 item.cold_water.stone.name=Cold Water (Stone)
 item.cold_water.glass.name=Cold Water (Glass)
@@ -167,11 +167,11 @@ teastory.info.welcome.1=[§2§oTeaStory§f] Thanks for using §2§oTea: The Stor
 
 #Message
 teastory.teapan.message=To start drying, put 8 tea leaves into the tea pan. 
-teastory.barrel.message.1=To start, put 8 half-dried tea leaves into the barrel.
-teastory.barrel.message.2=
-teastory.barrel.message.3=
-teastory.barrel.message.4=
-teastory.barrel.message.5=
+teastory.barrel.message.1=Put 8 half-dried tea leaves to start fermentation. To get tea leaves back, right click barrel while sneaking.
+teastory.barrel.message.2=Right click with empty hand to knead the tea leaves.
+teastory.barrel.message.3=Fermentation progress: 1/2; to get tea leaves back, right click barrel while sneaking.
+teastory.barrel.message.4=Fermentation progress: 2/2, about to finish; to get tea leaves back, right click barrel while sneaking.
+teastory.barrel.message.5=Fermentation finished, right click barrel while sneaking to get black tea leaves.
 teastory.soil_detection_meter.message.total=Soil temperature: %1$s; humidity: %2$s; altitude: %3$s §8m§r; climate: %4$s.
 teastory.soil_detection_meter.message.drying=
 teastory.soil_detection_meter.message.fermentation=
