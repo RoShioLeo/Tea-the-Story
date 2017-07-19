@@ -22,6 +22,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.HttpUtil;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -198,12 +199,14 @@ public class EventLoader
     	}
     }
     
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onPlayerLogged(PlayerEvent.PlayerLoggedInEvent event)
     {
     	if(ConfigLoader.info)
     	{
-    	    event.player.addChatMessage(new ChatComponentTranslation("teastory.info.welcome.1", "\u00a7a" + TeaStory.VERSION));
+    	    event.player.addChatComponentMessage(new ChatComponentTranslation("teastory.info.welcome.1", "\u00a7a" + TeaStory.VERSION));
+    	    event.player.addChatComponentMessage(new ChatComponentTranslation("teastory.info.welcome.2"));
     	    ConfigLoader.info = false;
     	}
     }

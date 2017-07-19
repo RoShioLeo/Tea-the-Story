@@ -164,6 +164,7 @@ achievement.teastory.soilDetectionMeter.desc=使用一次土壤检测计
 
 #Info
 teastory.info.welcome.1=[§2§oTeaStory§f]感谢安装§2§o茶风·纪事§f，当前模组版本：%1$s
+teastory.info.welcome.2=[§2§oTeaStory§f]说明书请前往原帖下载，原帖地址详见主菜单Mod选项。
 
 #Message
 teastory.teapan.message=请放入8片茶叶来晒制。
