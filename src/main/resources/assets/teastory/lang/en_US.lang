@@ -164,6 +164,7 @@ achievement.teastory.soilDetectionMeter.desc=Use soilmeter once
 
 #Info
 teastory.info.welcome.1=[§2§oTeaStory§f] Thanks for using §2§oTea: The Story§f, version %1$s
+teastory.info.welcome.2=[§2§oTeaStory§f]Please access URL to download the instructions (Simplified Chinese). You can find it in Mod List.
 
 #Message
 teastory.teapan.message=To start drying, put 8 tea leaves into the tea pan. 
