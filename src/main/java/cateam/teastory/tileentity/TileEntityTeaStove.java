@@ -86,6 +86,19 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     @Override
     public void update()
     {
+    	boolean flag = this.isBurning();
+        boolean flag1 = false;
+        
+        if (this.isBurning())
+        {
+		    --this.fuelTime;
+        }
+        
+		if(this.steamTime > 0)
+		{
+			--this.steamTime;
+		}
+		
     	if(!this.worldObj.isRemote)
     	{
     		int teaLeafKind = 0;
@@ -153,6 +166,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     		}
     		if((this.isBurning()) && (teaLeafKind != 0))
     		{
+    			flag1 = true;
     			this.dryTime++;
     			if(this.dryTime >= 200)
     			{
@@ -171,19 +185,15 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     				}
     			}
     		}
-    		if(this.isBurning())
+    		if(flag != this.isBurning())
     		{
-    			TeaStove.setState(true, this.worldObj, this.pos);
-    			--this.fuelTime;
+    			TeaStove.setState(this.isBurning(), this.worldObj, this.pos);
     		}
-    		else
-    		{
-    			TeaStove.setState(false, this.worldObj, this.pos);
-    		}
-    		if(this.steamTime > 0)
-    		{
-    			--this.steamTime;
-    		}
+    	}
+    	
+    	if (this.isBurning() || this.steamTime > 0)
+    	{
+    		this.markDirty();
     	}
     }
     
@@ -201,7 +211,14 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 	    {
 	        this.fuelTime = getItemBurnTime(itemFuel);
 	        this.fuelTotalTime = getItemBurnTime(itemFuel);
-	        Inventory1.extractItem(0, 1, false);
+	        Item cItem = Inventory1.getStackInSlot(0).getItem().getContainerItem();
+	        if (cItem != null)
+	        {
+	        	Inventory1.extractItem(0, 1, false);
+	        	Inventory1.insertItem(0, new ItemStack(cItem, 1), false);
+	        }
+	        else Inventory1.extractItem(0, 1, false);
+	        
 	        this.markDirty();
 	    }
 	    else

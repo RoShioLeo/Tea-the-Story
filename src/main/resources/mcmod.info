@@ -1,7 +1,7 @@
 [
 {
   "modid": "teastory",
-  "name": "Tea, The Story",
+  "name": "Tea: The Story",
   "description": "Tea, the story of a leaf. Appreciate the tea culture in Minecraft!",
   "version": "${version}",
   "mcversion": "${mcversion}",

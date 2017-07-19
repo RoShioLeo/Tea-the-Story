@@ -193,12 +193,14 @@ public class EventLoader
     	}
     }
     
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onPlayerLogged(PlayerEvent.PlayerLoggedInEvent event)
     {
     	if(ConfigLoader.info)
     	{
-    	    event.player.addChatMessage(new TextComponentTranslation("teastory.info.welcome.1", "\u00a7a" + TeaStory.VERSION));
+    	    event.player.addChatComponentMessage(new TextComponentTranslation("teastory.info.welcome.1", "\u00a7a" + TeaStory.VERSION));
+    	    event.player.addChatComponentMessage(new TextComponentTranslation("teastory.info.welcome.2"));
     	    ConfigLoader.info = false;
     	}
     }
