@@ -1,7 +1,7 @@
-# Tea-TheStoryOfALeaf
+# Tea-TheStory
 
-“茶，一片树叶的故事”是Minecraft的一个中国风模组。
+“茶风·纪事”是Minecraft的一个中国风模组。
 
-"Tea, The Story of a Leaf" is a Chinese mod.
+"Tea: The Story" is a Chinese mod.
 
-原帖地址：http://www.mcbbs.net/thread-562372-1-1.html
+模组发布地址：http://www.mcmod.cn/class/557.html
