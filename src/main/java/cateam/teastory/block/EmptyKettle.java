@@ -29,6 +29,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class EmptyKettle extends Kettle
 {
@@ -86,7 +87,7 @@ public class EmptyKettle extends Kettle
     				{
     					if (!playerIn.capabilities.isCreativeMode)
                         {
-                            playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, new ItemStack(Items.BUCKET));
+                            ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(Items.BUCKET));
                         }
     					worldIn.setBlockState(pos, BlockLoader.empty_kettle.getStateFromMeta(meta | 4));
     					return true;
@@ -106,15 +107,7 @@ public class EmptyKettle extends Kettle
     						heldItem.stackSize--;
         		    	}
     					int meta2 = heldItem.getItemDamage();
-        	    		if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.hot_water, 1, meta2)))
-                        {
-                            playerIn.getEntityWorld().spawnEntityInWorld(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-                            		new ItemStack(ItemLoader.hot_water, 1, meta2)));
-                        }
-                		else if (playerIn instanceof EntityPlayerMP)
-                        {
-                            ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-                        }
+        	    		ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.hot_water, 1, meta2));
         	    		return true;
     				}
     				else return false;
@@ -130,15 +123,7 @@ public class EmptyKettle extends Kettle
     					int meta2 = heldItem.getItemDamage();
     					if(!playerIn.capabilities.isCreativeMode)
     						heldItem.stackSize--;
-        	    		if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.cold_water, 1, meta2)))
-                        {
-                            playerIn.getEntityWorld().spawnEntityInWorld(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-                            		new ItemStack(ItemLoader.cold_water, 1, meta2)));
-                        }
-                		else if (playerIn instanceof EntityPlayerMP)
-                        {
-                            ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-                        }
+        	    		ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.cold_water, 1, meta2));
         	    		return true;
     				}
     				else return false;

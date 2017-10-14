@@ -22,7 +22,7 @@ public class ConfigLoader
 	
 	private static void registerConfig()
 	{
-		info = config.get(Configuration.CATEGORY_GENERAL, "info", true).getBoolean();
-		TeaDrink_Time = config.get(Configuration.CATEGORY_GENERAL, "TeaDrink_Effect_Time", 800).getInt();
+		info = config.get(Configuration.CATEGORY_GENERAL, "Enable Info", true).getBoolean();
+		TeaDrink_Time = config.get(Configuration.CATEGORY_GENERAL, "Tea Drinks Effect Time", 2400).getInt();
 	}
 }

@@ -30,6 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class FullKettle extends Kettle
 {
@@ -61,15 +62,7 @@ public class FullKettle extends Kettle
     					heldItem.stackSize--;
         		    }
     				int meta = heldItem.getItemDamage();
-        	    	if (!playerIn.inventory.addItemStackToInventory(new ItemStack(this.getDrink(this), 1, meta)))
-                    {
-                        playerIn.getEntityWorld().spawnEntityInWorld(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-                            	new ItemStack(this.getDrink(this), 1, meta)));
-                    }
-                	else if (playerIn instanceof EntityPlayerMP)
-                    {
-                        ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-                    }
+        	    	ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(this.getDrink(this), 1, meta));
         	    	int meta2 = getMetaFromState(worldIn.getBlockState(pos));
     	    		if ((meta2 >> 2) == 3)
     	    		{

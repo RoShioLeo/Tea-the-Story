@@ -140,7 +140,7 @@ public class HotWater extends ItemFood
 		}
         else
         {
-            return EnumActionResult.FAIL;
+            return EnumActionResult.PASS;
         }
     }
 	

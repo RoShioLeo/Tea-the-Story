@@ -30,8 +30,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
-public class BlackTea extends ItemTeaDrink
+public class BlackTea extends ItemTeaDrink 
 {
 	public BlackTea()
 	{
@@ -53,11 +54,11 @@ public class BlackTea extends ItemTeaDrink
 		if (tier == 0)
     	{
     		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, Math.max(0, ConfigLoader.TeaDrink_Time), 0)); 
-    		if(world.rand.nextFloat() < 0.2F)
+    		if(world.rand.nextFloat() < 0.5F)
     		{
     			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
     		}
-    		else if(world.rand.nextFloat() >= 0.8F)
+    		else
     		{
     			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
     		}
@@ -65,23 +66,16 @@ public class BlackTea extends ItemTeaDrink
     	else
     	{
     		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1)); 
-    		if(world.rand.nextFloat() < 0.2F)
+    		if(world.rand.nextFloat() < 0.5F)
     		{
     			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
     		}
-    		else if(world.rand.nextFloat() >= 0.8F)
+    		else
     		{
     			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
     		}
     	}
-        if (entityplayer.getRNG().nextInt() > 0.5F)
-        {
-    	    if (!entityplayer.inventory.addItemStackToInventory(new ItemStack(ItemLoader.tea_residue, 1, 1)))
-            {
-                world.spawnEntityInWorld(new EntityItem(world, entityplayer.posX + 0.5D, entityplayer.posY + 1.5D, entityplayer.posZ + 0.5D, 
-            		    new ItemStack(ItemLoader.tea_residue, 1, 1)));
-            }
-        }
+		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));
 	}
 	
 	@Override
@@ -142,7 +136,7 @@ public class BlackTea extends ItemTeaDrink
 		}
         else
         {
-            return EnumActionResult.FAIL;
+            return EnumActionResult.PASS;
         }
     }
 	

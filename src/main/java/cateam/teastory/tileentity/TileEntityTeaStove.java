@@ -327,5 +327,4 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
     {
         return oldState.getBlock() != newState.getBlock();
     }
-
 }

@@ -30,6 +30,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GreenTea extends ItemTeaDrink
 {
@@ -53,27 +54,15 @@ public class GreenTea extends ItemTeaDrink
     	if (tier == 0)
     	{
     		entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, Math.max(0, ConfigLoader.TeaDrink_Time), 0));
-    		if(world.rand.nextFloat() < 0.4F)
-    		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
-    		}
+    		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
     	}
     	else
     	{
     		entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1)); 
-    		if(world.rand.nextFloat() < 0.4F)
-    		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
-    		}
+    		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
     	}
-        if (entityplayer.getRNG().nextInt() > 0.5F)
-        {
-    	    if (!entityplayer.inventory.addItemStackToInventory(new ItemStack(ItemLoader.tea_residue, 1, 0)))
-            {
-                world.spawnEntityInWorld(new EntityItem(world, entityplayer.posX + 0.5D, entityplayer.posY + 1.5D, entityplayer.posZ + 0.5D, 
-            		    new ItemStack(ItemLoader.tea_residue, 1, 0)));
-            }
-        }
+        
+    	ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 0));
     }
     
     @Override
@@ -134,7 +123,7 @@ public class GreenTea extends ItemTeaDrink
 		}
         else
         {
-            return EnumActionResult.FAIL;
+            return EnumActionResult.PASS;
         }
     }
 	

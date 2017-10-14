@@ -47,18 +47,12 @@ public class BurntGreenTea extends ItemTeaDrink
     	if (tier == 0)
         {
         	entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, Math.max(0, ConfigLoader.TeaDrink_Time) / 2, 0)); 
-        	if(world.rand.nextFloat() < 0.2F)
-        	{
-        		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time), 0));
-        	}
+        	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time), 0));
         }
         else
         {
         	entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 20), tier - 1)); 
-        	if(world.rand.nextFloat() < 0.2F)
-        	{
-        		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10, tier - 1));
-        	}
+        	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10, tier - 1));
         }
     }
     
@@ -112,7 +106,7 @@ public class BurntGreenTea extends ItemTeaDrink
 		}
         else
         {
-            return EnumActionResult.FAIL;
+            return EnumActionResult.PASS;
         }
     }
 	

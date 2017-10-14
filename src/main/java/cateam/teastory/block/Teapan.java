@@ -35,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class Teapan extends Block
 {
@@ -137,28 +138,40 @@ public class Teapan extends Block
 	
 	protected static float getDryingChance(World worldIn, BlockPos pos)
     {
-        float f;
-        Biome biome = worldIn.getBiome(pos);
         boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
-        float humidity = biome.getRainfall();
-        float temperature = biome.getFloatTemperature(pos);
         boolean isRaining = worldIn.isRaining();
         if (isRaining)
         {
         	return 0.0F;
         }
-        if (isDaytime)
+        return getDryingChance(worldIn, pos, isDaytime);
+    }
+	
+	public static float getDryingChance(World worldIn, BlockPos pos, boolean isDaytime)
+	{
+        float f;
+		if (isDaytime)
        	{
-       		f = worldIn.getLightFromNeighbors(pos.up()) * 0.07F;
+       		f = worldIn.getLightFromNeighbors(pos.up()) * 0.06F;
        	}
        	else
        	{
        		f = worldIn.getLightFor(EnumSkyBlock.BLOCK, pos.up()) * 0.025F;
        	}
-        f = (float)((double)f * ((double)humidity >= 0.2D ? (double)humidity >= 0.5D ? (double)humidity >= 0.8D ? 0.3D : 0.7D : 1.0D : 1.4D));
-        f = (float)((double)f * ((double)temperature >= 0.15D ? (double)temperature >= 0.5D ? (double)temperature > 0.95D ? 1.3D : 0.9D : 0.5D : 0.1D));
-        return f;
-    }
+        Biome biome = worldIn.getBiome(pos);
+		float humidity = biome.getRainfall();
+        float temperature = biome.getFloatTemperature(pos);
+        if (temperature <= 1.3F)
+        {
+        	f = f * (1 - humidity) * temperature;
+        }
+        else
+        {
+        	f = f * 0.7F * (1 - humidity) * temperature;
+        }
+        if (f < 0.0F) f = 0.0F;
+        return f * 0.6F;
+	}
 	
 	@Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
@@ -231,25 +244,21 @@ public class Teapan extends Block
         	{
         	    case 1:
         	       	worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-        	        ItemStack itemstack1 = new ItemStack(ItemLoader.tea_leaf, 8);
-        	        worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemstack1));
+        	        ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.tea_leaf, 8));
                     return true;
         	    case 2:
         	       	worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-                    ItemStack itemstack2 = new ItemStack(ItemLoader.dried_tea, 8);
-                    worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemstack2));
+                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
         	        return true;
         	    case 3:
         	    	worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
         	    	playerIn.addStat(AchievementLoader.halfDriedTea);
-                    ItemStack itemstack3 = new ItemStack(ItemLoader.half_dried_tea, 8);
-                    worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemstack3));
+                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
                     return true;
         	    case 4:
         	    	worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
         	    	playerIn.addStat(AchievementLoader.wetTea);
-                    ItemStack itemstack4 = new ItemStack(ItemLoader.wet_tea, 8);
-                    worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemstack4));
+                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.wet_tea, 8));
                     return true;
                 default:
                 	if (heldItem != null)

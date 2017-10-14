@@ -85,24 +85,19 @@ public class Teaplant extends BlockCrops
         {
         	c = 0.0F;
         }
-        return c;
+        return c * 0.4F;
     }
     
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
         {
             if (((Integer)state.getValue(AGE)).intValue() == 7)
         	{
             	playerIn.addStat(AchievementLoader.teaLeaf);
             	playerIn.addStat(AchievementLoader.teaPlant);
-    	    	worldIn.setBlockState(pos, BlockLoader.teaplant.getStateFromMeta(4));
-    	    	worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, new ItemStack(ItemLoader.tea_leaf, playerIn.getRNG().nextInt(4) + 1)));
+    	    	worldIn.setBlockState(pos, BlockLoader.teaplant.getStateFromMeta(0));
+    	    	worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, new ItemStack(ItemLoader.tea_leaf, playerIn.getRNG().nextInt(5) + 4)));
     	        return true;
         	}
             else return false;

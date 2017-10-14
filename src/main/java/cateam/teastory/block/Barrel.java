@@ -35,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class Barrel extends Block
 {
@@ -84,7 +85,7 @@ public class Barrel extends Block
         int meta = getMetaFromState(worldIn.getBlockState(pos));
         if ((meta == 3) || (meta == 2))
        	{
-            float f = getFermentationChance(worldIn, pos);
+            float f = getFermentationChance(worldIn, pos, false);
             if (f == 0.0F)
             { 
               	return;
@@ -96,17 +97,33 @@ public class Barrel extends Block
        	}
     }
 	
-	public static float getFermentationChance(World worldIn, BlockPos pos)
+	public static float getFermentationChance(World worldIn, BlockPos pos, Boolean test)
     {
-        float f = 1.0F;
+        float f;
         Biome biome = worldIn.getBiome(pos);
         boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
         float humidity = biome.getRainfall();
         float temperature = biome.getFloatTemperature(pos);
-        f = (float)((double)f * ((double)humidity >= 0.2D ? (double)humidity >= 0.5D ? (double)humidity >= 0.8D ? 1.8D : 1.6D : 1.0D : 0.4D));
-        f = (float)((double)f * ((double)temperature >= 0.15D ? (double)temperature >= 0.5D ? (double)temperature >= 1.0D ? 1.6D : 1.8D : 1D : 0.4D));
-        if (!worldIn.canSeeSky(pos)) return f;
-        else return f = f * 0.5F;
+        if (temperature<=0.8F)
+        {
+        	f = humidity * 2.0F * temperature;
+        }
+        else
+        {
+        	f = humidity * (4F - 3 * temperature);
+        }
+        if (f<0.0F) f=0.0F;
+        
+        if (!test)
+        {
+        	if (!worldIn.canSeeSky(pos)) return f;
+        	else return f = f * 0.5F;
+        }
+        else
+        {
+        	return f;
+        }
+        
     }
 	
 	@Override
@@ -190,7 +207,7 @@ public class Barrel extends Block
         	    	}
         	    	return true;
         	    default:
-        	    	if ((heldItem == null) || (heldItem != null) && !(heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8) && (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.barrel))
+        	    	if ((heldItem == null) || !(heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8) && (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.barrel))
         	    	{
         	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.1"));
         	    	}
@@ -211,8 +228,7 @@ public class Barrel extends Block
         	    		if (playerIn.isSneaking())
         	    		{
         	    			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
-        	                playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-        	                        new ItemStack(ItemLoader.half_dried_tea, 8)));
+        	    			ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
         	    			return true;
         	    		}
         	    		else
@@ -228,8 +244,7 @@ public class Barrel extends Block
         	    		if (playerIn.isSneaking())
         	    		{
         	    			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
-        	                playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-        	                   		new ItemStack(ItemLoader.half_dried_tea, 8)));
+        	    			ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
         	    			return true;
         	    		}
         	    		else return false;
@@ -241,8 +256,7 @@ public class Barrel extends Block
         	    		if (playerIn.isSneaking())
         	    		{
     	        			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
-        	                playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-        	                   		new ItemStack(ItemLoader.half_dried_tea, 8)));
+        	                ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
     	    		    	return true;
     	    	    	}
     	    		    else return false;
@@ -254,8 +268,7 @@ public class Barrel extends Block
         	    		if (playerIn.isSneaking())
         	    		{
     	    			    worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
-    	                    playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-    	                    	    new ItemStack(ItemLoader.black_tea_leaf, 8)));
+    	                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.black_tea_leaf, 8));
     	    			    return true;
     	    		    }
         	    	    else return false;

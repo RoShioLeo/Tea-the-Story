@@ -52,18 +52,12 @@ public class MatchaDrink extends ItemTeaDrink
 		if (tier == 0)
     	{
     		entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, Math.max(0, ConfigLoader.TeaDrink_Time), 0)); 
-    		if(world.rand.nextFloat() < 0.5F)
-    		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
-    		}
+    		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
     	}
     	else
     	{
     		entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1));
-    		if(world.rand.nextFloat() < 0.5F)
-    		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
-    		}
+    		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
     	}
 	}
     
@@ -125,7 +119,7 @@ public class MatchaDrink extends ItemTeaDrink
 		}
         else
         {
-            return EnumActionResult.FAIL;
+            return EnumActionResult.PASS;
         }
     }
 	

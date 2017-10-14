@@ -34,6 +34,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class LitTeaDryingPan extends Block
 {
@@ -68,6 +69,19 @@ public class LitTeaDryingPan extends Block
 	{
     	ArrayList drops = new ArrayList();
 	    drops.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
+	    int meta = getMetaFromState(world.getBlockState(pos));
+	    if((meta >= 2) && (meta <= 9))
+		{
+	    	drops.add(new ItemStack(ItemLoader.tea_leaf, 8));
+		}
+		else if((meta == 10) || (meta == 11))
+		{
+			drops.add(new ItemStack(ItemLoader.dried_tea, 8));
+		}
+		else if(meta == 12)
+		{
+			drops.add(new ItemStack(ItemLoader.burnt_tea, 8));
+		}
 		return drops;
 	}
     
@@ -178,8 +192,7 @@ public class LitTeaDryingPan extends Block
 		{
 			if(!worldIn.isRemote)
 			{
-			    playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-            	        new ItemStack(ItemLoader.dried_tea, 8)));
+				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
 			}
 			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getStateFromMeta(0));
 			return true;
@@ -189,8 +202,7 @@ public class LitTeaDryingPan extends Block
 			if(!worldIn.isRemote)
 			{
 				playerIn.addStat(AchievementLoader.burntLeaf);
-			    playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-            	        new ItemStack(ItemLoader.burnt_tea, 8)));
+				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.burnt_tea, 8));
 			}
 			else playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.7"));
 			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getStateFromMeta(0));
