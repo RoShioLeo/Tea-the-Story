@@ -49,15 +49,15 @@ public class MatchaDrink extends ItemTeaDrink
 	
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		if (tier == 0)
+		if (tier <= 1)
     	{
-    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, Math.max(0, ConfigLoader.TeaDrink_Time), 0)); 
-    		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
+    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.1F), tier - 1)); 
+    		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.3F), tier - 1)); 
     	}
     	else
     	{
-    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1));
-    		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
+    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.1F), tier - 1));
+    		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.3F), tier - 1));
     	}
 	}
     

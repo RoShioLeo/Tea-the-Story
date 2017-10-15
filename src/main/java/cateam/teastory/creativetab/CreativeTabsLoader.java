@@ -16,7 +16,7 @@ public class CreativeTabsLoader
             @Override
             public Item getTabIconItem()
             {
-                return ItemLoader.tea_leaf;
+                return ItemLoader.half_dried_tea;
             }
         };
     }

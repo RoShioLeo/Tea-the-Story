@@ -51,28 +51,28 @@ public class BlackTea extends ItemTeaDrink
 	
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		if (tier == 0)
+		if (tier <= 1)
     	{
-    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, Math.max(0, ConfigLoader.TeaDrink_Time), 0)); 
+    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.1F), tier - 1)); 
     		if(world.rand.nextFloat() < 0.5F)
     		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
+    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.3F), tier - 1));
     		}
     		else
     		{
-    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
+    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.3F), tier - 1));
     		}
     	}
     	else
     	{
-    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1)); 
+    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.1F), tier - 1));
     		if(world.rand.nextFloat() < 0.5F)
     		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
+    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.3F), tier - 1));
     		}
     		else
     		{
-    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
+    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.3F), tier - 1));
     		}
     	}
 		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));

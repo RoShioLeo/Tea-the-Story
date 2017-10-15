@@ -44,15 +44,15 @@ public class BurntGreenTea extends ItemTeaDrink
     
     public static void addPotion(int tier, World world, EntityPlayer entityplayer)
     {
-    	if (tier == 0)
+    	if (tier <= 1)
         {
-        	entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, Math.max(0, ConfigLoader.TeaDrink_Time) / 2, 0)); 
-        	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time), 0));
+        	entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.05F), tier - 1)); 
+        	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.15F), tier - 1)); 
         }
         else
         {
-        	entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 20), tier - 1)); 
-        	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10, tier - 1));
+        	entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.05F), tier - 1));
+        	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.15F), tier - 1));
         }
     }
     

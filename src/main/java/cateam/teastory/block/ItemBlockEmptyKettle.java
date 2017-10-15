@@ -140,8 +140,7 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
     	BlockPos posC = pos;
     	if (worldIn.getBlockState(posC.offset(facing)).getMaterial() != Material.WATER)
     	{
-		    super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitZ, hitZ, hitZ);
-		    return EnumActionResult.SUCCESS;
+    		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitZ, hitZ, hitZ);
     	}
     	return EnumActionResult.PASS;
     }

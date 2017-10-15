@@ -92,7 +92,7 @@ public class Teaplant extends BlockCrops
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         {
-            if (((Integer)state.getValue(AGE)).intValue() == 7)
+            if ((!worldIn.isRemote) && (((Integer)state.getValue(AGE)).intValue() == 7))
         	{
             	playerIn.addStat(AchievementLoader.teaLeaf);
             	playerIn.addStat(AchievementLoader.teaPlant);

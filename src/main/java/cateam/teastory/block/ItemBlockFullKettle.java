@@ -147,10 +147,6 @@ public class ItemBlockFullKettle extends ItemMultiTexture
     		    	return EnumActionResult.SUCCESS;
     		}
     	}
-    	else
-    	{
-    		super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitZ, hitZ, hitZ);
-    	}
-    	return EnumActionResult.PASS;
+    	return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitZ, hitZ, hitZ);
     }
 }
