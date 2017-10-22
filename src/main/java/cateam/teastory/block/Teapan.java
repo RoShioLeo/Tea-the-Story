@@ -14,6 +14,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -47,7 +48,7 @@ public class Teapan extends Block
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
         this.setUnlocalizedName("teapan");
-        this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.EMPTY));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
         this.setCreativeTab(CreativeTabsLoader.tabteastory);
 	}
 	
@@ -77,19 +78,19 @@ public class Teapan extends Block
 	    int meta = BlockLoader.teapan.getMetaFromState(blockstate);
 	    if (meta == 1)
 	    {
-    		drops.add(new ItemStack(ItemLoader.tea_leaf, 8));
+    		drops.add(new ItemStack(ItemLoader.wet_tea, 8));
     	}
-	    else if (meta == 2)
+	    else if ((meta >= 2) && (meta <= 7))
     	{
-    	    drops.add(new ItemStack(ItemLoader.dried_tea, 8));
+    	    drops.add(new ItemStack(ItemLoader.tea_leaf, 8));
 	    }
-	    else if (meta == 3)
+	    else if (meta == 7)
         {
             drops.add(new ItemStack(ItemLoader.half_dried_tea, 8));
         }
-	    else if (meta == 4)
+	    else if (meta == 8)
         {
-            drops.add(new ItemStack(ItemLoader.wet_tea, 8));
+            drops.add(new ItemStack(ItemLoader.dried_tea, 8));
         }
 	    return drops;
 	}
@@ -98,12 +99,12 @@ public class Teapan extends Block
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         super.updateTick(worldIn, pos, state, rand);
-        int meta = getMetaFromState(worldIn.getBlockState(pos));
-        if (worldIn.isRainingAt(pos.up()) && meta > 0)
+        int step = getMetaFromState(worldIn.getBlockState(pos));
+        if (step > 1 && worldIn.isRainingAt(pos.up()))
         {
-        	worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(4));
+        	worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(1));
         }
-        else if (meta == 1 || meta == 3 || meta == 4)
+        else if ((step >= 1) && (step <= 8))
        	{
         	float f = getDryingChance(worldIn, pos);
             if (f == 0.0F)
@@ -112,25 +113,13 @@ public class Teapan extends Block
             }
             else if (rand.nextInt((int)(25.0F / f) + 1) == 0)      		
             {
-            	switch (meta)
+            	if (step != 8)
             	{
-            	    case 1:
-            	    	if (worldIn.canSeeSky(pos))
-            	    	{
-            	    	    worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(2));
-            	    	}
-            	    	else
-            	    	{
-            	    		worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(3));
-            	    	}
-            	    	return;
-            	    case 3:
-            	    	if (worldIn.canSeeSky(pos))
-                            worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(2));
-            	    	return;
-            	    case 4:
-            	    	worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(1));
-            	    	return;	
+            		worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(step + 1));
+            	}
+            	else if (worldIn.canSeeSky(pos))
+            	{
+            		worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(step + 1));
             	}
             }
        	}
@@ -170,7 +159,12 @@ public class Teapan extends Block
         	f = f * 0.7F * (1 - humidity) * temperature;
         }
         if (f < 0.0F) f = 0.0F;
-        return f * 0.6F;
+        return f * 3;
+	}
+	
+	public static String getName(int meta)
+	{
+		return String.valueOf(meta);
 	}
 	
 	@Override
@@ -189,152 +183,110 @@ public class Teapan extends Block
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] { TYPE });
+        return new BlockStateContainer(this, new IProperty[] { STEP });
     }
     
     @Override
-    public IBlockState getStateFromMeta(int meta)
+    public IBlockState getStateFromMeta(int step)
     {
-        return getDefaultState().withProperty(TYPE, getState(meta));
+    	return this.getDefaultState().withProperty(this.getStepProperty(), Integer.valueOf(step));
     }
     
-    public Comparable getState(int meta)
+    protected PropertyInteger getStepProperty()
     {
-    	switch(meta)
-    	{
-    	case 1:
-    		return EnumType.FULL;
-    	case 2:
-            return EnumType.DRIED;
-    	case 3:
-        	return EnumType.MATCHA;
-    	case 4:
-            return EnumType.WET;
-        default:
-            return EnumType.EMPTY;
-    	}
+        return STEP;
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        EnumType type = (EnumType) state.getValue(TYPE);
-        return type.getID();
+    	return ((Integer)state.getValue(this.getStepProperty())).intValue();
     }
     
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
+    	int step = getMetaFromState(worldIn.getBlockState(pos));
         if (worldIn.isRemote)
         {
-        	switch(getMetaFromState(worldIn.getBlockState(pos)))
+        	switch(step)
         	{
         	    case 0:
         	    	if ((heldItem == null) || !(heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8) && !(heldItem.getItem() == ItemLoader.tea_leaf && heldItem.stackSize >=8) && !(heldItem.getItem() == ItemLoader.wet_tea && heldItem.stackSize >=8) && (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.teapan))
         	    	{
         	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.teapan.message"));
         	    	}
-        	    	return true;
-        	    default:
-        	    	return true;
         	}
+        	return true;
         }
         else
         {
-            switch(getMetaFromState(worldIn.getBlockState(pos)))
+        	if(step == 0)
         	{
-        	    case 1:
-        	       	worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-        	        ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.tea_leaf, 8));
-                    return true;
-        	    case 2:
-        	       	worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
-        	        return true;
-        	    case 3:
-        	    	worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-        	    	playerIn.addStat(AchievementLoader.halfDriedTea);
-                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
-                    return true;
-        	    case 4:
-        	    	worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-        	    	playerIn.addStat(AchievementLoader.wetTea);
-                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.wet_tea, 8));
-                    return true;
-                default:
-                	if (heldItem != null)
-                    {
-                		if (heldItem.stackSize >=8)
+        		if (heldItem != null)
+                {
+            		if (heldItem.stackSize >=8)
+            		{
+            	    	if (heldItem.getItem() == ItemLoader.tea_leaf)
                 		{
-                	    	if (heldItem.getItem() == ItemLoader.tea_leaf)
-                    		{
-                	                worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(1));
-                	                if (!playerIn.capabilities.isCreativeMode)
-                                    {
-                	            	    heldItem.stackSize = heldItem.stackSize - 8;
-                                    }
-        	                        return true;
-                	    	}
-                			else if (heldItem.getItem() == ItemLoader.wet_tea)
-                 	      	{	
-                		        worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(4));
-                		        if (!playerIn.capabilities.isCreativeMode)
+            	                worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(2));
+            	                if (!playerIn.capabilities.isCreativeMode)
                                 {
             	            	    heldItem.stackSize = heldItem.stackSize - 8;
                                 }
-               	                return true;
-             	    	    }
-                    		else if (heldItem.getItem() == ItemLoader.half_dried_tea)
-                        	{	
-                    	        worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(3));
-                    	        if (!playerIn.capabilities.isCreativeMode)
-                                {
-            	            	    heldItem.stackSize = heldItem.stackSize - 8;
-                                }
-                                return true;
-                    	    }
-                    		else return false;
-                		}
-                		else return false;
-            	    }
-                	else return false;
+    	                        return true;
+            	    	}
+            			else if (heldItem.getItem() == ItemLoader.wet_tea)
+             	      	{	
+            		        worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(1));
+            		        if (!playerIn.capabilities.isCreativeMode)
+                            {
+        	            	    heldItem.stackSize = heldItem.stackSize - 8;
+                            }
+           	                return true;
+         	    	    }
+                		else if (heldItem.getItem() == ItemLoader.half_dried_tea)
+                    	{	
+                	        worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(8));
+                	        if (!playerIn.capabilities.isCreativeMode)
+                            {
+        	            	    heldItem.stackSize = heldItem.stackSize - 8;
+                            }
+                            return true;
+                	    }
+            		}
+        	    }
+            	return false;
+        	}
+        	else if((step >= 2) && (step <=7))
+        	{
+        		worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
+    	        ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.tea_leaf, 8));
+    	        return true;
+        	}
+        	else if(step == 8)
+        	{
+        		worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
+    	    	playerIn.addStat(AchievementLoader.halfDriedTea);
+                ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
+                return true;
+        	}
+        	else if(step == 9)
+        	{
+        		worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
+                ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
+    	        return true;
+        	}
+        	else if(step == 1)
+        	{
+        		worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
+    	    	playerIn.addStat(AchievementLoader.wetTea);
+                ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.wet_tea, 8));
+                return true;
         	}
         }
+        return false;
     }
+    
+	public static final PropertyInteger STEP = PropertyInteger.create("step", 0, 9);
 	
-	public static final PropertyEnum TYPE = PropertyEnum.create("type", Teapan.EnumType.class);
-	
-	public enum EnumType implements IStringSerializable
-    {
-		EMPTY(0, "empty"),
-	    FULL(1, "full"),
-		DRIED(2, "dried"),
-		MATCHA(3, "matcha"),
-		WET(4, "wet");
-
-	    private int ID;
-	    private String name;
-	    
-	    private EnumType(int ID, String name)
-        {
-	        this.ID = ID;
-	        this.name = name;
-	    }
-	    
-	    @Override
-	    public String getName()
-        {
-	        return name;
-	    }
-
-	    public int getID()
-        {
-	        return ID;
-	    }
-	    
-	    @Override
-	    public String toString()
-        {
-	        return getName();
-	    }
-	}
 }

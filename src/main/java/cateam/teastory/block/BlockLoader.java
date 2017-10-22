@@ -85,7 +85,7 @@ public class BlockLoader
             @Override
             public String apply(ItemStack input)
             {
-                return "." + Teapan.EnumType.values()[input.getMetadata()].getName();
+                return "." + Teapan.getName(input.getMetadata());
             }
         }), "teapan");
     	register(barrel, new ItemBlockName(barrel, barrel, new Function<ItemStack, String>()
@@ -93,7 +93,7 @@ public class BlockLoader
             @Override
             public String apply(ItemStack input)
             {
-                return "." + Barrel.EnumType.values()[input.getMetadata()].getName();
+                return "." + Barrel.getName(input.getMetadata());
             }
         }), "barrel");
     	register(empty_kettle, new ItemBlockEmptyKettle(empty_kettle, empty_kettle, new Function<ItemStack, String>()

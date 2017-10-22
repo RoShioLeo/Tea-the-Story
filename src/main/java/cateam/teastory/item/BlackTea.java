@@ -51,31 +51,62 @@ public class BlackTea extends ItemTeaDrink
 	
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		if (tier <= 1)
-    	{
-    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.1F), tier - 1)); 
-    		if(world.rand.nextFloat() < 0.5F)
-    		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.3F), tier - 1));
-    		}
-    		else
-    		{
-    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (10 + tier * 2) * 0.3F), tier - 1));
-    		}
-    	}
-    	else
-    	{
-    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.1F), tier - 1));
-    		if(world.rand.nextFloat() < 0.5F)
-    		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.3F), tier - 1));
-    		}
-    		else
-    		{
-    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * (12.5F - tier * 2.5F) * 0.3F), tier - 1));
-    		}
-    	}
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));
+		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 0));
+		switch(tier)
+		{
+			case 1:
+			{
+				entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.25F), 0)); 
+	    		if(world.rand.nextFloat() < 0.5F)
+	    		{
+	    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 3.75F), 0));
+	    		}
+	    		else
+	    		{
+	    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 3.75F), 0));
+	    		}
+	    		return;
+			}
+			case 2:
+			{
+				entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.5F), 1)); 
+	    		if(world.rand.nextFloat() < 0.5F)
+	    		{
+	    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.5F), 1));
+	    		}
+	    		else
+	    		{
+	    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.5F), 1));
+	    		}
+	    		return;
+			}
+			case 3:
+			{
+				entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.75F), 1)); 
+	    		if(world.rand.nextFloat() < 0.5F)
+	    		{
+	    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 2.25F), 1));
+	    		}
+	    		else
+	    		{
+	    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 2.25F), 1));
+	    		}
+	    		return;
+			}
+			default:
+			{
+				entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time), 0)); 
+	    		if(world.rand.nextFloat() < 0.5F)
+	    		{
+	    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 3), 0));
+	    		}
+	    		else
+	    		{
+	    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 3), 0));
+	    		}
+	    		return;
+			}
+		}
 	}
 	
 	@Override
@@ -118,7 +149,7 @@ public class BlackTea extends ItemTeaDrink
             if (stack.stackSize != 0 && playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(drinkblock, pos, false, facing, (Entity)null, stack))
             {
                 int i = this.getMetadata(stack.getMetadata());
-                IBlockState iblockstate1 = drinkblock.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, playerIn, stack);
+                IBlockState iblockstate1 = drinkblock.getDefaultState();
 
                 if (placeBlockAt(stack, playerIn, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))
                 {

@@ -6,7 +6,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import cateam.teastory.achievement.AchievementLoader;
-import cateam.teastory.block.Teapan.EnumType;
 import cateam.teastory.item.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;

@@ -47,15 +47,15 @@ public class SoilDetectionMeter extends TSItem
             int height = pos.getY();
             playerIn.addChatMessage(new TextComponentTranslation("teastory.soil_detection_meter.message.total", temp, rainfall, ("\u00a78" + String.valueOf(height)), ("\u00a7b" + biome.getBiomeName())));
             
-            float FermentationChance = Barrel.getFermentationChance(worldIn, pos, true);
+            float FermentationChance = Barrel.getFermentationChance(worldIn, pos, true) * 0.5F;
             String fermentation1 = (FermentationChance >= 0.50F) ? (FermentationChance >= 1.00F) ? I18n.translateToLocal("teastory.soil_detection_meter.fast") : I18n.translateToLocal("teastory.soil_detection_meter.normal") : I18n.translateToLocal("teastory.soil_detection_meter.slow");
             String fermentation2 = ((FermentationChance/2) >= 0.50F) ? ((FermentationChance/2) >= 1.00F) ? I18n.translateToLocal("teastory.soil_detection_meter.fast") : I18n.translateToLocal("teastory.soil_detection_meter.normal") : I18n.translateToLocal("teastory.soil_detection_meter.slow");
             String fermentationRate1 =  (FermentationChance >= 0.50F) ? (FermentationChance >= 1.00F) ? String.valueOf("\u00a7a" + (int)(FermentationChance * 100) + "%") : String.valueOf("\u00a7e" + (int)(FermentationChance * 100) + "%") : String.valueOf("\u00a7c" + (int)(FermentationChance / 2.0F * 100) + "%");
             String fermentationRate2 =  ((FermentationChance/2) >= 0.50F) ? ((FermentationChance/2) >= 1.00F) ? String.valueOf("\u00a7a" + (int)(FermentationChance / 2.0F * 100) + "%") : String.valueOf("\u00a7e" + (int)(FermentationChance / 2.0F * 100) + "%") : String.valueOf("\u00a7c" + (int)(FermentationChance / 4.0F * 100) + "%");
             playerIn.addChatMessage(new TextComponentTranslation("teastory.soil_detection_meter.message.fermentation", fermentation1, fermentationRate1, fermentation2, fermentationRate2));
             
-            float DryingChance1 = Teapan.getDryingChance(worldIn, pos, true) * 1.6F;
-            float DryingChance2 = Teapan.getDryingChance(worldIn, pos, false) * 1.6F;
+            float DryingChance1 = Teapan.getDryingChance(worldIn, pos, true) * 0.5F;
+            float DryingChance2 = Teapan.getDryingChance(worldIn, pos, false) * 0.5F;
             String drying1 = ((DryingChance1) >= 0.50F) ? ((DryingChance1) >= 1.0F) ? I18n.translateToLocal("teastory.soil_detection_meter.fast") : I18n.translateToLocal("teastory.soil_detection_meter.normal") : I18n.translateToLocal("teastory.soil_detection_meter.slow");
             String drying2 = ((DryingChance2) >= 0.50F) ? ((DryingChance2) >= 1.0F) ? I18n.translateToLocal("teastory.soil_detection_meter.fast") : I18n.translateToLocal("teastory.soil_detection_meter.normal") : I18n.translateToLocal("teastory.soil_detection_meter.slow");
             String dryingRate1 =  ((DryingChance1) >= 0.50F) ? ((DryingChance1) >= 1.0F) ? String.valueOf("\u00a7a" + (int)(DryingChance1 * 100) + "%") : String.valueOf("\u00a7e" + (int)(DryingChance1 * 100) + "%") : String.valueOf("\u00a7c" + (int)(DryingChance1 * 100) + "%");

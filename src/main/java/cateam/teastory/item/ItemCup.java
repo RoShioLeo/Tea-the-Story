@@ -84,6 +84,45 @@ public class ItemCup extends TSItem
 	}
 	
 	@Override
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+		if (playerIn.isSneaking())
+		{
+		    Block drinkblock = getBlock(stack.getItemDamage());
+            IBlockState iblockstate = worldIn.getBlockState(pos);
+            Block block = iblockstate.getBlock();
+
+            if (!block.isReplaceable(worldIn, pos))
+            {
+                pos = pos.offset(facing);
+            }
+
+            if (stack.stackSize != 0 && playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(drinkblock, pos, false, facing, (Entity)null, stack))
+            {
+                int i = this.getMetadata(stack.getMetadata());
+                IBlockState iblockstate1 = drinkblock.getDefaultState();
+
+                if (placeBlockAt(stack, playerIn, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))
+                {
+                    SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, playerIn);
+                    worldIn.playSound(playerIn, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                    --stack.stackSize;
+                }
+
+                return EnumActionResult.SUCCESS;
+            }
+            else
+            {
+                return EnumActionResult.FAIL;
+            }
+		}
+        else
+        {
+            return EnumActionResult.PASS;
+        }
+    }
+	
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
 		RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);

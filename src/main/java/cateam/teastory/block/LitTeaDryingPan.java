@@ -246,14 +246,35 @@ public class LitTeaDryingPan extends Block
 	
 	public static String getSpecialName(ItemStack stack)
     {
-		return "." + String.valueOf(stack.getItemDamage());
+		int meta = stack.getItemDamage();
+		if ((meta >= 0) && (meta <= 3))
+		{
+			return "." + String.valueOf(meta);
+		}
+		else if((meta == 4) || (meta == 5))
+		{
+			return "." + String.valueOf(3);
+		}
+		else if(meta == 6)
+		{
+			return "." + String.valueOf(4);
+		}
+		else if((meta >= 7) && (meta <= 9))
+		{
+			return "." + String.valueOf(5);
+		}
+		else if((meta == 10) || (meta == 11))
+		{
+			return "." + String.valueOf(6);
+		}
+		return "." + String.valueOf(7);
     }
 	
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", LitTeaDryingPan.EnumType.class);
 	public enum EnumType implements IStringSerializable
     {
 		T0("0"),
-	    T1("1"),
+		T1("1"),
 		T2("2"),
 		T3("3"),
 		T4("4"),
