@@ -169,13 +169,13 @@ teastory.info.welcome.2=[§2§oTeaStory§f]Please access URL to download the ins
 #Message
 teastory.teapan.message=To start drying, put 8 tea leaves into the tea pan. 
 teastory.barrel.message.1=Put 8 half-dried tea leaves to start fermentation. To get tea leaves back, right click barrel while sneaking.
-teastory.barrel.message.2=Right click with empty hand to knead the tea leaves.
+teastory.barrel.message.2=Right click to knead the tea leaves.
 teastory.barrel.message.3=Fermentation progress: 1/2; to get tea leaves back, right click barrel while sneaking.
 teastory.barrel.message.4=Fermentation progress: 2/2, about to finish; to get tea leaves back, right click barrel while sneaking.
 teastory.barrel.message.5=Fermentation finished, right click barrel while sneaking to get black tea leaves.
 teastory.soil_detection_meter.message.total=Soil temperature: %1$s; humidity: %2$s; altitude: %3$s §8m§r; climate: %4$s.
-teastory.soil_detection_meter.message.drying=
-teastory.soil_detection_meter.message.fermentation=
+teastory.soil_detection_meter.message.drying=Drying rate: daytime: %1$s ( %2$s ); nighttime: %3$s ( %4$s , Need lights ).
+teastory.soil_detection_meter.message.fermentation=Fermentation rate: indoor: %1$s ( %2$s ); outdoor: %3$s ( %4$s ).
 teastory.soil_detection_meter.message.teaplant=Tea plants have a %1$s chance of growing here; %2$s
 teastory.soil_detection_meter.temperature.snowy=§1Snowy
 teastory.soil_detection_meter.temperature.cold=§9Cold

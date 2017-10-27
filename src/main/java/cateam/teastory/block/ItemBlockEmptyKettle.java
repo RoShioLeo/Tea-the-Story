@@ -16,6 +16,7 @@ import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
@@ -31,6 +32,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class ItemBlockEmptyKettle extends ItemMultiTexture
 {
@@ -55,36 +57,56 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
+		int meta = itemStackIn.getItemDamage();
+		if (meta == 0)
+		{
+			RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
+			ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onBucketUse(playerIn, worldIn, itemStackIn, raytraceresult);
+			if (ret != null) return ret;
 
-        if (raytraceresult == null)
-        {
-            return new ActionResult(EnumActionResult.PASS, itemStackIn);
-        }
-        else
-        {
-            if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
-            {
-                BlockPos blockpos = raytraceresult.getBlockPos();
+			if (raytraceresult == null)
+			{
+				return new ActionResult(EnumActionResult.PASS, itemStackIn);
+			}
+			else if (raytraceresult.typeOfHit != RayTraceResult.Type.BLOCK)
+			{
+				return new ActionResult(EnumActionResult.PASS, itemStackIn);
+			}
+			else
+			{
+				BlockPos blockpos = raytraceresult.getBlockPos();
 
-                if (!worldIn.isBlockModifiable(playerIn, blockpos) || !playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStackIn))
-                {
-                    return new ActionResult(EnumActionResult.PASS, itemStackIn);
-                }
-
-                if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER)
-                {
-                    worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                    return new ActionResult(EnumActionResult.SUCCESS, new ItemStack(BlockLoader.empty_kettle, 1, 4));
-                }
-            }
-            return new ActionResult(EnumActionResult.PASS, itemStackIn);
-        }
-    }
+				if (!worldIn.isBlockModifiable(playerIn, blockpos))
+				{
+					return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+				}
+				else
+				{
+					if (!playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStackIn))
+					{
+						return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+	                }
+	                else
+	                {
+	                    IBlockState iblockstate = worldIn.getBlockState(blockpos);
+	                    Material material = iblockstate.getMaterial();
 	
-	protected ItemStack turnKettleIntoItem(ItemStack stackIn, EntityPlayer player, ItemStack stack)
-    {
-		return stack;
+	                    if (material == Material.WATER && ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0)
+	                    {
+	                        worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
+	                        playerIn.addStat(StatList.getObjectUseStats(this));
+	                        playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL, 1.0F, 1.0F);
+	                        return new ActionResult(EnumActionResult.SUCCESS, new ItemStack(BlockLoader.empty_kettle, 1, 4));
+	                    }
+	                    else
+	                    {
+	                        return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+	                    }
+	                }
+	            }
+	        }
+		}
+		return new ActionResult(EnumActionResult.PASS, itemStackIn);
     }
 	
 	@Override
@@ -92,40 +114,7 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
     {
     	Block block = worldIn.getBlockState(pos).getBlock();
     	int meta = stack.getItemDamage();
-    	if(meta == 0)
-    	{
-    		RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
-
-            if (raytraceresult == null)
-            {
-            	return EnumActionResult.PASS;
-            }
-            else
-            {
-                if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
-                {
-                    BlockPos blockpos = raytraceresult.getBlockPos();
-
-                    if (!worldIn.isBlockModifiable(playerIn, blockpos) || !playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, stack))
-                    {
-                        return EnumActionResult.PASS;
-                    }
-
-                    if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER)
-                    {
-                        worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                        stack.setItemDamage(4);
-                    	stack.setItem(stack.getItem());
-                    	if (playerIn instanceof EntityPlayerMP)
-                        {
-                            ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-                        }
-                        return EnumActionResult.SUCCESS;
-                    }
-                }
-            }
-    	}
-    	else if (meta == 12)
+    	if (meta == 12)
     	{
     	    if (block == BlockLoader.wood_cup)
     	    {
@@ -148,7 +137,11 @@ public class ItemBlockEmptyKettle extends ItemMultiTexture
     	    	return EnumActionResult.SUCCESS;
     	    }
     	}
-		super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitZ, hitZ, hitZ);
+    	BlockPos posC = pos;
+    	if (worldIn.getBlockState(posC.offset(facing)).getMaterial() != Material.WATER)
+    	{
+    		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitZ, hitZ, hitZ);
+    	}
     	return EnumActionResult.PASS;
     }
 }

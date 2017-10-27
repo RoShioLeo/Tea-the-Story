@@ -32,6 +32,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 {
@@ -91,15 +92,7 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
         }
 		if (playerIn.isSneaking())
 		{
-	    	if (!playerIn.inventory.addItemStackToInventory(new ItemStack(teaDrink, 1, meta)))
-            {
-                playerIn.getEntityWorld().spawnEntityInWorld(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-                    	new ItemStack(teaDrink, 1, meta)));
-            }
-            else if (playerIn instanceof EntityPlayerMP)
-            {
-                ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-            }
+	    	ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(teaDrink, 1, meta));
 	        worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 	        worldIn.removeTileEntity(pos);
 	        return true;
@@ -154,20 +147,11 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 					        	worldIn.setBlockState(pos, BlockLoader.greentea_wood_cup.getDefaultState());
 					        	break;
 						}
-						if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.tea_residue, 1, 0)))
-			            {
-			                 worldIn.spawnEntityInWorld(new EntityItem(worldIn, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-			                     new ItemStack(ItemLoader.tea_residue, 1, 0)));
-			            }
+						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.tea_residue, 1, 0));
 						if (!playerIn.capabilities.isCreativeMode)
 		                {
 		                	heldItem.stackSize--;
-		                }
-						if (playerIn instanceof EntityPlayerMP)
-                        {
-                            ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-                        }
-						
+		                }						
 					}
 					else
 					{
@@ -186,22 +170,18 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 					        	worldIn.setBlockState(pos, BlockLoader.blacktea_wood_cup.getDefaultState());
 					        	break;
 						}
+						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.tea_residue, 1, 0));
 						if (!playerIn.capabilities.isCreativeMode)
 		                {
 		                	heldItem.stackSize--;
 		                }
-						if (!playerIn.inventory.addItemStackToInventory(new ItemStack(ItemLoader.tea_residue, 1, 1)))
-			            {
-			                 worldIn.spawnEntityInWorld(new EntityItem(worldIn, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-			                     new ItemStack(ItemLoader.tea_residue, 1, 1)));
-			            }
 					}
+					if (playerIn instanceof EntityPlayerMP)
+                    {
+                        ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
+                    }
 	                return true;
 				}
-			}
-			if(worldIn.isRemote)
-			{
-				return true;
 			}
 			TileEntity te = worldIn.getTileEntity(pos);
 			if(te instanceof TileEntityTeaDrink)

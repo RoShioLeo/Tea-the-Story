@@ -4,6 +4,7 @@ import java.util.List;
 
 import cateam.teastory.block.BlockLoader;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -12,10 +13,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -24,6 +28,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class ItemCup extends TSItem
 {
@@ -83,7 +88,7 @@ public class ItemCup extends TSItem
     {
 		if (playerIn.isSneaking())
 		{
-			Block drinkblock = getBlock(stack.getItemDamage());
+		    Block drinkblock = getBlock(stack.getItemDamage());
             IBlockState iblockstate = worldIn.getBlockState(pos);
             Block block = iblockstate.getBlock();
 
@@ -95,7 +100,7 @@ public class ItemCup extends TSItem
             if (stack.stackSize != 0 && playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(drinkblock, pos, false, facing, (Entity)null, stack))
             {
                 int i = this.getMetadata(stack.getMetadata());
-                IBlockState iblockstate1 = drinkblock.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, playerIn, stack);
+                IBlockState iblockstate1 = drinkblock.getDefaultState();
 
                 if (placeBlockAt(stack, playerIn, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))
                 {
@@ -103,68 +108,67 @@ public class ItemCup extends TSItem
                     worldIn.playSound(playerIn, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                     --stack.stackSize;
                 }
-                return EnumActionResult.SUCCESS;
-            }
-            return EnumActionResult.PASS;
-		}
-		else
-		{
-			RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
 
-            if (raytraceresult == null)
-            {
-            	return EnumActionResult.PASS;
+                return EnumActionResult.SUCCESS;
             }
             else
             {
-                if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
-                {
-                    BlockPos blockpos = raytraceresult.getBlockPos();
-
-                    if (!worldIn.isBlockModifiable(playerIn, blockpos) || !playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, stack))
-                    {
-                        return EnumActionResult.PASS;
-                    }
-
-                    if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER)
-                    {
-                        worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                        stack = this.turnCupIntoItem(stack, playerIn, new ItemStack(ItemLoader.cold_water, 1, stack.getItemDamage()));
-                        return EnumActionResult.SUCCESS;
-                    }
-                }
+                return EnumActionResult.FAIL;
             }
-            return EnumActionResult.PASS;
 		}
+        else
+        {
+            return EnumActionResult.PASS;
+        }
     }
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
+		RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
+        ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onBucketUse(playerIn, worldIn, itemStackIn, raytraceresult);
+        if (ret != null) return ret;
 
         if (raytraceresult == null)
         {
             return new ActionResult(EnumActionResult.PASS, itemStackIn);
         }
+        else if (raytraceresult.typeOfHit != RayTraceResult.Type.BLOCK)
+        {
+            return new ActionResult(EnumActionResult.PASS, itemStackIn);
+        }
         else
         {
-            if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
+            BlockPos blockpos = raytraceresult.getBlockPos();
+
+            if (!worldIn.isBlockModifiable(playerIn, blockpos))
             {
-                BlockPos blockpos = raytraceresult.getBlockPos();
-
-                if (!worldIn.isBlockModifiable(playerIn, blockpos) || !playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStackIn))
+                return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+            }
+            else
+            {
+                if (!playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStackIn))
                 {
-                    return new ActionResult(EnumActionResult.PASS, itemStackIn);
+                    return new ActionResult(EnumActionResult.FAIL, itemStackIn);
                 }
-
-                if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER)
+                else
                 {
-                    worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                    return new ActionResult(EnumActionResult.SUCCESS, this.turnCupIntoItem(itemStackIn, playerIn, new ItemStack(ItemLoader.cold_water, 1, itemStackIn.getItemDamage())));
+                    IBlockState iblockstate = worldIn.getBlockState(blockpos);
+                    Material material = iblockstate.getMaterial();
+
+                    if (material == Material.WATER && ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0)
+                    {
+                        worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
+                        playerIn.addStat(StatList.getObjectUseStats(this));
+                        playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
+                        return new ActionResult(EnumActionResult.SUCCESS, this.turnCupIntoItem(itemStackIn, playerIn, new ItemStack(ItemLoader.cold_water, 1, itemStackIn.getItemDamage())));
+                    }
+                    else
+                    {
+                        return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+                    }
                 }
             }
-            return new ActionResult(EnumActionResult.PASS, itemStackIn);
         }
     }
 	
@@ -179,10 +183,7 @@ public class ItemCup extends TSItem
         }
         else
         {
-            if (!player.inventory.addItemStackToInventory(stack))
-            {
-                player.dropItem(stack, false);
-            }
+        	ItemHandlerHelper.giveItemToPlayer(player, stack);
 
             return stackIn;
         }

@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 
 import cateam.teastory.TeaStory;
 import cateam.teastory.achievement.AchievementLoader;
-import cateam.teastory.block.Barrel.EnumType;
 import cateam.teastory.creativetab.CreativeTabsLoader;
 import cateam.teastory.inventory.GuiElementLoader;
 import cateam.teastory.item.ItemLoader;

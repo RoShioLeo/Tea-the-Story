@@ -1,9 +1,14 @@
 {
     "variants": {
-	    "type=empty": { "model":"teastory:teapan_empty" },
-        "type=full": { "model":"teastory:teapan_full" },
-		"type=dried": { "model":"teastory:teapan_dried" },
-		"type=matcha": { "model":"teastory:teapan_matcha" },
-		"type=wet": { "model":"teastory:teapan_wet" }
+	    "step=0": { "model":"teastory:teapan_empty" },
+		"step=2": { "model":"teastory:teapan_full" },
+		"step=3": { "model":"teastory:teapan_full" },
+		"step=4": { "model":"teastory:teapan_full" },
+		"step=5": { "model":"teastory:teapan_full" },
+		"step=6": { "model":"teastory:teapan_full" },
+		"step=7": { "model":"teastory:teapan_full" },
+		"step=9": { "model":"teastory:teapan_dried" },
+		"step=8": { "model":"teastory:teapan_matcha" },
+		"step=1": { "model":"teastory:teapan_wet" }
     }
 }

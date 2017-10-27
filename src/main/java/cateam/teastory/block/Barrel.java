@@ -14,6 +14,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -35,6 +36,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class Barrel extends Block
 {
@@ -45,7 +47,7 @@ public class Barrel extends Block
         this.setSoundType(SoundType.WOOD);
         this.setTickRandomly(true);
         this.setUnlocalizedName("barrel");
-        this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.EMPTY));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
         this.setCreativeTab(CreativeTabsLoader.tabteastory);
 	}
 	
@@ -67,11 +69,11 @@ public class Barrel extends Block
 	    ArrayList drops = new ArrayList();
 	    drops.add(new ItemStack(BlockLoader.barrel, 1));
 	    int meta = BlockLoader.barrel.getMetaFromState(blockstate);
-	    if ((meta == 1) || (meta == 2) || (meta == 3))
+	    if ((meta >= 1) && (meta <= 7))
 	    {
     		drops.add(new ItemStack(ItemLoader.half_dried_tea, 8));
     	}
-	    else if (meta == 4)
+	    else if (meta == 8)
         {
             drops.add(new ItemStack(ItemLoader.black_tea_leaf, 8));
         }
@@ -82,9 +84,9 @@ public class Barrel extends Block
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         int meta = getMetaFromState(worldIn.getBlockState(pos));
-        if ((meta == 3) || (meta == 2))
+        if ((meta >= 2) && (meta <= 7))
        	{
-            float f = getFermentationChance(worldIn, pos);
+            float f = getFermentationChance(worldIn, pos, false);
             if (f == 0.0F)
             { 
               	return;
@@ -96,17 +98,33 @@ public class Barrel extends Block
        	}
     }
 	
-	public static float getFermentationChance(World worldIn, BlockPos pos)
+	public static float getFermentationChance(World worldIn, BlockPos pos, Boolean test)
     {
-        float f = 1.0F;
+        float f;
         Biome biome = worldIn.getBiome(pos);
         boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
         float humidity = biome.getRainfall();
         float temperature = biome.getFloatTemperature(pos);
-        f = (float)((double)f * ((double)humidity >= 0.2D ? (double)humidity >= 0.5D ? (double)humidity >= 0.8D ? 1.8D : 1.6D : 1.0D : 0.4D));
-        f = (float)((double)f * ((double)temperature >= 0.15D ? (double)temperature >= 0.5D ? (double)temperature >= 1.0D ? 1.6D : 1.8D : 1D : 0.4D));
-        if (!worldIn.canSeeSky(pos)) return f;
-        else return f = f * 0.5F;
+        if (temperature<=0.8F)
+        {
+        	f = humidity * 2.0F * temperature;
+        }
+        else
+        {
+        	f = humidity * (4F - 3 * temperature);
+        }
+        if (f<0.0F) f=0.0F;
+        
+        if (!test)
+        {
+        	if (!worldIn.canSeeSky(pos)) return f;
+        	else return f = f * 0.8F;
+        }
+        else
+        {
+        	return f * 3;
+        }
+        
     }
 	
 	@Override
@@ -122,196 +140,142 @@ public class Barrel extends Block
 	    list.add(new ItemStack(itemIn, 1, 0));
 	}
 	
-    @Override
+	@Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] { TYPE });
+        return new BlockStateContainer(this, new IProperty[] { STEP });
     }
     
     @Override
-    public IBlockState getStateFromMeta(int meta)
+    public IBlockState getStateFromMeta(int step)
     {
-        return getDefaultState().withProperty(TYPE, getState(meta));
+    	return this.getDefaultState().withProperty(this.getStepProperty(), Integer.valueOf(step));
     }
     
-    public Comparable getState(int meta)
+    protected PropertyInteger getStepProperty()
     {
-    	switch(meta)
-    	{
-    	case 1:
-    		return EnumType.FULL;
-    	case 2:
-            return EnumType.FULL2;
-    	case 3:
-        	return EnumType.FERMENTATION;
-    	case 4:
-            return EnumType.BLACKTEA;
-        default:
-            return EnumType.EMPTY;
-    	}
+        return STEP;
     }
-
+    
+    public static String getName(int meta)
+	{
+		return String.valueOf(meta);
+	}
+    
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        EnumType type = (EnumType) state.getValue(TYPE);
-        return type.getID();
+    	return ((Integer)state.getValue(this.getStepProperty())).intValue();
     }
     
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
+    	int step = getMetaFromState(worldIn.getBlockState(pos));
         if (worldIn.isRemote)
         {
-        	switch(getMetaFromState(worldIn.getBlockState(pos)))
+        	if(step == 0)
         	{
-        	    case 1:
-        	    	if ((heldItem != null) && !(playerIn.isSneaking()))
-        	    	{
-        	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.2"));
-        	    	}
-        	    	return true;
-        	    case 2:
-        	    	if (!(playerIn.isSneaking()))
-        	    	{
-        	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.3"));
-        	    	}
-        	    	return true;
-        	    case 3:
-        	    	if (!(playerIn.isSneaking()))
-        	    	{
-        	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.4"));
-        	    	}
-        	    	return true;
-        	    case 4:
-        	    	if (!(playerIn.isSneaking()))
-        	    	{
-        	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.5"));
-        	    	}
-        	    	return true;
-        	    default:
-        	    	if ((heldItem == null) || (heldItem != null) && !(heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8) && (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.barrel))
-        	    	{
-        	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.1"));
-        	    	}
-        	    	else if((heldItem != null) && (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8))
-        	    	{
-        	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.2"));
-        	    	}
-        	    	return true;
+        		if ((heldItem == null) || !(heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8) && (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.barrel))
+    	    	{
+    	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.1"));
+    	    	}
+    	    	else if((heldItem != null) && (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8))
+    	    	{
+    	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.2"));
+    	    	}
+    	    	return true;
+        	}
+        	else if((step >= 2) && (step <= 4))
+        	{
+        		if (!playerIn.isSneaking())
+    	    	{
+    	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.3"));
+    	    	}
+    	    	return true;
+        	}
+        	else if((step >= 5) && (step <= 7))
+        	{
+        		if (!(playerIn.isSneaking()))
+    	    	{
+    	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.4"));
+    	    	}
+        		return true;
+        	}
+        	else if(step == 8)
+        	{
+        		if (!(playerIn.isSneaking()))
+    	    	{
+    	    		playerIn.addChatMessage(new TextComponentTranslation("teastory.barrel.message.5"));
+    	    	}
+        		return true;
         	}
         }
         else
         {
-            switch(getMetaFromState(worldIn.getBlockState(pos)))
+        	if(step == 0)
         	{
-        	    case 1:
-        	    	if (heldItem == null)
-                    {
-        	    		if (playerIn.isSneaking())
-        	    		{
-        	    			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
-        	                playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-        	                        new ItemStack(ItemLoader.half_dried_tea, 8)));
-        	    			return true;
-        	    		}
-        	    		else
-                    	{
-            	       		worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(2));
-            	       		return true;
-                    	}
-                    }
-        	       	else return false;
-        	    case 2:
-        	    	if (heldItem == null)
-                    {
-        	    		if (playerIn.isSneaking())
-        	    		{
-        	    			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
-        	                playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-        	                   		new ItemStack(ItemLoader.half_dried_tea, 8)));
-        	    			return true;
-        	    		}
-        	    		else return false;
-                    }
-        	    	
-        	    case 3:
-        	    	if (heldItem == null)
-                    {
-        	    		if (playerIn.isSneaking())
-        	    		{
-    	        			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
-        	                playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-        	                   		new ItemStack(ItemLoader.half_dried_tea, 8)));
-    	    		    	return true;
-    	    	    	}
-    	    		    else return false;
-                    }
-        	    	else return false;
-        	    case 4:
-        	    	if (heldItem == null)
-                    {
-        	    		if (playerIn.isSneaking())
-        	    		{
-    	    			    worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
-    	                    playerIn.worldObj.spawnEntityInWorld(new EntityItem(playerIn.worldObj, playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D, 
-    	                    	    new ItemStack(ItemLoader.black_tea_leaf, 8)));
-    	    			    return true;
-    	    		    }
-        	    	    else return false;
-                    }
+        		if (heldItem != null)
+                {
+            		if (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8)
+            		{
+    	                worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(1));
+    	                if (!playerIn.capabilities.isCreativeMode)
+    	            	    heldItem.stackSize = heldItem.stackSize - 8;
+                        return true;
+            		}
+            		else return false;
+        	    }
+            	else return false;
+        	}
+        	else if (step == 1)
+        	{
+        		if ((heldItem == null))
+                {
+    	    		if (playerIn.isSneaking())
+    	    		{
+    	    			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
+    	    			ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
+    	    			return true;
+    	    		}
+    	    		else
+                	{
+        	       		worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(2));
+        	       		return true;
+                	}
+                }
+    	       	else return false;
+        	}
+        	else if ((step >=2) && (step <=7))
+        	{
+        		if (heldItem == null)
+                {
+    	    		if (playerIn.isSneaking())
+    	    		{
+    	    			worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
+    	    			ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
+    	    			return true;
+    	    		}
     	    		else return false;
-                default:
-                	if (heldItem != null)
-                    {
-                		if (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8)
-                		{
-        	                worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(1));
-        	                if (!playerIn.capabilities.isCreativeMode)
-        	            	    heldItem.stackSize = heldItem.stackSize - 8;
-                            return true;
-                		}
-                		else return false;
-            	    }
-                	else return false;
+                }
+        	}
+        	else if(step == 8)
+        	{
+        		if (heldItem == null)
+                {
+    	    		if (playerIn.isSneaking())
+    	    		{
+	    			    worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
+	                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.black_tea_leaf, 8));
+	    			    return true;
+	    		    }
+    	    	    else return false;
+                }
+	    		else return false;
         	}
         }
+        return false;
     }
 	
-	public static final PropertyEnum TYPE = PropertyEnum.create("type", Barrel.EnumType.class);
-	
-	public enum EnumType implements IStringSerializable
-    {
-		EMPTY(0, "empty"),
-	    FULL(1, "full"),
-		FULL2(2, "full2"),
-		FERMENTATION(3, "fermentation"),
-		BLACKTEA(4, "blacktea");
-
-	    private int ID;
-	    private String name;
-	    
-	    private EnumType(int ID, String name)
-        {
-	        this.ID = ID;
-	        this.name = name;
-	    }
-	    
-	    @Override
-	    public String getName()
-        {
-	        return name;
-	    }
-
-	    public int getID()
-        {
-	        return ID;
-	    }
-	    
-	    @Override
-	    public String toString()
-        {
-	        return getName();
-	    }
-	}
+	public static final PropertyInteger STEP = PropertyInteger.create("step", 0, 8);
 }

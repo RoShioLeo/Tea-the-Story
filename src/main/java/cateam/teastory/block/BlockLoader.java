@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -68,7 +69,7 @@ public class BlockLoader
 
     public BlockLoader(FMLPreInitializationEvent event)
     {
-    	register(lit_tea_drying_pan, new ItemBlockMeta(lit_tea_drying_pan, lit_tea_drying_pan, new Function<ItemStack, String>()
+    	register(lit_tea_drying_pan, new ItemMultiTexture(lit_tea_drying_pan, lit_tea_drying_pan, new Function<ItemStack, String>()
         {
             @Override
             public String apply(ItemStack input)
@@ -79,30 +80,22 @@ public class BlockLoader
     	register(tea_drying_pan, "tea_drying_pan");
     	register(tea_stove, "tea_stove");
     	register(lit_tea_stove, "lit_tea_stove");
-    	register(teapan, new ItemBlockMeta(teapan, teapan, new Function<ItemStack, String>()
+    	register(teapan, new ItemBlockName(teapan, teapan, new Function<ItemStack, String>()
         {
             @Override
             public String apply(ItemStack input)
             {
-                return "." + Teapan.EnumType.values()[input.getMetadata()].getName();
+                return "." + Teapan.getName(input.getMetadata());
             }
         }), "teapan");
-    	register(barrel, new ItemBlockMeta(barrel, barrel, new Function<ItemStack, String>()
+    	register(barrel, new ItemBlockName(barrel, barrel, new Function<ItemStack, String>()
         {
             @Override
             public String apply(ItemStack input)
             {
-                return "." + Barrel.EnumType.values()[input.getMetadata()].getName();
+                return "." + Barrel.getName(input.getMetadata());
             }
         }), "barrel");
-    	register(clay_kettle, new ItemBlockMeta(clay_kettle, clay_kettle, new Function<ItemStack, String>()
-        {
-            @Override
-            public String apply(ItemStack input)
-            {
-                return "";
-            }
-        }), "clay_kettle");
     	register(empty_kettle, new ItemBlockEmptyKettle(empty_kettle, empty_kettle, new Function<ItemStack, String>()
         {
             @Override
@@ -143,6 +136,7 @@ public class BlockLoader
                 return FullKettle.getSpecialName(input);
             }
         }, 3), "blacktea_kettle");
+    	register(clay_kettle, "clay_kettle");
         register(teaplant, "teaplant");
         register(wood_cup, "wood_cup");
     	register(stone_cup, "stone_cup");

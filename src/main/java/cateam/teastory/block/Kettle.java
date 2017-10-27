@@ -2,7 +2,6 @@ package cateam.teastory.block;
 
 import javax.annotation.Nullable;
 
-import cateam.teastory.block.Barrel.EnumType;
 import cateam.teastory.creativetab.CreativeTabsLoader;
 import cateam.teastory.item.ItemCup;
 import net.minecraft.block.Block;

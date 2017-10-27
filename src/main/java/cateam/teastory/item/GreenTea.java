@@ -30,6 +30,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GreenTea extends ItemTeaDrink
 {
@@ -50,30 +51,34 @@ public class GreenTea extends ItemTeaDrink
     
     public static void addPotion(int tier, World world, EntityPlayer entityplayer)
     {
-    	if (tier == 0)
+    	ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 0));
+    	switch(tier)
     	{
-    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, Math.max(0, ConfigLoader.TeaDrink_Time), 0));
-    		if(world.rand.nextFloat() < 0.4F)
+    		case 1:
     		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * 2, 0));
+    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.25F), 0)); 
+            	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 3.75F), 0)); 
+            	return;
+    		}
+    		case 2:
+    		{
+    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.5F), 1)); 
+            	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.5F), 1)); 
+            	return;
+    		}
+    		case 3:
+    		{
+    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.75F), 1)); 
+            	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 2.25F), 1)); 
+            	return;
+    		}
+    		default:
+    		{
+    			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time), 0)); 
+            	entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 3), 0)); 
+            	return;
     		}
     	}
-    	else
-    	{
-    		entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10), tier - 1)); 
-    		if(world.rand.nextFloat() < 0.4F)
-    		{
-    			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, Math.max(0, ConfigLoader.TeaDrink_Time) * (10 + tier) / 10 * 2, tier - 1));
-    		}
-    	}
-        if (entityplayer.getRNG().nextInt() > 0.5F)
-        {
-    	    if (!entityplayer.inventory.addItemStackToInventory(new ItemStack(ItemLoader.tea_residue, 1, 0)))
-            {
-                world.spawnEntityInWorld(new EntityItem(world, entityplayer.posX + 0.5D, entityplayer.posY + 1.5D, entityplayer.posZ + 0.5D, 
-            		    new ItemStack(ItemLoader.tea_residue, 1, 0)));
-            }
-        }
     }
     
     @Override
@@ -116,7 +121,7 @@ public class GreenTea extends ItemTeaDrink
             if (stack.stackSize != 0 && playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(drinkblock, pos, false, facing, (Entity)null, stack))
             {
                 int i = this.getMetadata(stack.getMetadata());
-                IBlockState iblockstate1 = drinkblock.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, playerIn, stack);
+                IBlockState iblockstate1 = drinkblock.getDefaultState();
 
                 if (placeBlockAt(stack, playerIn, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))
                 {
@@ -134,7 +139,7 @@ public class GreenTea extends ItemTeaDrink
 		}
         else
         {
-            return EnumActionResult.FAIL;
+            return EnumActionResult.PASS;
         }
     }
 	
