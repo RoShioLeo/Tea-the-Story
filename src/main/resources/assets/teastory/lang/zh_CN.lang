@@ -14,6 +14,7 @@ teastory.tooltip.clay_cup=要烧制后才可以使用
 teastory.tooltip.shennong_ruler=毒性攻击，右键回血
 teastory.tooltip.kettle=空手右键取回
 teastory.tooltip.cup=Shift + (空手) 右键摆放/取回
+teastory.tooltip.shiftfordetail=按下 Shift 以查看信息
 
 #Items
 item.sieve.name=筛网

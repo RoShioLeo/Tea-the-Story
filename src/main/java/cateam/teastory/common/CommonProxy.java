@@ -34,6 +34,7 @@ public class CommonProxy
     	new AchievementLoader();
     	new EventLoader();
     	new GuiElementLoader();
+    	SeedDrops.init();
     }
 
     public void postInit(FMLPostInitializationEvent event)

@@ -117,12 +117,8 @@ public class Teaplant extends BlockCrops
     }
     
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
-    {
-        if (!worldIn.getBlockState(pos.down()).getBlock().canSustainPlant(state, worldIn, pos.down(), EnumFacing.UP, (IPlantable) ItemLoader.tea_seeds))
-        {
-            this.dropBlockAsItem(worldIn, pos, state, 0);
-            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
-        }
-    }
+	public net.minecraftforge.common.EnumPlantType getPlantType(net.minecraft.world.IBlockAccess world, BlockPos pos)
+	{
+		return net.minecraftforge.common.EnumPlantType.Crop;
+	}
 }

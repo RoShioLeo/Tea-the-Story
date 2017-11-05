@@ -41,7 +41,11 @@ public class BlockLoader
     public static Kettle greentea_kettle = new FullKettle("greentea_kettle", 1);
     public static Kettle matcha_kettle = new FullKettle("matcha_kettle", 2);
     public static Kettle blacktea_kettle = new FullKettle("blacktea_kettle", 3);
+    
     public static BlockCrops teaplant = new Teaplant();
+    public static BlockCrops rice_seedling = new RiceSeedling();
+    public static BlockCrops rice_plant = new RicePlant();
+    
     public static TeaDrinkEmpty wood_cup = new TeaDrinkEmpty(1.0F, "wood_cup", Material.WOOD, SoundType.WOOD, 0);
     public static TeaDrinkEmpty stone_cup = new TeaDrinkEmpty(1.3F, "stone_cup", Material.ROCK, SoundType.STONE, 1);
     public static TeaDrinkEmpty glass_cup = new TeaDrinkEmpty(0.8F, "glass_cup", Material.GLASS, SoundType.GLASS, 2);
@@ -162,6 +166,8 @@ public class BlockLoader
     	register(hotwater_stone_cup, "hotwater_stone_cup");
     	register(hotwater_glass_cup, "hotwater_glass_cup");
     	register(hotwater_porcelain_cup, "hotwater_porcelain_cup");
+    	register(rice_seedling, "rice_seedling");
+    	register(rice_plant, "rice_plant");
     }
     
     public static void preInit()
@@ -249,6 +255,8 @@ public class BlockLoader
     	registerRender(hotwater_stone_cup, "hotwater_stone_cup");
     	registerRender(hotwater_glass_cup, "hotwater_glass_cup");
     	registerRender(hotwater_porcelain_cup, "hotwater_porcelain_cup");
+    	registerRender(rice_seedling, "rice_seedling");
+    	registerRender(rice_plant, "rice_plant");
 	}
     
     private static void register(Block block, String name)

@@ -3,14 +3,17 @@ package cateam.teastory.item;
 import cateam.teastory.TeaStory;
 import cateam.teastory.block.BlockLoader;
 import cateam.teastory.creativetab.CreativeTabsLoader;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemRecord;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemSoup;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.ResourceLocation;
@@ -33,6 +36,9 @@ public class ItemLoader
     public static Item tea_seeds = new TeaSeeds();
     public static Item tea_residue = new TeaResidue();
     public static Item tea_bag = new TeaBag();
+    
+    public static Item rice_seeds = new ItemSeeds((Block)BlockLoader.rice_seedling, Blocks.FARMLAND).setUnlocalizedName("rice_seeds").setCreativeTab(CreativeTabsLoader.tabteastory);
+    public static Item rice_seedlings = new ItemRiceSeedling();
     
     public static Item sieve = new TSItem("sieve", 64);//工具
     public static Item mortar_and_pestle = new MortarAndPestle();
@@ -80,6 +86,8 @@ public class ItemLoader
         register(tea_egg);
         register(shennongruler);
         register(caichawuqu);
+        register(rice_seeds);
+        register(rice_seedlings);
     }
     
     public static void preInit() {
@@ -146,6 +154,8 @@ public class ItemLoader
         registerRender(tea_egg);
         registerRender(shennongruler);
         registerRender(caichawuqu);
+        registerRender(rice_seeds);
+        registerRender(rice_seedlings);
     }
 
     private static void register(Item item)

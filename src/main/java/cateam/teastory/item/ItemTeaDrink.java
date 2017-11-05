@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.lwjgl.input.Keyboard;
+
 import cateam.teastory.creativetab.CreativeTabsLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,6 +15,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
@@ -35,12 +38,18 @@ public class ItemTeaDrink extends ItemFood
 	    subItems.add(new ItemStack(itemIn, 1, 2));
 	    subItems.add(new ItemStack(itemIn, 1, 3));
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
     {
-        list.add(I18n.translateToLocal("teastory.tooltip.cup"));
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) 
+        {
+        	list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.cup")));
+        }
+        else
+        	list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
     }
+	
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) 
