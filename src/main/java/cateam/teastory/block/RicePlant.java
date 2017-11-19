@@ -64,12 +64,23 @@ public class RicePlant extends BlockCrops
     }
 	
 	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+		super.updateTick(worldIn, pos, state, rand);
+		int i = this.getAge(state);
+		if ((worldIn.getBlockState(pos.down()).getBlock() != BlockLoader.field) && (i >= 5))
+		{
+			worldIn.setBlockState(pos.down(), BlockLoader.field.getDefaultState());
+		}
+    }
+	
+	@Override
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
     {
         IBlockState iblockstate1 = worldIn.getBlockState(pos.down());
         Material material = iblockstate1.getMaterial();
         IBlockState iblockstate2 = worldIn.getBlockState(pos.down(2));
         
-        return material == Material.WATER && ((Integer)iblockstate1.getValue(BlockLiquid.LEVEL)).intValue() == 0 && iblockstate2.getBlock() instanceof BlockFarmland;
+        return (material == Material.WATER && ((Integer)iblockstate1.getValue(BlockLiquid.LEVEL)).intValue() == 0 && iblockstate2.getBlock() instanceof BlockFarmland) || (iblockstate1.getBlock() == BlockLoader.field);
     }
 }

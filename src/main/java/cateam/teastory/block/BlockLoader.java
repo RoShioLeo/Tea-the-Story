@@ -45,6 +45,7 @@ public class BlockLoader
     public static BlockCrops teaplant = new Teaplant();
     public static BlockCrops rice_seedling = new RiceSeedling();
     public static BlockCrops rice_plant = new RicePlant();
+    public static Block field = new Field();
     
     public static TeaDrinkEmpty wood_cup = new TeaDrinkEmpty(1.0F, "wood_cup", Material.WOOD, SoundType.WOOD, 0);
     public static TeaDrinkEmpty stone_cup = new TeaDrinkEmpty(1.3F, "stone_cup", Material.ROCK, SoundType.STONE, 1);
@@ -168,6 +169,7 @@ public class BlockLoader
     	register(hotwater_porcelain_cup, "hotwater_porcelain_cup");
     	register(rice_seedling, "rice_seedling");
     	register(rice_plant, "rice_plant");
+    	register(field, "field");
     }
     
     public static void preInit()
@@ -257,6 +259,7 @@ public class BlockLoader
     	registerRender(hotwater_porcelain_cup, "hotwater_porcelain_cup");
     	registerRender(rice_seedling, "rice_seedling");
     	registerRender(rice_plant, "rice_plant");
+    	registerRender(field, "field");
 	}
     
     private static void register(Block block, String name)
