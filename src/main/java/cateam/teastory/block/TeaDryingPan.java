@@ -3,7 +3,6 @@ package cateam.teastory.block;
 import javax.annotation.Nullable;
 
 import cateam.teastory.achievement.AchievementLoader;
-import cateam.teastory.block.LitTeaDryingPan.EnumType;
 import cateam.teastory.creativetab.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -62,7 +61,7 @@ public class TeaDryingPan extends Block
                 {
 	    			heldItem.setItemDamage(heldItem.getItemDamage() + 1);
     		    }
-			    worldIn.setBlockState(pos, BlockLoader.lit_tea_drying_pan.getStateFromMeta(1));
+			    worldIn.setBlockState(pos, BlockLoader.lit_tea_drying_pan.getStateFromMeta(0));
 			    return true;
 			}
 		}

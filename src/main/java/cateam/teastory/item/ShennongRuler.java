@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ShennongRuler extends ItemSword
 {
-	public static final Item.ToolMaterial SHENNONGTOOL = EnumHelper.addToolMaterial("SHENNONGTOOL", 3, 768, 8.0F, 1.0F, 10);
+	public static final Item.ToolMaterial SHENNONGTOOL = EnumHelper.addToolMaterial("SHENNONGTOOL", 3, 768, 8.0F, 1.0F, 10).setRepairItem(new ItemStack(ItemLoader.dried_tea, 1));
 	public ShennongRuler()
     {
 		super(SHENNONGTOOL);

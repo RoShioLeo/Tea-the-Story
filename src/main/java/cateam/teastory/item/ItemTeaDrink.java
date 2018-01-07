@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class ItemTeaDrink extends ItemFood
 {
@@ -25,7 +26,7 @@ public class ItemTeaDrink extends ItemFood
 		super(1, false);
 		this.setCreativeTab(CreativeTabsLoader.tabteastory);
         this.setAlwaysEdible();
-		this.setMaxStackSize(1);
+		this.setMaxStackSize(4);
         this.setHasSubtypes(true);
 		this.setUnlocalizedName(name);
 	}
@@ -77,6 +78,11 @@ public class ItemTeaDrink extends ItemFood
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
         super.onItemUseFinish(stack, worldIn, entityLiving);
+        if (stack.stackSize > 1)
+        {
+        	ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemLoader.cup, 1, stack.getItemDamage()));
+        	return stack;
+        }
         return new ItemStack(ItemLoader.cup, 1, stack.getItemDamage());
     }
 	

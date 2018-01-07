@@ -9,11 +9,14 @@ import javax.annotation.Nullable;
 import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.creativetab.CreativeTabsLoader;
 import cateam.teastory.item.ItemLoader;
+import cateam.teastory.tileentity.TileEntityTeaDryingPan;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,6 +26,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
@@ -36,20 +41,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-public class LitTeaDryingPan extends Block
+public class LitTeaDryingPan extends BlockContainer
 {
 	protected static final AxisAlignedBB TEADRYINGPAN_AABB = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
-	private  final boolean isBurning;
+	public static final PropertyInteger STEP = PropertyInteger.create("step", 0, 6);
+	
 	public LitTeaDryingPan()
 	{
 		super(Material.IRON);
 		this.setHardness(3.0F);
-		this.setTickRandomly(true);
         this.setSoundType(SoundType.METAL);
         this.setLightLevel(0.875F);
         this.setUnlocalizedName("lit_tea_drying_pan");
-        this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.T1));
-        this.isBurning = true;
+        this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
 	}
 
 	@Override
@@ -63,6 +67,18 @@ public class LitTeaDryingPan extends Block
     {
         return false;
     }
+	
+	@Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityTeaDryingPan();
+    }
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return EnumBlockRenderType.MODEL;
+    }
     
     @Override
 	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
@@ -70,15 +86,15 @@ public class LitTeaDryingPan extends Block
     	ArrayList drops = new ArrayList();
 	    drops.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
 	    int meta = getMetaFromState(world.getBlockState(pos));
-	    if((meta >= 2) && (meta <= 9))
+	    if((meta >= 1) && (meta <= 4))
 		{
 	    	drops.add(new ItemStack(ItemLoader.tea_leaf, 8));
 		}
-		else if((meta == 10) || (meta == 11))
+		else if(meta == 5)
 		{
 			drops.add(new ItemStack(ItemLoader.dried_tea, 8));
 		}
-		else if(meta == 12)
+		else if(meta == 6)
 		{
 			drops.add(new ItemStack(ItemLoader.burnt_tea, 8));
 		}
@@ -92,55 +108,41 @@ public class LitTeaDryingPan extends Block
     }
 	
     @Override
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-		if(!worldIn.isRemote)
-		{
-		    int meta = getMetaFromState(worldIn.getBlockState(pos));
-		    if (((meta >= 2) && (meta <= 11)))
-		    {
-			    if((meta != 5) && (meta != 9))
-			    {
-				    worldIn.setBlockState(pos, this.getStateFromMeta(meta + 1));
-			    }
-			    else worldIn.setBlockState(pos, this.getStateFromMeta(12));
-	    	}
-		}
-    }
-	
-    @Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
 		int meta = getMetaFromState(worldIn.getBlockState(pos));
-		if(meta >=1)
-		{
-            double d0 = (double)pos.getX();
-            double d1 = (double)pos.getY();
-            double d2 = (double)pos.getZ();
-            if(meta != 12)
-            {
-                worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.5D, d1 + 1.0D, d2 + 0.5D, 0.0D, 0.08D, 0.0D, new int[0]);
-            }
-            else worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0 + 0.5D, d1 + 1.0D, d2 + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + worldIn.rand.nextDouble(), d1 + 0.2D, d2 + worldIn.rand.nextDouble(), 0.01D, 0.0D, 0.0D, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + worldIn.rand.nextDouble(), d1 + 0.2D, d2 + worldIn.rand.nextDouble(), 0.0D, 0.0D, 0.01D, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + worldIn.rand.nextDouble(), d1 + 0.2D, d2 + worldIn.rand.nextDouble(), 0.0D, 0.0D, -0.01D, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + worldIn.rand.nextDouble(), d1 + 0.2D, d2 + worldIn.rand.nextDouble(), -0.01D, 0.0D, 0.0D, new int[0]);
-		}
+        double d0 = (double)pos.getX();
+        double d1 = (double)pos.getY();
+        double d2 = (double)pos.getZ();
+        if(meta != 6)
+        {
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.5D, d1 + 1.0D, d2 + 0.5D, 0.0D, 0.08D, 0.0D, new int[0]);
+        }
+        else worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0 + 0.5D, d1 + 1.0D, d2 + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+        worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + worldIn.rand.nextDouble(), d1 + 0.2D, d2 + worldIn.rand.nextDouble(), 0.01D, 0.0D, 0.0D, new int[0]);
+        worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + worldIn.rand.nextDouble(), d1 + 0.2D, d2 + worldIn.rand.nextDouble(), 0.0D, 0.0D, 0.01D, new int[0]);
+        worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + worldIn.rand.nextDouble(), d1 + 0.2D, d2 + worldIn.rand.nextDouble(), 0.0D, 0.0D, -0.01D, new int[0]);
+        worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + worldIn.rand.nextDouble(), d1 + 0.2D, d2 + worldIn.rand.nextDouble(), -0.01D, 0.0D, 0.0D, new int[0]);
     }
 	
     @Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		int meta = getMetaFromState(worldIn.getBlockState(pos));
-		if (meta == 1)
+		int meta = getMetaFromState(state);
+		TileEntity te = worldIn.getTileEntity(pos);
+		int seconds = 60;
+		if(te instanceof TileEntityTeaDryingPan)
+	    {
+	    	seconds = ((TileEntityTeaDryingPan) te).getRemainingTime() / 20;
+	    }
+		if (meta == 0)
 		{
 			if(heldItem != null)
 			{
 				if((heldItem.getItem() == ItemLoader.tea_leaf) && (heldItem.stackSize >=8))
 				{
-				    worldIn.setBlockState(pos, this.getStateFromMeta(2));
+				    worldIn.setBlockState(pos, this.getStateFromMeta(1));
 				    if (!playerIn.capabilities.isCreativeMode)
                     {
 	            	    heldItem.stackSize = heldItem.stackSize - 8;
@@ -154,50 +156,51 @@ public class LitTeaDryingPan extends Block
 			}
 			return true;
 		}
-		else if(meta == 2)
+		else if (meta == 1)
 		{
 			if(worldIn.isRemote)
 			{
-			    playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.3"));
+			    playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.3", seconds));
 			}
 			return true;
 		}
-		else if((meta >= 3) && (meta <= 5))
+		else if (meta == 2)
 		{
-			worldIn.setBlockState(pos, this.getStateFromMeta(6));
+			worldIn.setBlockState(pos, this.getStateFromMeta(3));
 			if(worldIn.isRemote)
 			{
-			    playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.4"));
+			    playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.4", seconds));
 			}
 			return true;
 		}
-		else if(meta == 6)
+		else if (meta == 3)
 		{
 			if(worldIn.isRemote)
 			{
-			    playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.5"));
+			    playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.5", seconds));
 			}
 			return true;
 		}
-		else if((meta >= 7) && (meta <= 9))
+		else if (meta == 4)
 		{
-			worldIn.setBlockState(pos, this.getStateFromMeta(10));
+			worldIn.setBlockState(pos, getStateFromMeta(5));
 			if(worldIn.isRemote)
 			{
 			    playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.6"));
 			}
 			return true;
 		}
-		else if((meta == 10) || (meta == 11))
+		else if (meta == 5)
 		{
 			if(!worldIn.isRemote)
 			{
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
 			}
 			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getStateFromMeta(0));
+			worldIn.removeTileEntity(pos);
 			return true;
 		}
-		else if(meta == 12)
+		else
 		{
 			if(!worldIn.isRemote)
 			{
@@ -206,9 +209,9 @@ public class LitTeaDryingPan extends Block
 			}
 			else playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.7"));
 			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getStateFromMeta(0));
+			worldIn.removeTileEntity(pos);
 			return true;
 		}
-		return false;
 	}
 	
 	@Override
@@ -226,84 +229,41 @@ public class LitTeaDryingPan extends Block
 	@Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, TYPE);
+        return new BlockStateContainer(this, STEP);
+    }
+	
+	protected PropertyInteger getStepProperty()
+    {
+        return STEP;
     }
 	
 	@Override
-    public IBlockState getStateFromMeta(int meta)
+    public IBlockState getStateFromMeta(int step)
     {
-		if ((meta>12) || (meta<=0)) meta = 1;
-        EnumType t = EnumType.values()[meta];
-        return this.getDefaultState().withProperty(TYPE, t);
+    	return this.getDefaultState().withProperty(this.getStepProperty(), Integer.valueOf(step));
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        int t = state.getValue(TYPE).ordinal();
-        return t;
+    	return ((Integer)state.getValue(this.getStepProperty())).intValue();
     }
 	
 	public static String getSpecialName(ItemStack stack)
     {
 		int meta = stack.getItemDamage();
-		if ((meta >= 0) && (meta <= 3))
-		{
-			return "." + String.valueOf(meta);
-		}
-		else if((meta == 4) || (meta == 5))
-		{
-			return "." + String.valueOf(3);
-		}
-		else if(meta == 6)
-		{
-			return "." + String.valueOf(4);
-		}
-		else if((meta >= 7) && (meta <= 9))
-		{
-			return "." + String.valueOf(5);
-		}
-		else if((meta == 10) || (meta == 11))
-		{
-			return "." + String.valueOf(6);
-		}
-		return "." + String.valueOf(7);
+		return "." + String.valueOf(meta);
     }
 	
-	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", LitTeaDryingPan.EnumType.class);
-	public enum EnumType implements IStringSerializable
-    {
-		T0("0"),
-		T1("1"),
-		T2("2"),
-		T3("3"),
-		T4("4"),
-		T5("5"),
-		T6("6"),
-		T7("7"),
-		T8("8"),
-		T9("9"),
-		T10("10"),
-		T11("11"),
-		T12("12");
-
-	    private String name;
-	    
-	    private EnumType(String name)
+	public static void setState(int meta, World worldIn, BlockPos pos)
+	{
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+        worldIn.setBlockState(pos, BlockLoader.lit_tea_drying_pan.getStateFromMeta(meta));
+        if (tileentity != null)
         {
-	        this.name = name;
-	    }
-	    
-	    @Override
-	    public String getName()
-        {
-	        return name;
-	    }
-	    
-	    @Override
-	    public String toString()
-        {
-	        return getName();
-	    }
+            tileentity.validate();
+            worldIn.setTileEntity(pos, tileentity);
+        }
 	}
 }

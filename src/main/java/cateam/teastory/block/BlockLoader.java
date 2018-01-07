@@ -173,13 +173,9 @@ public class BlockLoader
     }
     
     public static void preInit()
-    {
-    	ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.teapan), 
-    			new ResourceLocation(TeaStory.MODID, "teapan_empty"), new ResourceLocation(TeaStory.MODID, "teapan_full"), new ResourceLocation(TeaStory.MODID, "teapan_dried"), new ResourceLocation(TeaStory.MODID, "teapan_matcha"), new ResourceLocation(TeaStory.MODID, "teapan_wet"));
-    	ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.barrel), 
-    			new ResourceLocation(TeaStory.MODID, "barrel_empty"), new ResourceLocation(TeaStory.MODID, "barrel_full"), new ResourceLocation(TeaStory.MODID, "barrel_full2"), new ResourceLocation(TeaStory.MODID, "barrel_fermentation"), new ResourceLocation(TeaStory.MODID, "barrel_blacktea"));
+    {		
     	ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.lit_tea_drying_pan), 
-    			new ResourceLocation(TeaStory.MODID, "tea_drying_pan"), new ResourceLocation(TeaStory.MODID, "tea_drying_pan2"), new ResourceLocation(TeaStory.MODID, "tea_drying_pan3"), new ResourceLocation(TeaStory.MODID, "tea_drying_pan4"), new ResourceLocation(TeaStory.MODID, "tea_drying_pan5"), new ResourceLocation(TeaStory.MODID, "tea_drying_pan6"), new ResourceLocation(TeaStory.MODID, "tea_drying_pan7"));
+    			new ResourceLocation(TeaStory.MODID, "tea_drying_pan"));
     	ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.empty_kettle), 
     			new ResourceLocation(TeaStory.MODID, "empty_kettle"), new ResourceLocation(TeaStory.MODID, "water_kettle"));
     }
@@ -187,16 +183,8 @@ public class BlockLoader
     @SideOnly(Side.CLIENT)
     public static void registerRenders()
     {
-    	registerRender(barrel, 0, "barrel_empty");
-        registerRender(barrel, 1, "barrel_full");
-        registerRender(barrel, 2, "barrel_full2");
-        registerRender(barrel, 3, "barrel_fermentation");
-        registerRender(barrel, 4, "barrel_blacktea");
-        registerRender(teapan, 0, "teapan_empty");
-        registerRender(teapan, 1, "teapan_full");
-        registerRender(teapan, 2, "teapan_dried");
-        registerRender(teapan, 3, "teapan_matcha");
-        registerRender(teapan, 4, "teapan_wet");
+    	registerRender(barrel, "barrel");
+        registerRender(teapan, "teapan");
         registerRender(clay_kettle, 0, "clay_kettle");
         registerRender(empty_kettle, 0, "empty_kettle");
         registerRender(empty_kettle, 4, "water_kettle");
@@ -217,19 +205,8 @@ public class BlockLoader
         registerRender(blacktea_kettle, 4, "blacktea_kettle");
         registerRender(blacktea_kettle, 8, "blacktea_kettle");
         registerRender(blacktea_kettle, 12, "blacktea_kettle");
-        registerRender(tea_drying_pan, 0, "tea_drying_pan");
+        registerRender(tea_drying_pan, "tea_drying_pan");
         registerRender(lit_tea_drying_pan, 1, "tea_drying_pan");
-        registerRender(lit_tea_drying_pan, 2, "tea_drying_pan2");
-        registerRender(lit_tea_drying_pan, 3, "tea_drying_pan3");
-        registerRender(lit_tea_drying_pan, 4, "tea_drying_pan3");
-        registerRender(lit_tea_drying_pan, 5, "tea_drying_pan3");
-        registerRender(lit_tea_drying_pan, 6, "tea_drying_pan4");
-        registerRender(lit_tea_drying_pan, 7, "tea_drying_pan5");
-        registerRender(lit_tea_drying_pan, 8, "tea_drying_pan5");
-        registerRender(lit_tea_drying_pan, 9, "tea_drying_pan5");
-        registerRender(lit_tea_drying_pan, 10, "tea_drying_pan6");
-        registerRender(lit_tea_drying_pan, 11, "tea_drying_pan6");
-        registerRender(lit_tea_drying_pan, 12, "tea_drying_pan7");
         registerRender(tea_stove, "tea_stove");
         registerRender(lit_tea_stove, "lit_tea_stove");
         registerRender(teaplant, "teaplant");

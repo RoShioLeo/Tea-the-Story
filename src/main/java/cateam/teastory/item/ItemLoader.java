@@ -43,6 +43,7 @@ public class ItemLoader
     public static Item sieve = new TSItem("sieve", 64);//工具
     public static Item mortar_and_pestle = new MortarAndPestle();
     public static Item soil_detection_meter = new SoilDetectionMeter();
+    public static Item watering_hoe = new WateringHoe();
     
     public static Item clay_cup = new ItemHasTooltip("clay_cup", 64);//茶具
     public static Item cup = new ItemCup();
@@ -57,6 +58,7 @@ public class ItemLoader
     
     public static ItemSword shennongruler = new ShennongRuler();//其他
     public static ItemRecord caichawuqu = new Record("caichawuqu", "record_caichawuqu");
+    public static Item straw = new TSItem("straw", 64);
 
     public ItemLoader(FMLPreInitializationEvent event)
     {
@@ -88,6 +90,8 @@ public class ItemLoader
         register(caichawuqu);
         register(rice_seeds);
         register(rice_seedlings);
+        register(straw);
+        register(watering_hoe);
     }
     
     public static void preInit() {
@@ -156,6 +160,8 @@ public class ItemLoader
         registerRender(caichawuqu);
         registerRender(rice_seeds);
         registerRender(rice_seedlings);
+        registerRender(straw);
+        registerRender(watering_hoe);
     }
 
     private static void register(Item item)

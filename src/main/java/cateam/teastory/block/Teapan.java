@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -24,6 +25,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
@@ -40,7 +42,10 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 public class Teapan extends Block
 {
-	protected static final AxisAlignedBB TEAPAN_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D);
+	protected static final AxisAlignedBB TEAPAN_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
+	
+	public static final PropertyInteger STEP = PropertyInteger.create("step", 0, 9);
+	
 	public Teapan()
 	{
 		super(Material.WOOD);     
@@ -58,6 +63,12 @@ public class Teapan extends Block
         return TEAPAN_AABB;
     }
 	
+	@SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.CUTOUT_MIPPED;
+    }
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
     {
@@ -69,6 +80,14 @@ public class Teapan extends Block
     {
         return false;
     }
+	
+	public boolean isTeapan(IBlockAccess worldIn, BlockPos pos)
+	{
+		if (worldIn.getBlockState(pos).getBlock() == BlockLoader.teapan)
+			return false;
+		else 
+			return true;
+	}
 	
 	@Override
 	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
@@ -286,7 +305,5 @@ public class Teapan extends Block
         }
         return false;
     }
-    
-	public static final PropertyInteger STEP = PropertyInteger.create("step", 0, 9);
 	
 }

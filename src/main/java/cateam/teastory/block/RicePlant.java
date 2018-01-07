@@ -13,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class RicePlant extends BlockCrops
@@ -55,6 +56,7 @@ public class RicePlant extends BlockCrops
         if (age >= 7)
         {
          	ret.add(new ItemStack(this.getCrop(), rand.nextInt(3) + 1));
+         	ret.add(new ItemStack(ItemLoader.straw, 1));
         }
         else
         {

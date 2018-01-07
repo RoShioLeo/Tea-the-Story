@@ -34,12 +34,6 @@ public class RiceSeedling extends BlockCrops
 	}
 	
 	@Override
-	public int getMaxAge()
-    {
-        return 3;
-    }
-	
-	@Override
 	protected Item getSeed()
     {
         return ItemLoader.rice_seeds;
@@ -51,15 +45,20 @@ public class RiceSeedling extends BlockCrops
         return ItemLoader.rice_seedlings;
     }
 	
+	protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)
+	{
+		return BlockCrops.getGrowthChance(blockIn, worldIn, pos) * 2;
+	}
+	
 	@Override
     public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         java.util.List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
         int age = ((Integer)state.getValue(AGE)).intValue();
         Random rand = world instanceof World ? ((World)world).rand : new Random();
-        if (age >= 2)
+        if (age == 7)
         {
-         	ret.add(new ItemStack(this.getCrop(), Math.min(age - 1, 2)));
+         	ret.add(new ItemStack(this.getCrop(), 3));
         }
         else
         {

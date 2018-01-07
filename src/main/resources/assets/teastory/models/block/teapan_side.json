@@ -1,0 +1,22 @@
+{
+	"ambientocclusion": false,
+    "textures": {
+        "particle": "blocks/planks_oak",
+        "0": "blocks/planks_oak"
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 0.0, 1.0, 0.0 ], 
+            "to": [ 16.0, 5.0, 1.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 11.0, 16.0, 15.0 ] },
+                "east": { "texture": "#0", "uv": [ 15.0, 11.0, 16.0, 15.0 ] },
+                "south": { "texture": "#0", "uv": [ 0.0, 11.0, 16.0, 15.0 ] },
+                "west": { "texture": "#0", "uv": [ 0.0, 11.0, 1.0, 15.0 ] },
+                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 1.0 ] },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 1.0 ] }
+            }
+        }
+    ]
+}

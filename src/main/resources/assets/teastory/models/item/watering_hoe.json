@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "teastory:items/rice_seedling"
+        "layer0": "teastory:items/watering_hoe"
     }
 }
