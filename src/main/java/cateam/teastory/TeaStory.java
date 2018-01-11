@@ -12,32 +12,32 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = TeaStory.MODID, name = TeaStory.NAME, version = TeaStory.VERSION, updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2/update.json")
 public class TeaStory
 {
-    public static final String MODID = "teastory";
-    public static final String NAME = "Tea: The Story";
-    public static final String VERSION = "@version@";
+	public static final String MODID = "teastory";
+	public static final String NAME = "Tea: The Story";
+	public static final String VERSION = "@version@";
 
-    @Instance(TeaStory.MODID)
-    public static TeaStory instance;
-    
-    @SidedProxy(clientSide = "cateam.teastory.client.ClientProxy", 
-                         serverSide = "cateam.teastory.common.CommonProxy")
-    public static CommonProxy proxy;
+	@Instance(TeaStory.MODID)
+	public static TeaStory instance;
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
-    	proxy.preInit(event);
-    }
+	@SidedProxy(clientSide = "cateam.teastory.client.ClientProxy",
+			serverSide = "cateam.teastory.common.CommonProxy")
+	public static CommonProxy proxy;
 
-    @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-    	proxy.init(event);
-    }
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event)
+	{
+		proxy.preInit(event);
+	}
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
-    	proxy.postInit(event);
-    }
+	@EventHandler
+	public void init(FMLInitializationEvent event)
+	{
+		proxy.init(event);
+	}
+
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event)
+	{
+		proxy.postInit(event);
+	}
 }
