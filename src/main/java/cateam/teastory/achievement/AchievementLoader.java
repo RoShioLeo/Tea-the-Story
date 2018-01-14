@@ -6,7 +6,6 @@ import cateam.teastory.item.ItemLoader;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
-import net.minecraft.stats.AchievementList;
 import net.minecraftforge.common.AchievementPage;
 
 public class AchievementLoader
@@ -34,7 +33,7 @@ public class AchievementLoader
 	public static AchievementPage pageTeaStory = new AchievementPage(TeaStory.NAME, teaSeeds, teaLeaf, burntLeaf, teaBasket, teaPlant, halfDriedTea,
 			teaDryingPan, teaStove, barrel, greenTea, matchaDrink, blackTea, kettle, hotWater, wetTea, woodenCup, stoneCup, glassCup, porcelainCup, soilDetectionMeter);
 	public AchievementLoader()
-    {
+	{
 		teaSeeds.registerStat();
 		teaLeaf.registerStat();
 		burntLeaf.registerStat();
@@ -56,5 +55,5 @@ public class AchievementLoader
 		porcelainCup.registerStat();
 		soilDetectionMeter.registerStat();
 		AchievementPage.registerAchievementPage(pageTeaStory);
-    }
+	}
 }

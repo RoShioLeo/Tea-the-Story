@@ -13,10 +13,10 @@ public class ItemBlockName extends ItemMultiTexture
 	{
 		super(block, block2, nameFunction);
 	}
-	
+
 	@Override
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        return super.getUnlocalizedName() + (String)this.nameFunction.apply(stack);
-    }
+	public String getUnlocalizedName(ItemStack stack)
+	{
+		return super.getUnlocalizedName() + this.nameFunction.apply(stack);
+	}
 }
