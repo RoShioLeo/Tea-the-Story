@@ -6,11 +6,15 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import cateam.teastory.item.ItemLoader;
+import cateam.teastory.item.ItemTeaDrink;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,36 +33,36 @@ public class TeaDrinkEmpty extends TeaDrink
 	{
 		super(hardness, name, materialIn, soundType, level);
 	}
-
+	
 	@Override
 	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
 	{
-		ArrayList drops = new ArrayList();
-		drops.add(new ItemStack(ItemLoader.cup, 1, meta));
-		return drops;
+	    ArrayList drops = new ArrayList();
+	    drops.add(new ItemStack(ItemLoader.cup, 1, meta));
+	    return drops;
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list) {
-		list.add(new ItemStack(ItemLoader.cup, 1, meta));
+	    list.add(new ItemStack(ItemLoader.cup, 1, meta));
 	}
-
+	
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-	{
-		return new ItemStack(ItemLoader.cup, 1, meta);
-	}
-
+    {
+        return new ItemStack(ItemLoader.cup, 1, meta);
+    }
+	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
+    {
 		if (playerIn.isSneaking())
 		{
 			ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.cup, 1, meta));
-			worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-			return true;
+    		worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+    		return true;
 		}
 		return false;
-	}
+    }
 }

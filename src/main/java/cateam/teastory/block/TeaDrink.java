@@ -19,34 +19,34 @@ public class TeaDrink extends Block
 	public TeaDrink(float hardness, String name, Material materialIn, SoundType soundType, int level)
 	{
 		super(materialIn);
-		this.setHardness(hardness);
-		this.setSoundType(soundType);
-		this.setUnlocalizedName(name);
-		this.meta = level;
+        this.setHardness(hardness);
+        this.setSoundType(soundType);
+        this.setUnlocalizedName(name);
+        this.meta = level;
 	}
-
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
-		return false;
+	    return false;
 	}
-
+	
 	@Override
 	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
-
+    {
+        return false;
+    }
+	
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		return TEADRINK_AABB;
-	}
-
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return TEADRINK_AABB;
+    }
+	
 	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
-		return BlockRenderLayer.CUTOUT;
-	}
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
+    }
 }

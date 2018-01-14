@@ -2,6 +2,7 @@ package cateam.teastory.item;
 
 import cateam.teastory.block.BlockLoader;
 import cateam.teastory.block.Kettle;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -9,6 +10,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemTeaLeaf extends TSItem
 {
@@ -18,7 +21,7 @@ public class ItemTeaLeaf extends TSItem
 		super(name, maxstack);
 		this.kettle = kettle;
 	}
-
+	
 	@Override
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
@@ -32,11 +35,11 @@ public class ItemTeaLeaf extends TSItem
 			if ((meta & 12) == 12)
 			{
 				worldIn.setBlockState(pos, kettle.getStateFromMeta(meta & 3));
-				if (!playerIn.capabilities.isCreativeMode)
-				{
-					stack.stackSize = stack.stackSize - 8;
-				}
-				return EnumActionResult.SUCCESS;
+                if (!playerIn.capabilities.isCreativeMode)
+                {
+            	    stack.stackSize = stack.stackSize - 8;
+                }
+                return EnumActionResult.SUCCESS;
 			}
 			else return EnumActionResult.PASS;
 		}

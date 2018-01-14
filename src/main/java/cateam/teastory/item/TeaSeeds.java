@@ -11,26 +11,29 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class TeaSeeds extends ItemSeeds
 {
 	public TeaSeeds()
 	{
-		super(BlockLoader.teaplant, Blocks.FARMLAND);
-		this.setUnlocalizedName("tea_seeds");
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		super((Block)BlockLoader.teaplant, Blocks.FARMLAND);
+        this.setUnlocalizedName("tea_seeds");
+        this.setCreativeTab(CreativeTabsLoader.tabteastory);
 	}
-
+	
 	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
-	{
-		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-		{
-			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.tea_seeds")));
-		}
-		else
-			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
-	}
+    {
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) 
+        {
+        	list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.tea_seeds")));
+        }
+        else
+        	list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+    }
 }

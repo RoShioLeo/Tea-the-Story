@@ -17,15 +17,15 @@ public class ItemHasTooltip extends TSItem
 		super(name, maxstack);
 		this.name = name;
 	}
-
+	
 	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
-	{
-		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-		{
-			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip." + name)));
-		}
-		else
-			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
-	}
+    {
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) 
+        {
+        	list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip." + name)));
+        }
+        else
+        	list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+    }
 }

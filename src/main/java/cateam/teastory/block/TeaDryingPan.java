@@ -27,29 +27,29 @@ public class TeaDryingPan extends Block
 	{
 		super(Material.IRON);
 		this.setHardness(3.0F);
-		this.setSoundType(SoundType.METAL);
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
-		this.setUnlocalizedName("tea_drying_pan");
+        this.setSoundType(SoundType.METAL);
+        this.setCreativeTab(CreativeTabsLoader.tabteastory);
+        this.setUnlocalizedName("tea_drying_pan");
 	}
-
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    {
+        return false;
+    }
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
-
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+    
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		return TEADRYINGPAN_AABB;
-	}
-
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return TEADRYINGPAN_AABB;
+    }
+	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
@@ -58,24 +58,24 @@ public class TeaDryingPan extends Block
 			if(heldItem.getItem() == Items.FLINT_AND_STEEL)
 			{
 				if (!playerIn.capabilities.isCreativeMode)
-				{
-					heldItem.setItemDamage(heldItem.getItemDamage() + 1);
-				}
-				worldIn.setBlockState(pos, BlockLoader.lit_tea_drying_pan.getStateFromMeta(0));
-				return true;
+                {
+	    			heldItem.setItemDamage(heldItem.getItemDamage() + 1);
+    		    }
+			    worldIn.setBlockState(pos, BlockLoader.lit_tea_drying_pan.getStateFromMeta(0));
+			    return true;
 			}
 		}
 		if((worldIn.isRemote) && ((heldItem == null) || (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.tea_drying_pan)))
 		{
-			playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.1"));
+		    playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.1"));
 		}
 		return true;
 	}
-
+	
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-	{
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
 		((EntityPlayer) placer).addStat(AchievementLoader.teaDryingPan);
 		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-	}
+    }
 }

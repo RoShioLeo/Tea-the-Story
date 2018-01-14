@@ -8,14 +8,14 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class TileEntityLoader
 {
 	public TileEntityLoader(FMLPreInitializationEvent event)
-	{
-		registerTileEntity(TileEntityTeaStove.class, "TeaStove");
-		registerTileEntity(TileEntityTeaDrink.class, "TeaDrink");
-		registerTileEntity(TileEntityTeaDryingPan.class, "TeaDryingPan");
-	}
+    {
+        registerTileEntity(TileEntityTeaStove.class, "TeaStove");
+        registerTileEntity(TileEntityTeaDrink.class, "TeaDrink");
+        registerTileEntity(TileEntityTeaDryingPan.class, "TeaDryingPan");
+    }
 
-	public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id)
-	{
-		GameRegistry.registerTileEntity(tileEntityClass, TeaStory.MODID + ":" + id);
-	}
+    public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id)
+    {
+        GameRegistry.registerTileEntity(tileEntityClass, TeaStory.MODID + ":" + id);
+    }
 }

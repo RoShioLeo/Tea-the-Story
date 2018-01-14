@@ -10,6 +10,7 @@ import cateam.teastory.creativetab.CreativeTabsLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -24,70 +25,70 @@ public class ItemTeaDrink extends ItemFood
 	public ItemTeaDrink(String name) {
 		super(1, false);
 		this.setCreativeTab(CreativeTabsLoader.tabteastory);
-		this.setAlwaysEdible();
+        this.setAlwaysEdible();
 		this.setMaxStackSize(4);
-		this.setHasSubtypes(true);
+        this.setHasSubtypes(true);
 		this.setUnlocalizedName(name);
 	}
-
+	
 	@Override
 	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
 	{
-		subItems.add(new ItemStack(itemIn, 1, 0));
-		subItems.add(new ItemStack(itemIn, 1, 1));
-		subItems.add(new ItemStack(itemIn, 1, 2));
-		subItems.add(new ItemStack(itemIn, 1, 3));
+	    subItems.add(new ItemStack(itemIn, 1, 0));
+	    subItems.add(new ItemStack(itemIn, 1, 1));
+	    subItems.add(new ItemStack(itemIn, 1, 2));
+	    subItems.add(new ItemStack(itemIn, 1, 3));
 	}
 
 	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
-	{
-		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-		{
-			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.cup")));
-		}
-		else
-			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
-	}
-
-
+    {
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) 
+        {
+        	list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.cup")));
+        }
+        else
+        	list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+    }
+	
+	
 	@Override
-	public String getUnlocalizedName(ItemStack stack)
+	public String getUnlocalizedName(ItemStack stack) 
 	{
 		String name;
 		switch(stack.getItemDamage())
 		{
-		case 1:
-			name = "stone";
-			break;
-		case 2:
-			name = "glass";
-			break;
-		case 3:
-			name = "porcelain";
-			break;
-		default:
-			name = "wood";
+		    case 1:
+		    	name = "stone";
+		    	break;
+		    case 2:
+		    	name = "glass";
+		    	break;
+		    case 3:
+		    	name = "porcelain";
+		    	break;
+		    default:
+		    	name = "wood";
 		}
-		return super.getUnlocalizedName() + "." + name;
+	    return super.getUnlocalizedName() + "." + name;
 	}
-
+	
 	@Override
 	@Nullable
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
-	{
-		super.onItemUseFinish(stack, worldIn, entityLiving);
-		if (stack.stackSize > 1)
-		{
-			ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemLoader.cup, 1, stack.getItemDamage()));
-			return stack;
-		}
-		return new ItemStack(ItemLoader.cup, 1, stack.getItemDamage());
-	}
-
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+    {
+        super.onItemUseFinish(stack, worldIn, entityLiving);
+        if (stack.stackSize > 1)
+        {
+        	ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemLoader.cup, 1, stack.getItemDamage()));
+        	return stack;
+        }
+        return new ItemStack(ItemLoader.cup, 1, stack.getItemDamage());
+    }
+	
 	@Override
 	public EnumAction getItemUseAction(ItemStack itemStackIn)
-	{
-		return EnumAction.DRINK;
-	}
+    {
+        return EnumAction.DRINK;
+    }
 }

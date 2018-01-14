@@ -7,17 +7,17 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class CreativeTabsLoader
 {
-	public static CreativeTabs tabteastory;
+    public static CreativeTabs tabteastory;
 
-	public CreativeTabsLoader(FMLPreInitializationEvent event)
-	{
-		tabteastory = new CreativeTabs("tabteastory")
-		{
-			@Override
-			public Item getTabIconItem()
-			{
-				return ItemLoader.half_dried_tea;
-			}
-		};
-	}
+    public CreativeTabsLoader(FMLPreInitializationEvent event)
+    {
+        tabteastory = new CreativeTabs("tabteastory")
+        {
+            @Override
+            public Item getTabIconItem()
+            {
+                return ItemLoader.half_dried_tea;
+            }
+        };
+    }
 }
