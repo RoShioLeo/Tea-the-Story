@@ -20,6 +20,7 @@ public class CraftingLoader
 	private static void registerRecipe()
 	{
 		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha, 1), new Object[]{ItemLoader.matcha_leaf, new ItemStack(ItemLoader.mortar_and_pestle, 1, 32767)});
+		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.rice, 1), new Object[]{new ItemStack(ItemLoader.rice_seeds, 1), new ItemStack(ItemLoader.mortar_and_pestle, 1, 32767)});
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockLoader.empty_kettle, 1, 4), new Object[]{Items.WATER_BUCKET, new ItemStack(BlockLoader.empty_kettle, 1, 0)});
 		for (int i = 0; i < 4; ++i)
 		{

@@ -30,12 +30,18 @@ public class WateringHoe extends ItemHoe
 	@Override
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		EnumActionResult[] result = new EnumActionResult[5];
-		for (int i = -2; i<=2; i++)
+		EnumActionResult[] result = new EnumActionResult[3];
+		for (int i = -1; i<=1; i++)
 		{
-			result[i+2] = this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i), hand, facing, hitX, hitY, hitZ);
+			if (this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i).offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex()) % 4), -1), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS 
+					| this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS
+					| this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i).offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex()) % 4), 1), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS)
+			{
+				result[i+1] = EnumActionResult.SUCCESS;
+			}
+			else result[i+1] = EnumActionResult.FAIL;
 		}
-		for (int i = 0; i<=4; i++)
+		for (int i = 0; i<=2; i++)
 		{
 			if (result[i] == EnumActionResult.SUCCESS) return EnumActionResult.SUCCESS;
 		}

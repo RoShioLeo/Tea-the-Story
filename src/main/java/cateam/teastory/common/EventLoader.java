@@ -3,7 +3,7 @@ package cateam.teastory.common;
 import cateam.teastory.TeaStory;
 import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.block.BlockLoader;
-import cateam.teastory.config.ConfigLoader;
+import cateam.teastory.config.ConfigMain;
 import cateam.teastory.item.ItemLoader;
 import cateam.teastory.potion.PotionLoader;
 import net.minecraft.block.Block;
@@ -148,11 +148,11 @@ public class EventLoader
 	@SubscribeEvent
 	public void onPlayerLogged(PlayerEvent.PlayerLoggedInEvent event)
 	{
-		if(ConfigLoader.info)
+		if(ConfigMain.info)
 		{
 			event.player.addChatComponentMessage(new TextComponentTranslation("teastory.info.welcome.1", "\u00a7a" + TeaStory.VERSION));
 			event.player.addChatComponentMessage(new TextComponentTranslation("teastory.info.welcome.2"));
-			ConfigLoader.info = false;
+			ConfigMain.info = false;
 		}
 	}
 	
@@ -161,12 +161,12 @@ public class EventLoader
 	{
         if (event.getConfigID().equalsIgnoreCase(TeaStory.MODID))
         {
-            Configuration config = ConfigLoader.config;
+            Configuration config = ConfigMain.config;
             if (config.hasChanged())
             {
                 config.save();
             }
-            ConfigLoader.registerConfig();
+            ConfigMain.registerConfig();
         }
     }
 }

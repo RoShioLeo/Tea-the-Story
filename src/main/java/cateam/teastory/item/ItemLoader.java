@@ -21,7 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemLoader
 {
-	public static Item tea_leaf = new ItemHasTooltip("tea_leaf", 64);//茶叶
+	//茶叶
+	public static Item tea_leaf = new ItemHasTooltip("tea_leaf", 64);
 	public static Item half_dried_tea = new ItemHasTooltip("half_dried_tea", 64);
 	public static ItemTeaLeaf dried_tea = new ItemTeaLeaf("dried_tea", 64, BlockLoader.greentea_kettle);
 	public static ItemTeaLeaf burnt_tea = new ItemTeaLeaf("burnt_tea", 64, BlockLoader.burntgreentea_kettle);
@@ -34,18 +35,25 @@ public class ItemLoader
 	public static Item tea_residue = new TeaResidue();
 	public static Item tea_bag = new TeaBag();
 
+	//稻米
 	public static Item rice_seeds = new ItemSeeds(BlockLoader.rice_seedling, Blocks.FARMLAND).setUnlocalizedName("rice_seeds").setCreativeTab(CreativeTabsLoader.tabteastory);
 	public static Item rice_seedlings = new ItemRiceSeedling();
+	public static Item straw = new TSItem("straw", 64);
+	public static Item rice = new TSItem("rice", 64);
+	public static Item washed_rice = new TSItem("washed_rice", 64);
 
-	public static Item sieve = new TSItem("sieve", 64);//工具
+	//工具
+	public static Item sieve = new TSItem("sieve", 64);
 	public static Item mortar_and_pestle = new MortarAndPestle();
 	public static Item soil_detection_meter = new SoilDetectionMeter();
 	public static Item watering_hoe = new WateringHoe();
 
-	public static Item clay_cup = new ItemHasTooltip("clay_cup", 64);//茶具
+	//茶具
+	public static Item clay_cup = new ItemHasTooltip("clay_cup", 64);
 	public static Item cup = new ItemCup();
 
-	public static ItemFood hot_water = new HotWater();//茶饮
+	//茶饮
+	public static ItemFood hot_water = new HotWater();
 	public static Item cold_water = new ColdWater();
 	public static ItemTeaDrink green_tea = new GreenTea();
 	public static ItemTeaDrink burnt_green_tea = new BurntGreenTea();
@@ -55,7 +63,6 @@ public class ItemLoader
 
 	public static ItemSword shennongruler = new ShennongRuler();//其他
 	public static ItemRecord caichawuqu = new Record("caichawuqu", "record_caichawuqu");
-	public static Item straw = new TSItem("straw", 64);
 
 	public ItemLoader(FMLPreInitializationEvent event)
 	{
@@ -89,6 +96,8 @@ public class ItemLoader
 		register(rice_seedlings);
 		register(straw);
 		register(watering_hoe);
+		register(rice);
+		register(washed_rice);
 	}
 
 	public static void preInit() {
@@ -159,6 +168,8 @@ public class ItemLoader
 		registerRender(rice_seedlings);
 		registerRender(straw);
 		registerRender(watering_hoe);
+		registerRender(rice);
+		registerRender(washed_rice);
 	}
 
 	private static void register(Item item)

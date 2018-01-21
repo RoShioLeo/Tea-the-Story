@@ -20,26 +20,31 @@ import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class ConfigGuiFactory implements IModGuiFactory {
+public class ConfigGuiFactory implements IModGuiFactory
+{
 
 	@Override
-	public void initialize(Minecraft minecraftInstance) {
+	public void initialize(Minecraft minecraftInstance)
+	{
 		
 	}
 
 	@Override
-	public Class<? extends GuiScreen> mainConfigGuiClass() {
+	public Class<? extends GuiScreen> mainConfigGuiClass()
+	{
 		return ConfigGui.class;
 	}
 
 	@Override
-	public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
+	public Set<RuntimeOptionCategoryElement> runtimeGuiCategories()
+	{
 		return null;
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
+	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element)
+	{
 		return null;
 	}
 

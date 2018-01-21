@@ -1,7 +1,7 @@
 {
     "textures": {
-        "0": "blocks/dirt",
-		"particle": "blocks/dirt"
+        "0": "blocks/farmland_dry",
+		"particle": "blocks/farmland_dry"
     },
     "elements": [
         {

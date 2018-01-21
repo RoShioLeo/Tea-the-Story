@@ -1,7 +1,7 @@
 package cateam.teastory.item;
 
 import cateam.teastory.block.BlockLoader;
-import cateam.teastory.config.ConfigLoader;
+import cateam.teastory.config.ConfigMain;
 import cateam.teastory.potion.PotionLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -42,26 +42,26 @@ public class BurntGreenTea extends ItemTeaDrink
 		{
 		case 1:
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.625F), 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.875F), 0));
+			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.625F), 0));
+			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 1.875F), 0));
 			return;
 		}
 		case 2:
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.25F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.75F), 1));
+			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.25F), 1));
+			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 0.75F), 1));
 			return;
 		}
 		case 3:
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.375F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.125F), 1));
+			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.375F), 1));
+			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 1.125F), 1));
 			return;
 		}
 		default:
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.5F), 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.5F), 0));
+			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.5F), 0));
+			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 1.5F), 0));
 			return;
 		}
 		}

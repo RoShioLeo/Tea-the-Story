@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.block.BlockLoader;
-import cateam.teastory.config.ConfigLoader;
+import cateam.teastory.config.ConfigMain;
 import cateam.teastory.potion.PotionLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -48,53 +48,53 @@ public class BlackTea extends ItemTeaDrink
 		{
 		case 1:
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.25F), 0));
+			entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)(ConfigMain.blackTeaDrink_Time * 1.25F), 0));
 			if(world.rand.nextFloat() < 0.5F)
 			{
-				entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 3.75F), 0));
+				entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)(ConfigMain.blackTeaDrink_Time * 3.75F), 0));
 			}
 			else
 			{
-				entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 3.75F), 0));
+				entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)(ConfigMain.blackTeaDrink_Time * 3.75F), 0));
 			}
 			return;
 		}
 		case 2:
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.5F), 1));
+			entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)(ConfigMain.blackTeaDrink_Time * 0.5F), 1));
 			if(world.rand.nextFloat() < 0.5F)
 			{
-				entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.5F), 1));
+				entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)(ConfigMain.blackTeaDrink_Time * 1.5F), 1));
 			}
 			else
 			{
-				entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 1.5F), 1));
+				entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)(ConfigMain.blackTeaDrink_Time * 1.5F), 1));
 			}
 			return;
 		}
 		case 3:
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 0.75F), 1));
+			entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, (int)(ConfigMain.greenTeaDrink_Time * 0.75F), 1));
 			if(world.rand.nextFloat() < 0.5F)
 			{
-				entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 2.25F), 1));
+				entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, (int)(ConfigMain.greenTeaDrink_Time * 2.25F), 1));
 			}
 			else
 			{
-				entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)Math.max(0, ConfigLoader.TeaDrink_Time * 2.25F), 1));
+				entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (int)(ConfigMain.greenTeaDrink_Time * 2.25F), 1));
 			}
 			return;
 		}
 		default:
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, Math.max(0, ConfigLoader.TeaDrink_Time), 0));
+			entityplayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, ConfigMain.greenTeaDrink_Time, 0));
 			if(world.rand.nextFloat() < 0.5F)
 			{
-				entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, Math.max(0, ConfigLoader.TeaDrink_Time * 3), 0));
+				entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, ConfigMain.greenTeaDrink_Time * 3, 0));
 			}
 			else
 			{
-				entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, Math.max(0, ConfigLoader.TeaDrink_Time * 3), 0));
+				entityplayer.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, ConfigMain.greenTeaDrink_Time * 3, 0));
 			}
 			return;
 		}

@@ -4,6 +4,9 @@ import com.google.common.base.Function;
 
 import cateam.teastory.TeaStory;
 import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.item.ItemBlockEmptyKettle;
+import cateam.teastory.item.ItemBlockFullKettle;
+import cateam.teastory.item.ItemBlockName;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.SoundType;

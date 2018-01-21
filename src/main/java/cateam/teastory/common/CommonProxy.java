@@ -2,7 +2,7 @@ package cateam.teastory.common;
 
 import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.block.BlockLoader;
-import cateam.teastory.config.ConfigLoader;
+import cateam.teastory.config.ConfigMain;
 import cateam.teastory.crafting.CraftingLoader;
 import cateam.teastory.creativetab.CreativeTabsLoader;
 import cateam.teastory.inventory.GuiElementLoader;
@@ -17,7 +17,7 @@ public class CommonProxy
 {
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		new ConfigLoader(event);
+		new ConfigMain(event);
 		new CreativeTabsLoader(event);
 		new ItemLoader(event);
 		new BlockLoader(event);
