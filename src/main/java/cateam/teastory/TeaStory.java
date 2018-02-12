@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = TeaStory.MODID,
 			name = TeaStory.NAME,
 			version = TeaStory.VERSION,
-			updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2/update.json",
+			//updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2/update.json",
 			guiFactory = TeaStory.CONFIG_GUI_CLASS)
 
 public class TeaStory

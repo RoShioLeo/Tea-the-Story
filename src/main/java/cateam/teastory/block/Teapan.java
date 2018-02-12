@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.helper.EntironmentHelper;
 import cateam.teastory.item.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -94,15 +95,15 @@ public class Teapan extends Block
 		if (meta == 1)
 		{
 			drops.add(new ItemStack(ItemLoader.wet_tea, 8));
-		}
+		} 
 		else if ((meta >= 2) && (meta <= 7))
 		{
 			drops.add(new ItemStack(ItemLoader.tea_leaf, 8));
-		}
+		} 
 		else if (meta == 7)
 		{
 			drops.add(new ItemStack(ItemLoader.half_dried_tea, 8));
-		}
+		} 
 		else if (meta == 8)
 		{
 			drops.add(new ItemStack(ItemLoader.dried_tea, 8));
@@ -118,63 +119,26 @@ public class Teapan extends Block
 		if (step > 1 && worldIn.isRainingAt(pos.up()))
 		{
 			worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(1));
-		}
+		} 
 		else if ((step >= 1) && (step <= 8))
 		{
-			float f = getDryingChance(worldIn, pos);
+			float f = EntironmentHelper.getDryingChance(worldIn, pos);
 			if (f == 0.0F)
 			{
 				return;
-			}
-			else if (rand.nextInt((int)(25.0F / f) + 1) == 0)
+			} 
+			else if (rand.nextInt((int) (25.0F / f) + 1) == 0)
 			{
 				if (step != 8)
 				{
 					worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(step + 1));
-				}
+				} 
 				else if (worldIn.canSeeSky(pos))
 				{
 					worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(step + 1));
 				}
 			}
 		}
-	}
-
-	protected static float getDryingChance(World worldIn, BlockPos pos)
-	{
-		boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
-		boolean isRaining = worldIn.isRaining();
-		if (isRaining)
-		{
-			return 0.0F;
-		}
-		return getDryingChance(worldIn, pos, isDaytime);
-	}
-
-	public static float getDryingChance(World worldIn, BlockPos pos, boolean isDaytime)
-	{
-		float f;
-		if (isDaytime)
-		{
-			f = worldIn.getLightFromNeighbors(pos.up()) * 0.06F;
-		}
-		else
-		{
-			f = worldIn.getLightFor(EnumSkyBlock.BLOCK, pos.up()) * 0.025F;
-		}
-		Biome biome = worldIn.getBiome(pos);
-		float humidity = biome.getRainfall();
-		float temperature = biome.getFloatTemperature(pos);
-		if (temperature <= 1.3F)
-		{
-			f = f * (1 - humidity) * temperature;
-		}
-		else
-		{
-			f = f * 0.7F * (1 - humidity) * temperature;
-		}
-		if (f < 0.0F) f = 0.0F;
-		return f * 3;
 	}
 
 	public static String getName(int meta)
@@ -191,7 +155,8 @@ public class Teapan extends Block
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list) {
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+	{
 		list.add(new ItemStack(itemIn, 1, 0));
 	}
 
@@ -224,23 +189,26 @@ public class Teapan extends Block
 		int step = getMetaFromState(worldIn.getBlockState(pos));
 		if (worldIn.isRemote)
 		{
-			switch(step)
+			switch (step)
 			{
 			case 0:
-				if ((heldItem == null) || !(heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >=8) && !(heldItem.getItem() == ItemLoader.tea_leaf && heldItem.stackSize >=8) && !(heldItem.getItem() == ItemLoader.wet_tea && heldItem.stackSize >=8) && (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.teapan))
+				if ((heldItem == null) || !(heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >= 8)
+						&& !(heldItem.getItem() == ItemLoader.tea_leaf && heldItem.stackSize >= 8)
+						&& !(heldItem.getItem() == ItemLoader.wet_tea && heldItem.stackSize >= 8)
+						&& (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.teapan))
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.teapan.message"));
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.teapan"));
 				}
 			}
 			return true;
-		}
+		} 
 		else
 		{
-			if(step == 0)
+			if (step == 0)
 			{
 				if (heldItem != null)
 				{
-					if (heldItem.stackSize >=8)
+					if (heldItem.stackSize >= 8)
 					{
 						if (heldItem.getItem() == ItemLoader.tea_leaf)
 						{
@@ -250,7 +218,7 @@ public class Teapan extends Block
 								heldItem.stackSize = heldItem.stackSize - 8;
 							}
 							return true;
-						}
+						} 
 						else if (heldItem.getItem() == ItemLoader.wet_tea)
 						{
 							worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(1));
@@ -259,7 +227,7 @@ public class Teapan extends Block
 								heldItem.stackSize = heldItem.stackSize - 8;
 							}
 							return true;
-						}
+						} 
 						else if (heldItem.getItem() == ItemLoader.half_dried_tea)
 						{
 							worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(8));
@@ -272,27 +240,27 @@ public class Teapan extends Block
 					}
 				}
 				return false;
-			}
-			else if((step >= 2) && (step <=7))
+			} 
+			else if ((step >= 2) && (step <= 7))
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.tea_leaf, 8));
 				return true;
-			}
-			else if(step == 8)
+			} 
+			else if (step == 8)
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
 				playerIn.addStat(AchievementLoader.halfDriedTea);
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
 				return true;
-			}
-			else if(step == 9)
+			} 
+			else if (step == 9)
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
 				return true;
-			}
-			else if(step == 1)
+			} 
+			else if (step == 1)
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
 				playerIn.addStat(AchievementLoader.wetTea);

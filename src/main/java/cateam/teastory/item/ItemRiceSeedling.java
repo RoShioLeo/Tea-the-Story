@@ -25,7 +25,7 @@ public class ItemRiceSeedling extends ItemSeeds
 	{
 		super(BlockLoader.rice_plant, Blocks.WATER);
 		this.setUnlocalizedName("item_rice_seedling");
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		this.setCreativeTab(CreativeTabsLoader.tabrice);
 	}
 
 	@Override

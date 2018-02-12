@@ -2,6 +2,7 @@ package cateam.teastory.item;
 
 import java.util.List;
 
+import cateam.teastory.creativetab.CreativeTabsLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,7 +11,7 @@ public class ColdWater extends TSItem
 {
 	public ColdWater()
 	{
-		super("cold_water", 1);
+		super("cold_water", 1, CreativeTabsLoader.tabteastory);
 		this.setHasSubtypes(true);
 	}
 

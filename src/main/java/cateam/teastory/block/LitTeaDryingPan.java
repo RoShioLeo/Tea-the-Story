@@ -144,7 +144,7 @@ public class LitTeaDryingPan extends BlockContainer
 			}
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.2"));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.2"));
 			}
 			return true;
 		}
@@ -152,7 +152,7 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.3", seconds));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.3", seconds));
 			}
 			return true;
 		}
@@ -161,7 +161,7 @@ public class LitTeaDryingPan extends BlockContainer
 			worldIn.setBlockState(pos, this.getStateFromMeta(3));
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.4", seconds));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.4", seconds));
 			}
 			return true;
 		}
@@ -169,7 +169,7 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.5", seconds));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.5", seconds));
 			}
 			return true;
 		}
@@ -178,7 +178,7 @@ public class LitTeaDryingPan extends BlockContainer
 			worldIn.setBlockState(pos, getStateFromMeta(5));
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.6"));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.6"));
 			}
 			return true;
 		}
@@ -199,7 +199,7 @@ public class LitTeaDryingPan extends BlockContainer
 				playerIn.addStat(AchievementLoader.burntLeaf);
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.burnt_tea, 8));
 			}
-			else playerIn.addChatMessage(new TextComponentTranslation("teastory.tea_drying_pan.message.7"));
+			else playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.7"));
 			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getStateFromMeta(0));
 			worldIn.removeTileEntity(pos);
 			return true;
@@ -239,12 +239,6 @@ public class LitTeaDryingPan extends BlockContainer
 	public int getMetaFromState(IBlockState state)
 	{
 		return state.getValue(this.getStepProperty()).intValue();
-	}
-
-	public static String getSpecialName(ItemStack stack)
-	{
-		int meta = stack.getItemDamage();
-		return "." + String.valueOf(meta);
 	}
 
 	public static void setState(int meta, World worldIn, BlockPos pos)

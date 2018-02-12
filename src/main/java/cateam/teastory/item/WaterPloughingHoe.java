@@ -17,14 +17,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class WateringHoe extends ItemHoe
+public class WaterPloughingHoe extends ItemHoe
 {
-	public WateringHoe()
+	public WaterPloughingHoe()
 	{
 		super(ShennongRuler.SHENNONGTOOL);
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		this.setCreativeTab(CreativeTabsLoader.tabrice);
 		this.setMaxStackSize(1);
-		this.setUnlocalizedName("watering_hoe");
+		this.setUnlocalizedName("waterploughing_hoe");
 	}
 
 	@Override
@@ -58,12 +58,11 @@ public class WateringHoe extends ItemHoe
 		else
 		{
 			boolean isWater = false;
+			IBlockState water = Blocks.AIR.getDefaultState();
 			if (worldIn.getBlockState(pos.up()).getMaterial() == Material.WATER)
 			{
-				if (worldIn.getBlockState(pos.up()).getValue(BlockLiquid.LEVEL).intValue() == 0)
-				{
-					isWater = true;
-				}
+				water = worldIn.getBlockState(pos.up());
+				isWater = true;
 				worldIn.setBlockToAir(pos.up());
 			}
 			int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(stack, playerIn, worldIn, pos);
@@ -71,12 +70,12 @@ public class WateringHoe extends ItemHoe
 			{
 				if (hook>0)
 				{
-					pourWater(playerIn, worldIn, pos, isWater, true);
+					pourWater(playerIn, worldIn, pos, isWater, water);
 					return EnumActionResult.SUCCESS;
 				}
 				else
 				{
-					pourWater(playerIn, worldIn, pos, isWater, false);
+					pourWater(playerIn, worldIn, pos, isWater, water);
 					return EnumActionResult.FAIL;
 				}
 			}
@@ -89,7 +88,7 @@ public class WateringHoe extends ItemHoe
 				if (block == Blocks.GRASS || block == Blocks.GRASS_PATH)
 				{
 					this.setBlock(stack, playerIn, worldIn, pos, Blocks.FARMLAND.getDefaultState());
-					pourWater(playerIn, worldIn, pos, isWater, true);
+					pourWater(playerIn, worldIn, pos, isWater, water);
 					return EnumActionResult.SUCCESS;
 				}
 
@@ -99,29 +98,22 @@ public class WateringHoe extends ItemHoe
 					{
 					case DIRT:
 						this.setBlock(stack, playerIn, worldIn, pos, Blocks.FARMLAND.getDefaultState());
-						pourWater(playerIn, worldIn, pos, isWater, true);
+						pourWater(playerIn, worldIn, pos, isWater, water);
 						return EnumActionResult.SUCCESS;
 					case COARSE_DIRT:
 						this.setBlock(stack, playerIn, worldIn, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
-						pourWater(playerIn, worldIn, pos, isWater, true);
+						pourWater(playerIn, worldIn, pos, isWater, water);
 						return EnumActionResult.SUCCESS;
 					}
 				}
 			}
-			pourWater(playerIn, worldIn, pos, isWater, false);
+			pourWater(playerIn, worldIn, pos, isWater, water);
 			return EnumActionResult.PASS;
 		}
 	}
 
-	public static void pourWater(EntityPlayer playerIn, World worldIn, BlockPos pos, boolean flag, boolean flag2)
+	public static void pourWater(EntityPlayer playerIn, World worldIn, BlockPos pos, boolean IsWater, IBlockState water)
 	{
-		if (flag2)
-		{
-			for(int i=0; i<=9; i++)
-			{
-				if (playerIn.inventory.mainInventory[i] != null && playerIn.inventory.mainInventory[i].isItemEqual(new ItemStack(Items.WATER_BUCKET, 1)) && worldIn.isAirBlock(pos.up())) flag = true;
-			}
-		}
-		if (flag) worldIn.setBlockState(pos.up(), Blocks.WATER.getDefaultState());
+		if (IsWater) worldIn.setBlockState(pos.up(), water);
 	}
 }

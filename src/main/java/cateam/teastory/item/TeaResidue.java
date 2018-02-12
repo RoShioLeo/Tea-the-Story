@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
+import cateam.teastory.creativetab.CreativeTabsLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -21,7 +22,7 @@ public class TeaResidue extends TSItem
 {
 	public TeaResidue()
 	{
-		super("tea_residue", 64);
+		super("tea_residue", 64, CreativeTabsLoader.tabteastory);
 		this.setHasSubtypes(true);
 	}
 

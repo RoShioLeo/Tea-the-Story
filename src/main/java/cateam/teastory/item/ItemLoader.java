@@ -22,34 +22,44 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemLoader
 {
 	//茶叶
-	public static Item tea_leaf = new ItemHasTooltip("tea_leaf", 64);
-	public static Item half_dried_tea = new ItemHasTooltip("half_dried_tea", 64);
+	public static Item tea_leaf = new ItemHasTooltip("tea_leaf", 64, CreativeTabsLoader.tabteastory);
+	public static Item half_dried_tea = new ItemHasTooltip("half_dried_tea", 64, CreativeTabsLoader.tabteastory);
 	public static ItemTeaLeaf dried_tea = new ItemTeaLeaf("dried_tea", 64, BlockLoader.greentea_kettle);
 	public static ItemTeaLeaf burnt_tea = new ItemTeaLeaf("burnt_tea", 64, BlockLoader.burntgreentea_kettle);
-	public static Item matcha_leaf = new ItemHasTooltip("matcha_leaf", 64);
+	public static Item matcha_leaf = new ItemHasTooltip("matcha_leaf", 64, CreativeTabsLoader.tabteastory);
 	public static ItemTeaLeaf matcha = new ItemTeaLeaf("matcha", 64, BlockLoader.matcha_kettle);
 	public static ItemTeaLeaf black_tea_leaf = new ItemTeaLeaf("black_tea_leaf", 64, BlockLoader.blacktea_kettle);
-	public static Item wet_tea = new ItemHasTooltip("wet_tea", 64);
-	public static Item broken_tea = new ItemHasTooltip("broken_tea", 64);
+	public static Item wet_tea = new ItemHasTooltip("wet_tea", 64, CreativeTabsLoader.tabteastory);
+	public static Item broken_tea = new ItemHasTooltip("broken_tea", 64, CreativeTabsLoader.tabteastory);
 	public static Item tea_seeds = new TeaSeeds();
 	public static Item tea_residue = new TeaResidue();
 	public static Item tea_bag = new TeaBag();
 
 	//稻米
-	public static Item rice_seeds = new ItemSeeds(BlockLoader.rice_seedling, Blocks.FARMLAND).setUnlocalizedName("rice_seeds").setCreativeTab(CreativeTabsLoader.tabteastory);
+	public static Item rice_seeds = new ItemSeeds(BlockLoader.rice_seedling, Blocks.FARMLAND).setUnlocalizedName("rice_seeds").setCreativeTab(CreativeTabsLoader.tabrice);
 	public static Item rice_seedlings = new ItemRiceSeedling();
-	public static Item straw = new TSItem("straw", 64);
-	public static Item rice = new TSItem("rice", 64);
-	public static Item washed_rice = new TSItem("washed_rice", 64);
+	public static Item straw = new TSItem("straw", 64, CreativeTabsLoader.tabrice);
+	public static Item rice = new TSItem("rice", 64, CreativeTabsLoader.tabrice);
+	public static Item washed_rice = new TSItem("washed_rice", 64, CreativeTabsLoader.tabrice);
+	public static Item wooden_lid = new TSItem("wooden_lid", 64, CreativeTabsLoader.tabrice);
+	public static Item straw_rope = new TSItem("straw_rope", 64, CreativeTabsLoader.tabrice);
+	
+	public static Item rice_ball = new ItemFood(6, 0.8F, false).setUnlocalizedName("rice_ball").setCreativeTab(CreativeTabsLoader.tabrice);
+	public static Item porkchop_rice = new TSItemFoodWithBowl("porkchop_rice", 17, 0.5F);
+	public static Item steak_rice = new TSItemFoodWithBowl("steak_rice", 17, 0.5F);
+	public static Item chicken_rice = new TSItemFoodWithBowl("chicken_rice", 15, 0.5F);
+	public static Item potato_rice = new TSItemFoodWithBowl("potato_rice", 13, 0.5F);
 
 	//工具
-	public static Item sieve = new TSItem("sieve", 64);
+	public static Item sieve = new TSItem("sieve", 64, CreativeTabsLoader.tabteastory);
 	public static Item mortar_and_pestle = new MortarAndPestle();
 	public static Item soil_detection_meter = new SoilDetectionMeter();
-	public static Item watering_hoe = new WateringHoe();
+	public static Item watering_hoe = new WaterPloughingHoe();
+	public static Item straw_blanket = new ItemStrawBlanket();
+	public static Item sickle = new  ItemSickle();
 
 	//茶具
-	public static Item clay_cup = new ItemHasTooltip("clay_cup", 64);
+	public static Item clay_cup = new ItemHasTooltip("clay_cup", 64, CreativeTabsLoader.tabteastory);
 	public static Item cup = new ItemCup();
 
 	//茶饮
@@ -98,9 +108,18 @@ public class ItemLoader
 		register(watering_hoe);
 		register(rice);
 		register(washed_rice);
+		register(wooden_lid);
+		register(rice_ball);
+		register(straw_rope);
+		register(straw_blanket);
+		register(sickle);
+		register(porkchop_rice);
+		register(steak_rice);
+		register(chicken_rice);
+		register(potato_rice);
 	}
 
-	public static void preInit() {
+	public static void loadExtraResourceLocation() {
 		ModelBakery.registerItemVariants(tea_residue,  new ResourceLocation(TeaStory.MODID, "tea_residue_green"),  new ResourceLocation(TeaStory.MODID, "tea_residue_black"));
 		ModelBakery.registerItemVariants(cup,  new ResourceLocation(TeaStory.MODID, "cup_wood"),  new ResourceLocation(TeaStory.MODID, "cup_stone"), new ResourceLocation(TeaStory.MODID, "cup_glass"), new ResourceLocation(TeaStory.MODID, "cup_porcelain"));
 		ModelBakery.registerItemVariants(green_tea,  new ResourceLocation(TeaStory.MODID, "green_tea_wood"),  new ResourceLocation(TeaStory.MODID, "green_tea_stone"), new ResourceLocation(TeaStory.MODID, "green_tea_glass"), new ResourceLocation(TeaStory.MODID, "green_tea_porcelain"));
@@ -170,6 +189,15 @@ public class ItemLoader
 		registerRender(watering_hoe);
 		registerRender(rice);
 		registerRender(washed_rice);
+		registerRender(wooden_lid);
+		registerRender(rice_ball);
+		registerRender(straw_rope);
+		registerRender(straw_blanket);
+		registerRender(sickle);
+		registerRender(porkchop_rice);
+		registerRender(steak_rice);
+		registerRender(chicken_rice);
+		registerRender(potato_rice);
 	}
 
 	private static void register(Item item)

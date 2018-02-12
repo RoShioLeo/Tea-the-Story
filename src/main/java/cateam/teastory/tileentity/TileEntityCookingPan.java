@@ -1,15 +1,15 @@
 package cateam.teastory.tileentity;
 
+import cateam.teastory.block.BlockLoader;
 import cateam.teastory.block.LitTeaDryingPan;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 
-public class TileEntityTeaDryingPan extends TileEntity implements ITickable
+public class TileEntityCookingPan extends TileEntity implements ITickable
 {
-	protected int totalTime = 600;
+	protected int totalTime = 1200;
 	protected int time = 0;
-	protected int meta;
 	protected int remainingTime = totalTime;
 
 	@Override
@@ -29,20 +29,15 @@ public class TileEntityTeaDryingPan extends TileEntity implements ITickable
 	@Override
 	public void update()
 	{
-		meta = this.getBlockMetadata();
-		if (meta > 0 && meta < 6)
+		if (++time >= totalTime)
 		{
-
-			if (++time >= totalTime)
-			{
-				LitTeaDryingPan.setState(meta + 1, this.getWorld(), pos);
-				time = 0;
-			}
-
-			remainingTime = totalTime - time;
-
-			this.markDirty();
+			this.getWorld().setBlockState(pos, BlockLoader.tea_drying_pan.getStateFromMeta(4));
+			time = 0;
 		}
+
+		remainingTime = totalTime - time;
+
+		this.markDirty();
 	}
 
 	public int getTime()

@@ -1,12 +1,13 @@
 package cateam.teastory.item;
 
+import cateam.teastory.creativetab.CreativeTabsLoader;
 import net.minecraft.item.ItemStack;
 
 public class MortarAndPestle extends TSItem
 {
 	public MortarAndPestle()
 	{
-		super("mortar_and_pestle", 1);
+		super("mortar_and_pestle", 1, CreativeTabsLoader.tabteastory);
 		this.setContainerItem(this);
 		this.setMaxDamage(64);
 		this.setNoRepair();

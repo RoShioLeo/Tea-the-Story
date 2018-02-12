@@ -1,5 +1,6 @@
 #Tab
-itemGroup.tabteastory=茶风·纪事
+itemGroup.tabTeaStory=茶风·纪事·茶韵
+itemGroup.tabRice=茶风·纪事·稻香
 
 #Tooltip
 teastory.tooltip.tea_leaf=一切的开始
@@ -69,8 +70,13 @@ item.tea_bag.green_tea.name=绿茶包
 item.tea_bag.black_tea.name=红茶包
 item.rice_seeds.name=稻谷
 item.item_rice_seedling.name=水稻秧苗
+item.rice.name=大米
+item.washed_rice.name=淘过的米
 item.straw.name=稻草
-item.watering_hoe.name=覆水锄
+item.waterploughing_hoe.name=水耘锄
+item.wooden_lid.name=木锅盖
+item.rice_ball.name=饭团
+item.straw_rope.name=草绳
 
 #Blocks
 tile.teapan.0.name=茶簸箕
@@ -94,13 +100,7 @@ tile.barrel.7.name=发酵桶-发酵-83%
 tile.barrel.8.name=发酵桶-红茶
 tile.teaplant.name=茶树
 tile.tea_drying_pan.name=炒茶锅
-tile.lit_tea_drying_pan.0.name=炒茶锅-空
-tile.lit_tea_drying_pan.1.name=炒茶锅-0%
-tile.lit_tea_drying_pan.2.name=炒茶锅-25%
-tile.lit_tea_drying_pan.3.name=炒茶锅-50%
-tile.lit_tea_drying_pan.4.name=炒茶锅-75%
-tile.lit_tea_drying_pan.5.name=炒茶锅-干叶
-tile.lit_tea_drying_pan.6.name=炒茶锅-焦叶
+tile.lit_tea_drying_pan.name=炒茶锅-点燃
 tile.tea_stove.name=茶炉
 tile.lit_tea_stove.name=茶炉-点燃
 tile.clay_kettle.name=茶壶坯
@@ -176,37 +176,38 @@ teastory.info.welcome.1=[§2§oTeaStory§f]感谢安装§2§o茶风·纪事§f�
 teastory.info.welcome.2=[§2§oTeaStory§f]说明书请前往原帖下载，原帖地址详见主菜单Mod选项。
 
 #Message
-teastory.teapan.message=请放入8片茶叶来晒制。
-teastory.barrel.message.1=请放入8片绿茶青叶来发酵，Shift + 空手右键可以取出茶叶。
-teastory.barrel.message.2=请右键来揉捻茶叶。
-teastory.barrel.message.3=正在发酵第一阶段，Shift + 空手右键可以中途取出茶叶。
-teastory.barrel.message.4=正在发酵第二阶段，即将完成发酵，Shift + 空手右键可以中途取出茶叶。
-teastory.barrel.message.5=红茶发酵已完成，Shift + 空手右键取出红茶。
-teastory.soil_detection_meter.message.total=当前地区温度状况： %1$s， 干湿度状况： %2$s， 海拔高度：%3$s§8米§r， 气候： %4$s。
-teastory.soil_detection_meter.message.drying=此处茶叶晒制速率： 白天： %1$s ( %2$s )； 夜晚：%3$s ( %4$s ，夜间需要火把光照 )。
-teastory.soil_detection_meter.message.fermentation=此处红茶发酵速率： 非露天情况下： %1$s ( %2$s )； 露天情况下： %3$s ( %4$s )。
-teastory.soil_detection_meter.message.teaplant=此处茶树生长适宜程度为%1$s， %2$s
-teastory.soil_detection_meter.temperature.snowy=§1雪区
-teastory.soil_detection_meter.temperature.cold=§9寒冷
-teastory.soil_detection_meter.temperature.warm=§c温暖
-teastory.soil_detection_meter.temperature.hot=§4炎热
-teastory.soil_detection_meter.humidity.arid=§6干旱
-teastory.soil_detection_meter.humidity.semi-arid=§e半干旱
-teastory.soil_detection_meter.humidity.semi-humid=§a半湿润
-teastory.soil_detection_meter.humidity.humid=§2湿润
-teastory.soil_detection_meter.height.low=§c海拔较低！
-teastory.soil_detection_meter.height.medium=§a海拔适中。
-teastory.soil_detection_meter.height.high=§c海拔较高！
-teastory.soil_detection_meter.fast=§a快速
-teastory.soil_detection_meter.normal=§e一般
-teastory.soil_detection_meter.slow=§c缓慢
-teastory.tea_drying_pan.message.1=请先使用打火石点火！
-teastory.tea_drying_pan.message.2=请放入8片绿茶鲜叶。
-teastory.tea_drying_pan.message.3=距离下一阶段还有%1$s秒。
-teastory.tea_drying_pan.message.4=第一次炒制已完成，已加速%1$s秒。
-teastory.tea_drying_pan.message.5=距离最后阶段还有%1$s秒。
-teastory.tea_drying_pan.message.6=炒茶已完成，右键取出绿茶干叶。
-teastory.tea_drying_pan.message.7=茶叶炒焦了，再来一次吧！
+teastory.message.teapan=请放入8片茶叶来晒制。
+teastory.message.barrel.1=请放入8片绿茶青叶来发酵，Shift + 空手右键可以取出茶叶。
+teastory.message.barrel.2=请右键来揉捻茶叶。
+teastory.message.barrel.3=正在发酵第一阶段，Shift + 空手右键可以中途取出茶叶。
+teastory.message.barrel.4=正在发酵第二阶段，即将完成发酵，Shift + 空手右键可以中途取出茶叶。
+teastory.message.barrel.5=红茶发酵已完成，Shift + 空手右键取出红茶。
+teastory.message.soil_detection_meter.total=当前地区温度状况： %1$s， 干湿度状况： %2$s， 海拔高度：%3$s§8米§r， 气候： %4$s。
+teastory.message.soil_detection_meter.drying=此处茶叶晒制速率： 白天： %1$s ( %2$s )； 夜晚：%3$s ( %4$s ，夜间需要火把光照 )。
+teastory.message.soil_detection_meter.fermentation=此处红茶发酵速率： 非露天情况下： %1$s ( %2$s )； 露天情况下： %3$s ( %4$s )。
+teastory.message.soil_detection_meter.teaplant=此处茶树生长适宜程度为%1$s， %2$s
+teastory.message.soil_detection_meter.temperature.snowy=§1雪区
+teastory.message.soil_detection_meter.temperature.cold=§9寒冷
+teastory.message.soil_detection_meter.temperature.warm=§c温暖
+teastory.message.soil_detection_meter.temperature.hot=§4炎热
+teastory.message.soil_detection_meter.humidity.arid=§6干旱
+teastory.message.soil_detection_meter.humidity.semi-arid=§e半干旱
+teastory.message.soil_detection_meter.humidity.semi-humid=§a半湿润
+teastory.message.soil_detection_meter.humidity.humid=§2湿润
+teastory.message.soil_detection_meter.height.low=§c海拔较低！
+teastory.message.soil_detection_meter.height.medium=§a海拔适中。
+teastory.message.soil_detection_meter.height.high=§c海拔较高！
+teastory.message.soil_detection_meter.fast=§a快速
+teastory.message.soil_detection_meter.normal=§e一般
+teastory.message.soil_detection_meter.slow=§c缓慢
+teastory.message.tea_drying_pan.1=请先使用打火石点火！
+teastory.message.tea_drying_pan.2=请放入8片绿茶鲜叶。
+teastory.message.tea_drying_pan.3=距离下一阶段还有%1$s秒。
+teastory.message.tea_drying_pan.4=第一次炒制已完成，已加速%1$s秒。
+teastory.message.tea_drying_pan.5=距离最后阶段还有%1$s秒。
+teastory.message.tea_drying_pan.6=炒茶已完成，右键取出绿茶干叶。
+teastory.message.tea_drying_pan.7=茶叶炒焦了，再来一次吧！
+teastory.message.tea_drying_pan.8=距离米饭出锅还有%1$s秒。
 
 #Container Title
 teastory.container.tea_stove=茶炉

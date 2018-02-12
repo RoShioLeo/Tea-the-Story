@@ -1,27 +1,38 @@
 package cateam.teastory.common;
 
+import java.util.List;
+
 import cateam.teastory.TeaStory;
 import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.block.BlockLoader;
+import cateam.teastory.block.StrawBlanket;
 import cateam.teastory.config.ConfigMain;
 import cateam.teastory.item.ItemLoader;
 import cateam.teastory.potion.PotionLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -167,6 +178,54 @@ public class EventLoader
                 config.save();
             }
             ConfigMain.registerConfig();
+        }
+    }
+	
+	@SubscribeEvent
+	public void playerTick(PlayerTickEvent event)
+	{
+		EntityPlayer player = event.player;
+		World world = player.worldObj;
+		List<EntityItem> itemList = world.getEntitiesWithinAABB(EntityItem.class, player.getEntityBoundingBox().expand(4.0F, 4.0F, 4.0F));
+		
+		for (EntityItem entityItem : itemList)
+		{
+			if (ItemLoader.rice.equals(entityItem.getEntityItem().getItem()) && world.isMaterialInBB(entityItem.getEntityBoundingBox(), Material.WATER))
+			{
+				entityItem.setEntityItemStack(new ItemStack(ItemLoader.washed_rice, entityItem.getEntityItem().stackSize));
+			}
+		}
+	}
+	
+	@SubscribeEvent
+    public void onPlayerWakeUp(PlayerWakeUpEvent event)
+	{
+		EntityPlayer player = event.getEntityPlayer();
+        World world = player.worldObj;
+        BlockPos pos = player.bedLocation;
+        IBlockState state = world.getBlockState(pos);
+		if (state.getBlock() instanceof StrawBlanket)
+		{
+            ItemStack stack = state.getBlock().getItem(world, pos, state);
+
+            BlockPos pos1 = pos.offset(state.getValue(StrawBlanket.FACING).getOpposite());
+            world.destroyBlock(pos1, false);
+        }
+	}
+	
+	@SubscribeEvent
+    public void onPlayerSetSpawn(PlayerSetSpawnEvent event)
+	{
+        World world = event.getEntityPlayer().getEntityWorld();
+
+        if (event.getNewSpawn() != null)
+        {
+            Block block = world.getBlockState(event.getNewSpawn()).getBlock();
+
+            if (!world.isRemote && (block instanceof StrawBlanket))
+            {
+                event.setCanceled(true);
+            }
         }
     }
 }

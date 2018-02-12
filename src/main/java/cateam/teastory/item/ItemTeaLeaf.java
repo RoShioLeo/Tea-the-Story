@@ -2,6 +2,7 @@ package cateam.teastory.item;
 
 import cateam.teastory.block.BlockLoader;
 import cateam.teastory.block.Kettle;
+import cateam.teastory.creativetab.CreativeTabsLoader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -15,7 +16,7 @@ public class ItemTeaLeaf extends TSItem
 	private Kettle kettle;
 	public ItemTeaLeaf(String name, int maxstack, Kettle kettle)
 	{
-		super(name, maxstack);
+		super(name, maxstack, CreativeTabsLoader.tabteastory);
 		this.kettle = kettle;
 	}
 

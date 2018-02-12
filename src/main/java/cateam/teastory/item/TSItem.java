@@ -1,15 +1,16 @@
 package cateam.teastory.item;
 
 import cateam.teastory.creativetab.CreativeTabsLoader;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class TSItem extends Item
 {
-	public TSItem(String name, int maxstack)
+	public TSItem(String name, int maxStack, CreativeTabs creativeTab)
 	{
 		super();
 		this.setUnlocalizedName(name);
-		this.setMaxStackSize(maxstack);
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		this.setMaxStackSize(maxStack);
+		this.setCreativeTab(creativeTab);
 	}
 }

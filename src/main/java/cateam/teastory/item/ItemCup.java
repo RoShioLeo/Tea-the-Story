@@ -3,6 +3,7 @@ package cateam.teastory.item;
 import java.util.List;
 
 import cateam.teastory.block.BlockLoader;
+import cateam.teastory.creativetab.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
@@ -31,7 +32,7 @@ public class ItemCup extends TSItem
 {
 	public ItemCup()
 	{
-		super("cup", 64);
+		super("cup", 64, CreativeTabsLoader.tabteastory);
 		this.setHasSubtypes(true);
 	}
 

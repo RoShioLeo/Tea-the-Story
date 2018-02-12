@@ -30,9 +30,11 @@ public class BlockLoader
 	public static Block teapan = new Teapan();
 	public static Block tea_drying_pan = new TeaDryingPan();
 	public static Block lit_tea_drying_pan = new LitTeaDryingPan();
+	public static Block lit_cooking_pan = new LitCookingPan();
 	public static Block tea_stove = new TeaStove(0.0F, "tea_stove", false).setCreativeTab(CreativeTabsLoader.tabteastory);
 	public static Block lit_tea_stove = new TeaStove(0.875F, "lit_tea_stove", true);
 	public static Block barrel = new Barrel();
+	
 	public static Kettle clay_kettle = new ClayKettle();
 	public static Kettle empty_kettle = new EmptyKettle();
 	public static Kettle burntgreentea_kettle = new FullKettle("burntgreentea_kettle", 0);
@@ -44,6 +46,9 @@ public class BlockLoader
 	public static BlockCrops rice_seedling = new RiceSeedling();
 	public static BlockCrops rice_plant = new RicePlant();
 	public static Block field = new Field();
+	
+	public static Block straw_blanket = new StrawBlanket();
+	public static Block straw_cushion =new StrawCushion();
 
 	public static TeaDrinkEmpty wood_cup = new TeaDrinkEmpty(1.0F, "wood_cup", Material.WOOD, SoundType.WOOD, 0);
 	public static TeaDrinkEmpty stone_cup = new TeaDrinkEmpty(1.3F, "stone_cup", Material.ROCK, SoundType.STONE, 1);
@@ -72,15 +77,9 @@ public class BlockLoader
 
 	public BlockLoader(FMLPreInitializationEvent event)
 	{
-		register(lit_tea_drying_pan, new ItemMultiTexture(lit_tea_drying_pan, lit_tea_drying_pan, new Function<ItemStack, String>()
-		{
-			@Override
-			public String apply(ItemStack input)
-			{
-				return LitTeaDryingPan.getSpecialName(input);
-			}
-		}), "lit_tea_drying_pan");
+		register(lit_tea_drying_pan, "lit_tea_drying_pan");
 		register(tea_drying_pan, "tea_drying_pan");
+		register(lit_cooking_pan, "lit_cooking_pan");
 		register(tea_stove, "tea_stove");
 		register(lit_tea_stove, "lit_tea_stove");
 		register(teapan, new ItemBlockName(teapan, teapan, new Function<ItemStack, String>()
@@ -168,14 +167,13 @@ public class BlockLoader
 		register(rice_seedling, "rice_seedling");
 		register(rice_plant, "rice_plant");
 		register(field, "field");
+		register(straw_blanket, "straw_blanket");
+		register(straw_cushion, "straw_cushion");
 	}
 
-	public static void preInit()
+	public static void loadExtraResourceLocation()
 	{
-		ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.lit_tea_drying_pan),
-				new ResourceLocation(TeaStory.MODID, "tea_drying_pan"));
-		ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.empty_kettle),
-				new ResourceLocation(TeaStory.MODID, "empty_kettle"), new ResourceLocation(TeaStory.MODID, "water_kettle"));
+		ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.empty_kettle), new ResourceLocation(TeaStory.MODID, "empty_kettle"), new ResourceLocation(TeaStory.MODID, "water_kettle"));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -204,7 +202,7 @@ public class BlockLoader
 		registerRender(blacktea_kettle, 8, "blacktea_kettle");
 		registerRender(blacktea_kettle, 12, "blacktea_kettle");
 		registerRender(tea_drying_pan, "tea_drying_pan");
-		registerRender(lit_tea_drying_pan, 1, "tea_drying_pan");
+		registerRender(lit_tea_drying_pan, "lit_tea_drying_pan");
 		registerRender(tea_stove, "tea_stove");
 		registerRender(lit_tea_stove, "lit_tea_stove");
 		registerRender(teaplant, "teaplant");
@@ -235,6 +233,9 @@ public class BlockLoader
 		registerRender(rice_seedling, "rice_seedling");
 		registerRender(rice_plant, "rice_plant");
 		registerRender(field, "field");
+		registerRender(lit_cooking_pan, "lit_cooking_pan");
+		registerRender(straw_blanket, "straw_blanket");
+		registerRender(straw_cushion, "straw_cushion");
 	}
 
 	private static void register(Block block, String name)

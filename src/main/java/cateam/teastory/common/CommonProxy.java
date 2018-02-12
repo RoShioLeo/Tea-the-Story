@@ -5,6 +5,7 @@ import cateam.teastory.block.BlockLoader;
 import cateam.teastory.config.ConfigMain;
 import cateam.teastory.crafting.CraftingLoader;
 import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.entity.EntityLoader;
 import cateam.teastory.inventory.GuiElementLoader;
 import cateam.teastory.item.ItemLoader;
 import cateam.teastory.potion.PotionLoader;
@@ -22,6 +23,7 @@ public class CommonProxy
 		new ItemLoader(event);
 		new BlockLoader(event);
 		new PotionLoader(event);
+		new EntityLoader();
 		new TileEntityLoader(event);
 	}
 
@@ -31,7 +33,7 @@ public class CommonProxy
 		new AchievementLoader();
 		new EventLoader();
 		new GuiElementLoader();
-		SeedDrops.init();
+		new SeedDrops();
 	}
 
 	public void postInit(FMLPostInitializationEvent event)
