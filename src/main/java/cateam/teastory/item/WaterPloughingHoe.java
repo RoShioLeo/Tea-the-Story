@@ -1,6 +1,6 @@
 package cateam.teastory.item;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockLiquid;
@@ -22,7 +22,7 @@ public class WaterPloughingHoe extends ItemHoe
 	public WaterPloughingHoe()
 	{
 		super(ShennongRuler.SHENNONGTOOL);
-		this.setCreativeTab(CreativeTabsLoader.tabrice);
+		this.setCreativeTab(CreativeTabsLoader.tabRice);
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("waterploughing_hoe");
 	}

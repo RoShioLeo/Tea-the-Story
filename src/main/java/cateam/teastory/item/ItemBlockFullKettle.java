@@ -7,8 +7,10 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.base.Function;
 
 import cateam.teastory.block.BlockLoader;
+import cateam.teastory.block.FullKettle;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -19,28 +21,29 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
-public class ItemBlockFullKettle extends ItemMultiTexture
+public class ItemBlockFullKettle extends ItemBlock
 {
 	int drink;
 
-	public ItemBlockFullKettle(Block block, Block block2, Function<ItemStack, String> nameFunction, int drink)
+	public ItemBlockFullKettle(Block block, int drink)
 	{
-		super(block, block, nameFunction);
-		this.setMaxStackSize(1);
+		super(block);
 		this.setMaxDamage(16);
+		this.setMaxStackSize(1);
 		this.drink = drink;
 		this.setNoRepair();
 	}
-
+	
 	@Override
-	public String getUnlocalizedName(ItemStack stack)
-	{
-		return super.getUnlocalizedName() + this.nameFunction.apply(stack);
-	}
+	public boolean showDurabilityBar(ItemStack stack)
+    {
+        return false;
+    }
 
 	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
 	{
+		//TODO 显示剩余茶饮量
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
 			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.kettle")));
@@ -53,7 +56,7 @@ public class ItemBlockFullKettle extends ItemMultiTexture
 	{
 		if ((meta >> 2) == 3)
 		{
-			stack.setItem(new ItemStack(BlockLoader.empty_kettle).getItem());
+			stack.setItem(new ItemStack(((FullKettle) Block.getBlockFromItem(stack.getItem())).getNextKettle()).getItem());
 			stack.setItemDamage(0);
 		}
 		else
@@ -72,19 +75,39 @@ public class ItemBlockFullKettle extends ItemMultiTexture
 			switch(drink)
 			{
 			case 1:
-				worldIn.setBlockState(pos, BlockLoader.greentea_wood_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.greentea_wood_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			case 2:
-				worldIn.setBlockState(pos, BlockLoader.matchadrink_wood_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.matchadrink_wood_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			case 3:
-				worldIn.setBlockState(pos, BlockLoader.blacktea_wood_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.blacktea_wood_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
-			default:
-				worldIn.setBlockState(pos, BlockLoader.burntgreentea_wood_cup.getStateFromMeta(1));
+			case 4:
+				worldIn.setBlockState(pos, BlockLoader.milktea_wood_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 5:
+				worldIn.setBlockState(pos, BlockLoader.lemontea_wood_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 6:
+				worldIn.setBlockState(pos, BlockLoader.yellowtea_wood_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 7:
+				worldIn.setBlockState(pos, BlockLoader.whitetea_wood_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 8:
+				worldIn.setBlockState(pos, BlockLoader.oolongtea_wood_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 9:
+				worldIn.setBlockState(pos, BlockLoader.puertea_wood_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			}
@@ -94,19 +117,39 @@ public class ItemBlockFullKettle extends ItemMultiTexture
 			switch(drink)
 			{
 			case 1:
-				worldIn.setBlockState(pos, BlockLoader.greentea_stone_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.greentea_stone_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			case 2:
-				worldIn.setBlockState(pos, BlockLoader.matchadrink_stone_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.matchadrink_stone_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			case 3:
-				worldIn.setBlockState(pos, BlockLoader.blacktea_stone_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.blacktea_stone_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
-			default:
-				worldIn.setBlockState(pos, BlockLoader.burntgreentea_stone_cup.getStateFromMeta(1));
+			case 4:
+				worldIn.setBlockState(pos, BlockLoader.milktea_stone_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 5:
+				worldIn.setBlockState(pos, BlockLoader.lemontea_stone_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 6:
+				worldIn.setBlockState(pos, BlockLoader.yellowtea_stone_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 7:
+				worldIn.setBlockState(pos, BlockLoader.whitetea_stone_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 8:
+				worldIn.setBlockState(pos, BlockLoader.oolongtea_stone_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 9:
+				worldIn.setBlockState(pos, BlockLoader.puertea_stone_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			}
@@ -116,19 +159,39 @@ public class ItemBlockFullKettle extends ItemMultiTexture
 			switch(drink)
 			{
 			case 1:
-				worldIn.setBlockState(pos, BlockLoader.greentea_glass_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.greentea_glass_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			case 2:
-				worldIn.setBlockState(pos, BlockLoader.matchadrink_glass_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.matchadrink_glass_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			case 3:
-				worldIn.setBlockState(pos, BlockLoader.blacktea_glass_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.blacktea_glass_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
-			default:
-				worldIn.setBlockState(pos, BlockLoader.burntgreentea_glass_cup.getStateFromMeta(1));
+			case 4:
+				worldIn.setBlockState(pos, BlockLoader.milktea_glass_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 5:
+				worldIn.setBlockState(pos, BlockLoader.lemontea_glass_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 6:
+				worldIn.setBlockState(pos, BlockLoader.yellowtea_glass_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 7:
+				worldIn.setBlockState(pos, BlockLoader.whitetea_glass_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 8:
+				worldIn.setBlockState(pos, BlockLoader.oolongtea_glass_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 9:
+				worldIn.setBlockState(pos, BlockLoader.puertea_glass_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			}
@@ -138,19 +201,81 @@ public class ItemBlockFullKettle extends ItemMultiTexture
 			switch(drink)
 			{
 			case 1:
-				worldIn.setBlockState(pos, BlockLoader.greentea_porcelain_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.greentea_porcelain_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			case 2:
-				worldIn.setBlockState(pos, BlockLoader.matchadrink_porcelain_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.matchadrink_porcelain_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			case 3:
-				worldIn.setBlockState(pos, BlockLoader.blacktea_porcelain_cup.getStateFromMeta(1));
+				worldIn.setBlockState(pos, BlockLoader.blacktea_porcelain_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
-			default:
-				worldIn.setBlockState(pos, BlockLoader.burntgreentea_porcelain_cup.getStateFromMeta(1));
+			case 4:
+				worldIn.setBlockState(pos, BlockLoader.milktea_porcelain_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 5:
+				worldIn.setBlockState(pos, BlockLoader.lemontea_porcelain_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 6:
+				worldIn.setBlockState(pos, BlockLoader.yellowtea_porcelain_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 7:
+				worldIn.setBlockState(pos, BlockLoader.whitetea_porcelain_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 8:
+				worldIn.setBlockState(pos, BlockLoader.oolongtea_porcelain_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 9:
+				worldIn.setBlockState(pos, BlockLoader.puertea_porcelain_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			}
+		}
+		else if(block == BlockLoader.zisha_cup)
+		{
+			switch(drink)
+			{
+			case 1:
+				worldIn.setBlockState(pos, BlockLoader.greentea_zisha_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 2:
+				worldIn.setBlockState(pos, BlockLoader.matchadrink_zisha_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 3:
+				worldIn.setBlockState(pos, BlockLoader.blacktea_zisha_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 4:
+				worldIn.setBlockState(pos, BlockLoader.milktea_zisha_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 5:
+				worldIn.setBlockState(pos, BlockLoader.lemontea_zisha_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 6:
+				worldIn.setBlockState(pos, BlockLoader.yellowtea_zisha_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 7:
+				worldIn.setBlockState(pos, BlockLoader.whitetea_zisha_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 8:
+				worldIn.setBlockState(pos, BlockLoader.oolongtea_zisha_cup.getDefaultState());
+				pourTeaDrink(stack, meta);
+				return EnumActionResult.SUCCESS;
+			case 9:
+				worldIn.setBlockState(pos, BlockLoader.puertea_zisha_cup.getDefaultState());
 				pourTeaDrink(stack, meta);
 				return EnumActionResult.SUCCESS;
 			}

@@ -6,8 +6,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import cateam.teastory.achievement.AchievementLoader;
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.AchievementLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.helper.EntironmentHelper;
 import cateam.teastory.item.ItemLoader;
 import net.minecraft.block.Block;
@@ -40,7 +40,7 @@ public class Teapan extends Block
 {
 	protected static final AxisAlignedBB TEAPAN_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
 
-	public static final PropertyInteger STEP = PropertyInteger.create("step", 0, 9);
+	public static final PropertyInteger STEP = PropertyInteger.create("step", 0, 12);
 
 	public Teapan()
 	{
@@ -50,7 +50,7 @@ public class Teapan extends Block
 		this.setSoundType(SoundType.WOOD);
 		this.setUnlocalizedName("teapan");
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
 	}
 
 	@Override
@@ -100,13 +100,17 @@ public class Teapan extends Block
 		{
 			drops.add(new ItemStack(ItemLoader.tea_leaf, 8));
 		} 
-		else if (meta == 7)
+		else if (meta == 8)
 		{
 			drops.add(new ItemStack(ItemLoader.half_dried_tea, 8));
 		} 
-		else if (meta == 8)
+		else if ((meta >= 9) && (meta <= 11))
 		{
 			drops.add(new ItemStack(ItemLoader.dried_tea, 8));
+		}
+		else if (meta == 12)
+		{
+			drops.add(new ItemStack(ItemLoader.yellow_tea, 8));
 		}
 		return drops;
 	}
@@ -120,7 +124,7 @@ public class Teapan extends Block
 		{
 			worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(1));
 		} 
-		else if ((step >= 1) && (step <= 8))
+		else if ((step >= 1) && (step <= 12))
 		{
 			float f = EntironmentHelper.getDryingChance(worldIn, pos);
 			if (f == 0.0F)
@@ -129,11 +133,15 @@ public class Teapan extends Block
 			} 
 			else if (rand.nextInt((int) (25.0F / f) + 1) == 0)
 			{
-				if (step != 8)
+				if (step >= 1 && step <= 7)
 				{
 					worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(step + 1));
 				} 
-				else if (worldIn.canSeeSky(pos))
+				else if (step == 8 && worldIn.canSeeSky(pos))
+				{
+					worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(step + 1));
+				}
+				else if (step >= 9 && step <= 11 && !worldIn.canSeeSky(pos))
 				{
 					worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(step + 1));
 				}
@@ -192,10 +200,13 @@ public class Teapan extends Block
 			switch (step)
 			{
 			case 0:
-				if ((heldItem == null) || !(heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >= 8)
-						&& !(heldItem.getItem() == ItemLoader.tea_leaf && heldItem.stackSize >= 8)
-						&& !(heldItem.getItem() == ItemLoader.wet_tea && heldItem.stackSize >= 8)
-						&& (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.teapan))
+				if ((heldItem == null)
+						|| heldItem.stackSize < 8
+						|| (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.teapan
+						&& heldItem.getItem() != ItemLoader.half_dried_tea
+						&& heldItem.getItem() != ItemLoader.tea_leaf 
+						&& heldItem.getItem() != ItemLoader.wet_tea
+						&& heldItem.getItem() != ItemLoader.dried_tea))
 				{
 					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.teapan"));
 				}
@@ -237,6 +248,15 @@ public class Teapan extends Block
 							}
 							return true;
 						}
+						else if (heldItem.getItem() == ItemLoader.dried_tea)
+						{
+							worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(9));
+							if (!playerIn.capabilities.isCreativeMode)
+							{
+								heldItem.stackSize = heldItem.stackSize - 8;
+							}
+							return true;
+						}
 					}
 				}
 				return false;
@@ -254,13 +274,20 @@ public class Teapan extends Block
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
 				return true;
 			} 
-			else if (step == 9)
+			else if ((step >= 9) && (step <= 11))
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
 				return true;
-			} 
-			else if (step == 1)
+			}
+			else if (step == 12) 
+			{
+				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
+				//playerIn.addStat(AchievementLoader.wetTea);
+				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.yellow_tea_leaf, 8));
+				return true;
+			}
+			else if (step == 1) 
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
 				playerIn.addStat(AchievementLoader.wetTea);

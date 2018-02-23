@@ -16,7 +16,7 @@ public class GuiContainerTeaStove extends GuiContainer
 	private static final ResourceLocation TEXTURE = new ResourceLocation(TEXTURE_PATH);
 	private ContainerTeaStove inventory;
 	private int totalDryTime;
-	private int totalSteamTime;
+	private int totalSteam;
 
 	public GuiContainerTeaStove(ContainerTeaStove inventorySlotsIn)
 	{
@@ -25,7 +25,7 @@ public class GuiContainerTeaStove extends GuiContainer
 		this.ySize = 166;
 		this.inventory = inventorySlotsIn;
 		this.totalDryTime = inventorySlotsIn.getTotalDryTime();
-		this.totalSteamTime = inventorySlotsIn.getTotalSteamTime();
+		this.totalSteam = inventorySlotsIn.getTotalSteam();
 	}
 
 	@Override
@@ -42,10 +42,10 @@ public class GuiContainerTeaStove extends GuiContainer
 		int fuelTotalTime = this.inventory.getTotalFuelTime();
 		int fuelTime = this.inventory.getFuelTime();
 		int hasWater = this.inventory.hasWater();
-		int steamTime = this.inventory.getSteamTime();
+		int steam = this.inventory.getSteam();
 		int textureWidth1 =(int) Math.ceil(24.0 * dryTime / this.totalDryTime);
 		int textureLength2 =(int) Math.ceil(14.0 * fuelTime / fuelTotalTime);
-		int textureLength3 =(int) Math.ceil(29.0 * steamTime / this.totalSteamTime);
+		int textureLength3 =(int) Math.ceil(29.0 * steam / this.totalSteam);
 		this.drawTexturedModalRect(offsetX + 78, offsetY + 38, 176, 14, textureWidth1, 17);
 		this.drawTexturedModalRect(offsetX + 53, offsetY + 53 - textureLength2, 176, 14 - textureLength2, 14, textureLength2);
 		if((hasWater >= 1) && (hasWater <= 3))
@@ -56,7 +56,7 @@ public class GuiContainerTeaStove extends GuiContainer
 		{
 			this.drawTexturedModalRect(offsetX + 33, offsetY + 53, 176, 60, 16, 16);
 		}
-		this.drawTexturedModalRect(offsetX + 34, offsetY + 52 - textureLength3, 176, 59 - textureLength3, 12, textureLength3);
+		this.drawTexturedModalRect(offsetX + 34, offsetY + 52 - textureLength3, 176, 60 - textureLength3, 12, textureLength3);
 	}
 
 

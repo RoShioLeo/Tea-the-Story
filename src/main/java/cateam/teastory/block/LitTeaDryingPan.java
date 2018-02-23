@@ -6,12 +6,13 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import cateam.teastory.achievement.AchievementLoader;
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.item.ItemLoader;
 import cateam.teastory.tileentity.TileEntityTeaDryingPan;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -37,6 +38,7 @@ public class LitTeaDryingPan extends BlockContainer
 {
 	protected static final AxisAlignedBB TEADRYINGPAN_AABB = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
 	public static final PropertyInteger STEP = PropertyInteger.create("step", 0, 6);
+	 public static final PropertyBool TYPE = PropertyBool.create("type");
 
 	public LitTeaDryingPan()
 	{
@@ -45,7 +47,7 @@ public class LitTeaDryingPan extends BlockContainer
 		this.setSoundType(SoundType.METAL);
 		this.setLightLevel(0.875F);
 		this.setUnlocalizedName("lit_tea_drying_pan");
-		this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0).withProperty(TYPE, false));
 	}
 
 	@Override
@@ -86,9 +88,13 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			drops.add(new ItemStack(ItemLoader.dried_tea, 8));
 		}
-		else if(meta == 6)
+		else if((meta >= 9) && (meta <= 12))
 		{
-			drops.add(new ItemStack(ItemLoader.burnt_tea, 8));
+			drops.add(new ItemStack(ItemLoader.half_dried_tea, 8));
+		}
+		else if(meta == 13)
+		{
+			drops.add(new ItemStack(ItemLoader.oolong_tea_leaf, 8));
 		}
 		return drops;
 	}
@@ -107,7 +113,7 @@ public class LitTeaDryingPan extends BlockContainer
 		double d0 = pos.getX();
 		double d1 = pos.getY();
 		double d2 = pos.getZ();
-		if(meta != 6)
+		if(meta != 6 && meta != 14)
 		{
 			worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.5D, d1 + 1.0D, d2 + 0.5D, 0.0D, 0.08D, 0.0D, new int[0]);
 		}
@@ -132,14 +138,26 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(heldItem != null)
 			{
-				if((heldItem.getItem() == ItemLoader.tea_leaf) && (heldItem.stackSize >=8))
+				if(heldItem.stackSize >=8)
 				{
-					worldIn.setBlockState(pos, this.getStateFromMeta(1));
-					if (!playerIn.capabilities.isCreativeMode)
+					if (heldItem.getItem() == ItemLoader.tea_leaf)
 					{
-						heldItem.stackSize = heldItem.stackSize - 8;
+						worldIn.setBlockState(pos, this.getStateFromMeta(1));
+						if (!playerIn.capabilities.isCreativeMode)
+						{
+							heldItem.stackSize = heldItem.stackSize - 8;
+						}
+						return true;
 					}
-					return true;
+					else if (heldItem.getItem() == ItemLoader.half_dried_tea)
+					{
+						worldIn.setBlockState(pos, this.getStateFromMeta(9));
+						if (!playerIn.capabilities.isCreativeMode)
+						{
+							heldItem.stackSize = heldItem.stackSize - 8;
+						}
+						return true;
+					}
 				}
 			}
 			if(worldIn.isRemote)
@@ -148,7 +166,7 @@ public class LitTeaDryingPan extends BlockContainer
 			}
 			return true;
 		}
-		else if (meta == 1)
+		else if ((meta & 7) == 1)
 		{
 			if(worldIn.isRemote)
 			{
@@ -156,16 +174,16 @@ public class LitTeaDryingPan extends BlockContainer
 			}
 			return true;
 		}
-		else if (meta == 2)
+		else if ((meta & 7) == 2)
 		{
-			worldIn.setBlockState(pos, this.getStateFromMeta(3));
+			worldIn.setBlockState(pos, this.getStateFromMeta(meta + 1));
 			if(worldIn.isRemote)
 			{
 				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.4", seconds));
 			}
 			return true;
 		}
-		else if (meta == 3)
+		else if ((meta & 7) == 3)
 		{
 			if(worldIn.isRemote)
 			{
@@ -173,34 +191,39 @@ public class LitTeaDryingPan extends BlockContainer
 			}
 			return true;
 		}
-		else if (meta == 4)
+		else if ((meta & 7) == 4)
 		{
-			worldIn.setBlockState(pos, getStateFromMeta(5));
+			worldIn.setBlockState(pos, getStateFromMeta(meta + 1));
 			if(worldIn.isRemote)
 			{
 				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.6"));
 			}
 			return true;
 		}
-		else if (meta == 5)
+		else if ((meta & 7) == 5)
 		{
 			if(!worldIn.isRemote)
 			{
-				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
+				if (!state.getValue(TYPE).booleanValue())
+				{
+					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
+				}
+				else
+				{
+					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.oolong_tea_leaf, 8));
+				}
 			}
-			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getStateFromMeta(0));
+			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getDefaultState());
 			worldIn.removeTileEntity(pos);
 			return true;
 		}
 		else
 		{
-			if(!worldIn.isRemote)
+			if(worldIn.isRemote)
 			{
-				playerIn.addStat(AchievementLoader.burntLeaf);
-				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.burnt_tea, 8));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.7"));
 			}
-			else playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.7"));
-			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getStateFromMeta(0));
+			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getDefaultState());
 			worldIn.removeTileEntity(pos);
 			return true;
 		}
@@ -208,7 +231,8 @@ public class LitTeaDryingPan extends BlockContainer
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list) {
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+	{
 		list.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
 	}
 
@@ -221,7 +245,7 @@ public class LitTeaDryingPan extends BlockContainer
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, STEP);
+		return new BlockStateContainer(this, STEP, TYPE);
 	}
 
 	protected PropertyInteger getStepProperty()
@@ -232,13 +256,16 @@ public class LitTeaDryingPan extends BlockContainer
 	@Override
 	public IBlockState getStateFromMeta(int step)
 	{
-		return this.getDefaultState().withProperty(this.getStepProperty(), Integer.valueOf(step));
+		int meta = step & 7;
+		boolean type = (step & 8) == 8;
+		return this.getDefaultState().withProperty(this.getStepProperty(), Integer.valueOf(meta)).withProperty(this.TYPE, type);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return state.getValue(this.getStepProperty()).intValue();
+		int type = state.getValue(TYPE).booleanValue() ? 8 : 0;
+		return state.getValue(this.getStepProperty()).intValue() | type;
 	}
 
 	public static void setState(int meta, World worldIn, BlockPos pos)

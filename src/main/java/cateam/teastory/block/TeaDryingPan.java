@@ -4,8 +4,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import cateam.teastory.achievement.AchievementLoader;
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.AchievementLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.item.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -43,7 +43,7 @@ public class TeaDryingPan extends Block
 		this.setHardness(3.0F);
 		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
 		this.setUnlocalizedName("tea_drying_pan");
 	}
 

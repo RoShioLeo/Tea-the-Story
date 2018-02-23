@@ -1,46 +1,111 @@
 package cateam.teastory.item;
 
+import java.util.Collections;
+import java.util.List;
+
+import cateam.teastory.TeaStory;
 import cateam.teastory.block.BlockLoader;
+import cateam.teastory.block.EmptyKettle;
 import cateam.teastory.block.Kettle;
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemTeaLeaf extends TSItem
 {
-	private Kettle kettle;
-	public ItemTeaLeaf(String name, int maxstack, Kettle kettle)
+	private String drink;
+	private int needLeavesPerCup;
+	public ItemTeaLeaf(String name, int maxstack, String drink, int amount)
 	{
-		super(name, maxstack, CreativeTabsLoader.tabteastory);
-		this.kettle = kettle;
+		super(name, maxstack, CreativeTabsLoader.tabTeaStory);
+		this.drink = drink;
+		this.needLeavesPerCup = amount;
 	}
-
-	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	
+	public int getAmount()
 	{
-		if (worldIn.isRemote)
+		return this.needLeavesPerCup;
+	}
+	
+	public String getTeaDrinkName(Item tool)
+	{
+		if (this == ItemLoader.black_tea_leaf || this == ItemLoader.black_tea_bag)
 		{
-			return EnumActionResult.SUCCESS;
-		}
-		else if ((worldIn.getBlockState(pos).getBlock() == BlockLoader.empty_kettle) && (stack.stackSize >=8))
-		{
-			int meta = BlockLoader.empty_kettle.getMetaFromState(worldIn.getBlockState(pos));
-			if ((meta & 12) == 12)
+			if (tool != null && tool == Items.MILK_BUCKET)
 			{
-				worldIn.setBlockState(pos, kettle.getStateFromMeta(meta & 3));
-				if (!playerIn.capabilities.isCreativeMode)
-				{
-					stack.stackSize = stack.stackSize - 8;
-				}
-				return EnumActionResult.SUCCESS;
+				return "milk_tea";
 			}
-			else return EnumActionResult.PASS;
+			if (tool != null)
+			{
+				for (ItemStack stack : OreDictionary.getOres("cropLemon"))
+				{
+					if (stack.getItem().equals(tool))
+					{
+						return "lemon_tea";
+					}
+				}
+			}
 		}
-		else return EnumActionResult.PASS;
+		if (this == ItemLoader.matcha_powder)
+		{
+			if (tool != null && tool == ItemLoader.tea_whisk)
+			{
+				return this.drink;
+			}
+			else return null;
+		}
+		return this.drink;
+	}
+	
+	public boolean needSugar(String teaKind)
+	{
+		if (teaKind == "milk_tea" || teaKind == "lemon_tea")
+		{
+			return true;
+		}
+		else return false;
+	}
+	
+	public Item getTool(String teaKind)
+	{
+		if (teaKind == "matcha_drink")
+		{
+			return ItemLoader.tea_whisk;
+		}
+		if (teaKind == "milk_tea")
+		{
+			return Items.MILK_BUCKET;
+		}
+		if (teaKind == "lemon_tea")
+		{
+			return ItemLoader.lemon;
+		}
+		return null;
+	}
+	
+	public int getToolType(String teaKind)
+	{
+		if (teaKind == "matcha_drink")
+		{
+			return 2;
+		}
+		if (teaKind == "milk_tea")
+		{
+			return 3;
+		}
+		if (teaKind == "lemon_tea")
+		{
+			return 1;
+		}
+		return 0;
 	}
 }

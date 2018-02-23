@@ -3,7 +3,8 @@
         "0": "blocks/log_oak",
         "1": "blocks/cauldron_inner",
         "2": "blocks/cauldron_side",
-        "3": "teastory:blocks/rice"
+        "3": "teastory:blocks/rice",
+		"particle":"blocks/cauldron_side"
     },
     "elements": [
         {

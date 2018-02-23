@@ -2,8 +2,8 @@ package cateam.teastory.item;
 
 import javax.annotation.Nullable;
 
-import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.block.BlockLoader;
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.config.ConfigMain;
 import cateam.teastory.potion.PotionLoader;
 import net.minecraft.block.Block;
@@ -43,6 +43,7 @@ public class BlackTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
+		//TODO 更改茶具增益效果
 		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 0));
 		switch(tier)
 		{
@@ -113,12 +114,14 @@ public class BlackTea extends ItemTeaDrink
 	{
 		switch(meta)
 		{
-		case 1:
-			return BlockLoader.blacktea_stone_cup;
 		case 2:
-			return BlockLoader.blacktea_glass_cup;
+			return BlockLoader.blacktea_stone_cup;
 		case 3:
+			return BlockLoader.blacktea_glass_cup;
+		case 4:
 			return BlockLoader.blacktea_porcelain_cup;
+		case 5:
+			return BlockLoader.blacktea_zisha_cup;
 		default:
 			return BlockLoader.blacktea_wood_cup;
 		}

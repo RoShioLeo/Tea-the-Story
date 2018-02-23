@@ -1,6 +1,6 @@
 package cateam.teastory.item;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 

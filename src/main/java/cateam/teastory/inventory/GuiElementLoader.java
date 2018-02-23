@@ -2,6 +2,7 @@ package cateam.teastory.inventory;
 
 import cateam.teastory.TeaStory;
 import cateam.teastory.client.gui.GuiContainerTeaStove;
+import cateam.teastory.client.gui.GuiContainerTeaTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class GuiElementLoader implements IGuiHandler
 {
 	public static final int GUI_TEASTOVE = 1;
+	public static final int GUI_TEATABLE = 2;
 
 	public GuiElementLoader()
 	{
@@ -22,10 +24,12 @@ public class GuiElementLoader implements IGuiHandler
 	{
 		switch (ID)
 		{
-		case GUI_TEASTOVE:
-			return new ContainerTeaStove(player, world.getTileEntity(new BlockPos(x, y, z)));
-		default:
-			return null;
+			case GUI_TEASTOVE:
+				return new ContainerTeaStove(player, world.getTileEntity(new BlockPos(x, y, z)));
+			case GUI_TEATABLE:
+				return new ContainerTeaTable(player, world.getTileEntity(new BlockPos(x, y, z)));
+			default:
+				return null;
 		}
 	}
 
@@ -35,10 +39,12 @@ public class GuiElementLoader implements IGuiHandler
 	{
 		switch (ID)
 		{
-		case GUI_TEASTOVE:
-			return new GuiContainerTeaStove(new ContainerTeaStove(player, world.getTileEntity(new BlockPos(x, y, z))));
-		default:
-			return null;
+			case GUI_TEASTOVE:
+				return new GuiContainerTeaStove(new ContainerTeaStove(player, world.getTileEntity(new BlockPos(x, y, z))));
+			case GUI_TEATABLE:
+				return new GuiContainerTeaTable(new ContainerTeaTable(player, world.getTileEntity(new BlockPos(x, y, z))));
+			default:
+				return null;
 		}
 	}
 

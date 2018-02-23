@@ -7,11 +7,12 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import cateam.teastory.TeaStory;
-import cateam.teastory.achievement.AchievementLoader;
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.inventory.GuiElementLoader;
 import cateam.teastory.tileentity.TileEntityTeaStove;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -36,7 +37,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class TeaStove extends BlockContainer
+public class TeaStove extends BlockContainer implements ITileEntityProvider
 {
 	private final boolean isBurning;
 	private static boolean keepInventory;
@@ -130,7 +131,6 @@ public class TeaStove extends BlockContainer
 	public IBlockState getStateFromMeta(int meta)
 	{
 		EnumFacing facing = EnumFacing.getHorizontal(meta & 3);
-		Boolean burning = Boolean.valueOf((meta & 4) != 0);
 		return this.getDefaultState().withProperty(FACING, facing);
 	}
 

@@ -2,7 +2,7 @@ package cateam.teastory.item;
 
 import com.google.common.collect.Multimap;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,7 +30,7 @@ public class ItemSickle extends Item
 	{
         this.maxStackSize = 1;
         this.setMaxDamage(500);
-        this.setCreativeTab(CreativeTabsLoader.tabrice);
+        this.setCreativeTab(CreativeTabsLoader.tabRice);
         this.speed = theToolMaterial.getDamageVsEntity() + 0.5F;
         this.setUnlocalizedName("sickle");
 	}
@@ -63,6 +63,7 @@ public class ItemSickle extends Item
         return multimap;
     }
 	
+	@Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
 		return harvestCrops(stack, playerIn, worldIn, pos);
@@ -70,25 +71,28 @@ public class ItemSickle extends Item
     
     public static EnumActionResult harvestCrops(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos)
     {
-    	Block block = worldIn.getBlockState(pos).getBlock();
-    	if (block instanceof BlockCrops)
-		{
-			if(((BlockCrops) block).isMaxAge(worldIn.getBlockState(pos)))
-			{
-				worldIn.destroyBlock(pos, true);
-				if (stack.getItemDamage() < stack.getMaxDamage())
-				{
-					stack.setItemDamage(stack.getItemDamage() + 1);
-					harvestCrops(stack, playerIn, worldIn, pos.east());
-					harvestCrops(stack, playerIn, worldIn, pos.north());
-					harvestCrops(stack, playerIn, worldIn, pos.west());
-					harvestCrops(stack, playerIn, worldIn, pos.south());
-				}
-				else --stack.stackSize;
+    	if (worldIn.getChunkFromBlockCoords(pos).isLoaded())
+    	{
+    		Block block = worldIn.getBlockState(pos).getBlock();
+    		if (block instanceof BlockCrops)
+    		{
+    			if(((BlockCrops) block).isMaxAge(worldIn.getBlockState(pos)))
+    			{
+    				worldIn.destroyBlock(pos, true);
+    				if (stack.getItemDamage() < stack.getMaxDamage())
+    				{
+    					stack.setItemDamage(stack.getItemDamage() + 1);
+    					harvestCrops(stack, playerIn, worldIn, pos.east());
+    					harvestCrops(stack, playerIn, worldIn, pos.north());
+    					harvestCrops(stack, playerIn, worldIn, pos.west());
+    					harvestCrops(stack, playerIn, worldIn, pos.south());
+    				}
+    				else --stack.stackSize;
 				
-				return EnumActionResult.SUCCESS;
-			}
-		}
+    				return EnumActionResult.SUCCESS;
+    			}
+    		}
+    	}
     	return EnumActionResult.FAIL;
     }
 }

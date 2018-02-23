@@ -2,7 +2,7 @@ package cateam.teastory.block;
 
 import java.util.List;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -20,39 +20,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ClayKettle extends Kettle
 {
-	public ClayKettle()
+	public ClayKettle(String name)
 	{
-		super("clay_kettle", Material.CLAY);
+		super(name, Material.CLAY);
 		this.setHardness(0.6F);
 		this.setSoundType(SoundType.GROUND);
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		this.setCreativeTab(CreativeTabsLoader.tabDrink);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-	}
-
-	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, FACING);
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		EnumFacing facing = EnumFacing.getHorizontal(meta);
-		return this.getDefaultState().withProperty(FACING, facing);
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state)
-	{
-		return state.getValue(FACING).getHorizontalIndex();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
-	{
-		list.add(new ItemStack(itemIn, 1, 0));
 	}
 
 	@Override
@@ -62,12 +36,4 @@ public class ClayKettle extends Kettle
 		IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 		return origin.withProperty(FACING, placer.getHorizontalFacing().getOpposite());
 	}
-
-	@Override
-	public int damageDropped(IBlockState state)
-	{
-		return 0;
-	}
-
-	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 }

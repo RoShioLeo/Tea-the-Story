@@ -1,7 +1,7 @@
 package cateam.teastory.item;
 
 import cateam.teastory.block.BlockLoader;
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.BlockLiquid;
@@ -25,7 +25,7 @@ public class ItemRiceSeedling extends ItemSeeds
 	{
 		super(BlockLoader.rice_plant, Blocks.WATER);
 		this.setUnlocalizedName("item_rice_seedling");
-		this.setCreativeTab(CreativeTabsLoader.tabrice);
+		this.setCreativeTab(CreativeTabsLoader.tabRice);
 	}
 
 	@Override

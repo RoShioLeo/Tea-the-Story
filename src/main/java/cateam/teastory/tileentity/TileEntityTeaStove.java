@@ -29,11 +29,11 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 	protected int fuelTime = 0;
 	protected int fuelTotalTime = 1;
 	protected int hasWater = -1;
-	protected int steamTime = 0;
+	protected int steam = 0;
 
-	protected ItemStackHandler Inventory0 = new ItemStackHandler();
-	protected ItemStackHandler Inventory1 = new ItemStackHandler();
-	protected ItemStackHandler Inventory3 = new ItemStackHandler();
+	protected ItemStackHandler leafInventory = new ItemStackHandler();
+	protected ItemStackHandler fuelInventory = new ItemStackHandler();
+	protected ItemStackHandler outputInventory = new ItemStackHandler();
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
@@ -50,7 +50,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 	{
 		if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(capability))
 		{
-			T result = (T) (facing == EnumFacing.DOWN ? Inventory3 : facing == EnumFacing.UP ? Inventory0 : Inventory1);
+			T result = (T) (facing == EnumFacing.DOWN ? outputInventory : facing == EnumFacing.UP ? leafInventory : fuelInventory);
 			return result;
 		}
 		return super.getCapability(capability, facing);
@@ -60,101 +60,53 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
-		this.Inventory0.deserializeNBT(compound.getCompoundTag("Inventory0"));
-		this.Inventory1.deserializeNBT(compound.getCompoundTag("Inventory1"));
-		this.Inventory3.deserializeNBT(compound.getCompoundTag("Inventory3"));
+		this.leafInventory.deserializeNBT(compound.getCompoundTag("LeafInventory"));
+		this.fuelInventory.deserializeNBT(compound.getCompoundTag("FuelInventory"));
+		this.outputInventory.deserializeNBT(compound.getCompoundTag("OutputInventory"));
 		this.dryTime = compound.getInteger("DryTime");
 		this.fuelTime = compound.getInteger("FuelTime");
 		this.fuelTotalTime = compound.getInteger("FuelTotalTime");
-		this.steamTime = compound.getInteger("SteamTime");
+		this.steam = compound.getInteger("Steam");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
-		compound.setTag("Inventory0", this.Inventory0.serializeNBT());
-		compound.setTag("Inventory1", this.Inventory1.serializeNBT());
-		compound.setTag("Inventory3", this.Inventory3.serializeNBT());
+		compound.setTag("LeafInventory", this.leafInventory.serializeNBT());
+		compound.setTag("FuelInventory", this.fuelInventory.serializeNBT());
+		compound.setTag("OutputInventory", this.outputInventory.serializeNBT());
 		compound.setInteger("DryTime", this.dryTime);
 		compound.setInteger("FuelTime", this.fuelTime);
 		compound.setInteger("FuelTotalTime", this.fuelTotalTime);
-		compound.setInteger("SteamTime", this.steamTime);
+		compound.setInteger("Steam", this.steam);
 		return super.writeToNBT(compound);
 	}
 
 	@Override
 	public void update()
 	{
-		boolean flag = this.isBurning();
-		boolean flag1 = false;
-
-		if (this.isBurning())
+		//TODO 改用Recipe
+		ItemStack teaLeaf = leafInventory.extractItem(0, 1, true);
+		if (!this.getWorld().isRemote)
 		{
-			--this.fuelTime;
-		}
-
-		if(this.steamTime > 0)
-		{
-			--this.steamTime;
-		}
-
-		if(!this.worldObj.isRemote)
-		{
-			int teaLeafKind = 0;
-			ItemStack teaLeaf = Inventory0.extractItem(0, 1, true);
-			IBlockState state = this.worldObj.getBlockState(pos);
-			if((teaLeaf == null) || (teaLeaf.getItem() != ItemLoader.half_dried_tea))
+			if (teaLeaf != null && ((teaLeaf.getItem() == ItemLoader.half_dried_tea && outputInventory.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), true) == null) || (teaLeaf.getItem() == ItemLoader.tea_leaf && outputInventory.insertItem(0, new ItemStack(ItemLoader.white_tea_leaf), true) == null)))
 			{
-				this.dryTime = 0;
-			}
-			else
-			{
-				if((this.steamTime > 0) && (Inventory3.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), true) == null))
+				if (teaLeaf.getItem() == ItemLoader.half_dried_tea)
 				{
-					if(!this.isBurning())
+					if (this.hasWaterOrSteam())
 					{
-						this.hasFuel();
-						if(this.isBurning())
+						if (this.hasFuelOrIsBurning())
 						{
-							teaLeafKind = 2;
-						}
-					}
-					else teaLeafKind = 2;
-				}
-				else
-				{
-					if((this.hasWater() >= 1) && (this.hasWater() <= 3) && (Inventory3.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), true) == null))
-					{
-						if(this.isBurning())
-						{
-							this.steamTime = 1600;
-							this.worldObj.setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater - 1));
-							teaLeafKind = 2;
+							if (!(this.getSteam() > 0))
+							{
+								this.worldObj.setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater() - 1));
+								this.steam = this.getTotalSteam();
+							}
+							this.dryTime++;
 						}
 						else
 						{
-							this.hasFuel();
-							if(this.isBurning())
-							{
-								this.steamTime = 1600;
-								this.worldObj.setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater - 1));
-								teaLeafKind = 2;
-							}
-						}
-					}
-					else if((Inventory3.insertItem(0, new ItemStack(ItemLoader.dried_tea), true) == null) && (this.hasWater() <= 0))
-					{
-						if(this.isBurning())
-						{
-							teaLeafKind = 1;
-						}
-						else if(!isBurning())
-						{
-							this.hasFuel();
-							if(this.isBurning())
-							{
-								teaLeafKind = 1;
-							}
+							this.dryTime = 0;
 						}
 					}
 					else
@@ -162,69 +114,82 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 						this.dryTime = 0;
 					}
 				}
-			}
-			if((this.isBurning()) && (teaLeafKind != 0))
-			{
-				flag1 = true;
-				this.dryTime++;
-				if(this.dryTime >= 200)
+				else
 				{
-					this.dryTime = 0;
-					Inventory0.extractItem(0, 1, false);
-					switch(teaLeafKind)
+					if (this.hasFuelOrIsBurning())
 					{
-					case 1:
-						Inventory3.insertItem(0, new ItemStack(ItemLoader.dried_tea), false);
-						break;
-					case 2:
-						Inventory3.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), false);
-						break;
-					case 3:
-						break;
+						this.dryTime++;
+					}
+					else
+					{
+						this.dryTime = 0;
 					}
 				}
 			}
-			if(flag != this.isBurning())
+			else
 			{
-				TeaStove.setState(this.isBurning(), this.worldObj, this.pos);
+				this.dryTime = 0;
 			}
-		}
-
-		if (this.isBurning() || this.steamTime > 0)
-		{
+			this.fuelTime--;
+			if (this.fuelTime == 0)
+			{
+				TeaStove.setState(false, this.worldObj, this.pos);
+			}
+			if (this.dryTime == this.getTotalDryTime())
+			{
+				leafInventory.extractItem(0, 1, false);
+				if (teaLeaf.getItem() == ItemLoader.half_dried_tea)
+				{
+					outputInventory.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), false);
+					this.steam--;
+				}
+				else if (teaLeaf.getItem() == ItemLoader.tea_leaf)
+				{
+					outputInventory.insertItem(0, new ItemStack(ItemLoader.white_tea_leaf), false);
+				}
+				this.dryTime = 0;
+			}
 			this.markDirty();
 		}
 	}
 
-
-
-	public boolean isBurning()
+	public boolean hasFuelOrIsBurning()
 	{
-		return this.fuelTime > 0;
-	}
-
-	public void hasFuel()
-	{
-		ItemStack itemFuel = Inventory1.extractItem(0, 1, true);
-		if(isItemFuel(itemFuel))
+		if (this.isBurning())
 		{
-			this.fuelTime = getItemBurnTime(itemFuel);
-			this.fuelTotalTime = getItemBurnTime(itemFuel);
-			Item cItem = Inventory1.getStackInSlot(0).getItem().getContainerItem();
-			if (cItem != null)
-			{
-				Inventory1.extractItem(0, 1, false);
-				Inventory1.insertItem(0, new ItemStack(cItem, 1), false);
-			}
-			else Inventory1.extractItem(0, 1, false);
-
-			this.markDirty();
+			return true;
 		}
 		else
 		{
-			this.dryTime = 0;
-			this.fuelTime = 0;
-			this.markDirty();
+			ItemStack itemFuel = fuelInventory.extractItem(0, 1, true);
+			if(isItemFuel(itemFuel))
+			{
+				this.fuelTime = getItemBurnTime(itemFuel);
+				this.fuelTotalTime = getItemBurnTime(itemFuel);
+				Item cItem = fuelInventory.getStackInSlot(0).getItem().getContainerItem();
+				if (cItem != null)
+				{
+					fuelInventory.extractItem(0, 1, false);
+					fuelInventory.insertItem(0, new ItemStack(cItem, 1), false);
+				}
+				else fuelInventory.extractItem(0, 1, false);
+				this.markDirty();
+				TeaStove.setState(true, this.worldObj, this.pos);
+				return true;
+			}
+			else return false;
+		}
+	}
+	
+	public boolean isBurning()
+	{
+		if (this.fuelTime > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
@@ -282,7 +247,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 
 	public int getTotalDryTime()
 	{
-		return 200;
+		return 1200;
 	}
 
 	public int getFuelTime()
@@ -295,9 +260,9 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 		return this.fuelTotalTime;
 	}
 
-	public int getTotalSteamTime()
+	public int getTotalSteam()
 	{
-		return 1600;
+		return 32;
 	}
 
 	public int hasWater()
@@ -310,15 +275,31 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 		else this.hasWater = -1;
 		return this.hasWater;
 	}
-
-	public int getSteamTime()
+	
+	public boolean hasWaterOrSteam()
 	{
-		return this.steamTime;
+		if (this.getSteam() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			if (this.hasWater() > 0)
+			{
+				return true;
+			}
+			else return false;
+		}
 	}
 
-	public void setSteamTime(int steamTime)
+	public int getSteam()
 	{
-		this.steamTime = steamTime;
+		return this.steam;
+	}
+
+	public void setSteam(int steam)
+	{
+		this.steam = steam;
 	}
 
 	@Override

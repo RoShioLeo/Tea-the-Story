@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.item.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;

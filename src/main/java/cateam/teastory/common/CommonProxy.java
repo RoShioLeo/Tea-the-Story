@@ -1,14 +1,12 @@
 package cateam.teastory.common;
 
-import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.block.BlockLoader;
 import cateam.teastory.config.ConfigMain;
-import cateam.teastory.crafting.CraftingLoader;
-import cateam.teastory.creativetab.CreativeTabsLoader;
 import cateam.teastory.entity.EntityLoader;
 import cateam.teastory.inventory.GuiElementLoader;
 import cateam.teastory.item.ItemLoader;
 import cateam.teastory.potion.PotionLoader;
+import cateam.teastory.recipe.RecipeLoader;
 import cateam.teastory.tileentity.TileEntityLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -22,6 +20,7 @@ public class CommonProxy
 		new CreativeTabsLoader(event);
 		new ItemLoader(event);
 		new BlockLoader(event);
+		new OreDictionaryLoader(event);
 		new PotionLoader(event);
 		new EntityLoader();
 		new TileEntityLoader(event);
@@ -29,6 +28,7 @@ public class CommonProxy
 
 	public void init(FMLInitializationEvent event)
 	{
+		new RecipeLoader();
 		new CraftingLoader();
 		new AchievementLoader();
 		new EventLoader();

@@ -2,9 +2,14 @@ package cateam.teastory.tileentity;
 
 import cateam.teastory.block.BlockLoader;
 import cateam.teastory.item.BlackTea;
-import cateam.teastory.item.BurntGreenTea;
 import cateam.teastory.item.GreenTea;
+import cateam.teastory.item.LemonTea;
 import cateam.teastory.item.MatchaDrink;
+import cateam.teastory.item.MilkTea;
+import cateam.teastory.item.OolongTea;
+import cateam.teastory.item.PuerTea;
+import cateam.teastory.item.WhiteTea;
+import cateam.teastory.item.YellowTea;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -21,7 +26,8 @@ public class TileEntityTeaDrink extends TileEntity
 		return this.drunk;
 	}
 
-	public void setDrink(int drink) {
+	public void setDrink(int drink)
+	{
 		this.drunk = drink;
 	}
 
@@ -48,24 +54,41 @@ public class TileEntityTeaDrink extends TileEntity
 				BlackTea.addPotion(meta, world, player);
 				break;
 			case 4:
-				player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100, 0));
+				MilkTea.addPotion(meta, world, player);
 				break;
-			default:
-				BurntGreenTea.addPotion(meta, world, player);
+			case 5:
+				LemonTea.addPotion(meta, world, player);
+				break;
+			case 6:
+				YellowTea.addPotion(meta, world, player);
+				break;
+			case 7:
+				WhiteTea.addPotion(meta, world, player);
+				break;
+			case 8:
+				OolongTea.addPotion(meta, world, player);
+				break;
+			case 9:
+				PuerTea.addPotion(meta, world, player);
+				break;
 			}
 			switch (meta)
 			{
-			case 1:
-				world.setBlockState(pos, BlockLoader.stone_cup.getDefaultState());
+			case 0:
+				world.setBlockState(pos, BlockLoader.wood_cup.getDefaultState());
 				break;
 			case 2:
-				world.setBlockState(pos, BlockLoader.glass_cup.getDefaultState());
+				world.setBlockState(pos, BlockLoader.stone_cup.getDefaultState());
 				break;
 			case 3:
+				world.setBlockState(pos, BlockLoader.glass_cup.getDefaultState());
+				break;
+			case 4:
 				world.setBlockState(pos, BlockLoader.porcelain_cup.getDefaultState());
 				break;
-			default:
-				world.setBlockState(pos, BlockLoader.wood_cup.getDefaultState());
+			case 5:
+				world.setBlockState(pos, BlockLoader.zisha_cup.getDefaultState());
+				break;
 			}
 			world.playSound(null, pos, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 			return true;

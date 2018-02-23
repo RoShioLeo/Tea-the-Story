@@ -1,11 +1,32 @@
 {
-    "variants": {
-	    "step=0": { "model":"teastory:tea_drying_pan" },
-        "step=1": { "model":"teastory:tea_drying_pan2" },
-		"step=2": { "model":"teastory:tea_drying_pan3" },
-		"step=3": { "model":"teastory:tea_drying_pan4" },
-		"step=4": { "model":"teastory:tea_drying_pan5" },
-		"step=5": { "model":"teastory:tea_drying_pan6" },
-        "step=6": { "model":"teastory:tea_drying_pan7" }
-    }
+    "multipart": [
+        {
+			"when": { "step": "0" },
+            "apply": { "model": "teastory:tea_drying_pan"}
+        },
+        {
+			"when": { "step": "1" },
+            "apply": { "model": "teastory:tea_drying_pan2"}
+        },
+        {
+			"when": { "step": "2" },
+            "apply": { "model": "teastory:tea_drying_pan3"}
+        },
+        {
+			"when": { "step": "3" },
+            "apply": { "model": "teastory:tea_drying_pan4"}
+        },
+		{
+			"when": { "step": "4" },
+            "apply": { "model": "teastory:tea_drying_pan5"}
+        },
+		{
+			"when": { "step": "5" },
+            "apply": { "model": "teastory:tea_drying_pan6"}
+        },
+		{
+			"when": { "step": "6" },
+            "apply": { "model": "teastory:tea_drying_pan7"}
+        }
+    ]
 }

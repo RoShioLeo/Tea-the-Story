@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +29,7 @@ public class ShennongRuler extends ItemSword
 	public ShennongRuler()
 	{
 		super(SHENNONGTOOL);
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("shennong_ruler");
 	}

@@ -1,0 +1,16 @@
+{
+	"multipart": [
+        {   "when": { "facing": "north" },
+            "apply": { "model": "teastory:matcha_drink_porcelain_kettle", "uvlock": true }
+        },
+        {   "when": { "facing": "east" },
+            "apply": { "model": "teastory:matcha_drink_porcelain_kettle", "y": 90, "uvlock": true }
+        },
+        {   "when": { "facing": "south" },
+            "apply": { "model": "teastory:matcha_drink_porcelain_kettle", "y": 180, "uvlock": true }
+        },
+        {   "when": { "facing": "west" },
+            "apply": { "model": "teastory:matcha_drink_porcelain_kettle", "y": 270, "uvlock": true }
+        }
+    ]
+}

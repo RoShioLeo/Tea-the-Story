@@ -2,7 +2,7 @@ package cateam.teastory.item;
 
 import javax.annotation.Nullable;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
@@ -16,7 +16,7 @@ public class TSItemFoodWithBowl extends ItemFood
 	{
 		super(amount, saturation, false);
 		this.setMaxStackSize(1);
-		this.setCreativeTab(CreativeTabsLoader.tabrice);
+		this.setCreativeTab(CreativeTabsLoader.tabRice);
 		this.setUnlocalizedName(name);
 	}
 	

@@ -2,7 +2,7 @@ package cateam.teastory.item;
 
 import java.util.List;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,7 +11,7 @@ public class TeaBag extends TSItem
 {
 	public TeaBag()
 	{
-		super("tea_bag", 64, CreativeTabsLoader.tabteastory);
+		super("tea_bag", 64, CreativeTabsLoader.tabTeaStory);
 		this.setHasSubtypes(true);
 		this.setContainerItem(ItemLoader.tea_residue);
 	}

@@ -5,7 +5,7 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 
 import cateam.teastory.block.BlockLoader;
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -20,7 +20,7 @@ public class TeaSeeds extends ItemSeeds
 	{
 		super(BlockLoader.teaplant, Blocks.FARMLAND);
 		this.setUnlocalizedName("tea_seeds");
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
 	}
 
 	@Override

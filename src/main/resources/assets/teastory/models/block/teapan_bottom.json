@@ -1,4 +1,5 @@
 {
+	"ambientocclusion": false,
     "textures": {
         "side": "blocks/planks_oak",
         "top": "blocks/planks_oak",

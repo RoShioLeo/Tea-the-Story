@@ -1,6 +1,7 @@
 package cateam.teastory.inventory;
 
 import cateam.teastory.item.ItemLoader;
+import cateam.teastory.item.ItemTeaLeaf;
 import cateam.teastory.tileentity.TileEntityTeaStove;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -21,30 +22,28 @@ public class ContainerTeaStove extends Container
 	private IItemHandler leafItem;
 	private IItemHandler fuelItem;
 	private IItemHandler driedItem;
-	private IItemHandler matchaItem;
 	protected int dryTime = 0;
 	protected int fuelTime = 0;
 	protected int fuelTotalTime = 0;
 	protected int hasWater = -1;
-	protected int steamTime = 0;
+	protected int steam = 0;
 
 	public ContainerTeaStove(EntityPlayer player, TileEntity tileEntity)
 	{
 		super();
 		this.leafItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
 		this.fuelItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
-		this.matchaItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
-		this.driedItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+		this.driedItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
 		this.addSlotToContainer(new SlotItemHandler(this.leafItem, 0, 53, 20)
 		{
 			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
-				return stack != null && stack.getItem() == ItemLoader.half_dried_tea && super.isItemValid(stack);
+				return stack.getItem() == ItemLoader.tea_leaf || stack.getItem() == ItemLoader.half_dried_tea;
 			}
 		});
 		this.addSlotToContainer(new SlotItemHandler(this.fuelItem, 0, 53, 56));
-		this.addSlotToContainer(new SlotItemHandler(this.matchaItem, 0, 116, 38)
+		this.addSlotToContainer(new SlotItemHandler(this.driedItem, 0, 116, 38)
 		{
 			@Override
 			public boolean isItemValid(ItemStack stack)
@@ -133,7 +132,7 @@ public class ContainerTeaStove extends Container
 		this.fuelTime = tileEntity.getFuelTime();
 		this.fuelTotalTime = tileEntity.getFuelTotalTime();
 		this.hasWater = tileEntity.hasWater();
-		this.steamTime = tileEntity.getSteamTime();
+		this.steam = tileEntity.getSteam();
 
 		for (IContainerListener i : this.listeners)
 		{
@@ -141,7 +140,7 @@ public class ContainerTeaStove extends Container
 			i.sendProgressBarUpdate(this, 1, this.fuelTime);
 			i.sendProgressBarUpdate(this, 2, this.fuelTotalTime);
 			i.sendProgressBarUpdate(this, 3, this.hasWater);
-			i.sendProgressBarUpdate(this, 4, this.steamTime);
+			i.sendProgressBarUpdate(this, 4, this.steam);
 		}
 	}
 
@@ -163,7 +162,7 @@ public class ContainerTeaStove extends Container
 		case 3:
 			this.hasWater = data;
 		case 4:
-			this.steamTime = data;
+			this.steam = data;
 		default:
 			break;
 		}
@@ -194,13 +193,13 @@ public class ContainerTeaStove extends Container
 		return this.hasWater;
 	}
 
-	public int getSteamTime()
+	public int getSteam()
 	{
-		return this.steamTime;
+		return this.steam;
 	}
 
-	public int getTotalSteamTime()
+	public int getTotalSteam()
 	{
-		return this.tileEntity.getTotalSteamTime();
+		return this.tileEntity.getTotalSteam();
 	}
 }

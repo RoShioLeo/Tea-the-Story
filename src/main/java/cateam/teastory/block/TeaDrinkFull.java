@@ -54,11 +54,8 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 			return new ItemStack(ItemLoader.matcha_drink, 1, meta);
 		case 3:
 			return new ItemStack(ItemLoader.black_tea, 1, meta);
-		case 4:
-			return new ItemStack(ItemLoader.hot_water, 1, meta);
-		default:
-			return new ItemStack(ItemLoader.burnt_green_tea, 1, meta);
 		}
+		return new ItemStack(ItemLoader.green_tea, 1, meta);
 	}
 
 	@Override
@@ -75,11 +72,6 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 		case 3:
 			this.teaDrink = ItemLoader.black_tea;
 			break;
-		case 4:
-			this.teaDrink = ItemLoader.hot_water;
-			break;
-		default:
-			this.teaDrink = ItemLoader.burnt_green_tea;
 		}
 		if (playerIn.isSneaking())
 		{
@@ -90,90 +82,6 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 		}
 		else
 		{
-			if((heldItem != null) && (this.teaDrink == ItemLoader.hot_water))
-			{
-				if((heldItem.getItem() == ItemLoader.matcha) && heldItem.stackSize >= 3)
-				{
-					switch (meta)
-					{
-					case 1:
-						worldIn.setBlockState(pos, BlockLoader.matchadrink_stone_cup.getDefaultState());
-						break;
-					case 2:
-						worldIn.setBlockState(pos, BlockLoader.matchadrink_glass_cup.getDefaultState());
-						break;
-					case 3:
-						worldIn.setBlockState(pos, BlockLoader.matchadrink_porcelain_cup.getDefaultState());
-						break;
-					default:
-						worldIn.setBlockState(pos, BlockLoader.matchadrink_wood_cup.getDefaultState());
-						break;
-					}
-					if (!playerIn.capabilities.isCreativeMode)
-					{
-						heldItem.stackSize = heldItem.stackSize - 3;
-					}
-					if (playerIn instanceof EntityPlayerMP)
-					{
-						((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-					}
-					return true;
-				}
-				else if (heldItem.getItem() == ItemLoader.tea_bag)
-				{
-					if (heldItem.getItemDamage() == 0)
-					{
-						switch (meta)
-						{
-						case 1:
-							worldIn.setBlockState(pos, BlockLoader.greentea_stone_cup.getDefaultState());
-							break;
-						case 2:
-							worldIn.setBlockState(pos, BlockLoader.greentea_glass_cup.getDefaultState());
-							break;
-						case 3:
-							worldIn.setBlockState(pos, BlockLoader.greentea_porcelain_cup.getDefaultState());
-							break;
-						default:
-							worldIn.setBlockState(pos, BlockLoader.greentea_wood_cup.getDefaultState());
-							break;
-						}
-						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.tea_residue, 1, 0));
-						if (!playerIn.capabilities.isCreativeMode)
-						{
-							heldItem.stackSize--;
-						}
-					}
-					else
-					{
-						switch (meta)
-						{
-						case 1:
-							worldIn.setBlockState(pos, BlockLoader.blacktea_stone_cup.getDefaultState());
-							break;
-						case 2:
-							worldIn.setBlockState(pos, BlockLoader.blacktea_glass_cup.getDefaultState());
-							break;
-						case 3:
-							worldIn.setBlockState(pos, BlockLoader.blacktea_porcelain_cup.getDefaultState());
-							break;
-						default:
-							worldIn.setBlockState(pos, BlockLoader.blacktea_wood_cup.getDefaultState());
-							break;
-						}
-						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.tea_residue, 1, 0));
-						if (!playerIn.capabilities.isCreativeMode)
-						{
-							heldItem.stackSize--;
-						}
-					}
-					if (playerIn instanceof EntityPlayerMP)
-					{
-						((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-					}
-					return true;
-				}
-			}
 			TileEntity te = worldIn.getTileEntity(pos);
 			if(te instanceof TileEntityTeaDrink)
 			{
@@ -201,11 +109,6 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 		case 3:
 			drops.add(new ItemStack(ItemLoader.black_tea, 1, meta));
 			break;
-		case 4:
-			drops.add(new ItemStack(ItemLoader.hot_water, 1, meta));
-			break;
-		default:
-			drops.add(new ItemStack(ItemLoader.burnt_green_tea, 1, meta));
 		}
 		return drops;
 	}

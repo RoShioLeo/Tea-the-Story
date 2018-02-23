@@ -6,8 +6,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import cateam.teastory.achievement.AchievementLoader;
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.AchievementLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.helper.EntironmentHelper;
 import cateam.teastory.item.ItemLoader;
 import net.minecraft.block.Block;
@@ -43,7 +43,7 @@ public class Barrel extends Block
 		this.setTickRandomly(true);
 		this.setUnlocalizedName("barrel");
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
-		this.setCreativeTab(CreativeTabsLoader.tabteastory);
+		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
 	}
 
 	@Override
@@ -94,18 +94,10 @@ public class Barrel extends Block
 	}
 
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-			int meta, EntityLivingBase placer)
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		((EntityPlayer) placer).addStat(AchievementLoader.barrel);
 		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
-	{
-		list.add(new ItemStack(itemIn, 1, 0));
 	}
 
 	@Override
@@ -137,8 +129,7 @@ public class Barrel extends Block
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		int step = getMetaFromState(worldIn.getBlockState(pos));
 		if (worldIn.isRemote)

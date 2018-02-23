@@ -3,7 +3,7 @@ package cateam.teastory.item;
 import java.util.List;
 
 import cateam.teastory.block.BlockLoader;
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
@@ -32,7 +32,7 @@ public class ItemCup extends TSItem
 {
 	public ItemCup()
 	{
-		super("cup", 64, CreativeTabsLoader.tabteastory);
+		super("cup", 64, CreativeTabsLoader.tabDrink);
 		this.setHasSubtypes(true);
 	}
 
@@ -42,16 +42,19 @@ public class ItemCup extends TSItem
 		String name;
 		switch(stack.getItemDamage())
 		{
-		case 1:
+		case 2:
 			name = "stone";
 			break;
-		case 2:
+		case 3:
 			name = "glass";
 			break;
-		case 3:
+		case 4:
 			name = "porcelain";
 			break;
-		default:
+		case 5:
+			name = "zisha";
+			break;
+		default: // 0
 			name = "wood";
 		}
 		return super.getUnlocalizedName() + "." + name;
@@ -61,21 +64,24 @@ public class ItemCup extends TSItem
 	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
 	{
 		subItems.add(new ItemStack(itemIn, 1, 0));
-		subItems.add(new ItemStack(itemIn, 1, 1));
 		subItems.add(new ItemStack(itemIn, 1, 2));
 		subItems.add(new ItemStack(itemIn, 1, 3));
+		subItems.add(new ItemStack(itemIn, 1, 4));
+		subItems.add(new ItemStack(itemIn, 1, 5));
 	}
 
 	public Block getBlock(int meta)
 	{
 		switch(meta)
 		{
-		case 1:
-			return BlockLoader.stone_cup;
 		case 2:
-			return BlockLoader.glass_cup;
+			return BlockLoader.stone_cup;
 		case 3:
+			return BlockLoader.glass_cup;
+		case 4:
 			return BlockLoader.porcelain_cup;
+		case 5:
+			return BlockLoader.zisha_cup;
 		default:
 			return BlockLoader.wood_cup;
 		}
@@ -117,73 +123,6 @@ public class ItemCup extends TSItem
 		else
 		{
 			return EnumActionResult.PASS;
-		}
-	}
-
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
-	{
-		RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
-		ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onBucketUse(playerIn, worldIn, itemStackIn, raytraceresult);
-		if (ret != null) return ret;
-
-		if (raytraceresult == null)
-		{
-			return new ActionResult(EnumActionResult.PASS, itemStackIn);
-		}
-		else if (raytraceresult.typeOfHit != RayTraceResult.Type.BLOCK)
-		{
-			return new ActionResult(EnumActionResult.PASS, itemStackIn);
-		}
-		else
-		{
-			BlockPos blockpos = raytraceresult.getBlockPos();
-
-			if (!worldIn.isBlockModifiable(playerIn, blockpos))
-			{
-				return new ActionResult(EnumActionResult.FAIL, itemStackIn);
-			}
-			else
-			{
-				if (!playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStackIn))
-				{
-					return new ActionResult(EnumActionResult.FAIL, itemStackIn);
-				}
-				else
-				{
-					IBlockState iblockstate = worldIn.getBlockState(blockpos);
-					Material material = iblockstate.getMaterial();
-
-					if (material == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0)
-					{
-						worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
-						playerIn.addStat(StatList.getObjectUseStats(this));
-						playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
-						return new ActionResult(EnumActionResult.SUCCESS, this.turnCupIntoItem(itemStackIn, playerIn, new ItemStack(ItemLoader.cold_water, 1, itemStackIn.getItemDamage())));
-					}
-					else
-					{
-						return new ActionResult(EnumActionResult.FAIL, itemStackIn);
-					}
-				}
-			}
-		}
-	}
-
-	protected ItemStack turnCupIntoItem(ItemStack stackIn, EntityPlayer player, ItemStack stack)
-	{
-		if(!player.capabilities.isCreativeMode)
-			--stackIn.stackSize;
-
-		if (stackIn.stackSize <= 0)
-		{
-			return stack;
-		}
-		else
-		{
-			ItemHandlerHelper.giveItemToPlayer(player, stack);
-
-			return stackIn;
 		}
 	}
 

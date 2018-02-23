@@ -30,7 +30,7 @@ public class TileEntityTeaDryingPan extends TileEntity implements ITickable
 	public void update()
 	{
 		meta = this.getBlockMetadata();
-		if (meta > 0 && meta < 6)
+		if ((meta > 0 && meta < 6) || (meta > 8 && meta < 14))
 		{
 
 			if (++time >= totalTime)

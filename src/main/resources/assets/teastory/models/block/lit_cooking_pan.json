@@ -1,11 +1,13 @@
 {
+	"ambientocclusion": false,
     "textures": {
         "0": "blocks/log_oak",
         "1": "blocks/cauldron_inner",
         "2": "blocks/cauldron_side",
         "3": "teastory:blocks/rice",
         "4": "blocks/planks_oak",
-		"5": "blocks/water_still"
+		"5": "blocks/water_still",
+		"particle":"blocks/cauldron_side"
     },
     "elements": [
         {

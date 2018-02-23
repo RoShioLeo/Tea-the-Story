@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.block.Barrel;
 import cateam.teastory.block.Teapan;
 import cateam.teastory.block.Teaplant;
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.AchievementLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.helper.EntironmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,7 +26,7 @@ public class SoilDetectionMeter extends TSItem
 {
 	public SoilDetectionMeter()
 	{
-		super("soil_detection_meter", 1, CreativeTabsLoader.tabteastory);
+		super("soil_detection_meter", 1, CreativeTabsLoader.tabTeaStory);
 	}
 
 	@Override

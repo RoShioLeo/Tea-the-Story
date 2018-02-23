@@ -2,7 +2,7 @@ package cateam.teastory.item;
 
 import cateam.teastory.block.BlockLoader;
 import cateam.teastory.block.StrawBlanket;
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -21,7 +21,7 @@ public class ItemStrawBlanket extends TSItem
 {
 	public ItemStrawBlanket()
 	{
-		super("item_straw_blanket", 64, CreativeTabsLoader.tabrice);
+		super("item_straw_blanket", 64, CreativeTabsLoader.tabRice);
 	}
 	
 	@Override

@@ -3,7 +3,6 @@ package cateam.teastory.common;
 import java.util.List;
 
 import cateam.teastory.TeaStory;
-import cateam.teastory.achievement.AchievementLoader;
 import cateam.teastory.block.BlockLoader;
 import cateam.teastory.block.StrawBlanket;
 import cateam.teastory.config.ConfigMain;
@@ -132,11 +131,7 @@ public class EventLoader
 	@SubscribeEvent
 	public void onPlayerItemSmelted(PlayerEvent.ItemSmeltedEvent event)
 	{
-		if(event.smelting.getItem() == ItemLoader.burnt_tea)
-		{
-			event.player.addStat(AchievementLoader.burntLeaf);
-		}
-		else if(event.smelting.getItem() == new ItemStack(BlockLoader.empty_kettle, 1, 0).getItem() && event.smelting.getItemDamage() == 0)
+		if(event.smelting.getItem() == new ItemStack(BlockLoader.empty_porcelain_kettle, 1, 0).getItem() && event.smelting.getItemDamage() == 0)
 		{
 			event.player.addStat(AchievementLoader.kettle);
 		}
@@ -209,7 +204,7 @@ public class EventLoader
             ItemStack stack = state.getBlock().getItem(world, pos, state);
 
             BlockPos pos1 = pos.offset(state.getValue(StrawBlanket.FACING).getOpposite());
-            world.destroyBlock(pos1, false);
+            world.setBlockToAir(pos1);
         }
 	}
 	

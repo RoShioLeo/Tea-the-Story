@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.entity.EntityStrawCushion;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -28,7 +28,7 @@ public class StrawCushion extends Block
 		super(Material.GRASS);
 		this.setSoundType(SoundType.PLANT);
 		this.setHardness(0.2F);
-		this.setCreativeTab(CreativeTabsLoader.tabrice);
+		this.setCreativeTab(CreativeTabsLoader.tabRice);
 		this.setUnlocalizedName("straw_cushion");
 	}
 	
@@ -53,7 +53,7 @@ public class StrawCushion extends Block
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if(sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0.125F))
+		if(sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0))
 		{
 			worldIn.updateComparatorOutputLevel(pos, this);
 			return true;

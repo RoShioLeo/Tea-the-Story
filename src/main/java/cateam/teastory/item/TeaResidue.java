@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import cateam.teastory.creativetab.CreativeTabsLoader;
+import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -22,7 +22,7 @@ public class TeaResidue extends TSItem
 {
 	public TeaResidue()
 	{
-		super("tea_residue", 64, CreativeTabsLoader.tabteastory);
+		super("tea_residue", 64, CreativeTabsLoader.tabDrink);
 		this.setHasSubtypes(true);
 	}
 
@@ -40,7 +40,21 @@ public class TeaResidue extends TSItem
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
-		return super.getUnlocalizedName() + "." + (stack.getItemDamage() == 0 ? "green" : "black");
+		switch (stack.getItemDamage())
+		{
+		case 1:
+			return super.getUnlocalizedName() + "." + "black";
+		case 2:
+			return super.getUnlocalizedName() + "." + "yellow";
+		case 3:
+			return super.getUnlocalizedName() + "." + "white";
+		case 4:
+			return super.getUnlocalizedName() + "." + "oolong";
+		case 5:
+			return super.getUnlocalizedName() + "." + "puer";
+		default:
+			return super.getUnlocalizedName() + "." + "green";
+		}
 	}
 
 	@Override
@@ -48,6 +62,10 @@ public class TeaResidue extends TSItem
 	{
 		subItems.add(new ItemStack(itemIn, 1, 0));
 		subItems.add(new ItemStack(itemIn, 1, 1));
+		subItems.add(new ItemStack(itemIn, 1, 2));
+		subItems.add(new ItemStack(itemIn, 1, 3));
+		subItems.add(new ItemStack(itemIn, 1, 4));
+		subItems.add(new ItemStack(itemIn, 1, 5));
 	}
 
 	@Override

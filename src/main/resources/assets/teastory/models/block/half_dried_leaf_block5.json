@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "teastory:blocks/half_dried_leaf_block5"
+    }
+}
