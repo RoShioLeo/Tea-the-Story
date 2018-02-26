@@ -3,6 +3,7 @@ package cateam.teastory.block;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.helper.EntironmentHelper;
 import cateam.teastory.item.ItemLoader;
@@ -13,8 +14,11 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -59,6 +63,16 @@ public class HalfDriedLeafBlock extends Block
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { STEP });
+	}
+	
+	@Override
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	{
+		if (placer instanceof EntityPlayer)
+		{
+			((EntityPlayer) placer).addStat(AchievementLoader.halfDriedLeafBlock);
+		}
+		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 	
 	@Override

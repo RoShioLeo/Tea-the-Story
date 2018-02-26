@@ -7,12 +7,14 @@ import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.config.ConfigMain;
 import cateam.teastory.potion.PotionLoader;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFire;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -36,50 +38,40 @@ public class LemonTea extends ItemTeaDrink
 	{
 		if(!world.isRemote)
 		{
-			int tier = itemstack.getItemDamage();
+			int tier = itemstack.getItemDamage() / 2;
 			addPotion(tier, world, entityplayer);
 		}
 	}
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		//TODO 更改茶具增益效果
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 0));
-		switch(tier)
+		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));
+		entityplayer.addStat(AchievementLoader.lemonDrink);
+		if (entityplayer.isBurning())
 		{
-		case 1:
+			entityplayer.extinguish();
+			entityplayer.addStat(AchievementLoader.outfire);
+		}
+		entityplayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ConfigMain.lemonTeaDrink_Time / (tier + 1), tier));
+		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.lemonTeaDrink_Time / (tier + 1), 0));
+		for (int x= -1 - tier; x<=1 + tier; x++)
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 1.25F), 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 3.75F), 0));
-			return;
+			for (int y= 0; y<=2 + 2 * tier; y++)
+			{
+				for (int z= -1 - tier; z<=1 + tier; z++)
+				{
+					if (entityplayer.canPlayerEdit(entityplayer.getPosition().add(x, y, z).down(), EnumFacing.UP, null))
+					{
+						if (world.getBlockState(entityplayer.getPosition().add(x, y, z)).getBlock() instanceof BlockFire)
+						{
+							world.setBlockToAir(entityplayer.getPosition().add(x, y, z));
+							world.playSound(null, entityplayer.getPosition().add(x, y, z), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+							entityplayer.addStat(AchievementLoader.outfire);
+						}
+					}
+				}
+			}
 		}
-		case 2:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.5F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 1.5F), 1));
-			return;
-		}
-		case 3:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.75F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 2.25F), 1));
-			return;
-		}
-		default:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, ConfigMain.greenTeaDrink_Time, 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, ConfigMain.greenTeaDrink_Time * 3, 0));
-			return;
-		}
-		}
-	}
-
-	@Override
-	@Nullable
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
-	{
-		((EntityPlayer) entityLiving).addStat(AchievementLoader.greenTea);
-		return super.onItemUseFinish(stack, worldIn, entityLiving);
 	}
 
 	public Block getBlock(int meta)

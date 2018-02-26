@@ -1,5 +1,10 @@
 package cateam.teastory.item;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import cateam.teastory.block.BlockLoader;
@@ -12,6 +17,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -36,50 +42,32 @@ public class MilkTea extends ItemTeaDrink
 	{
 		if(!world.isRemote)
 		{
-			int tier = itemstack.getItemDamage();
+			int tier = itemstack.getItemDamage() / 2;
 			addPotion(tier, world, entityplayer);
 		}
 	}
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		//TODO 更改茶具增益效果
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 0));
-		switch(tier)
+		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));
+		entityplayer.addStat(AchievementLoader.milkDrink);
+		Collection<PotionEffect> effectList = entityplayer.getActivePotionEffects();
+		List<PotionEffect> list = new ArrayList<>();
+		for (PotionEffect effect : effectList)
 		{
-		case 1:
+			if (effect.getPotion().isBadEffect())
+			{
+				list.add(effect);
+			}
+		}
+		for (PotionEffect effect : list)
 		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 1.25F), 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 3.75F), 0));
-			return;
+			entityplayer.removePotionEffect(effect.getPotion());
+			entityplayer.addStat(AchievementLoader.cure);
 		}
-		case 2:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.5F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 1.5F), 1));
-			return;
-		}
-		case 3:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.75F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 2.25F), 1));
-			return;
-		}
-		default:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, ConfigMain.greenTeaDrink_Time, 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, ConfigMain.greenTeaDrink_Time * 3, 0));
-			return;
-		}
-		}
-	}
-
-	@Override
-	@Nullable
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
-	{
-		((EntityPlayer) entityLiving).addStat(AchievementLoader.greenTea);
-		return super.onItemUseFinish(stack, worldIn, entityLiving);
+        
+		entityplayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ConfigMain.milkTeaDrink_Time / (tier + 1), tier));
+		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.milkTeaDrink_Time / (tier + 1), 0));
 	}
 
 	public Block getBlock(int meta)

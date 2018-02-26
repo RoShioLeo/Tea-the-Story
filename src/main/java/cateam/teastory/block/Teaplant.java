@@ -85,8 +85,7 @@ public class Teaplant extends BlockCrops
 		{
 			if ((!worldIn.isRemote) && (state.getValue(AGE).intValue() == 7))
 			{
-				playerIn.addStat(AchievementLoader.teaLeaf);
-				playerIn.addStat(AchievementLoader.teaPlant);
+				playerIn.addStat(AchievementLoader.teaPick);
 				worldIn.setBlockState(pos, BlockLoader.teaplant.getStateFromMeta(0));
 				worldIn.spawnEntityInWorld(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemLoader.tea_leaf, playerIn.getRNG().nextInt(5) + 4)));
 				return true;

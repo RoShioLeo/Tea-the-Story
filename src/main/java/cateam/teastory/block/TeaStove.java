@@ -155,10 +155,12 @@ public class TeaStove extends BlockContainer implements ITileEntityProvider
 	}
 
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-			int meta, EntityLivingBase placer)
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		((EntityPlayer) placer).addStat(AchievementLoader.teaStove);
+		if (placer instanceof EntityPlayer)
+		{
+			((EntityPlayer) placer).addStat(AchievementLoader.teaStove);
+		}
 		IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 		return origin.withProperty(FACING, placer.getHorizontalFacing().getOpposite());
 	}

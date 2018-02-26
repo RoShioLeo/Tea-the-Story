@@ -9,15 +9,22 @@ public class PotionLoader
 	public static Potion PotionAgility;
 	public static Potion PotionLifeDrain;
 	public static Potion PotionPhotosynthesis;
+	public static Potion PotionDefence;
+	public static Potion PotionExcitement;
 
 	public PotionLoader(FMLPreInitializationEvent event)
 	{
 		PotionAgility = new PotionAgility();
 		PotionLifeDrain = new PotionLifeDrain();
 		PotionPhotosynthesis = new PotionPhotosynthesis();
+		PotionDefence = new PotionDefence();
+		PotionExcitement = new PotionExcitement();
+		
 		register(PotionAgility);
 		register(PotionLifeDrain);
 		register(PotionPhotosynthesis);
+		register(PotionDefence);
+		register(PotionExcitement);
 	}
 
 	public void register(Potion potion)

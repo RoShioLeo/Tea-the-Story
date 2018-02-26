@@ -1,6 +1,7 @@
 package cateam.teastory.item;
 
 import cateam.teastory.block.BlockLoader;
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
@@ -75,7 +76,7 @@ public class ItemRiceSeedling extends ItemSeeds
 					}
 				}
 			}
-
+			playerIn.addStat(AchievementLoader.transplanting);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
 		}
 	}

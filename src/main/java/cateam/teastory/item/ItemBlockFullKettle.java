@@ -8,6 +8,7 @@ import com.google.common.base.Function;
 
 import cateam.teastory.block.BlockLoader;
 import cateam.teastory.block.FullKettle;
+import cateam.teastory.common.AchievementLoader;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -72,6 +73,7 @@ public class ItemBlockFullKettle extends ItemBlock
 		int meta = stack.getItemDamage();
 		if (block == BlockLoader.wood_cup)
 		{
+			playerIn.addStat(AchievementLoader.getDrink);
 			switch(drink)
 			{
 			case 1:
@@ -114,6 +116,7 @@ public class ItemBlockFullKettle extends ItemBlock
 		}
 		else if(block == BlockLoader.stone_cup)
 		{
+			playerIn.addStat(AchievementLoader.getDrink);
 			switch(drink)
 			{
 			case 1:
@@ -156,6 +159,7 @@ public class ItemBlockFullKettle extends ItemBlock
 		}
 		else if(block == BlockLoader.glass_cup)
 		{
+			playerIn.addStat(AchievementLoader.getDrink);
 			switch(drink)
 			{
 			case 1:
@@ -198,6 +202,7 @@ public class ItemBlockFullKettle extends ItemBlock
 		}
 		else if(block == BlockLoader.porcelain_cup)
 		{
+			playerIn.addStat(AchievementLoader.getDrink);
 			switch(drink)
 			{
 			case 1:
@@ -240,6 +245,7 @@ public class ItemBlockFullKettle extends ItemBlock
 		}
 		else if(block == BlockLoader.zisha_cup)
 		{
+			playerIn.addStat(AchievementLoader.getDrink);
 			switch(drink)
 			{
 			case 1:

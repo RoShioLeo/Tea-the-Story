@@ -43,43 +43,10 @@ public class WhiteTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		//TODO 更改茶具增益效果
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 0));
-		switch(tier)
-		{
-		case 1:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 1.25F), 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 3.75F), 0));
-			return;
-		}
-		case 2:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.5F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 1.5F), 1));
-			return;
-		}
-		case 3:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, (int)(ConfigMain.greenTeaDrink_Time * 0.75F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, (int)(ConfigMain.greenTeaDrink_Time * 2.25F), 1));
-			return;
-		}
-		default:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, ConfigMain.greenTeaDrink_Time, 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionAgility, ConfigMain.greenTeaDrink_Time * 3, 0));
-			return;
-		}
-		}
-	}
-
-	@Override
-	@Nullable
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
-	{
-		((EntityPlayer) entityLiving).addStat(AchievementLoader.greenTea);
-		return super.onItemUseFinish(stack, worldIn, entityLiving);
+		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 3));
+		entityplayer.addPotionEffect(new PotionEffect(MobEffects.HASTE, ConfigMain.whiteTeaDrink_Time / (tier + 1), tier));
+		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.whiteTeaDrink_Time / (tier + 1), 0));
+		entityplayer.addStat(AchievementLoader.greenDrink);
 	}
 
 	public Block getBlock(int meta)

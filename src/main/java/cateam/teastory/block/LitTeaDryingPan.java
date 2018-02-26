@@ -206,10 +206,12 @@ public class LitTeaDryingPan extends BlockContainer
 			{
 				if (!state.getValue(TYPE).booleanValue())
 				{
+					playerIn.addStat(AchievementLoader.driedTea);
 					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
 				}
 				else
 				{
+					playerIn.addStat(AchievementLoader.oolongTea);
 					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.oolong_tea_leaf, 8));
 				}
 			}
@@ -222,6 +224,10 @@ public class LitTeaDryingPan extends BlockContainer
 			if(worldIn.isRemote)
 			{
 				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.7"));
+			}
+			else
+			{
+				playerIn.addStat(AchievementLoader.burntLeaf);
 			}
 			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getDefaultState());
 			worldIn.removeTileEntity(pos);

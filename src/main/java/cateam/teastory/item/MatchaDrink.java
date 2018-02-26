@@ -42,41 +42,9 @@ public class MatchaDrink extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		switch(tier)
-		{
-		case 1:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, (int)(ConfigMain.greenTeaDrink_Time * 1.25F), 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, (int)(ConfigMain.greenTeaDrink_Time * 3.75F), 0));
-			return;
-		}
-		case 2:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, (int)(ConfigMain.greenTeaDrink_Time * 0.5F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, (int)(ConfigMain.greenTeaDrink_Time * 1.5F), 1));
-			return;
-		}
-		case 3:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, (int)(ConfigMain.greenTeaDrink_Time * 0.75F), 1));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, (int)(ConfigMain.greenTeaDrink_Time * 2.25F), 1));
-			return;
-		}
-		default:
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, ConfigMain.greenTeaDrink_Time, 0));
-			entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, ConfigMain.greenTeaDrink_Time * 3, 0));
-			return;
-		}
-		}
-	}
-
-	@Override
-	@Nullable
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
-	{
-		((EntityPlayer) entityLiving).addStat(AchievementLoader.matchaDrink);
-		return super.onItemUseFinish(stack, worldIn, entityLiving);
+		entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, ConfigMain.matchaDrink_Time / (tier + 1), tier));
+		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.matchaDrink_Time / (tier + 1), 0));
+		entityplayer.addStat(AchievementLoader.matchaDrink);
 	}
 
 	public Block getBlock(int meta)

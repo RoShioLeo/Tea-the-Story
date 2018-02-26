@@ -28,7 +28,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 {
 	public int drink;
-	public Item teaDrink;
 
 	public TeaDrinkFull(float hardness, String name, Material materialIn, SoundType soundType, int drink, int level)
 	{
@@ -46,14 +45,29 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 	@SideOnly(Side.CLIENT)
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
+		return getDrink();
+	}
+	
+	public ItemStack getDrink()
+	{
 		switch (drink)
 		{
-		case 1:
-			return new ItemStack(ItemLoader.green_tea, 1, meta);
 		case 2:
 			return new ItemStack(ItemLoader.matcha_drink, 1, meta);
 		case 3:
 			return new ItemStack(ItemLoader.black_tea, 1, meta);
+		case 4:
+			return new ItemStack(ItemLoader.milk_tea, 1, meta);
+		case 5:
+			return new ItemStack(ItemLoader.lemon_tea, 1, meta);
+		case 6:
+			return new ItemStack(ItemLoader.yellow_tea, 1, meta);
+		case 7:
+			return new ItemStack(ItemLoader.white_tea, 1, meta);
+		case 8:
+			return new ItemStack(ItemLoader.oolong_tea, 1, meta);
+		case 9:
+			return new ItemStack(ItemLoader.puer_tea, 1, meta);
 		}
 		return new ItemStack(ItemLoader.green_tea, 1, meta);
 	}
@@ -61,21 +75,9 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		switch (drink)
-		{
-		case 1:
-			this.teaDrink = ItemLoader.green_tea;
-			break;
-		case 2:
-			this.teaDrink = ItemLoader.matcha_drink;
-			break;
-		case 3:
-			this.teaDrink = ItemLoader.black_tea;
-			break;
-		}
 		if (playerIn.isSneaking())
 		{
-			ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(teaDrink, 1, meta));
+			ItemHandlerHelper.giveItemToPlayer(playerIn, getDrink());
 			worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 			worldIn.removeTileEntity(pos);
 			return true;
@@ -108,6 +110,24 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 			break;
 		case 3:
 			drops.add(new ItemStack(ItemLoader.black_tea, 1, meta));
+			break;
+		case 4:
+			drops.add(new ItemStack(ItemLoader.milk_tea, 1, meta));
+			break;
+		case 5:
+			drops.add(new ItemStack(ItemLoader.lemon_tea, 1, meta));
+			break;
+		case 6:
+			drops.add(new ItemStack(ItemLoader.yellow_tea, 1, meta));
+			break;
+		case 7:
+			drops.add(new ItemStack(ItemLoader.white_tea, 1, meta));
+			break;
+		case 8:
+			drops.add(new ItemStack(ItemLoader.oolong_tea, 1, meta));
+			break;
+		case 9:
+			drops.add(new ItemStack(ItemLoader.puer_tea, 1, meta));
 			break;
 		}
 		return drops;

@@ -178,6 +178,7 @@ public class TeaDryingPan extends Block
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.wooden_lid, 1));
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.rice_ball, 2));
 			}
+			playerIn.addStat(AchievementLoader.cook);
 			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getDefaultState());
 			return true;
 		}
@@ -207,7 +208,10 @@ public class TeaDryingPan extends Block
 	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		((EntityPlayer) placer).addStat(AchievementLoader.teaDryingPan);
+		if (placer instanceof EntityPlayer)
+		{
+			((EntityPlayer) placer).addStat(AchievementLoader.teaDryingPan);
+		}
 		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 }

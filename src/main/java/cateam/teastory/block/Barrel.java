@@ -96,7 +96,10 @@ public class Barrel extends Block
 	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		((EntityPlayer) placer).addStat(AchievementLoader.barrel);
+		if (placer instanceof EntityPlayer)
+		{
+			((EntityPlayer) placer).addStat(AchievementLoader.barrel);
+		}
 		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 
@@ -180,7 +183,7 @@ public class Barrel extends Block
 				{
 					if (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >= 8)
 					{
-						worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(1));
+						worldIn.setBlockState(pos, this.getStateFromMeta(1));
 						if (!playerIn.capabilities.isCreativeMode)
 							heldItem.stackSize = heldItem.stackSize - 8;
 						return true;
@@ -197,13 +200,13 @@ public class Barrel extends Block
 				{
 					if (playerIn.isSneaking())
 					{
-						worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
+						worldIn.setBlockState(pos, this.getDefaultState());
 						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
 						return true;
 					} 
 					else
 					{
-						worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(2));
+						worldIn.setBlockState(pos, this.getStateFromMeta(2));
 						return true;
 					}
 				} 
@@ -216,7 +219,7 @@ public class Barrel extends Block
 				{
 					if (playerIn.isSneaking())
 					{
-						worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
+						worldIn.setBlockState(pos, this.getDefaultState());
 						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
 						return true;
 					} 
@@ -230,8 +233,9 @@ public class Barrel extends Block
 				{
 					if (playerIn.isSneaking())
 					{
-						worldIn.setBlockState(pos, BlockLoader.barrel.getStateFromMeta(0));
+						worldIn.setBlockState(pos, this.getDefaultState());
 						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.black_tea_leaf, 8));
+						playerIn.addStat(AchievementLoader.blackTea);
 						return true;
 					} 
 					else

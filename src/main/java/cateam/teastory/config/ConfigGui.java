@@ -13,8 +13,8 @@ public class ConfigGui extends GuiConfig
 	public ConfigGui(GuiScreen parentScreen)
 	{ 
 		super(parentScreen, Arrays.asList(
-				(IConfigElement) new ConfigElement(ConfigMain.config.getCategory("General")),
-				(IConfigElement) new ConfigElement(ConfigMain.config.getCategory("Drink"))
+				new ConfigElement(ConfigMain.config.getCategory("General")),
+				new ConfigElement(ConfigMain.config.getCategory("Drink"))
 		), TeaStory.MODID, TeaStory.MODID, false, false, "Tea: The Story", "Config Interface");
 	}
 }

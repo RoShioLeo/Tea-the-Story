@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.entity.EntityStrawCushion;
 import net.minecraft.block.Block;
@@ -68,6 +69,7 @@ public class StrawCushion extends Block
 			EntityStrawCushion nemb = new EntityStrawCushion(world, x, y, z, yOffset);
 			world.spawnEntityInWorld(nemb);
 			entityPlayer.startRiding(nemb);
+			entityPlayer.addStat(AchievementLoader.strawCushion);
 		}
 		return true;
 	}

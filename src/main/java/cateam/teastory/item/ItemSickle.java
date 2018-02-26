@@ -2,6 +2,7 @@ package cateam.teastory.item;
 
 import com.google.common.collect.Multimap;
 
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -66,10 +67,10 @@ public class ItemSickle extends Item
 	@Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-		return harvestCrops(stack, playerIn, worldIn, pos);
+		return harvestCrops(stack, playerIn, worldIn, pos, 0);
     }
     
-    public static EnumActionResult harvestCrops(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos)
+    public static EnumActionResult harvestCrops(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, int time)
     {
     	if (worldIn.getChunkFromBlockCoords(pos).isLoaded())
     	{
@@ -79,16 +80,17 @@ public class ItemSickle extends Item
     			if(((BlockCrops) block).isMaxAge(worldIn.getBlockState(pos)))
     			{
     				worldIn.destroyBlock(pos, true);
-    				if (stack.getItemDamage() < stack.getMaxDamage())
+    				playerIn.addStat(AchievementLoader.riceSeeds);
+    				if (stack.getItemDamage() < stack.getMaxDamage() && time < 8)
     				{
     					stack.setItemDamage(stack.getItemDamage() + 1);
-    					harvestCrops(stack, playerIn, worldIn, pos.east());
-    					harvestCrops(stack, playerIn, worldIn, pos.north());
-    					harvestCrops(stack, playerIn, worldIn, pos.west());
-    					harvestCrops(stack, playerIn, worldIn, pos.south());
+    					harvestCrops(stack, playerIn, worldIn, pos.east(), time + 1);
+    					harvestCrops(stack, playerIn, worldIn, pos.north(), time + 1);
+    					harvestCrops(stack, playerIn, worldIn, pos.west(), time + 1);
+    					harvestCrops(stack, playerIn, worldIn, pos.south(), time + 1);
     				}
     				else --stack.stackSize;
-				
+    				playerIn.addStat(AchievementLoader.sickle);
     				return EnumActionResult.SUCCESS;
     			}
     		}

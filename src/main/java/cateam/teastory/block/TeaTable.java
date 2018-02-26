@@ -3,6 +3,7 @@ package cateam.teastory.block;
 import javax.annotation.Nullable;
 
 import cateam.teastory.TeaStory;
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.inventory.GuiElementLoader;
 import cateam.teastory.tileentity.TileEntityTeaTable;
@@ -11,6 +12,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -67,6 +69,16 @@ public class TeaTable extends Block implements ITileEntityProvider
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
+	}
+	
+	@Override
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	{
+		if (placer instanceof EntityPlayer)
+		{
+			((EntityPlayer) placer).addStat(AchievementLoader.teaTable);
+		}
+		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 	
 	@Override

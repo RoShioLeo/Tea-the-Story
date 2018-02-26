@@ -4,6 +4,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import cateam.teastory.TeaStory;
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.common.CreativeTabsLoader;
 import cateam.teastory.item.ItemCup;
 import cateam.teastory.item.ItemLoader;
@@ -80,6 +81,7 @@ public class FullKettle extends Kettle
 			{
 				if (heldItem.getItem() instanceof ItemCup)
 				{
+					playerIn.addStat(AchievementLoader.getDrink);
 					if (!playerIn.capabilities.isCreativeMode)
 					{
 						heldItem.stackSize--;

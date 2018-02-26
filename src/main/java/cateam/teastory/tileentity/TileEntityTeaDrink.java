@@ -90,7 +90,7 @@ public class TileEntityTeaDrink extends TileEntity
 				world.setBlockState(pos, BlockLoader.zisha_cup.getDefaultState());
 				break;
 			}
-			world.playSound(null, pos, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+			world.playSound(player, pos, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 			return true;
 		}
 		return false;

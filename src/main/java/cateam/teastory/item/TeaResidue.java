@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
+import cateam.teastory.common.AchievementLoader;
 import cateam.teastory.common.CreativeTabsLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -75,6 +76,7 @@ public class TeaResidue extends TSItem
 		{
 			if (!worldIn.isRemote)
 			{
+				playerIn.addStat(AchievementLoader.teaResidue);
 				worldIn.playEvent(2005, pos, 0);
 			}
 			return EnumActionResult.SUCCESS;

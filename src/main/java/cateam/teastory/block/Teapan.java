@@ -157,7 +157,10 @@ public class Teapan extends Block
 	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		((EntityPlayer) placer).addStat(AchievementLoader.teaBasket);
+		if (placer instanceof EntityPlayer)
+		{
+			((EntityPlayer) placer).addStat(AchievementLoader.teaBasket);
+		}
 		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 
@@ -277,13 +280,14 @@ public class Teapan extends Block
 			else if ((step >= 9) && (step <= 11))
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
+				playerIn.addStat(AchievementLoader.driedTea);
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
 				return true;
 			}
 			else if (step == 12) 
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-				//playerIn.addStat(AchievementLoader.wetTea);
+				playerIn.addStat(AchievementLoader.yellowTea);
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.yellow_tea_leaf, 8));
 				return true;
 			}
