@@ -89,9 +89,9 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 		ItemStack teaLeaf = leafInventory.extractItem(0, 1, true);
 		if (!this.getWorld().isRemote)
 		{
-			if (teaLeaf != null && ((teaLeaf.getItem() == ItemLoader.half_dried_tea && outputInventory.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), true) == null) || (teaLeaf.getItem() == ItemLoader.tea_leaf && outputInventory.insertItem(0, new ItemStack(ItemLoader.white_tea_leaf), true) == null)))
+			if (teaLeaf != null && ((teaLeaf.getItem() == ItemLoader.tea_leaf && outputInventory.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), true) == null) || (teaLeaf.getItem() == ItemLoader.half_dried_tea && outputInventory.insertItem(0, new ItemStack(ItemLoader.white_tea_leaf), true) == null)))
 			{
-				if (teaLeaf.getItem() == ItemLoader.half_dried_tea)
+				if (teaLeaf.getItem() == ItemLoader.tea_leaf)
 				{
 					if (this.hasWaterOrSteam())
 					{
@@ -130,20 +130,23 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 			{
 				this.dryTime = 0;
 			}
-			this.fuelTime--;
 			if (this.fuelTime == 0)
 			{
 				TeaStove.setState(false, this.worldObj, this.pos);
 			}
+			if (this.fuelTime > 0)
+			{
+				this.fuelTime--;
+			}
 			if (this.dryTime == this.getTotalDryTime())
 			{
 				leafInventory.extractItem(0, 1, false);
-				if (teaLeaf.getItem() == ItemLoader.half_dried_tea)
+				if (teaLeaf.getItem() == ItemLoader.tea_leaf)
 				{
 					outputInventory.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), false);
 					this.steam--;
 				}
-				else if (teaLeaf.getItem() == ItemLoader.tea_leaf)
+				else if (teaLeaf.getItem() == ItemLoader.half_dried_tea)
 				{
 					outputInventory.insertItem(0, new ItemStack(ItemLoader.white_tea_leaf), false);
 				}

@@ -204,14 +204,21 @@ public class Teapan extends Block
 			{
 			case 0:
 				if ((heldItem == null)
-						|| heldItem.stackSize < 8
 						|| (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.teapan
 						&& heldItem.getItem() != ItemLoader.half_dried_tea
 						&& heldItem.getItem() != ItemLoader.tea_leaf 
 						&& heldItem.getItem() != ItemLoader.wet_tea
 						&& heldItem.getItem() != ItemLoader.dried_tea))
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.teapan"));
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.teapan.tips"));
+				}
+				else if (heldItem.stackSize < 8
+						&& (heldItem.getItem() == ItemLoader.half_dried_tea
+						|| heldItem.getItem() == ItemLoader.tea_leaf 
+						|| heldItem.getItem() == ItemLoader.wet_tea
+						|| heldItem.getItem() == ItemLoader.dried_tea))
+				{
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.teapan.notenough"));
 				}
 			}
 			return true;

@@ -22,11 +22,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemLoader
 {
 	//茶叶
-	public static Item tea_leaf = new ItemHasTooltip("tea_leaf", 64, CreativeTabsLoader.tabTeaStory);
-	public static Item half_dried_tea = new ItemHasTooltip("half_dried_tea", 64, CreativeTabsLoader.tabTeaStory);
-	public static Item matcha_leaf = new ItemHasTooltip("matcha_leaf", 64, CreativeTabsLoader.tabTeaStory);
-	public static Item wet_tea = new ItemHasTooltip("wet_tea", 64, CreativeTabsLoader.tabTeaStory);
-	public static Item broken_tea = new ItemHasTooltip("broken_tea", 64, CreativeTabsLoader.tabTeaStory);
+	public static Item tea_leaf = new TSItem("tea_leaf", 64, CreativeTabsLoader.tabTeaStory);
+	public static Item half_dried_tea = new HalfDriedTeaLeaf();
+	public static Item matcha_leaf = new TSItem("matcha_leaf", 64, CreativeTabsLoader.tabTeaStory);
+	public static Item wet_tea = new TSItem("wet_tea", 64, CreativeTabsLoader.tabTeaStory);
+	public static Item broken_tea = new TSItem("broken_tea", 64, CreativeTabsLoader.tabTeaStory);
 	public static Item tea_seeds = new TeaSeeds();
 	public static Item tea_residue = new TeaResidue();
 	
@@ -67,12 +67,14 @@ public class ItemLoader
 	public static Item pot_iron = new ItemEmptyPot("pot_iron");
 	public static Item pot_porcelain = new ItemEmptyPot("pot_porcelain");
 	public static Item pot_zisha = new ItemEmptyPot("pot_zisha");
+	public static Item pot_clay = new TSItem("pot_clay", 64, CreativeTabsLoader.tabDrink);
+	public static Item pot_zisha_clay = new TSItem("pot_zisha_clay", 64, CreativeTabsLoader.tabDrink);
 	public static Item cw_pot_stone = new TSItem("cold_water_pot_stone", 1, CreativeTabsLoader.tabDrink);
 	public static Item cw_pot_iron = new TSItem("cold_water_pot_iron", 64, CreativeTabsLoader.tabDrink);
 	public static Item cw_pot_porcelain = new TSItem("cold_water_pot_porcelain", 64, CreativeTabsLoader.tabDrink);
 	public static Item cw_pot_zisha = new TSItem("cold_water_pot_zisha", 64, CreativeTabsLoader.tabDrink);
-	public static Item clay_cup = new ItemHasTooltip("clay_cup", 64, CreativeTabsLoader.tabDrink);
-	public static Item zisha_clay_cup = new ItemHasTooltip("zisha_clay_cup", 64, CreativeTabsLoader.tabDrink);
+	public static Item clay_cup = new TSItem("clay_cup", 64, CreativeTabsLoader.tabDrink);
+	public static Item zisha_clay_cup = new TSItem("zisha_clay_cup", 64, CreativeTabsLoader.tabDrink);
 	public static Item cup = new ItemCup();
 	public static Item tea_whisk = new TSItem("tea_whisk", 1, CreativeTabsLoader.tabDrink).setMaxDamage(64);
 	
@@ -98,8 +100,7 @@ public class ItemLoader
 	public static ItemFood matcha_cookie = new MatchaCookie();
 
 	//其他工具
-	public static Item sieve = new TSItem("sieve", 64, CreativeTabsLoader.tabTeaStory);
-	public static Item mortar_and_pestle = new MortarAndPestle();
+	public static Item wooden_mortar_and_pestle = new MortarAndPestle("wooden_mortar_and_pestle", 128);
 	public static Item soil_detection_meter = new SoilDetectionMeter();
 	public static Item straw_blanket = new ItemStrawBlanket();
 	public static Item sickle = new  ItemSickle();
@@ -131,8 +132,7 @@ public class ItemLoader
 		register(white_tea_bag);
 		register(oolong_tea_bag);
 		register(puer_tea_bag);
-		register(sieve);
-		register(mortar_and_pestle);
+		register(wooden_mortar_and_pestle);
 		register(soil_detection_meter);
 		register(clay_cup);
 		register(green_tea);
@@ -169,6 +169,8 @@ public class ItemLoader
 		register(pot_iron);
 		register(pot_porcelain);
 		register(pot_zisha);
+		register(pot_clay);
+		register(pot_zisha_clay);
 		register(cw_pot_zisha);
 		register(cw_pot_porcelain);
 		register(cw_pot_iron);
@@ -214,11 +216,10 @@ public class ItemLoader
 		registerRender(black_tea, 3, "black_tea_glass");
 		registerRender(black_tea, 4, "black_tea_porcelain");
 		registerRender(black_tea, 5, "black_tea_zisha");
-		registerRender(sieve);
 		registerRender(wet_tea);
 		registerRender(broken_tea);
 		registerRender(matcha_powder);
-		registerRender(mortar_and_pestle);
+		registerRender(wooden_mortar_and_pestle);
 		registerRender(soil_detection_meter);
 		registerRender(black_tea_leaf);
 		registerRender(matcha_leaf);
@@ -306,6 +307,8 @@ public class ItemLoader
 		registerRender(pot_iron);
 		registerRender(pot_porcelain);
 		registerRender(pot_zisha);
+		registerRender(pot_clay);
+		registerRender(pot_zisha_clay);
 		registerRender(cw_pot_zisha);
 		registerRender(cw_pot_porcelain);
 		registerRender(cw_pot_iron);

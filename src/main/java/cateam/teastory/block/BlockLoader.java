@@ -38,7 +38,7 @@ public class BlockLoader
 	
 	public static Kettle clay_kettle = new ClayKettle("clay_kettle");
 	public static Kettle zisha_clay_kettle = new ClayKettle("zisha_clay_kettle");
-	public static Kettle empty_porcelain_kettle = new EmptyKettle("porcelain_kettle", 3);
+	public static Kettle empty_porcelain_kettle = new EmptyKettle("porcelain_kettle", 4);
 	public static Kettle green_tea_porcelain_kettle = new FullKettle("porcelain_kettle", "green_tea", "empty_porcelain_kettle", true, false);
 	public static Kettle matcha_drink_porcelain_kettle = new FullKettle("porcelain_kettle", "matcha_drink", "empty_porcelain_kettle", true, false);
 	public static Kettle black_tea_porcelain_kettle = new FullKettle("porcelain_kettle", "black_tea", "empty_porcelain_kettle", true, false);
@@ -49,7 +49,7 @@ public class BlockLoader
 	public static Kettle oolong_tea_porcelain_kettle = new FullKettle("porcelain_kettle", "oolong_tea", "empty_porcelain_kettle", true, false);
 	public static Kettle puer_tea_porcelain_kettle = new FullKettle("porcelain_kettle", "puer_tea", "empty_porcelain_kettle", true, false);
 	
-	public static Kettle empty_zisha_kettle = new EmptyKettle("zisha_kettle", 3);
+	public static Kettle empty_zisha_kettle = new EmptyKettle("zisha_kettle", 8);
 	public static Kettle green_tea_zisha_kettle = new FullKettle("zisha_kettle", "green_tea", "empty_zisha_kettle", false, false);
 	public static Kettle green_tea_zisha_kettle2 = new FullKettle("zisha_kettle", "green_tea", "green_tea_zisha_kettle", true, true);
 	public static Kettle matcha_drink_zisha_kettle = new FullKettle("zisha_kettle", "matcha_drink", "empty_zisha_kettle", false, false);

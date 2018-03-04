@@ -37,7 +37,7 @@ public class FullKettle extends Kettle
 	private String drink;
 	private String kettleKind;
 	private String nextKettle;
-	private boolean full;
+	public boolean full;
 	public FullKettle(String kettleKind, String drink, String nextKettle, boolean tabs, boolean a2)
 	{
 		super(a2 ? drink + "_" + kettleKind + "2" : drink + "_" + kettleKind, Material.ROCK);
@@ -50,11 +50,6 @@ public class FullKettle extends Kettle
 		this.full = tabs;
 		this.kettleKind = kettleKind;
 		this.nextKettle = nextKettle;
-	}
-	
-	public boolean hasNextKettle()
-	{
-		return this.nextKettle != "empty_porcelain_kettle";
 	}
 	
 	public int getMaxCapacity()
@@ -89,9 +84,9 @@ public class FullKettle extends Kettle
 					int meta = heldItem.getItemDamage();
 					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(this.getDrink(this), 1, meta));
 					int meta2 = getMetaFromState(worldIn.getBlockState(pos));
-					if ((meta2 >> 2) == this.getMaxCapacity())
+					if ((meta2 >> 2) == 3)
 					{
-						worldIn.setBlockState(pos, Block.getBlockFromName(TeaStory.MODID + ":" + nextKettle).getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)));
+						worldIn.setBlockState(pos, getNextKettle().getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)));
 					}
 					else
 					{

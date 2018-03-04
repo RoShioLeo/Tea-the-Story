@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "teastory:items/wooden_mortar_and_pestle"
+    }
+}

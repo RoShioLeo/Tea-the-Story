@@ -39,6 +39,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class EventLoader
 {
@@ -65,17 +66,10 @@ public class EventLoader
 					{
 						EntityItem entityitem = new EntityItem(event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ItemLoader.tea_seeds, 1));
 						event.getWorld().spawnEntityInWorld(entityitem);
-						return;
 					}
-					else if(rand <= 2)
+					else if(rand >= 248)
 					{
 						EntityItem entityitem = new EntityItem(event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ItemLoader.lemon, 1));
-						event.getWorld().spawnEntityInWorld(entityitem);
-						return;
-					}
-					else if(rand <= 6)
-					{
-						EntityItem entityitem = new EntityItem(event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ItemLoader.broken_tea, 1));
 						event.getWorld().spawnEntityInWorld(entityitem);
 					}
 				}
@@ -154,10 +148,6 @@ public class EventLoader
 				event.player.addStat(AchievementLoader.glassCup);
 			}
 		}
-		else if(event.crafting.getItem() == ItemLoader.matcha_powder)
-		{
-			event.player.addStat(AchievementLoader.matchaPowder);
-		}
 		else if(event.crafting.getItem() == ItemLoader.empty_tea_bag)
 		{
 			event.player.addStat(AchievementLoader.emptyBag);
@@ -170,17 +160,6 @@ public class EventLoader
 				|| event.crafting.getItem() == ItemLoader.puer_tea_bag)
 		{
 			event.player.addStat(AchievementLoader.teaBag);
-		}
-		else if(event.crafting.getItem() == ItemLoader.pot_stone
-				|| event.crafting.getItem() == ItemLoader.pot_iron
-				|| event.crafting.getItem() == ItemLoader.pot_porcelain
-				|| event.crafting.getItem() == ItemLoader.pot_zisha)
-		{
-			event.player.addStat(AchievementLoader.pot);
-		}
-		else if(event.crafting.getItem() == ItemLoader.straw_rope)
-		{
-			event.player.addStat(AchievementLoader.strawRope);
 		}
 	}
 
@@ -259,7 +238,7 @@ public class EventLoader
 		
 		for (EntityItem entityItem : itemList)
 		{
-			if (ItemLoader.rice.equals(entityItem.getEntityItem().getItem()) && world.isMaterialInBB(entityItem.getEntityBoundingBox(), Material.WATER))
+			if (OreDictionary.containsMatch(false, OreDictionary.getOres("cropRice"), entityItem.getEntityItem()) && world.isMaterialInBB(entityItem.getEntityBoundingBox(), Material.WATER))
 			{
 				entityItem.setEntityItemStack(new ItemStack(ItemLoader.washed_rice, entityItem.getEntityItem().stackSize));
 			}

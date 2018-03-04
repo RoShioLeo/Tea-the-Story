@@ -103,7 +103,7 @@ public class LitCookingPan extends BlockContainer
 			{
 				seconds = ((TileEntityCookingPan) te).getRemainingTime() / 20;
 			}
-			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.8", seconds));
+			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.cooking_pan.rice", seconds));
 		}
 		return true;
 	}

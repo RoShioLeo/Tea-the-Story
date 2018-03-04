@@ -138,7 +138,7 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(heldItem != null)
 			{
-				if(heldItem.stackSize >=8)
+				if(heldItem.stackSize >= 8)
 				{
 					if (heldItem.getItem() == ItemLoader.tea_leaf)
 					{
@@ -160,9 +160,14 @@ public class LitTeaDryingPan extends BlockContainer
 					}
 				}
 			}
-			if(worldIn.isRemote)
+			if (worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.2"));
+				if (heldItem != null && heldItem.stackSize < 8 && (heldItem.getItem() == ItemLoader.tea_leaf || heldItem.getItem() == ItemLoader.half_dried_tea))
+				{
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.notenough"));
+					return true;
+				}
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.leaf"));
 			}
 			return true;
 		}
@@ -170,7 +175,7 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.3", seconds));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.time.1", seconds));
 			}
 			return true;
 		}
@@ -179,7 +184,7 @@ public class LitTeaDryingPan extends BlockContainer
 			worldIn.setBlockState(pos, this.getStateFromMeta(meta + 1));
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.4", seconds));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.speedup", seconds));
 			}
 			return true;
 		}
@@ -187,7 +192,7 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.5", seconds));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.time.2", seconds));
 			}
 			return true;
 		}
@@ -196,7 +201,7 @@ public class LitTeaDryingPan extends BlockContainer
 			worldIn.setBlockState(pos, getStateFromMeta(meta + 1));
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.6"));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.dried"));
 			}
 			return true;
 		}
@@ -223,7 +228,7 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.7"));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.failure"));
 			}
 			else
 			{

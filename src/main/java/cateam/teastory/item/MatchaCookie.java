@@ -19,6 +19,6 @@ public class MatchaCookie extends ItemFood
 	@Override
 	protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
 	{
-		entityplayer.addStat(AchievementLoader.matchaCookie);
+		
 	}
 }

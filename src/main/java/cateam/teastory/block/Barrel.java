@@ -139,22 +139,30 @@ public class Barrel extends Block
 		{
 			if (step == 0)
 			{
-				if ((heldItem == null) || !(heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >= 8)
+				if ((heldItem == null) || (heldItem.getItem() != ItemLoader.half_dried_tea)
 						&& (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.barrel))
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.1"));
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.tips"));
 				} 
+				else if ((heldItem != null) && (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize < 8))
+				{
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.notenough"));
+				}
 				else if ((heldItem != null) && (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >= 8))
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.2"));
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.knead"));
 				}
 				return true;
 			} 
+			else if (step == 1)
+			{
+				
+			}
 			else if ((step >= 2) && (step <= 4))
 			{
 				if (!playerIn.isSneaking())
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.3"));
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.fermentation.1"));
 				}
 				return true;
 			} 
@@ -162,7 +170,7 @@ public class Barrel extends Block
 			{
 				if (!(playerIn.isSneaking()))
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.4"));
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.fermentation.2"));
 				}
 				return true;
 			} 
@@ -170,7 +178,7 @@ public class Barrel extends Block
 			{
 				if (!(playerIn.isSneaking()))
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.5"));
+					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.complete"));
 				}
 				return true;
 			}

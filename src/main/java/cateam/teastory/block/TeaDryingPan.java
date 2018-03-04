@@ -121,9 +121,15 @@ public class TeaDryingPan extends Block
 					return true;
 				}
 			}
-			if ((worldIn.isRemote) && ((heldItem == null) || (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.tea_drying_pan)))
+			if (worldIn.isRemote && heldItem != null && heldItem.getItem() == ItemLoader.washed_rice && heldItem.stackSize < 8)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.1"));
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.notenough"));
+				return true;
+			}
+			else if (worldIn.isRemote && (heldItem == null || Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.tea_drying_pan))
+			{
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.tips"));
+				return true;
 			}
 		}
 		else if (this.getMetaFromState(state) == 1)
@@ -140,6 +146,10 @@ public class TeaDryingPan extends Block
 					return true;
 				}
 			}
+			if (worldIn.isRemote)
+			{
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.cooking_pan.water"));
+			}
 		}
 		else if (this.getMetaFromState(state) == 2)
 		{
@@ -155,6 +165,10 @@ public class TeaDryingPan extends Block
 					return true;
 				}
 			}
+			if (worldIn.isRemote)
+			{
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.cooking_pan.lid"));
+			}
 		}
 		else if (this.getMetaFromState(state) == 3)
 		{
@@ -169,6 +183,10 @@ public class TeaDryingPan extends Block
 					worldIn.setBlockState(pos, BlockLoader.lit_cooking_pan.getDefaultState());
 					return true;
 				}
+			}
+			if (worldIn.isRemote)
+			{
+				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.cooking_pan.ignite"));
 			}
 		}
 		else if (this.getMetaFromState(state) == 4)

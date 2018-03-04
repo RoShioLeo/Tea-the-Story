@@ -44,10 +44,18 @@ public class ItemBlockFullKettle extends ItemBlock
 	@Override
 	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
 	{
-		//TODO 显示剩余茶饮量
+		FullKettle kettle = (FullKettle) Block.getBlockFromItem(itemstack.getItem());
+		if (!kettle.full && kettle.getNextKettle() == BlockLoader.empty_zisha_kettle)
+		{
+			list.add(TextFormatting.WHITE + I18n.translateToLocalFormatted("teastory.tooltip.kettle.remain", 4 - itemstack.getItemDamage() / 4, kettle.getMaxCapacity()));
+		}
+		else
+		{
+			list.add(TextFormatting.WHITE + I18n.translateToLocalFormatted("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - itemstack.getItemDamage() / 4, kettle.getMaxCapacity()));
+		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.kettle")));
+			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.kettle.tips")));
 		}
 		else
 			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));

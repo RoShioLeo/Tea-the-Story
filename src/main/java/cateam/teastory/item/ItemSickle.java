@@ -1,5 +1,9 @@
 package cateam.teastory.item;
 
+import java.util.List;
+
+import org.lwjgl.input.Keyboard;
+
 import com.google.common.collect.Multimap;
 
 import cateam.teastory.common.AchievementLoader;
@@ -18,6 +22,8 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -49,6 +55,17 @@ public class ItemSickle extends Item
     {
         return true;
     }
+	
+	@Override
+	public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean b)
+	{
+		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+		{
+			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.sickle")));
+		}
+		else
+			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+	}
 	
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)

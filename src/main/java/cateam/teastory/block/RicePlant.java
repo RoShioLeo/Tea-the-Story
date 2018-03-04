@@ -63,7 +63,10 @@ public class RicePlant extends BlockCrops
 		if (age >= 7)
 		{
 			ret.add(new ItemStack(this.getCrop(), rand.nextInt(3) + 1));
-			ret.add(new ItemStack(ItemLoader.straw, 1));
+			if (rand.nextBoolean())
+			{
+				ret.add(new ItemStack(ItemLoader.straw, 1));
+			}
 		}
 		else
 		{

@@ -5,11 +5,11 @@ import net.minecraft.item.ItemStack;
 
 public class MortarAndPestle extends TSItem
 {
-	public MortarAndPestle()
+	public MortarAndPestle(String name, int maxDamage)
 	{
-		super("mortar_and_pestle", 1, CreativeTabsLoader.tabTeaStory);
+		super(name, 1, CreativeTabsLoader.tabTeaStory);
 		this.setContainerItem(this);
-		this.setMaxDamage(64);
+		this.setMaxDamage(maxDamage);
 		this.setNoRepair();
 	}
 
