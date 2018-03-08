@@ -1,19 +1,26 @@
 #Tab
-itemGroup.tabteastory=Tea: The Story
+itemGroup.tabteastory=TeaStory: Tea Leaf
+itemGroup.tabTeaRice=TeaStory: Rice
+itemGroup.tabTeaDrink=TeaStory: Tea Drink
 
 #Tooltip
-teastory.tooltip.tea_leaf=All start from here
-teastory.tooltip.half_dried_tea=Used for preparing tea
-teastory.tooltip.matcha_leaf=Must be ground before using
-teastory.tooltip.wet_tea=Dry it first
-teastory.tooltip.broken_tea=9 pieces can craft into a fresh piece
-teastory.tooltip.tea_seeds=Plants from hilly area
+teastory.tooltip.half_dried_tea.black=Ferment with barrel to get black tea leaves
+teastory.tooltip.half_dried_tea.oolong=Dried with drying pan to get oolong tea leaves
+teastory.tooltip.half_dried_tea.puer=Craft half-dried leaf blocks and ferment them to get Pu'er tea leaves
+teastory.tooltip.half_dried_tea.white=Dried with tea stove to get white tea leaves
+teastory.tooltip.tea_seeds.height=Suitable altitude：80~110m
+teastory.tooltip.tea_seeds.temperature=Suitable temperature: warm
+teastory.tooltip.tea_seeds.humidity=Suitable humidity: humid
 teastory.tooltip.tea_residue=Can be used as bonemeal
 teastory.tooltip.soil_detection_meter=Right click for details
-teastory.tooltip.clay_cup=Must be fired before use
 teastory.tooltip.shennong_ruler=Right click for regeneration; poison attacks
-teastory.tooltip.kettle=Right click to pick up
+teastory.tooltip.kettle.remain=Remaining capacity: %1$s / %2$s
+teastory.tooltip.kettle.tips=Right click to pick up
 teastory.tooltip.cup=Right click with empty hand while sneaking to place or pick up
+teastory.tooltip.shiftfordetail=Hold Shift for Details
+teastory.tooltip.rice_seedling.temperature=Suitable temperature: warm or hot
+teastory.tooltip.rice_seedling.humidity=Suitable humidity: semi-humid or humid
+teastory.tooltip.sickle=Right click ripe crops Harvest
 
 #Items
 item.sieve.name=Sieve
@@ -173,7 +180,7 @@ teastory.message.barrel.2=Right click to knead the tea leaves.
 teastory.message.barrel.3=Fermentation progress: 1/2; to get tea leaves back, right click barrel while sneaking.
 teastory.message.barrel.4=Fermentation progress: 2/2, about to finish; to get tea leaves back, right click barrel while sneaking.
 teastory.message.barrel.5=Fermentation finished, right click barrel while sneaking to get black tea leaves.
-teastory.message.soil_detection_meter.total=Soil temperature: %1$s; humidity: %2$s; altitude: %3$s §8m§r; climate: %4$s.
+teastory.message.soil_detection_meter.total=Area temperature: %1$s; humidity: %2$s; altitude: %3$s §8m§r; climate: %4$s.
 teastory.message.soil_detection_meter.drying=Drying rate: daytime: %1$s ( %2$s ); nighttime: %3$s ( %4$s , Need lights ).
 teastory.message.soil_detection_meter.fermentation=Fermentation rate: indoor: %1$s ( %2$s ); outdoor: %3$s ( %4$s ).
 teastory.message.soil_detection_meter.teaplant=Tea plants have a %1$s chance of growing here; %2$s
