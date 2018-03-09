@@ -34,8 +34,8 @@ public class WaterPloughingHoe extends ItemHoe
 		for (int i = -1; i<=1; i++)
 		{
 			if (this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i).offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex()) % 4), -1), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS 
-					| this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS
-					| this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i).offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex()) % 4), 1), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS)
+				| this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS
+				| this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i).offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex()) % 4), 1), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS)
 			{
 				result[i+1] = EnumActionResult.SUCCESS;
 			}

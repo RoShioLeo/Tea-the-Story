@@ -1,4 +1,4 @@
-package roito.teastory.common.jei;
+package roito.teastory.compat.jei;
 
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;

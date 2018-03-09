@@ -1,4 +1,4 @@
-package roito.teastory.common.jei;
+package roito.teastory.compat.jei;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -13,7 +13,9 @@ import roito.teastory.common.CommonProxy;
 			name = TeaStory.NAME,
 			version = TeaStory.VERSION,
 			//updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2/update.json",
-			guiFactory = TeaStory.CONFIG_GUI_CLASS)
+			guiFactory = TeaStory.CONFIG_GUI_CLASS,
+			acceptedMinecraftVersions = "[1.10.2,1.11)",
+			dependencies = "required-after:Forge@[12.18.3.2185,);required-after:JEI@[3.14.7.416,);")
 
 public class TeaStory
 {
@@ -25,8 +27,8 @@ public class TeaStory
 	@Instance(TeaStory.MODID)
 	public static TeaStory instance;
 
-	@SidedProxy(clientSide = "cateam.teastory.client.ClientProxy",
-						serverSide = "cateam.teastory.common.CommonProxy")
+	@SidedProxy(clientSide = "roito.teastory.client.ClientProxy",
+						serverSide = "roito.teastory.common.CommonProxy")
 	public static CommonProxy proxy;
 
 	@EventHandler
