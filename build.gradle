@@ -17,7 +17,7 @@ compileJava {
 }
 
 version = mod_version
-group= "cateam.teastory"
+group= mod_group
 archivesBaseName = "teastory"
 
 minecraft {
