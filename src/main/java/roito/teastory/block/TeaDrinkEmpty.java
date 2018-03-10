@@ -21,10 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
-<<<<<<< HEAD:src/main/java/cateam/teastory/block/TeaDrinkEmpty.java
-=======
 import roito.teastory.item.ItemLoader;
->>>>>>> dev-1.10.2:src/main/java/roito/teastory/block/TeaDrinkEmpty.java
 
 public class TeaDrinkEmpty extends TeaDrink
 {
@@ -59,13 +56,8 @@ public class TeaDrinkEmpty extends TeaDrink
 		if (playerIn.isSneaking())
 		{
 			ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.cup, 1, meta));
-<<<<<<< HEAD:src/main/java/cateam/teastory/block/TeaDrinkEmpty.java
-    		worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-    		return true;
-=======
 			worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 			return true;
->>>>>>> dev-1.10.2:src/main/java/roito/teastory/block/TeaDrinkEmpty.java
 		}
 		return false;
 	}
