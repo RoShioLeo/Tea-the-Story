@@ -162,6 +162,7 @@ teastory.info.welcome.1=[§2§oTeaStory§f]感謝安裝§2§o茶風·紀事§f�
 teastory.info.welcome.2=[§2§oTeaStory§f]說明書請前往原帖下載，原帖地址詳見主菜單Mod選項
 
 #Message
+<<<<<<< HEAD
 teastory.teapan.message=請放入8片茶葉來曬制。
 teastory.barrel.message.1=請放入8片綠茶青葉來發酵，Shift + 空手右鍵可以取出茶葉。
 teastory.barrel.message.2=請右鍵來揉撚茶葉。
@@ -193,6 +194,39 @@ teastory.tea_drying_pan.message.4=已完成第1次炒制，待變色後再進行
 teastory.tea_drying_pan.message.5=請待變色後再進行第2次炒制。
 teastory.tea_drying_pan.message.6=已完成第2次炒制，右鍵取出綠茶幹葉。
 teastory.tea_drying_pan.message.7=茶焦了，重新再來吧！
+=======
+teastory.message.teapan=請放入8片茶葉來曬制。
+teastory.message.barrel.1=請放入8片綠茶青葉來發酵，Shift + 空手右鍵可以取出茶葉。
+teastory.message.barrel.2=請右鍵來揉撚茶葉。
+teastory.message.barrel.3=正在發酵第一階段，Shift + 空手右鍵可以中途取出茶葉。
+teastory.message.barrel.4=正在發酵第二階段，即將完成發酵，Shift + 空手右鍵可以中途取出茶葉。
+teastory.message.barrel.5=紅茶發酵已完成，Shift + 空手右鍵取出紅茶。
+teastory.message.soil_detection_meter.total=當前地區溫度狀況： %1$s， 幹濕度狀況： %2$s， 海拔高度： %3$s§8米§r， 氣候： %4$s。
+teastory.message.soil_detection_meter.drying=此處茶葉曬制速率： 白天： %1$s ( %2$s )； 夜晚： %3$s ( %4$s ，夜間需要火把光照 )。
+teastory.message.soil_detection_meter.fermentation=此處紅茶發酵速率： 非露天情況下： %1$s ( %2$s )； 露天情況下： %3$s ( %4$s )。
+teastory.message.soil_detection_meter.teaplant=此處茶樹生長適宜程度為%1$s，%2$s
+teastory.message.soil_detection_meter.temperature.snowy=§1雪區
+teastory.message.soil_detection_meter.temperature.cold=§9寒冷
+teastory.message.soil_detection_meter.temperature.warm=§c溫暖
+teastory.message.soil_detection_meter.temperature.hot=§4炎熱
+teastory.message.soil_detection_meter.humidity.arid=§6乾旱
+teastory.message.soil_detection_meter.humidity.semi-arid=§e半乾旱
+teastory.message.soil_detection_meter.humidity.semi-humid=§a半濕潤
+teastory.message.soil_detection_meter.humidity.humid=§2濕潤
+teastory.message.soil_detection_meter.height.low=§c海拔較低！
+teastory.message.soil_detection_meter.height.medium=§a海拔適中。
+teastory.message.soil_detection_meter.height.high=§c海拔較高！
+teastory.message.soil_detection_meter.fast=§a快速
+teastory.message.soil_detection_meter.normal=§e一般
+teastory.message.soil_detection_meter.slow=§c緩慢
+teastory.message.tea_drying_pan.1=請先使用打火石點火！
+teastory.message.tea_drying_pan.2=請放入8片綠茶鮮葉來炒制。
+teastory.message.tea_drying_pan.3=請待變色後再進行第1次炒制。
+teastory.message.tea_drying_pan.4=已完成第1次炒制，待變色後再進行第2次炒制。
+teastory.message.tea_drying_pan.5=請待變色後再進行第2次炒制。
+teastory.message.tea_drying_pan.6=已完成第2次炒制，右鍵取出綠茶幹葉。
+teastory.message.tea_drying_pan.7=茶焦了，重新再來吧！
+>>>>>>> dev-1.10.2
 
 #Container Title
 teastory.container.tea_stove=茶爐

@@ -1,0 +1,8 @@
+{
+    "variants": {
+	    "facing=east": { "model":"teastory:empty_zisha_kettle", "y": 90 },
+        "facing=north": { "model":"teastory:empty_zisha_kettle" },
+		"facing=south": { "model":"teastory:empty_zisha_kettle", "y": 180 },
+		"facing=west": { "model":"teastory:empty_zisha_kettle", "y": 270 }
+    }
+}

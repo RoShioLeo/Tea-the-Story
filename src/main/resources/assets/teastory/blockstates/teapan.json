@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "variants": {
 	    "step=0": { "model":"teastory:teapan_empty" },
 		"step=2": { "model":"teastory:teapan_full" },
@@ -11,4 +12,83 @@
 		"step=8": { "model":"teastory:teapan_matcha" },
 		"step=1": { "model":"teastory:teapan_wet" }
     }
+=======
+    "multipart": [
+		{
+			"apply": { "model": "teastory:teapan_bottom" }
+		},
+        {
+            "apply": { "model": "teastory:teapan_side", "uvlock": true }
+        },
+        {
+            "apply": { "model": "teastory:teapan_side", "y": 90, "uvlock": true }
+        },
+        {
+            "apply": { "model": "teastory:teapan_side", "y": 180, "uvlock": true }
+        },
+        {
+            "apply": { "model": "teastory:teapan_side", "y": 270, "uvlock": true }
+        },
+		{   "when": { "step": "2" },
+            "apply":[
+				{ "model": "teastory:teapan_full"}
+			]
+        },
+		{   "when": { "step": "3" },
+            "apply":[
+				{ "model": "teastory:teapan_full"}
+			]
+        },
+		{   "when": { "step": "4" },
+            "apply":[
+				{ "model": "teastory:teapan_full"}
+			]
+        },
+		{   "when": { "step": "5" },
+            "apply":[
+				{ "model": "teastory:teapan_full"}
+			]
+        },
+		{   "when": { "step": "6" },
+            "apply":[
+				{ "model": "teastory:teapan_full"}
+			]
+        },
+		{   "when": { "step": "7" },
+            "apply":[
+				{ "model": "teastory:teapan_full"}
+			]
+        },
+		{   "when": { "step": "8" },
+            "apply":[
+				{ "model": "teastory:teapan_matcha"}
+			]
+        },
+		{   "when": { "step": "9" },
+            "apply":[
+				{ "model": "teastory:teapan_dried"}
+			]
+        },
+		{   "when": { "step": "10" },
+            "apply":[
+				{ "model": "teastory:teapan_dried"}
+			]
+        },
+		{   "when": { "step": "11" },
+            "apply":[
+				{ "model": "teastory:teapan_dried"}
+			]
+        },
+		{   "when": { "step": "12" },
+            "apply":[
+				{ "model": "teastory:teapan_yellow"}
+			]
+        },
+		{   "when": { "step": "1" },
+            "apply":[
+				{ "model": "teastory:teapan_wet"}
+			]
+        }
+    ]
+>>>>>>> dev-1.10.2
 }
