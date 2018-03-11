@@ -57,7 +57,7 @@ public class EventLoader
 		if(!event.getWorld().isRemote)
 		{
 			Block theblock = event.getState().getBlock();
-			if(theblock instanceof BlockLeaves && event.getState().getValue(BlockOldLeaf.VARIANT) == BlockPlanks.EnumType.OAK)
+			if(theblock instanceof BlockOldLeaf && event.getState().getValue(BlockOldLeaf.VARIANT) == BlockPlanks.EnumType.OAK)
 			{
 				if(event.getState().getValue(PropertyBool.create("decayable")).booleanValue())
 				{
