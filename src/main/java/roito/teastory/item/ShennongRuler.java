@@ -39,7 +39,7 @@ public class ShennongRuler extends ItemSword
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shennong_ruler")));
+			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.shennong_ruler"));
 		}
 		else
 			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));

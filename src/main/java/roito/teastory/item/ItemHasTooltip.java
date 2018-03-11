@@ -24,7 +24,7 @@ public class ItemHasTooltip extends TSItem
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip." + name)));
+			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip." + name));
 		}
 		else
 			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));

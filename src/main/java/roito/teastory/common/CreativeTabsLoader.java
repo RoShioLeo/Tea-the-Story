@@ -34,7 +34,7 @@ public class CreativeTabsLoader
 			@Override
 			public Item getTabIconItem()
 			{
-				return ItemLoader.rice;
+				return ItemLoader.xian_rice;
 			}
 		};
 	}

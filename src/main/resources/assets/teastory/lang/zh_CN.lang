@@ -4,19 +4,15 @@ itemGroup.tabTeaRice=茶风·纪事·稻香
 itemGroup.tabTeaDrink=茶风·纪事·品茗
 
 #Tooltip
-teastory.tooltip.half_dried_tea.black=使用发酵桶发酵获得红茶
-teastory.tooltip.half_dried_tea.oolong=使用炒茶锅炒青获得青茶
-teastory.tooltip.half_dried_tea.puer=合成青叶块发酵获得黑茶
-teastory.tooltip.half_dried_tea.white=使用茶炉烘干获得白茶
 teastory.tooltip.tea_seeds.height=适宜海拔：80~110米
 teastory.tooltip.tea_seeds.temperature=适宜温度：温暖
 teastory.tooltip.tea_seeds.humidity=适宜湿度：湿润
 teastory.tooltip.tea_residue=可以当骨粉催熟
 teastory.tooltip.soil_detection_meter=右击方块查询
-teastory.tooltip.shennong_ruler=毒性攻击，右键回血
+teastory.tooltip.shennong_ruler=毒性攻击，右击回血
 teastory.tooltip.kettle.remain=剩余茶饮量：%1$s / %2$s
-teastory.tooltip.kettle.tips=空手右键取回
-teastory.tooltip.cup=Shift +（空手）右键摆放/取回
+teastory.tooltip.kettle.tips=空手右击取回
+teastory.tooltip.cup=Shift +（空手）右击摆放/取回
 teastory.tooltip.shiftfordetail=按下 Shift 以查看信息
 teastory.tooltip.rice_seedling.temperature=适宜温度：温暖或炎热
 teastory.tooltip.rice_seedling.humidity=适宜湿度：半湿润或湿润
@@ -45,8 +41,10 @@ item.tea_seeds.name=茶籽
 item.wooden_mortar_and_pestle.name=木质研钵
 item.soil_detection_meter.name=土壤检测计
 item.shennong_ruler.name=神农尺
-item.record_caichawuqu.name=音乐唱片
-item.record.caichawuqu.desc=采茶舞曲
+item.record_caichawuqu_g20.name=音乐唱片
+item.record.caichawuqu_g20.desc=§o§n采茶舞曲（G20晚会）§r
+item.record_caichawuqu_folk.name=音乐唱片
+item.record.caichawuqu_folk.desc=§o§n采茶舞曲（传统民乐）§r
 item.tea_egg.name=茶叶蛋
 item.matcha_cookie.name=抹茶饼干
 item.empty_tea_bag.name=空茶包
@@ -127,9 +125,9 @@ item.boiled_water_pot_porcelain.name=白瓷罐-开水
 item.boiled_water_pot_zisha.name=紫砂罐-开水
 item.lemon.name=柠檬
 
-item.rice_seeds.name=稻谷
-item.item_rice_seedling.name=水稻秧苗
-item.rice.name=大米
+item.xian_rice_seeds.name=稻谷
+item.item_xian_rice_seedling.name=水稻秧苗
+item.xian_rice.name=大米
 item.washed_rice.name=淘好的米
 item.straw.name=稻草
 item.waterploughing_hoe.name=水耘锄
@@ -146,73 +144,10 @@ item.item_straw_blanket.name=草席
 
 
 #Blocks
-tile.teapan.0.name=茶簸箕
-tile.teapan.1.name=茶簸箕-湿叶
-tile.teapan.2.name=茶簸箕-鲜叶-0%
-tile.teapan.3.name=茶簸箕-鲜叶-16%
-tile.teapan.4.name=茶簸箕-鲜叶-33%
-tile.teapan.5.name=茶簸箕-鲜叶-50%
-tile.teapan.6.name=茶簸箕-鲜叶-66%
-tile.teapan.7.name=茶簸箕-鲜叶-83%
-tile.teapan.8.name=茶簸箕-青叶
-tile.teapan.9.name=茶簸箕-干叶
-<<<<<<< HEAD
-=======
-tile.teapan.10.name=茶簸箕-干叶-33%
-tile.teapan.11.name=茶簸箕-干叶-66%
-tile.teapan.12.name=茶簸箕-黄叶
->>>>>>> dev-1.10.2
-tile.barrel.0.name=发酵桶
-tile.barrel.1.name=发酵桶-鲜叶
-tile.barrel.2.name=发酵桶-发酵-0%
-tile.barrel.3.name=发酵桶-发酵-16%
-tile.barrel.4.name=发酵桶-发酵-33%
-tile.barrel.5.name=发酵桶-发酵-50%
-tile.barrel.6.name=发酵桶-发酵-66%
-tile.barrel.7.name=发酵桶-发酵-83%
-tile.barrel.8.name=发酵桶-红茶
-<<<<<<< HEAD
-tile.teaplant.name=茶树
-tile.tea_drying_pan.name=炒茶锅
-tile.lit_tea_drying_pan.1.name=炒茶锅-空
-tile.lit_tea_drying_pan.2.name=炒茶锅-0%
-tile.lit_tea_drying_pan.3.name=炒茶锅-25%
-tile.lit_tea_drying_pan.4.name=炒茶锅-50%
-tile.lit_tea_drying_pan.5.name=炒茶锅-75%
-tile.lit_tea_drying_pan.6.name=炒茶锅-干叶
-tile.lit_tea_drying_pan.7.name=炒茶锅-焦叶
-tile.tea_stove.name=茶炉
-tile.lit_tea_stove.name=茶炉-点燃
-tile.clay_kettle.name=茶壶坯
-tile.empty_kettle.name=茶壶
-tile.empty_kettle.water.name=茶壶-冷水
-tile.empty_kettle.boiled.name=茶壶-开水
-tile.burntgreentea_kettle.4.name=茶壶-焦绿茶-100%
-tile.burntgreentea_kettle.3.name=茶壶-焦绿茶-75%
-tile.burntgreentea_kettle.2.name=茶壶-焦绿茶-50%
-tile.burntgreentea_kettle.1.name=茶壶-焦绿茶-25%
-tile.greentea_kettle.4.name=茶壶-绿茶-100%
-tile.greentea_kettle.3.name=茶壶-绿茶-75%
-tile.greentea_kettle.2.name=茶壶-绿茶-50%
-tile.greentea_kettle.1.name=茶壶-绿茶-25%
-tile.matcha_kettle.4.name=茶壶-抹茶-100%
-tile.matcha_kettle.3.name=茶壶-抹茶-75%
-tile.matcha_kettle.2.name=茶壶-抹茶-50%
-tile.matcha_kettle.1.name=茶壶-抹茶-25%
-tile.blacktea_kettle.4.name=茶壶-红茶-100%
-tile.blacktea_kettle.3.name=茶壶-红茶-75%
-tile.blacktea_kettle.2.name=茶壶-红茶-50%
-tile.blacktea_kettle.1.name=茶壶-红茶-25%
-=======
-tile.half_dried_leaf_block.0.name=青叶块
-tile.half_dried_leaf_block.1.name=青叶块-发酵-12.5%
-tile.half_dried_leaf_block.2.name=青叶块-发酵-25%
-tile.half_dried_leaf_block.3.name=青叶块-发酵-37.5%
-tile.half_dried_leaf_block.4.name=青叶块-发酵-50%
-tile.half_dried_leaf_block.5.name=青叶块-发酵-62.5%
-tile.half_dried_leaf_block.6.name=青叶块-发酵-75%
-tile.half_dried_leaf_block.7.name=青叶块-发酵-87.5%
-tile.half_dried_leaf_block.8.name=黑茶块
+tile.teapan.name=茶簸箕
+tile.barrel.name=发酵桶
+tile.half_dried_leaf_block.leaf.name=青叶块
+tile.half_dried_leaf_block.puer.name=黑茶块
 tile.teaplant.name=茶树
 tile.tea_drying_pan.name=炒茶（煮饭）锅
 tile.lit_tea_drying_pan.name=炒茶锅-点燃
@@ -252,7 +187,6 @@ tile.oolong_tea_zisha_kettle2.name=紫砂壶-青茶
 tile.puer_tea_zisha_kettle2.name=紫砂壶-黑茶
 tile.straw_cushion.name=草垫
 tile.tea_table.name=沏茶台
->>>>>>> dev-1.10.2
 
 #Potion
 teastory.potion.agility=云身
@@ -366,47 +300,13 @@ teastory.info.welcome.1=[§2§oTeaStory§f]感谢安装§2§o茶风·纪事§f�
 teastory.info.welcome.2=[§2§oTeaStory§f]说明书请前往原帖下载，原帖地址详见主菜单Mod选项。
 
 #Message
-<<<<<<< HEAD
-teastory.teapan.message=请放入8片茶叶来晒制。
-teastory.barrel.message.1=请放入8片绿茶青叶来发酵，Shift + 空手右键可以取出茶叶。
-teastory.barrel.message.2=请右键来揉捻茶叶。
-teastory.barrel.message.3=正在发酵第一阶段，Shift + 空手右键可以中途取出茶叶。
-teastory.barrel.message.4=正在发酵第二阶段，即将完成发酵，Shift + 空手右键可以中途取出茶叶。
-teastory.barrel.message.5=红茶发酵已完成，Shift + 空手右键取出红茶。
-teastory.soil_detection_meter.message.total=当前地区温度状况： %1$s， 干湿度状况： %2$s， 海拔高度：%3$s§8米§r， 气候： %4$s。
-teastory.soil_detection_meter.message.drying=此处茶叶晒制速率： 白天： %1$s ( %2$s )； 夜晚：%3$s ( %4$s ，夜间需要火把光照 )。
-teastory.soil_detection_meter.message.fermentation=此处红茶发酵速率： 非露天情况下： %1$s ( %2$s )； 露天情况下： %3$s ( %4$s )。
-teastory.soil_detection_meter.message.teaplant=此处茶树生长适宜程度为%1$s， %2$s
-teastory.soil_detection_meter.temperature.snowy=§1雪区
-teastory.soil_detection_meter.temperature.cold=§9寒冷
-teastory.soil_detection_meter.temperature.warm=§c温暖
-teastory.soil_detection_meter.temperature.hot=§4炎热
-teastory.soil_detection_meter.humidity.arid=§6干旱
-teastory.soil_detection_meter.humidity.semi-arid=§e半干旱
-teastory.soil_detection_meter.humidity.semi-humid=§a半湿润
-teastory.soil_detection_meter.humidity.humid=§2湿润
-teastory.soil_detection_meter.height.low=§c海拔较低！
-teastory.soil_detection_meter.height.medium=§a海拔适中。
-teastory.soil_detection_meter.height.high=§c海拔较高！
-teastory.soil_detection_meter.fast=§a快速
-teastory.soil_detection_meter.normal=§e一般
-teastory.soil_detection_meter.slow=§c缓慢
-teastory.tea_drying_pan.message.1=请先使用打火石点火！
-teastory.tea_drying_pan.message.2=请放入8片绿茶鲜叶来炒制。
-teastory.tea_drying_pan.message.3=请待变色后再进行第1次炒制。
-teastory.tea_drying_pan.message.4=已完成第1次炒制，待变色后再进行第2次炒制。
-teastory.tea_drying_pan.message.5=请待变色后再进行第2次炒制。
-teastory.tea_drying_pan.message.6=已完成第2次炒制，右键取出绿茶干叶。
-teastory.tea_drying_pan.message.7=茶焦了，重新再来吧！
-=======
 teastory.message.teapan.tips=请放入适合的茶叶来晒制。
 teastory.message.teapan.notenough=茶叶数量不足。
-teastory.message.barrel.tips=请放入绿茶青叶来发酵，Shift + 空手右键可以取出茶叶。
+teastory.message.barrel.tips=请放入绿茶青叶来发酵。
 teastory.message.barrel.notenough=绿茶青叶数量不足。
-teastory.message.barrel.knead=请右键来揉捻茶叶。
-teastory.message.barrel.fermentation.1=正在发酵第一阶段，Shift + 空手右键可以中途取出茶叶。
-teastory.message.barrel.fermentation.2=正在发酵第二阶段，即将完成发酵，Shift + 空手右键可以中途取出茶叶。
-teastory.message.barrel.complete=红茶发酵已完成，Shift + 空手右键取出红茶。
+teastory.message.barrel.knead=请右击来揉捻茶叶。
+teastory.message.barrel.fermentation.1=正在发酵第一阶段，Shift + （空手）右击可以中途取出茶叶。
+teastory.message.barrel.fermentation.2=正在发酵第二阶段，即将完成发酵，Shift + （空手）右击可以中途取出茶叶。
 teastory.message.soil_detection_meter.total=当前地区温度状况： %1$s， 干湿度状况： %2$s， 海拔高度：%3$s§8米§r， 气候： %4$s。
 teastory.message.soil_detection_meter.drying=此处茶叶晒制速率： 白天： %1$s （ %2$s ）； 夜晚：%3$s （ %4$s ，夜间需要火把光照 ）。
 teastory.message.soil_detection_meter.fermentation=此处红茶发酵速率： 非露天情况下： %1$s （ %2$s ）； 露天情况下： %3$s （ %4$s ）。
@@ -431,7 +331,7 @@ teastory.message.tea_drying_pan.notenough=茶叶数量不足。
 teastory.message.tea_drying_pan.time.1=距离下一阶段还有%1$s秒。
 teastory.message.tea_drying_pan.speedup=第一次炒制已完成，已加速%1$s秒。
 teastory.message.tea_drying_pan.time.2=距离最后阶段还有%1$s秒。
-teastory.message.tea_drying_pan.dried=炒茶已完成，右键取出绿茶干叶。
+teastory.message.tea_drying_pan.dried=炒茶已完成，右击取出绿茶干叶。
 teastory.message.tea_drying_pan.failure=茶叶炒焦了，再来一次吧！
 teastory.message.cooking_pan.notenough=大米数量不足。
 teastory.message.cooking_pan.water=请倒入一桶水。
@@ -440,15 +340,26 @@ teastory.message.cooking_pan.ignite=请用打火石点火。
 teastory.message.cooking_pan.rice=距离米饭出锅还有%1$s秒。
 teastory.message.bed.excited=你现在太兴奋了，以致于无法入睡。
 teastory.message.rice_seedling=水稻需要更温暖或更湿润的环境才能生长。
->>>>>>> dev-1.10.2
 
 #Container Title
 teastory.container.tea_stove=茶炉
 teastory.container.tea_table=沏茶台
 
 #JEI
-jei.category.teastove=杀青
-jei.category.teatable=沏茶
+jei.teastory.category.teastove=杀青
+jei.teastory.category.teatable=沏茶
+jei.teastory.category.barrel=发酵
+jei.teastory.category.cookingpan=烹饪
+jei.teastory.category.dryingpan=炒青
+jei.teastory.category.teapan=晒青
+
+#Waila
+waila.teastory.hud.fermentation.step=发酵状态：
+waila.teastory.hud.fermentation.empty=空
+waila.teastory.hud.teapan.step=目前阶段：
+waila.teastory.hud.teapan.empty=空
+waila.teastory.hud.teapan.next=下一阶段：
+waila.teastory.hud.teapan.progress=进度：
 
 #Config
 teastory.config.general.enableinfo=启用模组信息

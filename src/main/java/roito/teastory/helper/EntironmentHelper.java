@@ -56,11 +56,11 @@ public class EntironmentHelper
 		float f;
 		if (isDaytime) 
 		{
-			f = worldIn.getLightFromNeighbors(pos.up()) * 0.06F;
+			f = worldIn.getLightFromNeighbors(pos) * 0.06F;
 		} 
 		else 
 		{
-			f = worldIn.getLightFor(EnumSkyBlock.BLOCK, pos.up()) * 0.025F;
+			f = worldIn.getLightFor(EnumSkyBlock.BLOCK, pos) * 0.025F;
 		}
 		Biome biome = worldIn.getBiome(pos);
 		float humidity = biome.getRainfall();

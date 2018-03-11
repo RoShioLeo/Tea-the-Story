@@ -4,6 +4,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import roito.teastory.block.BlockLoader;
+import roito.teastory.compat.waila.WailaCompatRegistry;
 import roito.teastory.config.ConfigMain;
 import roito.teastory.entity.EntityLoader;
 import roito.teastory.inventory.GuiElementLoader;
@@ -34,6 +35,7 @@ public class CommonProxy
 		new EventLoader();
 		new GuiElementLoader();
 		new SeedDrops();
+		new WailaCompatRegistry();
 	}
 
 	public void postInit(FMLPostInitializationEvent event)

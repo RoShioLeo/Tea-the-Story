@@ -8,8 +8,9 @@ import roito.teastory.common.CreativeTabsLoader;
 
 public class Record extends ItemRecord
 {
-	protected Record(String name, String name2) {
-		super(name,  new SoundEvent(new ResourceLocation(TeaStory.MODID, "records.caichawuqu")));
+	protected Record(String name, String name2, String name3)
+	{
+		super(name,  new SoundEvent(new ResourceLocation(TeaStory.MODID, name3)));
 		this.setUnlocalizedName(name2);
 		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
 	}

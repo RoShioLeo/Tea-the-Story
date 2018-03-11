@@ -25,7 +25,8 @@ public class RecipeTeaStove implements IRecipeWrapper
 	public static List<RecipeTeaStove> getWrappedRecipeList()
 	{
 		List<RecipeTeaStove> recipesToReturn = new ArrayList<>();
-		for (ITeaStoveRecipe recipe : RecipeLoader.managerTS.getRecipes()) {
+		for (ITeaStoveRecipe recipe : RecipeLoader.managerTeaStove.getRecipes())
+		{
 			recipesToReturn.add(new RecipeTeaStove(recipe));
 		}
 		return recipesToReturn;

@@ -31,8 +31,8 @@ public class ItemRiceSeedling extends ItemSeeds
 {
 	public ItemRiceSeedling()
 	{
-		super(BlockLoader.rice_plant, Blocks.WATER);
-		this.setUnlocalizedName("item_rice_seedling");
+		super(BlockLoader.xian_rice_plant, Blocks.WATER);
+		this.setUnlocalizedName("item_xian_rice_seedling");
 		this.setCreativeTab(CreativeTabsLoader.tabRice);
 	}
 	
@@ -41,8 +41,8 @@ public class ItemRiceSeedling extends ItemSeeds
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.rice_seedling.temperature")));
-			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.rice_seedling.humidity")));
+			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.rice_seedling.temperature"));
+			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.rice_seedling.humidity"));
 		}
 		else
 			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
@@ -88,14 +88,14 @@ public class ItemRiceSeedling extends ItemSeeds
 						return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
 					}
 					
-					worldIn.setBlockState(blockpos1, BlockLoader.rice_plant.getDefaultState());
+					worldIn.setBlockState(blockpos1, BlockLoader.xian_rice_plant.getDefaultState());
 
 					if (!playerIn.capabilities.isCreativeMode)
 					{
 						--itemStackIn.stackSize;
 					}
 				}
-				else if (worldIn.getBiome(blockpos1).getTemperature() < 0.5F || worldIn.getBiome(blockpos1).getRainfall() < 0.5F)
+				else if (worldIn.isRemote && (worldIn.getBiome(blockpos1).getTemperature() < 0.5F || worldIn.getBiome(blockpos1).getRainfall() < 0.5F))
 				{
 					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.rice_seedling"));
 				}

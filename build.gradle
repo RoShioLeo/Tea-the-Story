@@ -81,8 +81,12 @@ repositories {
         name 'progwm\'s maven' // JEI
         url 'http://dvs1.progwml6.com/files/maven'
     }
+	maven {
+		url "http://tehnut.info/maven"
+	}
 }
 
 dependencies {   
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
+	deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
 }

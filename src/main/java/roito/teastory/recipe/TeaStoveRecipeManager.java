@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import net.minecraft.item.ItemStack;
 
-public class TeaStoveRecipeManger implements IRecipeManager<ITeaStoveRecipe>
+public class TeaStoveRecipeManager implements IRecipeManager<ITeaStoveRecipe>
 {
 	@Override
 	public boolean equal(ITeaStoveRecipe recipe1, ITeaStoveRecipe recipe2)

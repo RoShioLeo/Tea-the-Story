@@ -173,84 +173,53 @@ public class Barrel extends Block
 					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.fermentation.2"));
 				}
 				return true;
-			} 
-			else if (step == 8)
-			{
-				if (!(playerIn.isSneaking()))
-				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.barrel.complete"));
-				}
-				return true;
 			}
 		} 
 		else
 		{
 			if (step == 0)
 			{
-				if (heldItem != null)
+				if (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >= 8)
 				{
-					if (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >= 8)
-					{
-						worldIn.setBlockState(pos, this.getStateFromMeta(1));
-						if (!playerIn.capabilities.isCreativeMode)
-							heldItem.stackSize = heldItem.stackSize - 8;
-						return true;
-					} 
-					else
-						return false;
+					worldIn.setBlockState(pos, this.getStateFromMeta(1));
+					if (!playerIn.capabilities.isCreativeMode)
+						heldItem.stackSize = heldItem.stackSize - 8;
+					return true;
 				} 
 				else
 					return false;
 			} 
 			else if (step == 1)
 			{
-				if ((heldItem == null))
+				if (playerIn.isSneaking())
 				{
-					if (playerIn.isSneaking())
-					{
-						worldIn.setBlockState(pos, this.getDefaultState());
-						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
-						return true;
-					} 
-					else
-					{
-						worldIn.setBlockState(pos, this.getStateFromMeta(2));
-						return true;
-					}
+					worldIn.setBlockState(pos, this.getDefaultState());
+					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
+					return true;
 				} 
 				else
-					return false;
+				{
+					worldIn.setBlockState(pos, this.getStateFromMeta(2));
+					return true;
+				}
 			} 
 			else if ((step >= 2) && (step <= 7))
 			{
-				if (heldItem == null)
+				if (playerIn.isSneaking())
 				{
-					if (playerIn.isSneaking())
-					{
-						worldIn.setBlockState(pos, this.getDefaultState());
-						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
-						return true;
-					} 
-					else
-						return false;
-				}
+					worldIn.setBlockState(pos, this.getDefaultState());
+					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
+					return true;
+				} 
+				else
+				return false;
 			} 
 			else if (step == 8)
 			{
-				if (heldItem == null)
-				{
-					if (playerIn.isSneaking())
-					{
-						worldIn.setBlockState(pos, this.getDefaultState());
-						ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.black_tea_leaf, 8));
-						playerIn.addStat(AchievementLoader.blackTea);
-						return true;
-					} 
-					else
-						return false;
-				} 
-				else
-					return false;
+				worldIn.setBlockState(pos, this.getDefaultState());
+				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.black_tea_leaf, 8));
+				playerIn.addStat(AchievementLoader.blackTea);
+				return true;
 			}
 		}
 		return false;

@@ -12,17 +12,17 @@ import roito.teastory.common.CommonProxy;
 @Mod(modid = TeaStory.MODID,
 			name = TeaStory.NAME,
 			version = TeaStory.VERSION,
-			//updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2/update.json",
+			updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2-3.X/update.json",
 			guiFactory = TeaStory.CONFIG_GUI_CLASS,
 			acceptedMinecraftVersions = "[1.10.2,1.11)",
-			dependencies = "required-after:Forge@[12.18.3.2185,);required-after:JEI@[3.14.7.416,);")
+			dependencies = "required-after:Forge@[12.18.3.2185,);after:JEI@[3.14.7.416,);")
 
 public class TeaStory
 {
 	public static final String MODID = "teastory";
 	public static final String NAME = "Tea: The Story";
 	public static final String VERSION = "@version@";
-	public static final String CONFIG_GUI_CLASS = "cateam.teastory.config.ConfigGuiFactory";
+	public static final String CONFIG_GUI_CLASS = "roito.teastory.config.ConfigGuiFactory";
 
 	@Instance(TeaStory.MODID)
 	public static TeaStory instance;

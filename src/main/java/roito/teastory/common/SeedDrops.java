@@ -8,6 +8,6 @@ public class SeedDrops
 {
 	public SeedDrops()
 	{
-		MinecraftForge.addGrassSeed(new ItemStack(ItemLoader.rice_seeds), 5);
+		MinecraftForge.addGrassSeed(new ItemStack(ItemLoader.xian_rice_seeds), 5);
 	}
 }

@@ -17,12 +17,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import roito.teastory.item.ItemLoader;
 
-public class RicePlant extends BlockCrops
+public class XianRicePlant extends BlockCrops
 {
 	private static final AxisAlignedBB[] SEEDLING_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.8125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
-	public RicePlant()
+	public XianRicePlant()
 	{
-		this.setUnlocalizedName("rice_plant");
+		this.setUnlocalizedName("xian_rice_plant");
 	}
 
 	@Override
@@ -45,13 +45,13 @@ public class RicePlant extends BlockCrops
 	@Override
 	protected Item getSeed()
 	{
-		return ItemLoader.rice_seedlings;
+		return ItemLoader.xian_rice_seedlings;
 	}
 
 	@Override
 	protected Item getCrop()
 	{
-		return ItemLoader.rice_seeds;
+		return ItemLoader.xian_rice_seeds;
 	}
 
 	@Override

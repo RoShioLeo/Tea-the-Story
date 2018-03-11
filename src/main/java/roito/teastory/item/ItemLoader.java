@@ -23,7 +23,7 @@ public class ItemLoader
 {
 	//茶叶
 	public static Item tea_leaf = new TSItem("tea_leaf", 64, CreativeTabsLoader.tabTeaStory);
-	public static Item half_dried_tea = new HalfDriedTeaLeaf();
+	public static Item half_dried_tea = new TSItem("half_dried_tea", 64, CreativeTabsLoader.tabTeaStory);
 	public static Item matcha_leaf = new TSItem("matcha_leaf", 64, CreativeTabsLoader.tabTeaStory);
 	public static Item wet_tea = new TSItem("wet_tea", 64, CreativeTabsLoader.tabTeaStory);
 	public static Item broken_tea = new TSItem("broken_tea", 64, CreativeTabsLoader.tabTeaStory);
@@ -47,10 +47,10 @@ public class ItemLoader
 	public static ItemTeaLeaf puer_tea_bag = new ItemTeaLeaf("puer_tea_bag", 64, "puer_tea", 1);
 
 	//稻米
-	public static Item rice_seeds = new ItemSeeds(BlockLoader.rice_seedling, Blocks.FARMLAND).setUnlocalizedName("rice_seeds").setCreativeTab(CreativeTabsLoader.tabRice);
-	public static Item rice_seedlings = new ItemRiceSeedling();
+	public static Item xian_rice_seeds = new ItemSeeds(BlockLoader.xian_rice_seedling, Blocks.FARMLAND).setUnlocalizedName("xian_rice_seeds").setCreativeTab(CreativeTabsLoader.tabRice);
+	public static Item xian_rice_seedlings = new ItemRiceSeedling();
 	public static Item straw = new TSItem("straw", 64, CreativeTabsLoader.tabRice);
-	public static Item rice = new TSItem("rice", 64, CreativeTabsLoader.tabRice);
+	public static Item xian_rice = new TSItem("xian_rice", 64, CreativeTabsLoader.tabRice);
 	public static Item washed_rice = new TSItem("washed_rice", 64, CreativeTabsLoader.tabRice);
 	public static Item wooden_lid = new TSItem("wooden_lid", 64, CreativeTabsLoader.tabRice);
 	public static Item straw_rope = new TSItem("straw_rope", 64, CreativeTabsLoader.tabRice);
@@ -107,7 +107,8 @@ public class ItemLoader
 	public static Item lemon = new TSItem("lemon", 64, CreativeTabsLoader.tabDrink);
 	public static ItemSword shennongruler = new ShennongRuler();
 	public static Item watering_hoe = new WaterPloughingHoe();
-	public static ItemRecord caichawuqu = new Record("caichawuqu", "record_caichawuqu");
+	public static ItemRecord caichawuqu_g20 = new Record("caichawuqu_g20", "record_caichawuqu_g20", "records.caichawuqu_g20");
+	public static ItemRecord caichawuqu_folk = new Record("caichawuqu_folk", "record_caichawuqu_folk", "records.caichawuqu_folk");
 
 	public ItemLoader(FMLPreInitializationEvent event)
 	{
@@ -146,12 +147,13 @@ public class ItemLoader
 		register(puer_tea);
 		register(tea_egg);
 		register(shennongruler);
-		register(caichawuqu);
-		register(rice_seeds);
-		register(rice_seedlings);
+		register(caichawuqu_g20);
+		register(caichawuqu_folk);
+		register(xian_rice_seeds);
+		register(xian_rice_seedlings);
 		register(straw);
 		register(watering_hoe);
-		register(rice);
+		register(xian_rice);
 		register(washed_rice);
 		register(wooden_lid);
 		register(rice_ball);
@@ -284,12 +286,13 @@ public class ItemLoader
 		registerRender(puer_tea_bag);
 		registerRender(tea_egg);
 		registerRender(shennongruler);
-		registerRender(caichawuqu);
-		registerRender(rice_seeds);
-		registerRender(rice_seedlings);
+		registerRender(caichawuqu_g20);
+		registerRender(caichawuqu_folk);
+		registerRender(xian_rice_seeds);
+		registerRender(xian_rice_seedlings);
 		registerRender(straw);
 		registerRender(watering_hoe);
-		registerRender(rice);
+		registerRender(xian_rice);
 		registerRender(washed_rice);
 		registerRender(wooden_lid);
 		registerRender(rice_ball);

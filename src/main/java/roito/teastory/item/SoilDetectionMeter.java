@@ -34,7 +34,7 @@ public class SoilDetectionMeter extends TSItem
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			list.add(TextFormatting.WHITE + (TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.soil_detection_meter")));
+			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.soil_detection_meter"));
 		} 
 		else
 			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));

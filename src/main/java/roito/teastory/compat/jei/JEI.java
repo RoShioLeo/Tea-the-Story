@@ -91,8 +91,8 @@ public class JEI implements IModPlugin
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.oolong_tea_zisha_kettle));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.puer_tea_zisha_kettle));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.field));
-		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.rice_plant));
-		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.rice_seedling));
+		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.xian_rice_plant));
+		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.xian_rice_seedling));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.teaplant));
 		blacklist.addIngredientToBlacklist(new ItemStack(ItemLoader.cup, 1, 1));
 		
@@ -107,6 +107,26 @@ public class JEI implements IModPlugin
 		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.tea_table), "teastory.teatable");
 		registry.addRecipes(RecipeTeaTable.getWrappedRecipeList());
 		registry.addRecipeClickArea(GuiContainerTeaTable.class, 85, 33, 24, 17, "teastory.teatable");
+		
+		registry.addRecipeHandlers(new HandlerDryingPan());
+		registry.addRecipeCategories(new CategoryDryingPan(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.tea_drying_pan), "teastory.dryingpan");
+		registry.addRecipes(RecipeDryingPan.getWrappedRecipeList());
+		
+		registry.addRecipeHandlers(new HandlerTeapan());
+		registry.addRecipeCategories(new CategoryTeapan(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.teapan), "teastory.teapan");
+		registry.addRecipes(RecipeTeapan.getWrappedRecipeList());
+		
+		registry.addRecipeHandlers(new HandlerBarrel());
+		registry.addRecipeCategories(new CategoryBarrel(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.barrel), "teastory.barrel");
+		registry.addRecipes(RecipeBarrel.getWrappedRecipeList());
+		
+		registry.addRecipeHandlers(new HandlerCookingPan());
+		registry.addRecipeCategories(new CategoryCookingPan(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.tea_drying_pan), "teastory.cookingpan");
+		registry.addRecipes(RecipeCookingPan.getWrappedRecipeList());
 	}
 
 	@Override

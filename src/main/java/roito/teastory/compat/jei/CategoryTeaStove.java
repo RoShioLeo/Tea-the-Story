@@ -52,7 +52,7 @@ public class CategoryTeaStove extends BlankRecipeCategory<IRecipeWrapper>
 	@Override
 	public String getTitle()
 	{
-		return I18n.format("jei.category.teastove");
+		return I18n.format("jei.teastory.category.teastove");
 	}
 
 	@Override

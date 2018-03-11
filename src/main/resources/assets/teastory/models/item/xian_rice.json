@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "teastory:items/rice"
+        "layer0": "teastory:items/xian_rice"
     }
 }

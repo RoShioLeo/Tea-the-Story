@@ -78,7 +78,7 @@ public class EventLoader
 			{
 				event.getHarvester().addStat(AchievementLoader.puerTea);
 			}
-			else if(event.getHarvester() != null && theblock == BlockLoader.rice_plant && theblock.getMetaFromState(event.getState()) == 7)
+			else if(event.getHarvester() != null && theblock == BlockLoader.xian_rice_plant && theblock.getMetaFromState(event.getState()) == 7)
 			{
 				event.getHarvester().addStat(AchievementLoader.harvest);
 			}
@@ -197,7 +197,7 @@ public class EventLoader
 		{
 			event.player.addStat(AchievementLoader.teaSeeds);
 		}
-		else if(event.pickedUp.getEntityItem().getItem() == ItemLoader.rice_seeds)
+		else if(event.pickedUp.getEntityItem().getItem() == ItemLoader.xian_rice_seeds)
 		{
 			event.player.addStat(AchievementLoader.riceSeeds);
 		}

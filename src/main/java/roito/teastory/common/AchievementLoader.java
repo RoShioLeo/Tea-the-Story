@@ -54,9 +54,9 @@ public class AchievementLoader
 	public static Achievement kettle = new Achievement("achievement.teastory.kettle", "teastory.kettle", 10, 9, BlockLoader.empty_porcelain_kettle, null);
 	public static Achievement getDrink = new Achievement("achievement.teastory.getDrink", "teastory.getDrink", 13, 9, BlockLoader.green_tea_porcelain_kettle, kettle).setSpecial();
 	
-	public static Achievement riceSeeds = new Achievement("achievement.teastory.riceSeeds", "teastory.riceSeeds", 13, 0, ItemLoader.rice_seeds, null);
-	public static Achievement transplanting = new Achievement("achievement.teastory.transplanting", "teastory.transplanting", 11, -3, ItemLoader.rice_seedlings, riceSeeds);
-	public static Achievement harvest = new Achievement("achievement.teastory.harvest", "teastory.harvest", 9, -2, ItemLoader.rice, transplanting);
+	public static Achievement riceSeeds = new Achievement("achievement.teastory.riceSeeds", "teastory.riceSeeds", 13, 0, ItemLoader.xian_rice_seeds, null);
+	public static Achievement transplanting = new Achievement("achievement.teastory.transplanting", "teastory.transplanting", 11, -3, ItemLoader.xian_rice_seedlings, riceSeeds);
+	public static Achievement harvest = new Achievement("achievement.teastory.harvest", "teastory.harvest", 9, -2, ItemLoader.xian_rice, transplanting);
 	public static Achievement cook = new Achievement("achievement.teastory.cook", "teastory.cook", 5, -4, ItemLoader.rice_ball, harvest);
 	public static Achievement sickle = new Achievement("achievement.teastory.sickle", "teastory.sickle", 9, 0, ItemLoader.sickle, transplanting).setSpecial();
 	public static Achievement strawBlanket = new Achievement("achievement.teastory.strawBlanket", "teastory.strawBlanket", 6, -6, ItemLoader.straw_blanket, harvest);

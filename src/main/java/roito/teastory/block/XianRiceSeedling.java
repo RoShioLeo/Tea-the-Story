@@ -14,14 +14,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import roito.teastory.item.ItemLoader;
 
-public class RiceSeedling extends BlockCrops
+public class XianRiceSeedling extends BlockCrops
 {
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
 	private static final AxisAlignedBB[] SEEDLING_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D)};
 	
-	public RiceSeedling()
+	public XianRiceSeedling()
 	{
-		this.setUnlocalizedName("rice_seedling");
+		this.setUnlocalizedName("xian_rice_seedling");
 	}
 
 	@Override
@@ -38,13 +38,13 @@ public class RiceSeedling extends BlockCrops
 	@Override
 	protected Item getSeed()
 	{
-		return ItemLoader.rice_seeds;
+		return ItemLoader.xian_rice_seeds;
 	}
 
 	@Override
 	protected Item getCrop()
 	{
-		return ItemLoader.rice_seedlings;
+		return ItemLoader.xian_rice_seedlings;
 	}
 
 	protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)

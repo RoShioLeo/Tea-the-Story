@@ -20,7 +20,7 @@ public class RecipeTeaTable implements IRecipeWrapper
 	public static List<RecipeTeaTable> getWrappedRecipeList()
 	{
 		List<RecipeTeaTable> recipesToReturn = new ArrayList<>();
-		for (ITeaTableRecipe recipe : RecipeLoader.managerTT.getRecipes())
+		for (ITeaTableRecipe recipe : RecipeLoader.managerTeaTable.getRecipes())
 		{
 			recipesToReturn.add(new RecipeTeaTable(recipe));
 		}

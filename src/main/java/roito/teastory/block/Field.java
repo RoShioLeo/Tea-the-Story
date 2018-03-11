@@ -64,7 +64,7 @@ public class Field extends Block
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
 	{
-		if (worldIn.getBlockState(pos.up()).getBlock() != BlockLoader.rice_plant)
+		if (worldIn.getBlockState(pos.up()).getBlock() != BlockLoader.xian_rice_plant)
 		{
 			worldIn.setBlockToAir(pos);
 		}

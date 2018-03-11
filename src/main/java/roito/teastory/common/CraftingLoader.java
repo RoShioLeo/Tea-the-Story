@@ -9,7 +9,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import roito.teastory.block.BlockLoader;
 import roito.teastory.item.ItemLoader;
 import roito.teastory.recipe.TeaStoveRecipe;
-import roito.teastory.recipe.TeaStoveRecipeManger;
+import roito.teastory.recipe.TeaStoveRecipeManager;
 
 public class CraftingLoader
 {
@@ -23,7 +23,7 @@ public class CraftingLoader
 	private static void registerRecipe()
 	{
 		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.matcha_powder), new Object[]{ItemLoader.matcha_leaf, new ItemStack(ItemLoader.wooden_mortar_and_pestle, 1, 32767)});
-		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.rice), new Object[]{new ItemStack(ItemLoader.rice_seeds), new ItemStack(ItemLoader.wooden_mortar_and_pestle, 1, 32767)});
+		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.xian_rice), new Object[]{new ItemStack(ItemLoader.xian_rice_seeds), new ItemStack(ItemLoader.wooden_mortar_and_pestle, 1, 32767)});
 		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.tea_egg), new Object[]{new ItemStack(ItemLoader.dried_tea), new ItemStack(ItemLoader.dried_tea), new ItemStack(ItemLoader.dried_tea), new ItemStack(Items.EGG)});
 		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.chicken_rice), new Object[]{new ItemStack(Items.COOKED_CHICKEN), new ItemStack(ItemLoader.rice_ball), new ItemStack(Items.BOWL)});
 		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.porkchop_rice), new Object[]{new ItemStack(Items.COOKED_PORKCHOP), new ItemStack(ItemLoader.rice_ball), new ItemStack(Items.BOWL)});
@@ -42,6 +42,10 @@ public class CraftingLoader
 				{"###", "###", "###", '#', "treeLeaves"}));
 		GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.tea_leaf), new Object[]
 				{"###", "###", "###", '#', ItemLoader.broken_tea});
+		GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.half_dried_leaf_block, 1, 8), new Object[]
+				{"###", "###", "###", '#', ItemLoader.puer_tea_leaf});
+		GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.puer_tea_leaf, 9), new Object[]
+				{"#", '#', new ItemStack(BlockLoader.half_dried_leaf_block, 1, 8)});
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.wooden_mortar_and_pestle), new Object[]
 				{"#", "*", "+", '#', "stickWood", '*',"plankWood", '+',Items.BOWL}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.teapan), new Object[]

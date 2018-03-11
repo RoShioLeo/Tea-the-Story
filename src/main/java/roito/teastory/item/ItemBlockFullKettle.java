@@ -55,7 +55,7 @@ public class ItemBlockFullKettle extends ItemBlock
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			list.add(TextFormatting.WHITE +(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.kettle.tips")));
+			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.kettle.tips"));
 		}
 		else
 			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));

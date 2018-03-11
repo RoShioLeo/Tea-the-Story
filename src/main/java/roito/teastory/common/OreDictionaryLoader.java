@@ -10,7 +10,9 @@ public class OreDictionaryLoader
 	public OreDictionaryLoader(FMLPreInitializationEvent event)
     {
         OreDictionary.registerOre("cropLemon", new ItemStack(ItemLoader.lemon));
-        OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.rice));
+        OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.xian_rice));
         OreDictionary.registerOre("cropStraw", new ItemStack(ItemLoader.straw));
+        OreDictionary.registerOre("record", new ItemStack(ItemLoader.caichawuqu_g20));
+        OreDictionary.registerOre("record", new ItemStack(ItemLoader.caichawuqu_folk));
     }
 }
