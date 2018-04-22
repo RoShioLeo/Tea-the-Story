@@ -55,9 +55,9 @@ public class CraftingLoader
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.barrel), new Object[]
 				{"# #", "***", "###", '#', "plankWood", '*', "ingotIron"}));
 		GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.clay_kettle), new Object[]
-				{" # ", "# #", "###", '#', ItemLoader.zisha_clay});
-		GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.zisha_clay_kettle), new Object[]
 				{" # ", "# #", "###", '#', Blocks.CLAY});
+		GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.zisha_clay_kettle), new Object[]
+				{" # ", "# #", "###", '#', ItemLoader.zisha_clay});
 		GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.clay_cup), new Object[]
 				{"# #", "*#*", '#', Blocks.CLAY, '*', Items.CLAY_BALL});
 		GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.zisha_clay_cup), new Object[]

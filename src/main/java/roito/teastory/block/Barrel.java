@@ -179,7 +179,7 @@ public class Barrel extends Block
 		{
 			if (step == 0)
 			{
-				if (heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >= 8)
+				if (heldItem !=null && heldItem.getItem() == ItemLoader.half_dried_tea && heldItem.stackSize >= 8)
 				{
 					worldIn.setBlockState(pos, this.getStateFromMeta(1));
 					if (!playerIn.capabilities.isCreativeMode)
