@@ -63,19 +63,24 @@ public class CategoryTeaStove extends BlankRecipeCategory<IRecipeWrapper>
 		water.draw(minecraft, 31, 71);
 	}
 
-	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper)
 	{
 		IGuiItemStackGroup items = recipeLayout.getItemStacks();
 		items.init(0, true, 49, 37);
-		items.set(0, recipeWrapper.getInputs());
+		items.set(0, ((RecipeTeaStove)recipeWrapper).getInputs());
 		items.init(1, false, 112, 56);
-		items.set(1, recipeWrapper.getOutputs());
+		items.set(1, ((RecipeTeaStove)recipeWrapper).getOutputs());
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
 	{
 		setRecipe(recipeLayout, recipeWrapper);
+	}
+
+	@Override
+	public String getModName()
+	{
+		return "TeaStory";
 	}
 }

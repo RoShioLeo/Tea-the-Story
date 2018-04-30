@@ -1,0 +1,26 @@
+{
+	"type": "forge:ore_shaped",
+	"result": {
+		"item": "teastory:tea_stove",
+		"count": 1
+	},
+	"pattern": [
+		"#+#",
+		"#-#",
+		"#*#"
+	],
+	"key": {
+		"#": {
+			"item": "#cobblestone"
+		},
+		"*": {
+			"item": "minecraft:furnace"
+		},
+		"+": {
+			"item": "#gem_quartz"
+		},
+		"-": {
+			"item": "teastory:tea_drying_pan"
+		}
+	}
+}

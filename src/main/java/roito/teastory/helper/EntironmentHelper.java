@@ -15,7 +15,7 @@ public class EntironmentHelper
 		Biome biome = worldIn.getBiome(pos);
 		boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
 		float humidity = biome.getRainfall();
-		float temperature = biome.getFloatTemperature(pos);
+		float temperature = biome.getTemperature(pos);
 		if (temperature <= 0.8F) 
 		{
 			f = humidity * 2.0F * temperature;
@@ -64,7 +64,7 @@ public class EntironmentHelper
 		}
 		Biome biome = worldIn.getBiome(pos);
 		float humidity = biome.getRainfall();
-		float temperature = biome.getFloatTemperature(pos);
+		float temperature = biome.getTemperature(pos);
 		if (temperature <= 1.3F) 
 		{
 			f = f * (1 - humidity) * temperature;

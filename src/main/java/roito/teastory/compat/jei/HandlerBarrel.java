@@ -11,7 +11,6 @@ public class HandlerBarrel implements IRecipeHandler<RecipeBarrel>
 		return RecipeBarrel.class;
 	}
 
-	@Override
 	public String getRecipeCategoryUid()
 	{
 		return "teastory.barrel";

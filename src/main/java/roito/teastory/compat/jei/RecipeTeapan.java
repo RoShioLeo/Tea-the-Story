@@ -6,9 +6,7 @@ import java.util.List;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 import roito.teastory.recipe.ITeaMakingRecipe;
 import roito.teastory.recipe.RecipeLoader;
 
@@ -39,7 +37,6 @@ public class RecipeTeapan implements IRecipeWrapper
 		ingredients.setOutputs(ItemStack.class, getOutputs());
 	}
 
-	@Override
 	public List<ItemStack> getInputs()
 	{
 		List<ItemStack> list = new ArrayList<>();
@@ -50,7 +47,6 @@ public class RecipeTeapan implements IRecipeWrapper
 		return list;
 	}
 
-	@Override
 	public List<ItemStack> getOutputs()
 	{
 		List<ItemStack> list = new ArrayList<>();
@@ -84,41 +80,4 @@ public class RecipeTeapan implements IRecipeWrapper
 	{
 		return Collections.singletonList(recipe.getStep5());
 	}
-
-	@Override
-	public List<FluidStack> getFluidInputs()
-	{
-		return null;
-	}
-
-	@Override
-	public List<FluidStack> getFluidOutputs()
-	{
-		return null;
-	}
-
-	@Override
-	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
-	{
-		
-	}
-
-	@Override
-	public void drawAnimations(Minecraft minecraft, int recipeWidth, int recipeHeight)
-	{
-		
-	}
-
-	@Override
-	public List<String> getTooltipStrings(int mouseX, int mouseY)
-	{
-		return null;
-	}
-
-	@Override
-	public boolean handleClick(Minecraft minecraft, int mouseX, int mouseY, int mouseButton)
-	{
-		return false;
-	}
-
 }

@@ -46,7 +46,7 @@ public class TeapanRecipeManager implements IRecipeManager<ITeaMakingRecipe>
 			return null;
 		for (ITeaMakingRecipe r : recipes)
 		{
-			if (r.getStep4().isItemEqual((ItemStack)inputs[0]) && r.getStep4().stackSize <= ((ItemStack)inputs[0]).stackSize)
+			if (r.getStep4().isItemEqual((ItemStack)inputs[0]) && r.getStep4().getCount() <= ((ItemStack)inputs[0]).getCount())
 				return r;
 		}
 		return null;

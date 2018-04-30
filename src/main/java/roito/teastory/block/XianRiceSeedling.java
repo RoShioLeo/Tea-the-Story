@@ -8,10 +8,12 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import roito.teastory.TeaStory;
 import roito.teastory.item.ItemLoader;
 
 public class XianRiceSeedling extends BlockCrops
@@ -22,6 +24,7 @@ public class XianRiceSeedling extends BlockCrops
 	public XianRiceSeedling()
 	{
 		this.setUnlocalizedName("xian_rice_seedling");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "xian_rice_seedling"));
 	}
 
 	@Override

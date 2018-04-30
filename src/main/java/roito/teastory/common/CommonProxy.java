@@ -21,7 +21,6 @@ public class CommonProxy
 		new CreativeTabsLoader(event);
 		new ItemLoader(event);
 		new BlockLoader(event);
-		new OreDictionaryLoader(event);
 		new PotionLoader(event);
 		new EntityLoader();
 		new TileEntityLoader(event);
@@ -30,12 +29,12 @@ public class CommonProxy
 	public void init(FMLInitializationEvent event)
 	{
 		new RecipeLoader();
-		new CraftingLoader();
-		new AchievementLoader();
+		new SmeltingLoader();
 		new EventLoader();
 		new GuiElementLoader();
 		new SeedDrops();
 		new WailaCompatRegistry();
+		new OreDictionaryLoader(event);
 	}
 
 	public void postInit(FMLPostInitializationEvent event)

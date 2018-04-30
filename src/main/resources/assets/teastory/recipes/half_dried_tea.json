@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"result": {
+		"item": "teastory:half_dried_tea",
+		"count": 9
+	},
+	"ingredients": [
+		{
+			"item": "teastory:half_dried_leaf_block",
+			"count": 1,
+			"data": 0
+		}
+	]
+}

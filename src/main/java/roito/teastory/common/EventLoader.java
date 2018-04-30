@@ -12,7 +12,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
@@ -34,7 +33,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.TeaStory;
-import roito.teastory.block.BlockLoader;
 import roito.teastory.block.StrawBlanket;
 import roito.teastory.config.ConfigMain;
 import roito.teastory.item.ItemLoader;
@@ -64,22 +62,14 @@ public class EventLoader
 					if(rand == 0)
 					{
 						EntityItem entityitem = new EntityItem(event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ItemLoader.tea_seeds, 1));
-						event.getWorld().spawnEntityInWorld(entityitem);
+						event.getWorld().spawnEntity(entityitem);
 					}
 					else if(rand >= 248)
 					{
 						EntityItem entityitem = new EntityItem(event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ItemLoader.lemon, 1));
-						event.getWorld().spawnEntityInWorld(entityitem);
+						event.getWorld().spawnEntity(entityitem);
 					}
 				}
-			}
-			else if(event.getHarvester() != null && theblock == BlockLoader.half_dried_leaf_block && theblock.getMetaFromState(event.getState()) == 8)
-			{
-				event.getHarvester().addStat(AchievementLoader.puerTea);
-			}
-			else if(event.getHarvester() != null && theblock == BlockLoader.xian_rice_plant && theblock.getMetaFromState(event.getState()) == 7)
-			{
-				event.getHarvester().addStat(AchievementLoader.harvest);
 			}
 		}
 	}
@@ -87,7 +77,7 @@ public class EventLoader
 	@SubscribeEvent
 	public void onLivingHurt(LivingHurtEvent event)
 	{
-		if (!event.getEntityLiving().worldObj.isRemote)
+		if (event.getEntityLiving().isServerWorld())
 		{
 			PotionEffect effect1 = event.getEntityLiving().getActivePotionEffect(PotionLoader.PotionAgility);
 			if (effect1 != null)
@@ -108,7 +98,7 @@ public class EventLoader
 	@SubscribeEvent
 	public void onPlayerAttack(AttackEntityEvent event)
 	{
-		if (!event.getEntityLiving().worldObj.isRemote)
+		if (event.getEntityLiving().isServerWorld())
 		{
 			PotionEffect effect = event.getEntityPlayer().getActivePotionEffect(PotionLoader.PotionLifeDrain);
 			if (effect != null)
@@ -132,74 +122,19 @@ public class EventLoader
 	@SubscribeEvent
 	public void onPlayerItemCrafted(PlayerEvent.ItemCraftedEvent event)
 	{
-		if(event.crafting.getItem() == ItemLoader.cup)
-		{
-			if(event.crafting.getItemDamage() == 0)
-			{
-				event.player.addStat(AchievementLoader.woodenCup);
-			}
-			else if(event.crafting.getItemDamage() == 2)
-			{
-				event.player.addStat(AchievementLoader.stoneCup);
-			}
-			else if(event.crafting.getItemDamage() == 3)
-			{
-				event.player.addStat(AchievementLoader.glassCup);
-			}
-		}
-		else if(event.crafting.getItem() == ItemLoader.empty_tea_bag)
-		{
-			event.player.addStat(AchievementLoader.emptyBag);
-		}
-		else if(event.crafting.getItem() == ItemLoader.green_tea_bag
-				|| event.crafting.getItem() == ItemLoader.black_tea_bag
-				|| event.crafting.getItem() == ItemLoader.yellow_tea_bag
-				|| event.crafting.getItem() == ItemLoader.white_tea_bag
-				|| event.crafting.getItem() == ItemLoader.oolong_tea_bag
-				|| event.crafting.getItem() == ItemLoader.puer_tea_bag)
-		{
-			event.player.addStat(AchievementLoader.teaBag);
-		}
+		
 	}
 
 	@SubscribeEvent
 	public void onPlayerItemSmelted(PlayerEvent.ItemSmeltedEvent event)
 	{
-		if(event.smelting.getItem() == ItemLoader.cup)
-		{
-			if(event.smelting.getItemDamage() == 4)
-			{
-				event.player.addStat(AchievementLoader.porcelainCup);
-			}
-			else if(event.smelting.getItemDamage() == 5)
-			{
-				event.player.addStat(AchievementLoader.zishaCup);
-			}
-		}
-		else if(event.smelting.getItem() == ItemLoader.hw_pot_stone
-				|| event.smelting.getItem() == ItemLoader.hw_pot_iron
-				|| event.smelting.getItem() == ItemLoader.hw_pot_porcelain
-				|| event.smelting.getItem() == ItemLoader.hw_pot_zisha)
-		{
-			event.player.addStat(AchievementLoader.hotWater);
-		}
-		else if(event.smelting.getItem() == Item.getItemFromBlock(BlockLoader.empty_porcelain_kettle))
-		{
-			event.player.addStat(AchievementLoader.kettle);
-		}
+		
 	}
 
 	@SubscribeEvent
 	public void onPlayerItemPickedup(PlayerEvent.ItemPickupEvent event)
 	{
-		if(event.pickedUp.getEntityItem().getItem() == ItemLoader.tea_seeds)
-		{
-			event.player.addStat(AchievementLoader.teaSeeds);
-		}
-		else if(event.pickedUp.getEntityItem().getItem() == ItemLoader.xian_rice_seeds)
-		{
-			event.player.addStat(AchievementLoader.riceSeeds);
-		}
+		
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -208,7 +143,7 @@ public class EventLoader
 	{
 		if(ConfigMain.info)
 		{
-			event.player.addChatComponentMessage(new TextComponentTranslation("teastory.info.welcome", "\u00a7a" + TeaStory.VERSION));
+			event.player.sendMessage(new TextComponentTranslation("teastory.info.welcome", "\u00a7a" + TeaStory.VERSION));
 			ConfigMain.info = false;
 		}
 	}
@@ -231,14 +166,14 @@ public class EventLoader
 	public void playerTick(PlayerTickEvent event)
 	{
 		EntityPlayer player = event.player;
-		World world = player.worldObj;
+		World world = player.world;
 		List<EntityItem> itemList = world.getEntitiesWithinAABB(EntityItem.class, player.getEntityBoundingBox().expand(4.0F, 4.0F, 4.0F));
 		
 		for (EntityItem entityItem : itemList)
 		{
-			if (OreDictionary.containsMatch(false, OreDictionary.getOres("cropRice"), entityItem.getEntityItem()) && world.isMaterialInBB(entityItem.getEntityBoundingBox(), Material.WATER))
+			if (OreDictionary.containsMatch(false, OreDictionary.getOres("cropRice"), entityItem.getItem()) && world.isMaterialInBB(entityItem.getEntityBoundingBox(), Material.WATER))
 			{
-				entityItem.setEntityItemStack(new ItemStack(ItemLoader.washed_rice, entityItem.getEntityItem().stackSize));
+				entityItem.setItem(new ItemStack(ItemLoader.washed_rice, entityItem.getItem().getCount()));
 			}
 		}
 	}
@@ -247,7 +182,7 @@ public class EventLoader
     public void onPlayerWakeUp(PlayerWakeUpEvent event)
 	{
 		EntityPlayer player = event.getEntityPlayer();
-        World world = player.worldObj;
+        World world = player.world;
         BlockPos pos = player.bedLocation;
         IBlockState state = world.getBlockState(pos);
 		if (state.getBlock() instanceof StrawBlanket)
@@ -256,8 +191,6 @@ public class EventLoader
 
             BlockPos pos1 = pos.offset(state.getValue(BlockHorizontal.FACING).getOpposite());
             world.setBlockToAir(pos1);
-            
-            player.addStat(AchievementLoader.strawBlanket);
         }
 	}
 	
@@ -280,14 +213,13 @@ public class EventLoader
 	@SubscribeEvent
 	public void onPlayerSleep(PlayerSleepInBedEvent event)
 	{
-		if (!event.getEntityPlayer().worldObj.isRemote)
+		if (!event.getEntityPlayer().world.isRemote)
 		{
 			PotionEffect effect = event.getEntityPlayer().getActivePotionEffect(PotionLoader.PotionExcitement);
 			if (effect != null)
 			{
 				event.setResult(SleepResult.OTHER_PROBLEM);
-				event.getEntityPlayer().addChatComponentMessage(new TextComponentTranslation("teastory.message.bed.excited"));
-				event.getEntityPlayer().addStat(AchievementLoader.excitement);
+				event.getEntityPlayer().sendMessage(new TextComponentTranslation("teastory.message.bed.excited"));
 			}
 		}
 	}

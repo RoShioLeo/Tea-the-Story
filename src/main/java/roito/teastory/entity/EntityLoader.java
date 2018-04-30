@@ -1,6 +1,7 @@
 package roito.teastory.entity;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import roito.teastory.TeaStory;
 
@@ -16,7 +17,7 @@ public class EntityLoader
     private static void registerEntity(Class<? extends Entity> entityClass, String name, int trackingRange,
             int updateFrequency, boolean sendsVelocityUpdates)
     {
-        EntityRegistry.registerModEntity(entityClass, name, nextID++, TeaStory.instance, trackingRange, updateFrequency,
+        EntityRegistry.registerModEntity(new ResourceLocation(TeaStory.MODID, "entity"), entityClass, name, nextID++, TeaStory.instance, trackingRange, updateFrequency,
                 sendsVelocityUpdates);
     }
 }

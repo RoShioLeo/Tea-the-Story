@@ -1,0 +1,20 @@
+{
+	"type": "forge:ore_shaped",
+	"result": {
+		"item": "teastory:teapan",
+		"count": 1
+	},
+	"pattern": [
+		"SPS",
+		"PSP",
+		"SPS"
+	],
+	"key": {
+		"S": {
+			"item": "#stick_wood"
+		},
+		"P": {
+			"item": "#plank_wood"
+		}
+	}
+}

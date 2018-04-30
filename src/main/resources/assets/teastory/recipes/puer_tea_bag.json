@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"result": {
+		"item": "teastory:puer_tea_bag",
+		"count": 1
+	},
+	"ingredients": [
+		{
+			"item": "teastory:empty_tea_bag"
+		},
+		{
+			"item": "teastory:puer_tea_leaf"
+		},
+		{
+			"item": "teastory:puer_tea_leaf"
+		},
+		{
+			"item": "teastory:puer_tea_leaf"
+		},
+		{
+			"item": "teastory:puer_tea_leaf"
+		},
+		{
+			"item": "teastory:puer_tea_leaf"
+		},
+		{
+		"item": "teastory:puer_tea_leaf"
+		}
+	]
+}

@@ -23,12 +23,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import roito.teastory.TeaStory;
 import roito.teastory.item.ItemLoader;
 
 public class StrawBlanket extends BlockHorizontal
@@ -44,11 +46,12 @@ public class StrawBlanket extends BlockHorizontal
         this.setHardness(0.2F);
         this.disableStats();
         this.setUnlocalizedName("straw_blanket");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "straw_blanket"));
         this.setDefaultState(this.blockState.getBaseState().withProperty(PART, StrawBlanket.EnumPartType.FOOT).withProperty(OCCUPIED, Boolean.valueOf(false)));
     }
     
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -75,7 +78,7 @@ public class StrawBlanket extends BlockHorizontal
 
                     if (entityplayer != null)
                     {
-                        playerIn.addChatComponentMessage(new TextComponentTranslation("tile.bed.occupied", new Object[0]));
+                        playerIn.sendMessage(new TextComponentTranslation("tile.bed.occupied", new Object[0]));
                         return true;
                     }
 
@@ -95,11 +98,11 @@ public class StrawBlanket extends BlockHorizontal
                 {
                     if (entityplayer$sleepresult == EntityPlayer.SleepResult.NOT_POSSIBLE_NOW)
                     {
-                        playerIn.addChatComponentMessage(new TextComponentTranslation("tile.bed.noSleep", new Object[0]));
+                        playerIn.sendMessage(new TextComponentTranslation("tile.bed.noSleep", new Object[0]));
                     }
                     else if (entityplayer$sleepresult == EntityPlayer.SleepResult.NOT_SAFE)
                     {
-                        playerIn.addChatComponentMessage(new TextComponentTranslation("tile.bed.notSafe", new Object[0]));
+                        playerIn.sendMessage(new TextComponentTranslation("tile.bed.notSafe", new Object[0]));
                     }
 
                     return true;
@@ -148,7 +151,7 @@ public class StrawBlanket extends BlockHorizontal
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
         EnumFacing enumfacing = state.getValue(FACING);
 
@@ -222,7 +225,7 @@ public class StrawBlanket extends BlockHorizontal
 
     protected static boolean hasRoomForPlayer(World worldIn, BlockPos pos)
     {
-        return worldIn.getBlockState(pos.down()).isFullyOpaque() && !worldIn.getBlockState(pos).getMaterial().isSolid() && !worldIn.getBlockState(pos.up()).getMaterial().isSolid();
+        return worldIn.getBlockState(pos.down()).isTopSolid() && !worldIn.getBlockState(pos).getMaterial().isSolid() && !worldIn.getBlockState(pos.up()).getMaterial().isSolid();
     }
 
     @Override

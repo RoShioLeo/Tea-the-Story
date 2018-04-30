@@ -1,13 +1,13 @@
 package roito.teastory.common;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.item.ItemLoader;
 
 public class OreDictionaryLoader
 {
-	public OreDictionaryLoader(FMLPreInitializationEvent event)
+	public OreDictionaryLoader(FMLInitializationEvent event)
     {
         OreDictionary.registerOre("cropLemon", new ItemStack(ItemLoader.lemon));
         OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.xian_rice));

@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"result": {
+		"item": "teastory:steak_rice",
+		"count": 1
+	},
+	"ingredients": [
+		{
+			"item": "minecraft:cooked_beef"
+		},
+		{
+			"item": "teastory:rice_ball"
+		},
+		{
+			"item": "minecraft:bowl"
+		}
+	]
+}

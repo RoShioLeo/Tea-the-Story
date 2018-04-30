@@ -8,17 +8,22 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemSeeds;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import roito.teastory.TeaStory;
 import roito.teastory.block.BlockLoader;
 import roito.teastory.common.CreativeTabsLoader;
 
-public class ItemLoader
+@Mod.EventBusSubscriber(modid = TeaStory.MODID)
+public final class ItemLoader
 {
 	//茶叶
 	public static Item tea_leaf = new TSItem("tea_leaf", 64, CreativeTabsLoader.tabTeaStory);
@@ -46,15 +51,29 @@ public class ItemLoader
 	public static ItemTeaLeaf puer_tea_bag = new ItemTeaLeaf("puer_tea_bag", 64, "puer_tea", 1);
 
 	//稻米
-	public static Item xian_rice_seeds = new ItemSeeds(BlockLoader.xian_rice_seedling, Blocks.FARMLAND).setUnlocalizedName("xian_rice_seeds").setCreativeTab(CreativeTabsLoader.tabRice);
+	public static Item xian_rice_seeds = new ItemSeeds(BlockLoader.xian_rice_seedling, Blocks.FARMLAND).setUnlocalizedName("xian_rice_seeds").setRegistryName(new ResourceLocation(TeaStory.MODID, "xian_rice_seeds")).setCreativeTab(CreativeTabsLoader.tabRice);
 	public static Item xian_rice_seedlings = new ItemRiceSeedling();
-	public static Item straw = new TSItem("straw", 64, CreativeTabsLoader.tabRice);
+	public static Item straw = new TSItem("straw", 64, CreativeTabsLoader.tabRice)
+	{
+		@Override
+		public int getItemBurnTime(ItemStack itemStack)
+		{
+			return 200;
+		}
+	};
 	public static Item xian_rice = new TSItem("xian_rice", 64, CreativeTabsLoader.tabRice);
 	public static Item washed_rice = new TSItem("washed_rice", 64, CreativeTabsLoader.tabRice);
 	public static Item wooden_lid = new TSItem("wooden_lid", 64, CreativeTabsLoader.tabRice);
-	public static Item straw_rope = new TSItem("straw_rope", 64, CreativeTabsLoader.tabRice);
+	public static Item straw_rope = new TSItem("straw_rope", 64, CreativeTabsLoader.tabRice)
+	{
+		@Override
+		public int getItemBurnTime(ItemStack itemStack)
+		{
+			return 400;
+		}
+	};
 	
-	public static Item rice_ball = new ItemFood(6, 0.6F, false).setUnlocalizedName("rice_ball").setCreativeTab(CreativeTabsLoader.tabRice);
+	public static Item rice_ball = new ItemFood(6, 0.6F, false).setUnlocalizedName("rice_ball").setRegistryName(new ResourceLocation(TeaStory.MODID, "rice_ball")).setCreativeTab(CreativeTabsLoader.tabRice);
 	public static Item porkchop_rice = new TSItemFoodWithBowl("porkchop_rice", 17, 0.5F);
 	public static Item steak_rice = new TSItemFoodWithBowl("steak_rice", 17, 0.5F);
 	public static Item chicken_rice = new TSItemFoodWithBowl("chicken_rice", 15, 0.5F);
@@ -101,7 +120,14 @@ public class ItemLoader
 	//其他工具
 	public static Item wooden_mortar_and_pestle = new MortarAndPestle("wooden_mortar_and_pestle", 128);
 	public static Item soil_detection_meter = new SoilDetectionMeter();
-	public static Item straw_blanket = new ItemStrawBlanket();
+	public static Item straw_blanket = new ItemStrawBlanket()
+	{
+		@Override
+		public int getItemBurnTime(ItemStack itemStack)
+		{
+			return 800;
+		}
+	};
 	public static Item sickle = new  ItemSickle();
 	public static Item lemon = new TSItem("lemon", 64, CreativeTabsLoader.tabDrink);
 	public static ItemSword shennongruler = new ShennongRuler();
@@ -111,79 +137,7 @@ public class ItemLoader
 
 	public ItemLoader(FMLPreInitializationEvent event)
 	{
-		register(tea_leaf);
-		register(half_dried_tea);
-		register(dried_tea);
-		register(matcha_leaf);
-		register(matcha_powder);
-		register(black_tea_leaf);
-		register(yellow_tea_leaf);
-		register(white_tea_leaf);
-		register(oolong_tea_leaf);
-		register(puer_tea_leaf);
-		register(wet_tea);
-		register(broken_tea);
-		register(tea_seeds);
-		register(cup);
-		register(empty_tea_bag);
-		register(green_tea_bag);
-		register(black_tea_bag);
-		register(yellow_tea_bag);
-		register(white_tea_bag);
-		register(oolong_tea_bag);
-		register(puer_tea_bag);
-		register(wooden_mortar_and_pestle);
-		register(soil_detection_meter);
-		register(clay_cup);
-		register(green_tea);
-		register(matcha_drink);
-		register(black_tea);
-		register(milk_tea);
-		register(lemon_tea);
-		register(yellow_tea);
-		register(white_tea);
-		register(oolong_tea);
-		register(puer_tea);
-		register(tea_egg);
-		register(shennongruler);
-		register(caichawuqu_g20);
-		register(caichawuqu_folk);
-		register(xian_rice_seeds);
-		register(xian_rice_seedlings);
-		register(straw);
-		register(watering_hoe);
-		register(xian_rice);
-		register(washed_rice);
-		register(wooden_lid);
-		register(rice_ball);
-		register(straw_rope);
-		register(straw_blanket);
-		register(sickle);
-		register(porkchop_rice);
-		register(steak_rice);
-		register(chicken_rice);
-		register(potato_rice);
-		register(rabbit_rice);
-		register(tea_whisk);
-		register(lemon);
-		register(pot_stone);
-		register(pot_iron);
-		register(pot_porcelain);
-		register(pot_zisha);
-		register(pot_clay);
-		register(pot_zisha_clay);
-		register(cw_pot_zisha);
-		register(cw_pot_porcelain);
-		register(cw_pot_iron);
-		register(cw_pot_stone);
-		register(hw_pot_zisha);
-		register(hw_pot_porcelain);
-		register(hw_pot_iron);
-		register(hw_pot_stone);
-		register(zisha_clay);
-		register(zisha_clay_cup);
-		register(matcha_cookie);
-		register(tea_residue);
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	public static void loadExtraResourceLocation()
@@ -323,10 +277,23 @@ public class ItemLoader
 		registerRender(zisha_clay_cup);
 		registerRender(matcha_cookie);
 	}
-
-	private static void register(Item item)
+	
+	@SubscribeEvent
+	public void registerItems(RegistryEvent.Register<Item> event)
 	{
-		GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+	    event.getRegistry().registerAll(
+	    		tea_leaf, half_dried_tea, dried_tea, matcha_leaf, matcha_powder, black_tea_leaf, yellow_tea_leaf, white_tea_leaf, oolong_tea_leaf, puer_tea_leaf, wet_tea, broken_tea, tea_seeds,
+	    		cup, clay_cup, zisha_clay, zisha_clay_cup,
+	    		empty_tea_bag, green_tea_bag, black_tea_bag, yellow_tea_bag, white_tea_bag, oolong_tea_bag, puer_tea_bag, 
+	    		wooden_mortar_and_pestle, soil_detection_meter, tea_whisk, lemon, 
+	    		green_tea, matcha_drink, black_tea, milk_tea, lemon_tea, yellow_tea, white_tea, oolong_tea, puer_tea, 
+	    		tea_residue, matcha_cookie, tea_egg,
+	    		shennongruler, caichawuqu_g20, caichawuqu_folk, 
+	    		xian_rice_seeds, xian_rice_seedlings, straw, watering_hoe, xian_rice, washed_rice, wooden_lid, rice_ball, straw_rope, straw_blanket, sickle,
+	    		porkchop_rice, steak_rice, chicken_rice, potato_rice, rabbit_rice, 
+	    		pot_stone, pot_iron, pot_porcelain, pot_zisha, pot_clay, pot_zisha_clay, 
+	    		cw_pot_zisha, cw_pot_porcelain, cw_pot_iron, cw_pot_stone, 
+	    		hw_pot_zisha, hw_pot_porcelain, hw_pot_iron, hw_pot_stone);
 	}
 
 	@SideOnly(Side.CLIENT)

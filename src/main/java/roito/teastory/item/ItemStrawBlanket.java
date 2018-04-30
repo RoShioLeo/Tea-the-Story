@@ -25,7 +25,7 @@ public class ItemStrawBlanket extends TSItem
 	}
 	
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -46,17 +46,18 @@ public class ItemStrawBlanket extends TSItem
                 pos = pos.up();
             }
 
-            int i = MathHelper.floor_double(playerIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+            int i = MathHelper.floor(playerIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
             EnumFacing enumfacing = EnumFacing.getHorizontal(i);
             BlockPos blockpos = pos.offset(enumfacing);
+            ItemStack itemstack = playerIn.getHeldItem(hand);
 
-            if (playerIn.canPlayerEdit(pos, facing, stack) && playerIn.canPlayerEdit(blockpos, facing, stack))
+            if (playerIn.canPlayerEdit(pos, facing, itemstack) && playerIn.canPlayerEdit(blockpos, facing, itemstack))
             {
                 boolean flag1 = worldIn.getBlockState(blockpos).getBlock().isReplaceable(worldIn, blockpos);
                 boolean flag2 = flag || worldIn.isAirBlock(pos);
                 boolean flag3 = flag1 || worldIn.isAirBlock(blockpos);
 
-                if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isFullyOpaque() && worldIn.getBlockState(blockpos.down()).isFullyOpaque())
+                if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isTopSolid() && worldIn.getBlockState(blockpos.down()).isFullCube())
                 {
                     IBlockState iblockstate1 = BlockLoader.straw_blanket.getDefaultState().withProperty(StrawBlanket.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockHorizontal.FACING, enumfacing).withProperty(StrawBlanket.PART, StrawBlanket.EnumPartType.FOOT);
 
@@ -68,7 +69,7 @@ public class ItemStrawBlanket extends TSItem
 
                     SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, playerIn);
                     worldIn.playSound((EntityPlayer)null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                    --stack.stackSize;
+                    itemstack.shrink(1);
                     return EnumActionResult.SUCCESS;
                 }
                 else

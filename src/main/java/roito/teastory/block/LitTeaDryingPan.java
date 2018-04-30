@@ -1,10 +1,7 @@
 package roito.teastory.block;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
@@ -15,13 +12,14 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -30,7 +28,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
-import roito.teastory.common.AchievementLoader;
+import roito.teastory.TeaStory;
 import roito.teastory.item.ItemLoader;
 import roito.teastory.tileentity.TileEntityTeaDryingPan;
 
@@ -47,6 +45,7 @@ public class LitTeaDryingPan extends BlockContainer
 		this.setSoundType(SoundType.METAL);
 		this.setLightLevel(0.875F);
 		this.setUnlocalizedName("lit_tea_drying_pan");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "lit_tea_drying_pan"));
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0).withProperty(TYPE, false));
 	}
 
@@ -125,7 +124,7 @@ public class LitTeaDryingPan extends BlockContainer
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		int meta = getMetaFromState(state);
 		TileEntity te = worldIn.getTileEntity(pos);
@@ -136,25 +135,25 @@ public class LitTeaDryingPan extends BlockContainer
 		}
 		if (meta == 0)
 		{
-			if(heldItem != null)
+			if(!playerIn.getHeldItem(hand).isEmpty())
 			{
-				if(heldItem.stackSize >= 8)
+				if(playerIn.getHeldItem(hand).getCount() >= 8)
 				{
-					if (heldItem.getItem() == ItemLoader.tea_leaf)
+					if (playerIn.getHeldItem(hand).getItem() == ItemLoader.tea_leaf)
 					{
 						worldIn.setBlockState(pos, this.getStateFromMeta(1));
 						if (!playerIn.capabilities.isCreativeMode)
 						{
-							heldItem.stackSize = heldItem.stackSize - 8;
+							playerIn.getHeldItem(hand).shrink(8);
 						}
 						return true;
 					}
-					else if (heldItem.getItem() == ItemLoader.half_dried_tea)
+					else if (playerIn.getHeldItem(hand).getItem() == ItemLoader.half_dried_tea)
 					{
 						worldIn.setBlockState(pos, this.getStateFromMeta(9));
 						if (!playerIn.capabilities.isCreativeMode)
 						{
-							heldItem.stackSize = heldItem.stackSize - 8;
+							playerIn.getHeldItem(hand).shrink(8);
 						}
 						return true;
 					}
@@ -162,12 +161,12 @@ public class LitTeaDryingPan extends BlockContainer
 			}
 			if (worldIn.isRemote)
 			{
-				if (heldItem != null && heldItem.stackSize < 8 && (heldItem.getItem() == ItemLoader.tea_leaf || heldItem.getItem() == ItemLoader.half_dried_tea))
+				if (!playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getCount() < 8 && (playerIn.getHeldItem(hand).getItem() == ItemLoader.tea_leaf || playerIn.getHeldItem(hand).getItem() == ItemLoader.half_dried_tea))
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.notenough"));
+					playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.notenough"));
 					return true;
 				}
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.leaf"));
+				playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.leaf"));
 			}
 			return true;
 		}
@@ -175,7 +174,7 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.time.1", seconds));
+				playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.time.1", seconds));
 			}
 			return true;
 		}
@@ -184,7 +183,7 @@ public class LitTeaDryingPan extends BlockContainer
 			worldIn.setBlockState(pos, this.getStateFromMeta(meta + 1));
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.speedup", seconds));
+				playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.speedup", seconds));
 			}
 			return true;
 		}
@@ -192,7 +191,7 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.time.2", seconds));
+				playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.time.2", seconds));
 			}
 			return true;
 		}
@@ -201,7 +200,7 @@ public class LitTeaDryingPan extends BlockContainer
 			worldIn.setBlockState(pos, getStateFromMeta(meta + 1));
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.dried"));
+				playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.dried"));
 			}
 			return true;
 		}
@@ -211,12 +210,10 @@ public class LitTeaDryingPan extends BlockContainer
 			{
 				if (!state.getValue(TYPE).booleanValue())
 				{
-					playerIn.addStat(AchievementLoader.driedTea);
 					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
 				}
 				else
 				{
-					playerIn.addStat(AchievementLoader.oolongTea);
 					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.oolong_tea_leaf, 8));
 				}
 			}
@@ -228,11 +225,7 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			if(worldIn.isRemote)
 			{
-				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.failure"));
-			}
-			else
-			{
-				playerIn.addStat(AchievementLoader.burntLeaf);
+				playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.failure"));
 			}
 			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getDefaultState());
 			worldIn.removeTileEntity(pos);
@@ -241,10 +234,9 @@ public class LitTeaDryingPan extends BlockContainer
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
-	{
-		list.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
+    {
+		items.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
 	}
 
 	@Override

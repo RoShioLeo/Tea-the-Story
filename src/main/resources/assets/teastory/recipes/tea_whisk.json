@@ -1,0 +1,17 @@
+{
+	"type": "forge:ore_shaped",
+	"result": {
+		"item": "teastory:tea_whisk",
+		"count": 1
+	},
+	"pattern": [
+		"## ",
+		"## ",
+		"  #"
+	],
+	"key": {
+		"#": {
+			"item": "#stick_wood"
+		}
+	}
+}

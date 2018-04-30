@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+	"result":{
+        "item": "teastory:item_straw_blanket",
+		"count": 1
+    },
+    "pattern":[
+        "###",
+		"###"
+    ],
+    "key":
+    {
+		"#":
+		{
+			"item": "teastory:straw_rope"
+		}
+    }
+}

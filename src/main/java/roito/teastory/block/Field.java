@@ -8,10 +8,12 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import roito.teastory.TeaStory;
 
 public class Field extends Block
 {
@@ -28,6 +30,7 @@ public class Field extends Block
 		this.setHardness(0.5F);
 		this.setSoundType(SoundType.GROUND);
 		this.setUnlocalizedName("field");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "field"));
 		this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(true)).withProperty(EAST, Boolean.valueOf(true)).withProperty(SOUTH, Boolean.valueOf(true)).withProperty(WEST, Boolean.valueOf(true)));
 	}
 
@@ -62,7 +65,7 @@ public class Field extends Block
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
 		if (worldIn.getBlockState(pos.up()).getBlock() != BlockLoader.xian_rice_plant)
 		{

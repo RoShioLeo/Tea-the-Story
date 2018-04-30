@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"result": {
+		"item": "teastory:oolong_tea_bag",
+		"count": 1
+	},
+	"ingredients": [
+		{
+			"item": "teastory:empty_tea_bag"
+		},
+		{
+			"item": "teastory:oolong_tea_leaf"
+		},
+		{
+			"item": "teastory:oolong_tea_leaf"
+		},
+		{
+			"item": "teastory:oolong_tea_leaf"
+		},
+		{
+			"item": "teastory:oolong_tea_leaf"
+		},
+		{
+			"item": "teastory:oolong_tea_leaf"
+		},
+		{
+			"item": "teastory:oolong_tea_leaf"
+		}
+	]
+}

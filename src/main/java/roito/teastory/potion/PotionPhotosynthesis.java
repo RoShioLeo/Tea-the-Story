@@ -34,9 +34,9 @@ public class PotionPhotosynthesis extends Potion
 	{
 		if (this == PotionLoader.PotionPhotosynthesis)
 		{
-			boolean isDaytime = entityLivingBaseIn.worldObj.getWorldTime() % 24000L < 12000L;
+			boolean isDaytime = entityLivingBaseIn.getEntityWorld().getWorldTime() % 24000L < 12000L;
 			BlockPos pos = entityLivingBaseIn.getPosition();
-			if ((!entityLivingBaseIn.worldObj.isRainingAt(pos)) && ((isDaytime && (entityLivingBaseIn.worldObj.getLight(pos) >= 13 - 2 * p_76394_2_)) || ((!isDaytime) && (entityLivingBaseIn.worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) >= 13 - 2 * p_76394_2_))))
+			if ((!entityLivingBaseIn.getEntityWorld().isRainingAt(pos)) && ((isDaytime && (entityLivingBaseIn.getEntityWorld().getLight(pos) >= 13 - 2 * p_76394_2_)) || ((!isDaytime) && (entityLivingBaseIn.getEntityWorld().getLightFor(EnumSkyBlock.BLOCK, pos) >= 13 - 2 * p_76394_2_))))
 			{
 				entityLivingBaseIn.heal(4);
 			}

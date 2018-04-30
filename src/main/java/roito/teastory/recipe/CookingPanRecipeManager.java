@@ -46,7 +46,7 @@ public class CookingPanRecipeManager implements IRecipeManager<ITeaMakingRecipe>
 			return null;
 		for (ITeaMakingRecipe r : recipes)
 		{
-			if (r.getStep5().isItemEqual((ItemStack)inputs[0]) && r.getStep5().stackSize <= ((ItemStack)inputs[0]).stackSize)
+			if (r.getStep5().isItemEqual((ItemStack)inputs[0]) && r.getStep5().getCount() <= ((ItemStack)inputs[0]).getCount())
 				return r;
 		}
 		return null;

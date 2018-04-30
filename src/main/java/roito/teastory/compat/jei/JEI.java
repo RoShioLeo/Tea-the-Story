@@ -7,11 +7,13 @@ import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
 import roito.teastory.block.BlockLoader;
 import roito.teastory.client.gui.GuiContainerTeaStove;
 import roito.teastory.client.gui.GuiContainerTeaTable;
 import roito.teastory.item.ItemLoader;
+import roito.teastory.recipe.*;
 
 @JEIPlugin
 public class JEI implements IModPlugin
@@ -28,9 +30,50 @@ public class JEI implements IModPlugin
 	{
 		
 	}
+	
+	@Override
+	public void registerCategories(IRecipeCategoryRegistration registry) {
+		registry.addRecipeCategories(
+				new CategoryTeaStove(registry.getJeiHelpers().getGuiHelper()),
+				new CategoryTeaTable(registry.getJeiHelpers().getGuiHelper()),
+				new CategoryDryingPan(registry.getJeiHelpers().getGuiHelper()),
+				new CategoryTeapan(registry.getJeiHelpers().getGuiHelper()),
+				new CategoryBarrel(registry.getJeiHelpers().getGuiHelper()),
+				new CategoryCookingPan(registry.getJeiHelpers().getGuiHelper())
+		);
+	}
 
 	@Override
 	public void register(IModRegistry registry)
+	{
+		addIngredientToBlacklist(registry);
+		
+		registry.handleRecipes(ITeaStoveRecipe.class, new RecipeWrapperTeaStove(), "teastory.teastove");
+		registry.handleRecipes(ITeaTableRecipe.class, new RecipeWrapperTeaTable(), "teastory.teatable");
+		registry.handleRecipes(ITeaMakingRecipe.class, new RecipeWrapperDryingPan(), "teastory.dryingpan");
+		registry.handleRecipes(ITeaMakingRecipe.class, new RecipeWrapperTeapan(), "teastory.teapan");
+		registry.handleRecipes(ITeaMakingRecipe.class, new RecipeWrapperBarrel(), "teastory.barrel");
+		registry.handleRecipes(ITeaMakingRecipe.class, new RecipeWrapperCookingPan(), "teastory.cookingpan");
+		
+		registry.addRecipeCatalyst(new ItemStack(BlockLoader.tea_stove), "teastory.teastove");
+		registry.addRecipeCatalyst(new ItemStack(BlockLoader.tea_table), "teastory.teatable");
+		registry.addRecipeCatalyst(new ItemStack(BlockLoader.tea_drying_pan), "teastory.dryingpan");
+		registry.addRecipeCatalyst(new ItemStack(BlockLoader.teapan), "teastory.teapan");
+		registry.addRecipeCatalyst(new ItemStack(BlockLoader.barrel), "teastory.barrel");
+		registry.addRecipeCatalyst(new ItemStack(BlockLoader.tea_drying_pan), "teastory.cookingpan");
+		
+		registry.addRecipes(RecipeTeaStove.getWrappedRecipeList(), "teastory.teastove");
+		registry.addRecipes(RecipeTeaTable.getWrappedRecipeList(), "teastory.teatable");
+		registry.addRecipes(RecipeDryingPan.getWrappedRecipeList(), "teastory.dryingpan");
+		registry.addRecipes(RecipeTeapan.getWrappedRecipeList(), "teastory.teapan");
+		registry.addRecipes(RecipeBarrel.getWrappedRecipeList(), "teastory.barrel");
+		registry.addRecipes(RecipeCookingPan.getWrappedRecipeList(), "teastory.cookingpan");
+		
+		registry.addRecipeClickArea(GuiContainerTeaStove.class, 78, 38, 24, 17, "teastory.teastove");
+		registry.addRecipeClickArea(GuiContainerTeaTable.class, 85, 33, 24, 17, "teastory.teatable");
+	}
+	
+	public static void addIngredientToBlacklist(IModRegistry registry)
 	{
 		IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.glass_cup));
@@ -101,38 +144,6 @@ public class JEI implements IModPlugin
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.teaplant));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.straw_blanket));
 		blacklist.addIngredientToBlacklist(new ItemStack(ItemLoader.cup, 1, 1));
-		
-		registry.addRecipeHandlers(new HandlerTeaStove());
-		registry.addRecipeCategories(new CategoryTeaStove(registry.getJeiHelpers().getGuiHelper()));
-		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.tea_stove), "teastory.teastove");
-		registry.addRecipes(RecipeTeaStove.getWrappedRecipeList());
-		registry.addRecipeClickArea(GuiContainerTeaStove.class, 78, 38, 24, 17, "teastory.teastove");
-		
-		registry.addRecipeHandlers(new HandlerTeaTable());
-		registry.addRecipeCategories(new CategoryTeaTable(registry.getJeiHelpers().getGuiHelper()));
-		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.tea_table), "teastory.teatable");
-		registry.addRecipes(RecipeTeaTable.getWrappedRecipeList());
-		registry.addRecipeClickArea(GuiContainerTeaTable.class, 85, 33, 24, 17, "teastory.teatable");
-		
-		registry.addRecipeHandlers(new HandlerDryingPan());
-		registry.addRecipeCategories(new CategoryDryingPan(registry.getJeiHelpers().getGuiHelper()));
-		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.tea_drying_pan), "teastory.dryingpan");
-		registry.addRecipes(RecipeDryingPan.getWrappedRecipeList());
-		
-		registry.addRecipeHandlers(new HandlerTeapan());
-		registry.addRecipeCategories(new CategoryTeapan(registry.getJeiHelpers().getGuiHelper()));
-		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.teapan), "teastory.teapan");
-		registry.addRecipes(RecipeTeapan.getWrappedRecipeList());
-		
-		registry.addRecipeHandlers(new HandlerBarrel());
-		registry.addRecipeCategories(new CategoryBarrel(registry.getJeiHelpers().getGuiHelper()));
-		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.barrel), "teastory.barrel");
-		registry.addRecipes(RecipeBarrel.getWrappedRecipeList());
-		
-		registry.addRecipeHandlers(new HandlerCookingPan());
-		registry.addRecipeCategories(new CategoryCookingPan(registry.getJeiHelpers().getGuiHelper()));
-		registry.addRecipeCategoryCraftingItem(new ItemStack(BlockLoader.tea_drying_pan), "teastory.cookingpan");
-		registry.addRecipes(RecipeCookingPan.getWrappedRecipeList());
 	}
 
 	@Override

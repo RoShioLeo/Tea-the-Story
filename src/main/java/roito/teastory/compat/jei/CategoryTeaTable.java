@@ -52,7 +52,6 @@ public class CategoryTeaTable extends BlankRecipeCategory<IRecipeWrapper>
 		progressBar.draw(minecraft, 82, 51);
 	}
 	
-	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper)
 	{
 		IGuiItemStackGroup items = recipeLayout.getItemStacks();
@@ -67,13 +66,19 @@ public class CategoryTeaTable extends BlankRecipeCategory<IRecipeWrapper>
 		items.init(4, true, 40, 59);
 		items.set(4, RecipeTeaTable.getPotInputs());
 		items.init(5, false, 112, 65);
-		items.set(5, recipeWrapper.getOutputs());
+		items.set(5, ((RecipeTeaTable)recipeWrapper).getOutputs());
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
 	{
 		setRecipe(recipeLayout, recipeWrapper);
+	}
+
+	@Override
+	public String getModName()
+	{
+		return "TeaStory";
 	}
 	
 }

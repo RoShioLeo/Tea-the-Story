@@ -9,6 +9,7 @@ public class ItemBlockHalfDriedLeaf extends ItemBlock
 	public ItemBlockHalfDriedLeaf(Block block)
 	{
 		super(block);
+		this.setRegistryName(block.getRegistryName());
 	}
 
 	@Override

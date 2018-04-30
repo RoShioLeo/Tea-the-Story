@@ -11,7 +11,6 @@ public class HandlerTeaTable implements IRecipeHandler<RecipeTeaTable>
 		return RecipeTeaTable.class;
 	}
 
-	@Override
 	public String getRecipeCategoryUid()
 	{
 		return "teastory.teatable";

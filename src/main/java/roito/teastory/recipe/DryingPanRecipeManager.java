@@ -46,7 +46,7 @@ public class DryingPanRecipeManager implements IRecipeManager<ITeaMakingRecipe>
 			return null;
 		for (ITeaMakingRecipe r : recipes)
 		{
-			if (r.getStep3().isItemEqual((ItemStack)inputs[0]) && r.getStep3().stackSize <= ((ItemStack)inputs[0]).stackSize)
+			if (r.getStep3().isItemEqual((ItemStack)inputs[0]) && r.getStep3().getCount() <= ((ItemStack)inputs[0]).getCount())
 				return r;
 		}
 		return null;

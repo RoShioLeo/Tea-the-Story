@@ -7,12 +7,12 @@ public class WailaCompatRegistry
 {
 	public WailaCompatRegistry()
 	{
-		if (Loader.isModLoaded("Waila"))
+		if (Loader.isModLoaded("waila"))
 		{
-			FMLInterModComms.sendMessage("Waila", "register", "roito.teastory.compat.waila.WailaBarrel.register");
-			FMLInterModComms.sendMessage("Waila", "register", "roito.teastory.compat.waila.WailaTeapan.register");
-			FMLInterModComms.sendMessage("Waila", "register", "roito.teastory.compat.waila.WailaHalfDriedLeafBlock.register");
-			FMLInterModComms.sendMessage("Waila", "register", "roito.teastory.compat.waila.WailaFullKettle.register");
+			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaBarrel.register");
+			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaTeapan.register");
+			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaHalfDriedLeafBlock.register");
+			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaFullKettle.register");
 		}
 	}
 }

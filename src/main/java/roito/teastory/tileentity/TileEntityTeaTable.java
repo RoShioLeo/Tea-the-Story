@@ -103,18 +103,18 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 	public void update()
 	{
 		//TODO 改用Recipe
-		if (!this.worldObj.isRemote)
+		if (!this.getWorld().isRemote)
 		{
 			ItemStack leaf = InventoryLeaf.extractItem(0, 1, true);
 			ItemStack cup = InventoryCup.extractItem(0, 1, true);
 			ItemStack water = InventoryWater.extractItem(0, 1, true);
-			if(leaf != null && leaf.getItem() instanceof ItemTeaLeaf && cup != null && (cup.getItem() instanceof ItemCup || Block.getBlockFromItem(cup.getItem()) instanceof EmptyKettle) && water != null && water.getItem() instanceof ItemWaterPot)
+			if(leaf != ItemStack.EMPTY && leaf.getItem() instanceof ItemTeaLeaf && cup != ItemStack.EMPTY && (cup.getItem() instanceof ItemCup || Block.getBlockFromItem(cup.getItem()) instanceof EmptyKettle) && water != ItemStack.EMPTY && water.getItem() instanceof ItemWaterPot)
 			{
 				boolean teaset = cup.getItem() instanceof ItemCup;  //True for Cups
 				ItemStack tool = InventoryTool.extractItem(0, 1, true);
 				ItemTeaLeaf teaLeaf = ((ItemTeaLeaf) leaf.getItem());
 				String drinkName = teaLeaf.getTeaDrinkName(tool != null ? tool.getItem() : null);
-				if (drinkName != null && (InventoryDrink.insertItem(0, new ItemStack(Item.getByNameOrId(TeaStory.MODID + ":" + drinkName), 1, cup.getMetadata()), true) == null || InventoryDrink.extractItem(0, 1, true) == null))
+				if (drinkName != null && (InventoryDrink.insertItem(0, new ItemStack(Item.getByNameOrId(TeaStory.MODID + ":" + drinkName), 1, cup.getMetadata()), true) == ItemStack.EMPTY || InventoryDrink.extractItem(0, 1, true) == ItemStack.EMPTY))
 				{
 					boolean sugar = teaLeaf.needSugar(drinkName);
 					int toolKind = teaLeaf.getToolType(drinkName);	// 0: Null, 1: Amount, 2:Damage, 3:Bucket
@@ -123,7 +123,7 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 					switch (toolKind)
 					{
 						case 1:
-							toolRemain = InventoryTool.getStackInSlot(0).stackSize;
+							toolRemain = InventoryTool.getStackInSlot(0).getCount();
 							break;
 						case 2:
 							toolRemain = InventoryTool.getStackInSlot(0).getMaxDamage() - InventoryTool.getStackInSlot(0).getItemDamage() + 1;
@@ -139,11 +139,11 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 					if (!teaset)
 					{
 						int kettleCapacity = ((EmptyKettle)Block.getBlockFromItem(cup.getItem())).getKettleName() == "porcelain_kettle" ? 4 : 8;
-						cc =getMin(waterRemain, kettleCapacity, InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != null ? InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
+						cc =getMin(waterRemain, kettleCapacity, InventoryLeaf.getStackInSlot(0).getCount() / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != ItemStack.EMPTY ? InventorySugar.getStackInSlot(0).getCount() / 3 : 0 : 32767);
 					}
 					else
 					{
-						cc =getMin(waterRemain, 1, InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != null ? InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
+						cc =getMin(waterRemain, 1, InventoryLeaf.getStackInSlot(0).getCount() / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != ItemStack.EMPTY ? InventorySugar.getStackInSlot(0).getCount() / 3 : 0 : 32767);
 					}
 					if (cc != 0)
 					{

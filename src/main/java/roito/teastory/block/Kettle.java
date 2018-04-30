@@ -1,12 +1,11 @@
 package roito.teastory.block;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -14,10 +13,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import roito.teastory.TeaStory;
 
 public class Kettle extends BlockHorizontal
 {
@@ -28,6 +29,7 @@ public class Kettle extends BlockHorizontal
 		this.setHardness(1.25F);
 		this.setSoundType(SoundType.STONE);
 		this.setUnlocalizedName(name);
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
 	}
 	
 	@Override
@@ -61,7 +63,7 @@ public class Kettle extends BlockHorizontal
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (worldIn.isRemote)
 		{
@@ -69,11 +71,11 @@ public class Kettle extends BlockHorizontal
 		}
 		else
 		{
-			if (heldItem == null)
+			if (playerIn.getHeldItem(hand).isEmpty())
 			{
 				if (!playerIn.inventory.addItemStackToInventory(new ItemStack(state.getBlock(), 1, damageDropped(state))))
 				{
-					playerIn.getEntityWorld().spawnEntityInWorld(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D,
+					playerIn.getEntityWorld().spawnEntity(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D,
 							new ItemStack(state.getBlock(), 1, damageDropped(state))));
 				}
 				else if (playerIn instanceof EntityPlayerMP)
@@ -84,5 +86,12 @@ public class Kettle extends BlockHorizontal
 			}
 			return true;
 		}
+	}
+	
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+    {
+		IBlockState origin = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+		return origin.withProperty(FACING, placer.getHorizontalFacing().getOpposite());
 	}
 }

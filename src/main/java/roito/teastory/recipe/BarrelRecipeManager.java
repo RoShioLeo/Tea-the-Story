@@ -46,7 +46,7 @@ public class BarrelRecipeManager implements IRecipeManager<ITeaMakingRecipe>
 			return null;
 		for (ITeaMakingRecipe r : recipes)
 		{
-			if (r.getStep2().isItemEqual((ItemStack)inputs[0]) && r.getStep2().stackSize <= ((ItemStack)inputs[0]).stackSize)
+			if (r.getStep2().isItemEqual((ItemStack)inputs[0]) && r.getStep2().getCount() <= ((ItemStack)inputs[0]).getCount())
 				return r;
 		}
 		return null;

@@ -83,7 +83,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 		ItemStack teaLeaf = leafInventory.extractItem(0, 1, true);
 		if (!this.getWorld().isRemote)
 		{
-			if (teaLeaf != null && ((teaLeaf.getItem() == ItemLoader.tea_leaf && outputInventory.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), true) == null) || (teaLeaf.getItem() == ItemLoader.half_dried_tea && outputInventory.insertItem(0, new ItemStack(ItemLoader.white_tea_leaf), true) == null)))
+			if (teaLeaf != ItemStack.EMPTY && ((teaLeaf.getItem() == ItemLoader.tea_leaf && outputInventory.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), true) == ItemStack.EMPTY) || (teaLeaf.getItem() == ItemLoader.half_dried_tea && outputInventory.insertItem(0, new ItemStack(ItemLoader.white_tea_leaf), true) == ItemStack.EMPTY)))
 			{
 				if (teaLeaf.getItem() == ItemLoader.tea_leaf)
 				{
@@ -93,7 +93,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 						{
 							if (!(this.getSteam() > 0))
 							{
-								this.worldObj.setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater() - 1));
+								this.getWorld().setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater() - 1));
 								this.steam = this.getTotalSteam();
 							}
 							this.dryTime++;
@@ -126,7 +126,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 			}
 			if (this.fuelTime == 0)
 			{
-				TeaStove.setState(false, this.worldObj, this.pos);
+				TeaStove.setState(false, this.getWorld(), this.pos);
 			}
 			if (this.fuelTime > 0)
 			{
@@ -171,7 +171,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 				}
 				else fuelInventory.extractItem(0, 1, false);
 				this.markDirty();
-				TeaStove.setState(true, this.worldObj, this.pos);
+				TeaStove.setState(true, this.getWorld(), this.pos);
 				return true;
 			}
 			else return false;
@@ -227,7 +227,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 
 	public int hasWater()
 	{
-		IBlockState state = this.worldObj.getBlockState(pos.up());
+		IBlockState state = this.getWorld().getBlockState(pos.up());
 		if(state.getBlock() == Blocks.CAULDRON)
 		{
 			this.hasWater = Blocks.CAULDRON.getMetaFromState(state);

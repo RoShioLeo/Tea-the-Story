@@ -1,11 +1,14 @@
 package roito.teastory.potion;
 
 import net.minecraft.potion.Potion;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.RegistryNamespaced;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class PotionLoader
 {
+	public static final RegistryNamespaced<ResourceLocation, Potion> REGISTRY = net.minecraftforge.registries.GameData.getWrapper(Potion.class);
 	public static Potion PotionAgility;
 	public static Potion PotionLifeDrain;
 	public static Potion PotionPhotosynthesis;
@@ -26,9 +29,9 @@ public class PotionLoader
 		register(PotionDefence);
 		register(PotionExcitement);
 	}
-
-	public void register(Potion potion)
-	{
-		GameRegistry.register(potion);
-	}
+	
+	public static void register(Potion potion)
+    {
+        ForgeRegistries.POTIONS.register(potion);
+    }
 }

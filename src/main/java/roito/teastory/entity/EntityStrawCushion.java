@@ -43,12 +43,12 @@ public class EntityStrawCushion extends Entity
 	@Override
 	public void onEntityUpdate()
 	{
-		if (!this.worldObj.isRemote)
+		if (!this.getEntityWorld().isRemote)
 		{
-			if (!this.isBeingRidden() || this.worldObj.isAirBlock(new BlockPos(blockPosX, blockPosY, blockPosZ)))
+			if (!this.isBeingRidden() || this.getEntityWorld().isAirBlock(new BlockPos(blockPosX, blockPosY, blockPosZ)))
 			{
 				this.setDead();
-				worldObj.updateComparatorOutputLevel(getPosition(), worldObj.getBlockState(getPosition()).getBlock());
+				getEntityWorld().updateComparatorOutputLevel(getPosition(), getEntityWorld().getBlockState(getPosition()).getBlock());
 			}
 		}
 	}

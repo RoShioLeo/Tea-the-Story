@@ -14,8 +14,8 @@ import roito.teastory.common.CommonProxy;
 			version = TeaStory.VERSION,
 			updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2-3.X/update.json",
 			guiFactory = TeaStory.CONFIG_GUI_CLASS,
-			acceptedMinecraftVersions = "[1.10.2,1.11)",
-			dependencies = "required-after:Forge@[12.18.3.2185,);after:JEI@[3.14.7.416,);")
+			acceptedMinecraftVersions = "[1.12.2,1.13)",
+			dependencies = "required-after:forge@[14.23.2.2611,);after:jei@[4.8.5.147,);")
 
 public class TeaStory
 {

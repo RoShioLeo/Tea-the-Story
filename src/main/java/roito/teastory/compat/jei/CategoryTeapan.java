@@ -40,7 +40,6 @@ public class CategoryTeapan extends BlankRecipeCategory<IRecipeWrapper>
 		return background;
 	}
 
-	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper)
 	{
 		IGuiItemStackGroup items = recipeLayout.getItemStacks();
@@ -60,5 +59,11 @@ public class CategoryTeapan extends BlankRecipeCategory<IRecipeWrapper>
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
 	{
 		setRecipe(recipeLayout, recipeWrapper);
+	}
+
+	@Override
+	public String getModName()
+	{
+		return "TeaStory";
 	}
 }

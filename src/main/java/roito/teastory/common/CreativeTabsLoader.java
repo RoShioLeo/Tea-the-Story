@@ -1,7 +1,7 @@
 package roito.teastory.common;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import roito.teastory.item.ItemLoader;
 
@@ -16,25 +16,25 @@ public class CreativeTabsLoader
 		tabTeaStory = new CreativeTabs("tabTeaStory")
 		{
 			@Override
-			public Item getTabIconItem()
+			public ItemStack getTabIconItem()
 			{
-				return ItemLoader.half_dried_tea;
+				return new ItemStack(ItemLoader.half_dried_tea);
 			}
 		};
 		tabDrink = new CreativeTabs("tabTeaDrink")
 		{
 			@Override
-			public Item getTabIconItem()
+			public ItemStack getTabIconItem()
 			{
-				return ItemLoader.green_tea;
+				return new ItemStack(ItemLoader.green_tea);
 			}
 		};
 		tabRice = new CreativeTabs("tabTeaRice")
 		{
 			@Override
-			public Item getTabIconItem()
+			public ItemStack getTabIconItem()
 			{
-				return ItemLoader.xian_rice;
+				return new ItemStack(ItemLoader.xian_rice);
 			}
 		};
 	}

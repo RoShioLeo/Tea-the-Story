@@ -1,0 +1,114 @@
+[
+	{
+		"name": "tree_leaves",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "treeLeaves"
+		}
+	},
+	{
+		"name": "plank_wood",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "plankWood"
+		}
+	},
+	{
+		"name": "stick_wood",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "stickWood"
+		}
+	},
+	{
+		"name": "ingot_iron",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "ingotIron"
+		}
+	},
+	{
+		"name": "stone",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "stone"
+		}
+	},
+	{
+		"name": "cobblestone",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "cobblestone"
+		}
+	},
+	{
+		"name": "log_wood",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "logWood"
+		}
+	},
+	{
+		"name": "gem_quartz",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "gemQuartz"
+		}
+	},
+	{
+		"name": "dust_redstone",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "dustRedstone"
+		}
+	},
+	{
+		"name": "crop_wheat",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "cropWheat"
+		}
+	},
+	{
+		"name": "slab_wood",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "slabWood"
+		}
+	},
+	{
+		"name": "crop_straw",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "cropStraw"
+		}
+	},
+	{
+		"name": "gem_lapis",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "gemLapis"
+		}
+	},
+	{
+		"name": "block_iron",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "blockIron"
+		}
+	},
+	{
+		"name": "paper",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "paper"
+		}
+	},
+	{
+		"name": "string",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "string"
+		}
+	}
+]

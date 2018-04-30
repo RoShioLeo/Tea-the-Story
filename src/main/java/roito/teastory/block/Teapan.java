@@ -1,10 +1,7 @@
 package roito.teastory.block;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -13,23 +10,22 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
-import roito.teastory.common.AchievementLoader;
+import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsLoader;
 import roito.teastory.helper.EntironmentHelper;
 import roito.teastory.item.ItemLoader;
@@ -47,6 +43,7 @@ public class Teapan extends Block
 		this.setHardness(0.5F);
 		this.setSoundType(SoundType.WOOD);
 		this.setUnlocalizedName("teapan");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "teapan"));
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
 		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
 	}
@@ -146,28 +143,12 @@ public class Teapan extends Block
 			}
 		}
 	}
-
-	public static String getName(int meta)
-	{
-		return String.valueOf(meta);
-	}
-
+	
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-	{
-		if (placer instanceof EntityPlayer)
-		{
-			((EntityPlayer) placer).addStat(AchievementLoader.teaBasket);
-		}
-		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
-	{
-		list.add(new ItemStack(itemIn, 1, 0));
-	}
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+		return new ItemStack(this);
+    }
 
 	@Override
 	protected BlockStateContainer createBlockState()
@@ -193,7 +174,7 @@ public class Teapan extends Block
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		int step = getMetaFromState(worldIn.getBlockState(pos));
 		if (worldIn.isRemote)
@@ -201,22 +182,22 @@ public class Teapan extends Block
 			switch (step)
 			{
 			case 0:
-				if ((heldItem == null)
-						|| (Block.getBlockFromItem(heldItem.getItem()) != BlockLoader.teapan
-						&& heldItem.getItem() != ItemLoader.half_dried_tea
-						&& heldItem.getItem() != ItemLoader.tea_leaf 
-						&& heldItem.getItem() != ItemLoader.wet_tea
-						&& heldItem.getItem() != ItemLoader.dried_tea))
+				if ((playerIn.getHeldItem(hand).isEmpty())
+						|| (Block.getBlockFromItem(playerIn.getHeldItem(hand).getItem()) != BlockLoader.teapan
+						&& playerIn.getHeldItem(hand).getItem() != ItemLoader.half_dried_tea
+						&& playerIn.getHeldItem(hand).getItem() != ItemLoader.tea_leaf 
+						&& playerIn.getHeldItem(hand).getItem() != ItemLoader.wet_tea
+						&& playerIn.getHeldItem(hand).getItem() != ItemLoader.dried_tea))
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.teapan.tips"));
+					playerIn.sendMessage(new TextComponentTranslation("teastory.message.teapan.tips"));
 				}
-				else if (heldItem.stackSize < 8
-						&& (heldItem.getItem() == ItemLoader.half_dried_tea
-						|| heldItem.getItem() == ItemLoader.tea_leaf 
-						|| heldItem.getItem() == ItemLoader.wet_tea
-						|| heldItem.getItem() == ItemLoader.dried_tea))
+				else if (playerIn.getHeldItem(hand).getCount() < 8
+						&& (playerIn.getHeldItem(hand).getItem() == ItemLoader.half_dried_tea
+						|| playerIn.getHeldItem(hand).getItem() == ItemLoader.tea_leaf 
+						|| playerIn.getHeldItem(hand).getItem() == ItemLoader.wet_tea
+						|| playerIn.getHeldItem(hand).getItem() == ItemLoader.dried_tea))
 				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.teapan.notenough"));
+					playerIn.sendMessage(new TextComponentTranslation("teastory.message.teapan.notenough"));
 				}
 			}
 			return true;
@@ -225,43 +206,43 @@ public class Teapan extends Block
 		{
 			if (step == 0)
 			{
-				if (heldItem != null)
+				if (!playerIn.getHeldItem(hand).isEmpty())
 				{
-					if (heldItem.stackSize >= 8)
+					if (playerIn.getHeldItem(hand).getCount() >= 8)
 					{
-						if (heldItem.getItem() == ItemLoader.tea_leaf)
+						if (playerIn.getHeldItem(hand).getItem() == ItemLoader.tea_leaf)
 						{
 							worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(2));
 							if (!playerIn.capabilities.isCreativeMode)
 							{
-								heldItem.stackSize = heldItem.stackSize - 8;
+								playerIn.getHeldItem(hand).shrink(8);
 							}
 							return true;
 						} 
-						else if (heldItem.getItem() == ItemLoader.wet_tea)
+						else if (playerIn.getHeldItem(hand).getItem() == ItemLoader.wet_tea)
 						{
 							worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(1));
 							if (!playerIn.capabilities.isCreativeMode)
 							{
-								heldItem.stackSize = heldItem.stackSize - 8;
+								playerIn.getHeldItem(hand).shrink(8);
 							}
 							return true;
 						} 
-						else if (heldItem.getItem() == ItemLoader.half_dried_tea)
+						else if (playerIn.getHeldItem(hand).getItem() == ItemLoader.half_dried_tea)
 						{
 							worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(8));
 							if (!playerIn.capabilities.isCreativeMode)
 							{
-								heldItem.stackSize = heldItem.stackSize - 8;
+								playerIn.getHeldItem(hand).shrink(8);
 							}
 							return true;
 						}
-						else if (heldItem.getItem() == ItemLoader.dried_tea)
+						else if (playerIn.getHeldItem(hand).getItem() == ItemLoader.dried_tea)
 						{
 							worldIn.setBlockState(pos, BlockLoader.teapan.getStateFromMeta(9));
 							if (!playerIn.capabilities.isCreativeMode)
 							{
-								heldItem.stackSize = heldItem.stackSize - 8;
+								playerIn.getHeldItem(hand).shrink(8);
 							}
 							return true;
 						}
@@ -278,28 +259,24 @@ public class Teapan extends Block
 			else if (step == 8)
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-				playerIn.addStat(AchievementLoader.halfDriedTea);
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.half_dried_tea, 8));
 				return true;
 			} 
 			else if ((step >= 9) && (step <= 11))
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-				playerIn.addStat(AchievementLoader.driedTea);
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
 				return true;
 			}
 			else if (step == 12) 
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-				playerIn.addStat(AchievementLoader.yellowTea);
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.yellow_tea_leaf, 8));
 				return true;
 			}
 			else if (step == 1) 
 			{
 				worldIn.setBlockState(pos, BlockLoader.teapan.getDefaultState());
-				playerIn.addStat(AchievementLoader.wetTea);
 				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.wet_tea, 8));
 				return true;
 			}

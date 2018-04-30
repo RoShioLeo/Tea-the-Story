@@ -1,0 +1,17 @@
+{
+	"type": "forge:ore_shaped",
+	"result": {
+		"item": "teastory:broken_tea",
+		"count": 3
+	},
+	"pattern": [
+		"TTT",
+		"TTT",
+		"TTT"
+	],
+	"key": {
+		"T": {
+			"item": "#tree_leaves"
+		}
+	}
+}

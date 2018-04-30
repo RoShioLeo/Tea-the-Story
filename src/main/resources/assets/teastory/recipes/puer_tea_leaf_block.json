@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+	"result":{
+        "item": "teastory:half_dried_leaf_block",
+		"count": 1,
+		"data": 8
+    },
+    "pattern":[
+        "PPP",
+        "PPP",
+		"PPP"
+    ],
+    "key":
+    {
+        "P":
+        {
+            "item": "teastory:puer_tea_leaf"
+        }
+    }
+}

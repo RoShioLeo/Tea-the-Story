@@ -5,11 +5,13 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import roito.teastory.TeaStory;
 
 public class TeaDrink extends Block
 {
@@ -22,6 +24,7 @@ public class TeaDrink extends Block
 		this.setHardness(hardness);
 		this.setSoundType(soundType);
 		this.setUnlocalizedName(name);
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
 		this.meta = level;
 	}
 

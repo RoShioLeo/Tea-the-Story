@@ -11,8 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsLoader;
 
 public class WaterPloughingHoe extends ItemHoe
@@ -23,17 +25,18 @@ public class WaterPloughingHoe extends ItemHoe
 		this.setCreativeTab(CreativeTabsLoader.tabRice);
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("waterploughing_hoe");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "waterploughing_hoe"));
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		EnumActionResult[] result = new EnumActionResult[3];
 		for (int i = -1; i<=1; i++)
 		{
-			if (this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i).offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex()) % 4), -1), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS 
-				| this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS
-				| this.onHoeUse(stack, playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i).offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex()) % 4), 1), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS)
+			if (this.onHoeUse(playerIn.getHeldItem(hand), playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i).offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex()) % 4), -1), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS 
+				| this.onHoeUse(playerIn.getHeldItem(hand), playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS
+				| this.onHoeUse(playerIn.getHeldItem(hand), playerIn, worldIn, pos.offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex() + 1) % 4), i).offset(EnumFacing.getHorizontal((playerIn.getHorizontalFacing().getHorizontalIndex()) % 4), 1), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS)
 			{
 				result[i+1] = EnumActionResult.SUCCESS;
 			}

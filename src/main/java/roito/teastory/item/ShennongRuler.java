@@ -2,8 +2,11 @@ package roito.teastory.item;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.lwjgl.input.Keyboard;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,12 +18,14 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsLoader;
 
 public class ShennongRuler extends ItemSword
@@ -32,17 +37,18 @@ public class ShennongRuler extends ItemSword
 		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("shennong_ruler");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "shennong_ruler"));
 	}
 
 	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.shennong_ruler"));
+			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.shennong_ruler"));
 		}
 		else
-			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+			tooltip.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
 	}
 
 	@Override
@@ -55,7 +61,7 @@ public class ShennongRuler extends ItemSword
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
-		if(!player.worldObj.isRemote)
+		if(player.isServerWorld() && entity instanceof EntityLivingBase)
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 100, 1));
 		}
@@ -63,7 +69,7 @@ public class ShennongRuler extends ItemSword
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
 	{
 		if(!worldIn.isRemote)
 		{
@@ -71,12 +77,12 @@ public class ShennongRuler extends ItemSword
 		}
 		if(!playerIn.capabilities.isCreativeMode)
 		{
-			itemStackIn.setItemDamage(itemStackIn.getItemDamage() + 5);
-			if (itemStackIn.getItemDamage() > 768)
+			playerIn.getHeldItem(hand).setItemDamage(playerIn.getHeldItem(hand).getItemDamage() + 5);
+			if (playerIn.getHeldItem(hand).getItemDamage() > 768)
 			{
-				--itemStackIn.stackSize;
+				playerIn.getHeldItem(hand).shrink(1);
 			}
 		}
-		return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+		return new ActionResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
 	}
 }

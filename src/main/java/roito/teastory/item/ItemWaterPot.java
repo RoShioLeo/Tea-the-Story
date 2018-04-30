@@ -16,6 +16,12 @@ public class ItemWaterPot extends TSItem
 		this.setNoRepair();
 	}
 	
+	@Override
+	public boolean isEnchantable(ItemStack stack)
+	{
+		return false;
+	}
+	
 	public int getRemainWater(ItemStack stack)
 	{
 		return this.getMaxDamage(stack) - this.getDamage(stack);

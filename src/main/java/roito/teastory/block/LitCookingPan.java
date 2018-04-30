@@ -3,8 +3,6 @@ package roito.teastory.block;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -16,6 +14,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -23,6 +22,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import roito.teastory.TeaStory;
 import roito.teastory.item.ItemLoader;
 import roito.teastory.tileentity.TileEntityCookingPan;
 
@@ -37,6 +37,7 @@ public class LitCookingPan extends BlockContainer
 		this.setSoundType(SoundType.METAL);
 		this.setLightLevel(0.875F);
 		this.setUnlocalizedName("lit_cooking_pan");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "lit_cooking_pan"));
 	}
 	
 	@Override
@@ -93,7 +94,7 @@ public class LitCookingPan extends BlockContainer
 	}
 	
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if(worldIn.isRemote)
 		{
@@ -103,7 +104,7 @@ public class LitCookingPan extends BlockContainer
 			{
 				seconds = ((TileEntityCookingPan) te).getRemainingTime() / 20;
 			}
-			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.cooking_pan.rice", seconds));
+			playerIn.sendMessage(new TextComponentTranslation("teastory.message.cooking_pan.rice", seconds));
 		}
 		return true;
 	}

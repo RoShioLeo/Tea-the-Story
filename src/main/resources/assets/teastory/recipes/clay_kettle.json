@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+	"result":{
+        "item": "teastory:clay_kettle",
+		"count": 1
+    },
+    "pattern":[
+        " C ",
+        "C C",
+		"CCC"
+    ],
+    "key":
+    {
+        "C":
+        {
+            "item": "minecraft:clay"
+        }
+    }
+}

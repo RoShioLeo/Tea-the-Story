@@ -33,19 +33,19 @@ public class ItemEmptyPot extends TSItem
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
 		RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
-		ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onBucketUse(playerIn, worldIn, itemStackIn, raytraceresult);
+		ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onBucketUse(playerIn, worldIn, playerIn.getHeldItem(handIn), raytraceresult);
 		if (ret != null) return ret;
 
 		if (raytraceresult == null)
 		{
-			return new ActionResult(EnumActionResult.PASS, itemStackIn);
+			return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
 		}
 		else if (raytraceresult.typeOfHit != RayTraceResult.Type.BLOCK)
 		{
-			return new ActionResult(EnumActionResult.PASS, itemStackIn);
+			return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
 		}
 		else
 		{
@@ -53,13 +53,13 @@ public class ItemEmptyPot extends TSItem
 
 			if (!worldIn.isBlockModifiable(playerIn, blockpos))
 			{
-				return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+				return new ActionResult(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
 			}
 			else
 			{
-				if (!playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStackIn))
+				if (!playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, playerIn.getHeldItem(handIn)))
 				{
-					return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+					return new ActionResult(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
 				}
 				else
 				{
@@ -70,11 +70,11 @@ public class ItemEmptyPot extends TSItem
 					{
 						playerIn.addStat(StatList.getObjectUseStats(this));
 						playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
-						return new ActionResult(EnumActionResult.SUCCESS, this.turnPotIntoItem(itemStackIn, playerIn, new ItemStack(Item.getByNameOrId(cold_water), 1, itemStackIn.getItemDamage())));
+						return new ActionResult(EnumActionResult.SUCCESS, this.turnPotIntoItem(playerIn.getHeldItem(handIn), playerIn, new ItemStack(Item.getByNameOrId(cold_water), 1, playerIn.getHeldItem(handIn).getItemDamage())));
 					}
 					else
 					{
-						return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+						return new ActionResult(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
 					}
 				}
 			}
@@ -84,9 +84,9 @@ public class ItemEmptyPot extends TSItem
 	protected ItemStack turnPotIntoItem(ItemStack stackIn, EntityPlayer player, ItemStack stack)
 	{
 		if(!player.capabilities.isCreativeMode)
-			--stackIn.stackSize;
+			stackIn.shrink(1);
 
-		if (stackIn.stackSize <= 0)
+		if (stackIn.getCount() <= 0)
 		{
 			return stack;
 		}

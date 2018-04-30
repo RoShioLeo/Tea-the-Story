@@ -12,12 +12,7 @@ public class Record extends ItemRecord
 	{
 		super(name,  new SoundEvent(new ResourceLocation(TeaStory.MODID, name3)));
 		this.setUnlocalizedName(name2);
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name2));
 		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
-	}
-
-	@Override
-	public ResourceLocation getRecordResource(String name)
-	{
-		return new ResourceLocation(TeaStory.MODID, name);
 	}
 }

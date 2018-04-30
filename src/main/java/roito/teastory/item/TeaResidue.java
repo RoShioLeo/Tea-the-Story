@@ -2,21 +2,23 @@ package roito.teastory.item;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.lwjgl.input.Keyboard;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import roito.teastory.common.AchievementLoader;
 import roito.teastory.common.CreativeTabsLoader;
 
 public class TeaResidue extends TSItem
@@ -28,14 +30,14 @@ public class TeaResidue extends TSItem
 	}
 
 	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean b)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.tea_residue"));
+			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.tea_residue"));
 		}
 		else
-			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+			tooltip.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
 	}
 
 	@Override
@@ -59,24 +61,26 @@ public class TeaResidue extends TSItem
 	}
 
 	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
-	{
-		subItems.add(new ItemStack(itemIn, 1, 0));
-		subItems.add(new ItemStack(itemIn, 1, 1));
-		subItems.add(new ItemStack(itemIn, 1, 2));
-		subItems.add(new ItemStack(itemIn, 1, 3));
-		subItems.add(new ItemStack(itemIn, 1, 4));
-		subItems.add(new ItemStack(itemIn, 1, 5));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
+    {
+		if (this.isInCreativeTab(tab))
+		{
+			items.add(new ItemStack(this, 1, 0));
+			items.add(new ItemStack(this, 1, 1));
+			items.add(new ItemStack(this, 1, 2));
+			items.add(new ItemStack(this, 1, 3));
+			items.add(new ItemStack(this, 1, 4));
+			items.add(new ItemStack(this, 1, 5));
+		}
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (ItemDye.applyBonemeal(stack, worldIn, pos, playerIn))
+		if (ItemDye.applyBonemeal(playerIn.getHeldItem(hand), worldIn, pos))
 		{
 			if (!worldIn.isRemote)
 			{
-				playerIn.addStat(AchievementLoader.teaResidue);
 				worldIn.playEvent(2005, pos, 0);
 			}
 			return EnumActionResult.SUCCESS;

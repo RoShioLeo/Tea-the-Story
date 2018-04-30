@@ -102,7 +102,7 @@ public class ContainerTeaTable extends Container
 
 		if (slot == null || !slot.getHasStack())
 		{
-			return null;
+			return ItemStack.EMPTY;
 		}
 
 		ItemStack newStack = slot.getStack(), oldStack = newStack.copy();
@@ -126,19 +126,19 @@ public class ContainerTeaTable extends Container
 
 		if (!isMerged)
 		{
-			return null;
+			return ItemStack.EMPTY;
 		}
 
-		if (newStack.stackSize == 0)
+		if (newStack.getCount() == 0)
 		{
-			slot.putStack(null);
+			slot.putStack(ItemStack.EMPTY);
 		}
 		else
 		{
 			slot.onSlotChanged();
 		}
 
-		slot.onPickupFromSlot(playerIn, newStack);
+		slot.onTake(playerIn, newStack);
 
 		return oldStack;
 	}
@@ -152,7 +152,7 @@ public class ContainerTeaTable extends Container
 
         for (IContainerListener i : this.listeners)
         {
-            i.sendProgressBarUpdate(this, 0, this.teaTime);
+            i.sendWindowProperty(this, 0, this.teaTime);
         }
     }
 	

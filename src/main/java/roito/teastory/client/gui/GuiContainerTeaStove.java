@@ -27,6 +27,14 @@ public class GuiContainerTeaStove extends GuiContainer
 		this.totalDryTime = inventorySlotsIn.getTotalDryTime();
 		this.totalSteam = inventorySlotsIn.getTotalSteam();
 	}
+	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTick)
+	{
+		this.drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTick);
+		this.renderHoveredToolTip(mouseX, mouseY);
+	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
@@ -64,6 +72,6 @@ public class GuiContainerTeaStove extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		String title = I18n.translateToLocal("teastory.container.tea_stove");
-		this.fontRendererObj.drawString(title, (this.xSize - this.fontRendererObj.getStringWidth(title)) / 2, 6, 0x404040);
+		this.fontRenderer.drawString(title, (this.xSize - this.fontRenderer.getStringWidth(title)) / 2, 6, 0x404040);
 	}
 }

@@ -46,7 +46,7 @@ public class TeaTableRecipeManager implements IRecipeManager<ITeaTableRecipe>
 			return null;
 		for (ITeaTableRecipe r : recipes)
 		{
-			if (r.getOutput().isItemEqual((ItemStack)inputs[0]) && r.getOutput().stackSize <= ((ItemStack)inputs[0]).stackSize)
+			if (r.getOutput().isItemEqual((ItemStack)inputs[0]) && r.getOutput().getCount() <= ((ItemStack)inputs[0]).getCount())
 				return r;
 		}
 		return null;

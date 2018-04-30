@@ -9,10 +9,13 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameData;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import roito.teastory.TeaStory;
@@ -21,7 +24,8 @@ import roito.teastory.item.ItemBlockEmptyKettle;
 import roito.teastory.item.ItemBlockFullKettle;
 import roito.teastory.item.ItemBlockHalfDriedLeaf;
 
-public class BlockLoader
+@Mod.EventBusSubscriber(modid = TeaStory.MODID)
+public final class BlockLoader
 {
 	public static Block teapan = new Teapan();
 	public static Block tea_drying_pan = new TeaDryingPan();
@@ -132,113 +136,7 @@ public class BlockLoader
 
 	public BlockLoader(FMLPreInitializationEvent event)
 	{
-		register(lit_tea_drying_pan, "lit_tea_drying_pan");
-		register(tea_drying_pan, "tea_drying_pan");
-		register(lit_cooking_pan, "lit_cooking_pan");
-		register(tea_stove, "tea_stove");
-		register(lit_tea_stove, "lit_tea_stove");
-		register(tea_table, "tea_table");
-		register(teapan,  "teapan");
-		register(barrel, "barrel");
-		register(half_dried_leaf_block, new ItemBlockHalfDriedLeaf(half_dried_leaf_block), "half_dried_leaf_block");
-		
-		register(empty_porcelain_kettle, new ItemBlockEmptyKettle(empty_porcelain_kettle), "empty_porcelain_kettle");
-		register(green_tea_porcelain_kettle, new ItemBlockFullKettle(green_tea_porcelain_kettle, 1), "green_tea_porcelain_kettle");
-		register(matcha_drink_porcelain_kettle, new ItemBlockFullKettle(matcha_drink_porcelain_kettle, 2), "matcha_drink_porcelain_kettle");
-		register(black_tea_porcelain_kettle, new ItemBlockFullKettle(black_tea_porcelain_kettle, 3), "black_tea_porcelain_kettle");
-		register(milk_tea_porcelain_kettle, new ItemBlockFullKettle(milk_tea_porcelain_kettle, 4), "milk_tea_porcelain_kettle");
-		register(lemon_tea_porcelain_kettle, new ItemBlockFullKettle(lemon_tea_porcelain_kettle, 5), "lemon_tea_porcelain_kettle");
-		register(yellow_tea_porcelain_kettle, new ItemBlockFullKettle(yellow_tea_porcelain_kettle, 6), "yellow_tea_porcelain_kettle");
-		register(white_tea_porcelain_kettle, new ItemBlockFullKettle(white_tea_porcelain_kettle, 7), "white_tea_porcelain_kettle");
-		register(oolong_tea_porcelain_kettle, new ItemBlockFullKettle(oolong_tea_porcelain_kettle, 8), "oolong_tea_porcelain_kettle");
-		register(puer_tea_porcelain_kettle, new ItemBlockFullKettle(puer_tea_porcelain_kettle, 9), "puer_tea_porcelain_kettle");
-		
-		register(empty_zisha_kettle, new ItemBlockEmptyKettle(empty_zisha_kettle), "empty_zisha_kettle");
-		register(green_tea_zisha_kettle, new ItemBlockFullKettle(green_tea_zisha_kettle, 1), "green_tea_zisha_kettle");
-		register(matcha_drink_zisha_kettle, new ItemBlockFullKettle(matcha_drink_zisha_kettle, 2), "matcha_drink_zisha_kettle");
-		register(black_tea_zisha_kettle, new ItemBlockFullKettle(black_tea_zisha_kettle, 3), "black_tea_zisha_kettle");
-		register(milk_tea_zisha_kettle, new ItemBlockFullKettle(milk_tea_zisha_kettle, 4), "milk_tea_zisha_kettle");
-		register(lemon_tea_zisha_kettle, new ItemBlockFullKettle(lemon_tea_zisha_kettle, 5), "lemon_tea_zisha_kettle");
-		register(yellow_tea_zisha_kettle, new ItemBlockFullKettle(yellow_tea_zisha_kettle, 6), "yellow_tea_zisha_kettle");
-		register(white_tea_zisha_kettle, new ItemBlockFullKettle(white_tea_zisha_kettle, 7), "white_tea_zisha_kettle");
-		register(oolong_tea_zisha_kettle, new ItemBlockFullKettle(oolong_tea_zisha_kettle, 8), "oolong_tea_zisha_kettle");
-		register(puer_tea_zisha_kettle, new ItemBlockFullKettle(puer_tea_zisha_kettle, 9), "puer_tea_zisha_kettle");
-		
-		register(green_tea_zisha_kettle2, new ItemBlockFullKettle(green_tea_zisha_kettle2, 1), "green_tea_zisha_kettle2");
-		register(matcha_drink_zisha_kettle2, new ItemBlockFullKettle(matcha_drink_zisha_kettle2, 2), "matcha_drink_zisha_kettle2");
-		register(black_tea_zisha_kettle2, new ItemBlockFullKettle(black_tea_zisha_kettle2, 3), "black_tea_zisha_kettle2");
-		register(milk_tea_zisha_kettle2, new ItemBlockFullKettle(milk_tea_zisha_kettle2, 4), "milk_tea_zisha_kettle2");
-		register(lemon_tea_zisha_kettle2, new ItemBlockFullKettle(lemon_tea_zisha_kettle2, 5), "lemon_tea_zisha_kettle2");
-		register(yellow_tea_zisha_kettle2, new ItemBlockFullKettle(yellow_tea_zisha_kettle2, 6), "yellow_tea_zisha_kettle2");
-		register(white_tea_zisha_kettle2, new ItemBlockFullKettle(white_tea_zisha_kettle2, 7), "white_tea_zisha_kettle2");
-		register(oolong_tea_zisha_kettle2, new ItemBlockFullKettle(oolong_tea_zisha_kettle2, 8), "oolong_tea_zisha_kettle2");
-		register(puer_tea_zisha_kettle2, new ItemBlockFullKettle(puer_tea_zisha_kettle2, 9), "puer_tea_zisha_kettle2");
-		
-		register(clay_kettle, "clay_kettle");
-		register(zisha_clay_kettle, "zisha_clay_kettle");
-		register(teaplant, "teaplant");
-		
-		register(wood_cup, "wood_cup");
-		register(stone_cup, "stone_cup");
-		register(glass_cup, "glass_cup");
-		register(porcelain_cup, "porcelain_cup");
-		register(zisha_cup, "zisha_cup");
-		
-		register(greentea_wood_cup, "greentea_wood_cup");
-		register(matchadrink_wood_cup, "matchadrink_wood_cup");
-		register(blacktea_wood_cup, "blacktea_wood_cup");
-		register(milktea_wood_cup, "milktea_wood_cup");
-		register(lemontea_wood_cup, "lemontea_wood_cup");
-		register(yellowtea_wood_cup, "yellowtea_wood_cup");
-		register(whitetea_wood_cup, "whitetea_wood_cup");
-		register(oolongtea_wood_cup, "oolongtea_wood_cup");
-		register(puertea_wood_cup, "puertea_wood_cup");
-		
-		register(greentea_stone_cup, "greentea_stone_cup");
-		register(matchadrink_stone_cup, "matchadrink_stone_cup");
-		register(blacktea_stone_cup, "blacktea_stone_cup");
-		register(milktea_stone_cup, "milktea_stone_cup");
-		register(lemontea_stone_cup, "lemontea_stone_cup");
-		register(yellowtea_stone_cup, "yellowtea_stone_cup");
-		register(whitetea_stone_cup, "whitetea_stone_cup");
-		register(oolongtea_stone_cup, "oolongtea_stone_cup");
-		register(puertea_stone_cup, "puertea_stone_cup");
-		
-		register(greentea_glass_cup, "greentea_glass_cup");
-		register(matchadrink_glass_cup, "matchadrink_glass_cup");
-		register(blacktea_glass_cup, "blacktea_glass_cup");
-		register(milktea_glass_cup, "milktea_glass_cup");
-		register(lemontea_glass_cup, "lemontea_glass_cup");
-		register(yellowtea_glass_cup, "yellowtea_glass_cup");
-		register(whitetea_glass_cup, "whitetea_glass_cup");
-		register(oolongtea_glass_cup, "oolongtea_glass_cup");
-		register(puertea_glass_cup, "puertea_glass_cup");
-		
-		register(greentea_porcelain_cup, "greentea_porcelain_cup");
-		register(matchadrink_porcelain_cup, "matchadrink_porcelain_cup");
-		register(blacktea_porcelain_cup, "blacktea_porcelain_cup");
-		register(milktea_porcelain_cup, "milktea_porcelain_cup");
-		register(lemontea_porcelain_cup, "lemontea_porcelain_cup");
-		register(yellowtea_porcelain_cup, "yellowtea_porcelain_cup");
-		register(whitetea_porcelain_cup, "whitetea_porcelain_cup");
-		register(oolongtea_porcelain_cup, "oolongtea_porcelain_cup");
-		register(puertea_porcelain_cup, "puertea_porcelain_cup");
-		
-		register(greentea_zisha_cup, "greentea_zisha_cup");
-		register(matchadrink_zisha_cup, "matchadrink_zisha_cup");
-		register(blacktea_zisha_cup, "blacktea_zisha_cup");
-		register(milktea_zisha_cup, "milktea_zisha_cup");
-		register(lemontea_zisha_cup, "lemontea_zisha_cup");
-		register(yellowtea_zisha_cup, "yellowtea_zisha_cup");
-		register(whitetea_zisha_cup, "whitetea_zisha_cup");
-		register(oolongtea_zisha_cup, "oolongtea_zisha_cup");
-		register(puertea_zisha_cup, "puertea_zisha_cup");
-		
-		register(xian_rice_seedling, "xian_rice_seedling");
-		register(xian_rice_plant, "xian_rice_plant");
-		register(field, "field");
-		register(straw_blanket, "straw_blanket");
-		register(straw_cushion, "straw_cushion");
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	public static void loadExtraResourceLocation()
@@ -449,16 +347,143 @@ public class BlockLoader
 		registerRender(half_dried_leaf_block, 8, "half_dried_leaf_block6");
 	}
 
-	private static void register(Block block, String name)
+	@SubscribeEvent
+	public void registerBlocks(RegistryEvent.Register<Block> event)
 	{
-		GameRegistry.registerBlock(block, name);
+	    event.getRegistry().registerAll(lit_tea_drying_pan, tea_drying_pan, lit_cooking_pan, tea_stove, lit_tea_stove, tea_table, teapan, barrel, half_dried_leaf_block, 
+	    		empty_porcelain_kettle, green_tea_porcelain_kettle, matcha_drink_porcelain_kettle, black_tea_porcelain_kettle, milk_tea_porcelain_kettle, lemon_tea_porcelain_kettle, yellow_tea_porcelain_kettle, 
+	    		white_tea_porcelain_kettle, oolong_tea_porcelain_kettle, puer_tea_porcelain_kettle, empty_zisha_kettle, green_tea_zisha_kettle, matcha_drink_zisha_kettle, black_tea_zisha_kettle, milk_tea_zisha_kettle, 
+	    		lemon_tea_zisha_kettle, yellow_tea_zisha_kettle, white_tea_zisha_kettle, oolong_tea_zisha_kettle, puer_tea_zisha_kettle, green_tea_zisha_kettle2, matcha_drink_zisha_kettle2, black_tea_zisha_kettle2, 
+	    		milk_tea_zisha_kettle2, lemon_tea_zisha_kettle2, yellow_tea_zisha_kettle2, white_tea_zisha_kettle2, oolong_tea_zisha_kettle2, puer_tea_zisha_kettle2, clay_kettle, zisha_clay_kettle, teaplant, wood_cup, 
+	    		stone_cup, glass_cup, porcelain_cup, zisha_cup, greentea_wood_cup, matchadrink_wood_cup, blacktea_wood_cup, milktea_wood_cup, lemontea_wood_cup, yellowtea_wood_cup, whitetea_wood_cup, 
+	    		oolongtea_wood_cup, puertea_wood_cup, greentea_stone_cup, matchadrink_stone_cup, blacktea_stone_cup, milktea_stone_cup, lemontea_stone_cup, yellowtea_stone_cup, whitetea_stone_cup, 
+	    		oolongtea_stone_cup, puertea_stone_cup, greentea_glass_cup, matchadrink_glass_cup, blacktea_glass_cup, milktea_glass_cup, lemontea_glass_cup, yellowtea_glass_cup, whitetea_glass_cup, 
+	    		oolongtea_glass_cup, puertea_glass_cup, greentea_porcelain_cup, matchadrink_porcelain_cup, blacktea_porcelain_cup, milktea_porcelain_cup, lemontea_porcelain_cup, yellowtea_porcelain_cup, 
+	    		whitetea_porcelain_cup, oolongtea_porcelain_cup, puertea_porcelain_cup, greentea_zisha_cup, matchadrink_zisha_cup, blacktea_zisha_cup, milktea_zisha_cup, lemontea_zisha_cup, yellowtea_zisha_cup, 
+	    		whitetea_zisha_cup, oolongtea_zisha_cup, puertea_zisha_cup, xian_rice_seedling, xian_rice_plant, field, straw_blanket, straw_cushion);
 	}
-
-	private static void register(Block block, ItemBlock itemBlock, String name)
+	
+	@SubscribeEvent
+	public void registerItems(RegistryEvent.Register<Item> event)
 	{
-		GameRegistry.registerBlock(block, null, name);
-		GameRegistry.registerItem(itemBlock, name);
-		GameData.getBlockItemMap().put(block, itemBlock);
+	    event.getRegistry().registerAll(
+	    		new ItemBlockHalfDriedLeaf(half_dried_leaf_block), 
+	    		new ItemBlockEmptyKettle(empty_porcelain_kettle), 
+	    		new ItemBlockFullKettle(green_tea_porcelain_kettle, 1), 
+	    		new ItemBlockFullKettle(matcha_drink_porcelain_kettle, 2), 
+	    		new ItemBlockFullKettle(black_tea_porcelain_kettle, 3), 
+	    		new ItemBlockFullKettle(milk_tea_porcelain_kettle, 4), 
+	    		new ItemBlockFullKettle(lemon_tea_porcelain_kettle, 5), 
+	    		new ItemBlockFullKettle(yellow_tea_porcelain_kettle, 6), 
+	    		new ItemBlockFullKettle(white_tea_porcelain_kettle, 7), 
+	    		new ItemBlockFullKettle(oolong_tea_porcelain_kettle, 8), 
+	    		new ItemBlockFullKettle(puer_tea_porcelain_kettle, 9), 
+	    		new ItemBlockEmptyKettle(empty_zisha_kettle), 
+	    		new ItemBlockFullKettle(green_tea_zisha_kettle, 1), 
+	    		new ItemBlockFullKettle(matcha_drink_zisha_kettle, 2), 
+	    		new ItemBlockFullKettle(black_tea_zisha_kettle, 3), 
+	    		new ItemBlockFullKettle(milk_tea_zisha_kettle, 4), 
+	    		new ItemBlockFullKettle(lemon_tea_zisha_kettle, 5), 
+	    		new ItemBlockFullKettle(yellow_tea_zisha_kettle, 6), 
+	    		new ItemBlockFullKettle(white_tea_zisha_kettle, 7), 
+	    		new ItemBlockFullKettle(oolong_tea_zisha_kettle, 8), 
+	    		new ItemBlockFullKettle(puer_tea_zisha_kettle, 9), 
+	    		new ItemBlockFullKettle(green_tea_zisha_kettle2, 1), 
+	    		new ItemBlockFullKettle(matcha_drink_zisha_kettle2, 2), 
+	    		new ItemBlockFullKettle(black_tea_zisha_kettle2, 3), 
+	    		new ItemBlockFullKettle(milk_tea_zisha_kettle2, 4), 
+	    		new ItemBlockFullKettle(lemon_tea_zisha_kettle2, 5), 
+	    		new ItemBlockFullKettle(yellow_tea_zisha_kettle2, 6), 
+	    		new ItemBlockFullKettle(white_tea_zisha_kettle2, 7), 
+	    		new ItemBlockFullKettle(oolong_tea_zisha_kettle2, 8), 
+	    		new ItemBlockFullKettle(puer_tea_zisha_kettle2, 9),
+	    		getRegItemBlock(lit_tea_drying_pan),
+	    		getRegItemBlock(tea_drying_pan),
+	    		getRegItemBlock(lit_cooking_pan),
+	    		getRegItemBlock(tea_stove),
+	    		getRegItemBlock(lit_tea_stove),
+	    		getRegItemBlock(tea_table),
+	    		getRegItemBlock(teapan),
+	    		getRegItemBlock(barrel),
+	    		
+	    		getRegItemBlock(clay_kettle),
+	    		getRegItemBlock(zisha_clay_kettle),
+	    		getRegItemBlock(teaplant),
+	    		
+	    		getRegItemBlock(wood_cup),
+	    		getRegItemBlock(stone_cup),
+	    		getRegItemBlock(glass_cup),
+	    		getRegItemBlock(porcelain_cup),
+	    		getRegItemBlock(zisha_cup),
+	    		
+	    		getRegItemBlock(greentea_wood_cup),
+	    		getRegItemBlock(matchadrink_wood_cup),
+	    		getRegItemBlock(blacktea_wood_cup),
+	    		getRegItemBlock(milktea_wood_cup),
+	    		getRegItemBlock(lemontea_wood_cup),
+	    		getRegItemBlock(yellowtea_wood_cup),
+	    		getRegItemBlock(whitetea_wood_cup),
+	    		getRegItemBlock(oolongtea_wood_cup),
+	    		getRegItemBlock(puertea_wood_cup),
+	    		
+	    		getRegItemBlock(greentea_stone_cup),
+	    		getRegItemBlock(matchadrink_stone_cup),
+	    		getRegItemBlock(blacktea_stone_cup),
+	    		getRegItemBlock(milktea_stone_cup),
+	    		getRegItemBlock(lemontea_stone_cup),
+	    		getRegItemBlock(yellowtea_stone_cup),
+	    		getRegItemBlock(whitetea_stone_cup),
+	    		getRegItemBlock(oolongtea_stone_cup),
+	    		getRegItemBlock(puertea_stone_cup),
+	    		
+	    		getRegItemBlock(greentea_glass_cup),
+	    		getRegItemBlock(matchadrink_glass_cup),
+	    		getRegItemBlock(blacktea_glass_cup),
+	    		getRegItemBlock(milktea_glass_cup),
+	    		getRegItemBlock(lemontea_glass_cup),
+	    		getRegItemBlock(yellowtea_glass_cup),
+	    		getRegItemBlock(whitetea_glass_cup),
+	    		getRegItemBlock(oolongtea_glass_cup),
+	    		getRegItemBlock(puertea_glass_cup),
+	    		
+	    		getRegItemBlock(greentea_porcelain_cup),
+	    		getRegItemBlock(matchadrink_porcelain_cup),
+	    		getRegItemBlock(blacktea_porcelain_cup),
+	    		getRegItemBlock(milktea_porcelain_cup),
+	    		getRegItemBlock(lemontea_porcelain_cup),
+	    		getRegItemBlock(yellowtea_porcelain_cup),
+	    		getRegItemBlock(whitetea_porcelain_cup),
+	    		getRegItemBlock(oolongtea_porcelain_cup),
+	    		getRegItemBlock(puertea_porcelain_cup),
+	    		
+	    		getRegItemBlock(greentea_zisha_cup),
+	    		getRegItemBlock(matchadrink_zisha_cup),
+	    		getRegItemBlock(blacktea_zisha_cup),
+	    		getRegItemBlock(milktea_zisha_cup),
+	    		getRegItemBlock(lemontea_zisha_cup),
+	    		getRegItemBlock(yellowtea_zisha_cup),
+	    		getRegItemBlock(whitetea_zisha_cup),
+	    		getRegItemBlock(oolongtea_zisha_cup),
+	    		getRegItemBlock(puertea_zisha_cup),
+	    		
+	    		getRegItemBlock(xian_rice_seedling),
+	    		getRegItemBlock(xian_rice_plant),
+	    		getRegItemBlock(field),
+	    		getRegItemBlock(straw_blanket),
+	    		new ItemBlock(straw_cushion)
+	    		{
+	    			@Override
+					public int getItemBurnTime(ItemStack itemStack)
+	    			{
+	    				return 800;
+	    			}
+	    		}.setRegistryName(straw_cushion.getRegistryName())
+	    );
+	}
+	
+	private static Item getRegItemBlock(Block block)
+	{
+		return new ItemBlock(block).setRegistryName(block.getRegistryName());
 	}
 
 	@SideOnly(Side.CLIENT)

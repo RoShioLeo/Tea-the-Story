@@ -18,7 +18,7 @@ public class MortarAndPestle extends TSItem
 	{
 		ItemStack stack = itemStack.copy();
 		stack.setItemDamage(stack.getItemDamage() + 1);
-		stack.stackSize = 1;
+		stack.setCount(1);
 		return stack;
 	}
 }

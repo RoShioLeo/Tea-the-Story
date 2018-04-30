@@ -2,21 +2,19 @@ package roito.teastory.block;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import roito.teastory.common.AchievementLoader;
+import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsLoader;
 import roito.teastory.entity.EntityStrawCushion;
 
@@ -31,6 +29,7 @@ public class StrawCushion extends Block
 		this.setHardness(0.2F);
 		this.setCreativeTab(CreativeTabsLoader.tabRice);
 		this.setUnlocalizedName("straw_cushion");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "straw_cushion"));
 	}
 	
 	@Override
@@ -52,7 +51,7 @@ public class StrawCushion extends Block
     }
     
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if(sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0))
 		{
@@ -67,9 +66,8 @@ public class StrawCushion extends Block
 		if (!checkForExistingEntity(world, x, y, z, entityPlayer))
 		{
 			EntityStrawCushion nemb = new EntityStrawCushion(world, x, y, z, yOffset);
-			world.spawnEntityInWorld(nemb);
+			world.spawnEntity(nemb);
 			entityPlayer.startRiding(nemb);
-			entityPlayer.addStat(AchievementLoader.strawCushion);
 		}
 		return true;
 	}

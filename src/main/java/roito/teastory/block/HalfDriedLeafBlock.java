@@ -1,7 +1,6 @@
 package roito.teastory.block;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -12,18 +11,18 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import roito.teastory.common.AchievementLoader;
+import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsLoader;
 import roito.teastory.helper.EntironmentHelper;
 import roito.teastory.item.ItemLoader;
@@ -39,6 +38,7 @@ public class HalfDriedLeafBlock extends Block
 		this.setSoundType(SoundType.PLANT);
 		this.setTickRandomly(true);
 		this.setUnlocalizedName("half_dried_leaf_block");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "half_dried_leaf_block"));
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
 		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
 	}
@@ -66,16 +66,6 @@ public class HalfDriedLeafBlock extends Block
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { STEP });
-	}
-	
-	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-	{
-		if (placer instanceof EntityPlayer)
-		{
-			((EntityPlayer) placer).addStat(AchievementLoader.halfDriedLeafBlock);
-		}
-		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 	
 	@Override
@@ -124,11 +114,16 @@ public class HalfDriedLeafBlock extends Block
 	}
 	
 	@Override
-	@SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
-        list.add(new ItemStack(itemIn, 1, 0));
-        list.add(new ItemStack(itemIn, 1, 8));
+		items.add(new ItemStack(this, 1, 0));
+		items.add(new ItemStack(this, 1, 8));
+    }
+	
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+		return new ItemStack(this, 1, getMetaFromState(state) == 8 ? 8 : 0);
     }
 	
 	@Override

@@ -11,7 +11,6 @@ public class HandlerCookingPan implements IRecipeHandler<RecipeCookingPan>
 		return RecipeCookingPan.class;
 	}
 
-	@Override
 	public String getRecipeCategoryUid()
 	{
 		return "teastory.cookingpan";

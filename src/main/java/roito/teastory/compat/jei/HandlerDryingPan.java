@@ -11,7 +11,6 @@ public class HandlerDryingPan implements IRecipeHandler<RecipeDryingPan>
 		return RecipeDryingPan.class;
 	}
 
-	@Override
 	public String getRecipeCategoryUid()
 	{
 		return "teastory.dryingpan";

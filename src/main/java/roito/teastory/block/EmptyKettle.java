@@ -3,10 +3,7 @@ package roito.teastory.block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import roito.teastory.common.CreativeTabsLoader;
 
 public class EmptyKettle extends Kettle
@@ -44,13 +41,6 @@ public class EmptyKettle extends Kettle
 	{
 		int facing = state.getValue(FACING).getHorizontalIndex();
 		return facing;
-	}
-	
-	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-	{
-		IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-		return origin.withProperty(FACING, placer.getHorizontalFacing().getOpposite());
 	}
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);

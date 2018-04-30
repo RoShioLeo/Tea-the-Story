@@ -1,19 +1,17 @@
 package roito.teastory.item;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -53,13 +51,16 @@ public class ItemCup extends TSItem
 	}
 
 	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
-	{
-		subItems.add(new ItemStack(itemIn, 1, 0));
-		subItems.add(new ItemStack(itemIn, 1, 2));
-		subItems.add(new ItemStack(itemIn, 1, 3));
-		subItems.add(new ItemStack(itemIn, 1, 4));
-		subItems.add(new ItemStack(itemIn, 1, 5));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
+    {
+		if (this.isInCreativeTab(tab))
+		{
+			items.add(new ItemStack(this, 1, 0));
+			items.add(new ItemStack(this, 1, 2));
+			items.add(new ItemStack(this, 1, 3));
+			items.add(new ItemStack(this, 1, 4));
+			items.add(new ItemStack(this, 1, 5));
+		}
 	}
 
 	public Block getBlock(int meta)
@@ -80,11 +81,11 @@ public class ItemCup extends TSItem
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (playerIn.isSneaking())
+		if (player.isSneaking())
 		{
-			Block drinkblock = getBlock(stack.getItemDamage());
+			Block drinkblock = getBlock(player.getHeldItem(hand).getItemDamage());
 			IBlockState iblockstate = worldIn.getBlockState(pos);
 			Block block = iblockstate.getBlock();
 
@@ -93,16 +94,16 @@ public class ItemCup extends TSItem
 				pos = pos.offset(facing);
 			}
 
-			if (stack.stackSize != 0 && playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(drinkblock, pos, false, facing, (Entity)null, stack))
+			if (player.getHeldItem(hand).getCount() >= 1 && player.canPlayerEdit(pos, facing, player.getHeldItem(hand)) && worldIn.mayPlace(drinkblock, pos, false, facing, (Entity)null))
 			{
-				int i = this.getMetadata(stack.getMetadata());
+				int i = this.getMetadata(player.getHeldItem(hand).getMetadata());
 				IBlockState iblockstate1 = drinkblock.getDefaultState();
 
-				if (placeBlockAt(stack, playerIn, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))
+				if (placeBlockAt(player.getHeldItem(hand), player, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))
 				{
-					SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, playerIn);
-					worldIn.playSound(playerIn, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-					--stack.stackSize;
+					SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, player);
+					worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+					player.getHeldItem(hand).shrink(1);
 				}
 
 				return EnumActionResult.SUCCESS;
