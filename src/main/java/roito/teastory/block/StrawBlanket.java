@@ -11,7 +11,6 @@ import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -20,7 +19,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
@@ -31,9 +29,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import roito.teastory.common.CreativeTabsLoader;
 import roito.teastory.item.ItemLoader;
 
 public class StrawBlanket extends BlockHorizontal
@@ -63,7 +58,7 @@ public class StrawBlanket extends BlockHorizontal
         {
             if (state.getValue(PART) != StrawBlanket.EnumPartType.HEAD)
             {
-                pos = pos.offset((EnumFacing)state.getValue(FACING));
+                pos = pos.offset(state.getValue(FACING));
                 state = worldIn.getBlockState(pos);
 
                 if (state.getBlock() != this)
@@ -74,7 +69,7 @@ public class StrawBlanket extends BlockHorizontal
 
             if (worldIn.provider.canRespawnHere() && worldIn.getBiome(pos) != Biomes.HELL)
             {
-                if (((Boolean)state.getValue(OCCUPIED)).booleanValue())
+                if (state.getValue(OCCUPIED).booleanValue())
                 {
                     EntityPlayer entityplayer = this.getPlayerInBlanket(worldIn, pos);
 
@@ -113,14 +108,14 @@ public class StrawBlanket extends BlockHorizontal
             else
             {
                 worldIn.setBlockToAir(pos);
-                BlockPos blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
+                BlockPos blockpos = pos.offset(state.getValue(FACING).getOpposite());
 
                 if (worldIn.getBlockState(blockpos).getBlock() == this)
                 {
                     worldIn.setBlockToAir(blockpos);
                 }
 
-                worldIn.newExplosion((Entity)null, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, 5.0F, true, true);
+                worldIn.newExplosion((Entity)null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 5.0F, true, true);
                 return true;
             }
         }
@@ -155,7 +150,7 @@ public class StrawBlanket extends BlockHorizontal
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
     {
-        EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+        EnumFacing enumfacing = state.getValue(FACING);
 
         if (state.getValue(PART) == StrawBlanket.EnumPartType.HEAD)
         {
@@ -191,7 +186,7 @@ public class StrawBlanket extends BlockHorizontal
     @Nullable
     public static BlockPos getSafeExitLocation(World worldIn, BlockPos pos, int tries)
     {
-        EnumFacing enumfacing = (EnumFacing)worldIn.getBlockState(pos).getValue(FACING);
+        EnumFacing enumfacing = worldIn.getBlockState(pos).getValue(FACING);
         int i = pos.getX();
         int j = pos.getY();
         int k = pos.getZ();
@@ -262,7 +257,7 @@ public class StrawBlanket extends BlockHorizontal
     {
         if (player.capabilities.isCreativeMode && state.getValue(PART) == StrawBlanket.EnumPartType.HEAD)
         {
-            BlockPos blockpos = pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite());
+            BlockPos blockpos = pos.offset(state.getValue(FACING).getOpposite());
 
             if (worldIn.getBlockState(blockpos).getBlock() == this)
             {
@@ -283,7 +278,7 @@ public class StrawBlanket extends BlockHorizontal
     {
         if (state.getValue(PART) == StrawBlanket.EnumPartType.FOOT)
         {
-            IBlockState iblockstate = worldIn.getBlockState(pos.offset((EnumFacing)state.getValue(FACING)));
+            IBlockState iblockstate = worldIn.getBlockState(pos.offset(state.getValue(FACING)));
 
             if (iblockstate.getBlock() == this)
             {
@@ -297,26 +292,26 @@ public class StrawBlanket extends BlockHorizontal
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
     {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+        return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
-        i = i | ((EnumFacing)state.getValue(FACING)).getHorizontalIndex();
+        i = i | state.getValue(FACING).getHorizontalIndex();
 
         if (state.getValue(PART) == StrawBlanket.EnumPartType.HEAD)
         {
             i |= 8;
 
-            if (((Boolean)state.getValue(OCCUPIED)).booleanValue())
+            if (state.getValue(OCCUPIED).booleanValue())
             {
                 i |= 4;
             }
@@ -325,7 +320,8 @@ public class StrawBlanket extends BlockHorizontal
         return i;
     }
 
-    protected BlockStateContainer createBlockState()
+    @Override
+	protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, new IProperty[] {FACING, PART, OCCUPIED});
     }
@@ -342,12 +338,14 @@ public class StrawBlanket extends BlockHorizontal
             this.name = name;
         }
 
-        public String toString()
+        @Override
+		public String toString()
         {
             return this.name;
         }
 
-        public String getName()
+        @Override
+		public String getName()
         {
             return this.name;
         }

@@ -296,8 +296,7 @@ achievement.teastory.strawCushion=箕踞而遨
 achievement.teastory.strawCushion.desc=坐在草墊上
 
 #Info
-teastory.info.welcome.1=[§2§oTeaStory§f]感謝安裝§2§o茶風·紀事§f，當前模組版本：%1$s
-teastory.info.welcome.2=[§2§oTeaStory§f]說明書請前往原帖下載，原帖位址詳見主功能表Mod選項。
+teastory.info.welcome=[§2§oTeaStory§f]感謝安裝§2§o茶風·紀事§f，當前模組版本：%1$s
 
 #Message
 teastory.message.teapan.tips=請放入適合的茶葉來曬制。

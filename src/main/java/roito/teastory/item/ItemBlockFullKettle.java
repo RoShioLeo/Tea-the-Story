@@ -4,12 +4,9 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import com.google.common.base.Function;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;

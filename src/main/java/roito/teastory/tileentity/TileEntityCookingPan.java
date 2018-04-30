@@ -4,7 +4,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import roito.teastory.block.BlockLoader;
-import roito.teastory.block.LitTeaDryingPan;
 
 public class TileEntityCookingPan extends TileEntity implements ITickable
 {

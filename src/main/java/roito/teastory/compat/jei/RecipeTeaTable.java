@@ -10,7 +10,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import roito.teastory.item.ItemLoader;
-import roito.teastory.recipe.ITeaStoveRecipe;
 import roito.teastory.recipe.ITeaTableRecipe;
 import roito.teastory.recipe.RecipeLoader;
 

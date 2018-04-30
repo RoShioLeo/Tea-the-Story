@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeeds;

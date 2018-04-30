@@ -15,8 +15,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import roito.teastory.block.Barrel;
-import roito.teastory.block.Teapan;
 import roito.teastory.block.Teaplant;
 import roito.teastory.common.AchievementLoader;
 import roito.teastory.common.CreativeTabsLoader;

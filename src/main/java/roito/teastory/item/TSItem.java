@@ -2,7 +2,6 @@ package roito.teastory.item;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import roito.teastory.common.CreativeTabsLoader;
 
 public class TSItem extends Item
 {

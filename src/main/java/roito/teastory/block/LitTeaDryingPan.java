@@ -269,7 +269,7 @@ public class LitTeaDryingPan extends BlockContainer
 	{
 		int meta = step & 7;
 		boolean type = (step & 8) == 8;
-		return this.getDefaultState().withProperty(this.getStepProperty(), Integer.valueOf(meta)).withProperty(this.TYPE, type);
+		return this.getDefaultState().withProperty(this.getStepProperty(), Integer.valueOf(meta)).withProperty(LitTeaDryingPan.TYPE, type);
 	}
 
 	@Override

@@ -30,9 +30,10 @@ public class XianRiceSeedling extends BlockCrops
 		return net.minecraftforge.common.EnumPlantType.Crop;
 	}
 	
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return SEEDLING_AABB[((Integer)state.getValue(this.getAgeProperty())).intValue()];
+        return SEEDLING_AABB[state.getValue(this.getAgeProperty()).intValue()];
     }
 
 	@Override

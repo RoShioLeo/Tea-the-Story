@@ -15,7 +15,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import roito.teastory.item.ItemBlockEmptyKettle;
 import roito.teastory.item.ItemCup;
-import roito.teastory.item.ItemLoader;
 import roito.teastory.item.ItemTeaLeaf;
 import roito.teastory.item.ItemWaterPot;
 import roito.teastory.tileentity.TileEntityTeaTable;

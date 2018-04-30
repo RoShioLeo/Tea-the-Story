@@ -139,11 +139,11 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 					if (!teaset)
 					{
 						int kettleCapacity = ((EmptyKettle)Block.getBlockFromItem(cup.getItem())).getKettleName() == "porcelain_kettle" ? 4 : 8;
-						cc =getMin(waterRemain, kettleCapacity, (int)InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != null ? (int)InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
+						cc =getMin(waterRemain, kettleCapacity, InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != null ? InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
 					}
 					else
 					{
-						cc =getMin(waterRemain, 1, (int)InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != null ? (int)InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
+						cc =getMin(waterRemain, 1, InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != null ? InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
 					}
 					if (cc != 0)
 					{
@@ -163,7 +163,7 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 						{
 							if (cc > 4)
 							{
-								InventoryDrink.insertItem(0, new ItemStack(Block.getBlockFromName(TeaStory.MODID + ":" + drinkName + "_" + ((EmptyKettle)Block.getBlockFromItem(cup.getItem())).getKettleName() + String.valueOf((int)((cc - 1) / 4 + 1))), 1, ((3 - (cc - 1) % 4)) << 2), false);
+								InventoryDrink.insertItem(0, new ItemStack(Block.getBlockFromName(TeaStory.MODID + ":" + drinkName + "_" + ((EmptyKettle)Block.getBlockFromItem(cup.getItem())).getKettleName() + String.valueOf((cc - 1) / 4 + 1)), 1, ((3 - (cc - 1) % 4)) << 2), false);
 							}
 							else
 							{

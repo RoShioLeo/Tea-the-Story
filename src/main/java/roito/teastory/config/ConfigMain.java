@@ -6,8 +6,6 @@ import roito.teastory.TeaStory;
 
 import java.io.File;
 
-import net.minecraftforge.common.config.Config;
-
 public class ConfigMain
 {
 	public static Configuration config;

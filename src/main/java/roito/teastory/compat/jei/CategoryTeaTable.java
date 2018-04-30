@@ -1,8 +1,5 @@
 package roito.teastory.compat.jei;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -15,10 +12,8 @@ import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import roito.teastory.TeaStory;
-import roito.teastory.item.ItemLoader;
 
 public class CategoryTeaTable extends BlankRecipeCategory<IRecipeWrapper>
 {
@@ -70,7 +65,7 @@ public class CategoryTeaTable extends BlankRecipeCategory<IRecipeWrapper>
 		items.init(3, true, 40, 41);
 		items.set(3, ((RecipeTeaTable)recipeWrapper).getToolInputs());
 		items.init(4, true, 40, 59);
-		items.set(4, ((RecipeTeaTable)recipeWrapper).getPotInputs());
+		items.set(4, RecipeTeaTable.getPotInputs());
 		items.init(5, false, 112, 65);
 		items.set(5, recipeWrapper.getOutputs());
 	}

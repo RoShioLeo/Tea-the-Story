@@ -1,23 +1,9 @@
 package roito.teastory.item;
 
-import java.util.Collections;
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
-import roito.teastory.TeaStory;
-import roito.teastory.block.BlockLoader;
-import roito.teastory.block.EmptyKettle;
-import roito.teastory.block.Kettle;
 import roito.teastory.common.CreativeTabsLoader;
 
 public class ItemTeaLeaf extends TSItem

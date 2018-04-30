@@ -33,6 +33,11 @@ public class JEI implements IModPlugin
 	public void register(IModRegistry registry)
 	{
 		IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
+		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.glass_cup));
+		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.porcelain_cup));
+		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.stone_cup));
+		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.wood_cup));
+		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.zisha_cup));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.blacktea_glass_cup));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.blacktea_porcelain_cup));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.blacktea_stone_cup));
@@ -94,6 +99,7 @@ public class JEI implements IModPlugin
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.xian_rice_plant));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.xian_rice_seedling));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.teaplant));
+		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.straw_blanket));
 		blacklist.addIngredientToBlacklist(new ItemStack(ItemLoader.cup, 1, 1));
 		
 		registry.addRecipeHandlers(new HandlerTeaStove());

@@ -8,8 +8,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import roito.teastory.block.BlockLoader;
 import roito.teastory.item.ItemLoader;
-import roito.teastory.recipe.TeaStoveRecipe;
-import roito.teastory.recipe.TeaStoveRecipeManager;
 
 public class CraftingLoader
 {
@@ -44,8 +42,12 @@ public class CraftingLoader
 				{"###", "###", "###", '#', ItemLoader.broken_tea});
 		GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.half_dried_leaf_block, 1, 8), new Object[]
 				{"###", "###", "###", '#', ItemLoader.puer_tea_leaf});
+		GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.half_dried_leaf_block), new Object[]
+				{"###", "###", "###", '#', ItemLoader.half_dried_tea});
 		GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.puer_tea_leaf, 9), new Object[]
 				{"#", '#', new ItemStack(BlockLoader.half_dried_leaf_block, 1, 8)});
+		GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.half_dried_tea, 9), new Object[]
+				{"#", '#', new ItemStack(BlockLoader.half_dried_leaf_block)});
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.wooden_mortar_and_pestle), new Object[]
 				{"#", "*", "+", '#', "stickWood", '*',"plankWood", '+',Items.BOWL}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.teapan), new Object[]
@@ -128,21 +130,24 @@ public class CraftingLoader
             @Override
             public int getBurnTime(ItemStack fuel)
             {
-            	if (ItemLoader.straw.equals(fuel.getItem()))
+            	if (fuel != null)
             	{
-            		return 200;
-            	}
-            	else if (ItemLoader.straw_rope.equals(fuel.getItem()))
-            	{
-            		return 400;
-            	}
-            	else if (ItemLoader.straw_blanket.equals(fuel.getItem()))
-            	{
-            		return 800;
-            	}
-            	else if (Item.getItemFromBlock(BlockLoader.straw_cushion).equals(fuel.getItem()))
-            	{
-            		return 800;
+            		if (ItemLoader.straw.equals(fuel.getItem()))
+            		{
+            			return 200;
+            		}
+            		else if (ItemLoader.straw_rope.equals(fuel.getItem()))
+            		{
+            			return 400;
+            		}
+            		else if (ItemLoader.straw_blanket.equals(fuel.getItem()))
+            		{
+            			return 800;
+            		}
+            		else if (Item.getItemFromBlock(BlockLoader.straw_cushion).equals(fuel.getItem()))
+            		{
+            			return 800;
+            		}
             	}
             	return 0;
             }

@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import roito.teastory.common.AchievementLoader;
 import roito.teastory.common.CreativeTabsLoader;
 
 public class MatchaCookie extends ItemFood

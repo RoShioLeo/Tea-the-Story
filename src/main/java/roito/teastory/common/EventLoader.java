@@ -3,7 +3,7 @@ package roito.teastory.common;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
@@ -12,7 +12,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -209,8 +208,7 @@ public class EventLoader
 	{
 		if(ConfigMain.info)
 		{
-			event.player.addChatComponentMessage(new TextComponentTranslation("teastory.info.welcome.1", "\u00a7a" + TeaStory.VERSION));
-			event.player.addChatComponentMessage(new TextComponentTranslation("teastory.info.welcome.2"));
+			event.player.addChatComponentMessage(new TextComponentTranslation("teastory.info.welcome", "\u00a7a" + TeaStory.VERSION));
 			ConfigMain.info = false;
 		}
 	}
@@ -256,7 +254,7 @@ public class EventLoader
 		{
             ItemStack stack = state.getBlock().getItem(world, pos, state);
 
-            BlockPos pos1 = pos.offset(state.getValue(StrawBlanket.FACING).getOpposite());
+            BlockPos pos1 = pos.offset(state.getValue(BlockHorizontal.FACING).getOpposite());
             world.setBlockToAir(pos1);
             
             player.addStat(AchievementLoader.strawBlanket);
