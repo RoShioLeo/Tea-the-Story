@@ -53,9 +53,8 @@ public class StrawCushion extends Block
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if(sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0))
+		if(!playerIn.isRiding() && sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0))
 		{
-			worldIn.updateComparatorOutputLevel(pos, this);
 			return true;
 		}
 		return false;
@@ -84,31 +83,6 @@ public class StrawCushion extends Block
 					entityPlayer.startRiding(mount);
 				}
 				return true;
-			}
-		}
-		return false;
-	}
-    
-    @Override
-	public boolean hasComparatorInputOverride(IBlockState state) 
-	{
-		return true;
-	}
-
-	@Override
-	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
-	{
-		return isSomeoneSitting(worldIn, pos.getX(), pos.getY(), pos.getZ()) ? 1 : 0;
-	}
-	
-	public static boolean isSomeoneSitting(World world, double x, double y, double z)
-	{
-		List<EntityStrawCushion> listEMB = world.getEntitiesWithinAABB(EntityStrawCushion.class, new AxisAlignedBB(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).expand(1D, 1D, 1D));
-		for (EntityStrawCushion mount : listEMB)
-		{
-			if (mount.blockPosX == x && mount.blockPosY == y && mount.blockPosZ == z)
-			{
-				return mount.isBeingRidden();
 			}
 		}
 		return false;
