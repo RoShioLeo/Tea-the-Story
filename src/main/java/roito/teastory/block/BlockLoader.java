@@ -75,10 +75,10 @@ public class BlockLoader
 	public static Block straw_cushion =new StrawCushion();
 
 	public static TeaDrinkEmpty wood_cup = new TeaDrinkEmpty(1.0F, "wood_cup", Material.WOOD, SoundType.WOOD, 0);
-	public static TeaDrinkEmpty stone_cup = new TeaDrinkEmpty(1.3F, "stone_cup", Material.ROCK, SoundType.STONE, 1);
-	public static TeaDrinkEmpty glass_cup = new TeaDrinkEmpty(0.8F, "glass_cup", Material.GLASS, SoundType.GLASS, 2);
-	public static TeaDrinkEmpty porcelain_cup = new TeaDrinkEmpty(1.5F, "porcelain_cup", Material.ROCK, SoundType.STONE, 3);
-	public static TeaDrinkEmpty zisha_cup = new TeaDrinkEmpty(1.5F, "zisha_cup", Material.ROCK, SoundType.STONE, 4);
+	public static TeaDrinkEmpty stone_cup = new TeaDrinkEmpty(1.3F, "stone_cup", Material.ROCK, SoundType.STONE, 2);
+	public static TeaDrinkEmpty glass_cup = new TeaDrinkEmpty(0.8F, "glass_cup", Material.GLASS, SoundType.GLASS, 3);
+	public static TeaDrinkEmpty porcelain_cup = new TeaDrinkEmpty(1.5F, "porcelain_cup", Material.ROCK, SoundType.STONE, 4);
+	public static TeaDrinkEmpty zisha_cup = new TeaDrinkEmpty(1.5F, "zisha_cup", Material.ROCK, SoundType.STONE, 5);
 	
 	public static TeaDrinkFull greentea_wood_cup = new TeaDrinkFull(1.0F, "greentea_wood_cup", Material.WOOD, SoundType.WOOD, 1, 0);
 	public static TeaDrinkFull matchadrink_wood_cup = new TeaDrinkFull(1.0F, "matchadrink_wood_cup", Material.WOOD, SoundType.WOOD, 2, 0);
