@@ -1,0 +1,30 @@
+package roito.teastory.item;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
+import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.config.ConfigMain;
+
+public class ItemLemon extends ItemFood
+{
+
+	public ItemLemon()
+	{
+		super(1, false);
+		this.setUnlocalizedName("lemon");
+		this.setCreativeTab(CreativeTabsLoader.tabDrink);
+	}
+
+	@Override
+	protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
+	{
+		if(!world.isRemote && ConfigMain.lemon)
+		{
+			entityplayer.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 160, 0));
+		}
+	}
+}

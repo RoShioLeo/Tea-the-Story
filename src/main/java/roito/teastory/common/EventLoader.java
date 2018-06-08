@@ -216,7 +216,7 @@ public class EventLoader
 	@SubscribeEvent
     public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
 	{
-        if (event.getConfigID().equalsIgnoreCase(TeaStory.MODID))
+        if (event.getConfigID() != null && event.getConfigID().equalsIgnoreCase(TeaStory.MODID))
         {
             Configuration config = ConfigMain.config;
             if (config.hasChanged())

@@ -193,7 +193,7 @@ teastory.potion.agility=云身
 teastory.potion.life_drain=生命汲取
 teastory.potion.photosynthesis=光合作用
 teastory.potion.defence=金钟罩
-teastory.potion.excitement=兴奋
+teastory.potion.excitement=提神
 
 #Achievements
 achievement.teastory.teaSeeds=茶，是一段旅程
@@ -371,3 +371,4 @@ teastory.config.drink.yellowtea=黄茶效果时间
 teastory.config.drink.whitetea=白茶效果时间
 teastory.config.drink.oolongtea=青茶效果时间
 teastory.config.drink.puertea=黑茶效果时间
+teastory.config.others.lemon=食用柠檬时是否会反胃

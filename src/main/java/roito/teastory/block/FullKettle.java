@@ -122,16 +122,16 @@ public class FullKettle extends Kettle
 	}
 
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-	{
-		IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-		return origin.withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, ItemStack stack)
+    {
+		int cc = Integer.valueOf(stack.getItemDamage() >> 2);
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(CAPACITY, cc);
 	}
 
 	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return this.getMetaFromState(state);
+		return this.getMetaFromState(state) & 12;
 	}
 
 	@Override

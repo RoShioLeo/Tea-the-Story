@@ -20,6 +20,7 @@ public class ConfigMain
 	public static int oolongTeaDrink_Time;
 	public static int puerTeaDrink_Time;
 	public static boolean info;
+	public static boolean lemon;
 
 	public ConfigMain(FMLPreInitializationEvent event)
 	{
@@ -52,5 +53,6 @@ public class ConfigMain
 		whiteTeaDrink_Time = config.getInt("WhiteTeaDrinksEffectTime", "Drink", 1800, 0, 12000, "The ticks of the effect of white tea. (1 second = 20 ticks)", "teastory.config.drink.whitetea");
 		oolongTeaDrink_Time = config.getInt("OolongTeaDrinksEffectTime", "Drink", 1800, 0, 12000, "The ticks of the effect of oolong tea. (1 second = 20 ticks)", "teastory.config.drink.oolongtea");
 		puerTeaDrink_Time = config.getInt("PuerTeaDrinksEffectTime", "Drink", 1800, 0, 12000, "The ticks of the effect of pu'er tea. (1 second = 20 ticks)", "teastory.config.drink.puertea");
+		lemon = config.getBoolean("HaveNauseaEatingLemon", "Others", true, "Have nausea effect when eating lemons.", "teastory.config.others.lemon");
 	}
 }

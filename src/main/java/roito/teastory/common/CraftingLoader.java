@@ -88,8 +88,8 @@ public class CraftingLoader
 				{"#  ", " # ", "  #", '#', "cropStraw"}));
 		GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.straw_cushion), new Object[]
 				{"###", "###", "###", '#', ItemLoader.straw_rope});
-		GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.straw_blanket), new Object[]
-				{"###", "###", '#', ItemLoader.straw_rope});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.straw_blanket), new Object[]
+				{"***", "###", '#', ItemLoader.straw_rope,  '*', "cropStraw"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.watering_hoe), new Object[]
 				{"###", "*+*", "###", '#', "gemLapis", '*', Items.WATER_BUCKET, '+', Items.IRON_HOE}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.pot_stone), new Object[]

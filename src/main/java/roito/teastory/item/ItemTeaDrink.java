@@ -19,10 +19,19 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.common.CreativeTabsLoader;
+import toughasnails.api.stat.capability.ITemperature;
+import toughasnails.api.stat.capability.IThirst;
+import toughasnails.api.temperature.Temperature;
+import toughasnails.api.temperature.TemperatureHelper;
+import toughasnails.api.thirst.IDrink;
+import toughasnails.api.thirst.ThirstHelper;
 
-public class ItemTeaDrink extends ItemFood
+@Optional.Interface(iface = "toughasnails.api.thirst.IDrink", modid = "toughasnails")
+public class ItemTeaDrink extends ItemFood implements IDrink
 {
 	public ItemTeaDrink(String name) {
 		super(1, false);
@@ -90,6 +99,12 @@ public class ItemTeaDrink extends ItemFood
             worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
             this.onFoodEaten(stack, worldIn, entityplayer);
             entityplayer.addStat(StatList.getObjectUseStats(this));
+            
+            if(!worldIn.isRemote && Loader.isModLoaded("ToughAsNails"))
+            {
+            	drink(entityLiving);
+            	changeTemperature(entityLiving);
+            }
         }
         
 		if (stack.stackSize > 1)
@@ -100,10 +115,56 @@ public class ItemTeaDrink extends ItemFood
 		}
 		return new ItemStack(ItemLoader.cup, 1, stack.getItemDamage());
 	}
+	
+	@Optional.Method(modid = "ToughAsNails")
+	public void changeTemperature(EntityLivingBase entity)
+	{
+		EntityPlayer player = (EntityPlayer)entity;
+		ITemperature temperature = TemperatureHelper.getTemperatureData(player);
+		
+		if (temperature.getTemperature().getRawValue() <= 10)
+		{
+			temperature.setTemperature(new Temperature(temperature.getTemperature().getRawValue()+1));
+		}
+		else if (temperature.getTemperature().getRawValue() >= 14)
+		{
+			temperature.setTemperature(new Temperature(temperature.getTemperature().getRawValue()-1));
+		}
+	}
+	
+	@Optional.Method(modid = "ToughAsNails")
+	public void drink(EntityLivingBase entity)
+	{
+		EntityPlayer player = (EntityPlayer)entity;
+        IThirst thirst = ThirstHelper.getThirstData(player);
+        
+        thirst.addStats(this.getThirst(), this.getHydration());
+	}
 
 	@Override
 	public EnumAction getItemUseAction(ItemStack itemStackIn)
 	{
 		return EnumAction.DRINK;
+	}
+	
+	@Override
+	@Optional.Method(modid = "ToughAsNails")
+	public int getThirst()
+	{
+		return 8;
+	}
+
+	@Override
+	@Optional.Method(modid = "ToughAsNails")
+	public float getHydration()
+	{
+		return 0.6F;
+	}
+
+	@Override
+	@Optional.Method(modid = "ToughAsNails")
+	public float getPoisonChance()
+	{
+		return 0.0F;
 	}
 }

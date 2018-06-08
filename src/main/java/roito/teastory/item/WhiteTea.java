@@ -43,7 +43,7 @@ public class WhiteTea extends ItemTeaDrink
 		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 3));
 		entityplayer.addPotionEffect(new PotionEffect(MobEffects.HASTE, ConfigMain.whiteTeaDrink_Time / (tier + 1), tier));
 		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.whiteTeaDrink_Time / (tier + 1), 0));
-		entityplayer.addStat(AchievementLoader.greenDrink);
+		entityplayer.addStat(AchievementLoader.whiteDrink);
 	}
 
 	public Block getBlock(int meta)

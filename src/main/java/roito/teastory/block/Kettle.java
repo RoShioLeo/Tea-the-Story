@@ -18,6 +18,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class Kettle extends BlockHorizontal
 {
@@ -71,15 +72,7 @@ public class Kettle extends BlockHorizontal
 		{
 			if (heldItem == null)
 			{
-				if (!playerIn.inventory.addItemStackToInventory(new ItemStack(state.getBlock(), 1, damageDropped(state))))
-				{
-					playerIn.getEntityWorld().spawnEntityInWorld(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D,
-							new ItemStack(state.getBlock(), 1, damageDropped(state))));
-				}
-				else if (playerIn instanceof EntityPlayerMP)
-				{
-					((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-				}
+				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(state.getBlock(), 1, damageDropped(state)));
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 			}
 			return true;
