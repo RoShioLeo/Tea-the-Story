@@ -1,18 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
+    "type": "forge:ore_shaped",
 	"result":{
         "item": "teastory:item_straw_blanket",
 		"count": 1
     },
     "pattern":[
-        "###",
+        "***",
 		"###"
     ],
-    "key":
-    {
-		"#":
-		{
+    "key":{
+		"#":{
 			"item": "teastory:straw_rope"
+		},
+		"*": {
+			"item": "#crop_straw"
 		}
     }
 }

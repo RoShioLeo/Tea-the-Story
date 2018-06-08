@@ -6,6 +6,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -115,8 +116,15 @@ public class FullKettle extends Kettle
 	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return this.getMetaFromState(state);
+		return this.getMetaFromState(state) & 12;
 	}
+	
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+    {
+		int cc = Integer.valueOf(placer.getHeldItem(hand).getItemDamage() >> 2);
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(CAPACITY, cc);
+    }
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	public static final PropertyInteger CAPACITY = PropertyInteger.create("capacity", 0, 3);

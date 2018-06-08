@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import org.lwjgl.input.Keyboard;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -14,6 +15,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemBlock;
@@ -31,10 +33,20 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsLoader;
+import toughasnails.api.stat.capability.ITemperature;
+import toughasnails.api.stat.capability.IThirst;
+import toughasnails.api.temperature.Temperature;
+import toughasnails.api.temperature.TemperatureHelper;
+import toughasnails.api.temperature.TemperatureScale.TemperatureRange;
+import toughasnails.api.thirst.IDrink;
+import toughasnails.api.thirst.ThirstHelper;
 
-public class ItemTeaDrink extends ItemFood
+@Optional.Interface(iface = "toughasnails.api.thirst.IDrink", modid = "toughasnails")
+public class ItemTeaDrink extends ItemFood implements IDrink
 {
 	public ItemTeaDrink(String name)
 	{
@@ -166,6 +178,17 @@ public class ItemTeaDrink extends ItemFood
             worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
             this.onFoodEaten(stack, worldIn, entityplayer);
             entityplayer.addStat(StatList.getObjectUseStats(this));
+            
+            if (entityplayer instanceof EntityPlayerMP)
+            {
+                CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)entityplayer, stack);
+            }
+            
+            if(!worldIn.isRemote && Loader.isModLoaded("toughasnails"))
+            {
+            	drink(entityLiving);
+            	changeTemperature(entityLiving);
+            }
         }
         
 		if (stack.getCount() > 1)
@@ -176,10 +199,56 @@ public class ItemTeaDrink extends ItemFood
 		}
 		return new ItemStack(ItemLoader.cup, 1, stack.getItemDamage());
 	}
+	
+	@Optional.Method(modid = "toughasnails")
+	public void changeTemperature(EntityLivingBase entity)
+	{
+		EntityPlayer player = (EntityPlayer)entity;
+		ITemperature temperature = TemperatureHelper.getTemperatureData(player);
+		
+		if (temperature.getTemperature().getRawValue() <= 10)
+		{
+			temperature.setTemperature(new Temperature(temperature.getTemperature().getRawValue()+1));
+		}
+		else if (temperature.getTemperature().getRawValue() >= 14)
+		{
+			temperature.setTemperature(new Temperature(temperature.getTemperature().getRawValue()-1));
+		}
+	}
+	
+	@Optional.Method(modid = "toughasnails")
+	public void drink(EntityLivingBase entity)
+	{
+		EntityPlayer player = (EntityPlayer)entity;
+        IThirst thirst = ThirstHelper.getThirstData(player);
+        
+        thirst.addStats(this.getThirst(), this.getHydration());
+	}
 
 	@Override
 	public EnumAction getItemUseAction(ItemStack itemStackIn)
 	{
 		return EnumAction.DRINK;
+	}
+
+	@Override
+	@Optional.Method(modid = "toughasnails")
+	public int getThirst()
+	{
+		return 8;
+	}
+
+	@Override
+	@Optional.Method(modid = "toughasnails")
+	public float getHydration()
+	{
+		return 0.6F;
+	}
+
+	@Override
+	@Optional.Method(modid = "toughasnails")
+	public float getPoisonChance()
+	{
+		return 0.0F;
 	}
 }

@@ -18,6 +18,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.TeaStory;
 
 public class Kettle extends BlockHorizontal
@@ -73,15 +74,7 @@ public class Kettle extends BlockHorizontal
 		{
 			if (playerIn.getHeldItem(hand).isEmpty())
 			{
-				if (!playerIn.inventory.addItemStackToInventory(new ItemStack(state.getBlock(), 1, damageDropped(state))))
-				{
-					playerIn.getEntityWorld().spawnEntity(new EntityItem(playerIn.getEntityWorld(), playerIn.posX + 0.5D, playerIn.posY + 1.5D, playerIn.posZ + 0.5D,
-							new ItemStack(state.getBlock(), 1, damageDropped(state))));
-				}
-				else if (playerIn instanceof EntityPlayerMP)
-				{
-					((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-				}
+				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(state.getBlock(), 1, damageDropped(state)));
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 			}
 			return true;
@@ -91,7 +84,6 @@ public class Kettle extends BlockHorizontal
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
-		IBlockState origin = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
-		return origin.withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
 	}
 }

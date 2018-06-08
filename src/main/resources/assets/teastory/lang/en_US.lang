@@ -1,5 +1,5 @@
 #Tab
-itemGroup.tabTeaStory=TeaStory: Tea Leaf
+itemGroup.tabteastory=TeaStory: Tea Leaf
 itemGroup.tabTeaRice=TeaStory: Rice
 itemGroup.tabTeaDrink=TeaStory: Tea Drink
 
@@ -153,7 +153,7 @@ tile.tea_stove.name=Tea Stove
 tile.lit_tea_stove.name=Tea Stove (Burning)
 tile.lit_cooking_pan.name=Cooking Pan (Burning)
 tile.clay_kettle.name=Unfired White Porcelain Kettle
-tile.empty_kettle.name=White Porcelain Kettle
+tile.empty__porcelain_kettle.name=White Porcelain Kettle
 tile.green_tea_porcelain_kettle.name=White Porcelain Kettle (Green Tea)
 tile.matcha_drink_porcelain_kettle.name=White Porcelain Kettle (Matcha)
 tile.black_tea_porcelain_kettle.name=White Porcelain Kettle (Black Tea)
@@ -187,9 +187,9 @@ tile.straw_cushion.name=Straw Cushion
 tile.tea_table.name=Tea Table
 
 #Potion
-potion.agility=Agility
-potion.life_drain=Life-leech
-potion.photosynthesis=Photosynthesis
+teastory.potion.agility=Agility
+teastory.potion.life_drain=Life-leech
+teastory.potion.photosynthesis=Photosynthesis
 teastory.potion.defence=Impenetrable Defence
 teastory.potion.excitement=Excitement
 
@@ -310,3 +310,4 @@ teastory.config.drink.yellowtea=Effect Time of Yellow Tea
 teastory.config.drink.whitetea=Effect Time of White Tea
 teastory.config.drink.oolongtea=Effect Time of Oolong Tea
 teastory.config.drink.puertea=Effect Time of Pu'er Tea
+teastory.config.others.lemon=Have Nausea When Eating Lemons
