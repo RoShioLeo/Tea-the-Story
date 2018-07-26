@@ -121,7 +121,7 @@ public class TeaDryingPan extends Block
 			}
 			if (worldIn.isRemote && !playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemLoader.washed_rice && playerIn.getHeldItem(hand).getCount() < 8)
 			{
-				playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.notenough"));
+				playerIn.sendMessage(new TextComponentTranslation("teastory.message.cooking_pan.notenough"));
 				return true;
 			}
 			else if (worldIn.isRemote && (playerIn.getHeldItem(hand).isEmpty() || Block.getBlockFromItem(playerIn.getHeldItem(hand).getItem()) != BlockLoader.tea_drying_pan))
