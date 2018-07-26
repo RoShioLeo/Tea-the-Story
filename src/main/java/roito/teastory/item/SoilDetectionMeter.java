@@ -18,6 +18,7 @@ import net.minecraft.world.biome.Biome;
 import roito.teastory.block.Teaplant;
 import roito.teastory.common.AchievementLoader;
 import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.config.ConfigMain;
 import roito.teastory.helper.EntironmentHelper;
 
 public class SoilDetectionMeter extends TSItem
@@ -58,15 +59,19 @@ public class SoilDetectionMeter extends TSItem
 			Object fermentationRate2 = EntironmentHelper.getFermentationRate(fermentationChance / 2);
 			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.fermentation", fermentationRateLevel1, fermentationRate1, fermentationRateLevel2, fermentationRate2));
 
-			float dryingChance1 = EntironmentHelper.getDryingChance(worldIn, pos, true) * 0.5F;
-			float dryingChance2 = EntironmentHelper.getDryingChance(worldIn, pos, false) * 0.5F;
+			float dryingChance1 = EntironmentHelper.getDryingChance(worldIn, pos.up(), true) * 0.5F;
+			float dryingChance2 = EntironmentHelper.getDryingChance(worldIn, pos.up(), false) * 0.5F;
 			String dryingRateLevel1 = EntironmentHelper.getDryingRateLevel(dryingChance1);
 			String dryingRateLevel2 = EntironmentHelper.getDryingRateLevel(dryingChance2);
 			Object dryingRate1 = EntironmentHelper.getDryingRate(dryingChance1);
 			Object dryingRate2 = EntironmentHelper.getDryingRate(dryingChance2);
 			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.drying", dryingRateLevel1, dryingRate1, dryingRateLevel2, dryingRate2));
 
-			int chance = (int) (Teaplant.environmentChance(worldIn, pos) * 250);
+			if (ConfigMain.isTeaPlantLimited)
+			{
+				height = 100;
+			}
+			int chance = (int) (Teaplant.environmentChance(worldIn, pos) * 125);
 			Object f = (chance < 80) ? (chance < 40) ? TextFormatting.RED + String.valueOf(chance + "%") : TextFormatting.YELLOW + String.valueOf(chance + "%") : TextFormatting.GREEN + String.valueOf(chance + "%");
 			String h = (height <= 110) ? (height < 80) ? I18n.translateToLocal("teastory.message.soil_detection_meter.height.low") : I18n.translateToLocal("teastory.message.soil_detection_meter.height.medium") : I18n.translateToLocal("teastory.message.soil_detection_meter.height.high");
 			playerIn.addChatMessage( new TextComponentTranslation("teastory.message.soil_detection_meter.teaplant", f, h));

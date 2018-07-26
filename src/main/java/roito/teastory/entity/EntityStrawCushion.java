@@ -48,7 +48,6 @@ public class EntityStrawCushion extends Entity
 			if (!this.isBeingRidden() || this.worldObj.isAirBlock(new BlockPos(blockPosX, blockPosY, blockPosZ)))
 			{
 				this.setDead();
-				worldObj.updateComparatorOutputLevel(getPosition(), worldObj.getBlockState(getPosition()).getBlock());
 			}
 		}
 	}

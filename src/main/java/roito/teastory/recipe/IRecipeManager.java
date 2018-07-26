@@ -12,6 +12,5 @@ public interface  IRecipeManager<R>
 
 	Collection<R> getRecipes();
 
-	@SuppressWarnings("unchecked")
 	<T> R getRecipe(T... input);
 }

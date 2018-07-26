@@ -130,7 +130,7 @@ public class LitTeaDryingPan extends BlockContainer
 		int meta = getMetaFromState(state);
 		TileEntity te = worldIn.getTileEntity(pos);
 		int seconds = 60;
-		if(te instanceof TileEntityTeaDryingPan)
+		if(te != null && te instanceof TileEntityTeaDryingPan)
 		{
 			seconds = ((TileEntityTeaDryingPan) te).getRemainingTime() / 20;
 		}

@@ -54,7 +54,7 @@ public class StrawCushion extends Block
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if(!playerIn.isRiding() || sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0))
+		if(!playerIn.isRiding() && sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0))
 		{
 			return true;
 		}

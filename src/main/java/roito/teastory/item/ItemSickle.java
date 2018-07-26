@@ -96,16 +96,18 @@ public class ItemSickle extends Item
     			if(((BlockCrops) block).isMaxAge(worldIn.getBlockState(pos)))
     			{
     				worldIn.destroyBlock(pos, true);
-    				playerIn.addStat(AchievementLoader.riceSeeds);
-    				if (stack.getItemDamage() < stack.getMaxDamage() && time < 8)
+    				if (stack.getItemDamage() < stack.getMaxDamage())
     				{
-    					stack.setItemDamage(stack.getItemDamage() + 1);
-    					harvestCrops(stack, playerIn, worldIn, pos.east(), time + 1);
-    					harvestCrops(stack, playerIn, worldIn, pos.north(), time + 1);
-    					harvestCrops(stack, playerIn, worldIn, pos.west(), time + 1);
-    					harvestCrops(stack, playerIn, worldIn, pos.south(), time + 1);
+    					if (time < 8)
+    					{
+    						stack.setItemDamage(stack.getItemDamage() + 1);
+    						harvestCrops(stack, playerIn, worldIn, pos.east(), time + 1);
+        					harvestCrops(stack, playerIn, worldIn, pos.north(), time + 1);
+        					harvestCrops(stack, playerIn, worldIn, pos.west(), time + 1);
+        					harvestCrops(stack, playerIn, worldIn, pos.south(), time + 1);
+    					}
     				}
-    				else --stack.stackSize;
+    				else stack.stackSize--;
     				playerIn.addStat(AchievementLoader.sickle);
     				return EnumActionResult.SUCCESS;
     			}

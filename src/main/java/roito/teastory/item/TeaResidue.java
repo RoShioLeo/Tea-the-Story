@@ -18,6 +18,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import roito.teastory.common.AchievementLoader;
 import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.config.ConfigMain;
 
 public class TeaResidue extends TSItem
 {
@@ -72,15 +73,12 @@ public class TeaResidue extends TSItem
 	@Override
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (ItemDye.applyBonemeal(stack, worldIn, pos, playerIn))
+		if (!worldIn.isRemote && ConfigMain.useTeaResidueAsBoneMeal && ItemDye.applyBonemeal(stack, worldIn, pos, playerIn))
 		{
-			if (!worldIn.isRemote)
-			{
-				playerIn.addStat(AchievementLoader.teaResidue);
-				worldIn.playEvent(2005, pos, 0);
-			}
+			playerIn.addStat(AchievementLoader.teaResidue);
+			worldIn.playEvent(2005, pos, 0);
 			return EnumActionResult.SUCCESS;
 		}
-		else return EnumActionResult.FAIL;
+		return EnumActionResult.FAIL;
 	}
 }

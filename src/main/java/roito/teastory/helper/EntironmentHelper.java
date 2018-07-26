@@ -6,6 +6,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import roito.teastory.config.ConfigMain;
 
 public class EntironmentHelper 
 {
@@ -16,16 +17,23 @@ public class EntironmentHelper
 		boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
 		float humidity = biome.getRainfall();
 		float temperature = biome.getFloatTemperature(pos);
-		if (temperature <= 0.8F) 
+		if (ConfigMain.isFermentationLimited)
 		{
-			f = humidity * 2.0F * temperature;
+			if (temperature <= 0.8F) 
+			{
+				f = humidity * 2.0F * temperature;
+			}
+			else 
+			{
+				f = humidity * (4F - 3 * temperature);
+			}
+			if (f < 0.0F)
+				f = 0.0F;
 		}
-		else 
+		else
 		{
-			f = humidity * (4F - 3 * temperature);
+			f = 0.8F;
 		}
-		if (f < 0.0F)
-			f = 0.0F;
 
 		if (!test) 
 		{
@@ -65,15 +73,22 @@ public class EntironmentHelper
 		Biome biome = worldIn.getBiome(pos);
 		float humidity = biome.getRainfall();
 		float temperature = biome.getFloatTemperature(pos);
-		if (temperature <= 1.3F) 
+		if (ConfigMain.isDryingLimited)
 		{
-			f = f * (1 - humidity) * temperature;
-		} 
-		else {
-			f = f * 0.7F * (1 - humidity) * temperature;
+			if (temperature <= 1.3F) 
+			{
+				f = f * (1 - humidity) * temperature;
+			} 
+			else {
+				f = f * 0.7F * (1 - humidity) * temperature;
+			}
+			if (f < 0.0F)
+				f = 0.0F;
 		}
-		if (f < 0.0F)
-			f = 0.0F;
+		else
+		{
+			f = f * 0.9F;
+		}
 		return f * 3;
 	}
 
@@ -96,7 +111,7 @@ public class EntironmentHelper
 	{
 		return ((dryingChance) >= 0.50F) ? ((dryingChance) >= 1.0F) ? TextFormatting.GREEN + String.valueOf((int) (dryingChance * 100) + "%") : TextFormatting.YELLOW + String.valueOf((int) (dryingChance * 100) + "%") : TextFormatting.RED + String.valueOf((int) (dryingChance * 100) + "%");
 	}
-
+	
 	/* -1: Snowy, 0: Cold , 1: Warm, 2: Hot */
 	public static int getTemperatureLevel(float temperature)
 	{

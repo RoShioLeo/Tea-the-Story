@@ -99,7 +99,7 @@ public class LitCookingPan extends BlockContainer
 		{
 			TileEntity te = worldIn.getTileEntity(pos);
 			int seconds = 60;
-			if(te instanceof TileEntityCookingPan)
+			if(te != null && te instanceof TileEntityCookingPan)
 			{
 				seconds = ((TileEntityCookingPan) te).getRemainingTime() / 20;
 			}

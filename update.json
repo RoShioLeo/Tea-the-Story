@@ -1,10 +1,15 @@
 {
-    "homepage": "https://minecraft.curseforge.com/projects/tea-the-story",
-    "promos": {
-	"1.10.2-latest": "3.0.1.701",
-        "1.10.2-recommended": "3.0.1.701"
-    },
+	"homepage": "https://minecraft.curseforge.com/projects/teastory",
+	"promos": {
+		"1.10.2-latest": "3.0.4.726",
+		"1.10.2-recommended": "3.0.4.726",
+		"1.12.2-latest": "3.0.4.726",
+		"1.12.2-recommended": "3.0.4.726"
+	},
 	"1.10.2": {
-	    "3.0.1.701": "Fixed many bugs!"
+		"3.0.4.726": "Fixed four bugs.\nMore config options."
+	},
+	"1.12.2": {
+		"3.0.4.726": "Fixed two bugs.\nMore config options."
 	}
 }

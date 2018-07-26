@@ -38,7 +38,6 @@ public class TeaStoveRecipeManager implements IRecipeManager<ITeaStoveRecipe>
 		return recipes;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public <T> ITeaStoveRecipe getRecipe(T... inputs)
 	{
