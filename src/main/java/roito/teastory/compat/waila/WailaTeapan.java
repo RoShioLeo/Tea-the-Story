@@ -64,7 +64,7 @@ public class WailaTeapan implements IWailaDataProvider
 		{
 			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.step") + I18n.translateToLocal("item.tea_leaf.name"));
 			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.next") + I18n.translateToLocal("item.half_dried_tea.name"));
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.progress") + ((int)((accessor.getMetadata() - 2) * 16.66F) / 10) + "%");
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.progress") + ((int)((accessor.getMetadata() - 2) * 16.66F)) + "%");
 			return currenttip;
 		}
 		else if(accessor.getMetadata() >= 9 && accessor.getMetadata() <= 11)
@@ -74,7 +74,7 @@ public class WailaTeapan implements IWailaDataProvider
 			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.next") + next);
 			if (next != "-")
 			{
-				currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.progress") + ((int)((accessor.getMetadata() - 9) * 33.33F) / 10) + "%");
+				currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.progress") + ((int)((accessor.getMetadata() - 9) * 33.33F)) + "%");
 			}
 			return currenttip;
 		}

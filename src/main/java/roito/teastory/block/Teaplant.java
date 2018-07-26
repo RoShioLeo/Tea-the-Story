@@ -14,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import roito.teastory.TeaStory;
+import roito.teastory.config.ConfigMain;
 import roito.teastory.item.ItemLoader;
 
 public class Teaplant extends BlockCrops
@@ -63,20 +64,23 @@ public class Teaplant extends BlockCrops
 		float temperature = worldIn.getBiome(pos).getTemperature(pos);
 		float humidity = worldIn.getBiome(pos).getRainfall();
 		float height = pos.getY();
-		if (height <= 79)
+		if (ConfigMain.isTeaPlantLimited)
 		{
-			c = 1.0F - (80 - height) * 0.02F;
+			if (height <= 79)
+			{
+				c = 1.0F - (80 - height) * 0.02F;
+			}
+			else if (height >= 111)
+			{
+				c = 1.0F - (height - 110) * 0.04F;
+			}
+			c = c * (temperature >= 0.15F ? temperature >= 0.5F ? temperature > 0.95F ? 0.2F : 1.0F : 0.8F : 0.4F) * (humidity >= 0.2F ? humidity >= 0.5F ? humidity >= 0.8F ? 1.0F : 0.8F : 0.6F : 0.2F);
+			if (c < 0.0F)
+			{
+				c = 0.0F;
+			}
 		}
-		else if (height >= 111)
-		{
-			c = 1.0F - (height - 110) * 0.04F;
-		}
-		c = c * (temperature >= 0.15F ? temperature >= 0.5F ? temperature > 0.95F ? 0.2F : 1.0F : 0.8F : 0.4F) * (humidity >= 0.2F ? humidity >= 0.5F ? humidity >= 0.8F ? 1.0F : 0.8F : 0.6F : 0.2F);
-		if (c < 0.0F)
-		{
-			c = 0.0F;
-		}
-		return c * 0.4F;
+		return c * 0.8F;
 	}
 
 	@Override

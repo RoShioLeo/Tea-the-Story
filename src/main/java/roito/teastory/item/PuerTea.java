@@ -29,7 +29,10 @@ public class PuerTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 5));
+		if (ConfigMain.useTeaResidueAsBoneMeal)
+		{
+			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 5));
+		}
 		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionLifeDrain, ConfigMain.puerTeaDrink_Time / (tier + 1), tier));
 		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.puerTeaDrink_Time / (tier + 1), 0));
 	}

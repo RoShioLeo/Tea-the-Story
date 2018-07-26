@@ -29,7 +29,10 @@ public class OolongTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 4));
+		if (ConfigMain.useTeaResidueAsBoneMeal)
+		{
+			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 4));
+		}
 		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionPhotosynthesis, ConfigMain.oolongTeaDrink_Time / (tier + 1), tier));
 		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.oolongTeaDrink_Time / (tier + 1), 0));
 	}

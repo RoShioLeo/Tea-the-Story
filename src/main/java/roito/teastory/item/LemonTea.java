@@ -34,7 +34,10 @@ public class LemonTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));;
+		if (ConfigMain.useTeaResidueAsBoneMeal)
+		{
+			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));;
+		}
 		if (entityplayer.isBurning())
 		{
 			entityplayer.extinguish();

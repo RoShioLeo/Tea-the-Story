@@ -14,6 +14,7 @@ public class ConfigGui extends GuiConfig
 		super(parentScreen, Arrays.asList(
 				new ConfigElement(ConfigMain.config.getCategory("General")),
 				new ConfigElement(ConfigMain.config.getCategory("Drink")),
+				new ConfigElement(ConfigMain.config.getCategory("Tea Making")),
 				new ConfigElement(ConfigMain.config.getCategory("Others"))
 		), TeaStory.MODID, TeaStory.MODID, false, false, "Tea: The Story", "Config Interface");
 	}

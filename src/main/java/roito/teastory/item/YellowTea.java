@@ -29,7 +29,10 @@ public class YellowTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 2));
+		if (ConfigMain.useTeaResidueAsBoneMeal)
+		{
+			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 2));
+		}
 		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionDefence, ConfigMain.yellowTeaDrink_Time, 0));
 		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.yellowTeaDrink_Time, 0));
 	}

@@ -29,6 +29,7 @@ import net.minecraft.world.World;
 import roito.teastory.TeaStory;
 import roito.teastory.block.BlockLoader;
 import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.config.ConfigMain;
 
 public class ItemRiceSeedling extends ItemSeeds
 {
@@ -81,8 +82,10 @@ public class ItemRiceSeedling extends ItemSeeds
 				BlockPos blockpos2 = blockpos.down();
 				IBlockState iblockstate = worldIn.getBlockState(blockpos);
 				IBlockState iblockstate2 = worldIn.getBlockState(blockpos2);
+				
+				boolean canPlant = ConfigMain.isRiceLimited ? worldIn.getBiome(blockpos1).getTemperature(blockpos1) >= 0.5F && worldIn.getBiome(blockpos1).getRainfall() >= 0.5F : true;
 
-				if (iblockstate.getMaterial() == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0 && worldIn.isAirBlock(blockpos1) && iblockstate2.getBlock() instanceof BlockFarmland && worldIn.getBiome(blockpos1).getTemperature(blockpos1) >= 0.5F && worldIn.getBiome(blockpos1).getRainfall() >= 0.5F)
+				if (iblockstate.getMaterial() == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0 && worldIn.isAirBlock(blockpos1) && iblockstate2.getBlock() instanceof BlockFarmland && canPlant)
 				{
 					net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
 
@@ -99,7 +102,7 @@ public class ItemRiceSeedling extends ItemSeeds
 						playerIn.getHeldItem(handIn).shrink(1);
 					}
 				}
-				else if (worldIn.isRemote && (worldIn.getBiome(blockpos1).getTemperature(blockpos1) < 0.5F || worldIn.getBiome(blockpos1).getRainfall() < 0.5F))
+				else if (worldIn.isRemote && !canPlant)
 				{
 					playerIn.sendMessage(new TextComponentTranslation("teastory.message.rice_seedling"));
 				}

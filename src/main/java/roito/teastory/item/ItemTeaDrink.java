@@ -41,7 +41,6 @@ import toughasnails.api.stat.capability.ITemperature;
 import toughasnails.api.stat.capability.IThirst;
 import toughasnails.api.temperature.Temperature;
 import toughasnails.api.temperature.TemperatureHelper;
-import toughasnails.api.temperature.TemperatureScale.TemperatureRange;
 import toughasnails.api.thirst.IDrink;
 import toughasnails.api.thirst.ThirstHelper;
 

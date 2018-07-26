@@ -38,7 +38,6 @@ public class BarrelRecipeManager implements IRecipeManager<ITeaMakingRecipe>
 		return recipes;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public <T> ITeaMakingRecipe getRecipe(T... inputs)
 	{

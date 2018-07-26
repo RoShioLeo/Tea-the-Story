@@ -34,7 +34,10 @@ public class MilkTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));
+		if (ConfigMain.useTeaResidueAsBoneMeal)
+		{
+			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));
+		}
 		Collection<PotionEffect> effectList = entityplayer.getActivePotionEffects();
 		List<PotionEffect> list = new ArrayList<>();
 		for (PotionEffect effect : effectList)

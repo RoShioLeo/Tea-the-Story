@@ -58,13 +58,14 @@ public class EventLoader
 			{
 				if(event.getState().getValue(PropertyBool.create("decayable")).booleanValue())
 				{
-					int rand = event.getWorld().rand.nextInt(250);
-					if(rand == 0)
+					int rand = event.getWorld().rand.nextInt(1000);
+					if(rand <= ConfigMain.teaSeedsDropChance - 1)
 					{
 						EntityItem entityitem = new EntityItem(event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ItemLoader.tea_seeds, 1));
 						event.getWorld().spawnEntity(entityitem);
 					}
-					else if(rand >= 248)
+					int rand2 = event.getWorld().rand.nextInt(1000);
+					if(rand2 <= ConfigMain.lemonDropChance - 1)
 					{
 						EntityItem entityitem = new EntityItem(event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ItemLoader.lemon, 1));
 						event.getWorld().spawnEntity(entityitem);

@@ -20,6 +20,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.config.ConfigMain;
 
 public class TeaResidue extends TSItem
 {
@@ -77,14 +78,11 @@ public class TeaResidue extends TSItem
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (ItemDye.applyBonemeal(playerIn.getHeldItem(hand), worldIn, pos))
+		if (!worldIn.isRemote && ConfigMain.useTeaResidueAsBoneMeal && ItemDye.applyBonemeal(playerIn.getHeldItem(hand), worldIn, pos))
 		{
-			if (!worldIn.isRemote)
-			{
-				worldIn.playEvent(2005, pos, 0);
-			}
+			worldIn.playEvent(2005, pos, 0);
 			return EnumActionResult.SUCCESS;
 		}
-		else return EnumActionResult.FAIL;
+		return EnumActionResult.FAIL;
 	}
 }

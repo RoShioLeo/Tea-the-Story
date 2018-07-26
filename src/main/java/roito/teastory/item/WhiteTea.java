@@ -30,7 +30,10 @@ public class WhiteTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 3));
+		if (ConfigMain.useTeaResidueAsBoneMeal)
+		{
+			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 3));
+		}
 		entityplayer.addPotionEffect(new PotionEffect(MobEffects.HASTE, ConfigMain.whiteTeaDrink_Time / (tier + 1), tier));
 		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.whiteTeaDrink_Time / (tier + 1), 0));
 	}

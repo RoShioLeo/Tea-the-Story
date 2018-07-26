@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "items/record_far"
+        "layer0": "teastory:items/record_caichawuqu_folk"
     }
 }

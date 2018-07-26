@@ -3,18 +3,14 @@ package roito.teastory.item;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -25,7 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import roito.teastory.TeaStory;
 import roito.teastory.block.BlockLoader;
 import roito.teastory.common.CreativeTabsLoader;
-import roito.teastory.config.ConfigMain;
 
 @Mod.EventBusSubscriber(modid = TeaStory.MODID)
 public final class ItemLoader
