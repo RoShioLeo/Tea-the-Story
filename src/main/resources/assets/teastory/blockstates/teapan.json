@@ -22,50 +22,15 @@
         },
 		{   "when": { "step": "3" },
             "apply":[
-				{ "model": "teastory:teapan_full"}
+				{ "model": "teastory:teapan_matcha"}
 			]
         },
 		{   "when": { "step": "4" },
             "apply":[
-				{ "model": "teastory:teapan_full"}
+				{ "model": "teastory:teapan_dried"}
 			]
         },
 		{   "when": { "step": "5" },
-            "apply":[
-				{ "model": "teastory:teapan_full"}
-			]
-        },
-		{   "when": { "step": "6" },
-            "apply":[
-				{ "model": "teastory:teapan_full"}
-			]
-        },
-		{   "when": { "step": "7" },
-            "apply":[
-				{ "model": "teastory:teapan_full"}
-			]
-        },
-		{   "when": { "step": "8" },
-            "apply":[
-				{ "model": "teastory:teapan_matcha"}
-			]
-        },
-		{   "when": { "step": "9" },
-            "apply":[
-				{ "model": "teastory:teapan_dried"}
-			]
-        },
-		{   "when": { "step": "10" },
-            "apply":[
-				{ "model": "teastory:teapan_dried"}
-			]
-        },
-		{   "when": { "step": "11" },
-            "apply":[
-				{ "model": "teastory:teapan_dried"}
-			]
-        },
-		{   "when": { "step": "12" },
             "apply":[
 				{ "model": "teastory:teapan_yellow"}
 			]

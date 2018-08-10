@@ -19,7 +19,7 @@ public class CategoryTeapan extends BlankRecipeCategory<IRecipeWrapper>
 	public CategoryTeapan(IGuiHelper helper)
 	{
 		ResourceLocation backgroundTexture = new ResourceLocation(TeaStory.MODID, "textures/gui/container/gui_recipe.png");
-		background = helper.createDrawable(backgroundTexture, 3, 5, 169, 70, 23, 88, 0, 0);
+		background = helper.createDrawable(backgroundTexture, 7, 34, 162, 18);
 	}
 	
 	@Override
@@ -44,15 +44,15 @@ public class CategoryTeapan extends BlankRecipeCategory<IRecipeWrapper>
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper)
 	{
 		IGuiItemStackGroup items = recipeLayout.getItemStacks();
-		items.init(0, true, 4, 52);
+		items.init(0, true, 0, 0);
 		items.set(0, ((RecipeTeapan)recipeWrapper).getStep1());
-		items.init(1, true, 40, 52);
+		items.init(1, true, 36, 0);
 		items.set(1, ((RecipeTeapan)recipeWrapper).getStep2());
-		items.init(2, true, 76, 52);
+		items.init(2, true, 72, 0);
 		items.set(2, ((RecipeTeapan)recipeWrapper).getStep3());
-		items.init(3, true, 112, 52);
+		items.init(3, true, 108, 0);
 		items.set(3, ((RecipeTeapan)recipeWrapper).getStep4());
-		items.init(4, false, 148, 52);
+		items.init(4, false, 144, 0);
 		items.set(4, ((RecipeTeapan)recipeWrapper).getStep5());
 	}
 

@@ -23,7 +23,7 @@ public class CategoryTeaTable extends BlankRecipeCategory<IRecipeWrapper>
 	public CategoryTeaTable(IGuiHelper helper)
 	{
 		ResourceLocation backgroundTexture = new ResourceLocation(TeaStory.MODID, "textures/gui/container/gui_tea_table.png");
-		background = helper.createDrawable(backgroundTexture, 3, 5, 169, 70, 23, 88, 0, 0);
+		background = helper.createDrawable(backgroundTexture, 43, 19, 90, 46);
 		IDrawableStatic progressBarOverlay = helper.createDrawable(backgroundTexture, 176, 0, 24, 17);
 		progressBar = helper.createAnimatedDrawable(progressBarOverlay, 300, StartDirection.LEFT, false);
 	}
@@ -49,24 +49,24 @@ public class CategoryTeaTable extends BlankRecipeCategory<IRecipeWrapper>
 	@Override
 	public void drawExtras(Minecraft minecraft)
 	{
-		progressBar.draw(minecraft, 82, 51);
+		progressBar.draw(minecraft, 42, 14);
 	}
 	
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper)
 	{
 		IGuiItemStackGroup items = recipeLayout.getItemStacks();
-		items.init(0, true, 58, 59);
+		items.init(0, true, 18, 22);
 		items.set(0, ((RecipeTeaTable)recipeWrapper).getTeaLeafInputs());
-		items.init(1, true, 58, 41);
+		items.init(1, true, 18, 4);
 		items.set(1, ((RecipeTeaTable)recipeWrapper).getSugarInputs());
-		items.init(2, true, 112, 37);
+		items.init(2, true, 72, 0);
 		items.set(2, ((RecipeTeaTable)recipeWrapper).getCupInputs());
-		items.init(3, true, 40, 41);
+		items.init(3, true, 0, 4);
 		items.set(3, ((RecipeTeaTable)recipeWrapper).getToolInputs());
-		items.init(4, true, 40, 59);
+		items.init(4, true, 0, 22);
 		items.set(4, RecipeTeaTable.getPotInputs());
-		items.init(5, false, 112, 65);
+		items.init(5, false, 72, 28);
 		items.set(5, recipeWrapper.getOutputs());
 	}
 

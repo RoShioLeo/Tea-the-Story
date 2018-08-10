@@ -3,6 +3,7 @@ package roito.teastory.common;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
@@ -12,7 +13,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
@@ -22,6 +25,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
@@ -210,14 +215,13 @@ public class EventLoader
 		if(ConfigMain.info)
 		{
 			event.player.addChatComponentMessage(new TextComponentTranslation("teastory.info.welcome", "\u00a7a" + TeaStory.VERSION));
-			ConfigMain.info = false;
 		}
 	}
 	
 	@SubscribeEvent
     public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
 	{
-        if (event.getConfigID() != null && event.getConfigID().equalsIgnoreCase(TeaStory.MODID))
+		if (event.getModID().equals(TeaStory.MODID))
         {
             Configuration config = ConfigMain.config;
             if (config.hasChanged())
@@ -241,6 +245,17 @@ public class EventLoader
 			{
 				entityItem.setEntityItemStack(new ItemStack(ItemLoader.washed_rice, entityItem.getEntityItem().stackSize));
 			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onItemUse(RightClickBlock event)
+	{
+		if (event.getItemStack() != null && event.getItemStack().getItem() instanceof ItemSpade && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockFarmland)
+		{
+			event.getWorld().setBlockState(event.getPos(), BlockLoader.field.getDefaultState());
+			event.getItemStack().damageItem(1, event.getEntityPlayer());
+			event.getEntityPlayer().playSound(SoundEvents.ITEM_HOE_TILL, 1.0F, 1.0F);
 		}
 	}
 	

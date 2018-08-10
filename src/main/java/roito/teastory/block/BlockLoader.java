@@ -19,7 +19,6 @@ import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsLoader;
 import roito.teastory.item.ItemBlockEmptyKettle;
 import roito.teastory.item.ItemBlockFullKettle;
-import roito.teastory.item.ItemBlockHalfDriedLeaf;
 
 public class BlockLoader
 {
@@ -66,10 +65,11 @@ public class BlockLoader
 	public static Kettle puer_tea_zisha_kettle2 = new FullKettle("zisha_kettle", "puer_tea", "puer_tea_zisha_kettle", true, true);
 	
 	public static Block half_dried_leaf_block = new HalfDriedLeafBlock();
-	public static BlockCrops teaplant = new Teaplant();
+	public static Block teaplant = new Teaplant();
 	public static BlockCrops xian_rice_seedling = new XianRiceSeedling();
-	public static BlockCrops xian_rice_plant = new XianRicePlant();
+	public static Block xian_rice_plant = new XianRicePlant();
 	public static Block field = new Field();
+	public static Block paddy_field = new PaddyField();
 	
 	public static Block straw_blanket = new StrawBlanket();
 	public static Block straw_cushion =new StrawCushion();
@@ -140,7 +140,7 @@ public class BlockLoader
 		register(tea_table, "tea_table");
 		register(teapan,  "teapan");
 		register(barrel, "barrel");
-		register(half_dried_leaf_block, new ItemBlockHalfDriedLeaf(half_dried_leaf_block), "half_dried_leaf_block");
+		register(half_dried_leaf_block, "half_dried_leaf_block");
 		
 		register(empty_porcelain_kettle, new ItemBlockEmptyKettle(empty_porcelain_kettle), "empty_porcelain_kettle");
 		register(green_tea_porcelain_kettle, new ItemBlockFullKettle(green_tea_porcelain_kettle, 1), "green_tea_porcelain_kettle");
@@ -237,6 +237,7 @@ public class BlockLoader
 		register(xian_rice_seedling, "xian_rice_seedling");
 		register(xian_rice_plant, "xian_rice_plant");
 		register(field, "field");
+		register(paddy_field, "paddy_field");
 		register(straw_blanket, "straw_blanket");
 		register(straw_cushion, "straw_cushion");
 	}
@@ -244,7 +245,6 @@ public class BlockLoader
 	public static void loadExtraResourceLocation()
 	{
 		ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.lit_tea_drying_pan), new ResourceLocation(TeaStory.MODID, "tea_drying_pan"));
-		ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.half_dried_leaf_block), new ResourceLocation(TeaStory.MODID, "half_dried_leaf_block"), new ResourceLocation(TeaStory.MODID, "half_dried_leaf_block6"));
 		ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.green_tea_zisha_kettle2), new ResourceLocation(TeaStory.MODID, "green_tea_zisha_kettle"));
 		ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.black_tea_zisha_kettle2), new ResourceLocation(TeaStory.MODID, "black_tea_zisha_kettle"));
 		ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.matcha_drink_zisha_kettle2), new ResourceLocation(TeaStory.MODID, "matcha_drink_zisha_kettle"));
@@ -442,6 +442,7 @@ public class BlockLoader
 		registerRender(xian_rice_seedling, "rice_seedling");
 		registerRender(xian_rice_plant, "rice_plant");
 		registerRender(field, "field");
+		registerRender(paddy_field, "paddy_field");
 		registerRender(lit_cooking_pan, "lit_cooking_pan");
 		registerRender(straw_blanket, "straw_blanket");
 		registerRender(straw_cushion, "straw_cushion");

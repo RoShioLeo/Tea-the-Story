@@ -96,6 +96,7 @@ public class JEI implements IModPlugin
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.oolong_tea_zisha_kettle));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.puer_tea_zisha_kettle));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.field));
+		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.paddy_field));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.xian_rice_plant));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.xian_rice_seedling));
 		blacklist.addIngredientToBlacklist(new ItemStack(BlockLoader.teaplant));

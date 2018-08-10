@@ -47,34 +47,25 @@ public class SoilDetectionMeter extends TSItem
 			Biome biome = worldIn.getBiome(pos);
 			float humidity = biome.getRainfall();
 			float temperature = biome.getFloatTemperature(pos);
-			String temp = (temperature >= 0.15F) ? (temperature >= 0.5F) ? (temperature > 0.95F) ? I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.hot") : I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.warm") : I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.cold") : I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.snowy");
+			String temp = (temperature >= 0.15F) ? (temperature >= 0.3F) ? (temperature >= 0.6F) ? (temperature >= 0.8F) ? (temperature >= 1.5F) ? I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.heat") : I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.hot") : I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.warm") : I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.cool") : I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.cold") : I18n.translateToLocal("teastory.message.soil_detection_meter.temperature.frozen");
 			String rainfall = (humidity >= 0.2F) ? (humidity >= 0.5F) ? (humidity >= 0.8F) ? I18n.translateToLocal("teastory.message.soil_detection_meter.humidity.humid") : I18n.translateToLocal("teastory.message.soil_detection_meter.humidity.semi-humid") : I18n.translateToLocal("teastory.message.soil_detection_meter.humidity.semi-arid") : I18n.translateToLocal("teastory.message.soil_detection_meter.humidity.arid");
 			int height = pos.getY();
 			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.total", temp, rainfall, TextFormatting.DARK_GRAY + String.valueOf(height), TextFormatting.AQUA + biome.getBiomeName()));
+			
+			int dryingTime = EntironmentHelper.getDryingTicks(temperature, humidity) / 20;
+			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.drying", dryingTime));
+			
+			int fermentationTime = EntironmentHelper.getFermentationTicks(temperature, humidity) / 20;
+			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.fermentation", fermentationTime, (int)(fermentationTime * 1.5F)));
 
-			float fermentationChance = EntironmentHelper.getFermentationChance(worldIn, pos, true) * 0.5F;
-			Object fermentationRateLevel1 = EntironmentHelper.getFermentationRateLevel(fermentationChance);
-			Object fermentationRateLevel2 = EntironmentHelper.getFermentationRateLevel(fermentationChance / 2);
-			Object fermentationRate1 = EntironmentHelper.getFermentationRate(fermentationChance);
-			Object fermentationRate2 = EntironmentHelper.getFermentationRate(fermentationChance / 2);
-			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.fermentation", fermentationRateLevel1, fermentationRate1, fermentationRateLevel2, fermentationRate2));
-
-			float dryingChance1 = EntironmentHelper.getDryingChance(worldIn, pos.up(), true) * 0.5F;
-			float dryingChance2 = EntironmentHelper.getDryingChance(worldIn, pos.up(), false) * 0.5F;
-			String dryingRateLevel1 = EntironmentHelper.getDryingRateLevel(dryingChance1);
-			String dryingRateLevel2 = EntironmentHelper.getDryingRateLevel(dryingChance2);
-			Object dryingRate1 = EntironmentHelper.getDryingRate(dryingChance1);
-			Object dryingRate2 = EntironmentHelper.getDryingRate(dryingChance2);
-			playerIn.addChatMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.drying", dryingRateLevel1, dryingRate1, dryingRateLevel2, dryingRate2));
-
-			if (ConfigMain.isTeaPlantLimited)
-			{
-				height = 100;
-			}
-			int chance = (int) (Teaplant.environmentChance(worldIn, pos) * 125);
-			Object f = (chance < 80) ? (chance < 40) ? TextFormatting.RED + String.valueOf(chance + "%") : TextFormatting.YELLOW + String.valueOf(chance + "%") : TextFormatting.GREEN + String.valueOf(chance + "%");
+			float teaChance =  ((int) (EntironmentHelper.getTeaPlantGrowPercent(temperature, height) * 1000)) / 10;
+			Object f = (teaChance < 80) ? (teaChance < 40) ? TextFormatting.RED + String.valueOf(teaChance + "%") : TextFormatting.YELLOW + String.valueOf(teaChance + "%") : TextFormatting.GREEN + String.valueOf(teaChance + "%");
 			String h = (height <= 110) ? (height < 80) ? I18n.translateToLocal("teastory.message.soil_detection_meter.height.low") : I18n.translateToLocal("teastory.message.soil_detection_meter.height.medium") : I18n.translateToLocal("teastory.message.soil_detection_meter.height.high");
 			playerIn.addChatMessage( new TextComponentTranslation("teastory.message.soil_detection_meter.teaplant", f, h));
+			
+			float riceChance =  ((int) (EntironmentHelper.getRiceCropsGrowPercent(temperature, humidity) * 1000)) / 10;
+			Object g = (riceChance < 80) ? (riceChance < 40) ? TextFormatting.RED + String.valueOf(riceChance + "%") : TextFormatting.YELLOW + String.valueOf(riceChance + "%") : TextFormatting.GREEN + String.valueOf(riceChance + "%");
+			playerIn.addChatMessage( new TextComponentTranslation("teastory.message.soil_detection_meter.ricecrop", g));
 			return EnumActionResult.SUCCESS;
 		} 
 		else 

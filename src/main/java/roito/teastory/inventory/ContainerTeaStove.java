@@ -156,12 +156,16 @@ public class ContainerTeaStove extends Container
 			break;
 		case 1:
 			this.fuelTime = data;
+			break;
 		case 2:
 			this.fuelTotalTime = data;
+			break;
 		case 3:
 			this.hasWater = data;
+			break;
 		case 4:
 			this.steam = data;
+			break;
 		default:
 			break;
 		}
@@ -195,10 +199,5 @@ public class ContainerTeaStove extends Container
 	public int getSteam()
 	{
 		return this.steam;
-	}
-
-	public int getTotalSteam()
-	{
-		return this.tileEntity.getTotalSteam();
 	}
 }

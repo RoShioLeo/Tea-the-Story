@@ -1,21 +1,22 @@
 {
-    "textures": {
-        "0": "blocks/farmland_dry",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "blocks/farmland_dry",
 		"particle": "blocks/farmland_dry"
-    },
-    "elements": [
-        {
-            "name": "North",
-            "from": [ 0.0, 0.0, 0.0 ], 
-            "to": [ 16.0, 2.0, 16.0 ], 
-            "faces": {
-                "north": { "texture": "#0", "uv": [ 0.0, 14.0, 16.0, 16.0 ] },
-                "east": { "texture": "#0", "uv": [ 0.0, 14.0, 16.0, 16.0 ] },
-                "south": { "texture": "#0", "uv": [ 0.0, 14.0, 16.0, 16.0 ] },
-                "west": { "texture": "#0", "uv": [ 0.0, 14.0, 16.0, 16.0 ] },
-                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
-                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
-            }
-        }
-    ]
+	},
+	"elements": [
+		{
+			"name": "North",
+			"from": [0, 0, 0],
+			"to": [16, 1, 16],
+			"faces": {
+				"north": {"uv": [0, 15, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 15, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 15, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 15, 16, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	]
 }

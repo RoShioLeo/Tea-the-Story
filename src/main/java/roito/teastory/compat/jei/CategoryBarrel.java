@@ -19,7 +19,7 @@ public class CategoryBarrel extends BlankRecipeCategory<IRecipeWrapper>
 	public CategoryBarrel(IGuiHelper helper)
 	{
 		ResourceLocation backgroundTexture = new ResourceLocation(TeaStory.MODID, "textures/gui/container/gui_recipe.png");
-		background = helper.createDrawable(backgroundTexture, 3, 5, 169, 70, 23, 88, 0, 0);
+		background = helper.createDrawable(backgroundTexture, 7, 34, 162, 18);
 	}
 	
 	@Override
@@ -44,9 +44,9 @@ public class CategoryBarrel extends BlankRecipeCategory<IRecipeWrapper>
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper)
 	{
 		IGuiItemStackGroup items = recipeLayout.getItemStacks();
-		items.init(0, true, 4, 52);
+		items.init(0, true, 0, 0);
 		items.set(0, ((RecipeBarrel)recipeWrapper).getInputs());
-		items.init(1, false, 40, 52);
+		items.init(1, false, 36, 0);
 		items.set(1, ((RecipeBarrel)recipeWrapper).getOutputs());
 	}
 

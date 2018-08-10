@@ -50,6 +50,12 @@ public class LitCookingPan extends BlockContainer
 	{
 		return false;
 	}
+	
+	@Override
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+	{
+		return new ItemStack(BlockLoader.tea_drying_pan);
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)

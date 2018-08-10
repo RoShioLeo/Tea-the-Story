@@ -55,7 +55,7 @@ public class ItemRiceSeedling extends ItemSeeds
 
 		if (movingobjectposition == null)
 		{
-			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			return new ActionResult<>(EnumActionResult.FAIL, itemStackIn);
 		}
 		else
 		{
@@ -65,29 +65,25 @@ public class ItemRiceSeedling extends ItemSeeds
 
 				if (!worldIn.isBlockModifiable(playerIn, blockpos))
 				{
-					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+					return new ActionResult<>(EnumActionResult.FAIL, itemStackIn);
 				}
 
 				if (!playerIn.canPlayerEdit(blockpos.offset(movingobjectposition.sideHit), movingobjectposition.sideHit, itemStackIn))
 				{
-					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+					return new ActionResult<>(EnumActionResult.FAIL, itemStackIn);
 				}
 
 				BlockPos blockpos1 = blockpos.up();
-				BlockPos blockpos2 = blockpos.down();
 				IBlockState iblockstate = worldIn.getBlockState(blockpos);
-				IBlockState iblockstate2 = worldIn.getBlockState(blockpos2);
-				
-				boolean canPlant = ConfigMain.isRiceLimited ? worldIn.getBiome(blockpos1).getTemperature() >= 0.5F && worldIn.getBiome(blockpos1).getRainfall() >= 0.5F : true;
 
-				if (iblockstate.getMaterial() == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0 && worldIn.isAirBlock(blockpos1) && iblockstate2.getBlock() instanceof BlockFarmland && canPlant)
+				if (iblockstate.getBlock() == BlockLoader.paddy_field)
 				{
 					net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
 
 					if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(playerIn, blocksnapshot, net.minecraft.util.EnumFacing.UP).isCanceled())
 					{
 						blocksnapshot.restore(true, false);
-						return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+						return new ActionResult<>(EnumActionResult.FAIL, itemStackIn);
 					}
 					
 					worldIn.setBlockState(blockpos1, BlockLoader.xian_rice_plant.getDefaultState());
@@ -98,12 +94,10 @@ public class ItemRiceSeedling extends ItemSeeds
 					}
 					playerIn.addStat(AchievementLoader.transplanting);
 				}
-				else if (worldIn.isRemote && !canPlant)
-				{
-					playerIn.addChatMessage(new TextComponentTranslation("teastory.message.rice_seedling"));
-				}
+				else
+					return new ActionResult<>(EnumActionResult.FAIL, itemStackIn);
 			}
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+			return new ActionResult<>(EnumActionResult.SUCCESS, itemStackIn);
 		}
 	}
 

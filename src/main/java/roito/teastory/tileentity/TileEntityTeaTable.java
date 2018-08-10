@@ -2,6 +2,7 @@ package roito.teastory.tileentity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -139,11 +140,11 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 					if (!teaset)
 					{
 						int kettleCapacity = ((EmptyKettle)Block.getBlockFromItem(cup.getItem())).getKettleName() == "porcelain_kettle" ? 4 : 8;
-						cc =getMin(waterRemain, kettleCapacity, InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != null ? InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
+						cc =getMin(waterRemain, kettleCapacity, InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? (InventorySugar.getStackInSlot(0) != null && InventorySugar.getStackInSlot(0).getItem() == Items.SUGAR) ? InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
 					}
 					else
 					{
-						cc =getMin(waterRemain, 1, InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != null ? InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
+						cc =getMin(waterRemain, 1, InventoryLeaf.getStackInSlot(0).stackSize / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? (InventorySugar.getStackInSlot(0) != null && InventorySugar.getStackInSlot(0).getItem() == Items.SUGAR) ? InventorySugar.getStackInSlot(0).stackSize / 3 : 0 : 32767);
 					}
 					if (cc != 0)
 					{

@@ -12,6 +12,7 @@ public class ConfigMain
 
 	public static int teaSeedsDropChance;
 	public static int lemonDropChance;
+	public static boolean useTeaResidueAsBoneMeal;
 	
 	public static int greenTeaDrink_Time;
 	public static int matchaDrink_Time;
@@ -27,7 +28,8 @@ public class ConfigMain
 	public static boolean isFermentationLimited;
 	public static boolean isTeaPlantLimited;
 	public static boolean isRiceLimited;
-	public static boolean useTeaResidueAsBoneMeal;
+	public static int dryingBasicTime;
+	public static int fermentationBasicTime;
 	
 	public static boolean info;
 	public static boolean lemon;
@@ -62,6 +64,8 @@ public class ConfigMain
 		isFermentationLimited = config.getBoolean("IsFermentationLimited", "Tea Making", true, "Set it to false to disable the limitation of fermentation.", "teastory.config.teamaking.limited.fermentation");
 		isTeaPlantLimited = config.getBoolean("IsTeaPlantLimited", "Tea Making", true, "Set it to false to disable the limitation of growing tea plant.", "teastory.config.teamaking.limited.teaplant");
 		isRiceLimited = config.getBoolean("IsRiceLimited", "Tea Making", true, "Set it to false to disable the limitation of growing rice crop.", "teastory.config.teamaking.limited.rice");
+		dryingBasicTime = config.getInt("DryingBasicTime", "Tea Making", 800, 0, 12000, "The ticks of drying tea per leaf. (1 second = 20 ticks)", "teastory.config.teamaking.dryingbasictime");
+		fermentationBasicTime = config.getInt("FermentationBasicTime", "Tea Making", 1200, 0, 12000, "The ticks of fermentation per leaf. (1 second = 20 ticks)", "teastory.config.teamaking.fermentationbasictime");
 		
 		greenTeaDrink_Time = config.getInt("GreenTeaDrinksEffectTime", "Drink", 1800, 0, 12000, "The ticks of the effect of green tea. (1 second = 20 ticks)", "teastory.config.drink.greentea");
 		matchaDrink_Time = config.getInt("MatchaDrinksEffectTime", "Drink", 2400, 0, 12000, "The ticks of the effect of matcha. (1 second = 20 ticks)", "teastory.config.drink.matchadrink");
@@ -74,10 +78,5 @@ public class ConfigMain
 		puerTeaDrink_Time = config.getInt("PuerTeaDrinksEffectTime", "Drink", 1800, 0, 12000, "The ticks of the effect of pu'er tea. (1 second = 20 ticks)", "teastory.config.drink.puertea");
 		
 		lemon = config.getBoolean("HaveNauseaEatingLemon", "Others", true, "Have nausea effect when eating lemons.", "teastory.config.others.lemon");
-	}
-	
-	public static void reloadConfig()
-	{
-		
 	}
 }

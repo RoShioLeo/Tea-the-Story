@@ -35,7 +35,6 @@ public class TeaSeeds extends ItemSeeds
 		{
 			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.tea_seeds.height"));
 			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.tea_seeds.temperature"));
-			list.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.tea_seeds.humidity"));
 		}
 		else
 			list.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));

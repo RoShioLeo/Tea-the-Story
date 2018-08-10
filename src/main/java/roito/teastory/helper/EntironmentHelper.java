@@ -10,117 +10,198 @@ import roito.teastory.config.ConfigMain;
 
 public class EntironmentHelper 
 {
-	public static float getFermentationChance(World worldIn, BlockPos pos, Boolean test) 
+	public static int getDryingTemperatureLevel(float temp)
 	{
-		float f;
-		Biome biome = worldIn.getBiome(pos);
-		boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
-		float humidity = biome.getRainfall();
-		float temperature = biome.getFloatTemperature(pos);
-		if (ConfigMain.isFermentationLimited)
+		if (temp < 0.15F)
 		{
-			if (temperature <= 0.8F) 
-			{
-				f = humidity * 2.0F * temperature;
-			}
-			else 
-			{
-				f = humidity * (4F - 3 * temperature);
-			}
-			if (f < 0.0F)
-				f = 0.0F;
+			return -3;
+		}
+		else if (temp < 0.3F)
+		{
+			return -2;
+		}
+		else if (temp < 0.6F)
+		{
+			return -1;
+		}
+		else if (temp < 0.8F)
+		{
+			return 0;
+		}
+		else if (temp < 1.5F)
+		{
+			return 1;
 		}
 		else
 		{
-			f = 0.8F;
+			return 2;
 		}
-
-		if (!test) 
-		{
-			if (!worldIn.canSeeSky(pos))
-				return f;
-			else
-				return f = f * 0.8F;
-		} 
-		else 
-		{
-			return f * 3;
-		}
-	}
-
-	public static float getDryingChance(World worldIn, BlockPos pos)
-	{
-		boolean isDaytime = worldIn.getWorldTime() % 24000L < 12000L;
-		boolean isRaining = worldIn.isRaining();
-		if (isRaining) 
-		{
-			return 0.0F;
-		}
-		return getDryingChance(worldIn, pos, isDaytime);
-	}
-
-	public static float getDryingChance(World worldIn, BlockPos pos, boolean isDaytime)
-	{
-		float f;
-		if (isDaytime) 
-		{
-			f = worldIn.getLightFromNeighbors(pos) * 0.06F;
-		} 
-		else 
-		{
-			f = worldIn.getLightFor(EnumSkyBlock.BLOCK, pos) * 0.025F;
-		}
-		Biome biome = worldIn.getBiome(pos);
-		float humidity = biome.getRainfall();
-		float temperature = biome.getFloatTemperature(pos);
-		if (ConfigMain.isDryingLimited)
-		{
-			if (temperature <= 1.3F) 
-			{
-				f = f * (1 - humidity) * temperature;
-			} 
-			else {
-				f = f * 0.7F * (1 - humidity) * temperature;
-			}
-			if (f < 0.0F)
-				f = 0.0F;
-		}
-		else
-		{
-			f = f * 0.9F;
-		}
-		return f * 3;
-	}
-
-	public static String getFermentationRateLevel(float fermentationChance)
-	{
-		return (fermentationChance >= 0.50F) ? (fermentationChance >= 1.00F) ? I18n.translateToLocal("teastory.message.soil_detection_meter.fast") : I18n.translateToLocal("teastory.message.soil_detection_meter.normal") : I18n.translateToLocal("teastory.message.soil_detection_meter.slow");
-	}
-
-	public static Object getFermentationRate(float fermentationChance)
-	{
-		return (fermentationChance >= 0.50F) ? (fermentationChance >= 1.00F) ? TextFormatting.GREEN + String.valueOf((int) (fermentationChance * 100) + "%") : TextFormatting.YELLOW + String.valueOf((int) (fermentationChance * 100) + "%") : TextFormatting.RED + String.valueOf((int) (fermentationChance * 100) + "%");
-	}
-
-	public static String getDryingRateLevel(float dryingChance)
-	{
-		return ((dryingChance) >= 0.50F) ? ((dryingChance) >= 1.0F) ? I18n.translateToLocal("teastory.message.soil_detection_meter.fast") : I18n.translateToLocal("teastory.message.soil_detection_meter.normal") : I18n.translateToLocal("teastory.message.soil_detection_meter.slow");
-	}
-
-	public static Object getDryingRate(float dryingChance)
-	{
-		return ((dryingChance) >= 0.50F) ? ((dryingChance) >= 1.0F) ? TextFormatting.GREEN + String.valueOf((int) (dryingChance * 100) + "%") : TextFormatting.YELLOW + String.valueOf((int) (dryingChance * 100) + "%") : TextFormatting.RED + String.valueOf((int) (dryingChance * 100) + "%");
 	}
 	
-	/* -1: Snowy, 0: Cold , 1: Warm, 2: Hot */
-	public static int getTemperatureLevel(float temperature)
+	public static int getDryingRainfallLevel(float rainfall)
 	{
-		return (temperature >= 0.15F) ? (temperature >= 0.5F) ? (temperature > 0.95F) ? 2 : 1 : 0 : -1;
+		if (rainfall < 0.2F)
+		{
+			return 1;
+		}
+		else if (rainfall < 0.5F)
+		{
+			return 0;
+		}
+		else if (rainfall < 0.8F)
+		{
+			return -1;
+		}
+		else
+		{
+			return -2;
+		}
+	}
+	
+	public static int getDryingTicks(float temp, float rainfall)
+	{
+		if (ConfigMain.isDryingLimited)
+		{
+			return ConfigMain.dryingBasicTime - (getDryingTemperatureLevel(temp) + getDryingRainfallLevel(rainfall)) * 100;
+		}
+		else
+		{
+			return ConfigMain.dryingBasicTime;
+		}
 	}
 
-	/* -1: Arid, 0: Semi-arid , 1: Semi-humid, 2: Humid */
-	public static int getRainfallLevel(float rainfall)
+	public static int getFermentationTemperatureLevel(float temp)
 	{
-		return (rainfall >= 0.2F) ? (rainfall >= 0.5F) ? (rainfall > 0.8F) ? 2 : 1 : 0 : -1;
+		if (temp < 0.15F)
+		{
+			return -2;
+		}
+		else if (temp < 0.3F)
+		{
+			return -1;
+		}
+		else if (temp < 0.6F)
+		{
+			return 1;
+		}
+		else if (temp < 0.8F)
+		{
+			return 2;
+		}
+		else if (temp < 1.5F)
+		{
+			return 1;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+	
+	public static int getFermentationRainfallLevel(float rainfall)
+	{
+		if (rainfall < 0.2F)
+		{
+			return -2;
+		}
+		else if (rainfall < 0.5F)
+		{
+			return -1;
+		}
+		else if (rainfall < 0.8F)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	
+	public static int getFermentationTicks(float temp, float rainfall)
+	{
+		if (ConfigMain.isFermentationLimited)
+		{
+			return ConfigMain.fermentationBasicTime - (getFermentationTemperatureLevel(temp) + getFermentationRainfallLevel(rainfall)) * 160;
+		}
+		else
+		{
+			return ConfigMain.fermentationBasicTime;
+		}
+	}
+	
+	public static float getTeaPlantTemperatureLevel(float temp)
+	{
+		if (temp < 0.15F)
+		{
+			return -0.60F;
+		}
+		else if (temp < 0.3F)
+		{
+			return -0.20F;
+		}
+		else if (temp < 0.6F)
+		{
+			return 0.10F;
+		}
+		else if (temp < 0.8F)
+		{
+			return 0.10F;
+		}
+		else if (temp < 1.5F)
+		{
+			return -0.20F;
+		}
+		else
+		{
+			return -0.60F;
+		}
+	}
+	
+	public static float getTeaPlantHeightLevel(int height)
+	{
+		if (height > 110)
+		{
+			height = height - 110;
+		}
+		else if (height < 80)
+		{
+			height = 80 - height;
+		}
+		else
+		{
+			height = 0;
+		}
+		return (float) (1.0F - Math.pow(height, 2) / 300);
+	}
+	
+	public static float getRiceCropsRainfallLevel(float rainfall)
+	{
+		if (rainfall < 0.2F)
+		{
+			return -0.4F;
+		}
+		else if (rainfall < 0.5F)
+		{
+			return -0.2F;
+		}
+		else if (rainfall < 0.8F)
+		{
+			return 0.1F;
+		}
+		else
+		{
+			return 0.2F;
+		}
+	}
+	
+	public static float getTeaPlantGrowPercent(float temp, int height)
+	{
+		return ConfigMain.isTeaPlantLimited ? Math.max(getTeaPlantHeightLevel(height) + getTeaPlantTemperatureLevel(temp), 0) : 1.0F;
+	}
+	
+	public static float getRiceCropsGrowPercent(float temp, float rainfall)
+	{
+		return ConfigMain.isRiceLimited ? Math.max(1.0F + getTeaPlantTemperatureLevel(temp) + getRiceCropsRainfallLevel(rainfall), 0) : 1.0F;
 	}
 }

@@ -1,16 +1,18 @@
 {
 	"homepage": "https://minecraft.curseforge.com/projects/teastory",
 	"promos": {
-		"1.10.2-latest": "3.0.4.726",
-		"1.10.2-recommended": "3.0.4.726",
-		"1.12.2-latest": "3.0.4.726.1",
-		"1.12.2-recommended": "3.0.4.726.1"
+		"1.10.2-latest": "3.1.0.807",
+		"1.10.2-recommended": "3.1.0.807",
+		"1.12.2-latest": "3.2.1.809",
+		"1.12.2-recommended": "3.2.1.809"
 	},
 	"1.10.2": {
-		"3.0.4.726": "Fixed four bugs.\nMore config options."
+		"3.0.4.726": "Fixed four bugs.\nMore config options.",
+		"3.1.0.807": "Add GUI to tea pan and barrel.\nChange the way to make pu'er tea leaf.\nRemove pu'er tea leaf block.\nAdjust the textures about black tea leaf.\nAdjust the growing function and models of tea plants.\nAdd paddy field block and adjust the way to grow rice crops.\nRemove \"Water Hoe\".\nEat food made of rice can replenish more hunger value.\nFixed three bugs."
 	},
 	"1.12.2": {
 		"3.0.4.726": "Fixed two bugs.\nMore config options.",
-		"3.0.4.726.1": "Fixed the bug that the message is wrong when the washed rice isn't enough."
+		"3.0.4.726.1": "Fixed the bug that the message is wrong when the washed rice isn't enough.",		"3.2.0.807": "Add GUI to tea pan and barrel.\nChange the way to make pu'er tea leaf.\nRemove pu'er tea leaf block.\nAdjust the textures about black tea leaf.\nAdjust the growing function and models of tea plants.\nAdd paddy field block and adjust the way to grow rice crops.\nRemove \"Water Hoe\".\nTea table uses new algorithm.\nThe data structure of zisha kettle is adjusted, so if you upgrade this mod from the old version, the block may be missing.\nImprove the ore dictionary compatibility.\nEat food made of rice can replenish more hunger value.\nFixed three bugs.",
+		"3.2.1.808": "Support for shaders (Paddy Field and crops)"
 	}
 }

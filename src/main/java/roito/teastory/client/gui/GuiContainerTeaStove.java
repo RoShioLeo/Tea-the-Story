@@ -15,8 +15,8 @@ public class GuiContainerTeaStove extends GuiContainer
 	private static final String TEXTURE_PATH = TeaStory.MODID + ":" + "textures/gui/container/gui_tea_stove.png";
 	private static final ResourceLocation TEXTURE = new ResourceLocation(TEXTURE_PATH);
 	private ContainerTeaStove inventory;
-	private int totalDryTime;
-	private int totalSteam;
+	private int totalDryTime = 1;
+	private int totalSteam = 32;
 
 	public GuiContainerTeaStove(ContainerTeaStove inventorySlotsIn)
 	{
@@ -25,7 +25,6 @@ public class GuiContainerTeaStove extends GuiContainer
 		this.ySize = 166;
 		this.inventory = inventorySlotsIn;
 		this.totalDryTime = inventorySlotsIn.getTotalDryTime();
-		this.totalSteam = inventorySlotsIn.getTotalSteam();
 	}
 
 	@Override

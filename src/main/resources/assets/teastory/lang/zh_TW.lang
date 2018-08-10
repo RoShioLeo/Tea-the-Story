@@ -5,8 +5,7 @@ itemGroup.tabTeaDrink=茶風·紀事·品茗
 
 #Tooltip
 teastory.tooltip.tea_seeds.height=適宜海拔：80~110米
-teastory.tooltip.tea_seeds.temperature=適宜溫度：溫暖
-teastory.tooltip.tea_seeds.humidity=適宜濕度：濕潤
+teastory.tooltip.tea_seeds.temperature=適宜溫度：涼爽或溫暖
 teastory.tooltip.tea_residue=可以當骨粉催熟
 teastory.tooltip.soil_detection_meter=右擊方塊查詢
 teastory.tooltip.shennong_ruler=毒性攻擊，右擊回血
@@ -14,7 +13,7 @@ teastory.tooltip.kettle.remain=剩餘茶飲量：%1$s / %2$s
 teastory.tooltip.kettle.tips=空手右擊取回
 teastory.tooltip.cup=Shift +（空手）右擊擺放/取回
 teastory.tooltip.shiftfordetail=按下 Shift 以查看信息
-teastory.tooltip.rice_seedling.temperature=適宜溫度：溫暖或炎熱
+teastory.tooltip.rice_seedling.temperature=適宜溫度：涼爽或溫暖
 teastory.tooltip.rice_seedling.humidity=適宜濕度：半濕潤或濕潤
 teastory.tooltip.sickle=右擊成熟農作物收穫
 
@@ -146,8 +145,7 @@ item.item_straw_blanket.name=草席
 #Blocks
 tile.teapan.name=茶簸箕
 tile.barrel.name=發酵桶
-tile.half_dried_leaf_block.leaf.name=青葉塊
-tile.half_dried_leaf_block.puer.name=黑茶塊
+tile.half_dried_leaf_block.name=青葉塊
 tile.teaplant.name=茶樹
 tile.tea_drying_pan.name=炒茶（煮飯）鍋
 tile.lit_tea_drying_pan.name=炒茶鍋-點燃
@@ -193,7 +191,7 @@ teastory.potion.agility=雲身
 teastory.potion.life_drain=生命汲取
 teastory.potion.photosynthesis=光合作用
 teastory.potion.defence=金鐘罩
-teastory.potion.excitement=興奮
+teastory.potion.excitement=提神
 
 #Achievements
 achievement.teastory.teaSeeds=茶，是一段旅程
@@ -299,21 +297,17 @@ achievement.teastory.strawCushion.desc=坐在草墊上
 teastory.info.welcome=[§2§oTeaStory§f]感謝安裝§2§o茶風·紀事§f，當前模組版本：%1$s
 
 #Message
-teastory.message.teapan.tips=請放入適合的茶葉來曬制。
-teastory.message.teapan.notenough=茶葉數量不足。
-teastory.message.barrel.tips=請放入綠茶青葉來發酵。
-teastory.message.barrel.notenough=綠茶青葉數量不足。
-teastory.message.barrel.knead=請右擊來揉撚茶葉。
-teastory.message.barrel.fermentation.1=正在發酵第一階段，Shift + （空手）右擊可以中途取出茶葉。
-teastory.message.barrel.fermentation.2=正在發酵第二階段，即將完成發酵，Shift + （空手）右擊可以中途取出茶葉。
 teastory.message.soil_detection_meter.total=當前地區溫度狀況： %1$s， 幹濕度狀況： %2$s， 海拔高度：%3$s§8米§r， 氣候： %4$s。
-teastory.message.soil_detection_meter.drying=此處茶葉曬制速率： 白天： %1$s （ %2$s ）； 夜晚：%3$s （ %4$s ，夜間需要火把光照 ）。
-teastory.message.soil_detection_meter.fermentation=此處紅茶發酵速率： 非露天情況下： %1$s （ %2$s ）； 露天情況下： %3$s （ %4$s ）。
+teastory.message.soil_detection_meter.drying=此處茶葉曬制速率： %1$s秒/片。
+teastory.message.soil_detection_meter.fermentation=此處紅茶發酵速率： %1$s秒/片（非露天下）， %2$s秒/片（露天下）。
 teastory.message.soil_detection_meter.teaplant=此處茶樹生長適宜程度為%1$s， %2$s
-teastory.message.soil_detection_meter.temperature.snowy=§1雪區
+teastory.message.soil_detection_meter.ricecrop=此處水稻生長適宜程度為%1$s。
+teastory.message.soil_detection_meter.temperature.frozen=§1冰凍
 teastory.message.soil_detection_meter.temperature.cold=§9寒冷
-teastory.message.soil_detection_meter.temperature.warm=§c溫暖
-teastory.message.soil_detection_meter.temperature.hot=§4炎熱
+teastory.message.soil_detection_meter.temperature.cool=§3涼爽
+teastory.message.soil_detection_meter.temperature.warm=§6溫暖
+teastory.message.soil_detection_meter.temperature.hot=§c炎熱
+teastory.message.soil_detection_meter.temperature.heat=§4炙熱
 teastory.message.soil_detection_meter.humidity.arid=§6乾旱
 teastory.message.soil_detection_meter.humidity.semi-arid=§e半乾旱
 teastory.message.soil_detection_meter.humidity.semi-humid=§a半濕潤
@@ -321,16 +315,13 @@ teastory.message.soil_detection_meter.humidity.humid=§2濕潤
 teastory.message.soil_detection_meter.height.low=§c海拔較低！
 teastory.message.soil_detection_meter.height.medium=§a海拔適中。
 teastory.message.soil_detection_meter.height.high=§c海拔較高！
-teastory.message.soil_detection_meter.fast=§a快速
-teastory.message.soil_detection_meter.normal=§e一般
-teastory.message.soil_detection_meter.slow=§c緩慢
 teastory.message.tea_drying_pan.tips=炒茶請先用打火石點火，煮飯請先放入淘好的米。
 teastory.message.tea_drying_pan.leaf=請放入綠茶鮮葉或綠茶青葉。
 teastory.message.tea_drying_pan.notenough=茶葉數量不足。
 teastory.message.tea_drying_pan.time.1=距離下一階段還有%1$s秒。
 teastory.message.tea_drying_pan.speedup=第一次炒制已完成，已加速%1$s秒。
 teastory.message.tea_drying_pan.time.2=距離最後階段還有%1$s秒。
-teastory.message.tea_drying_pan.dried=炒茶已完成，右擊取出綠茶幹葉。
+teastory.message.tea_drying_pan.dried=炒茶已完成，右擊取出幹葉。
 teastory.message.tea_drying_pan.failure=茶葉炒焦了，再來一次吧！
 teastory.message.cooking_pan.notenough=大米數量不足。
 teastory.message.cooking_pan.water=請倒入一桶水。
@@ -338,11 +329,15 @@ teastory.message.cooking_pan.lid=請蓋上木鍋蓋。
 teastory.message.cooking_pan.ignite=請用打火石點火。
 teastory.message.cooking_pan.rice=距離米飯出鍋還有%1$s秒。
 teastory.message.bed.excited=你現在太興奮了，以致於無法入睡。
-teastory.message.rice_seedling=水稻需要更溫暖或更濕潤的環境才能生長。
 
-#Container Title
+#Container GUI
 teastory.container.tea_stove=茶爐
 teastory.container.tea_table=沏茶台
+teastory.container.teapan=茶簸箕
+teastory.container.barrel=發酵桶
+teastory.container.time=剩餘時間：%1$s分鐘%2$s秒
+teastory.container.rain=下雨天暫停
+teastory.container.light=光照不足
 
 #JEI
 jei.teastory.category.teastove=殺青
@@ -353,12 +348,9 @@ jei.teastory.category.dryingpan=炒青
 jei.teastory.category.teapan=曬青
 
 #Waila
-waila.teastory.hud.fermentation.step=發酵狀態：
-waila.teastory.hud.fermentation.empty=空
-waila.teastory.hud.teapan.step=目前階段：
-waila.teastory.hud.teapan.empty=空
-waila.teastory.hud.teapan.next=下一階段：
-waila.teastory.hud.teapan.progress=進度：
+waila.teastory.hud.step=目前狀態：
+waila.teastory.hud.next=下一階段：
+waila.teastory.hud.empty=空
 
 #Config
 teastory.config.general.enableinfo=啟用模組信息

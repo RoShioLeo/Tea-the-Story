@@ -30,8 +30,7 @@ public class AchievementLoader
 	public static Achievement teaStove = new Achievement("achievement.teastory.teaStove", "teastory.teaStove", 1, 6, BlockLoader.tea_stove, halfDriedTea);
 	public static Achievement whiteDrink = new Achievement("achievement.teastory.whiteDrink", "teastory.whiteDrink", 4, 8, ItemLoader.white_tea, teaStove);
 	public static Achievement matchaDrink = new Achievement("achievement.teastory.matchaDrink", "teastory.matchaDrink", 6, 6, ItemLoader.matcha_drink, teaStove);
-	public static Achievement halfDriedLeafBlock = new Achievement("achievement.teastory.halfDriedLeafBlock", "teastory.halfDriedLeafBlock", -7, 9, BlockLoader.half_dried_leaf_block, halfDriedTea);
-	public static Achievement puerTea = new Achievement("achievement.teastory.puerTea", "teastory.puerTea", -7, 12, ItemLoader.puer_tea_leaf, halfDriedLeafBlock);
+	public static Achievement puerTea = new Achievement("achievement.teastory.puerTea", "teastory.puerTea", -7, 10, ItemLoader.puer_tea_leaf, halfDriedTea);
 	public static Achievement puerDrink = new Achievement("achievement.teastory.puerDrink", "teastory.puerDrink", -5, 12, ItemLoader.puer_tea, puerTea);
 	public static Achievement oolongTea = new Achievement("achievement.teastory.oolongTea", "teastory.oolongTea", -2, 8, ItemLoader.oolong_tea_leaf, halfDriedTea);
 	public static Achievement oolongDrink = new Achievement("achievement.teastory.oolongDrink", "teastory.oolongDrink", 0, 7, ItemLoader.oolong_tea, oolongTea);
@@ -62,7 +61,7 @@ public class AchievementLoader
 	public static Achievement strawCushion = new Achievement("achievement.teastory.strawCushion", "teastory.strawCushion", 10, -6, BlockLoader.straw_cushion, harvest);
 	
 	public static AchievementPage pageTeaStory = new AchievementPage(TeaStory.NAME, teaSeeds, soilDetectionMeter, teaPlant, teaPick, teaTable, excitement, teaResidue, teaDryingPan, burntLeaf, teaBasket, 
-			driedTea, greenDrink, teaEgg, yellowTea, yellowDrink, wetTea, halfDriedTea, teaStove, whiteDrink, matchaDrink, halfDriedLeafBlock, puerTea, puerDrink, oolongTea, oolongDrink, barrel, blackTea, blackDrink, 
+			driedTea, greenDrink, teaEgg, yellowTea, yellowDrink, wetTea, halfDriedTea, teaStove, whiteDrink, matchaDrink, puerTea, puerDrink, oolongTea, oolongDrink, barrel, blackTea, blackDrink, 
 			lemonDrink, outfire, milkDrink, cure, emptyBag, teaBag, woodenCup, stoneCup, glassCup, porcelainCup, zishaCup, hotWater, kettle, getDrink, riceSeeds, transplanting, harvest, cook, sickle, strawBlanket, strawCushion);
 	
 	public AchievementLoader()
@@ -87,7 +86,6 @@ public class AchievementLoader
 		teaStove.registerStat();
 		whiteDrink.registerStat();
 		matchaDrink.registerStat();
-		halfDriedLeafBlock.registerStat();
 		puerTea.registerStat();
 		puerDrink.registerStat();
 		oolongTea.registerStat();

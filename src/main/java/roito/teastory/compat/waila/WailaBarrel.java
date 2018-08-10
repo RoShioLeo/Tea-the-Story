@@ -39,20 +39,28 @@ public class WailaBarrel implements IWailaDataProvider
 	{
 		if (accessor.getMetadata() == 0)
 		{
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.fermentation.step") + I18n.translateToLocal("waila.teastory.hud.fermentation.empty"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") + I18n.translateToLocal("waila.teastory.hud.empty"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + "-");
 			return currenttip;
 		}
-		else if (accessor.getMetadata() == 1)
+		else if (accessor.getMetadata() == 1 || accessor.getMetadata() == 2)
 		{
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.fermentation.step") + I18n.translateToLocal("item.half_dried_tea.name"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") + I18n.translateToLocal("item.half_dried_tea.name"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + I18n.translateToLocal("item.black_tea_leaf.name"));
 			return currenttip;
 		}
-		else if (accessor.getMetadata() == 8)
+		else if (accessor.getMetadata() == 3)
 		{
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.fermentation.step") + I18n.translateToLocal("item.black_tea_leaf.name"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") + I18n.translateToLocal("item.black_tea_leaf.name"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + I18n.translateToLocal("item.puer_tea_leaf.name"));
 			return currenttip;
 		}
-		currenttip.add(I18n.translateToLocal("waila.teastory.hud.fermentation.step") + ((int)((accessor.getMetadata() - 2) * 16.6F) / 10) + "%");
+		else if (accessor.getMetadata() == 4)
+		{
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") + I18n.translateToLocal("item.puer_tea_leaf.name"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + "-");
+			return currenttip;
+		}
 		return currenttip;
 	}
 

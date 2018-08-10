@@ -54,12 +54,12 @@ public class ItemLoader
 	public static Item wooden_lid = new TSItem("wooden_lid", 64, CreativeTabsLoader.tabRice);
 	public static Item straw_rope = new TSItem("straw_rope", 64, CreativeTabsLoader.tabRice);
 	
-	public static Item rice_ball = new ItemFood(6, 0.6F, false).setUnlocalizedName("rice_ball").setCreativeTab(CreativeTabsLoader.tabRice);
-	public static Item porkchop_rice = new TSItemFoodWithBowl("porkchop_rice", 17, 0.5F);
-	public static Item steak_rice = new TSItemFoodWithBowl("steak_rice", 17, 0.5F);
-	public static Item chicken_rice = new TSItemFoodWithBowl("chicken_rice", 15, 0.5F);
-	public static Item potato_rice = new TSItemFoodWithBowl("potato_rice", 13, 0.5F);
-	public static Item rabbit_rice = new TSItemFoodWithBowl("rabbit_rice", 13, 0.5F);
+	public static Item rice_ball = new ItemFood(8, 0.6F, false).setUnlocalizedName("rice_ball").setCreativeTab(CreativeTabsLoader.tabRice);
+	public static Item porkchop_rice = new TSItemFoodWithBowl("porkchop_rice", 19, 0.5F);
+	public static Item steak_rice = new TSItemFoodWithBowl("steak_rice", 19, 0.5F);
+	public static Item chicken_rice = new TSItemFoodWithBowl("chicken_rice", 17, 0.5F);
+	public static Item potato_rice = new TSItemFoodWithBowl("potato_rice", 15, 0.5F);
+	public static Item rabbit_rice = new TSItemFoodWithBowl("rabbit_rice", 15, 0.5F);
 
 	//茶具
 	public static Item pot_stone = new ItemEmptyPot("pot_stone");
@@ -105,7 +105,6 @@ public class ItemLoader
 	public static Item sickle = new  ItemSickle();
 	public static Item lemon = new ItemLemon();
 	public static ItemSword shennongruler = new ShennongRuler();
-	public static Item watering_hoe = new WaterPloughingHoe();
 	public static ItemRecord caichawuqu_g20 = new Record("caichawuqu_g20", "record_caichawuqu_g20", "records.caichawuqu_g20");
 	public static ItemRecord caichawuqu_folk = new Record("caichawuqu_folk", "record_caichawuqu_folk", "records.caichawuqu_folk");
 
@@ -151,7 +150,6 @@ public class ItemLoader
 		register(xian_rice_seeds);
 		register(xian_rice_seedlings);
 		register(straw);
-		register(watering_hoe);
 		register(xian_rice);
 		register(washed_rice);
 		register(wooden_lid);
@@ -290,7 +288,6 @@ public class ItemLoader
 		registerRender(xian_rice_seeds);
 		registerRender(xian_rice_seedlings);
 		registerRender(straw);
-		registerRender(watering_hoe);
 		registerRender(xian_rice);
 		registerRender(washed_rice);
 		registerRender(wooden_lid);

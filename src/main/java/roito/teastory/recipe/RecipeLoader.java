@@ -45,12 +45,12 @@ public class RecipeLoader
 	
 	private static void addTeapanRecipe()
 	{
-		managerTeapan.add(new TeaMakingRecipe(new ItemStack(ItemLoader.wet_tea, 8), new ItemStack(ItemLoader.tea_leaf, 8), new ItemStack(ItemLoader.half_dried_tea, 8), new ItemStack(ItemLoader.dried_tea, 8), new ItemStack(ItemLoader.yellow_tea_leaf, 8)));
+		managerTeapan.add(new TeaMakingRecipe(new ItemStack(ItemLoader.wet_tea), new ItemStack(ItemLoader.tea_leaf), new ItemStack(ItemLoader.half_dried_tea), new ItemStack(ItemLoader.dried_tea), new ItemStack(ItemLoader.yellow_tea_leaf)));
 	}
 	
 	private static void addBarrelRecipe()
 	{
-		managerBarrel.add(new TeaMakingRecipe(new ItemStack(ItemLoader.half_dried_tea, 8), new ItemStack(ItemLoader.black_tea_leaf, 8), null, null, null));
+		managerBarrel.add(new TeaMakingRecipe(new ItemStack(ItemLoader.half_dried_tea), new ItemStack(ItemLoader.black_tea_leaf), null, null, null));
 	}
 	
 	private static void addCookingPanRecipe()

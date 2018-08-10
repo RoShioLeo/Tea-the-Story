@@ -8,6 +8,7 @@ import com.google.common.collect.Multimap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.IGrowable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -91,9 +92,9 @@ public class ItemSickle extends Item
     	if (worldIn.getChunkFromBlockCoords(pos).isLoaded())
     	{
     		Block block = worldIn.getBlockState(pos).getBlock();
-    		if (block instanceof BlockCrops)
+    		if (block instanceof IGrowable)
     		{
-    			if(((BlockCrops) block).isMaxAge(worldIn.getBlockState(pos)))
+    			if(!((IGrowable) block).canGrow(worldIn, pos, worldIn.getBlockState(pos), worldIn.isRemote))
     			{
     				worldIn.destroyBlock(pos, true);
     				if (stack.getItemDamage() < stack.getMaxDamage())

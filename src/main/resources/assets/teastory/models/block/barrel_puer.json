@@ -36,7 +36,7 @@
         "0": "teastory:blocks/barrel_outside",
         "1": "teastory:blocks/barrel_inside",
         "2": "teastory:blocks/barrel_top",
-        "3": "teastory:blocks/tealeaf2",
+        "3": "teastory:blocks/barrel_puer",
 		"particle": "blocks/planks_oak"
     },
     "elements": [
