@@ -1,8 +1,8 @@
-# Tea-TheStory
+# TeaStory
 
 “茶风·纪事”是Minecraft的一个中国风模组。
 
-"Tea: The Story" is a Chinese mod about tea and rice (bamboo will be added soon).
+"TeaStory" is a Chinese mod about tea and rice (bamboo will be added next year).
 
 ### WebSites:
 
