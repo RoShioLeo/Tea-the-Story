@@ -4,7 +4,7 @@ import net.minecraft.item.ItemRecord;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class Record extends ItemRecord
 {
@@ -13,6 +13,6 @@ public class Record extends ItemRecord
 		super(name,  new SoundEvent(new ResourceLocation(TeaStory.MODID, name3)));
 		this.setUnlocalizedName(name2);
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name2));
-		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
+		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
 	}
 }

@@ -15,7 +15,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import roito.teastory.block.TeaStove;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
+import roito.teastory.recipe.ITeaStoveRecipe;
+import roito.teastory.recipe.RecipeRegister;
+import roito.teastory.recipe.TeaStoveRecipe;
 
 public class TileEntityTeaStove extends TileEntity implements ITickable
 {
@@ -80,23 +83,53 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 	public void update()
 	{
 		//TODO 改用Recipe
-		ItemStack teaLeaf = leafInventory.extractItem(0, 1, true);
+		ItemStack teaLeaf = leafInventory.extractItem(0, 1, true).copy();
 		if (!this.getWorld().isRemote)
 		{
-			if (teaLeaf != ItemStack.EMPTY && ((teaLeaf.getItem() == ItemLoader.tea_leaf && outputInventory.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), true) == ItemStack.EMPTY) || (teaLeaf.getItem() == ItemLoader.half_dried_tea && outputInventory.insertItem(0, new ItemStack(ItemLoader.white_tea_leaf), true) == ItemStack.EMPTY)))
+			if (!teaLeaf.isEmpty())
 			{
-				if (teaLeaf.getItem() == ItemLoader.tea_leaf)
+				ITeaStoveRecipe recipeIn = new TeaStoveRecipe(teaLeaf, ItemStack.EMPTY, true);
+				ITeaStoveRecipe recipeUse = new TeaStoveRecipe(ItemStack.EMPTY, ItemStack.EMPTY, false);
+				
+				for(ITeaStoveRecipe recipe : RecipeRegister.managerTeaStove.getRecipes())
 				{
-					if (this.hasWaterOrSteam())
+					if (recipe.equals(recipeIn))
 					{
-						if (this.hasFuelOrIsBurning())
+						recipeUse = recipe;
+						break;
+					}
+				}
+				if (recipeUse.getOutput() == ItemStack.EMPTY)
+				{
+					recipeIn = new TeaStoveRecipe(teaLeaf, ItemStack.EMPTY, false);
+					for(ITeaStoveRecipe recipe : RecipeRegister.managerTeaStove.getRecipes())
+					{
+						if (recipe.equals(recipeIn))
 						{
-							if (!(this.getSteam() > 0))
+							recipeUse = recipe;
+							break;
+						}
+					}
+				}
+				if (recipeUse.getOutput() != ItemStack.EMPTY && outputInventory.insertItem(0, recipeUse.getOutput().copy(), true).isEmpty())
+				{
+					if (recipeUse.NeedWater())
+					{
+						if (this.hasWaterOrSteam())
+						{
+							if (this.hasFuelOrIsBurning())
 							{
-								this.getWorld().setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater() - 1));
-								this.steam = this.getTotalSteam();
+								if (!(this.getSteam() > 0))
+								{
+									this.getWorld().setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater() - 1));
+									this.steam = this.getTotalSteam();
+								}
+								this.dryTime++;
 							}
-							this.dryTime++;
+							else
+							{
+								this.dryTime = 0;
+							}
 						}
 						else
 						{
@@ -105,48 +138,45 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 					}
 					else
 					{
-						this.dryTime = 0;
+						if (this.hasFuelOrIsBurning())
+						{
+							this.dryTime++;
+						}
+						else
+						{
+							this.dryTime = 0;
+						}
 					}
 				}
 				else
 				{
-					if (this.hasFuelOrIsBurning())
-					{
-						this.dryTime++;
-					}
-					else
-					{
-						this.dryTime = 0;
-					}
+					this.dryTime = 0;
 				}
+				if (this.fuelTime == 0)
+				{
+					TeaStove.setState(false, this.getWorld(), this.pos);
+				}
+				if (this.fuelTime > 0)
+				{
+					this.fuelTime--;
+				}
+				if (this.dryTime == this.getTotalDryTime())
+				{
+					leafInventory.extractItem(0, 1, false);
+					outputInventory.insertItem(0, recipeUse.getOutput().copy(), false);
+					if (recipeUse.NeedWater())
+					{
+						this.steam--;
+					}
+					this.dryTime = 0;
+				}
+				this.markDirty();
 			}
 			else
 			{
 				this.dryTime = 0;
+				this.markDirty();
 			}
-			if (this.fuelTime == 0)
-			{
-				TeaStove.setState(false, this.getWorld(), this.pos);
-			}
-			if (this.fuelTime > 0)
-			{
-				this.fuelTime--;
-			}
-			if (this.dryTime == this.getTotalDryTime())
-			{
-				leafInventory.extractItem(0, 1, false);
-				if (teaLeaf.getItem() == ItemLoader.tea_leaf)
-				{
-					outputInventory.insertItem(0, new ItemStack(ItemLoader.matcha_leaf), false);
-					this.steam--;
-				}
-				else if (teaLeaf.getItem() == ItemLoader.half_dried_tea)
-				{
-					outputInventory.insertItem(0, new ItemStack(ItemLoader.white_tea_leaf), false);
-				}
-				this.dryTime = 0;
-			}
-			this.markDirty();
 		}
 	}
 

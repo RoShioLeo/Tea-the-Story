@@ -19,14 +19,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 import roito.teastory.config.ConfigMain;
 
 public class TeaResidue extends TSItem
 {
 	public TeaResidue()
 	{
-		super("tea_residue", 64, CreativeTabsLoader.tabDrink);
+		super("tea_residue", 64, CreativeTabsRegister.tabDrink);
 		this.setHasSubtypes(true);
 	}
 
@@ -78,7 +78,7 @@ public class TeaResidue extends TSItem
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (!worldIn.isRemote && ConfigMain.useTeaResidueAsBoneMeal && ItemDye.applyBonemeal(playerIn.getHeldItem(hand), worldIn, pos))
+		if (!worldIn.isRemote && ConfigMain.general.useTeaResidueAsBoneMeal && ItemDye.applyBonemeal(playerIn.getHeldItem(hand), worldIn, pos))
 		{
 			worldIn.playEvent(2005, pos, 0);
 			return EnumActionResult.SUCCESS;

@@ -6,9 +6,9 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import roito.teastory.block.BlockLoader;
+import roito.teastory.block.BlockRegister;
 import roito.teastory.config.ConfigMain;
-import roito.teastory.potion.PotionLoader;
+import roito.teastory.potion.PotionRegister;
 
 public class MatchaDrink extends ItemTeaDrink
 {
@@ -29,8 +29,8 @@ public class MatchaDrink extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, ConfigMain.matchaDrink_Time / (tier + 1), tier));
-		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.matchaDrink_Time / (tier + 1), 0));
+		entityplayer.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, ConfigMain.drink.matchaDrink_Time / (tier + 1), tier));
+		entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.matchaDrink_Time / (tier + 1), 0));
 	}
 
 	@Override
@@ -39,15 +39,15 @@ public class MatchaDrink extends ItemTeaDrink
 		switch(meta)
 		{
 		case 2:
-			return BlockLoader.matchadrink_stone_cup;
+			return BlockRegister.matchadrink_stone_cup;
 		case 3:
-			return BlockLoader.matchadrink_glass_cup;
+			return BlockRegister.matchadrink_glass_cup;
 		case 4:
-			return BlockLoader.matchadrink_porcelain_cup;
+			return BlockRegister.matchadrink_porcelain_cup;
 		case 5:
-			return BlockLoader.matchadrink_zisha_cup;
+			return BlockRegister.matchadrink_zisha_cup;
 		default:
-			return BlockLoader.matchadrink_wood_cup;
+			return BlockRegister.matchadrink_wood_cup;
 		}
 	}
 }

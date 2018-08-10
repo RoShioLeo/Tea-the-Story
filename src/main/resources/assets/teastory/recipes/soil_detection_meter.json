@@ -5,9 +5,9 @@
 		"count": 1
 	},
 	"pattern": [
-		"#+#",
-		"#-#",
-		"*#*"
+		"+-+",
+		"#d#",
+		"*s*"
 	],
 	"key": {
 		"#": {
@@ -20,7 +20,14 @@
 			"item": "#dust_redstone"
 		},
 		"-": {
-			"item": "teastory:half_dried_leaf_block"
+			"item": "teastory:broken_tea"
+		},
+		"d": {
+			"item": "teastory:xian_rice_seeds"
+		},
+		"s": {
+			"item": "minecraft:dirt",
+			"data": 1
 		}
 	}
 }

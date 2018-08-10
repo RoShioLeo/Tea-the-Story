@@ -10,7 +10,7 @@ public interface ITeaTableRecipe
 	
 	List<ItemStack> getToolInput();
 	
-	ItemStack getSugarInput();
+	List<ItemStack> getSugarInput();
 	
 	ItemStack getCupInput();
 

@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 import roito.teastory.entity.EntityStrawCushion;
 
 public class StrawCushion extends Block
@@ -27,7 +27,7 @@ public class StrawCushion extends Block
 		super(Material.GRASS);
 		this.setSoundType(SoundType.PLANT);
 		this.setHardness(0.2F);
-		this.setCreativeTab(CreativeTabsLoader.tabRice);
+		this.setCreativeTab(CreativeTabsRegister.tabRice);
 		this.setUnlocalizedName("straw_cushion");
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "straw_cushion"));
 	}

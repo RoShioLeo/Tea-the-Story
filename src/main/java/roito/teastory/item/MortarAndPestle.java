@@ -1,13 +1,13 @@
 package roito.teastory.item;
 
 import net.minecraft.item.ItemStack;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class MortarAndPestle extends TSItem
 {
 	public MortarAndPestle(String name, int maxDamage)
 	{
-		super(name, 1, CreativeTabsLoader.tabTeaStory);
+		super(name, 1, CreativeTabsRegister.tabTeaStory);
 		this.setContainerItem(this);
 		this.setMaxDamage(maxDamage);
 		this.setNoRepair();

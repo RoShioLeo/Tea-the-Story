@@ -10,6 +10,7 @@ import com.google.common.collect.Multimap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.IGrowable;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -29,7 +30,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class ItemSickle extends Item
 {
@@ -40,7 +41,7 @@ public class ItemSickle extends Item
 	{
         this.maxStackSize = 1;
         this.setMaxDamage(500);
-        this.setCreativeTab(CreativeTabsLoader.tabRice);
+        this.setCreativeTab(CreativeTabsRegister.tabRice);
         this.speed = theToolMaterial.getAttackDamage() + 0.5F;
         this.setUnlocalizedName("sickle");
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "sickle"));
@@ -96,20 +97,20 @@ public class ItemSickle extends Item
     	if (worldIn.getChunkFromBlockCoords(pos).isLoaded())
     	{
     		Block block = worldIn.getBlockState(pos).getBlock();
-    		if (block instanceof BlockCrops)
+    		if (block instanceof IGrowable)
     		{
-    			if(((BlockCrops) block).isMaxAge(worldIn.getBlockState(pos)))
+    			if(!((IGrowable) block).canGrow(worldIn, pos, worldIn.getBlockState(pos), worldIn.isRemote))
     			{
     				worldIn.destroyBlock(pos, true);
     				if (stack.getItemDamage() < stack.getMaxDamage())
     				{
-    					if(time < 8)
+    					if (time < 8)
     					{
     						stack.setItemDamage(stack.getItemDamage() + 1);
     						harvestCrops(stack, playerIn, worldIn, pos.east(), time + 1);
-    						harvestCrops(stack, playerIn, worldIn, pos.north(), time + 1);
-    						harvestCrops(stack, playerIn, worldIn, pos.west(), time + 1);
-    						harvestCrops(stack, playerIn, worldIn, pos.south(), time + 1);
+        					harvestCrops(stack, playerIn, worldIn, pos.north(), time + 1);
+        					harvestCrops(stack, playerIn, worldIn, pos.west(), time + 1);
+        					harvestCrops(stack, playerIn, worldIn, pos.south(), time + 1);
     					}
     				}
     				else stack.shrink(1);

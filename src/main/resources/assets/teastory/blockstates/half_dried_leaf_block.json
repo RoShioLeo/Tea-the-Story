@@ -1,13 +1,5 @@
 {
     "variants": {
-	    "step=0": { "model":"teastory:half_dried_leaf_block" },
-        "step=1": { "model":"teastory:half_dried_leaf_block2" },
-		"step=2": { "model":"teastory:half_dried_leaf_block3" },
-		"step=3": { "model":"teastory:half_dried_leaf_block3" },
-		"step=4": { "model":"teastory:half_dried_leaf_block4" },
-		"step=5": { "model":"teastory:half_dried_leaf_block4" },
-		"step=6": { "model":"teastory:half_dried_leaf_block5" },
-		"step=7": { "model":"teastory:half_dried_leaf_block5" },
-		"step=8": { "model":"teastory:half_dried_leaf_block6" }
+	    "normal": { "model": "teastory:half_dried_leaf_block" }
     }
 }

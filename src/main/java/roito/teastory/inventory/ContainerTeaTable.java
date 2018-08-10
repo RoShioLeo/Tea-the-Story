@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.item.ItemBlockEmptyKettle;
 import roito.teastory.item.ItemCup;
 import roito.teastory.item.ItemTeaLeaf;
@@ -45,7 +46,7 @@ public class ContainerTeaTable extends Container
 			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
-				return stack.getItem() == Items.SUGAR;
+				return OreDictionary.containsMatch(false, OreDictionary.getOres("listAllsugar"), stack);
 			}
 		});
 		this.addSlotToContainer(new SlotItemHandler(this.waterItem, 0, 44, 42)

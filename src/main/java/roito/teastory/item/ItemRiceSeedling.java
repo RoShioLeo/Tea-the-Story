@@ -27,18 +27,18 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import roito.teastory.TeaStory;
-import roito.teastory.block.BlockLoader;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.block.BlockRegister;
+import roito.teastory.common.CreativeTabsRegister;
 import roito.teastory.config.ConfigMain;
 
 public class ItemRiceSeedling extends ItemSeeds
 {
 	public ItemRiceSeedling()
 	{
-		super(BlockLoader.xian_rice_plant, Blocks.WATER);
+		super(BlockRegister.xian_rice_plant, Blocks.WATER);
 		this.setUnlocalizedName("item_xian_rice_seedling");
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "item_xian_rice_seedling"));
-		this.setCreativeTab(CreativeTabsLoader.tabRice);
+		this.setCreativeTab(CreativeTabsRegister.tabRice);
 	}
 	
 	@Override
@@ -79,13 +79,9 @@ public class ItemRiceSeedling extends ItemSeeds
 				}
 
 				BlockPos blockpos1 = blockpos.up();
-				BlockPos blockpos2 = blockpos.down();
 				IBlockState iblockstate = worldIn.getBlockState(blockpos);
-				IBlockState iblockstate2 = worldIn.getBlockState(blockpos2);
 				
-				boolean canPlant = ConfigMain.isRiceLimited ? worldIn.getBiome(blockpos1).getTemperature(blockpos1) >= 0.5F && worldIn.getBiome(blockpos1).getRainfall() >= 0.5F : true;
-
-				if (iblockstate.getMaterial() == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0 && worldIn.isAirBlock(blockpos1) && iblockstate2.getBlock() instanceof BlockFarmland && canPlant)
+				if (iblockstate.getBlock() == BlockRegister.paddy_field)
 				{
 					net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
 
@@ -95,16 +91,12 @@ public class ItemRiceSeedling extends ItemSeeds
 						return new ActionResult<ItemStack>(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
 					}
 					
-					worldIn.setBlockState(blockpos1, BlockLoader.xian_rice_plant.getDefaultState());
+					worldIn.setBlockState(blockpos1, BlockRegister.xian_rice_plant.getDefaultState());
 
 					if (!playerIn.capabilities.isCreativeMode)
 					{
 						playerIn.getHeldItem(handIn).shrink(1);
 					}
-				}
-				else if (worldIn.isRemote && !canPlant)
-				{
-					playerIn.sendMessage(new TextComponentTranslation("teastory.message.rice_seedling"));
 				}
 			}
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));

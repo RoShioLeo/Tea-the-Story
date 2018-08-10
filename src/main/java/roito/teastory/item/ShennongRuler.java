@@ -26,15 +26,15 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class ShennongRuler extends ItemSword
 {
-	public static final Item.ToolMaterial SHENNONGTOOL = EnumHelper.addToolMaterial("SHENNONGTOOL", 3, 768, 8.0F, 1.0F, 10).setRepairItem(new ItemStack(ItemLoader.dried_tea, 1));
+	public static final Item.ToolMaterial SHENNONGTOOL = EnumHelper.addToolMaterial("SHENNONGTOOL", 3, 768, 8.0F, 1.0F, 10).setRepairItem(new ItemStack(ItemRegister.dried_tea, 1));
 	public ShennongRuler()
 	{
 		super(SHENNONGTOOL);
-		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
+		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("shennong_ruler");
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "shennong_ruler"));

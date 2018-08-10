@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.TeaStory;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
 import roito.teastory.tileentity.TileEntityTeaDryingPan;
 
 public class LitTeaDryingPan extends BlockContainer
@@ -77,23 +77,23 @@ public class LitTeaDryingPan extends BlockContainer
 	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
 	{
 		ArrayList drops = new ArrayList();
-		drops.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
+		drops.add(new ItemStack(BlockRegister.tea_drying_pan, 1));
 		int meta = getMetaFromState(world.getBlockState(pos));
 		if((meta >= 1) && (meta <= 4))
 		{
-			drops.add(new ItemStack(ItemLoader.tea_leaf, 8));
+			drops.add(new ItemStack(ItemRegister.tea_leaf, 8));
 		}
 		else if(meta == 5)
 		{
-			drops.add(new ItemStack(ItemLoader.dried_tea, 8));
+			drops.add(new ItemStack(ItemRegister.dried_tea, 8));
 		}
 		else if((meta >= 9) && (meta <= 12))
 		{
-			drops.add(new ItemStack(ItemLoader.half_dried_tea, 8));
+			drops.add(new ItemStack(ItemRegister.half_dried_tea, 8));
 		}
 		else if(meta == 13)
 		{
-			drops.add(new ItemStack(ItemLoader.oolong_tea_leaf, 8));
+			drops.add(new ItemStack(ItemRegister.oolong_tea_leaf, 8));
 		}
 		return drops;
 	}
@@ -139,7 +139,7 @@ public class LitTeaDryingPan extends BlockContainer
 			{
 				if(playerIn.getHeldItem(hand).getCount() >= 8)
 				{
-					if (playerIn.getHeldItem(hand).getItem() == ItemLoader.tea_leaf)
+					if (playerIn.getHeldItem(hand).getItem() == ItemRegister.tea_leaf)
 					{
 						worldIn.setBlockState(pos, this.getStateFromMeta(1));
 						if (!playerIn.capabilities.isCreativeMode)
@@ -148,7 +148,7 @@ public class LitTeaDryingPan extends BlockContainer
 						}
 						return true;
 					}
-					else if (playerIn.getHeldItem(hand).getItem() == ItemLoader.half_dried_tea)
+					else if (playerIn.getHeldItem(hand).getItem() == ItemRegister.half_dried_tea)
 					{
 						worldIn.setBlockState(pos, this.getStateFromMeta(9));
 						if (!playerIn.capabilities.isCreativeMode)
@@ -161,7 +161,7 @@ public class LitTeaDryingPan extends BlockContainer
 			}
 			if (worldIn.isRemote)
 			{
-				if (!playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getCount() < 8 && (playerIn.getHeldItem(hand).getItem() == ItemLoader.tea_leaf || playerIn.getHeldItem(hand).getItem() == ItemLoader.half_dried_tea))
+				if (!playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getCount() < 8 && (playerIn.getHeldItem(hand).getItem() == ItemRegister.tea_leaf || playerIn.getHeldItem(hand).getItem() == ItemRegister.half_dried_tea))
 				{
 					playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.notenough"));
 					return true;
@@ -210,14 +210,14 @@ public class LitTeaDryingPan extends BlockContainer
 			{
 				if (!state.getValue(TYPE).booleanValue())
 				{
-					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.dried_tea, 8));
+					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegister.dried_tea, 8));
 				}
 				else
 				{
-					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.oolong_tea_leaf, 8));
+					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegister.oolong_tea_leaf, 8));
 				}
 			}
-			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getDefaultState());
+			worldIn.setBlockState(pos, BlockRegister.tea_drying_pan.getDefaultState());
 			worldIn.removeTileEntity(pos);
 			return true;
 		}
@@ -227,7 +227,7 @@ public class LitTeaDryingPan extends BlockContainer
 			{
 				playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.failure"));
 			}
-			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getDefaultState());
+			worldIn.setBlockState(pos, BlockRegister.tea_drying_pan.getDefaultState());
 			worldIn.removeTileEntity(pos);
 			return true;
 		}
@@ -236,13 +236,13 @@ public class LitTeaDryingPan extends BlockContainer
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
-		items.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
+		items.add(new ItemStack(BlockRegister.tea_drying_pan, 1));
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(BlockLoader.tea_drying_pan);
+		return new ItemStack(BlockRegister.tea_drying_pan);
 	}
 
 	@Override
@@ -275,7 +275,7 @@ public class LitTeaDryingPan extends BlockContainer
 	{
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 		TileEntity tileentity = worldIn.getTileEntity(pos);
-		worldIn.setBlockState(pos, BlockLoader.lit_tea_drying_pan.getStateFromMeta(meta));
+		worldIn.setBlockState(pos, BlockRegister.lit_tea_drying_pan.getStateFromMeta(meta));
 		if (tileentity != null)
 		{
 			tileentity.validate();

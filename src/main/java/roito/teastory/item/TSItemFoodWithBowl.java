@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class TSItemFoodWithBowl extends ItemFood
 {
@@ -17,7 +17,7 @@ public class TSItemFoodWithBowl extends ItemFood
 	{
 		super(amount, saturation, false);
 		this.setMaxStackSize(1);
-		this.setCreativeTab(CreativeTabsLoader.tabRice);
+		this.setCreativeTab(CreativeTabsRegister.tabRice);
 		this.setUnlocalizedName(name);
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
 	}

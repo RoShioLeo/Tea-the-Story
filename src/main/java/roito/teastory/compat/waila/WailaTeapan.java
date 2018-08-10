@@ -39,47 +39,38 @@ public class WailaTeapan implements IWailaDataProvider
 	{
 		if (accessor.getMetadata() == 0)
 		{
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.step") + I18n.translateToLocal("waila.teastory.hud.teapan.empty"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") + I18n.translateToLocal("waila.teastory.hud.empty"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + "-");
 			return currenttip;
 		}
 		else if (accessor.getMetadata() == 1)
 		{
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.step") + I18n.translateToLocal("item.wet_tea.name"));
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.next") + I18n.translateToLocal("item.tea_leaf.name"));
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.progress") + "50.0%");
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") + I18n.translateToLocal("item.wet_tea.name"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + I18n.translateToLocal("item.tea_leaf.name"));
 			return currenttip;
 		}
-		else if (accessor.getMetadata() == 8)
+		else if (accessor.getMetadata() == 3)
 		{
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.step") + I18n.translateToLocal("item.half_dried_tea.name"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") + I18n.translateToLocal("item.half_dried_tea.name"));
 			String next = accessor.getWorld().canSeeSky(accessor.getPosition()) ? I18n.translateToLocal("item.dried_tea.name") : "-";
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.next") + next);
-			if (next != "-")
-			{
-				currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.progress") + "50.0%");
-			}
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + next);
 			return currenttip;
 		}
-		else if (accessor.getMetadata() >= 2 && accessor.getMetadata() <= 7)
+		else if (accessor.getMetadata() == 2)
 		{
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.step") + I18n.translateToLocal("item.tea_leaf.name"));
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.next") + I18n.translateToLocal("item.half_dried_tea.name"));
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.progress") + ((int)((accessor.getMetadata() - 2) * 16.66F)) + "%");
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") + I18n.translateToLocal("item.tea_leaf.name"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + I18n.translateToLocal("item.half_dried_tea.name"));
 			return currenttip;
 		}
-		else if(accessor.getMetadata() >= 9 && accessor.getMetadata() <= 11)
+		else if(accessor.getMetadata() == 4)
 		{
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.step") +  I18n.translateToLocal("item.dried_tea.name"));
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") +  I18n.translateToLocal("item.dried_tea.name"));
 			String next = !accessor.getWorld().canSeeSky(accessor.getPosition()) ? I18n.translateToLocal("item.yellow_tea_leaf.name") : "-";
-			currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.next") + next);
-			if (next != "-")
-			{
-				currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.progress") + ((int)((accessor.getMetadata() - 9) * 33.33F)) + "%");
-			}
+			currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + next);
 			return currenttip;
 		}
-		currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.step") + I18n.translateToLocal("item.yellow_tea_leaf.name"));
-		currenttip.add(I18n.translateToLocal("waila.teastory.hud.teapan.next") + "-");
+		currenttip.add(I18n.translateToLocal("waila.teastory.hud.step") + I18n.translateToLocal("item.yellow_tea_leaf.name"));
+		currenttip.add(I18n.translateToLocal("waila.teastory.hud.next") + "-");
 		return currenttip;
 	}
 

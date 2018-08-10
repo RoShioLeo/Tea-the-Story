@@ -1,12 +1,11 @@
 #Tab
-itemGroup.tabteastory=TeaStory: Tea Leaf
+itemGroup.tabTeaStory=TeaStory: Tea Leaf
 itemGroup.tabTeaRice=TeaStory: Rice
 itemGroup.tabTeaDrink=TeaStory: Tea Drink
 
 #Tooltip
 teastory.tooltip.tea_seeds.height=Suitable altitude：80~110m
-teastory.tooltip.tea_seeds.temperature=Suitable temperature: warm
-teastory.tooltip.tea_seeds.humidity=Suitable humidity: humid
+teastory.tooltip.tea_seeds.temperature=Suitable temperature: cool or warm
 teastory.tooltip.tea_residue=Can be used as bonemeal
 teastory.tooltip.soil_detection_meter=Right click for details
 teastory.tooltip.shennong_ruler=Right click for regeneration; poison attacks
@@ -14,9 +13,9 @@ teastory.tooltip.kettle.remain=Remaining capacity: %1$s / %2$s
 teastory.tooltip.kettle.tips=Right click with empty hand to pick up
 teastory.tooltip.cup=Right click with empty hand while sneaking to place or pick up
 teastory.tooltip.shiftfordetail=Hold Shift for Details
-teastory.tooltip.rice_seedling.temperature=Suitable temperature: warm or hot
+teastory.tooltip.rice_seedling.temperature=Suitable temperature: cool or warm
 teastory.tooltip.rice_seedling.humidity=Suitable humidity: semi-humid or humid
-teastory.tooltip.sickle=Right click ripe crops Harvest
+teastory.tooltip.sickle=Right click ripe crops to harvest
 
 #Items
 item.tea_leaf.name=Fresh Tea Leaf
@@ -145,8 +144,7 @@ item.item_straw_blanket.name=Straw Blanket
 #Blocks
 tile.teapan.name=Tea Pan
 tile.barrel.name=Barrel
-tile.half_dried_leaf_block.leaf.name=Half-dried Leaf Block
-tile.half_dried_leaf_block.puer.name=Pu'er Tea Leaf block
+tile.half_dried_leaf_block.name=Half-dried Leaf Block
 tile.teaplant.name=Tea Plant
 tile.tea_drying_pan.name=Drying (Cooking) Pan
 tile.tea_stove.name=Tea Stove
@@ -193,66 +191,21 @@ teastory.potion.photosynthesis=Photosynthesis
 teastory.potion.defence=Impenetrable Defence
 teastory.potion.excitement=Excitement
 
-#Achievements[WIP]
-achievement.teastory.teaSeeds=A Tea Leaf, Another Journey
-achievement.teastory.teaSeeds.desc=Get tea plant seed from tea leaves
-achievement.teastory.soilDetectionMeter=The temperature of the soils and the hands
-achievement.teastory.soilDetectionMeter.desc=Use soilmeter once
-achievement.teastory.teaPlant=Mystical plants from the south
-achievement.teastory.teaPlant.desc=Plant tea
-
-achievement.teastory.teaDryingPan=Teacraftmanship
-achievement.teastory.teaDryingPan.desc=Pan-drying tea leaves
-achievement.teastory.burntLeaf=Lost One's Failure
-achievement.teastory.burntLeaf.desc=Fail to dry tea
-
-achievement.teastory.wetTea=Season of "Good" Rain
-achievement.teastory.wetTea.desc=Get a wet leaf
-achievement.teastory.halfDriedTea=Trial of Tea Leaf
-achievement.teastory.halfDriedTea.desc=Get half-dried tea leaf with tea pan
-achievement.teastory.teaStove=Revolution
-achievement.teastory.teaStove.desc=Make tea in tea stove
-achievement.teastory.whiteDrink=Time stopped, for a cup of tea
-achievement.teastory.whiteDrink.desc=Drink a cup of white tea
-
-achievement.teastory.puerDrink=Friendship and tea
-achievement.teastory.puerDrink.desc=Drink a cup of Pu'er tea
-
-achievement.teastory.blackTea=Gift of the Time
-achievement.teastory.blackTea.desc=Get black tea with barrel
-
-achievement.teastory.woodenCup=Wood, pleasant
-achievement.teastory.woodenCup.desc=Craft a wooden cup
-achievement.teastory.stoneCup=Cobble, melody
-achievement.teastory.stoneCup.desc=Craft a stone cup
-achievement.teastory.glassCup=Crystal, pure
-achievement.teastory.glassCup.desc=Craft a glass cup
-achievement.teastory.porcelainCup=Porcelain, flawless
-achievement.teastory.porcelainCup.desc=Fire a white porcelain cup
-achievement.teastory.zishaCup=Zisha, delicate
-achievement.teastory.zishaCup.desc=Fire a zisha cup
-achievement.teastory.hotWater=Things about boiling water and brewing tea
-achievement.teastory.hotWater.desc=Boil water
-
 #Info
 teastory.info.welcome=[§2§oTeaStory§f] Thanks for using §2§oTea: The Story§f, version %1$s
 
 #Message
-teastory.message.teapan.tips=To start drying, put suitable tea leaves into the tea pan. 
-teastory.message.teapan.notenough=The tea leaves are not enough.
-teastory.message.barrel.tips=Put half-dried tea leaves to start fermentation.
-teastory.message.barrel.notenough=The half-dried tea leaves are not enough.
-teastory.message.barrel.knead=Right click to knead the tea leaves.
-teastory.message.barrel.fermentation.1=Fermentation progress: 1/2; to get tea leaves back, right click barrel with empty hand while sneaking.
-teastory.message.barrel.fermentation.2=Fermentation progress: 2/2, about to finish; to get tea leaves back, right click barrel with empty hand while sneaking.
 teastory.message.soil_detection_meter.total=Area temperature: %1$s; humidity: %2$s; altitude: %3$s §8m§r; climate: %4$s.
-teastory.message.soil_detection_meter.drying=Drying rate: daytime: %1$s ( %2$s ); nighttime: %3$s ( %4$s , Need lights ).
-teastory.message.soil_detection_meter.fermentation=Fermentation rate: indoor: %1$s ( %2$s ); outdoor: %3$s ( %4$s ).
+teastory.message.soil_detection_meter.drying=Drying rate: %1$ss per piece.
+teastory.message.soil_detection_meter.fermentation=Fermentation rate: %1$ss per piece indoors; %2$ss per piece outdoors.
 teastory.message.soil_detection_meter.teaplant=Tea plants have a %1$s chance of growing here; %2$s
-teastory.message.soil_detection_meter.temperature.snowy=§1Snowy
+teastory.message.soil_detection_meter.ricecrop=Rice crops have a %1$s chance of growing here.
+teastory.message.soil_detection_meter.temperature.frozen=§1Frozen
 teastory.message.soil_detection_meter.temperature.cold=§9Cold
-teastory.message.soil_detection_meter.temperature.warm=§cWarm
-teastory.message.soil_detection_meter.temperature.hot=§4Hot
+teastory.message.soil_detection_meter.temperature.cool=§3Cool
+teastory.message.soil_detection_meter.temperature.warm=§6Warm
+teastory.message.soil_detection_meter.temperature.hot=§cHot
+teastory.message.soil_detection_meter.temperature.heat=§4Heat
 teastory.message.soil_detection_meter.humidity.arid=§6Arid
 teastory.message.soil_detection_meter.humidity.semi-arid=§eSemi-arid
 teastory.message.soil_detection_meter.humidity.semi-humid=§aSemi-humid
@@ -260,16 +213,13 @@ teastory.message.soil_detection_meter.humidity.humid=§2Wet
 teastory.message.soil_detection_meter.height.low=§cthe altitude is too low!
 teastory.message.soil_detection_meter.height.medium=§athe altitude is suitable.
 teastory.message.soil_detection_meter.height.high=§cthe altitude is too high!
-teastory.message.soil_detection_meter.fast=§aFast
-teastory.message.soil_detection_meter.normal=§eNormal
-teastory.message.soil_detection_meter.slow=§cSlow
 teastory.message.tea_drying_pan.tips=Light it with flint and steel first to dry tea leaves or put some washed rice in to cook.
 teastory.message.tea_drying_pan.leaf=Please put fresh or half-dried tea leaves in.
 teastory.message.tea_drying_pan.notenough=The tea leaves are not enough.
 teastory.message.tea_drying_pan.time.1=%1$s seconds left to the next progress.
 teastory.message.tea_drying_pan.speedup=First drying finished; accelerated %1$s seconds
 teastory.message.tea_drying_pan.time.2=%1$s seconds left to the final progress.
-teastory.message.tea_drying_pan.dried=Second drying finished, right click to get the dried leaves.
+teastory.message.tea_drying_pan.dried=Second drying finished, right click to get the leaves.
 teastory.message.tea_drying_pan.failure=Oops, leaves are burnt, sorry! And please try it again.
 teastory.message.cooking_pan.notenough=Rice is not enough.
 teastory.message.cooking_pan.water=Please pour a bucket of water in.
@@ -277,11 +227,15 @@ teastory.message.cooking_pan.lid=Please cover the lid.
 teastory.message.cooking_pan.ignite=Please light it with flint and steel.
 teastory.message.cooking_pan.rice=%1$s seconds left to finish cooking.
 teastory.message.bed.excited=You're too excited to go to sleep now.
-teastory.message.rice_seedling=Rice plants need warmer or wetter environment to grow.
 
-#Container Title
+#Container GUI
 teastory.container.tea_stove=Tea Stove
 teastory.container.tea_table=Tea Table
+teastory.container.teapan=Tea Pan
+teastory.container.barrel=Barrel
+teastory.container.time=Remaining: %1$s min %2$s s
+teastory.container.rain=Pause When Raining
+teastory.container.light=Not Enough Light
 
 #JEI
 jei.teastory.category.teastove=(Steaming) Drying 
@@ -292,18 +246,19 @@ jei.teastory.category.dryingpan=Drying
 jei.teastory.category.teapan=Sun Drying
 
 #Waila
-waila.teastory.hud.fermentation.step=Fermentation: 
-waila.teastory.hud.fermentation.empty=Empty
-waila.teastory.hud.teapan.step=Present Leaves:
-waila.teastory.hud.teapan.empty=Empty
-waila.teastory.hud.teapan.next=Next Leaves: 
-waila.teastory.hud.teapan.progress=Progress: 
+waila.teastory.hud.step=Now: 
+waila.teastory.hud.next=Next: 
+waila.teastory.hud.empty=Empty
 
 #Config
+teastory.config=Config Options
+teastory.config.3=TeaStory
+teastory.config.general=General
 teastory.config.general.enableinfo=Enable Info
 teastory.config.general.teaseedchance=Tea Seeds Drop Chance (‰)
 teastory.config.general.lemonchance=Lemons Drop Chance (‰)
 teastory.config.general.residues=Use Tea Residue As Bone Meal
+teastory.config.drink=Drink
 teastory.config.drink.greentea=Effect Time of Green Tea
 teastory.config.drink.matchadrink=Effect Time of Matcha
 teastory.config.drink.blacktea=Effect Time of Black Tea
@@ -313,8 +268,10 @@ teastory.config.drink.yellowtea=Effect Time of Yellow Tea
 teastory.config.drink.whitetea=Effect Time of White Tea
 teastory.config.drink.oolongtea=Effect Time of Oolong Tea
 teastory.config.drink.puertea=Effect Time of Pu'er Tea
+teastory.config.teamaking=Tea Making
 teastory.config.teamaking.limited.drying=Is Drying Limited
 teastory.config.teamaking.limited.fermentation=Is Fermentation Limited
 teastory.config.teamaking.limited.teaplant=Is Growing Tea Plant Limited
 teastory.config.teamaking.limited.rice=Is Growing Rice Limited
+teastory.config.others=Others
 teastory.config.others.lemon=Have Nausea When Eating Lemons

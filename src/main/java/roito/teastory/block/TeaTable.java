@@ -20,8 +20,8 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
-import roito.teastory.inventory.GuiElementLoader;
+import roito.teastory.common.CreativeTabsRegister;
+import roito.teastory.inventory.GuiElementRegister;
 import roito.teastory.tileentity.TileEntityTeaTable;
 
 public class TeaTable extends Block implements ITileEntityProvider
@@ -36,7 +36,7 @@ public class TeaTable extends Block implements ITileEntityProvider
 		this.setSoundType(SoundType.WOOD);
 		this.setUnlocalizedName("tea_table");
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_table"));
-		this.setCreativeTab(CreativeTabsLoader.tabDrink);
+		this.setCreativeTab(CreativeTabsRegister.tabDrink);
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class TeaTable extends Block implements ITileEntityProvider
 	{
 		if (!worldIn.isRemote)
 		{
-			int id = GuiElementLoader.GUI_TEATABLE;
+			int id = GuiElementRegister.GUI_TEATABLE;
 			playerIn.openGui(TeaStory.instance, id, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		}
 		return true;

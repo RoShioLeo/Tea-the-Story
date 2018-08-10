@@ -32,7 +32,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import roito.teastory.TeaStory;
-import roito.teastory.inventory.GuiElementLoader;
+import roito.teastory.inventory.GuiElementRegister;
 import roito.teastory.tileentity.TileEntityTeaStove;
 
 public class TeaStove extends BlockContainer implements ITileEntityProvider
@@ -68,7 +68,7 @@ public class TeaStove extends BlockContainer implements ITileEntityProvider
 	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
 	{
 		ArrayList drops = new ArrayList();
-		drops.add(new ItemStack(BlockLoader.tea_stove, 1));
+		drops.add(new ItemStack(BlockRegister.tea_stove, 1));
 		return drops;
 	}
 
@@ -77,7 +77,7 @@ public class TeaStove extends BlockContainer implements ITileEntityProvider
 	{
 		if (!worldIn.isRemote)
 		{
-			int id = GuiElementLoader.GUI_TEASTOVE;
+			int id = GuiElementRegister.GUI_TEASTOVE;
 			playerIn.openGui(TeaStory.instance, id, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		}
 		return true;
@@ -143,13 +143,13 @@ public class TeaStove extends BlockContainer implements ITileEntityProvider
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
-		items.add(new ItemStack(BlockLoader.tea_stove));
+		items.add(new ItemStack(BlockRegister.tea_stove));
 	}
 
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-		return new ItemStack(BlockLoader.tea_stove);
+		return new ItemStack(BlockRegister.tea_stove);
 	}
 
 	@Override
@@ -208,11 +208,11 @@ public class TeaStove extends BlockContainer implements ITileEntityProvider
 
 		if (active)
 		{
-			worldIn.setBlockState(pos, BlockLoader.lit_tea_stove.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)));
+			worldIn.setBlockState(pos, BlockRegister.lit_tea_stove.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)));
 		}
 		else
 		{
-			worldIn.setBlockState(pos, BlockLoader.tea_stove.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)));
+			worldIn.setBlockState(pos, BlockRegister.tea_stove.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)));
 		}
 
 		keepInventory = false;

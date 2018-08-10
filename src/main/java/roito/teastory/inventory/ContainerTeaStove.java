@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
 import roito.teastory.tileentity.TileEntityTeaStove;
 
 public class ContainerTeaStove extends Container
@@ -38,7 +38,7 @@ public class ContainerTeaStove extends Container
 			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
-				return stack.getItem() == ItemLoader.tea_leaf || stack.getItem() == ItemLoader.half_dried_tea;
+				return stack.getItem() == ItemRegister.tea_leaf || stack.getItem() == ItemRegister.half_dried_tea;
 			}
 		});
 		this.addSlotToContainer(new SlotItemHandler(this.fuelItem, 0, 53, 56));
@@ -156,12 +156,16 @@ public class ContainerTeaStove extends Container
 			break;
 		case 1:
 			this.fuelTime = data;
+			break;
 		case 2:
 			this.fuelTotalTime = data;
+			break;
 		case 3:
 			this.hasWater = data;
+			break;
 		case 4:
 			this.steam = data;
+			break;
 		default:
 			break;
 		}
@@ -195,10 +199,5 @@ public class ContainerTeaStove extends Container
 	public int getSteam()
 	{
 		return this.steam;
-	}
-
-	public int getTotalSteam()
-	{
-		return this.tileEntity.getTotalSteam();
 	}
 }

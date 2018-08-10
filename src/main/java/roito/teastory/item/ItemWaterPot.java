@@ -3,14 +3,14 @@ package roito.teastory.item;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class ItemWaterPot extends TSItem
 {
 	String container;
 	public ItemWaterPot(String name, int maxDamageIn)
 	{
-		super("boiled_water_"  + name, 1, CreativeTabsLoader.tabDrink);
+		super("boiled_water_"  + name, 1, CreativeTabsRegister.tabDrink);
 		this.container = TeaStory.MODID + ":" + name;
 		this.setMaxDamage(maxDamageIn);
 		this.setNoRepair();

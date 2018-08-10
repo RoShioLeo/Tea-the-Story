@@ -8,7 +8,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 import roito.teastory.recipe.ITeaMakingRecipe;
-import roito.teastory.recipe.RecipeLoader;
+import roito.teastory.recipe.RecipeRegister;
 
 public class RecipeBarrel implements IRecipeWrapper
 {
@@ -16,7 +16,7 @@ public class RecipeBarrel implements IRecipeWrapper
 	public static List<RecipeBarrel> getWrappedRecipeList()
 	{
 		List<RecipeBarrel> recipesToReturn = new ArrayList<>();
-		for (ITeaMakingRecipe recipe : RecipeLoader.managerBarrel.getRecipes())
+		for (ITeaMakingRecipe recipe : RecipeRegister.managerBarrel.getRecipes())
 		{
 			recipesToReturn.add(new RecipeBarrel(recipe));
 		}
@@ -33,17 +33,38 @@ public class RecipeBarrel implements IRecipeWrapper
 	@Override
 	public void getIngredients(IIngredients ingredients)
 	{
-		ingredients.setInput(ItemStack.class, recipe.getStep1());
-		ingredients.setOutput(ItemStack.class, recipe.getStep2());
+		ingredients.setInputs(ItemStack.class, getInputs());
+		ingredients.setOutputs(ItemStack.class, getOutputs());
 	}
 
 	public List<ItemStack> getInputs()
 	{
-		return Collections.singletonList(recipe.getStep1());
+		List<ItemStack> list = new ArrayList<>();
+		list.add(recipe.getStep1());
+		list.add(recipe.getStep2());
+		return list;
 	}
 
 	public List<ItemStack> getOutputs()
 	{
+		List<ItemStack> list = new ArrayList<>();
+		list.add(recipe.getStep2());
+		list.add(recipe.getStep3());
+		return list;
+	}
+	
+	public List<ItemStack> getStep1()
+	{
+		return Collections.singletonList(recipe.getStep1());
+	}
+	
+	public List<ItemStack> getStep2()
+	{
 		return Collections.singletonList(recipe.getStep2());
+	}
+	
+	public List<ItemStack> getStep3()
+	{
+		return Collections.singletonList(recipe.getStep3());
 	}
 }

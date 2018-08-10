@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import roito.teastory.TeaStory;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
 import roito.teastory.tileentity.TileEntityCookingPan;
 
 public class LitCookingPan extends BlockContainer
@@ -68,8 +68,8 @@ public class LitCookingPan extends BlockContainer
 	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
 	{
 		ArrayList drops = new ArrayList();
-		drops.add(new ItemStack(BlockLoader.tea_drying_pan, 1));
-		drops.add(new ItemStack(ItemLoader.washed_rice, 16));
+		drops.add(new ItemStack(BlockRegister.tea_drying_pan, 1));
+		drops.add(new ItemStack(ItemRegister.washed_rice, 16));
 		return drops;
 	}
 	

@@ -7,9 +7,8 @@ import roito.teastory.block.LitTeaDryingPan;
 
 public class TileEntityTeaDryingPan extends TileEntity implements ITickable
 {
-	protected int totalTime = 600;
+	protected static int totalTime = 600;
 	protected int time = 0;
-	protected int meta;
 	protected int remainingTime = totalTime;
 
 	@Override
@@ -29,7 +28,7 @@ public class TileEntityTeaDryingPan extends TileEntity implements ITickable
 	@Override
 	public void update()
 	{
-		meta = this.getBlockMetadata();
+		int meta = this.getBlockMetadata();
 		if ((meta > 0 && meta < 6) || (meta > 8 && meta < 14))
 		{
 

@@ -26,8 +26,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.common.CreativeTabsRegister;
+import roito.teastory.item.ItemRegister;
 
 public class TeaDryingPan extends Block
 {
@@ -40,7 +40,7 @@ public class TeaDryingPan extends Block
 		this.setHardness(3.0F);
 		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
-		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
+		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
 		this.setUnlocalizedName("tea_drying_pan");
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_drying_pan"));
 	}
@@ -106,10 +106,10 @@ public class TeaDryingPan extends Block
 					{
 						playerIn.getHeldItem(hand).setItemDamage(playerIn.getHeldItem(hand).getItemDamage() + 1);
 					}
-					worldIn.setBlockState(pos, BlockLoader.lit_tea_drying_pan.getDefaultState());
+					worldIn.setBlockState(pos, BlockRegister.lit_tea_drying_pan.getDefaultState());
 					return true;
 				} 
-				else if ((playerIn.getHeldItem(hand).getItem() == ItemLoader.washed_rice) && (playerIn.getHeldItem(hand).getCount() >= 8))
+				else if ((playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice) && (playerIn.getHeldItem(hand).getCount() >= 8))
 				{
 					if (!playerIn.capabilities.isCreativeMode)
 					{
@@ -119,12 +119,12 @@ public class TeaDryingPan extends Block
 					return true;
 				}
 			}
-			if (worldIn.isRemote && !playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemLoader.washed_rice && playerIn.getHeldItem(hand).getCount() < 8)
+			if (worldIn.isRemote && !playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice && playerIn.getHeldItem(hand).getCount() < 8)
 			{
 				playerIn.sendMessage(new TextComponentTranslation("teastory.message.cooking_pan.notenough"));
 				return true;
 			}
-			else if (worldIn.isRemote && (playerIn.getHeldItem(hand).isEmpty() || Block.getBlockFromItem(playerIn.getHeldItem(hand).getItem()) != BlockLoader.tea_drying_pan))
+			else if (worldIn.isRemote && (playerIn.getHeldItem(hand).isEmpty() || Block.getBlockFromItem(playerIn.getHeldItem(hand).getItem()) != BlockRegister.tea_drying_pan))
 			{
 				playerIn.sendMessage(new TextComponentTranslation("teastory.message.tea_drying_pan.tips"));
 				return true;
@@ -153,7 +153,7 @@ public class TeaDryingPan extends Block
 		{
 			if (!playerIn.getHeldItem(hand).isEmpty())
 			{
-				if (playerIn.getHeldItem(hand).getItem() == ItemLoader.wooden_lid)
+				if (playerIn.getHeldItem(hand).getItem() == ItemRegister.wooden_lid)
 				{
 					if (!playerIn.capabilities.isCreativeMode)
 					{
@@ -178,7 +178,7 @@ public class TeaDryingPan extends Block
 					{
 						playerIn.getHeldItem(hand).setItemDamage(playerIn.getHeldItem(hand).getItemDamage() + 1);
 					}
-					worldIn.setBlockState(pos, BlockLoader.lit_cooking_pan.getDefaultState());
+					worldIn.setBlockState(pos, BlockRegister.lit_cooking_pan.getDefaultState());
 					return true;
 				}
 			}
@@ -191,10 +191,10 @@ public class TeaDryingPan extends Block
 		{
 			if(!worldIn.isRemote)
 			{
-				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.wooden_lid, 1));
-				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.rice_ball, 2));
+				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegister.wooden_lid, 1));
+				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegister.rice_ball, 2));
 			}
-			worldIn.setBlockState(pos, BlockLoader.tea_drying_pan.getDefaultState());
+			worldIn.setBlockState(pos, BlockRegister.tea_drying_pan.getDefaultState());
 			return true;
 		}
 		return true;

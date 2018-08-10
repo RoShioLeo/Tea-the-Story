@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
 
 public class TeaDrinkEmpty extends TeaDrink
 {
@@ -28,20 +28,20 @@ public class TeaDrinkEmpty extends TeaDrink
 	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
 	{
 		ArrayList drops = new ArrayList();
-		drops.add(new ItemStack(ItemLoader.cup, 1, meta));
+		drops.add(new ItemStack(ItemRegister.cup, 1, meta));
 		return drops;
 	}
 
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
-		items.add(new ItemStack(ItemLoader.cup, 1, meta));
+		items.add(new ItemStack(ItemRegister.cup, 1, meta));
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(ItemLoader.cup, 1, meta);
+		return new ItemStack(ItemRegister.cup, 1, meta);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class TeaDrinkEmpty extends TeaDrink
 	{
 		if (playerIn.isSneaking())
 		{
-			ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemLoader.cup, 1, meta));
+			ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegister.cup, 1, meta));
 			worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 			return true;
 		}

@@ -1,0 +1,28 @@
+{
+    "multipart": [
+		{	
+			"apply": 
+				{ "model": "teastory:field_bottom" }
+		},
+		{	
+			"apply": 
+				{ "model": "teastory:water" }
+		},
+        {   
+			"when": { "north": "true" },
+            "apply": { "model": "teastory:field", "uvlock": true }
+        },
+        {   
+			"when": { "east": "true" },
+            "apply": { "model": "teastory:field", "y": 90, "uvlock": true }
+        },
+        {   
+			"when": { "south": "true" },
+            "apply": { "model": "teastory:field", "y": 180, "uvlock": true }
+        },
+        {   
+			"when": { "west": "true" },
+            "apply": { "model": "teastory:field", "y": 270, "uvlock": true }
+        }
+    ]
+}

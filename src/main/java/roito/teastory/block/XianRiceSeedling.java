@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import roito.teastory.TeaStory;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
 
 public class XianRiceSeedling extends BlockCrops
 {
@@ -42,19 +42,25 @@ public class XianRiceSeedling extends BlockCrops
 	@Override
 	protected Item getSeed()
 	{
-		return ItemLoader.xian_rice_seeds;
+		return ItemRegister.xian_rice_seedlings;
 	}
 
 	@Override
 	protected Item getCrop()
 	{
-		return ItemLoader.xian_rice_seedlings;
+		return ItemRegister.xian_rice_seedlings;
 	}
 
 	protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)
 	{
 		return BlockCrops.getGrowthChance(blockIn, worldIn, pos) * 2;
 	}
+	
+	@Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return this.isMaxAge(state) ? this.getCrop() : ItemRegister.xian_rice_seeds;
+    }
 
 	@Override
 	public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
@@ -68,7 +74,7 @@ public class XianRiceSeedling extends BlockCrops
 		}
 		else
 		{
-			ret.add(new ItemStack(this.getSeed(), 1));
+			ret.add(new ItemStack(ItemRegister.xian_rice_seeds));
 		}
 		return ret;
 	}

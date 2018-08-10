@@ -7,9 +7,9 @@ import java.util.List;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
 import roito.teastory.recipe.ITeaTableRecipe;
-import roito.teastory.recipe.RecipeLoader;
+import roito.teastory.recipe.RecipeRegister;
 
 public class RecipeTeaTable implements IRecipeWrapper
 {
@@ -17,7 +17,7 @@ public class RecipeTeaTable implements IRecipeWrapper
 	public static List<RecipeTeaTable> getWrappedRecipeList()
 	{
 		List<RecipeTeaTable> recipesToReturn = new ArrayList<>();
-		for (ITeaTableRecipe recipe : RecipeLoader.managerTeaTable.getRecipes())
+		for (ITeaTableRecipe recipe : RecipeRegister.managerTeaTable.getRecipes())
 		{
 			recipesToReturn.add(new RecipeTeaTable(recipe));
 		}
@@ -42,7 +42,9 @@ public class RecipeTeaTable implements IRecipeWrapper
 	{
 		if (recipe.getSugarInput() != null)
 		{
-			return Collections.singletonList(recipe.getSugarInput());
+			List<ItemStack> list = new ArrayList<>();
+			list.addAll(recipe.getSugarInput());
+			return list;
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -71,10 +73,10 @@ public class RecipeTeaTable implements IRecipeWrapper
 	public static List<ItemStack> getPotInputs()
 	{
 		List<ItemStack> potList = new ArrayList<>();
-		potList.add(new ItemStack(ItemLoader.hw_pot_stone));
-		potList.add(new ItemStack(ItemLoader.hw_pot_iron));
-		potList.add(new ItemStack(ItemLoader.hw_pot_porcelain));
-		potList.add(new ItemStack(ItemLoader.hw_pot_zisha));
+		potList.add(new ItemStack(ItemRegister.hw_pot_stone));
+		potList.add(new ItemStack(ItemRegister.hw_pot_iron));
+		potList.add(new ItemStack(ItemRegister.hw_pot_porcelain));
+		potList.add(new ItemStack(ItemRegister.hw_pot_zisha));
 		return potList;
 	}
 
@@ -85,7 +87,7 @@ public class RecipeTeaTable implements IRecipeWrapper
 		list.add(recipe.getCupInput());
 		if (recipe.getSugarInput() != null)
 		{
-			list.add(recipe.getSugarInput());
+			list.addAll(recipe.getSugarInput());
 		}
 		if (recipe.getToolInput() != null)
 		{

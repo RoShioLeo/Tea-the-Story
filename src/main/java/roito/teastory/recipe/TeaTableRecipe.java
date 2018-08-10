@@ -3,13 +3,15 @@ package roito.teastory.recipe;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class TeaTableRecipe implements ITeaTableRecipe
 {
-	private final ItemStack teaLeaf, cup, output, sugar;
-	private final List<ItemStack> tool;
+	private final ItemStack teaLeaf, cup, output;
+	private final NonNullList<ItemStack> tool, sugar;
 	
-	public TeaTableRecipe(ItemStack teaLeaf, List<ItemStack> tool, ItemStack cup, ItemStack sugar, ItemStack output)
+	public TeaTableRecipe(ItemStack teaLeaf, NonNullList<ItemStack> tool, ItemStack cup, NonNullList<ItemStack> sugar, ItemStack output)
 	{
 		this.teaLeaf = teaLeaf;
 		this.tool = tool;
@@ -25,13 +27,13 @@ public class TeaTableRecipe implements ITeaTableRecipe
 	}
 
 	@Override
-	public List<ItemStack> getToolInput()
+	public NonNullList<ItemStack> getToolInput()
 	{
 		return tool;
 	}
 
 	@Override
-	public ItemStack getSugarInput()
+	public NonNullList<ItemStack> getSugarInput()
 	{
 		return sugar;
 	}
@@ -51,27 +53,28 @@ public class TeaTableRecipe implements ITeaTableRecipe
 	@Override
 	public boolean equals(Object r)
 	{
-		boolean flag = r instanceof TeaTableRecipe;
-		flag = flag && ((TeaTableRecipe)r).getCupInput().isItemEqual(this.cup);
-		flag = flag && ((TeaTableRecipe)r).getTeaLeafInput().isItemEqual(this.teaLeaf);
-		if (this.sugar != null)
+		if (!(r instanceof TeaTableRecipe))
 		{
-			flag = flag && ((TeaTableRecipe)r).getSugarInput().isItemEqual(this.sugar);
+			return false;
 		}
-		if (this.tool == null)
+		if (!((TeaTableRecipe)r).getTeaLeafInput().isItemEqual(this.teaLeaf))
 		{
-			return flag;
+			return false;
 		}
-		if (this.tool != null && ((TeaTableRecipe)r).getToolInput() != null)
+		if (!((TeaTableRecipe)r).getCupInput().isItemEqual(this.cup))
 		{
-			boolean flag2 = false;
-			for(ItemStack stack : this.tool)
-			{
-				flag2 = flag2 || ((TeaTableRecipe)r).getToolInput().contains(stack);
-			}
-			flag = flag2 && flag;
+			return false;
 		}
-		return flag;
+		if (!OreDictionary.containsMatch(false, this.sugar, ((TeaTableRecipe)r).getSugarInput().get(0)))
+		{
+			return false;
+		}
+		if (!OreDictionary.containsMatch(false, this.tool, ((TeaTableRecipe)r).getToolInput().get(0)))
+		{
+			return false;
+		}
+		
+		return true;
 	}
 
 }

@@ -1,10 +1,15 @@
 package roito.teastory.config;
 
+import java.util.Collections;
 import java.util.Set;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
+import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.client.config.GuiConfig;
+import roito.teastory.TeaStory;
 
 public class ConfigGuiFactory implements IModGuiFactory
 {
@@ -30,7 +35,7 @@ public class ConfigGuiFactory implements IModGuiFactory
 	@Override
 	public GuiScreen createConfigGui(GuiScreen parentScreen)
 	{
-		return new ConfigGui(parentScreen);
+		return new GuiConfig(parentScreen, Collections.singletonList(ConfigElement.from(ConfigMain.class)), TeaStory.MODID, false, false, "TeaStory", I18n.format("teastory.config.3"));
 	}
 
 }

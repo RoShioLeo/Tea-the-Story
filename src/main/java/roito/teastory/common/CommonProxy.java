@@ -3,38 +3,38 @@ package roito.teastory.common;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import roito.teastory.block.BlockLoader;
+import roito.teastory.block.BlockRegister;
 import roito.teastory.compat.waila.WailaCompatRegistry;
 import roito.teastory.config.ConfigMain;
-import roito.teastory.entity.EntityLoader;
-import roito.teastory.inventory.GuiElementLoader;
-import roito.teastory.item.ItemLoader;
-import roito.teastory.potion.PotionLoader;
-import roito.teastory.recipe.RecipeLoader;
-import roito.teastory.tileentity.TileEntityLoader;
+import roito.teastory.entity.EntityRegister;
+import roito.teastory.inventory.GuiElementRegister;
+import roito.teastory.item.ItemRegister;
+import roito.teastory.potion.PotionRegister;
+import roito.teastory.recipe.RecipeRegister;
+import roito.teastory.recipe.SmeltingReipeRegister;
+import roito.teastory.tileentity.TileEntityRegister;
 
 public class CommonProxy
 {
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		new ConfigMain(event);
-		new CreativeTabsLoader(event);
-		new ItemLoader(event);
-		new BlockLoader(event);
-		new PotionLoader(event);
-		new EntityLoader();
-		new TileEntityLoader(event);
+		new CreativeTabsRegister(event);
+		new ItemRegister(event);
+		new BlockRegister(event);
+		new PotionRegister(event);
+		new EntityRegister();
+		new TileEntityRegister(event);
 	}
 
 	public void init(FMLInitializationEvent event)
 	{
-		new RecipeLoader();
-		new SmeltingLoader();
-		new EventLoader();
-		new GuiElementLoader();
+		new OreDictionaryRegister(event);
+		new RecipeRegister();
+		new SmeltingReipeRegister();
+		new EventRegister();
+		new GuiElementRegister();
 		new SeedDrops();
 		new WailaCompatRegistry();
-		new OreDictionaryLoader(event);
 	}
 
 	public void postInit(FMLPostInitializationEvent event)

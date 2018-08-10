@@ -32,7 +32,7 @@ public class PotionPhotosynthesis extends Potion
 	@Override
 	public void performEffect(EntityLivingBase entityLivingBaseIn, int p_76394_2_)
 	{
-		if (this == PotionLoader.PotionPhotosynthesis)
+		if (this == PotionRegister.PotionPhotosynthesis)
 		{
 			boolean isDaytime = entityLivingBaseIn.getEntityWorld().getWorldTime() % 24000L < 12000L;
 			BlockPos pos = entityLivingBaseIn.getPosition();

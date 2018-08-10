@@ -16,14 +16,14 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class ItemEmptyPot extends TSItem
 {
 	String cold_water;
 	public ItemEmptyPot(String name)
 	{
-		super(name, 64, CreativeTabsLoader.tabDrink);
+		super(name, 64, CreativeTabsRegister.tabDrink);
 		this.cold_water = TeaStory.MODID + ":cold_water_"  + name;
 	}
 	

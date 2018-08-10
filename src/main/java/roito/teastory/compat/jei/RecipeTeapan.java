@@ -8,7 +8,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 import roito.teastory.recipe.ITeaMakingRecipe;
-import roito.teastory.recipe.RecipeLoader;
+import roito.teastory.recipe.RecipeRegister;
 
 public class RecipeTeapan implements IRecipeWrapper
 {
@@ -16,7 +16,7 @@ public class RecipeTeapan implements IRecipeWrapper
 	public static List<RecipeTeapan> getWrappedRecipeList()
 	{
 		List<RecipeTeapan> recipesToReturn = new ArrayList<>();
-		for (ITeaMakingRecipe recipe : RecipeLoader.managerTeapan.getRecipes())
+		for (ITeaMakingRecipe recipe : RecipeRegister.managerTeapan.getRecipes())
 		{
 			recipesToReturn.add(new RecipeTeapan(recipe));
 		}

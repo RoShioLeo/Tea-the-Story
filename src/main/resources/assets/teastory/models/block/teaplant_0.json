@@ -1,6 +1,21 @@
 {
-    "parent": "block/crop",
-    "textures": {
-        "crop": "teastory:blocks/teaplant_0"
-    }
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "teastory:blocks/teaplant_0",
+		"particle": "teastory:blocks/teaplant_0"
+	},
+	"elements": [
+		{
+			"from": [6.5, -1, 6.5],
+			"to": [9.5, 2, 9.5],
+			"faces": {
+				"north": {"uv": [7, 7, 10, 10], "texture": "#0"},
+				"east": {"uv": [6, 7, 9, 10], "texture": "#0", "rotation": 180},
+				"south": {"uv": [6, 7, 9, 10], "texture": "#0"},
+				"west": {"uv": [7, 7, 10, 10], "texture": "#0", "rotation": 180},
+				"up": {"uv": [6, 7, 9, 10], "texture": "#0"},
+				"down": {"uv": [7, 7, 10, 10], "texture": "#0"}
+			}
+		}
+	]
 }

@@ -28,7 +28,7 @@ public class ItemBlockEmptyKettle extends ItemBlock
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.kettle"));
+			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.kettle.tips"));
 		}
 		else
 			tooltip.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));

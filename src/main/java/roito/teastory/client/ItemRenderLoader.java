@@ -1,14 +1,14 @@
 package roito.teastory.client;
 
-import roito.teastory.block.BlockLoader;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.block.BlockRegister;
+import roito.teastory.item.ItemRegister;
 
 public class ItemRenderLoader
 {
 
 	public ItemRenderLoader()
 	{
-		ItemLoader.registerRenders();
-		BlockLoader.registerRenders();
+		ItemRegister.registerRenders();
+		BlockRegister.registerRenders();
 	}
 }

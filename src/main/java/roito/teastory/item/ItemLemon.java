@@ -8,7 +8,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 import roito.teastory.config.ConfigMain;
 
 public class ItemLemon extends ItemFood
@@ -18,14 +18,14 @@ public class ItemLemon extends ItemFood
 	{
 		super(1, false);
 		this.setUnlocalizedName("lemon");
-		this.setCreativeTab(CreativeTabsLoader.tabDrink);
+		this.setCreativeTab(CreativeTabsRegister.tabDrink);
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "lemon"));
 	}
 
 	@Override
 	protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
 	{
-		if(!world.isRemote && ConfigMain.lemon)
+		if(!world.isRemote && ConfigMain.others.lemon)
 		{
 			entityplayer.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 160, 1));
 		}

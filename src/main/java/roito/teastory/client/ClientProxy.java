@@ -3,9 +3,9 @@ package roito.teastory.client;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import roito.teastory.block.BlockLoader;
+import roito.teastory.block.BlockRegister;
 import roito.teastory.common.CommonProxy;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
 
 
 public class ClientProxy extends CommonProxy
@@ -14,8 +14,8 @@ public class ClientProxy extends CommonProxy
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		super.preInit(event);
-		BlockLoader.loadExtraResourceLocation();
-		ItemLoader.loadExtraResourceLocation();
+		BlockRegister.loadExtraResourceLocation();
+		ItemRegister.loadExtraResourceLocation();
 	}
 
 	@Override

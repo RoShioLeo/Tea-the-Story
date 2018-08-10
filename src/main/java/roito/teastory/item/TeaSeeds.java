@@ -20,17 +20,17 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import roito.teastory.TeaStory;
-import roito.teastory.block.BlockLoader;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.block.BlockRegister;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class TeaSeeds extends ItemSeeds
 {
 	public TeaSeeds()
 	{
-		super(BlockLoader.teaplant, Blocks.FARMLAND);
+		super(BlockRegister.teaplant, Blocks.FARMLAND);
 		this.setUnlocalizedName("tea_seeds");
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_seeds"));
-		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
+		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
 	}
 
 	@Override
@@ -40,7 +40,6 @@ public class TeaSeeds extends ItemSeeds
 		{
 			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.tea_seeds.height"));
 			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.tea_seeds.temperature"));
-			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.tea_seeds.humidity"));
 		}
 		else
 			tooltip.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));

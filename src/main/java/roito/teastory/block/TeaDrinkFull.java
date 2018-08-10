@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
 import roito.teastory.tileentity.TileEntityTeaDrink;
 
 public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
@@ -49,23 +49,23 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 		switch (drink)
 		{
 		case 2:
-			return new ItemStack(ItemLoader.matcha_drink, 1, meta);
+			return new ItemStack(ItemRegister.matcha_drink, 1, meta);
 		case 3:
-			return new ItemStack(ItemLoader.black_tea, 1, meta);
+			return new ItemStack(ItemRegister.black_tea, 1, meta);
 		case 4:
-			return new ItemStack(ItemLoader.milk_tea, 1, meta);
+			return new ItemStack(ItemRegister.milk_tea, 1, meta);
 		case 5:
-			return new ItemStack(ItemLoader.lemon_tea, 1, meta);
+			return new ItemStack(ItemRegister.lemon_tea, 1, meta);
 		case 6:
-			return new ItemStack(ItemLoader.yellow_tea, 1, meta);
+			return new ItemStack(ItemRegister.yellow_tea, 1, meta);
 		case 7:
-			return new ItemStack(ItemLoader.white_tea, 1, meta);
+			return new ItemStack(ItemRegister.white_tea, 1, meta);
 		case 8:
-			return new ItemStack(ItemLoader.oolong_tea, 1, meta);
+			return new ItemStack(ItemRegister.oolong_tea, 1, meta);
 		case 9:
-			return new ItemStack(ItemLoader.puer_tea, 1, meta);
+			return new ItemStack(ItemRegister.puer_tea, 1, meta);
 		}
-		return new ItemStack(ItemLoader.green_tea, 1, meta);
+		return new ItemStack(ItemRegister.green_tea, 1, meta);
 	}
 
 	@Override
@@ -99,31 +99,31 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 		switch (drink)
 		{
 		case 1:
-			drops.add(new ItemStack(ItemLoader.green_tea, 1, meta));
+			drops.add(new ItemStack(ItemRegister.green_tea, 1, meta));
 			break;
 		case 2:
-			drops.add(new ItemStack(ItemLoader.matcha_drink, 1, meta));
+			drops.add(new ItemStack(ItemRegister.matcha_drink, 1, meta));
 			break;
 		case 3:
-			drops.add(new ItemStack(ItemLoader.black_tea, 1, meta));
+			drops.add(new ItemStack(ItemRegister.black_tea, 1, meta));
 			break;
 		case 4:
-			drops.add(new ItemStack(ItemLoader.milk_tea, 1, meta));
+			drops.add(new ItemStack(ItemRegister.milk_tea, 1, meta));
 			break;
 		case 5:
-			drops.add(new ItemStack(ItemLoader.lemon_tea, 1, meta));
+			drops.add(new ItemStack(ItemRegister.lemon_tea, 1, meta));
 			break;
 		case 6:
-			drops.add(new ItemStack(ItemLoader.yellow_tea, 1, meta));
+			drops.add(new ItemStack(ItemRegister.yellow_tea, 1, meta));
 			break;
 		case 7:
-			drops.add(new ItemStack(ItemLoader.white_tea, 1, meta));
+			drops.add(new ItemStack(ItemRegister.white_tea, 1, meta));
 			break;
 		case 8:
-			drops.add(new ItemStack(ItemLoader.oolong_tea, 1, meta));
+			drops.add(new ItemStack(ItemRegister.oolong_tea, 1, meta));
 			break;
 		case 9:
-			drops.add(new ItemStack(ItemLoader.puer_tea, 1, meta));
+			drops.add(new ItemStack(ItemRegister.puer_tea, 1, meta));
 			break;
 		}
 		return drops;

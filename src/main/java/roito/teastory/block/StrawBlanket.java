@@ -31,7 +31,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import roito.teastory.TeaStory;
-import roito.teastory.item.ItemLoader;
+import roito.teastory.item.ItemRegister;
 
 public class StrawBlanket extends BlockHorizontal
 {
@@ -177,7 +177,7 @@ public class StrawBlanket extends BlockHorizontal
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return state.getValue(PART) == StrawBlanket.EnumPartType.HEAD ? null : ItemLoader.straw_blanket;
+        return state.getValue(PART) == StrawBlanket.EnumPartType.HEAD ? null : ItemRegister.straw_blanket;
     }
 
     @Override
@@ -246,7 +246,7 @@ public class StrawBlanket extends BlockHorizontal
     @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
     {
-        return new ItemStack(ItemLoader.straw_blanket);
+        return new ItemStack(ItemRegister.straw_blanket);
     }
     
     @Override

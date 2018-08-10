@@ -3,11 +3,11 @@ package roito.teastory.tileentity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import roito.teastory.block.BlockLoader;
+import roito.teastory.block.BlockRegister;
 
 public class TileEntityCookingPan extends TileEntity implements ITickable
 {
-	protected int totalTime = 1200;
+	protected static int totalTime = 1200;
 	protected int time = 0;
 	protected int remainingTime = totalTime;
 
@@ -30,7 +30,7 @@ public class TileEntityCookingPan extends TileEntity implements ITickable
 	{
 		if (++time >= totalTime)
 		{
-			this.getWorld().setBlockState(pos, BlockLoader.tea_drying_pan.getStateFromMeta(4));
+			this.getWorld().setBlockState(pos, BlockRegister.tea_drying_pan.getStateFromMeta(4));
 			time = 0;
 		}
 

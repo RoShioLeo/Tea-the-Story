@@ -11,9 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import roito.teastory.block.BlockLoader;
+import roito.teastory.block.BlockRegister;
 import roito.teastory.block.FullKettle;
 
 public class WailaFullKettle implements IWailaDataProvider
@@ -39,14 +40,7 @@ public class WailaFullKettle implements IWailaDataProvider
 	public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config)
 	{
 		FullKettle kettle = (FullKettle) accessor.getBlock();
-		if (!kettle.full && kettle.getNextKettle() == BlockLoader.empty_zisha_kettle)
-		{
-			currenttip.add(I18n.translateToLocalFormatted("teastory.tooltip.kettle.remain", 4 - itemStack.getItemDamage() / 4, kettle.getMaxCapacity()));
-		}
-		else
-		{
-			currenttip.add(I18n.translateToLocalFormatted("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - itemStack.getItemDamage() / 4, kettle.getMaxCapacity()));
-		}
+		currenttip.add(I18n.translateToLocalFormatted("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - itemStack.getItemDamage(), kettle.getMaxCapacity()));
 		return currenttip;
 	}
 

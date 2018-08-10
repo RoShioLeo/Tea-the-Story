@@ -6,14 +6,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class MatchaCookie extends ItemFood
 {
 	public MatchaCookie()
 	{
 		super(1, false);
-		this.setCreativeTab(CreativeTabsLoader.tabTeaStory);
+		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
 		this.setUnlocalizedName("matcha_cookie");
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "matcha_cookie"));
 	}

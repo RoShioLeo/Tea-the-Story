@@ -1,5 +1,7 @@
 package roito.teastory.tileentity;
 
+import java.util.Collections;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -13,11 +15,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.TeaStory;
 import roito.teastory.block.EmptyKettle;
+import roito.teastory.helper.NonNullListHelper;
 import roito.teastory.item.ItemCup;
 import roito.teastory.item.ItemTeaLeaf;
 import roito.teastory.item.ItemWaterPot;
+import roito.teastory.recipe.ITeaTableRecipe;
+import roito.teastory.recipe.RecipeRegister;
+import roito.teastory.recipe.TeaTableRecipe;
 
 public class TileEntityTeaTable extends TileEntity implements ITickable
 {
@@ -102,108 +109,127 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 	@Override
 	public void update()
 	{
-		//TODO 改用Recipe
-		if (!this.getWorld().isRemote)
+		if (!world.isRemote)
 		{
-			ItemStack leaf = InventoryLeaf.extractItem(0, 1, true);
-			ItemStack cup = InventoryCup.extractItem(0, 1, true);
-			ItemStack water = InventoryWater.extractItem(0, 1, true);
-			if(leaf != ItemStack.EMPTY && leaf.getItem() instanceof ItemTeaLeaf && cup != ItemStack.EMPTY && (cup.getItem() instanceof ItemCup || Block.getBlockFromItem(cup.getItem()) instanceof EmptyKettle) && water != ItemStack.EMPTY && water.getItem() instanceof ItemWaterPot)
+			ItemStack leaf = InventoryLeaf.extractItem(0, 1, true).copy();
+			ItemStack cup = InventoryCup.extractItem(0, 1, true).copy();
+			ItemStack water = InventoryWater.extractItem(0, 1, true).copy();
+			ItemStack sugar = InventorySugar.extractItem(0, 1, true).copy();
+			ItemStack tool = InventoryTool.extractItem(0, 1, true).copy();
+			tool.setItemDamage(OreDictionary.WILDCARD_VALUE);
+			if (water != ItemStack.EMPTY && water.getItem() instanceof ItemWaterPot)
 			{
-				boolean teaset = cup.getItem() instanceof ItemCup;  //True for Cups
-				ItemStack tool = InventoryTool.extractItem(0, 1, true);
-				ItemTeaLeaf teaLeaf = ((ItemTeaLeaf) leaf.getItem());
-				String drinkName = teaLeaf.getTeaDrinkName(tool != null ? tool.getItem() : null);
-				if (drinkName != null && (InventoryDrink.insertItem(0, new ItemStack(Item.getByNameOrId(TeaStory.MODID + ":" + drinkName), 1, cup.getMetadata()), true) == ItemStack.EMPTY || InventoryDrink.extractItem(0, 1, true) == ItemStack.EMPTY))
+				ITeaTableRecipe recipeIn = new TeaTableRecipe(leaf, NonNullListHelper.createNonNullList(tool), cup, NonNullListHelper.createNonNullList(sugar), ItemStack.EMPTY);
+				ITeaTableRecipe recipeUse = new TeaTableRecipe(ItemStack.EMPTY, NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY, NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY);
+				for (ITeaTableRecipe recipe : RecipeRegister.managerTeaTable.getRecipes())
 				{
-					boolean sugar = teaLeaf.needSugar(drinkName);
-					int toolKind = teaLeaf.getToolType(drinkName);	// 0: Null, 1: Amount, 2:Damage, 3:Bucket
-					int waterRemain = ((ItemWaterPot) water.getItem()).getRemainWater(water);
-					int toolRemain;
-					switch (toolKind)
+					if (recipe.equals(recipeIn))
 					{
-						case 1:
-							toolRemain = InventoryTool.getStackInSlot(0).getCount();
-							break;
-						case 2:
-							toolRemain = InventoryTool.getStackInSlot(0).getMaxDamage() - InventoryTool.getStackInSlot(0).getItemDamage() + 1;
-							break;
-						case 3:
-							toolRemain = 16;
-							break;
-						default:
-							toolRemain = 0;
+						recipeUse = recipe;
+						break;
 					}
-					int cc = 1;
-					int teaAmount = ((ItemTeaLeaf)InventoryLeaf.getStackInSlot(0).getItem()).getAmount();
-					if (!teaset)
+				}
+				if (recipeUse.getOutput() == ItemStack.EMPTY)
+				{
+					recipeIn = new TeaTableRecipe(leaf, NonNullListHelper.createNonNullList(ItemStack.EMPTY), cup, NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY);
+					for (ITeaTableRecipe recipe : RecipeRegister.managerTeaTable.getRecipes())
 					{
-						int kettleCapacity = ((EmptyKettle)Block.getBlockFromItem(cup.getItem())).getKettleName() == "porcelain_kettle" ? 4 : 8;
-						cc =getMin(waterRemain, kettleCapacity, InventoryLeaf.getStackInSlot(0).getCount() / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != ItemStack.EMPTY ? InventorySugar.getStackInSlot(0).getCount() / 3 : 0 : 32767);
+						if (recipe.equals(recipeIn))
+						{
+							recipeUse = recipe;
+							break;
+						}
+					}
+				}
+				if (recipeUse.getOutput().isEmpty() || !InventoryDrink.insertItem(0, recipeUse.getOutput(), true).isEmpty())
+				{
+					this.teaTime = 0;
+					this.markDirty();
+					return;
+				}
+				tool = InventoryTool.extractItem(0, 1, true).copy();
+				int waterRemain = ((ItemWaterPot) water.getItem()).getRemainWater(water);
+				boolean needSugar = recipeUse.getSugarInput().get(0) != ItemStack.EMPTY;
+				int sugars = 0;
+				if (needSugar)
+				{
+					sugars = InventorySugar.getStackInSlot(0).copy().getCount();
+				}
+				boolean isKettle = Block.getBlockFromItem(cup.getItem()) instanceof EmptyKettle;
+				int capacity = isKettle ? ((EmptyKettle)Block.getBlockFromItem(cup.getItem())).getKettleName() == "porcelain_kettle" ? 4 : 8 : 1;
+				boolean needTool = recipeUse.getToolInput().get(0) != ItemStack.EMPTY;
+				int toolRemain = 0;
+				int toolType = 0; // 0: Null, 1: Amount, 2:Damage, 3:Bucket
+				if (needTool)
+				{
+					if (tool.getMaxDamage() != 0)
+					{
+						toolRemain = tool.getMaxDamage() - tool.getItemDamage() + 1;
+						toolType = 2;
+					}
+					else if (tool.getMaxStackSize() == 1)
+					{
+						toolRemain = 16;
+						toolType = 3;
 					}
 					else
 					{
-						cc =getMin(waterRemain, 1, InventoryLeaf.getStackInSlot(0).getCount() / teaAmount, toolKind != 0, toolRemain, sugar, sugar ? InventorySugar.getStackInSlot(0) != ItemStack.EMPTY ? InventorySugar.getStackInSlot(0).getCount() / 3 : 0 : 32767);
+						toolRemain = InventoryTool.getStackInSlot(0).copy().getCount();
+						toolType = 1;
 					}
-					if (cc != 0)
-					{
-						this.teaTime++;
-					}
-					else
-					{
-						this.teaTime = 0;
-					}
-					if (teaTime >= 400)
-					{
-						if (teaset)
-						{
-							InventoryDrink.insertItem(0, new ItemStack(Item.getByNameOrId(TeaStory.MODID + ":" + drinkName), 1, cup.getMetadata()), false);
-						}
-						else
-						{
-							if (cc > 4)
-							{
-								InventoryDrink.insertItem(0, new ItemStack(Block.getBlockFromName(TeaStory.MODID + ":" + drinkName + "_" + ((EmptyKettle)Block.getBlockFromItem(cup.getItem())).getKettleName() + String.valueOf((cc - 1) / 4 + 1)), 1, ((3 - (cc - 1) % 4)) << 2), false);
-							}
-							else
-							{
-								InventoryDrink.insertItem(0, new ItemStack(Block.getBlockFromName(TeaStory.MODID + ":" + drinkName + "_" + ((EmptyKettle)Block.getBlockFromItem(cup.getItem())).getKettleName()), 1, (4 - cc) << 2), false);
-							}
-						}
-						InventoryWater.setStackInSlot(0, ((ItemWaterPot) InventoryWater.getStackInSlot(0).getItem()).getNext(InventoryWater.getStackInSlot(0), cc));
-						InventoryLeaf.extractItem(0, teaAmount * cc, false);
-						InventoryCup.extractItem(0, 1, false);
-						if (toolKind != 0)
-						{
-							if (toolKind == 1)
-							{
-								InventoryTool.extractItem(0, cc, false);
-							}
-							else if (toolKind == 2)
-							{
-								if (InventoryTool.getStackInSlot(0).getItemDamage() + cc <= InventoryTool.getStackInSlot(0).getMaxDamage())
-								{
-									InventoryTool.setStackInSlot(0, new ItemStack(InventoryTool.getStackInSlot(0).getItem(), 1, InventoryTool.getStackInSlot(0).getItemDamage() + cc));
-								}
-								else
-								{
-									InventoryTool.extractItem(0, 1, false);
-								}
-							}
-							else if (toolKind == 3)
-							{
-								InventoryTool.setStackInSlot(0, InventoryTool.getStackInSlot(0).getItem().getContainerItem(InventoryTool.getStackInSlot(0)));
-							}
-						}
-						if (sugar)
-						{
-							InventorySugar.extractItem(0, cc * 3, false);
-						}
-						this.teaTime = 0;
-					}
+				}
+				int cc = 0;
+				int teaAmount = InventoryLeaf.getStackInSlot(0).copy().getCount() / recipeUse.getTeaLeafInput().copy().getCount();
+				cc =getMin(waterRemain, capacity, teaAmount, needTool, toolRemain, needSugar, sugars);
+				if (cc >= 0)
+				{
+					this.teaTime++;
 				}
 				else
 				{
+					this.teaTime = 0;
+				}
+				if (teaTime >= 400)
+				{
+					if (isKettle)
+					{
+						ItemStack kettle = recipeUse.getOutput().copy();
+						kettle.setItemDamage(capacity - cc);
+						InventoryDrink.insertItem(0, kettle, false);
+					}
+					else
+					{
+						InventoryDrink.insertItem(0, recipeUse.getOutput().copy(), false);
+					}
+					InventoryLeaf.extractItem(0, cc * recipeUse.getTeaLeafInput().copy().getCount(), false);
+					InventoryCup.extractItem(0, 1, false);
+					if (needSugar)
+					{
+						InventorySugar.extractItem(0, cc * 3, false);
+					}
+					if (needTool)
+					{
+						if (toolType == 1)
+						{
+							InventoryTool.extractItem(0, cc, false);
+						}
+						else if (toolType == 2)
+						{
+							if (InventoryTool.getStackInSlot(0).copy().getItemDamage() + cc <= InventoryTool.getStackInSlot(0).copy().getMaxDamage())
+							{
+								InventoryTool.setStackInSlot(0, new ItemStack(InventoryTool.getStackInSlot(0).copy().getItem(), 1, InventoryTool.getStackInSlot(0).copy().getItemDamage() + cc));
+							}
+							else
+							{
+								InventoryTool.extractItem(0, 1, false);
+							}
+						}
+						else if (toolType == 3)
+						{
+							InventoryTool.setStackInSlot(0, InventoryTool.getStackInSlot(0).getItem().getContainerItem(InventoryTool.getStackInSlot(0)));
+						}
+					}
+					InventoryWater.setStackInSlot(0, ((ItemWaterPot) InventoryWater.getStackInSlot(0).getItem()).getNext(InventoryWater.getStackInSlot(0), cc));
 					this.teaTime = 0;
 				}
 			}
@@ -215,16 +241,16 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 		}
 	}
 	
-	public static int getMin(int hotWater, int kettleCapacity, int teaLeaf, boolean tool, int toolRemain, boolean sugar, int sugars)
+	public static int getMin(int hotWater, int capacity, int teaLeaf, boolean tool, int toolRemain, boolean sugar, int sugars)
 	{
-		int min = Math.min(hotWater, Math.min(kettleCapacity, teaLeaf));
+		int min = Math.min(hotWater, Math.min(capacity, teaLeaf));
 		if (tool)
 		{
 			min = Math.min(min, toolRemain);
 		}
 		if (sugar)
 		{
-			min = Math.min(min, sugars);
+			min = Math.min(min, sugars/3);
 		}
 		return min;
 	}

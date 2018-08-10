@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
-import roito.teastory.block.BlockLoader;
+import roito.teastory.block.BlockRegister;
 import roito.teastory.config.ConfigMain;
-import roito.teastory.potion.PotionLoader;
+import roito.teastory.potion.PotionRegister;
 
 public class MilkTea extends ItemTeaDrink
 {
@@ -34,9 +34,9 @@ public class MilkTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		if (ConfigMain.useTeaResidueAsBoneMeal)
+		if (ConfigMain.general.useTeaResidueAsBoneMeal)
 		{
-			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));
+			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemRegister.tea_residue, 1, 1));
 		}
 		Collection<PotionEffect> effectList = entityplayer.getActivePotionEffects();
 		List<PotionEffect> list = new ArrayList<>();
@@ -52,8 +52,8 @@ public class MilkTea extends ItemTeaDrink
 			entityplayer.removePotionEffect(effect.getPotion());
 		}
         
-		entityplayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ConfigMain.milkTeaDrink_Time / (tier + 1), tier));
-		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.milkTeaDrink_Time / (tier + 1), 0));
+		entityplayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ConfigMain.drink.milkTeaDrink_Time / (tier + 1), tier));
+		entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.milkTeaDrink_Time / (tier + 1), 0));
 	}
 
 	@Override
@@ -62,15 +62,15 @@ public class MilkTea extends ItemTeaDrink
 		switch(meta)
 		{
 		case 2:
-			return BlockLoader.milktea_stone_cup;
+			return BlockRegister.milktea_stone_cup;
 		case 3:
-			return BlockLoader.milktea_glass_cup;
+			return BlockRegister.milktea_glass_cup;
 		case 4:
-			return BlockLoader.milktea_porcelain_cup;
+			return BlockRegister.milktea_porcelain_cup;
 		case 5:
-			return BlockLoader.milktea_zisha_cup;
+			return BlockRegister.milktea_zisha_cup;
 		default:
-			return BlockLoader.milktea_wood_cup;
+			return BlockRegister.milktea_wood_cup;
 		}
 	}
 }

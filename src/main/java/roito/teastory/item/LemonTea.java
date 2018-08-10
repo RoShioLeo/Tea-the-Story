@@ -11,9 +11,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
-import roito.teastory.block.BlockLoader;
+import roito.teastory.block.BlockRegister;
 import roito.teastory.config.ConfigMain;
-import roito.teastory.potion.PotionLoader;
+import roito.teastory.potion.PotionRegister;
 
 public class LemonTea extends ItemTeaDrink
 {
@@ -34,16 +34,16 @@ public class LemonTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
-		if (ConfigMain.useTeaResidueAsBoneMeal)
+		if (ConfigMain.general.useTeaResidueAsBoneMeal)
 		{
-			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemLoader.tea_residue, 1, 1));;
+			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemRegister.tea_residue, 1, 1));;
 		}
 		if (entityplayer.isBurning())
 		{
 			entityplayer.extinguish();
 		}
-		entityplayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ConfigMain.lemonTeaDrink_Time / (tier + 1), tier));
-		entityplayer.addPotionEffect(new PotionEffect(PotionLoader.PotionExcitement, ConfigMain.lemonTeaDrink_Time / (tier + 1), 0));
+		entityplayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ConfigMain.drink.lemonTeaDrink_Time / (tier + 1), tier));
+		entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.lemonTeaDrink_Time / (tier + 1), 0));
 		for (int x= -1 - tier; x<=1 + tier; x++)
 		{
 			for (int y= 0; y<=2 + 2 * tier; y++)
@@ -69,15 +69,15 @@ public class LemonTea extends ItemTeaDrink
 		switch(meta)
 		{
 		case 2:
-			return BlockLoader.lemontea_stone_cup;
+			return BlockRegister.lemontea_stone_cup;
 		case 3:
-			return BlockLoader.lemontea_glass_cup;
+			return BlockRegister.lemontea_glass_cup;
 		case 4:
-			return BlockLoader.lemontea_porcelain_cup;
+			return BlockRegister.lemontea_porcelain_cup;
 		case 5:
-			return BlockLoader.lemontea_zisha_cup;
+			return BlockRegister.lemontea_zisha_cup;
 		default:
-			return BlockLoader.lemontea_wood_cup;
+			return BlockRegister.lemontea_wood_cup;
 		}
 	}
 }

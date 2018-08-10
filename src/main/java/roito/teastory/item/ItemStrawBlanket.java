@@ -13,15 +13,15 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import roito.teastory.block.BlockLoader;
+import roito.teastory.block.BlockRegister;
 import roito.teastory.block.StrawBlanket;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class ItemStrawBlanket extends TSItem
 {
 	public ItemStrawBlanket()
 	{
-		super("item_straw_blanket", 64, CreativeTabsLoader.tabRice);
+		super("item_straw_blanket", 64, CreativeTabsRegister.tabRice);
 	}
 	
 	@Override
@@ -59,7 +59,7 @@ public class ItemStrawBlanket extends TSItem
 
                 if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isTopSolid() && worldIn.getBlockState(blockpos.down()).isFullCube())
                 {
-                    IBlockState iblockstate1 = BlockLoader.straw_blanket.getDefaultState().withProperty(StrawBlanket.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockHorizontal.FACING, enumfacing).withProperty(StrawBlanket.PART, StrawBlanket.EnumPartType.FOOT);
+                    IBlockState iblockstate1 = BlockRegister.straw_blanket.getDefaultState().withProperty(StrawBlanket.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockHorizontal.FACING, enumfacing).withProperty(StrawBlanket.PART, StrawBlanket.EnumPartType.FOOT);
 
                     if (worldIn.setBlockState(pos, iblockstate1, 11))
                     {

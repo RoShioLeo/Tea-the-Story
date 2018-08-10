@@ -1,6 +1,7 @@
 package roito.teastory.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
@@ -10,33 +11,30 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 import roito.teastory.item.ItemCup;
+import roito.teastory.tileentity.TileEntityKettle;
 
-public class FullKettle extends Kettle
+public class FullKettle extends Kettle implements ITileEntityProvider
 {
 	private String drink;
 	private String kettleKind;
-	private String nextKettle;
-	public boolean full;
-	public FullKettle(String kettleKind, String drink, String nextKettle, boolean tabs, boolean a2)
+	public FullKettle(String kettleKind, String drink, String nextKettle)
 	{
-		super(a2 ? drink + "_" + kettleKind + "2" : drink + "_" + kettleKind, Material.ROCK);
+		super(drink + "_" + kettleKind, Material.ROCK);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(CAPACITY, 0));
-		if (tabs)
-		{
-			this.setCreativeTab(CreativeTabsLoader.tabDrink);
-		}
+		this.setCreativeTab(CreativeTabsRegister.tabDrink);
 		this.drink = drink;
-		this.full = tabs;
 		this.kettleKind = kettleKind;
-		this.nextKettle = nextKettle;
 	}
 	
 	public int getMaxCapacity()
@@ -44,9 +42,9 @@ public class FullKettle extends Kettle
 		return ((EmptyKettle) Block.getBlockFromName(TeaStory.MODID + ":" + "empty_" + kettleKind)).getMaxCapacity();
 	}
 	
-	public Block getNextKettle()
+	public Block getEmptyKettle()
 	{
-		return Block.getBlockFromName(TeaStory.MODID + ":" + nextKettle);
+		return Block.getBlockFromName(TeaStory.MODID + ":" + "empty_" + kettleKind);
 	}
 
 	@Override
@@ -69,14 +67,14 @@ public class FullKettle extends Kettle
 					}
 					int meta = playerIn.getHeldItem(hand).getItemDamage();
 					ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(this.getDrink(this), 1, meta));
-					int meta2 = getMetaFromState(worldIn.getBlockState(pos));
-					if ((meta2 >> 2) == 3)
+					if (state.getValue(CAPACITY) >= getMaxCapacity() - 1)
 					{
-						worldIn.setBlockState(pos, getNextKettle().getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)));
+						worldIn.setBlockState(pos, getEmptyKettle().getDefaultState().withProperty(FACING, state.getValue(FACING)));
 					}
 					else
 					{
-						worldIn.setBlockState(pos, this.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)).withProperty(CAPACITY, worldIn.getBlockState(pos).getValue(CAPACITY).intValue() + 1));
+						TileEntity tileentity = worldIn.getTileEntity(pos);
+						((TileEntityKettle)tileentity).setCapacity(state.getValue(CAPACITY) + 1);
 					}
 					return true;
 				}
@@ -100,33 +98,56 @@ public class FullKettle extends Kettle
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		EnumFacing facing = EnumFacing.getHorizontal(meta & 3);
-		int cc = Integer.valueOf(meta >> 2);
-		return this.getDefaultState().withProperty(FACING, facing).withProperty(CAPACITY, cc);
+		EnumFacing facing = EnumFacing.getHorizontal(meta);
+		return this.getDefaultState().withProperty(FACING, facing);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		int facing = state.getValue(FACING).getHorizontalIndex();
-		int cc = state.getValue(CAPACITY).intValue() << 2;
-		return cc | facing;
+		return state.getValue(FACING).getHorizontalIndex();
 	}
 
 	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return this.getMetaFromState(state) & 12;
+		return state.getValue(CAPACITY);
 	}
 	
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
-		int cc = Integer.valueOf(placer.getHeldItem(hand).getItemDamage() >> 2);
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(CAPACITY, cc);
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(CAPACITY, placer.getHeldItem(hand).getItemDamage());
     }
+	
+	public void setState(int cc, World worldIn, BlockPos pos)
+	{
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		TileEntity tileentity = worldIn.getTileEntity(pos);
 
-	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-	public static final PropertyInteger CAPACITY = PropertyInteger.create("capacity", 0, 3);
+		worldIn.setBlockState(pos, this.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(CAPACITY, cc));
+
+		if (tileentity != null)
+		{
+			tileentity.validate();
+			worldIn.setTileEntity(pos, tileentity);
+		}
+	}
+	
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta)
+	{
+		return new TileEntityKettle();
+	}
+	
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState state)
+    {
+		TileEntityKettle te = new TileEntityKettle();
+		te.setCapacity(state.getValue(CAPACITY));
+		return te;
+    }
+	
+	public static final PropertyInteger CAPACITY = PropertyInteger.create("capacity", 0, 7);
 }
 

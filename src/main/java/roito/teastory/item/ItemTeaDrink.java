@@ -36,7 +36,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 import toughasnails.api.stat.capability.ITemperature;
 import toughasnails.api.stat.capability.IThirst;
 import toughasnails.api.temperature.Temperature;
@@ -50,7 +50,7 @@ public class ItemTeaDrink extends ItemFood implements IDrink
 	public ItemTeaDrink(String name)
 	{
 		super(1, false);
-		this.setCreativeTab(CreativeTabsLoader.tabDrink);
+		this.setCreativeTab(CreativeTabsRegister.tabDrink);
 		this.setAlwaysEdible();
 		this.setMaxStackSize(4);
 		this.setHasSubtypes(true);
@@ -192,11 +192,11 @@ public class ItemTeaDrink extends ItemFood implements IDrink
         
 		if (stack.getCount() > 1)
 		{
-			ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemLoader.cup, 1, stack.getItemDamage()));
+			ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemRegister.cup, 1, stack.getItemDamage()));
 			stack.shrink(1);
 			return stack;
 		}
-		return new ItemStack(ItemLoader.cup, 1, stack.getItemDamage());
+		return new ItemStack(ItemRegister.cup, 1, stack.getItemDamage());
 	}
 	
 	@Optional.Method(modid = "toughasnails")

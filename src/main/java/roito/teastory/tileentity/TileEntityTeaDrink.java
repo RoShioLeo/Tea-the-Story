@@ -5,7 +5,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import roito.teastory.block.BlockLoader;
+import roito.teastory.block.BlockRegister;
 import roito.teastory.item.BlackTea;
 import roito.teastory.item.GreenTea;
 import roito.teastory.item.LemonTea;
@@ -20,7 +20,8 @@ public class TileEntityTeaDrink extends TileEntity
 {
 	protected int drunk = 0;
 
-	public int getDrink() {
+	public int getDrink()
+	{
 		return this.drunk;
 	}
 
@@ -73,19 +74,19 @@ public class TileEntityTeaDrink extends TileEntity
 			switch (meta)
 			{
 			case 0:
-				world.setBlockState(pos, BlockLoader.wood_cup.getDefaultState());
+				world.setBlockState(pos, BlockRegister.wood_cup.getDefaultState());
 				break;
 			case 2:
-				world.setBlockState(pos, BlockLoader.stone_cup.getDefaultState());
+				world.setBlockState(pos, BlockRegister.stone_cup.getDefaultState());
 				break;
 			case 3:
-				world.setBlockState(pos, BlockLoader.glass_cup.getDefaultState());
+				world.setBlockState(pos, BlockRegister.glass_cup.getDefaultState());
 				break;
 			case 4:
-				world.setBlockState(pos, BlockLoader.porcelain_cup.getDefaultState());
+				world.setBlockState(pos, BlockRegister.porcelain_cup.getDefaultState());
 				break;
 			case 5:
-				world.setBlockState(pos, BlockLoader.zisha_cup.getDefaultState());
+				world.setBlockState(pos, BlockRegister.zisha_cup.getDefaultState());
 				break;
 			}
 			world.playSound(player, pos, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);

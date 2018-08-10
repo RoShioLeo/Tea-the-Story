@@ -4,7 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
-import roito.teastory.common.CreativeTabsLoader;
+import roito.teastory.common.CreativeTabsRegister;
 
 public class EmptyKettle extends Kettle
 {
@@ -14,7 +14,7 @@ public class EmptyKettle extends Kettle
 	{
 		super("empty_" + name, Material.ROCK);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		this.setCreativeTab(CreativeTabsLoader.tabDrink);
+		this.setCreativeTab(CreativeTabsRegister.tabDrink);
 		this.kettle = name;
 		this.max = maxCapacity;
 	}
