@@ -4,9 +4,9 @@ import net.minecraft.item.ItemStack;
 
 public interface ITeaStoveRecipe
 {
-	ItemStack getInput();
+    ItemStack getInput();
 
-	ItemStack getOutput();
+    ItemStack getOutput();
 
-	Boolean NeedWater();
+    Boolean NeedWater();
 }

@@ -7,8 +7,8 @@ import roito.teastory.item.ItemRegister;
 
 public class SeedDrops
 {
-	public SeedDrops()
-	{
-		MinecraftForge.addGrassSeed(new ItemStack(ItemRegister.xian_rice_seeds), ConfigMain.general.riceSeedsDropWeight);
-	}
+    public SeedDrops()
+    {
+        MinecraftForge.addGrassSeed(new ItemStack(ItemRegister.xian_rice_seeds), ConfigMain.general.riceSeedsDropWeight);
+    }
 }

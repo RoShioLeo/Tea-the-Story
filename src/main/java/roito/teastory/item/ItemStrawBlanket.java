@@ -19,23 +19,21 @@ import roito.teastory.common.CreativeTabsRegister;
 
 public class ItemStrawBlanket extends TSItem
 {
-	public ItemStrawBlanket()
-	{
-		super("item_straw_blanket", 64, CreativeTabsRegister.tabRice);
-	}
-	
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public ItemStrawBlanket()
+    {
+        super("item_straw_blanket", 64, CreativeTabsRegister.tabRice);
+    }
+
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
             return EnumActionResult.SUCCESS;
-        }
-        else if (facing != EnumFacing.UP)
+        } else if (facing != EnumFacing.UP)
         {
             return EnumActionResult.FAIL;
-        }
-        else
+        } else
         {
             IBlockState iblockstate = worldIn.getBlockState(pos);
             Block block = iblockstate.getBlock();
@@ -68,16 +66,14 @@ public class ItemStrawBlanket extends TSItem
                     }
 
                     SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, playerIn);
-                    worldIn.playSound((EntityPlayer)null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                    worldIn.playSound((EntityPlayer) null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                     itemstack.shrink(1);
                     return EnumActionResult.SUCCESS;
-                }
-                else
+                } else
                 {
                     return EnumActionResult.FAIL;
                 }
-            }
-            else
+            } else
             {
                 return EnumActionResult.FAIL;
             }

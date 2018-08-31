@@ -1,7 +1,6 @@
 package roito.teastory.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
@@ -22,129 +21,126 @@ import roito.teastory.tileentity.TileEntityTeaTable;
 
 public class ContainerTeaTable extends Container
 {
-	public TileEntityTeaTable tileEntity;
-	private IItemHandler toolItem;
-	private IItemHandler sugarItem;
-	private IItemHandler waterItem;
-	private IItemHandler leafItem;
-	private IItemHandler cupItem;
-	private IItemHandler drinkItem;
-	protected int teaTime = 0;
-	
-	public ContainerTeaTable(EntityPlayer player, TileEntity tileEntity)
-	{
-		super();
-		this.toolItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.EAST);
-		this.waterItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.SOUTH);
-		this.leafItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-		this.cupItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
-		this.sugarItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.WEST);
-		this.drinkItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
-		this.addSlotToContainer(new SlotItemHandler(this.toolItem, 0, 44, 24));
-		this.addSlotToContainer(new SlotItemHandler(this.sugarItem, 0, 62, 24)
-		{
-			@Override
-			public boolean isItemValid(ItemStack stack)
-			{
-				return OreDictionary.containsMatch(false, OreDictionary.getOres("listAllsugar"), stack);
-			}
-		});
-		this.addSlotToContainer(new SlotItemHandler(this.waterItem, 0, 44, 42)
-		{
-			@Override
-			public boolean isItemValid(ItemStack stack)
-			{
-				return stack.getItem() instanceof ItemWaterPot;
-			}
-		});
-		this.addSlotToContainer(new SlotItemHandler(this.leafItem, 0, 62, 42)
-		{
-			@Override
-			public boolean isItemValid(ItemStack stack)
-			{
-				return stack.getItem() instanceof ItemTeaLeaf;
-			}
-		});
-		this.addSlotToContainer(new SlotItemHandler(this.cupItem, 0, 116, 20)
-		{
-			@Override
-			public boolean isItemValid(ItemStack stack)
-			{
-				return stack.getItem() instanceof ItemCup || stack.getItem() instanceof ItemBlockEmptyKettle;
-			}
-		});
-		this.addSlotToContainer(new SlotItemHandler(this.drinkItem, 0, 116, 48)
-		{
-			@Override
-			public boolean isItemValid(ItemStack stack)
-			{
-				return false;
-			}
-		});
-		for (int i = 0; i < 3; ++i)
-		{
-			for (int j = 0; j < 9; ++j)
-			{
-				this.addSlotToContainer(new Slot(player.inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-			}
-		}
+    public TileEntityTeaTable tileEntity;
+    private IItemHandler toolItem;
+    private IItemHandler sugarItem;
+    private IItemHandler waterItem;
+    private IItemHandler leafItem;
+    private IItemHandler cupItem;
+    private IItemHandler drinkItem;
+    protected int teaTime = 0;
 
-		for (int i = 0; i < 9; ++i)
-		{
-			this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 142));
-		}
-		this.tileEntity = (TileEntityTeaTable) tileEntity;
-	}
-	
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
-	{
-		Slot slot = inventorySlots.get(index);
+    public ContainerTeaTable(EntityPlayer player, TileEntity tileEntity)
+    {
+        super();
+        this.toolItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.EAST);
+        this.waterItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.SOUTH);
+        this.leafItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+        this.cupItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
+        this.sugarItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.WEST);
+        this.drinkItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
+        this.addSlotToContainer(new SlotItemHandler(this.toolItem, 0, 44, 24));
+        this.addSlotToContainer(new SlotItemHandler(this.sugarItem, 0, 62, 24)
+        {
+            @Override
+            public boolean isItemValid(ItemStack stack)
+            {
+                return OreDictionary.containsMatch(false, OreDictionary.getOres("listAllsugar"), stack);
+            }
+        });
+        this.addSlotToContainer(new SlotItemHandler(this.waterItem, 0, 44, 42)
+        {
+            @Override
+            public boolean isItemValid(ItemStack stack)
+            {
+                return stack.getItem() instanceof ItemWaterPot;
+            }
+        });
+        this.addSlotToContainer(new SlotItemHandler(this.leafItem, 0, 62, 42)
+        {
+            @Override
+            public boolean isItemValid(ItemStack stack)
+            {
+                return stack.getItem() instanceof ItemTeaLeaf;
+            }
+        });
+        this.addSlotToContainer(new SlotItemHandler(this.cupItem, 0, 116, 20)
+        {
+            @Override
+            public boolean isItemValid(ItemStack stack)
+            {
+                return stack.getItem() instanceof ItemCup || stack.getItem() instanceof ItemBlockEmptyKettle;
+            }
+        });
+        this.addSlotToContainer(new SlotItemHandler(this.drinkItem, 0, 116, 48)
+        {
+            @Override
+            public boolean isItemValid(ItemStack stack)
+            {
+                return false;
+            }
+        });
+        for (int i = 0; i < 3; ++i)
+        {
+            for (int j = 0; j < 9; ++j)
+            {
+                this.addSlotToContainer(new Slot(player.inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+            }
+        }
 
-		if (slot == null || !slot.getHasStack())
-		{
-			return ItemStack.EMPTY;
-		}
+        for (int i = 0; i < 9; ++i)
+        {
+            this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 142));
+        }
+        this.tileEntity = (TileEntityTeaTable) tileEntity;
+    }
 
-		ItemStack newStack = slot.getStack(), oldStack = newStack.copy();
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    {
+        Slot slot = inventorySlots.get(index);
 
-		boolean isMerged = false;
+        if (slot == null || !slot.getHasStack())
+        {
+            return ItemStack.EMPTY;
+        }
 
-		if (index >= 0 && index < 6)
-		{
-			isMerged = mergeItemStack(newStack, 6, 42, true);
-		}
-		else if (index >= 6 && index < 33)
-		{
-			isMerged = mergeItemStack(newStack, 1, 5, false)
-					|| mergeItemStack(newStack, 33, 42, false);
-		}
-		else if (index >= 33 && index < 42)
-		{
-			isMerged = mergeItemStack(newStack, 1, 5, false)
-					|| mergeItemStack(newStack, 6, 33, false);
-		}
+        ItemStack newStack = slot.getStack(), oldStack = newStack.copy();
 
-		if (!isMerged)
-		{
-			return ItemStack.EMPTY;
-		}
+        boolean isMerged = false;
 
-		if (newStack.getCount() == 0)
-		{
-			slot.putStack(ItemStack.EMPTY);
-		}
-		else
-		{
-			slot.onSlotChanged();
-		}
+        if (index >= 0 && index < 6)
+        {
+            isMerged = mergeItemStack(newStack, 6, 42, true);
+        } else if (index >= 6 && index < 33)
+        {
+            isMerged = mergeItemStack(newStack, 1, 5, false)
+                    || mergeItemStack(newStack, 33, 42, false);
+        } else if (index >= 33 && index < 42)
+        {
+            isMerged = mergeItemStack(newStack, 1, 5, false)
+                    || mergeItemStack(newStack, 6, 33, false);
+        }
 
-		slot.onTake(playerIn, newStack);
+        if (!isMerged)
+        {
+            return ItemStack.EMPTY;
+        }
 
-		return oldStack;
-	}
-	
-	@Override
+        if (newStack.getCount() == 0)
+        {
+            slot.putStack(ItemStack.EMPTY);
+        } else
+        {
+            slot.onSlotChanged();
+        }
+
+        slot.onTake(playerIn, newStack);
+
+        return oldStack;
+    }
+
+    @Override
     public void detectAndSendChanges()
     {
         super.detectAndSendChanges();
@@ -156,30 +152,30 @@ public class ContainerTeaTable extends Container
             i.sendWindowProperty(this, 0, this.teaTime);
         }
     }
-	
-	@SideOnly(Side.CLIENT)
+
+    @SideOnly(Side.CLIENT)
     @Override
     public void updateProgressBar(int id, int data)
     {
         super.updateProgressBar(id, data);
         switch (id)
         {
-        	case 0:
-        		this.teaTime = data;
-        		break;
-        	default:
-        		break;
+            case 0:
+                this.teaTime = data;
+                break;
+            default:
+                break;
         }
     }
-	
-	public int getTeaTime()
+
+    public int getTeaTime()
     {
         return this.teaTime;
     }
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer playerIn)
-	{
-		return playerIn.getDistanceSq(this.tileEntity.getPos()) <= 64;
-	}
+
+    @Override
+    public boolean canInteractWith(EntityPlayer playerIn)
+    {
+        return playerIn.getDistanceSq(this.tileEntity.getPos()) <= 64;
+    }
 }

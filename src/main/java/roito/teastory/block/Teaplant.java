@@ -1,15 +1,6 @@
 package roito.teastory.block;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockCrops;
-import net.minecraft.block.BlockFarmland;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -17,7 +8,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -26,71 +16,70 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import roito.teastory.TeaStory;
-import roito.teastory.config.ConfigMain;
 import roito.teastory.helper.EntironmentHelper;
 import roito.teastory.item.ItemRegister;
 
+import java.util.Random;
+
 public class Teaplant extends BlockBush implements IGrowable
 {
-	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
-	private static final AxisAlignedBB[] CROPS_AABB = new AxisAlignedBB[] {
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D), 
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), 
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.8125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.8125D, 1.0D), 
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), 
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), 
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), 
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), 
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
-	
-	public Teaplant()
-	{
-		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
-		this.setTickRandomly(true);
-        this.setCreativeTab((CreativeTabs)null);
-		this.setUnlocalizedName("teaplant");
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "teaplant"));
-		this.setHardness(0.0F);
+    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
+    private static final AxisAlignedBB[] CROPS_AABB = new AxisAlignedBB[]{
+            new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D),
+            new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D),
+            new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.8125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.8125D, 1.0D),
+            new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D),
+            new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D),
+            new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D),
+            new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D),
+            new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
+
+    public Teaplant()
+    {
+        this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
+        this.setTickRandomly(true);
+        this.setCreativeTab((CreativeTabs) null);
+        this.setUnlocalizedName("teaplant");
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, "teaplant"));
+        this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);
         this.disableStats();
-	}
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return CROPS_AABB[state.getValue(this.getAgeProperty()).intValue()];
     }
-	
-	protected PropertyInteger getAgeProperty()
+
+    protected PropertyInteger getAgeProperty()
     {
         return AGE;
     }
-	
-	@Override
-	protected BlockStateContainer createBlockState()
+
+    @Override
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {AGE});
+        return new BlockStateContainer(this, new IProperty[]{AGE});
     }
-	
-	@Override
-	protected boolean canSustainBush(IBlockState state)
+
+    @Override
+    protected boolean canSustainBush(IBlockState state)
     {
         return state.getBlock() instanceof BlockFarmland;
     }
-	
-	public int getMaxAge()
+
+    public int getMaxAge()
     {
         return 15;
     }
-	
-	protected int getAge(IBlockState state)
+
+    protected int getAge(IBlockState state)
     {
-        return ((Integer)state.getValue(this.getAgeProperty())).intValue();
+        return ((Integer) state.getValue(this.getAgeProperty())).intValue();
     }
 
     public IBlockState withAge(int age)
@@ -100,46 +89,45 @@ public class Teaplant extends BlockBush implements IGrowable
 
     public boolean isMaxAge(IBlockState state)
     {
-        return ((Integer)state.getValue(this.getAgeProperty())).intValue() >= this.getMaxAge();
+        return ((Integer) state.getValue(this.getAgeProperty())).intValue() >= this.getMaxAge();
     }
 
-	protected Item getSeed()
-	{
-		return ItemRegister.tea_seeds;
-	}
+    protected Item getSeed()
+    {
+        return ItemRegister.tea_seeds;
+    }
 
-	protected Item getCrop()
-	{
-		return ItemRegister.tea_leaf;
-	}
+    protected Item getCrop()
+    {
+        return ItemRegister.tea_leaf;
+    }
 
-	@Override
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-	{
-		if (worldIn.getLightFromNeighbors(pos.up()) >= 9 && worldIn.getBlockState(pos.down()).getBlock() instanceof BlockFarmland && worldIn.getBlockState(pos.down()).getValue(BlockFarmland.MOISTURE) == 7)
-		{
-			int i = state.getValue(AGE).intValue();
-			float temperature = worldIn.getBiome(pos).getTemperature(pos);
-			float f = getGrowthChance(this, worldIn, pos);
-			f = f * EntironmentHelper.getTeaPlantGrowPercent(temperature, pos.getY()) * 0.8F;
-			if (f != 0)
-			{
-				if (rand.nextInt((int)(25.0F / f) + 1) == 0)
-				{
-					if (i < 15)
-					{
-						worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
-					}
-					else
-					{
-						worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(7)), 2);
-					}
-				}
-			}
-		}
-	}
-	
-	protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        if (worldIn.getLightFromNeighbors(pos.up()) >= 9 && worldIn.getBlockState(pos.down()).getBlock() instanceof BlockFarmland && worldIn.getBlockState(pos.down()).getValue(BlockFarmland.MOISTURE) == 7)
+        {
+            int i = state.getValue(AGE).intValue();
+            float temperature = worldIn.getBiome(pos).getTemperature(pos);
+            float f = getGrowthChance(this, worldIn, pos);
+            f = f * EntironmentHelper.getTeaPlantGrowPercent(temperature, pos.getY()) * 0.8F;
+            if (f != 0)
+            {
+                if (rand.nextInt((int) (25.0F / f) + 1) == 0)
+                {
+                    if (i < 15)
+                    {
+                        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
+                    } else
+                    {
+                        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(7)), 2);
+                    }
+                }
+            }
+        }
+    }
+
+    protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)
     {
         float f = 1.0F;
         BlockPos blockpos = pos.down();
@@ -151,7 +139,7 @@ public class Teaplant extends BlockBush implements IGrowable
                 float f1 = 0.0F;
                 IBlockState iblockstate = worldIn.getBlockState(blockpos.add(i, 0, j));
 
-                if (iblockstate.getBlock().canSustainPlant(iblockstate, worldIn, blockpos.add(i, 0, j), net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable)blockIn))
+                if (iblockstate.getBlock().canSustainPlant(iblockstate, worldIn, blockpos.add(i, 0, j), net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable) blockIn))
                 {
                     f1 = 1.0F;
 
@@ -180,8 +168,7 @@ public class Teaplant extends BlockBush implements IGrowable
         if (flag && flag1)
         {
             f /= 2.0F;
-        }
-        else
+        } else
         {
             boolean flag2 = blockIn == worldIn.getBlockState(blockpos3.north()).getBlock() || blockIn == worldIn.getBlockState(blockpos4.north()).getBlock() || blockIn == worldIn.getBlockState(blockpos4.south()).getBlock() || blockIn == worldIn.getBlockState(blockpos3.south()).getBlock();
 
@@ -194,108 +181,107 @@ public class Teaplant extends BlockBush implements IGrowable
         return f;
     }
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-		if (!worldIn.isRemote)
-		{
-			switch(this.getMetaFromState(state))
-			{
-				case 8:
-					worldIn.setBlockState(pos, this.getStateFromMeta(10));
-					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getCrop(), playerIn.getRNG().nextInt(4) + 1)));
-					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemRegister.broken_tea, playerIn.getRNG().nextInt(4) + 1)));
-					return true;
-				case 9:
-					worldIn.setBlockState(pos, this.getStateFromMeta(10));
-					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getCrop(), playerIn.getRNG().nextInt(4) + 1)));
-					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemRegister.broken_tea, playerIn.getRNG().nextInt(4) + 1)));
-					return true;
-				case 14:
-					worldIn.setBlockState(pos, this.getStateFromMeta(7));
-					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getSeed(), playerIn.getRNG().nextInt(4) + 1)));
-					return true;
-				case 15:
-					worldIn.setBlockState(pos, this.getStateFromMeta(7));
-					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getSeed(), playerIn.getRNG().nextInt(4) + 1)));
-					return true;
-			}
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
+        if (!worldIn.isRemote)
+        {
+            switch (this.getMetaFromState(state))
+            {
+                case 8:
+                    worldIn.setBlockState(pos, this.getStateFromMeta(10));
+                    worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getCrop(), playerIn.getRNG().nextInt(4) + 1)));
+                    worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemRegister.broken_tea, playerIn.getRNG().nextInt(4) + 1)));
+                    return true;
+                case 9:
+                    worldIn.setBlockState(pos, this.getStateFromMeta(10));
+                    worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getCrop(), playerIn.getRNG().nextInt(4) + 1)));
+                    worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemRegister.broken_tea, playerIn.getRNG().nextInt(4) + 1)));
+                    return true;
+                case 14:
+                    worldIn.setBlockState(pos, this.getStateFromMeta(7));
+                    worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getSeed(), playerIn.getRNG().nextInt(4) + 1)));
+                    return true;
+                case 15:
+                    worldIn.setBlockState(pos, this.getStateFromMeta(7));
+                    worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getSeed(), playerIn.getRNG().nextInt(4) + 1)));
+                    return true;
+            }
+            return false;
+        } else
+        {
+            return true;
+        }
+    }
 
-	@Override
-	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-		drops.add(new ItemStack(this.getSeed(), 1));
-		int age = state.getValue(AGE).intValue();
-		if (age >= 4 && age <= 7)
-		{
-			drops.add(new ItemStack(ItemRegister.broken_tea, 4));
-		}
-		if (age >= 8 && age <= 13)
-		{
-			drops.add(new ItemStack(this.getCrop(), 4));
-		}
-		if (age >= 14)
-		{
-			drops.add(new ItemStack(this.getSeed(), 4));
-		}
-	}
+        drops.add(new ItemStack(this.getSeed(), 1));
+        int age = state.getValue(AGE).intValue();
+        if (age >= 4 && age <= 7)
+        {
+            drops.add(new ItemStack(ItemRegister.broken_tea, 4));
+        }
+        if (age >= 8 && age <= 13)
+        {
+            drops.add(new ItemStack(this.getCrop(), 4));
+        }
+        if (age >= 14)
+        {
+            drops.add(new ItemStack(this.getSeed(), 4));
+        }
+    }
 
-	@Override
+    @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return this.getSeed();
     }
-	
-	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+
+    @Override
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
     {
         return new ItemStack(this.getSeed());
     }
-	
-	@Override
-	public net.minecraftforge.common.EnumPlantType getPlantType(net.minecraft.world.IBlockAccess world, BlockPos pos)
-	{
-		return net.minecraftforge.common.EnumPlantType.Crop;
-	}
-	
-	@Override
-	public IBlockState getStateFromMeta(int meta)
+
+    @Override
+    public net.minecraftforge.common.EnumPlantType getPlantType(net.minecraft.world.IBlockAccess world, BlockPos pos)
+    {
+        return net.minecraftforge.common.EnumPlantType.Crop;
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
     {
         return this.withAge(meta);
     }
-	
-	@Override
+
+    @Override
     public int getMetaFromState(IBlockState state)
     {
         return this.getAge(state);
     }
-	
-	@Override
-	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
-	{
-		return !this.isMaxAge(state);
-	}
 
-	@Override
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
-	{
-		return true;
-	}
+    @Override
+    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
+    {
+        return !this.isMaxAge(state);
+    }
 
-	@Override
-	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
-	{
-		this.grow(worldIn, pos, state);
-	}
-	
-	public void grow(World worldIn, BlockPos pos, IBlockState state)
+    @Override
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    {
+        this.grow(worldIn, pos, state);
+    }
+
+    public void grow(World worldIn, BlockPos pos, IBlockState state)
     {
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
         int j = this.getMaxAge();
@@ -307,8 +293,8 @@ public class Teaplant extends BlockBush implements IGrowable
 
         worldIn.setBlockState(pos, this.withAge(i), 2);
     }
-	
-	protected int getBonemealAgeIncrease(World worldIn)
+
+    protected int getBonemealAgeIncrease(World worldIn)
     {
         return 1;
     }

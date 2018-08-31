@@ -1,9 +1,5 @@
 package roito.teastory.block;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -19,12 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -33,9 +24,12 @@ import net.minecraft.world.World;
 import roito.teastory.TeaStory;
 import roito.teastory.item.ItemRegister;
 
+import javax.annotation.Nullable;
+import java.util.Random;
+
 public class StrawBlanket extends BlockHorizontal
 {
-	public static final PropertyEnum<StrawBlanket.EnumPartType> PART = PropertyEnum.<StrawBlanket.EnumPartType>create("part", StrawBlanket.EnumPartType.class);
+    public static final PropertyEnum<StrawBlanket.EnumPartType> PART = PropertyEnum.<StrawBlanket.EnumPartType>create("part", StrawBlanket.EnumPartType.class);
     public static final PropertyBool OCCUPIED = PropertyBool.create("occupied");
     protected static final AxisAlignedBB STRAWBLANKET_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
 
@@ -46,18 +40,17 @@ public class StrawBlanket extends BlockHorizontal
         this.setHardness(0.2F);
         this.disableStats();
         this.setUnlocalizedName("straw_blanket");
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "straw_blanket"));
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, "straw_blanket"));
         this.setDefaultState(this.blockState.getBaseState().withProperty(PART, StrawBlanket.EnumPartType.FOOT).withProperty(OCCUPIED, Boolean.valueOf(false)));
     }
-    
+
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
             return true;
-        }
-        else
+        } else
         {
             if (state.getValue(PART) != StrawBlanket.EnumPartType.HEAD)
             {
@@ -93,22 +86,19 @@ public class StrawBlanket extends BlockHorizontal
                     state = state.withProperty(OCCUPIED, Boolean.valueOf(true));
                     worldIn.setBlockState(pos, state, 4);
                     return true;
-                }
-                else
+                } else
                 {
                     if (entityplayer$sleepresult == EntityPlayer.SleepResult.NOT_POSSIBLE_NOW)
                     {
                         playerIn.sendMessage(new TextComponentTranslation("tile.bed.noSleep", new Object[0]));
-                    }
-                    else if (entityplayer$sleepresult == EntityPlayer.SleepResult.NOT_SAFE)
+                    } else if (entityplayer$sleepresult == EntityPlayer.SleepResult.NOT_SAFE)
                     {
                         playerIn.sendMessage(new TextComponentTranslation("tile.bed.notSafe", new Object[0]));
                     }
 
                     return true;
                 }
-            }
-            else
+            } else
             {
                 worldIn.setBlockToAir(pos);
                 BlockPos blockpos = pos.offset(state.getValue(FACING).getOpposite());
@@ -118,7 +108,7 @@ public class StrawBlanket extends BlockHorizontal
                     worldIn.setBlockToAir(blockpos);
                 }
 
-                worldIn.newExplosion((Entity)null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 5.0F, true, true);
+                worldIn.newExplosion((Entity) null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 5.0F, true, true);
                 return true;
             }
         }
@@ -161,8 +151,7 @@ public class StrawBlanket extends BlockHorizontal
             {
                 worldIn.setBlockToAir(pos);
             }
-        }
-        else if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock() != this)
+        } else if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock() != this)
         {
             worldIn.setBlockToAir(pos);
 
@@ -185,7 +174,7 @@ public class StrawBlanket extends BlockHorizontal
     {
         return STRAWBLANKET_AABB;
     }
-    
+
     @Nullable
     public static BlockPos getSafeExitLocation(World worldIn, BlockPos pos, int tries)
     {
@@ -248,13 +237,13 @@ public class StrawBlanket extends BlockHorizontal
     {
         return new ItemStack(ItemRegister.straw_blanket);
     }
-    
+
     @Override
     public boolean isBed(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity player)
     {
         return true;
     }
-    
+
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
     {
@@ -324,9 +313,9 @@ public class StrawBlanket extends BlockHorizontal
     }
 
     @Override
-	protected BlockStateContainer createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {FACING, PART, OCCUPIED});
+        return new BlockStateContainer(this, new IProperty[]{FACING, PART, OCCUPIED});
     }
 
     public static enum EnumPartType implements IStringSerializable
@@ -342,13 +331,13 @@ public class StrawBlanket extends BlockHorizontal
         }
 
         @Override
-		public String toString()
+        public String toString()
         {
             return this.name;
         }
 
         @Override
-		public String getName()
+        public String getName()
         {
             return this.name;
         }

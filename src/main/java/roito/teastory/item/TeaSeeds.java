@@ -23,33 +23,32 @@ import java.util.List;
 
 public class TeaSeeds extends ItemSeeds
 {
-	public TeaSeeds()
-	{
-		super(BlockRegister.teaplant, Blocks.FARMLAND);
-		this.setUnlocalizedName("tea_seeds");
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_seeds"));
-		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
-	}
+    public TeaSeeds()
+    {
+        super(BlockRegister.teaplant, Blocks.FARMLAND);
+        this.setUnlocalizedName("tea_seeds");
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_seeds"));
+        this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
-	{
-		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-		{
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+        {
             tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.tea_seeds.height"));
             tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.tea_seeds.temperature"));
-		}
-		else
+        } else
             tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
-	}
-	
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    }
+
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-		if (super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS)
-		{
-			return EnumActionResult.SUCCESS;
-		}
-		return EnumActionResult.FAIL;
+        if (super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS)
+        {
+            return EnumActionResult.SUCCESS;
+        }
+        return EnumActionResult.FAIL;
     }
 }
