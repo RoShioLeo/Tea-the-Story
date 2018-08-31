@@ -1,11 +1,6 @@
 package roito.teastory.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.lwjgl.input.Keyboard;
-
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,10 +12,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
 import roito.teastory.common.CreativeTabsRegister;
 import roito.teastory.config.ConfigMain;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class TeaResidue extends TSItem
 {
@@ -35,10 +33,10 @@ public class TeaResidue extends TSItem
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.tea_residue"));
+            tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.tea_residue"));
 		}
 		else
-			tooltip.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+            tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
 	}
 
 	@Override

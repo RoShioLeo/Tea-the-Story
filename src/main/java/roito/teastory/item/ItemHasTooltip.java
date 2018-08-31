@@ -1,17 +1,15 @@
 package roito.teastory.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.lwjgl.input.Keyboard;
-
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemHasTooltip extends TSItem
 {
@@ -27,9 +25,9 @@ public class ItemHasTooltip extends TSItem
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip." + name));
+            tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip." + name));
 		}
 		else
-			tooltip.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+            tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
 	}
 }

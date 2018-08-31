@@ -1,29 +1,24 @@
 package roito.teastory.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.block.FullKettle;
-import roito.teastory.tileentity.TileEntityKettle;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemBlockFullKettle extends ItemBlock
 {
@@ -38,7 +33,7 @@ public class ItemBlockFullKettle extends ItemBlock
 		this.setNoRepair();
 		this.setRegistryName(block.getRegistryName());
 	}
-	
+
 	@Override
 	public boolean isEnchantable(ItemStack stack)
 	{
@@ -49,13 +44,13 @@ public class ItemBlockFullKettle extends ItemBlock
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		FullKettle kettle = (FullKettle) Block.getBlockFromItem(stack.getItem());
-		tooltip.add(TextFormatting.WHITE + I18n.translateToLocalFormatted("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - stack.getItemDamage(), kettle.getMaxCapacity()));
+        tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - stack.getItemDamage(), kettle.getMaxCapacity()));
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.kettle.tips"));
+            tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.kettle.tips"));
 		}
 		else
-			tooltip.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+            tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
 	}
 
 	public void pourTeaDrink(EntityPlayer player, ItemStack stack, int meta)

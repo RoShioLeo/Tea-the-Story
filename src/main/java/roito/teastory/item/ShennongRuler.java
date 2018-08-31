@@ -1,11 +1,6 @@
 package roito.teastory.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.lwjgl.input.Keyboard;
-
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,13 +15,16 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsRegister;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ShennongRuler extends ItemSword
 {
@@ -45,10 +43,10 @@ public class ShennongRuler extends ItemSword
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.shennong_ruler"));
+            tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.shennong_ruler"));
 		}
 		else
-			tooltip.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+            tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
 	}
 
 	@Override

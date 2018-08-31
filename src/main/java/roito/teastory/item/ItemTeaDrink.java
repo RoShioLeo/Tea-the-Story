@@ -1,15 +1,10 @@
 package roito.teastory.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -22,19 +17,14 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.items.ItemHandlerHelper;
+import org.lwjgl.input.Keyboard;
 import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsRegister;
 import toughasnails.api.stat.capability.ITemperature;
@@ -43,6 +33,9 @@ import toughasnails.api.temperature.Temperature;
 import toughasnails.api.temperature.TemperatureHelper;
 import toughasnails.api.thirst.IDrink;
 import toughasnails.api.thirst.ThirstHelper;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 @Optional.Interface(iface = "toughasnails.api.thirst.IDrink", modid = "toughasnails")
 public class ItemTeaDrink extends ItemFood implements IDrink
@@ -76,10 +69,10 @@ public class ItemTeaDrink extends ItemFood implements IDrink
 	{
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{
-			tooltip.add(TextFormatting.WHITE + I18n.translateToLocal("teastory.tooltip.cup"));
+            tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.cup"));
 		}
 		else
-			tooltip.add(TextFormatting.ITALIC + I18n.translateToLocal("teastory.tooltip.shiftfordetail"));
+            tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
 	}
 
 

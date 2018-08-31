@@ -2,8 +2,8 @@ package roito.teastory.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
 import roito.teastory.TeaStory;
 import roito.teastory.inventory.ContainerTeaTable;
 
@@ -47,7 +47,7 @@ public class GuiContainerTeaTable extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-    	String title = I18n.translateToLocal("teastory.container.tea_table");
+        String title = I18n.format("teastory.container.tea_table");
 		this.fontRenderer.drawString(title, (this.xSize - this.fontRenderer.getStringWidth(title)) / 2, 6, 0x404040);
     }
 }

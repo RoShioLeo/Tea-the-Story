@@ -1,21 +1,19 @@
 package roito.teastory.compat.waila;
 
-import java.util.List;
-
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaRegistrar;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import roito.teastory.block.BlockRegister;
 import roito.teastory.block.FullKettle;
+
+import java.util.List;
 
 public class WailaFullKettle implements IWailaDataProvider
 {
@@ -40,7 +38,7 @@ public class WailaFullKettle implements IWailaDataProvider
 	public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config)
 	{
 		FullKettle kettle = (FullKettle) accessor.getBlock();
-		currenttip.add(I18n.translateToLocalFormatted("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - itemStack.getItemDamage(), kettle.getMaxCapacity()));
+        currenttip.add(I18n.format("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - itemStack.getItemDamage(), kettle.getMaxCapacity()));
 		return currenttip;
 	}
 
