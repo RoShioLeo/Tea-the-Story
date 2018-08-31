@@ -181,7 +181,7 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 				int cc = 0;
 				int teaAmount = InventoryLeaf.getStackInSlot(0).copy().getCount() / recipeUse.getTeaLeafInput().copy().getCount();
 				cc =getMin(waterRemain, capacity, teaAmount, needTool, toolRemain, needSugar, sugars);
-				if (cc >= 0)
+				if (cc > 0)
 				{
 					this.teaTime++;
 				}

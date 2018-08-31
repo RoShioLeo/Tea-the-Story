@@ -42,6 +42,13 @@ public final class ConfigMain
 		@Config.RangeInt(min = 0, max = 1000)
 		public int lemonDropChance = 8;
 		
+		@Config.RequiresMcRestart
+		@Config.Comment("The relative probability of the seeds, where wheat seeds are 10.")
+		@Config.LangKey("teastory.config.general.riceweight")
+		@Config.Name("RiceSeedsDropWeight")
+		@Config.RangeInt(min = 0, max = 1000)
+		public int riceSeedsDropWeight = 5;
+		
 		@Config.Comment("Set it to false not to use tea residues as bone meal.")
 		@Config.LangKey("teastory.config.general.residues")
 		@Config.Name("UseTeaResidueAsBoneMeal")

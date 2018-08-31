@@ -8,6 +8,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -63,19 +64,17 @@ public class XianRiceSeedling extends BlockCrops
     }
 
 	@Override
-	public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-	{
-		java.util.List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
 		int age = state.getValue(AGE).intValue();
 		Random rand = world instanceof World ? ((World)world).rand : new Random();
 		if (age == 7)
 		{
-			ret.add(new ItemStack(this.getCrop(), 3));
+			drops.add(new ItemStack(this.getCrop(), 3));
 		}
 		else
 		{
-			ret.add(new ItemStack(ItemRegister.xian_rice_seeds));
+			drops.add(new ItemStack(ItemRegister.xian_rice_seeds));
 		}
-		return ret;
 	}
 }

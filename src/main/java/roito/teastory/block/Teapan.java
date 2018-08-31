@@ -19,6 +19,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -96,11 +97,9 @@ public class Teapan extends BlockContainer implements ITileEntityProvider
 	}
 
 	@Override
-	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
-	{
-		ArrayList drops = new ArrayList();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
 		drops.add(new ItemStack(BlockRegister.teapan, 1));
-		return drops;
 	}
 	
 	@Override

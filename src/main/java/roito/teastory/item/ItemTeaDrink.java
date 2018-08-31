@@ -104,7 +104,7 @@ public class ItemTeaDrink extends ItemFood implements IDrink
 		default:
 			name = "wood";
 		}
-		return super.getUnlocalizedName() + "." + name;
+		return super.getUnlocalizedName() + "_" + name;
 	}
 	
 	@Nullable

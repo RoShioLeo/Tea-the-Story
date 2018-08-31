@@ -65,11 +65,9 @@ public class TeaStove extends BlockContainer implements ITileEntityProvider
 	}
 
 	@Override
-	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
-	{
-		ArrayList drops = new ArrayList();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
 		drops.add(new ItemStack(BlockRegister.tea_stove, 1));
-		return drops;
 	}
 
 	@Override

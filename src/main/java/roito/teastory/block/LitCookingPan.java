@@ -14,6 +14,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -65,12 +66,10 @@ public class LitCookingPan extends BlockContainer
 	}
 	
 	@Override
-	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
-	{
-		ArrayList drops = new ArrayList();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
 		drops.add(new ItemStack(BlockRegister.tea_drying_pan, 1));
 		drops.add(new ItemStack(ItemRegister.washed_rice, 16));
-		return drops;
 	}
 	
 	@Override

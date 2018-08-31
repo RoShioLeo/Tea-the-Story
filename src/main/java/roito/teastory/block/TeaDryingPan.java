@@ -16,6 +16,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -69,6 +70,12 @@ public class TeaDryingPan extends Block
 	{
 		return TEADRYINGPAN_AABB;
 	}
+	
+	@Override
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+		drops.add(new ItemStack(BlockRegister.tea_drying_pan, 1));
+    }
 
 	@Override
 	public IBlockState getStateFromMeta(int step)
@@ -109,7 +116,7 @@ public class TeaDryingPan extends Block
 					worldIn.setBlockState(pos, BlockRegister.lit_tea_drying_pan.getDefaultState());
 					return true;
 				} 
-				else if ((playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice) && (playerIn.getHeldItem(hand).getCount() >= 8))
+				else if ((playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice) && (playerIn.getHeldItem(hand).getCount() >= 16))
 				{
 					if (!playerIn.capabilities.isCreativeMode)
 					{
@@ -119,7 +126,7 @@ public class TeaDryingPan extends Block
 					return true;
 				}
 			}
-			if (worldIn.isRemote && !playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice && playerIn.getHeldItem(hand).getCount() < 8)
+			if (worldIn.isRemote && !playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice && playerIn.getHeldItem(hand).getCount() < 16)
 			{
 				playerIn.sendMessage(new TextComponentTranslation("teastory.message.cooking_pan.notenough"));
 				return true;

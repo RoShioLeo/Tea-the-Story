@@ -22,6 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -228,24 +229,22 @@ public class Teaplant extends BlockBush implements IGrowable
 	}
 
 	@Override
-	public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-	{
-		java.util.List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
-		ret.add(new ItemStack(this.getSeed(), 1));
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+		drops.add(new ItemStack(this.getSeed(), 1));
 		int age = state.getValue(AGE).intValue();
 		if (age >= 4 && age <= 7)
 		{
-			ret.add(new ItemStack(ItemRegister.broken_tea, 4));
+			drops.add(new ItemStack(ItemRegister.broken_tea, 4));
 		}
 		if (age >= 8 && age <= 13)
 		{
-			ret.add(new ItemStack(this.getCrop(), 4));
+			drops.add(new ItemStack(this.getCrop(), 4));
 		}
 		if (age >= 14)
 		{
-			ret.add(new ItemStack(this.getSeed(), 4));
+			drops.add(new ItemStack(this.getSeed(), 4));
 		}
-		return ret;
 	}
 
 	@Override
@@ -311,6 +310,6 @@ public class Teaplant extends BlockBush implements IGrowable
 	
 	protected int getBonemealAgeIncrease(World worldIn)
     {
-        return MathHelper.getInt(worldIn.rand, 2, 5);
+        return 1;
     }
 }

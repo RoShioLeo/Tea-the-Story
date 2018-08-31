@@ -50,7 +50,7 @@ public class ItemCup extends TSItem
 		default: // 0
 			name = "wood";
 		}
-		return super.getUnlocalizedName() + "." + name;
+		return super.getUnlocalizedName() + "_" + name;
 	}
 
 	@Override
@@ -106,7 +106,6 @@ public class ItemCup extends TSItem
 				{
 					SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, player);
 					worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-					worldIn.playSound(player, pos, new SoundEvent(new ResourceLocation(TeaStory.MODID, "records.caichawuqu_folk")), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 					player.getHeldItem(hand).shrink(1);
 				}
 

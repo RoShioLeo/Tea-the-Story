@@ -1,8 +1,10 @@
 package roito.teastory.item;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -10,7 +12,9 @@ import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -155,21 +159,13 @@ public final class ItemRegister
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void registerRenders()
+	public static void initModels()
 	{
 		registerRender(tea_leaf);
 		registerRender(half_dried_tea);
 		registerRender(dried_tea);
-		registerRender(green_tea, 0, "green_tea_wood");
-		registerRender(green_tea, 2, "green_tea_stone");
-		registerRender(green_tea, 3, "green_tea_glass");
-		registerRender(green_tea, 4, "green_tea_porcelain");
-		registerRender(green_tea, 5, "green_tea_zisha");
-		registerRender(black_tea, 0, "black_tea_wood");
-		registerRender(black_tea, 2, "black_tea_stone");
-		registerRender(black_tea, 3, "black_tea_glass");
-		registerRender(black_tea, 4, "black_tea_porcelain");
-		registerRender(black_tea, 5, "black_tea_zisha");
+		registerRender(green_tea);
+		registerRender(black_tea);
 		registerRender(wet_tea);
 		registerRender(broken_tea);
 		registerRender(matcha_powder);
@@ -182,53 +178,16 @@ public final class ItemRegister
 		registerRender(oolong_tea_leaf);
 		registerRender(puer_tea_leaf);
 		registerRender(clay_cup);
-		registerRender(cup, 0, "cup_wood");
-		registerRender(cup, 2, "cup_stone");
-		registerRender(cup, 3, "cup_glass");
-		registerRender(cup, 4, "cup_porcelain");
-		registerRender(cup, 5, "cup_zisha");
+		registerRender(cup);
 		registerRender(tea_seeds);
-		registerRender(matcha_drink, 0, "matcha_drink_wood");
-		registerRender(matcha_drink, 2, "matcha_drink_stone");
-		registerRender(matcha_drink, 3, "matcha_drink_glass");
-		registerRender(matcha_drink, 4, "matcha_drink_porcelain");
-		registerRender(matcha_drink, 5, "matcha_drink_zisha");
-		registerRender(lemon_tea, 0, "lemon_tea_wood");
-		registerRender(lemon_tea, 2, "lemon_tea_stone");
-		registerRender(lemon_tea, 3, "lemon_tea_glass");
-		registerRender(lemon_tea, 4, "lemon_tea_porcelain");
-		registerRender(lemon_tea, 5, "lemon_tea_zisha");
-		registerRender(milk_tea, 0, "milk_tea_wood");
-		registerRender(milk_tea, 2, "milk_tea_stone");
-		registerRender(milk_tea, 3, "milk_tea_glass");
-		registerRender(milk_tea, 4, "milk_tea_porcelain");
-		registerRender(milk_tea, 5, "milk_tea_zisha");
-		registerRender(yellow_tea, 0, "yellow_tea_wood");
-		registerRender(yellow_tea, 2, "yellow_tea_stone");
-		registerRender(yellow_tea, 3, "yellow_tea_glass");
-		registerRender(yellow_tea, 4, "yellow_tea_porcelain");
-		registerRender(yellow_tea, 5, "yellow_tea_zisha");
-		registerRender(white_tea, 0, "white_tea_wood");
-		registerRender(white_tea, 2, "white_tea_stone");
-		registerRender(white_tea, 3, "white_tea_glass");
-		registerRender(white_tea, 4, "white_tea_porcelain");
-		registerRender(white_tea, 5, "white_tea_zisha");
-		registerRender(oolong_tea, 0, "oolong_tea_wood");
-		registerRender(oolong_tea, 2, "oolong_tea_stone");
-		registerRender(oolong_tea, 3, "oolong_tea_glass");
-		registerRender(oolong_tea, 4, "oolong_tea_porcelain");
-		registerRender(oolong_tea, 5, "oolong_tea_zisha");
-		registerRender(puer_tea, 0, "puer_tea_wood");
-		registerRender(puer_tea, 2, "puer_tea_stone");
-		registerRender(puer_tea, 3, "puer_tea_glass");
-		registerRender(puer_tea, 4, "puer_tea_porcelain");
-		registerRender(puer_tea, 5, "puer_tea_zisha");
-		registerRender(tea_residue, 0, "tea_residue_green");
-		registerRender(tea_residue, 1, "tea_residue_black");
-		registerRender(tea_residue, 2, "tea_residue_yellow");
-		registerRender(tea_residue, 3, "tea_residue_white");
-		registerRender(tea_residue, 4, "tea_residue_oolong");
-		registerRender(tea_residue, 5, "tea_residue_puer");
+		registerRender(matcha_drink);
+		registerRender(lemon_tea);
+		registerRender(milk_tea);
+		registerRender(yellow_tea);
+		registerRender(white_tea);
+		registerRender(oolong_tea);
+		registerRender(puer_tea);
+		registerRender(tea_residue);
 		registerRender(empty_tea_bag);
 		registerRender(green_tea_bag);
 		registerRender(black_tea_bag);
@@ -297,15 +256,23 @@ public final class ItemRegister
 	@SideOnly(Side.CLIENT)
 	private static void registerRender(Item item)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0,
-				new ModelResourceLocation(TeaStory.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
-	}
+		if (item.getHasSubtypes())
+        {
+            NonNullList<ItemStack> subItems = NonNullList.create();
+            item.getSubItems(item.getCreativeTab(), subItems);
+            for (ItemStack subItem : subItems)
+            {
+                String subItemName = item.getUnlocalizedName(subItem);
+                subItemName =  subItemName.substring(subItemName.indexOf(".") + 1);
 
-	@SideOnly(Side.CLIENT)
-	private static void registerRender(Item item, int meta, String file)
-	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta,
-				new ModelResourceLocation(TeaStory.MODID + ":" + file, "inventory"));
+                ModelLoader.registerItemVariants(item, new ResourceLocation(TeaStory.MODID, subItemName));
+                ModelLoader.setCustomModelResourceLocation(item, subItem.getMetadata(), new ModelResourceLocation(TeaStory.MODID + ":" + subItemName, "inventory"));
+            }
+        }
+        else
+        {
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(TeaStory.MODID + ":" + item.delegate.name().getResourcePath(), "inventory"));
+        }
 	}
 }
 

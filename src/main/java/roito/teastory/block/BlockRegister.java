@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -136,7 +137,7 @@ public final class BlockRegister
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void registerRenders()
+    public static void initModels()
 	{
 		registerRender(barrel, "barrel");
 		registerRender(teapan, "teapan");
@@ -370,12 +371,12 @@ public final class BlockRegister
 	@SideOnly(Side.CLIENT)
 	private static void registerRender(Block block, String name)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(TeaStory.MODID + ":" + name, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(TeaStory.MODID + ":" + name, "inventory"));
 	}
 
 	@SideOnly(Side.CLIENT)
 	private static void registerRender(Block block, int meta, String name)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(TeaStory.MODID + ":" + name, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), meta, new ModelResourceLocation(TeaStory.MODID + ":" + name, "inventory"));
 	}
 }

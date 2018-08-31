@@ -18,6 +18,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -97,24 +98,22 @@ public class XianRicePlant extends BlockBush implements IGrowable
 	}
 
 	@Override
-	public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-	{
-		java.util.List<ItemStack> ret = new java.util.ArrayList<>();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
 		int age = state.getValue(AGE).intValue();
 		Random rand = world instanceof World ? ((World)world).rand : new Random();
 		if (age >= 7)
 		{
-			ret.add(new ItemStack(this.getCrop(), 4));
+			drops.add(new ItemStack(this.getCrop(), 4));
 			if (rand.nextBoolean())
 			{
-				ret.add(new ItemStack(ItemRegister.straw, 1));
+				drops.add(new ItemStack(ItemRegister.straw, 1));
 			}
 		}
 		else
 		{
-			ret.add(new ItemStack(this.getSeed(), 1));
+			drops.add(new ItemStack(this.getSeed(), 1));
 		}
-		return ret;
 	}
 	
 	public int getMaxAge()

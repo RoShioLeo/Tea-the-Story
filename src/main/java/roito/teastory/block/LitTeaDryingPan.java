@@ -74,11 +74,10 @@ public class LitTeaDryingPan extends BlockContainer
 	}
 
 	@Override
-	public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
-	{
-		ArrayList drops = new ArrayList();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
 		drops.add(new ItemStack(BlockRegister.tea_drying_pan, 1));
-		int meta = getMetaFromState(world.getBlockState(pos));
+		int meta = getMetaFromState(state);
 		if((meta >= 1) && (meta <= 4))
 		{
 			drops.add(new ItemStack(ItemRegister.tea_leaf, 8));
@@ -95,7 +94,6 @@ public class LitTeaDryingPan extends BlockContainer
 		{
 			drops.add(new ItemStack(ItemRegister.oolong_tea_leaf, 8));
 		}
-		return drops;
 	}
 
 	@Override

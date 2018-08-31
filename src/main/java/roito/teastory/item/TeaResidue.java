@@ -47,17 +47,17 @@ public class TeaResidue extends TSItem
 		switch (stack.getItemDamage())
 		{
 		case 1:
-			return super.getUnlocalizedName() + "." + "black";
+			return super.getUnlocalizedName() + "_" + "black";
 		case 2:
-			return super.getUnlocalizedName() + "." + "yellow";
+			return super.getUnlocalizedName() + "_" + "yellow";
 		case 3:
-			return super.getUnlocalizedName() + "." + "white";
+			return super.getUnlocalizedName() + "_" + "white";
 		case 4:
-			return super.getUnlocalizedName() + "." + "oolong";
+			return super.getUnlocalizedName() + "_" + "oolong";
 		case 5:
-			return super.getUnlocalizedName() + "." + "puer";
+			return super.getUnlocalizedName() + "_" + "puer";
 		default:
-			return super.getUnlocalizedName() + "." + "green";
+			return super.getUnlocalizedName() + "_" + "green";
 		}
 	}
 
