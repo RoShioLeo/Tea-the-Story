@@ -12,6 +12,7 @@ public class WailaCompatRegistry
 			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaBarrel.register");
 			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaTeapan.register");
 			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaFullKettle.register");
+            FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaTeaPlant.register");
 		}
 	}
 }

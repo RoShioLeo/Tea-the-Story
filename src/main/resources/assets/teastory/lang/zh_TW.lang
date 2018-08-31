@@ -251,6 +251,14 @@ jei.teastory.category.teapan=曬青
 waila.teastory.hud.step=目前狀態：
 waila.teastory.hud.next=下一階段：
 waila.teastory.hud.empty=空
+waila.teastory.hud.tea_plant_stage.title=階段：
+waila.teastory.hud.tea_plant_stage.seed=種子
+waila.teastory.hud.tea_plant_stage.sapling=幼苗
+waila.teastory.hud.tea_plant_stage.plant_1=植株（首次）
+waila.teastory.hud.tea_plant_stage.lush=茂盛
+waila.teastory.hud.tea_plant_stage.plant_2=植株（二次）
+waila.teastory.hud.tea_plant_stage.blossom=開花
+waila.teastory.hud.tea_plant_stage.last=結籽
 
 #Config
 teastory.config=配置選項
