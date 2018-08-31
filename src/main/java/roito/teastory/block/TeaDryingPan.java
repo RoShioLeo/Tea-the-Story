@@ -110,7 +110,7 @@ public class TeaDryingPan extends Block
 					worldIn.setBlockState(pos, BlockLoader.lit_tea_drying_pan.getDefaultState());
 					return true;
 				} 
-				else if ((heldItem.getItem() == ItemLoader.washed_rice) && (heldItem.stackSize >= 8))
+				else if ((heldItem.getItem() == ItemLoader.washed_rice) && (heldItem.stackSize >= 16))
 				{
 					if (!playerIn.capabilities.isCreativeMode)
 					{
@@ -120,7 +120,7 @@ public class TeaDryingPan extends Block
 					return true;
 				}
 			}
-			if (worldIn.isRemote && heldItem != null && heldItem.getItem() == ItemLoader.washed_rice && heldItem.stackSize < 8)
+			if (worldIn.isRemote && heldItem != null && heldItem.getItem() == ItemLoader.washed_rice && heldItem.stackSize < 16)
 			{
 				playerIn.addChatMessage(new TextComponentTranslation("teastory.message.cooking_pan.notenough"));
 				return true;

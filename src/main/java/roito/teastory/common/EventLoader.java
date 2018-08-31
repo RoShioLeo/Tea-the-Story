@@ -237,7 +237,7 @@ public class EventLoader
 	{
 		EntityPlayer player = event.player;
 		World world = player.worldObj;
-		List<EntityItem> itemList = world.getEntitiesWithinAABB(EntityItem.class, player.getEntityBoundingBox().expand(4.0F, 4.0F, 4.0F));
+		List<EntityItem> itemList = world.getEntitiesWithinAABB(EntityItem.class, player.getEntityBoundingBox().expand(4.0F, 2.0F, 4.0F).expand(-4.0F, -2.0F, -4.0F));
 		
 		for (EntityItem entityItem : itemList)
 		{
