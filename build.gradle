@@ -21,7 +21,7 @@ compileJava {
 }
 
 version = mod_version
-group= mod_group
+group = mod_group
 archivesBaseName = "teastory"
 
 minecraft {
@@ -29,7 +29,7 @@ minecraft {
     runDir = "run"
     mappings = mcp_mapping
 
-	replace "@version@", project.version
+    replace "@version@", project.version
 }
 
 dependencies {
@@ -37,7 +37,7 @@ dependencies {
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
-      
+
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
@@ -64,18 +64,18 @@ processResources {
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
+
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
-        
+
     // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
-	}
-	
-    tasks.withType(JavaCompile) {  
-        options.encoding = "UTF-8"  
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
     }
 }
 
@@ -85,10 +85,10 @@ repositories {
         name 'progwm\'s maven'
         url 'http://dvs1.progwml6.com/files/maven'
     }
-	maven {
-        // Hwyla
-		url "http://tehnut.info/maven"
-	}
+    maven {
+        // Hwyla && Guide-API
+        url "http://tehnut.info/maven"
+    }
     maven {
         // The One Probe
         url "https://maven.tterrag.com/"
@@ -99,9 +99,10 @@ repositories {
     }
 }
 
-dependencies {   
+dependencies {
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
-	deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
+    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
     deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:${theoneprobe_version}"
+    deobfCompile "info.amerifrance.guideapi:Guide-API:${guideapi_version}"
     compile "cofh:RedstoneFlux:${redstoneflux_version}"
 }
