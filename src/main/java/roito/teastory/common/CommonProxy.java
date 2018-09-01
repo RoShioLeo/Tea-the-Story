@@ -2,6 +2,7 @@ package roito.teastory.common;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import roito.teastory.block.BlockRegister;
@@ -36,6 +37,8 @@ public class CommonProxy
         new GuiElementRegister();
         new SeedDrops();
         new WailaCompatRegistry();
+
+        FMLInterModComms.sendFunctionMessage("theoneprobe", "getTheOneProbe", "roito.teastory.compat.theoneprobe.TOPCompatRegistry");
     }
 
     public void postInit(FMLPostInitializationEvent event)

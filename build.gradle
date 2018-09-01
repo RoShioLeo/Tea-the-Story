@@ -81,15 +81,27 @@ processResources {
 
 repositories {
     maven {
-        name 'progwm\'s maven' // JEI
+        // JEI
+        name 'progwm\'s maven'
         url 'http://dvs1.progwml6.com/files/maven'
     }
 	maven {
+        // Hwyla
 		url "http://tehnut.info/maven"
 	}
+    maven {
+        // The One Probe
+        url "https://maven.tterrag.com/"
+    }
+    maven {
+        // Redstone Flux
+        url = "http://maven.covers1624.net"
+    }
 }
 
 dependencies {   
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
 	deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
+    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:${theoneprobe_version}"
+    compile "cofh:RedstoneFlux:${redstoneflux_version}"
 }
