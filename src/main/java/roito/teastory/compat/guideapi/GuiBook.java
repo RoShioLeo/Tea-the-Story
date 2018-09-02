@@ -2,62 +2,49 @@ package roito.teastory.compat.guideapi;
 
 import amerifrance.guideapi.api.GuideBook;
 import amerifrance.guideapi.api.IGuideBook;
-import amerifrance.guideapi.api.IPage;
 import amerifrance.guideapi.api.impl.Book;
 import amerifrance.guideapi.api.impl.BookBinder;
-import amerifrance.guideapi.api.impl.abstraction.EntryAbstract;
-import amerifrance.guideapi.entry.EntryItemStack;
-import amerifrance.guideapi.page.PageJsonRecipe;
-import amerifrance.guideapi.page.PageText;
-import amerifrance.guideapi.page.PageTextImage;
+import amerifrance.guideapi.category.CategoryItemStack;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsRegister;
 import roito.teastory.item.ItemRegister;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
-// TODO
-@GuideBook
+@GuideBook(priority = EventPriority.HIGHEST)
 public class GuiBook implements IGuideBook
 {
-    public static BookBinder teaStoryBook;
+    public static BookBinder teaStoryBook = new BookBinder(new ResourceLocation(TeaStory.MODID, "teastory_book"));
 
     @Nullable
     @Override
     public Book buildBook()
     {
-        // 设置基本信息
-        teaStoryBook.setGuideTitle("book.teastory.tile");
-        teaStoryBook.setItemName("book.teastory.book_name");
-        teaStoryBook.setAuthor("book.teastory.author");
-        teaStoryBook.setCreativeTab(CreativeTabsRegister.tabTeaStory);
+        return teaStoryBook.setGuideTitle("book.teastory.tile")
+                .setItemName("book.teastory.book_name")
+                .setAuthor("book.teastory.author")
+                .setCreativeTab(CreativeTabsRegister.tabTeaStory)
+                .setColor(Color.blue)
+                .build();
+    }
 
-        // 设置手册背景
-        teaStoryBook.setColor(Color.blue);
+    @Override
+    public void handlePost(@Nonnull ItemStack bookStack)
+    {
+        teaStoryBook.addCategory(new CategoryItemStack(CategoryResource.build(), "book.teastory.resource.title", ItemRegister.tea_leaf.getDefaultInstance()));
+        // TODO
+    }
 
-        // 绘制分目录
-        Map<ResourceLocation, EntryAbstract> resourceEntries = new LinkedHashMap<>();
-        Map<ResourceLocation, EntryAbstract> teaEntries = new LinkedHashMap<>();
-        Map<ResourceLocation, EntryAbstract> riceEntries = new LinkedHashMap<>();
-        Map<ResourceLocation, EntryAbstract> otherEntries = new LinkedHashMap<>();
-
-        // 资源篇章
-        List<IPage> teaPage = new ArrayList<>();
-        teaPage.add(new PageText("book.teastory.resource.tea.desc"));
-        teaPage.add(new PageJsonRecipe(new ResourceLocation("teastory:tea_leaf")));
-
-        List<IPage> teaSeedPage = new ArrayList<>();
-        teaPage.add(new PageText("book.teastory.resource.tea_seed.desc"));
-        teaPage.add(new PageTextImage("book.teastory.resource.tea_seed.pic_desc", new ResourceLocation("teastory:picture/tea_crop"), false));
-
-        resourceEntries.put(new ResourceLocation("teastory:tea"), new EntryItemStack(teaPage, "book.teastory.resource.tea.title", ItemRegister.tea_leaf.getDefaultInstance()));
-        resourceEntries.put(new ResourceLocation("teastory:tea_seed"), new EntryItemStack(teaSeedPage, "book.teastory.resource.tea_seed.title", ItemRegister.tea_seeds.getDefaultInstance()));
-
-        return teaStoryBook.build();
+    @Nullable
+    @Override
+    public IRecipe getRecipe(@Nonnull ItemStack bookStack)
+    {
+        return null;
     }
 }
