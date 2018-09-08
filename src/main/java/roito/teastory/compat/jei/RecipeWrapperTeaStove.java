@@ -7,10 +7,10 @@ import roito.teastory.recipe.ITeaStoveRecipe;
 public class RecipeWrapperTeaStove implements IRecipeWrapperFactory<ITeaStoveRecipe>
 {
 
-	@Override
-	public IRecipeWrapper getRecipeWrapper(ITeaStoveRecipe recipe)
-	{
-		return new RecipeTeaStove(recipe);
-	}
-	
+    @Override
+    public IRecipeWrapper getRecipeWrapper(ITeaStoveRecipe recipe)
+    {
+        return new RecipeTeaStove(recipe);
+    }
+
 }

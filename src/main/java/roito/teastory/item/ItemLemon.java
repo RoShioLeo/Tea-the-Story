@@ -14,20 +14,20 @@ import roito.teastory.config.ConfigMain;
 public class ItemLemon extends ItemFood
 {
 
-	public ItemLemon()
-	{
-		super(1, false);
-		this.setUnlocalizedName("lemon");
-		this.setCreativeTab(CreativeTabsRegister.tabDrink);
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "lemon"));
-	}
+    public ItemLemon()
+    {
+        super(1, false);
+        this.setUnlocalizedName("lemon");
+        this.setCreativeTab(CreativeTabsRegister.tabDrink);
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, "lemon"));
+    }
 
-	@Override
-	protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
-	{
-		if(!world.isRemote && ConfigMain.others.lemon)
-		{
-			entityplayer.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 160, 1));
-		}
-	}
+    @Override
+    protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
+    {
+        if (!world.isRemote && ConfigMain.others.lemon)
+        {
+            entityplayer.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 160, 1));
+        }
+    }
 }

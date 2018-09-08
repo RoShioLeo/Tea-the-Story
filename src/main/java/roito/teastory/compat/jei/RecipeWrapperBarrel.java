@@ -6,10 +6,10 @@ import roito.teastory.recipe.ITeaMakingRecipe;
 
 public class RecipeWrapperBarrel implements IRecipeWrapperFactory<ITeaMakingRecipe>
 {
-	@Override
-	public IRecipeWrapper getRecipeWrapper(ITeaMakingRecipe recipe)
-	{
-		return new RecipeBarrel(recipe);
-	}
+    @Override
+    public IRecipeWrapper getRecipeWrapper(ITeaMakingRecipe recipe)
+    {
+        return new RecipeBarrel(recipe);
+    }
 }
 

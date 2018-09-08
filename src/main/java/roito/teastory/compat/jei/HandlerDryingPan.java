@@ -5,33 +5,33 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class HandlerDryingPan implements IRecipeHandler<RecipeDryingPan>
 {
-	@Override
-	public Class<RecipeDryingPan> getRecipeClass()
-	{
-		return RecipeDryingPan.class;
-	}
+    @Override
+    public Class<RecipeDryingPan> getRecipeClass()
+    {
+        return RecipeDryingPan.class;
+    }
 
-	public String getRecipeCategoryUid()
-	{
-		return "teastory.dryingpan";
-	}
+    public String getRecipeCategoryUid()
+    {
+        return "teastory.dryingpan";
+    }
 
-	@Override
-	public String getRecipeCategoryUid(RecipeDryingPan recipe)
-	{
-		return getRecipeCategoryUid();
-	}
+    @Override
+    public String getRecipeCategoryUid(RecipeDryingPan recipe)
+    {
+        return getRecipeCategoryUid();
+    }
 
-	@Override
-	public IRecipeWrapper getRecipeWrapper(RecipeDryingPan recipe)
-	{
-		return recipe;
-	}
+    @Override
+    public IRecipeWrapper getRecipeWrapper(RecipeDryingPan recipe)
+    {
+        return recipe;
+    }
 
-	@Override
-	public boolean isRecipeValid(RecipeDryingPan recipe)
-	{
-		return recipe.getInputs() != null && recipe.getOutputs() != null;
-	}
+    @Override
+    public boolean isRecipeValid(RecipeDryingPan recipe)
+    {
+        return recipe.getInputs() != null && recipe.getOutputs() != null;
+    }
 }
 

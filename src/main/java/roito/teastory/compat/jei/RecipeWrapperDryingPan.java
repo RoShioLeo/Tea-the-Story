@@ -6,10 +6,10 @@ import roito.teastory.recipe.ITeaMakingRecipe;
 
 public class RecipeWrapperDryingPan implements IRecipeWrapperFactory<ITeaMakingRecipe>
 {
-	@Override
-	public IRecipeWrapper getRecipeWrapper(ITeaMakingRecipe recipe)
-	{
-		return new RecipeDryingPan(recipe);
-	}
+    @Override
+    public IRecipeWrapper getRecipeWrapper(ITeaMakingRecipe recipe)
+    {
+        return new RecipeDryingPan(recipe);
+    }
 }
 

@@ -7,7 +7,7 @@ import roito.teastory.TeaStory;
 
 public class EntityRegister
 {
-	private static int nextID = 0;
+    private static int nextID = 0;
 
     public EntityRegister()
     {
@@ -15,7 +15,7 @@ public class EntityRegister
     }
 
     private static void registerEntity(Class<? extends Entity> entityClass, String name, int trackingRange,
-            int updateFrequency, boolean sendsVelocityUpdates)
+                                       int updateFrequency, boolean sendsVelocityUpdates)
     {
         EntityRegistry.registerModEntity(new ResourceLocation(TeaStory.MODID, "entity"), entityClass, name, nextID++, TeaStory.instance, trackingRange, updateFrequency,
                 sendsVelocityUpdates);

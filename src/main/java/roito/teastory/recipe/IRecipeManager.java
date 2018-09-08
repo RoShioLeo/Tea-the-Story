@@ -2,15 +2,15 @@ package roito.teastory.recipe;
 
 import java.util.Collection;
 
-public interface  IRecipeManager<R>
+public interface IRecipeManager<R>
 {
-	boolean equal(R recipe1, R recipe2);
+    boolean equal(R recipe1, R recipe2);
 
-	void add(R recipe);
+    void add(R recipe);
 
-	void remove(R recipe);
+    void remove(R recipe);
 
-	Collection<R> getRecipes();
+    Collection<R> getRecipes();
 
-	<T> R getRecipe(T... input);
+    <T> R getRecipe(T... input);
 }

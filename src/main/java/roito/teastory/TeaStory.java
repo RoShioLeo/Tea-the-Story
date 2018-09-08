@@ -10,44 +10,47 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import roito.teastory.common.CommonProxy;
 
 @Mod(modid = TeaStory.MODID,
-			name = TeaStory.NAME,
-			version = TeaStory.VERSION,
-			updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2-3.X/update.json",
-			guiFactory = TeaStory.CONFIG_GUI_CLASS,
-			acceptedMinecraftVersions = "[1.12.2,1.13)",
-			dependencies = "required-after:forge@[14.23.2.2611,);after:jei@[4.8.5.147,);after:waila@[1.8.23-B38,);"
-					+ "after:toughasnails@[3.1.0.73,);"
-					)
+        name = TeaStory.NAME,
+        version = TeaStory.VERSION,
+        updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2-3.X/update.json",
+        guiFactory = TeaStory.CONFIG_GUI_CLASS,
+        acceptedMinecraftVersions = "[1.12.2,1.13)",
+        dependencies = "required-after:forge@[14.23.2.2611,);" +
+                "after:jei@[4.8.5.147,);" +
+                "after:waila@[1.8.23-B38,);" +
+                "after:theoneprobe@[1.4.22,);" +
+                "after:toughasnails@[1.2-1.4.7-1,);"
+)
 
 public class TeaStory
 {
-	public static final String MODID = "teastory";
-	public static final String NAME = "Tea: The Story";
-	public static final String VERSION = "@version@";
-	public static final String CONFIG_GUI_CLASS = "roito.teastory.config.ConfigGuiFactory";
+    public static final String MODID = "teastory";
+    public static final String NAME = "Tea: The Story";
+    public static final String VERSION = "@version@";
+    public static final String CONFIG_GUI_CLASS = "roito.teastory.config.ConfigGuiFactory";
 
-	@Instance(TeaStory.MODID)
-	public static TeaStory instance;
+    @Instance(TeaStory.MODID)
+    public static TeaStory instance;
 
-	@SidedProxy(clientSide = "roito.teastory.client.ClientProxy",
-						serverSide = "roito.teastory.common.CommonProxy")
-	public static CommonProxy proxy;
+    @SidedProxy(clientSide = "roito.teastory.client.ClientProxy",
+            serverSide = "roito.teastory.common.CommonProxy")
+    public static CommonProxy proxy;
 
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		proxy.preInit(event);
-	}
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        proxy.preInit(event);
+    }
 
-	@EventHandler
-	public void init(FMLInitializationEvent event)
-	{
-		proxy.init(event);
-	}
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        proxy.init(event);
+    }
 
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent event)
-	{
-		proxy.postInit(event);
-	}
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        proxy.postInit(event);
+    }
 }
