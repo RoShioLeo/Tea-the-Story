@@ -55,7 +55,7 @@ public class RecipeLoader
 	
 	private static void addCookingPanRecipe()
 	{
-		managerCookingPan.add(new TeaMakingRecipe(new ItemStack(ItemLoader.washed_rice, 8), new ItemStack(Items.WATER_BUCKET), new ItemStack(ItemLoader.wooden_lid), new ItemStack(Items.FLINT_AND_STEEL), new ItemStack(ItemLoader.rice_ball, 2)));
+		managerCookingPan.add(new TeaMakingRecipe(new ItemStack(ItemLoader.washed_rice, 16), new ItemStack(Items.WATER_BUCKET), new ItemStack(ItemLoader.wooden_lid), new ItemStack(Items.FLINT_AND_STEEL), new ItemStack(ItemLoader.rice_ball, 2)));
 	}
 	
 	private static void addDryingPanRecipe()

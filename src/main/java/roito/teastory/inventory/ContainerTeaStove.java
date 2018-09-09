@@ -80,7 +80,7 @@ public class ContainerTeaStove extends Container
 
 		boolean isMerged = false;
 
-		if (index >= 0 && index < 2)
+		if (index >= 0 && index <= 2)
 		{
 			isMerged = mergeItemStack(newStack, 3, 39, true);
 		}
