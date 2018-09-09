@@ -83,7 +83,7 @@ public final class ItemRegister
     public static Item pot_zisha = new ItemEmptyPot("pot_zisha");
     public static Item pot_clay = new TSItem("pot_clay", 64, CreativeTabsRegister.tabDrink);
     public static Item pot_zisha_clay = new TSItem("pot_zisha_clay", 64, CreativeTabsRegister.tabDrink);
-    public static Item cw_pot_stone = new TSItem("cold_water_pot_stone", 1, CreativeTabsRegister.tabDrink);
+    public static Item cw_pot_stone = new TSItem("cold_water_pot_stone", 64, CreativeTabsRegister.tabDrink);
     public static Item cw_pot_iron = new TSItem("cold_water_pot_iron", 64, CreativeTabsRegister.tabDrink);
     public static Item cw_pot_porcelain = new TSItem("cold_water_pot_porcelain", 64, CreativeTabsRegister.tabDrink);
     public static Item cw_pot_zisha = new TSItem("cold_water_pot_zisha", 64, CreativeTabsRegister.tabDrink);

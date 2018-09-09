@@ -29,7 +29,7 @@ public class GuiBook implements IGuideBook
         return teaStoryBook.setGuideTitle("book.teastory.tile")
                 .setItemName("book.teastory.book_name")
                 .setAuthor("book.teastory.author")
-                .setCreativeTab(CreativeTabsRegister.tabTeaStory)
+//                .setCreativeTab(CreativeTabsRegister.tabTeaStory)
                 .setColor(Color.blue)
                 .build();
     }

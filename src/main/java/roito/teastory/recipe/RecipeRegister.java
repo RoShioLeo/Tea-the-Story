@@ -57,7 +57,7 @@ public class RecipeRegister
 
     private static void addCookingPanRecipe()
     {
-        managerCookingPan.add(new TeaMakingRecipe(new ItemStack(ItemRegister.washed_rice, 8), new ItemStack(Items.WATER_BUCKET), new ItemStack(ItemRegister.wooden_lid), new ItemStack(Items.FLINT_AND_STEEL), new ItemStack(ItemRegister.rice_ball, 2)));
+        managerCookingPan.add(new TeaMakingRecipe(new ItemStack(ItemRegister.washed_rice, 16), new ItemStack(Items.WATER_BUCKET), new ItemStack(ItemRegister.wooden_lid), new ItemStack(Items.FLINT_AND_STEEL), new ItemStack(ItemRegister.rice_ball, 2)));
     }
 
     private static void addDryingPanRecipe()

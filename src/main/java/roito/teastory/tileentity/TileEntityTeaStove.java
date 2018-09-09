@@ -146,14 +146,6 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
                 {
                     this.dryTime = 0;
                 }
-                if (this.fuelTime == 0)
-                {
-                    TeaStove.setState(false, this.getWorld(), this.pos);
-                }
-                if (this.fuelTime > 0)
-                {
-                    this.fuelTime--;
-                }
                 if (this.dryTime == this.getTotalDryTime())
                 {
                     leafInventory.extractItem(0, 1, false);
@@ -169,6 +161,15 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
             {
                 this.dryTime = 0;
                 this.markDirty();
+            }
+            if (this.fuelTime > 0)
+            {
+                this.fuelTime--;
+                
+                if (this.fuelTime == 0)
+                {
+                    TeaStove.setState(false, this.getWorld(), this.pos);
+                }
             }
         }
     }
