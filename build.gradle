@@ -11,6 +11,9 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
@@ -92,12 +95,20 @@ repositories {
         // Redstone Flux
         url = "http://maven.covers1624.net"
     }
+
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
-    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:${theoneprobe_version}"
+    deobfCompile("mcjty.theoneprobe:TheOneProbe-1.12:${theoneprobe_version}") {
+        exclude group: 'cofh'
+    }
     deobfCompile "info.amerifrance.guideapi:Guide-API:${guideapi_version}"
-    deobfCompile "cofh:RedstoneFlux:${redstoneflux_version}"
+    compile files(
+        'libs/ToughAsNails-1.12.2-3.1.0.129-universal.jar'
+    )
 }
