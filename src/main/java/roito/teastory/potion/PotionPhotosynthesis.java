@@ -19,6 +19,7 @@ public class PotionPhotosynthesis extends Potion
     public PotionPhotosynthesis()
     {
         super(false, 0xff9900);
+        this.setBeneficial();
         this.setPotionName("teastory.potion.photosynthesis");
         this.setRegistryName(TeaStory.MODID, "photosynthesis");
     }

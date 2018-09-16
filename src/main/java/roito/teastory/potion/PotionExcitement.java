@@ -16,6 +16,7 @@ public class PotionExcitement extends Potion
     public PotionExcitement()
     {
         super(false, 0xffca65);
+        this.setBeneficial();
         this.setPotionName("teastory.potion.excitement");
         this.setRegistryName(TeaStory.MODID, "excitement");
     }
