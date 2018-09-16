@@ -1,6 +1,7 @@
 package roito.teastory.helper;
 
 import roito.teastory.config.ConfigMain;
+import roito.teastory.config.ConfigMain.TeaMaking;
 
 public class EntironmentHelper
 {
@@ -48,10 +49,10 @@ public class EntironmentHelper
     {
         if (ConfigMain.teaMaking.isDryingLimited)
         {
-            return ConfigMain.teaMaking.dryingBasicTime - (getDryingTemperatureLevel(temp) + getDryingRainfallLevel(rainfall)) * 100;
+            return TeaMaking.dryingBasicTime - (getDryingTemperatureLevel(temp) + getDryingRainfallLevel(rainfall)) * 100;
         } else
         {
-            return ConfigMain.teaMaking.dryingBasicTime;
+            return TeaMaking.dryingBasicTime;
         }
     }
 
@@ -99,10 +100,10 @@ public class EntironmentHelper
     {
         if (ConfigMain.teaMaking.isFermentationLimited)
         {
-            return ConfigMain.teaMaking.fermentationBasicTime - (getFermentationTemperatureLevel(temp) + getFermentationRainfallLevel(rainfall)) * 160;
+            return TeaMaking.fermentationBasicTime - (getFermentationTemperatureLevel(temp) + getFermentationRainfallLevel(rainfall)) * 160;
         } else
         {
-            return ConfigMain.teaMaking.fermentationBasicTime;
+            return TeaMaking.fermentationBasicTime;
         }
     }
 
