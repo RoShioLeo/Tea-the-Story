@@ -229,8 +229,6 @@ public final class BlockRegister
 
         registerRender(xian_rice_seedling, "rice_seedling");
         registerRender(xian_rice_plant, "rice_plant");
-        registerRender(field, "field");
-        registerRender(paddy_field, "paddy_field");
         registerRender(lit_cooking_pan, "lit_cooking_pan");
         registerRender(straw_blanket, "straw_blanket");
         registerRender(straw_cushion, "straw_cushion");
@@ -348,8 +346,6 @@ public final class BlockRegister
 
                 getRegItemBlock(xian_rice_seedling),
                 getRegItemBlock(xian_rice_plant),
-                getRegItemBlock(field),
-                getRegItemBlock(paddy_field),
                 getRegItemBlock(straw_blanket),
                 new ItemBlock(straw_cushion)
                 {

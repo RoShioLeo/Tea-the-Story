@@ -128,8 +128,6 @@ public class JEICompatRegister implements IModPlugin
         blacklist.addIngredientToBlacklist(new ItemStack(BlockRegister.lit_cooking_pan));
         blacklist.addIngredientToBlacklist(new ItemStack(BlockRegister.lit_tea_stove));
         blacklist.addIngredientToBlacklist(new ItemStack(BlockRegister.lit_tea_drying_pan));
-        blacklist.addIngredientToBlacklist(new ItemStack(BlockRegister.field));
-        blacklist.addIngredientToBlacklist(new ItemStack(BlockRegister.paddy_field));
         blacklist.addIngredientToBlacklist(new ItemStack(BlockRegister.xian_rice_plant));
         blacklist.addIngredientToBlacklist(new ItemStack(BlockRegister.xian_rice_seedling));
         blacklist.addIngredientToBlacklist(new ItemStack(BlockRegister.teaplant));
