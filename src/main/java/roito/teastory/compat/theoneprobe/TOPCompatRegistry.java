@@ -8,7 +8,8 @@ import javax.annotation.Nullable;
 
 public class TOPCompatRegistry implements Function<ITheOneProbe, Void>
 {
-    @Nullable
+    @Override
+	@Nullable
     public Void apply(ITheOneProbe theOneProbe)
     {
         theOneProbe.registerProvider(new TOPBarrel());

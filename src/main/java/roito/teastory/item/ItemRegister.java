@@ -257,7 +257,7 @@ public final class ItemRegister
                 String subItemName = item.getUnlocalizedName(subItem);
                 subItemName = subItemName.substring(subItemName.indexOf(".") + 1);
 
-                ModelLoader.registerItemVariants(item, new ResourceLocation(TeaStory.MODID, subItemName));
+                ModelBakery.registerItemVariants(item, new ResourceLocation(TeaStory.MODID, subItemName));
                 ModelLoader.setCustomModelResourceLocation(item, subItem.getMetadata(), new ModelResourceLocation(TeaStory.MODID + ":" + subItemName, "inventory"));
             }
         } else

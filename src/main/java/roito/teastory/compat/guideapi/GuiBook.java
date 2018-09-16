@@ -10,7 +10,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import roito.teastory.TeaStory;
-import roito.teastory.common.CreativeTabsRegister;
 import roito.teastory.item.ItemRegister;
 
 import javax.annotation.Nonnull;

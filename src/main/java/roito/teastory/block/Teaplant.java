@@ -79,7 +79,7 @@ public class Teaplant extends BlockBush implements IGrowable
 
     protected int getAge(IBlockState state)
     {
-        return ((Integer) state.getValue(this.getAgeProperty())).intValue();
+        return state.getValue(this.getAgeProperty()).intValue();
     }
 
     public IBlockState withAge(int age)
@@ -89,7 +89,7 @@ public class Teaplant extends BlockBush implements IGrowable
 
     public boolean isMaxAge(IBlockState state)
     {
-        return ((Integer) state.getValue(this.getAgeProperty())).intValue() >= this.getMaxAge();
+        return state.getValue(this.getAgeProperty()).intValue() >= this.getMaxAge();
     }
 
     protected Item getSeed()
