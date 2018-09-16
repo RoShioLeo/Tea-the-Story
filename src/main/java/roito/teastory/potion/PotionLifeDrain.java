@@ -16,6 +16,7 @@ public class PotionLifeDrain extends Potion
     public PotionLifeDrain()
     {
         super(false, 0x7F0000);
+        this.setBeneficial();
         this.setPotionName("teastory.potion.life_drain");
         this.setRegistryName(TeaStory.MODID, "life_drain");
     }

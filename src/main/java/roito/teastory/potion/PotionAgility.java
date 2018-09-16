@@ -16,6 +16,7 @@ public class PotionAgility extends Potion
     public PotionAgility()
     {
         super(false, 0x828282);
+        this.setBeneficial();
         this.setPotionName("teastory.potion.agility");
         this.setRegistryName(TeaStory.MODID, "agility");
     }

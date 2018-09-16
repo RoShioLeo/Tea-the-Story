@@ -16,6 +16,7 @@ public class PotionDefence extends Potion
     public PotionDefence()
     {
         super(false, 0x959aa6);
+        this.setBeneficial();
         this.setPotionName("teastory.potion.defence");
         this.setRegistryName(TeaStory.MODID, "defence");
     }
