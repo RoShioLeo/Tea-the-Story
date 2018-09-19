@@ -16,7 +16,7 @@ import roito.teastory.common.CommonProxy;
         guiFactory = TeaStory.CONFIG_GUI_CLASS,
         acceptedMinecraftVersions = "[1.12.2,1.13)",
         dependencies = "required-after:forge@[14.23.4.2741,);" +
-                "after:jei@[4.8.5.147,);" +
+                "after:jei@[4.12.0.215,);" +
                 "after:waila@[1.8.23-B38,);" +
                 "after:theoneprobe@[1.4.22,);" +
                 "after:toughasnails@[1.2-1.4.7-1,);"
