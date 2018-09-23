@@ -92,7 +92,6 @@ public class ItemCup extends TSItem
 
             if (player.getHeldItem(hand).getCount() >= 1 && player.canPlayerEdit(pos, facing, player.getHeldItem(hand)) && worldIn.mayPlace(drinkblock, pos, false, facing, (Entity) null))
             {
-                int i = this.getMetadata(player.getHeldItem(hand).getMetadata());
                 IBlockState iblockstate1 = drinkblock.getDefaultState();
 
                 if (placeBlockAt(player.getHeldItem(hand), player, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))

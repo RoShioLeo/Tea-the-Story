@@ -67,7 +67,6 @@ public class XianRiceSeedling extends BlockCrops
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         int age = state.getValue(AGE).intValue();
-        Random rand = world instanceof World ? ((World) world).rand : new Random();
         if (age == 7)
         {
             drops.add(new ItemStack(this.getCrop(), 3));

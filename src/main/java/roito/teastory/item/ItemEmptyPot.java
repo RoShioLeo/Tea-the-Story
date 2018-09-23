@@ -42,22 +42,22 @@ public class ItemEmptyPot extends TSItem
 
         if (raytraceresult == null)
         {
-            return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+            return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
         } else if (raytraceresult.typeOfHit != RayTraceResult.Type.BLOCK)
         {
-            return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+            return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
         } else
         {
             BlockPos blockpos = raytraceresult.getBlockPos();
 
             if (!worldIn.isBlockModifiable(playerIn, blockpos))
             {
-                return new ActionResult(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
+                return new ActionResult<ItemStack>(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
             } else
             {
                 if (!playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, playerIn.getHeldItem(handIn)))
                 {
-                    return new ActionResult(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
+                    return new ActionResult<ItemStack>(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
                 } else
                 {
                     IBlockState iblockstate = worldIn.getBlockState(blockpos);
@@ -67,10 +67,10 @@ public class ItemEmptyPot extends TSItem
                     {
                         playerIn.addStat(StatList.getObjectUseStats(this));
                         playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
-                        return new ActionResult(EnumActionResult.SUCCESS, this.turnPotIntoItem(playerIn.getHeldItem(handIn), playerIn, new ItemStack(Item.getByNameOrId(cold_water), 1, playerIn.getHeldItem(handIn).getItemDamage())));
+                        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, this.turnPotIntoItem(playerIn.getHeldItem(handIn), playerIn, new ItemStack(Item.getByNameOrId(cold_water), 1, playerIn.getHeldItem(handIn).getItemDamage())));
                     } else
                     {
-                        return new ActionResult(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
+                        return new ActionResult<ItemStack>(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
                     }
                 }
             }

@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -18,8 +19,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.item.ItemRegister;
 import roito.teastory.tileentity.TileEntityTeaDrink;
-
-import java.util.ArrayList;
 
 public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
 {
@@ -92,9 +91,8 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
     }
 
     @Override
-    public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        ArrayList drops = new ArrayList();
         switch (drink)
         {
             case 1:
@@ -125,6 +123,5 @@ public class TeaDrinkFull extends TeaDrink implements ITileEntityProvider
                 drops.add(new ItemStack(ItemRegister.puer_tea, 1, meta));
                 break;
         }
-        return drops;
     }
 }

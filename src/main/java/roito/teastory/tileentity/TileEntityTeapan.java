@@ -1,6 +1,5 @@
 package roito.teastory.tileentity;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -72,7 +71,6 @@ public class TileEntityTeapan extends TileEntity implements ITickable
             }
             Biome biome = this.getWorld().getBiome(pos);
             int basicTick = EntironmentHelper.getDryingTicks(biome.getTemperature(pos), biome.getRainfall());
-            IBlockState iblockstate = this.getWorld().getBlockState(this.pos);
             int step = this.getBlockMetadata();
             if (this.getWorld().isRainingAt(pos.up()))
             {

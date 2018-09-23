@@ -16,8 +16,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.item.ItemRegister;
 
-import java.util.ArrayList;
-
 public class TeaDrinkEmpty extends TeaDrink
 {
     public TeaDrinkEmpty(float hardness, String name, Material materialIn, SoundType soundType, int level)
@@ -26,11 +24,9 @@ public class TeaDrinkEmpty extends TeaDrink
     }
 
     @Override
-    public ArrayList getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        ArrayList drops = new ArrayList();
         drops.add(new ItemStack(ItemRegister.cup, 1, meta));
-        return drops;
     }
 
     @Override

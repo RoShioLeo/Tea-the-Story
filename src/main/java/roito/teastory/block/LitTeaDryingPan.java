@@ -253,7 +253,6 @@ public class LitTeaDryingPan extends BlockContainer
 
     public static void setState(int meta, World worldIn, BlockPos pos)
     {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
         worldIn.setBlockState(pos, BlockRegister.lit_tea_drying_pan.getStateFromMeta(meta));
         if (tileentity != null)

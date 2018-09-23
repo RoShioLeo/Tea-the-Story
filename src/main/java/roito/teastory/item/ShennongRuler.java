@@ -81,6 +81,6 @@ public class ShennongRuler extends ItemSword
                 playerIn.getHeldItem(hand).shrink(1);
             }
         }
-        return new ActionResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
     }
 }

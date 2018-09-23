@@ -46,7 +46,7 @@ public class RecipeTeaTable implements IRecipeWrapper
             list.addAll(recipe.getSugarInput());
             return list;
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     public List<ItemStack> getCupInputs()
@@ -67,7 +67,7 @@ public class RecipeTeaTable implements IRecipeWrapper
             list.addAll(recipe.getToolInput());
             return list;
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     public static List<ItemStack> getPotInputs()

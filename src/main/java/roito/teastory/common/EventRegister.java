@@ -195,8 +195,6 @@ public class EventRegister
         IBlockState state = world.getBlockState(pos);
         if (state.getBlock() instanceof StrawBlanket)
         {
-            ItemStack stack = state.getBlock().getItem(world, pos, state);
-
             BlockPos pos1 = pos.offset(state.getValue(BlockHorizontal.FACING).getOpposite());
             world.setBlockToAir(pos1);
         }

@@ -122,7 +122,6 @@ public class Barrel extends BlockContainer implements ITileEntityProvider
 
     public static void setState(int step, World worldIn, BlockPos pos)
     {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
         worldIn.setBlockState(pos, BlockRegister.barrel.getStateFromMeta(step));
