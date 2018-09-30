@@ -84,7 +84,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable
                 {
                     Barrel.setState(1, world, pos);
                 }
-                totalTicks = (halfDriedLeafNumber < 16 ? 16 : halfDriedLeafNumber) * trueTick;
+                totalTicks = (halfDriedLeafNumber < 16 ? 16 : halfDriedLeafNumber > 64 ? 64 : halfDriedLeafNumber) * trueTick;
                 jugde(ItemRegister.half_dried_tea, ItemRegister.black_tea_leaf);
                 if (realTicks >= totalTicks / 2 && step != 2)
                 {

@@ -138,13 +138,13 @@ public final class ConfigMain
         @Config.LangKey("teastory.config.teamaking.dryingbasictime")
         @Config.Name("DryingBasicTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public static int dryingBasicTime = 800;
+        public int dryingBasicTime = 800;
 
         @Config.Comment("The ticks of fermentation per leaf. (1 second = 20 ticks)")
         @Config.LangKey("teastory.config.teamaking.fermentationbasictime")
         @Config.Name("FermentationBasicTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public static int fermentationBasicTime = 1200;
+        public int fermentationBasicTime = 1200;
     }
 
     public static final class Others
@@ -153,5 +153,17 @@ public final class ConfigMain
         @Config.LangKey("teastory.config.others.lemon")
         @Config.Name("HaveNauseaEatingLemon")
         public boolean lemon = true;
+        
+        @Config.Comment("The ticks of cooking rice. (1 second = 20 ticks)")
+        @Config.LangKey("teastory.config.others.ricecookingbasictime")
+        @Config.Name("RiceCookingBasicTime")
+        @Config.RangeInt(min = 0, max = 12000)
+        public int riceCookingBasicTime = 1200;
+        
+        @Config.Comment("The number of rice balls you get each time you cook rice.")
+        @Config.LangKey("teastory.config.others.cookriceballeachtime")
+        @Config.Name("CookRiceBallEachTime")
+        @Config.RangeInt(min = 1, max = 8)
+        public int cookRiceBallEachTime = 2;
     }
 }

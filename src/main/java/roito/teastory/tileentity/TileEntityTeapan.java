@@ -90,7 +90,7 @@ public class TileEntityTeapan extends TileEntity implements ITickable
                 {
                     Teapan.setState(1, world, pos);
                 }
-                totalTicks = (wetLeafNumber < 16 ? 16 : wetLeafNumber) * basicTick;
+                totalTicks = (wetLeafNumber < 16 ? 16 : wetLeafNumber > 64 ? 64 : wetLeafNumber) * basicTick;
                 jugde(ItemRegister.wet_tea, ItemRegister.tea_leaf);
                 this.markDirty();
                 return;
@@ -102,7 +102,7 @@ public class TileEntityTeapan extends TileEntity implements ITickable
                 {
                     Teapan.setState(2, world, pos);
                 }
-                totalTicks = (freshLeafNumber < 16 ? 16 : freshLeafNumber) * basicTick;
+                totalTicks = (freshLeafNumber < 16 ? 16 : freshLeafNumber > 64 ? 64 : freshLeafNumber) * basicTick;
                 jugde(ItemRegister.tea_leaf, ItemRegister.half_dried_tea);
                 this.markDirty();
                 return;
@@ -119,7 +119,7 @@ public class TileEntityTeapan extends TileEntity implements ITickable
                 {
                     if (driedLeafNumber > 0)
                     {
-                        totalTicks = (driedLeafNumber < 16 ? 16 : driedLeafNumber) * basicTick;
+                        totalTicks = (driedLeafNumber < 16 ? 16 : driedLeafNumber > 64 ? 64 : driedLeafNumber) * basicTick;
                         jugde(ItemRegister.dried_tea, ItemRegister.yellow_tea_leaf);
                         this.markDirty();
                         return;
@@ -127,7 +127,7 @@ public class TileEntityTeapan extends TileEntity implements ITickable
                     realTicks = 0;
                     return;
                 }
-                totalTicks = (halfDriedLeafNumber < 16 ? 16 : halfDriedLeafNumber) * basicTick / 2;
+                totalTicks = (halfDriedLeafNumber < 16 ? 16 : halfDriedLeafNumber > 64 ? 64 : halfDriedLeafNumber) * basicTick / 2;
                 jugde(ItemRegister.half_dried_tea, ItemRegister.dried_tea);
                 this.markDirty();
                 return;
@@ -143,7 +143,7 @@ public class TileEntityTeapan extends TileEntity implements ITickable
                     realTicks = 0;
                     return;
                 }
-                totalTicks = (driedLeafNumber < 16 ? 16 : driedLeafNumber) * basicTick;
+                totalTicks = (driedLeafNumber < 16 ? 16 : driedLeafNumber > 64 ? 64 : driedLeafNumber) * basicTick;
                 jugde(ItemRegister.dried_tea, ItemRegister.yellow_tea_leaf);
                 this.markDirty();
                 return;

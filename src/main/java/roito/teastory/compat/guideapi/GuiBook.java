@@ -36,7 +36,7 @@ public class GuiBook implements IGuideBook
     @Override
     public void handlePost(@Nonnull ItemStack bookStack)
     {
-        teaStoryBook.addCategory(new CategoryItemStack(CategoryResource.build(), "book.teastory.resource.title", ItemRegister.tea_leaf.getDefaultInstance()));
+        teaStoryBook.addCategory(new CategoryItemStack(CategoryResource.build(), "book.teastory.resource.title", new ItemStack(ItemRegister.tea_leaf)));
         // TODO
     }
 

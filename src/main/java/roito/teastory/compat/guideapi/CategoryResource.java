@@ -6,6 +6,7 @@ import amerifrance.guideapi.entry.EntryItemStack;
 import amerifrance.guideapi.page.PageJsonRecipe;
 import amerifrance.guideapi.page.PageText;
 import amerifrance.guideapi.page.PageTextImage;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import roito.teastory.TeaStory;
 import roito.teastory.item.ItemRegister;
@@ -37,13 +38,13 @@ public class CategoryResource
         lemonPage.add(new PageText("book.teastory.resource.lemon.desc"));
 
         resourceEntries.put(new ResourceLocation("teastory:tea"),
-                new EntryItemStack(teaPage, "book.teastory.resource.tea.title", ItemRegister.tea_leaf.getDefaultInstance()));
+                new EntryItemStack(teaPage, "book.teastory.resource.tea.title", new ItemStack(ItemRegister.tea_leaf)));
         resourceEntries.put(new ResourceLocation("teastory:tea_seed"),
-                new EntryItemStack(teaSeedPage, "book.teastory.resource.tea_seed.title", ItemRegister.tea_seeds.getDefaultInstance()));
+                new EntryItemStack(teaSeedPage, "book.teastory.resource.tea_seed.title", new ItemStack(ItemRegister.tea_seeds)));
         resourceEntries.put(new ResourceLocation("teastory:rice"),
-                new EntryItemStack(ricePage, "book.teastory.resource.rice.title", ItemRegister.xian_rice_seeds.getDefaultInstance()));
+                new EntryItemStack(ricePage, "book.teastory.resource.rice.title", new ItemStack(ItemRegister.xian_rice_seeds)));
         resourceEntries.put(new ResourceLocation("teastory:lemon"),
-                new EntryItemStack(lemonPage, "book.teastory.resource.lemon.title", ItemRegister.lemon.getDefaultInstance()));
+                new EntryItemStack(lemonPage, "book.teastory.resource.lemon.title", new ItemStack(ItemRegister.lemon)));
 
         return resourceEntries;
     }

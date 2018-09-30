@@ -66,9 +66,10 @@ public class ItemRiceSeedling extends ItemSeeds
                 }
 
                 BlockPos blockpos1 = blockpos.up();
-                IBlockState iblockstate = worldIn.getBlockState(blockpos);
+                IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
+                IBlockState iblockstate2 = worldIn.getBlockState(blockpos1);
 
-                if (iblockstate.getBlock() == BlockRegister.paddy_field)
+                if (iblockstate1.getBlock() == BlockRegister.paddy_field && iblockstate2.getBlock() != BlockRegister.xian_rice_plant)
                 {
                     net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
 

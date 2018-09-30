@@ -8,6 +8,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -37,7 +38,6 @@ import roito.teastory.block.StrawBlanket;
 import roito.teastory.config.ConfigMain;
 import roito.teastory.item.ItemRegister;
 import roito.teastory.potion.PotionRegister;
-
 import java.util.List;
 
 public class EventRegister
@@ -179,6 +179,12 @@ public class EventRegister
     public void onItemUse(RightClickBlock event)
     {
         if (!event.getItemStack().isEmpty() && event.getItemStack().getItem() instanceof ItemSpade && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockFarmland)
+        {
+            event.getWorld().setBlockState(event.getPos(), BlockRegister.field.getDefaultState());
+            event.getItemStack().damageItem(1, event.getEntityPlayer());
+            event.getEntityPlayer().playSound(SoundEvents.ITEM_HOE_TILL, 1.0F, 1.0F);
+        }
+        else if (!event.getItemStack().isEmpty() && event.getItemStack().getItem() instanceof ItemHoe && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockGrassPath)
         {
             event.getWorld().setBlockState(event.getPos(), BlockRegister.field.getDefaultState());
             event.getItemStack().damageItem(1, event.getEntityPlayer());

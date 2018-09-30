@@ -4,10 +4,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import roito.teastory.block.BlockRegister;
+import roito.teastory.config.ConfigMain;
 
 public class TileEntityCookingPan extends TileEntity implements ITickable
 {
-    protected static int totalTime = 1200;
+    protected static int totalTime = ConfigMain.others.riceCookingBasicTime;
     protected int time = 0;
     protected int remainingTime = totalTime;
 

@@ -19,7 +19,7 @@ import roito.teastory.common.CommonProxy;
                 "after:jei@[4.12.0.215,);" +
                 "after:waila@[1.8.23-B38,);" +
                 "after:theoneprobe@[1.4.22,);" +
-                "after:toughasnails@[1.2-1.4.7-1,);"
+                "after:toughasnails@[3.1.0,);"
 )
 
 public class TeaStory

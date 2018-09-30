@@ -21,8 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsRegister;
+import roito.teastory.config.ConfigMain;
 import roito.teastory.item.ItemRegister;
-
 import java.util.Random;
 
 public class TeaDryingPan extends Block
@@ -110,17 +110,17 @@ public class TeaDryingPan extends Block
                     }
                     worldIn.setBlockState(pos, BlockRegister.lit_tea_drying_pan.getDefaultState());
                     return true;
-                } else if ((playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice) && (playerIn.getHeldItem(hand).getCount() >= 16))
+                } else if ((playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice) && (playerIn.getHeldItem(hand).getCount() >= ConfigMain.others.cookRiceBallEachTime * 8))
                 {
                     if (!playerIn.capabilities.isCreativeMode)
                     {
-                        playerIn.getHeldItem(hand).shrink(16);
+                        playerIn.getHeldItem(hand).shrink(ConfigMain.others.cookRiceBallEachTime * 8);
                     }
                     worldIn.setBlockState(pos, this.blockState.getBaseState().withProperty(STEP, 1));
                     return true;
                 }
             }
-            if (worldIn.isRemote && !playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice && playerIn.getHeldItem(hand).getCount() < 16)
+            if (worldIn.isRemote && !playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemRegister.washed_rice && playerIn.getHeldItem(hand).getCount() < ConfigMain.others.cookRiceBallEachTime * 8)
             {
                 playerIn.sendMessage(new TextComponentTranslation("teastory.message.cooking_pan.notenough"));
                 return true;
@@ -188,7 +188,7 @@ public class TeaDryingPan extends Block
             if (!worldIn.isRemote)
             {
                 ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegister.wooden_lid, 1));
-                ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegister.rice_ball, 2));
+                ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegister.rice_ball, ConfigMain.others.cookRiceBallEachTime));
             }
             worldIn.setBlockState(pos, BlockRegister.tea_drying_pan.getDefaultState());
             return true;

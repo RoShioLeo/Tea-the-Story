@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.block.BlockRegister;
+import roito.teastory.config.ConfigMain;
 import roito.teastory.helper.NonNullListHelper;
 import roito.teastory.item.ItemRegister;
 
@@ -55,9 +56,9 @@ public class RecipeRegister
         managerBarrel.add(new TeaMakingRecipe(new ItemStack(ItemRegister.half_dried_tea, 8), new ItemStack(ItemRegister.black_tea_leaf, 8), new ItemStack(ItemRegister.puer_tea_leaf, 8), ItemStack.EMPTY, ItemStack.EMPTY));
     }
 
-    private static void addCookingPanRecipe()
+    public static void addCookingPanRecipe()
     {
-        managerCookingPan.add(new TeaMakingRecipe(new ItemStack(ItemRegister.washed_rice, 16), new ItemStack(Items.WATER_BUCKET), new ItemStack(ItemRegister.wooden_lid), new ItemStack(Items.FLINT_AND_STEEL), new ItemStack(ItemRegister.rice_ball, 2)));
+        managerCookingPan.add(new TeaMakingRecipe(new ItemStack(ItemRegister.washed_rice, ConfigMain.others.cookRiceBallEachTime * 8), new ItemStack(Items.WATER_BUCKET), new ItemStack(ItemRegister.wooden_lid), new ItemStack(Items.FLINT_AND_STEEL), new ItemStack(ItemRegister.rice_ball, ConfigMain.others.cookRiceBallEachTime)));
     }
 
     private static void addDryingPanRecipe()
