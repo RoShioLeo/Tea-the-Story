@@ -13,6 +13,7 @@
 	"1.12.2": {
 		"3.0.4.726": "Fixed two bugs.\nMore config options.",
 		"3.0.4.726.1": "Fixed the bug that the message is wrong when the washed rice isn't enough.",
-		"3.2.0.807": "Add GUI to tea pan and barrel.\nChange the way to make pu'er tea leaf.\nRemove pu'er tea leaf block.\nAdjust the textures about black tea leaf.\nAdjust the growing function and models of tea plants.\nAdd paddy field block and adjust the way to grow rice crops.\nRemove \"Water Hoe\".\nTea table uses new algorithm.\nThe data structure of zisha kettle is adjusted, so if you upgrade this mod from the old version, the block may be missing.\nImprove the ore dictionary compatibility.\nEat food made of rice can replenish more hunger value.\nFixed three bugs."
+		"3.2.0.807": "Add GUI to tea pan and barrel.\nChange the way to make pu'er tea leaf.\nRemove pu'er tea leaf block.\nAdjust the textures about black tea leaf.\nAdjust the growing function and models of tea plants.\nAdd paddy field block and adjust the way to grow rice crops.\nRemove \"Water Hoe\".\nTea table uses new algorithm.\nThe data structure of zisha kettle is adjusted, so if you upgrade this mod from the old version, the block may be missing.\nImprove the ore dictionary compatibility.\nEat food made of rice can replenish more hunger value.\nFixed three bugs.",
+		"3.2.3.930": "Fixed bugs (include the bug that can't work on the server when Guide-API is installed).\nAdd more options about rice cooking.\nAdd new way to open up paddy field."
 	}
 }
