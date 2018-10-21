@@ -119,22 +119,25 @@ public class Field extends Block
 
     public void turnToWet(World worldIn, BlockPos pos, IBlockState state)
     {
-        worldIn.setBlockState(pos, BlockRegister.paddy_field.getDefaultState());
-        if (worldIn.getBlockState(pos.east()).getBlock() == BlockRegister.field)
+    	if (worldIn.getBlockState(pos.up()).getBlock() != BlockRegister.xian_rice_plant)
         {
-            turnToWet(worldIn, pos.east(), state);
-        }
-        if (worldIn.getBlockState(pos.west()).getBlock() == BlockRegister.field)
-        {
-            turnToWet(worldIn, pos.west(), state);
-        }
-        if (worldIn.getBlockState(pos.south()).getBlock() == BlockRegister.field)
-        {
-            turnToWet(worldIn, pos.south(), state);
-        }
-        if (worldIn.getBlockState(pos.north()).getBlock() == BlockRegister.field)
-        {
-            turnToWet(worldIn, pos.north(), state);
+    		worldIn.setBlockState(pos, BlockRegister.paddy_field.getDefaultState());
+            if (worldIn.getBlockState(pos.east()).getBlock() == BlockRegister.field)
+            {
+                turnToWet(worldIn, pos.east(), state);
+            }
+            if (worldIn.getBlockState(pos.west()).getBlock() == BlockRegister.field)
+            {
+                turnToWet(worldIn, pos.west(), state);
+            }
+            if (worldIn.getBlockState(pos.south()).getBlock() == BlockRegister.field)
+            {
+                turnToWet(worldIn, pos.south(), state);
+            }
+            if (worldIn.getBlockState(pos.north()).getBlock() == BlockRegister.field)
+            {
+                turnToWet(worldIn, pos.north(), state);
+            }
         }
     }
 

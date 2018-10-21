@@ -53,63 +53,118 @@ public final class ConfigMain
         @Config.LangKey("teastory.config.general.residues")
         @Config.Name("UseTeaResidueAsBoneMeal")
         public boolean useTeaResidueAsBoneMeal = true;
+        
+        @Config.Comment("List of hoes which can't be identified.")
+        @Config.LangKey("teastory.config.general.hoelist")
+        @Config.Name("CustomHoeList")
+        public String[] hoeList = new String[] { };
+        
+        @Config.Comment("List of spades which can't be identified.")
+        @Config.LangKey("teastory.config.general.spadelist")
+        @Config.Name("CustomSpadeList")
+        public String[] spadeList = new String[] { };
     }
 
     public static final class Drink
     {
         @Config.Comment("The ticks of the effect of green tea. (1 second = 20 ticks)")
-        @Config.LangKey("teastory.config.drink.greentea")
+        @Config.LangKey("teastory.config.drink.greentea.time")
         @Config.Name("GreenTeaDrinksEffectTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public int greenTeaDrink_Time = 1800;
+        public int greenTeaDrink_Time = 3600;
+        
+        @Config.Comment("The effect of green tea.")
+        @Config.LangKey("teastory.config.drink.greentea.effect")
+        @Config.Name("GreenTeaDrinksEffect")
+        public String greenTeaDrink_Effect = "teastory:agility";
 
         @Config.Comment("The ticks of the effect of matcha. (1 second = 20 ticks)")
-        @Config.LangKey("teastory.config.drink.matchadrink")
+        @Config.LangKey("teastory.config.drink.matchadrink.time")
         @Config.Name("MatchaDrinksEffectTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public int matchaDrink_Time = 2400;
+        public int matchaDrink_Time = 4800;
+        
+        @Config.Comment("The effect of matcha.")
+        @Config.LangKey("teastory.config.drink.matchadrink.effect")
+        @Config.Name("MatchaDrinksEffect")
+        public String matchaDrink_Effect = "minecraft:absorption";
 
         @Config.Comment("The ticks of the effect of black tea. (1 second = 20 ticks)")
-        @Config.LangKey("teastory.config.drink.blacktea")
+        @Config.LangKey("teastory.config.drink.blacktea.time")
         @Config.Name("BlackTeaDrinksEffectTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public int blackTeaDrink_Time = 1800;
+        public int blackTeaDrink_Time = 3600;
+        
+        @Config.Comment("The effect of black tea.")
+        @Config.LangKey("teastory.config.drink.blacktea.effect")
+        @Config.Name("BlackTeaDrinksEffect")
+        public String blackTeaDrink_Effect = "minecraft:health_boost";
 
         @Config.Comment("The ticks of the effect of milk tea. (1 second = 20 ticks)")
-        @Config.LangKey("teastory.config.drink.milktea")
+        @Config.LangKey("teastory.config.drink.milktea.time")
         @Config.Name("MilkTeaDrinksEffectTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public int milkTeaDrink_Time = 480;
+        public int milkTeaDrink_Time = 800;
+        
+        @Config.Comment("The effect of milk tea.")
+        @Config.LangKey("teastory.config.drink.milktea.effect")
+        @Config.Name("MilkTeaDrinksEffect")
+        public String milkTeaDrink_Effect = "minecraft:regeneration";
 
         @Config.Comment("The ticks of the effect of lemon tea. (1 second = 20 ticks)")
-        @Config.LangKey("teastory.config.drink.lemontea")
+        @Config.LangKey("teastory.config.drink.lemontea.time")
         @Config.Name("LemonTeaDrinksEffectTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public int lemonTeaDrink_Time = 480;
+        public int lemonTeaDrink_Time = 800;
+        
+        @Config.Comment("The effect of lemon tea.")
+        @Config.LangKey("teastory.config.drink.lemontea.effect")
+        @Config.Name("LemonTeaDrinksEffect")
+        public String lemonTeaDrink_Effect = "minecraft:regeneration";
 
         @Config.Comment("The ticks of the effect of yellow tea. (1 second = 20 ticks)")
-        @Config.LangKey("teastory.config.drink.yellowtea")
+        @Config.LangKey("teastory.config.drink.yellowtea.time")
         @Config.Name("YellowTeaDrinksEffectTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public int yellowTeaDrink_Time = 300;
+        public int yellowTeaDrink_Time = 600;
+        
+        @Config.Comment("The effect of yellow tea.")
+        @Config.LangKey("teastory.config.drink.yellowtea.effect")
+        @Config.Name("YellowTeaDrinksEffect")
+        public String yellowTeaDrink_Effect = "teastory:defence";
 
         @Config.Comment("The ticks of the effect of white tea. (1 second = 20 ticks)")
-        @Config.LangKey("teastory.config.drink.whitetea")
+        @Config.LangKey("teastory.config.drink.whitetea.time")
         @Config.Name("WhiteTeaDrinksEffectTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public int whiteTeaDrink_Time = 1800;
+        public int whiteTeaDrink_Time = 3600;
+        
+        @Config.Comment("The effect of white tea.")
+        @Config.LangKey("teastory.config.drink.whitetea.effect")
+        @Config.Name("WhiteTeaDrinksEffect")
+        public String whiteTeaDrink_Effect = "minecraft:haste";
 
         @Config.Comment("The ticks of the effect of oolong tea. (1 second = 20 ticks)")
-        @Config.LangKey("teastory.config.drink.oolongtea")
+        @Config.LangKey("teastory.config.drink.oolongtea.time")
         @Config.Name("OolongTeaDrinksEffectTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public int oolongTeaDrink_Time = 1800;
+        public int oolongTeaDrink_Time = 3600;
+        
+        @Config.Comment("The effect of oolong tea.")
+        @Config.LangKey("teastory.config.drink.oolongtea.effect")
+        @Config.Name("OolongTeaDrinksEffect")
+        public String oolongTeaDrink_Effect = "teastory:photosynthesis";
 
         @Config.Comment("The ticks of the effect of pu'er tea. (1 second = 20 ticks)")
-        @Config.LangKey("teastory.config.drink.puertea")
+        @Config.LangKey("teastory.config.drink.puertea.time")
         @Config.Name("PuerTeaDrinksEffectTime")
         @Config.RangeInt(min = 0, max = 12000)
-        public int puerTeaDrink_Time = 1800;
+        public int puerTeaDrink_Time = 3600;
+        
+        @Config.Comment("The effect of pu'er tea.")
+        @Config.LangKey("teastory.config.drink.puertea.effect")
+        @Config.Name("PuerTeaDrinksEffect")
+        public String puerTeaDrink_Effect = "teastory:life_drain";
     }
 
     public static final class TeaMaking

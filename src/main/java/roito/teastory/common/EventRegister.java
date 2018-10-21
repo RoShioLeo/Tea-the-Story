@@ -8,6 +8,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
@@ -178,17 +179,51 @@ public class EventRegister
     @SubscribeEvent
     public void onItemUse(RightClickBlock event)
     {
-        if (!event.getItemStack().isEmpty() && event.getItemStack().getItem() instanceof ItemSpade && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockFarmland)
+    	boolean flag = false;
+        if (!event.getItemStack().isEmpty())
         {
-            event.getWorld().setBlockState(event.getPos(), BlockRegister.field.getDefaultState());
-            event.getItemStack().damageItem(1, event.getEntityPlayer());
-            event.getEntityPlayer().playSound(SoundEvents.ITEM_HOE_TILL, 1.0F, 1.0F);
-        }
-        else if (!event.getItemStack().isEmpty() && event.getItemStack().getItem() instanceof ItemHoe && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockGrassPath)
-        {
-            event.getWorld().setBlockState(event.getPos(), BlockRegister.field.getDefaultState());
-            event.getItemStack().damageItem(1, event.getEntityPlayer());
-            event.getEntityPlayer().playSound(SoundEvents.ITEM_HOE_TILL, 1.0F, 1.0F);
+        	if (event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockFarmland)
+        	{
+        		if (event.getItemStack().getItem() instanceof ItemSpade)
+        		{
+        			flag = true;
+        		}
+        		else
+        		{
+        			for (int i=0; i<ConfigMain.general.spadeList.length; i++)
+        			{
+        				if (Item.getByNameOrId(ConfigMain.general.spadeList[i]).equals(event.getItemStack().getItem()))
+        				{
+        					flag = true;
+        					break;
+        				}
+        			}
+        		}
+        	}
+        	else if (event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockGrassPath)
+        	{
+        		if (event.getItemStack().getItem() instanceof ItemHoe)
+        		{
+        			flag = true;
+        		}
+        		else
+        		{
+        			for (int i=0; i<ConfigMain.general.hoeList.length; i++)
+        			{
+        				if (Item.getByNameOrId(ConfigMain.general.hoeList[i]).equals(event.getItemStack().getItem()))
+        				{
+        					flag = true;
+        					break;
+        				}
+        			}
+        		}
+        	}
+        	if (flag)
+            {
+                event.getWorld().setBlockState(event.getPos(), BlockRegister.field.getDefaultState());
+                event.getItemStack().damageItem(1, event.getEntityPlayer());
+                event.getEntityPlayer().playSound(SoundEvents.ITEM_HOE_TILL, 1.0F, 1.0F);
+        	}
         }
     }
 

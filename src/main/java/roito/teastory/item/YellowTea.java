@@ -3,6 +3,7 @@ package roito.teastory.item;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -33,7 +34,7 @@ public class YellowTea extends ItemTeaDrink
         {
             ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemRegister.tea_residue, 1, 2));
         }
-        entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionDefence, ConfigMain.drink.yellowTeaDrink_Time, 0));
+        entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.yellowTeaDrink_Effect), ConfigMain.drink.yellowTeaDrink_Time, 0));
         entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.yellowTeaDrink_Time, 0));
     }
 

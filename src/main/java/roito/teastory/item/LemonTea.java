@@ -3,9 +3,9 @@ package roito.teastory.item;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFire;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
@@ -43,7 +43,7 @@ public class LemonTea extends ItemTeaDrink
         {
             entityplayer.extinguish();
         }
-        entityplayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ConfigMain.drink.lemonTeaDrink_Time / (tier + 1), tier));
+        entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.lemonTeaDrink_Effect), ConfigMain.drink.lemonTeaDrink_Time / (tier + 1), tier));
         entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.lemonTeaDrink_Time / (tier + 1), 0));
         for (int x = -1 - tier; x <= 1 + tier; x++)
         {

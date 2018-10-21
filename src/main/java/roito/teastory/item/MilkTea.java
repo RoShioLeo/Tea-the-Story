@@ -2,8 +2,8 @@ package roito.teastory.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -52,7 +52,7 @@ public class MilkTea extends ItemTeaDrink
             entityplayer.removePotionEffect(effect.getPotion());
         }
 
-        entityplayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ConfigMain.drink.milkTeaDrink_Time / (tier + 1), tier));
+        entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.milkTeaDrink_Effect), ConfigMain.drink.milkTeaDrink_Time / (tier + 1), tier));
         entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.milkTeaDrink_Time / (tier + 1), 0));
     }
 
