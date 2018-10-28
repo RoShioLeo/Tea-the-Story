@@ -6,7 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import roito.teastory.block.BlockRegister;
-import roito.teastory.item.*;
+import roito.teastory.item.drink.*;
 
 public class TileEntityTeaDrink extends TileEntity
 {

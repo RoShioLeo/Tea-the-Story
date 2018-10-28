@@ -1,4 +1,4 @@
-package roito.teastory.item;
+package roito.teastory.item.drink;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
@@ -27,6 +27,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import org.lwjgl.input.Keyboard;
 import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsRegister;
+import roito.teastory.item.ItemRegister;
 import toughasnails.api.stat.capability.ITemperature;
 import toughasnails.api.stat.capability.IThirst;
 import toughasnails.api.temperature.Temperature;

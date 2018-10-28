@@ -1,4 +1,4 @@
-package roito.teastory.item;
+package roito.teastory.item.drink;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -6,16 +6,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.config.ConfigMain;
 import roito.teastory.potion.PotionRegister;
 
-public class PuerTea extends ItemTeaDrink
+public class MatchaDrink extends ItemTeaDrink
 {
-    public PuerTea()
+    public MatchaDrink()
     {
-        super("puer_tea");
+        super("matcha_drink");
     }
 
     @Override
@@ -30,12 +29,11 @@ public class PuerTea extends ItemTeaDrink
 
     public static void addPotion(int tier, World world, EntityPlayer entityplayer)
     {
-        if (ConfigMain.general.useTeaResidueAsBoneMeal)
+    	if (Potion.getPotionFromResourceLocation(ConfigMain.drink.matchaDrink_Effect) != null)
         {
-            ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemRegister.tea_residue, 1, 5));
+    		entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.matchaDrink_Effect), ConfigMain.drink.matchaDrink_Time / (tier + 1), tier));
         }
-        entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.puerTeaDrink_Effect), ConfigMain.drink.puerTeaDrink_Time / (tier + 1), tier));
-        entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.puerTeaDrink_Time / (tier + 1), 0));
+        entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.matchaDrink_Time / (tier + 1), 0));
     }
 
     @Override
@@ -44,15 +42,15 @@ public class PuerTea extends ItemTeaDrink
         switch (meta)
         {
             case 2:
-                return BlockRegister.puertea_stone_cup;
+                return BlockRegister.matchadrink_stone_cup;
             case 3:
-                return BlockRegister.puertea_glass_cup;
+                return BlockRegister.matchadrink_glass_cup;
             case 4:
-                return BlockRegister.puertea_porcelain_cup;
+                return BlockRegister.matchadrink_porcelain_cup;
             case 5:
-                return BlockRegister.puertea_zisha_cup;
+                return BlockRegister.matchadrink_zisha_cup;
             default:
-                return BlockRegister.puertea_wood_cup;
+                return BlockRegister.matchadrink_wood_cup;
         }
     }
 }

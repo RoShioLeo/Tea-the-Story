@@ -1,4 +1,4 @@
-package roito.teastory.item;
+package roito.teastory.item.drink;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.config.ConfigMain;
+import roito.teastory.item.ItemRegister;
 import roito.teastory.potion.PotionRegister;
 
 import java.util.ArrayList;
@@ -52,7 +53,10 @@ public class MilkTea extends ItemTeaDrink
             entityplayer.removePotionEffect(effect.getPotion());
         }
 
-        entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.milkTeaDrink_Effect), ConfigMain.drink.milkTeaDrink_Time / (tier + 1), tier));
+        if (Potion.getPotionFromResourceLocation(ConfigMain.drink.milkTeaDrink_Effect) != null)
+        {
+        	entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.milkTeaDrink_Effect), ConfigMain.drink.milkTeaDrink_Time / (tier + 1), tier));
+        }
         entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.milkTeaDrink_Time / (tier + 1), 0));
     }
 

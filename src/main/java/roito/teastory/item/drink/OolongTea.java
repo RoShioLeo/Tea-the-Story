@@ -1,4 +1,4 @@
-package roito.teastory.item;
+package roito.teastory.item.drink;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,13 +9,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.config.ConfigMain;
+import roito.teastory.item.ItemRegister;
 import roito.teastory.potion.PotionRegister;
 
-public class BlackTea extends ItemTeaDrink
+public class OolongTea extends ItemTeaDrink
 {
-    public BlackTea()
+    public OolongTea()
     {
-        super("black_tea");
+        super("oolong_tea");
     }
 
     @Override
@@ -32,10 +33,13 @@ public class BlackTea extends ItemTeaDrink
     {
         if (ConfigMain.general.useTeaResidueAsBoneMeal)
         {
-            ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemRegister.tea_residue, 1, 1));
+            ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemRegister.tea_residue, 1, 4));
         }
-        entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.blackTeaDrink_Effect), ConfigMain.drink.blackTeaDrink_Time / (tier + 1), tier));
-        entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.blackTeaDrink_Time / (tier + 1), 0));
+        if (Potion.getPotionFromResourceLocation(ConfigMain.drink.oolongTeaDrink_Effect) != null)
+        {
+        	entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.oolongTeaDrink_Effect), ConfigMain.drink.oolongTeaDrink_Time / (tier + 1), tier));
+        }
+        entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.oolongTeaDrink_Time / (tier + 1), 0));
     }
 
     @Override
@@ -44,15 +48,15 @@ public class BlackTea extends ItemTeaDrink
         switch (meta)
         {
             case 2:
-                return BlockRegister.blacktea_stone_cup;
+                return BlockRegister.oolongtea_stone_cup;
             case 3:
-                return BlockRegister.blacktea_glass_cup;
+                return BlockRegister.oolongtea_glass_cup;
             case 4:
-                return BlockRegister.blacktea_porcelain_cup;
+                return BlockRegister.oolongtea_porcelain_cup;
             case 5:
-                return BlockRegister.blacktea_zisha_cup;
+                return BlockRegister.oolongtea_zisha_cup;
             default:
-                return BlockRegister.blacktea_wood_cup;
+                return BlockRegister.oolongtea_wood_cup;
         }
     }
 }

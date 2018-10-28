@@ -17,6 +17,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import roito.teastory.TeaStory;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.common.CreativeTabsRegister;
+import roito.teastory.item.drink.BlackTea;
+import roito.teastory.item.drink.GreenTea;
+import roito.teastory.item.drink.ItemTeaDrink;
+import roito.teastory.item.drink.LemonTea;
+import roito.teastory.item.drink.MatchaDrink;
+import roito.teastory.item.drink.MilkTea;
+import roito.teastory.item.drink.OolongTea;
+import roito.teastory.item.drink.PuerTea;
+import roito.teastory.item.drink.WhiteTea;
+import roito.teastory.item.drink.YellowTea;
 
 @Mod.EventBusSubscriber(modid = TeaStory.MODID)
 public final class ItemRegister
