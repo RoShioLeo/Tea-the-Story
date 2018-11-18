@@ -269,6 +269,7 @@ teastory.config.general.teaseedchance=茶籽掉率（‰）
 teastory.config.general.lemonchance=柠檬掉率（‰）
 teastory.config.general.riceweight=稻谷掉落权重
 teastory.config.general.residues=茶叶渣可以用作骨粉
+teastory.config.general.washrice=淘米时使用矿物词典
 teastory.config.general.hoelist=自定义锄识别列表
 teastory.config.general.spadelist=自定义锹识别列表
 teastory.config.drink=茶饮相关

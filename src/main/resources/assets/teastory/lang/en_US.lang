@@ -267,6 +267,7 @@ teastory.config.general.teaseedchance=Tea Seeds Drop Chance (‰)
 teastory.config.general.lemonchance=Lemons Drop Chance (‰)
 teastory.config.general.riceweight=Rice Seeds Drop Weight
 teastory.config.general.residues=Use Tea Residue As Bone Meal
+teastory.config.general.washrice=Use Ore Dictionary When Washing Rice
 teastory.config.general.hoelist=Customed Hoe List
 teastory.config.general.spadelist=Customed Spade List
 teastory.config.drink=Drink

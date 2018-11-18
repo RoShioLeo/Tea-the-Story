@@ -54,6 +54,11 @@ public final class ConfigMain
         @Config.Name("UseTeaResidueAsBoneMeal")
         public boolean useTeaResidueAsBoneMeal = true;
         
+        @Config.Comment("Set it to false not to use ore dictionary when washing rice.")
+        @Config.LangKey("teastory.config.general.washrice")
+        @Config.Name("UseOreDictionaryWhenWashingRice")
+        public boolean useOreDictionaryWhenWashingRice = true;
+        
         @Config.Comment("List of hoes which can't be identified.")
         @Config.LangKey("teastory.config.general.hoelist")
         @Config.Name("CustomHoeList")

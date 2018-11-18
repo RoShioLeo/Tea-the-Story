@@ -37,6 +37,7 @@ import roito.teastory.TeaStory;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.block.StrawBlanket;
 import roito.teastory.config.ConfigMain;
+import roito.teastory.helper.NonNullListHelper;
 import roito.teastory.item.ItemRegister;
 import roito.teastory.potion.PotionRegister;
 import java.util.List;
@@ -169,7 +170,7 @@ public class EventRegister
 
         for (EntityItem entityItem : itemList)
         {
-            if (OreDictionary.containsMatch(false, OreDictionary.getOres("cropRice"), entityItem.getItem()) && world.isMaterialInBB(entityItem.getEntityBoundingBox(), Material.WATER))
+            if (OreDictionary.containsMatch(false, ConfigMain.general.useOreDictionaryWhenWashingRice ? OreDictionary.getOres("cropRice") : NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.xian_rice)), entityItem.getItem()) && world.isMaterialInBB(entityItem.getEntityBoundingBox(), Material.WATER))
             {
                 entityItem.setItem(new ItemStack(ItemRegister.washed_rice, entityItem.getItem().getCount()));
             }

@@ -1,6 +1,5 @@
 package roito.teastory.item.drink;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -10,18 +9,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.lwjgl.input.Keyboard;
@@ -160,33 +155,11 @@ public class ItemTeaDrink extends ItemFood implements IDrink
     @Nullable
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
-        if (entityLiving instanceof EntityPlayer)
-        {
-            EntityPlayer entityplayer = (EntityPlayer) entityLiving;
-            entityplayer.getFoodStats().addStats(this, stack);
-            worldIn.playSound((EntityPlayer) null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
-            this.onFoodEaten(stack, worldIn, entityplayer);
-            entityplayer.addStat(StatList.getObjectUseStats(this));
-
-            if (entityplayer instanceof EntityPlayerMP)
-            {
-                CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) entityplayer, stack);
-            }
-
-            if (!worldIn.isRemote && Loader.isModLoaded("toughasnails"))
-            {
-                drink(entityLiving);
-                changeTemperature(entityLiving);
-            }
-        }
-
-        if (stack.getCount() > 1)
-        {
-            ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemRegister.cup, 1, stack.getItemDamage()));
-            stack.shrink(1);
-            return stack;
-        }
-        return new ItemStack(ItemRegister.cup, 1, stack.getItemDamage());
+    	if (entityLiving instanceof EntityPlayer)
+    	{
+        	ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemRegister.cup, 1, stack.getItemDamage()));
+    	}
+    	return super.onItemUseFinish(stack, worldIn, entityLiving);
     }
 
     @Optional.Method(modid = "toughasnails")
