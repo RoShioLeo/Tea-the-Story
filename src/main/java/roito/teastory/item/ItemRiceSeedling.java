@@ -25,7 +25,7 @@ public class ItemRiceSeedling extends ItemSeeds
     public ItemRiceSeedling()
     {
         super(BlockRegister.xian_rice_plant, Blocks.WATER);
-        this.setUnlocalizedName("item_xian_rice_seedling");
+        this.setTranslationKey("item_xian_rice_seedling");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "item_xian_rice_seedling"));
         this.setCreativeTab(CreativeTabsRegister.tabRice);
     }

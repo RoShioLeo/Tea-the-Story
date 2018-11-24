@@ -24,7 +24,7 @@ public class XianRiceSeedling extends BlockCrops
 
     public XianRiceSeedling()
     {
-        this.setUnlocalizedName("xian_rice_seedling");
+        this.setTranslationKey("xian_rice_seedling");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "xian_rice_seedling"));
     }
 

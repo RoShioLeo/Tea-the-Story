@@ -45,7 +45,7 @@ public class ItemStrawBlanket extends TSItem
             }
 
             int i = MathHelper.floor(playerIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-            EnumFacing enumfacing = EnumFacing.getHorizontal(i);
+            EnumFacing enumfacing = EnumFacing.byHorizontalIndex(i);
             BlockPos blockpos = pos.offset(enumfacing);
             ItemStack itemstack = playerIn.getHeldItem(hand);
 

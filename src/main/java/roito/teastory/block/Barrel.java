@@ -32,7 +32,7 @@ public class Barrel extends BlockContainer implements ITileEntityProvider
         super(Material.WOOD);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName("barrel");
+        this.setTranslationKey("barrel");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "barrel"));
         this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
         this.setCreativeTab(CreativeTabsRegister.tabTeaStory);

@@ -23,7 +23,7 @@ public class TeaDrink extends Block
         super(materialIn);
         this.setHardness(hardness);
         this.setSoundType(soundType);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
         this.meta = level;
     }
@@ -48,7 +48,7 @@ public class TeaDrink extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

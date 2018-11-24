@@ -18,7 +18,7 @@ public class TSItemFoodWithBowl extends ItemFood
         super(amount, saturation, false);
         this.setMaxStackSize(1);
         this.setCreativeTab(CreativeTabsRegister.tabRice);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
     }
 

@@ -39,7 +39,7 @@ public class ItemSickle extends Item
         this.setMaxDamage(500);
         this.setCreativeTab(CreativeTabsRegister.tabRice);
         this.speed = theToolMaterial.getAttackDamage() + 0.5F;
-        this.setUnlocalizedName("sickle");
+        this.setTranslationKey("sickle");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "sickle"));
     }
 
@@ -89,7 +89,7 @@ public class ItemSickle extends Item
 
     public static EnumActionResult harvestCrops(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, int time)
     {
-        if (worldIn.getChunkFromBlockCoords(pos).isLoaded())
+        if (worldIn.getChunk(pos).isLoaded())
         {
             Block block = worldIn.getBlockState(pos).getBlock();
             if (block instanceof IGrowable)

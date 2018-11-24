@@ -9,8 +9,6 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-sourceCompatibility = targetCompatibility = '1.8'
-
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 compileJava {

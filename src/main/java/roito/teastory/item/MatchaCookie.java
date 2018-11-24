@@ -14,7 +14,7 @@ public class MatchaCookie extends ItemFood
     {
         super(1, false);
         this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
-        this.setUnlocalizedName("matcha_cookie");
+        this.setTranslationKey("matcha_cookie");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "matcha_cookie"));
     }
 

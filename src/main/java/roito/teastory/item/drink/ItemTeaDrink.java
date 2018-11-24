@@ -11,7 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSoup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -34,16 +34,16 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @Optional.Interface(iface = "toughasnails.api.thirst.IDrink", modid = "toughasnails")
-public class ItemTeaDrink extends ItemFood implements IDrink
+public class ItemTeaDrink extends ItemSoup implements IDrink
 {
     public ItemTeaDrink(String name)
     {
-        super(1, false);
+        super(1);
         this.setCreativeTab(CreativeTabsRegister.tabDrink);
         this.setAlwaysEdible();
         this.setMaxStackSize(4);
         this.setHasSubtypes(true);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
     }
 
@@ -72,7 +72,7 @@ public class ItemTeaDrink extends ItemFood implements IDrink
 
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
         String name;
         switch (stack.getItemDamage())
@@ -92,7 +92,7 @@ public class ItemTeaDrink extends ItemFood implements IDrink
             default:
                 name = "wood";
         }
-        return super.getUnlocalizedName() + "_" + name;
+        return super.getTranslationKey() + "_" + name;
     }
 
     @Nullable
@@ -159,7 +159,8 @@ public class ItemTeaDrink extends ItemFood implements IDrink
     	{
         	ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemRegister.cup, 1, stack.getItemDamage()));
     	}
-    	return super.onItemUseFinish(stack, worldIn, entityLiving);
+    	super.onItemUseFinish(stack, worldIn, entityLiving);
+    	return stack;
     }
 
     @Optional.Method(modid = "toughasnails")

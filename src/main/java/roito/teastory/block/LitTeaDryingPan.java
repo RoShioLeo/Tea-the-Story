@@ -38,7 +38,7 @@ public class LitTeaDryingPan extends BlockContainer
         this.setHardness(3.0F);
         this.setSoundType(SoundType.METAL);
         this.setLightLevel(0.875F);
-        this.setUnlocalizedName("lit_tea_drying_pan");
+        this.setTranslationKey("lit_tea_drying_pan");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "lit_tea_drying_pan"));
         this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0).withProperty(TYPE, false));
     }

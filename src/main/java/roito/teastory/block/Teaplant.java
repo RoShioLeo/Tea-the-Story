@@ -42,7 +42,7 @@ public class Teaplant extends BlockBush implements IGrowable
         this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
         this.setTickRandomly(true);
         this.setCreativeTab((CreativeTabs) null);
-        this.setUnlocalizedName("teaplant");
+        this.setTranslationKey("teaplant");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "teaplant"));
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);

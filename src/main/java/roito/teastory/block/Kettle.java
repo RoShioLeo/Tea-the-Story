@@ -28,7 +28,7 @@ public class Kettle extends BlockHorizontal
         super(material);
         this.setHardness(1.25F);
         this.setSoundType(SoundType.STONE);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
     }
 

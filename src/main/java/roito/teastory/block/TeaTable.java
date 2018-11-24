@@ -34,7 +34,7 @@ public class TeaTable extends Block implements ITileEntityProvider
         super(Material.WOOD);
         this.setHardness(3.5F);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName("tea_table");
+        this.setTranslationKey("tea_table");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_table"));
         this.setCreativeTab(CreativeTabsRegister.tabDrink);
     }

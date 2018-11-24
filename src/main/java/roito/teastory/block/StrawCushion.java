@@ -28,7 +28,7 @@ public class StrawCushion extends Block
         this.setSoundType(SoundType.PLANT);
         this.setHardness(0.2F);
         this.setCreativeTab(CreativeTabsRegister.tabRice);
-        this.setUnlocalizedName("straw_cushion");
+        this.setTranslationKey("straw_cushion");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "straw_cushion"));
     }
 

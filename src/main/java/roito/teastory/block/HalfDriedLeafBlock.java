@@ -19,7 +19,7 @@ public class HalfDriedLeafBlock extends Block
         super(Material.GRASS);
         this.setHardness(0.2F);
         this.setSoundType(SoundType.PLANT);
-        this.setUnlocalizedName("half_dried_leaf_block");
+        this.setTranslationKey("half_dried_leaf_block");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "half_dried_leaf_block"));
         this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
     }
@@ -38,7 +38,7 @@ public class HalfDriedLeafBlock extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }

@@ -17,7 +17,7 @@ public class ItemLemon extends ItemFood
     public ItemLemon()
     {
         super(1, false);
-        this.setUnlocalizedName("lemon");
+        this.setTranslationKey("lemon");
         this.setCreativeTab(CreativeTabsRegister.tabDrink);
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "lemon"));
     }

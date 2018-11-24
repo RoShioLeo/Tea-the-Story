@@ -39,7 +39,7 @@ public class StrawBlanket extends BlockHorizontal
         this.setSoundType(SoundType.PLANT);
         this.setHardness(0.2F);
         this.disableStats();
-        this.setUnlocalizedName("straw_blanket");
+        this.setTranslationKey("straw_blanket");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "straw_blanket"));
         this.setDefaultState(this.blockState.getBaseState().withProperty(PART, StrawBlanket.EnumPartType.FOOT).withProperty(OCCUPIED, Boolean.valueOf(false)));
     }
@@ -185,8 +185,8 @@ public class StrawBlanket extends BlockHorizontal
 
         for (int l = 0; l <= 1; ++l)
         {
-            int i1 = i - enumfacing.getFrontOffsetX() * l - 1;
-            int j1 = k - enumfacing.getFrontOffsetZ() * l - 1;
+            int i1 = i - enumfacing.getXOffset() * l - 1;
+            int j1 = k - enumfacing.getZOffset() * l - 1;
             int k1 = i1 + 2;
             int l1 = j1 + 2;
 
@@ -227,7 +227,7 @@ public class StrawBlanket extends BlockHorizontal
     }
 
     @Override
-    public EnumPushReaction getMobilityFlag(IBlockState state)
+    public EnumPushReaction getPushReaction(IBlockState state)
     {
         return EnumPushReaction.DESTROY;
     }
@@ -261,7 +261,7 @@ public class StrawBlanket extends BlockHorizontal
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
+        EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta);
         return (meta & 8) > 0 ? this.getDefaultState().withProperty(PART, StrawBlanket.EnumPartType.HEAD).withProperty(FACING, enumfacing).withProperty(OCCUPIED, Boolean.valueOf((meta & 4) > 0)) : this.getDefaultState().withProperty(PART, StrawBlanket.EnumPartType.FOOT).withProperty(FACING, enumfacing);
     }
 

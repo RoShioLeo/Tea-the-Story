@@ -16,7 +16,7 @@ public class CreativeTabsRegister
         tabTeaStory = new CreativeTabs("tabTeaStory")
         {
             @Override
-            public ItemStack getTabIconItem()
+            public ItemStack createIcon()
             {
                 return new ItemStack(ItemRegister.half_dried_tea);
             }
@@ -24,7 +24,7 @@ public class CreativeTabsRegister
         tabDrink = new CreativeTabs("tabTeaDrink")
         {
             @Override
-            public ItemStack getTabIconItem()
+            public ItemStack createIcon()
             {
                 return new ItemStack(ItemRegister.green_tea);
             }
@@ -32,7 +32,7 @@ public class CreativeTabsRegister
         tabRice = new CreativeTabs("tabTeaRice")
         {
             @Override
-            public ItemStack getTabIconItem()
+            public ItemStack createIcon()
             {
                 return new ItemStack(ItemRegister.xian_rice);
             }

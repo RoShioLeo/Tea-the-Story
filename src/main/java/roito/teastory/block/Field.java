@@ -37,7 +37,7 @@ public class Field extends Block
         super(Material.GROUND);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GROUND);
-        this.setUnlocalizedName("field");
+        this.setTranslationKey("field");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "field"));
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(true)).withProperty(EAST, Boolean.valueOf(true)).withProperty(SOUTH, Boolean.valueOf(true)).withProperty(WEST, Boolean.valueOf(true)));
     }

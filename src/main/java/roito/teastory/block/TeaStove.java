@@ -39,7 +39,7 @@ public class TeaStove extends BlockContainer implements ITileEntityProvider
         super(Material.ROCK);
         this.setHardness(3.5F);
         this.setSoundType(SoundType.STONE);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
         this.setLightLevel(lightLevel);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -121,7 +121,7 @@ public class TeaStove extends BlockContainer implements ITileEntityProvider
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing facing = EnumFacing.getHorizontal(meta & 3);
+        EnumFacing facing = EnumFacing.byHorizontalIndex(meta & 3);
         return this.getDefaultState().withProperty(FACING, facing);
     }
 

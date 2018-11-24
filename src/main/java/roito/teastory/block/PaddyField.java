@@ -44,7 +44,7 @@ public class PaddyField extends Block
         super(Material.WATER);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GROUND);
-        this.setUnlocalizedName("paddy_field");
+        this.setTranslationKey("paddy_field");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "paddy_field"));
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(true)).withProperty(EAST, Boolean.valueOf(true)).withProperty(SOUTH, Boolean.valueOf(true)).withProperty(WEST, Boolean.valueOf(true)).withProperty(LEVEL, 0));
     }
@@ -100,7 +100,7 @@ public class PaddyField extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

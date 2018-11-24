@@ -31,7 +31,7 @@ public class LitCookingPan extends BlockContainer
         this.setHardness(3.0F);
         this.setSoundType(SoundType.METAL);
         this.setLightLevel(0.875F);
-        this.setUnlocalizedName("lit_cooking_pan");
+        this.setTranslationKey("lit_cooking_pan");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "lit_cooking_pan"));
     }
 

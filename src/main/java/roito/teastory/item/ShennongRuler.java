@@ -35,7 +35,7 @@ public class ShennongRuler extends ItemSword
         super(SHENNONGTOOL);
         this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
         this.setMaxStackSize(1);
-        this.setUnlocalizedName("shennong_ruler");
+        this.setTranslationKey("shennong_ruler");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "shennong_ruler"));
     }
 

@@ -39,22 +39,22 @@ public class TeaResidue extends TSItem
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
         switch (stack.getItemDamage())
         {
             case 1:
-                return super.getUnlocalizedName() + "_" + "black";
+                return super.getTranslationKey() + "_" + "black";
             case 2:
-                return super.getUnlocalizedName() + "_" + "yellow";
+                return super.getTranslationKey() + "_" + "yellow";
             case 3:
-                return super.getUnlocalizedName() + "_" + "white";
+                return super.getTranslationKey() + "_" + "white";
             case 4:
-                return super.getUnlocalizedName() + "_" + "oolong";
+                return super.getTranslationKey() + "_" + "oolong";
             case 5:
-                return super.getUnlocalizedName() + "_" + "puer";
+                return super.getTranslationKey() + "_" + "puer";
             default:
-                return super.getUnlocalizedName() + "_" + "green";
+                return super.getTranslationKey() + "_" + "green";
         }
     }
 

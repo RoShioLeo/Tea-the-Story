@@ -23,7 +23,7 @@ public class ItemCup extends TSItem
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
         String name;
         switch (stack.getItemDamage())
@@ -43,7 +43,7 @@ public class ItemCup extends TSItem
             default: // 0
                 name = "wood";
         }
-        return super.getUnlocalizedName() + "_" + name;
+        return super.getTranslationKey() + "_" + name;
     }
 
     @Override

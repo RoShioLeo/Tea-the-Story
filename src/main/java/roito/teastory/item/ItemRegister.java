@@ -57,7 +57,7 @@ public final class ItemRegister
     public static ItemTeaLeaf puer_tea_bag = new ItemTeaLeaf("puer_tea_bag", 64);
 
     //稻米
-    public static Item xian_rice_seeds = new ItemSeeds(BlockRegister.xian_rice_seedling, Blocks.FARMLAND).setUnlocalizedName("xian_rice_seeds").setRegistryName(new ResourceLocation(TeaStory.MODID, "xian_rice_seeds")).setCreativeTab(CreativeTabsRegister.tabRice);
+    public static Item xian_rice_seeds = new ItemSeeds(BlockRegister.xian_rice_seedling, Blocks.FARMLAND).setTranslationKey("xian_rice_seeds").setRegistryName(new ResourceLocation(TeaStory.MODID, "xian_rice_seeds")).setCreativeTab(CreativeTabsRegister.tabRice);
     public static Item xian_rice_seedlings = new ItemRiceSeedling();
     public static Item straw = new TSItem("straw", 64, CreativeTabsRegister.tabRice)
     {
@@ -79,7 +79,7 @@ public final class ItemRegister
         }
     };
 
-    public static Item rice_ball = new ItemFood(8, 0.6F, false).setUnlocalizedName("rice_ball").setRegistryName(new ResourceLocation(TeaStory.MODID, "rice_ball")).setCreativeTab(CreativeTabsRegister.tabRice);
+    public static Item rice_ball = new ItemFood(8, 0.6F, false).setTranslationKey("rice_ball").setRegistryName(new ResourceLocation(TeaStory.MODID, "rice_ball")).setCreativeTab(CreativeTabsRegister.tabRice);
     public static Item porkchop_rice = new TSItemFoodWithBowl("porkchop_rice", 19, 0.5F);
     public static Item steak_rice = new TSItemFoodWithBowl("steak_rice", 19, 0.5F);
     public static Item chicken_rice = new TSItemFoodWithBowl("chicken_rice", 17, 0.5F);
@@ -264,7 +264,7 @@ public final class ItemRegister
             item.getSubItems(item.getCreativeTab(), subItems);
             for (ItemStack subItem : subItems)
             {
-                String subItemName = item.getUnlocalizedName(subItem);
+                String subItemName = item.getTranslationKey(subItem);
                 subItemName = subItemName.substring(subItemName.indexOf(".") + 1);
 
                 ModelBakery.registerItemVariants(item, new ResourceLocation(TeaStory.MODID, subItemName));
@@ -272,7 +272,7 @@ public final class ItemRegister
             }
         } else
         {
-            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(TeaStory.MODID + ":" + item.delegate.name().getResourcePath(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(TeaStory.MODID + ":" + item.delegate.name().getPath(), "inventory"));
         }
     }
 }

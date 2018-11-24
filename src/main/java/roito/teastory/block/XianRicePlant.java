@@ -35,7 +35,7 @@ public class XianRicePlant extends BlockBush implements IGrowable
         this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
         this.setTickRandomly(true);
         this.setCreativeTab((CreativeTabs) null);
-        this.setUnlocalizedName("xian_rice_plant");
+        this.setTranslationKey("xian_rice_plant");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "xian_rice_plant"));
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);

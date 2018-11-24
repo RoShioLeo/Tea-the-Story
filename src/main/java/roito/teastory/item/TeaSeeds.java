@@ -26,7 +26,7 @@ public class TeaSeeds extends ItemSeeds
     public TeaSeeds()
     {
         super(BlockRegister.teaplant, Blocks.FARMLAND);
-        this.setUnlocalizedName("tea_seeds");
+        this.setTranslationKey("tea_seeds");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_seeds"));
         this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
     }

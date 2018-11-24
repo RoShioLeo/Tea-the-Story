@@ -39,7 +39,7 @@ public class Teapan extends BlockContainer implements ITileEntityProvider
         super(Material.WOOD);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName("teapan");
+        this.setTranslationKey("teapan");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "teapan"));
         this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
         this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
@@ -59,7 +59,7 @@ public class Teapan extends BlockContainer implements ITileEntityProvider
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }

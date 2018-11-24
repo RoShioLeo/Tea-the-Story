@@ -11,7 +11,7 @@ public class TeaEgg extends ItemFood
     {
         super(5, false);
         this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
-        this.setUnlocalizedName("tea_egg");
+        this.setTranslationKey("tea_egg");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_egg"));
     }
 }

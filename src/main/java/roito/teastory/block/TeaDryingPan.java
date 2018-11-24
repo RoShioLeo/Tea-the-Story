@@ -37,7 +37,7 @@ public class TeaDryingPan extends Block
         this.setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(STEP, 0));
         this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
-        this.setUnlocalizedName("tea_drying_pan");
+        this.setTranslationKey("tea_drying_pan");
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_drying_pan"));
     }
 
@@ -55,7 +55,7 @@ public class TeaDryingPan extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
