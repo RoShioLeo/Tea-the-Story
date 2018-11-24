@@ -30,7 +30,7 @@ minecraft {
 
 task deobfJar(type: Jar) {
     from(sourceSets.main.output)
-    archiveName = "${baseName}-${version}-deobf.${extension}"
+    archiveName = "${baseName}-${version}-deobf.${extension}-${minecraft_version}"
 }
 
 artifacts {

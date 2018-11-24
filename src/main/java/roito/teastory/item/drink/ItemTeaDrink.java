@@ -11,7 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemSoup;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -34,14 +34,14 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @Optional.Interface(iface = "toughasnails.api.thirst.IDrink", modid = "toughasnails")
-public class ItemTeaDrink extends ItemSoup implements IDrink
+public class ItemTeaDrink extends ItemFood implements IDrink
 {
     public ItemTeaDrink(String name)
     {
-        super(1);
+        super(1, false);
         this.setCreativeTab(CreativeTabsRegister.tabDrink);
         this.setAlwaysEdible();
-        this.setMaxStackSize(4);
+        this.setMaxStackSize(1);
         this.setHasSubtypes(true);
         this.setTranslationKey(name);
         this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
@@ -159,8 +159,7 @@ public class ItemTeaDrink extends ItemSoup implements IDrink
     	{
         	ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemRegister.cup, 1, stack.getItemDamage()));
     	}
-    	super.onItemUseFinish(stack, worldIn, entityLiving);
-    	return stack;
+    	return super.onItemUseFinish(stack, worldIn, entityLiving);
     }
 
     @Optional.Method(modid = "toughasnails")
