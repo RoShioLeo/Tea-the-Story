@@ -158,14 +158,16 @@ public class ItemTeaDrink extends ItemFood implements IDrink
     	if (entityLiving instanceof EntityPlayer)
     	{
         	ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemRegister.cup, 1, stack.getItemDamage()));
+        	changeTemperature((EntityPlayer) entityLiving);
+        	drink((EntityPlayer) entityLiving);
     	}
+    	
     	return super.onItemUseFinish(stack, worldIn, entityLiving);
     }
 
     @Optional.Method(modid = "toughasnails")
-    public void changeTemperature(EntityLivingBase entity)
+    public void changeTemperature(EntityPlayer player)
     {
-        EntityPlayer player = (EntityPlayer) entity;
         ITemperature temperature = TemperatureHelper.getTemperatureData(player);
 
         if (temperature.getTemperature().getRawValue() <= 10)
@@ -178,9 +180,8 @@ public class ItemTeaDrink extends ItemFood implements IDrink
     }
 
     @Optional.Method(modid = "toughasnails")
-    public void drink(EntityLivingBase entity)
+    public void drink(EntityPlayer player)
     {
-        EntityPlayer player = (EntityPlayer) entity;
         IThirst thirst = ThirstHelper.getThirstData(player);
 
         thirst.addStats(this.getThirst(), this.getHydration());
