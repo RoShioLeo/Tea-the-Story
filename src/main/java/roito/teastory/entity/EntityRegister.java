@@ -11,7 +11,7 @@ public class EntityRegister
 
     public EntityRegister()
     {
-        registerEntity(EntityStrawCushion.class, "StrawCushion", 64, 1, false);
+        registerEntity(ISeat.Seat.class, "StrawCushion", 64, 1, false);
     }
 
     private static void registerEntity(Class<? extends Entity> entityClass, String name, int trackingRange,
