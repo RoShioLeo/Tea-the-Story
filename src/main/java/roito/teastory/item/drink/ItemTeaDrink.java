@@ -17,6 +17,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.lwjgl.input.Keyboard;
@@ -158,8 +159,12 @@ public class ItemTeaDrink extends ItemFood implements IDrink
     	if (entityLiving instanceof EntityPlayer)
     	{
         	ItemHandlerHelper.giveItemToPlayer((EntityPlayer) entityLiving, new ItemStack(ItemRegister.cup, 1, stack.getItemDamage()));
-        	changeTemperature((EntityPlayer) entityLiving);
-        	drink((EntityPlayer) entityLiving);
+        	
+        	if (Loader.isModLoaded("toughasnails"))
+            {
+        		changeTemperature((EntityPlayer) entityLiving);
+        		drink((EntityPlayer) entityLiving);
+            }
     	}
     	
     	return super.onItemUseFinish(stack, worldIn, entityLiving);
