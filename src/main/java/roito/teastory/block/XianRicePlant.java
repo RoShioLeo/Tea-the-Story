@@ -143,7 +143,7 @@ public class XianRicePlant extends BlockBush implements IGrowable
             {
                 float f = getGrowthChance(this, worldIn, pos);
 
-                if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, Math.random（)<(f/25))
+                if (f > 0.0F && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0))
                 {
                     worldIn.setBlockState(pos, this.withAge(i + 1), 2);
                     net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
