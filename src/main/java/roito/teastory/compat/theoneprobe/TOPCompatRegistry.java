@@ -8,14 +8,13 @@ import javax.annotation.Nullable;
 
 public class TOPCompatRegistry implements Function<ITheOneProbe, Void>
 {
-    @Override
+	@Override
 	@Nullable
-    public Void apply(ITheOneProbe theOneProbe)
-    {
-        theOneProbe.registerProvider(new TOPBarrel());
-        theOneProbe.registerProvider(new TOPFullKettle());
-        theOneProbe.registerProvider(new TOPTeapan());
-        theOneProbe.registerProvider(new TOPTeaPlant());
-        return null;
-    }
+	public Void apply(ITheOneProbe theOneProbe)
+	{
+		theOneProbe.registerProvider(new TOPFullKettle());
+		theOneProbe.registerProvider(new TOPTeapan());
+		theOneProbe.registerProvider(new TOPTeaPlant());
+		return null;
+	}
 }

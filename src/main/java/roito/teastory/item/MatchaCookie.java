@@ -10,17 +10,17 @@ import roito.teastory.common.CreativeTabsRegister;
 
 public class MatchaCookie extends ItemFood
 {
-    public MatchaCookie()
-    {
-        super(1, false);
-        this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
-        this.setTranslationKey("matcha_cookie");
-        this.setRegistryName(new ResourceLocation(TeaStory.MODID, "matcha_cookie"));
-    }
+	public MatchaCookie()
+	{
+		super(1, false);
+		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
+		this.setTranslationKey("matcha_cookie");
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "matcha_cookie"));
+	}
 
-    @Override
-    protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
-    {
+	@Override
+	protected void onFoodEaten(ItemStack itemstack, World world, EntityPlayer entityplayer)
+	{
 
-    }
+	}
 }

@@ -13,24 +13,24 @@ import roito.teastory.block.FullKettle;
 
 public class TOPFullKettle implements IProbeInfoProvider
 {
-    @Override
-    public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data)
-    {
-        if (blockState.getBlock() instanceof FullKettle)
-        {
-            FullKettle kettle = (FullKettle) blockState.getBlock();
-            if (data.getPickBlock() != null)
-            {
-                probeInfo.text(I18n.format("teastory.tooltip.kettle.remain",
-                        kettle.getMaxCapacity() - data.getPickBlock().getItemDamage(),
-                        kettle.getMaxCapacity()));
-            }
-        }
-    }
+	@Override
+	public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data)
+	{
+		if (blockState.getBlock() instanceof FullKettle)
+		{
+			FullKettle kettle = (FullKettle) blockState.getBlock();
+			if (data.getPickBlock() != null)
+			{
+				probeInfo.text(I18n.format("teastory.tooltip.kettle.remain",
+						kettle.getMaxCapacity() - data.getPickBlock().getItemDamage(),
+						kettle.getMaxCapacity()));
+			}
+		}
+	}
 
-    @Override
-    public String getID()
-    {
-        return TeaStory.MODID + ".full_kettle";
-    }
+	@Override
+	public String getID()
+	{
+		return TeaStory.MODID + ".full_kettle";
+	}
 }

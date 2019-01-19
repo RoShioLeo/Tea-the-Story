@@ -1,242 +1,271 @@
 package roito.teastory.tileentity;
 
-import net.minecraft.item.Item;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import roito.teastory.block.BlockRegister;
-import roito.teastory.block.Teapan;
+import roito.teastory.api.recipe.IRecipeManager;
+import roito.teastory.api.recipe.ITeaMakingRecipe;
+import roito.teastory.common.RecipeRegister;
 import roito.teastory.helper.EntironmentHelper;
-import roito.teastory.item.ItemRegister;
+
+import static roito.teastory.api.recipe.TeaMakingRecipe.EMPTY_RECIPE;
 
 public class TileEntityTeapan extends TileEntity implements ITickable
 {
-    protected int realTicks = 0;
-    protected int totalTicks = 0;
+	protected int processTicks = 0;
+	protected int totalTicks = 0;
+	protected ITeaMakingRecipe usedRecipe = EMPTY_RECIPE;
 
-    protected ItemStackHandler leafInventory = new ItemStackHandler(3);
+	protected ItemStackHandler inputInventory = new ItemStackHandler();
+	protected ItemStackHandler outputInventory = new ItemStackHandler();
 
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-    {
-        if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(capability))
-        {
-            return true;
-        }
-        return super.hasCapability(capability, facing);
-    }
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+	{
+		if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(capability))
+		{
+			return true;
+		}
+		return super.hasCapability(capability, facing);
+	}
 
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-    {
-        if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(capability))
-        {
-            T result = (T) (leafInventory);
-            return result;
-        }
-        return super.getCapability(capability, facing);
-    }
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	{
+		if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(capability))
+		{
+			if (facing != EnumFacing.DOWN)
+			{
+				return (T) inputInventory;
+			}
+			else
+			{
+				return (T) outputInventory;
+			}
+		}
+		return super.getCapability(capability, facing);
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound compound)
-    {
-        super.readFromNBT(compound);
-        this.leafInventory.deserializeNBT(compound.getCompoundTag("LeafInventory"));
-        this.realTicks = compound.getInteger("RealTick");
-    }
+	@Override
+	public void readFromNBT(NBTTagCompound compound)
+	{
+		super.readFromNBT(compound);
+		this.inputInventory.deserializeNBT(compound.getCompoundTag("InputInventory"));
+		this.outputInventory.deserializeNBT(compound.getCompoundTag("OutputInventory"));
+		this.processTicks = compound.getInteger("ProcessTick");
+	}
 
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
-    {
-        compound.setTag("LeafInventory", this.leafInventory.serializeNBT());
-        compound.setInteger("RealTick", this.realTicks);
-        return super.writeToNBT(compound);
-    }
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
+	{
+		compound.setTag("InputInventory", this.inputInventory.serializeNBT());
+		compound.setTag("OutputInventory", this.outputInventory.serializeNBT());
+		compound.setInteger("ProcessTick", this.processTicks);
+		return super.writeToNBT(compound);
+	}
 
-    @Override
-    public void update()
-    {
-        if (!this.getWorld().isRemote)
-        {
-            if (this.world.getBlockState(pos).getBlock() != BlockRegister.teapan)
-            {
-                this.world.removeTileEntity(pos);
-                return;
-            }
-            Biome biome = this.getWorld().getBiome(pos);
-            int basicTick = EntironmentHelper.getDryingTicks(biome.getTemperature(pos), biome.getRainfall());
-            int step = this.getBlockMetadata();
-            if (this.getWorld().isRainingAt(pos.up()))
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    if (leafInventory.getStackInSlot(i) != null && leafInventory.getStackInSlot(i).getItem() != ItemRegister.wet_tea)
-                    {
-                        leafInventory.setStackInSlot(i, new ItemStack(ItemRegister.wet_tea, leafInventory.getStackInSlot(i).getCount()));
-                    }
-                }
-                realTicks = 0;
-            }
-            int wetLeafNumber = getLeafNumber(ItemRegister.wet_tea);
-            if (wetLeafNumber > 0)
-            {
-                if (step != 1)
-                {
-                    Teapan.setState(1, world, pos);
-                }
-                totalTicks = (wetLeafNumber < 16 ? 16 : wetLeafNumber > 64 ? 64 : wetLeafNumber) * basicTick;
-                jugde(ItemRegister.wet_tea, ItemRegister.tea_leaf);
-                this.markDirty();
-                return;
-            }
-            int freshLeafNumber = getLeafNumber(ItemRegister.tea_leaf);
-            if (freshLeafNumber > 0)
-            {
-                if (step != 2)
-                {
-                    Teapan.setState(2, world, pos);
-                }
-                totalTicks = (freshLeafNumber < 16 ? 16 : freshLeafNumber > 64 ? 64 : freshLeafNumber) * basicTick;
-                jugde(ItemRegister.tea_leaf, ItemRegister.half_dried_tea);
-                this.markDirty();
-                return;
-            }
-            int halfDriedLeafNumber = getLeafNumber(ItemRegister.half_dried_tea);
-            int driedLeafNumber = getLeafNumber(ItemRegister.dried_tea);
-            if (halfDriedLeafNumber > 0)
-            {
-                if (step != 3)
-                {
-                    Teapan.setState(3, world, pos);
-                }
-                if (!this.getWorld().canSeeSky(pos))
-                {
-                    if (driedLeafNumber > 0)
-                    {
-                        totalTicks = (driedLeafNumber < 16 ? 16 : driedLeafNumber > 64 ? 64 : driedLeafNumber) * basicTick;
-                        jugde(ItemRegister.dried_tea, ItemRegister.yellow_tea_leaf);
-                        this.markDirty();
-                        return;
-                    }
-                    realTicks = 0;
-                    return;
-                }
-                totalTicks = (halfDriedLeafNumber < 16 ? 16 : halfDriedLeafNumber > 64 ? 64 : halfDriedLeafNumber) * basicTick / 2;
-                jugde(ItemRegister.half_dried_tea, ItemRegister.dried_tea);
-                this.markDirty();
-                return;
-            }
-            if (driedLeafNumber > 0)
-            {
-                if (step != 4)
-                {
-                    Teapan.setState(4, world, pos);
-                }
-                if (this.getWorld().canSeeSky(pos))
-                {
-                    realTicks = 0;
-                    return;
-                }
-                totalTicks = (driedLeafNumber < 16 ? 16 : driedLeafNumber > 64 ? 64 : driedLeafNumber) * basicTick;
-                jugde(ItemRegister.dried_tea, ItemRegister.yellow_tea_leaf);
-                this.markDirty();
-                return;
-            }
+	@Override
+	public NBTTagCompound getUpdateTag()
+	{
+		return writeToNBT(new NBTTagCompound());
+	}
 
-            realTicks = 0;
-            int yellowLeafNumber = getLeafNumber(ItemRegister.yellow_tea_leaf);
-            if (yellowLeafNumber > 0)
-            {
-                if (step != 5)
-                {
-                    Teapan.setState(5, world, pos);
-                }
-                return;
-            }
-            if (step != 0)
-            {
-                Teapan.setState(0, world, pos);
-            }
-            this.markDirty();
-        }
-    }
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket()
+	{
+		NBTTagCompound nbtTag = new NBTTagCompound();
+		this.writeToNBT(nbtTag);
+		return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
+	}
 
-    private void jugde(Item before, Item after)
-    {
-        if (!isRaining() && enoughLight())
-        {
-            realTicks++;
-        }
-        if (this.realTicks >= this.totalTicks)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                if (leafInventory.getStackInSlot(i) != null && leafInventory.getStackInSlot(i).getItem() == before)
-                {
-                    leafInventory.setStackInSlot(i, new ItemStack(after, leafInventory.getStackInSlot(i).getCount()));
-                }
-            }
-            realTicks = 0;
-        }
-    }
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
+	{
+		this.readFromNBT(packet.getNbtCompound());
+	}
 
-    public int getStep()
-    {
-        if (getLeafNumber(ItemRegister.wet_tea) > 0)
-        {
-            return 1;
-        } else if (getLeafNumber(ItemRegister.tea_leaf) > 0)
-        {
-            return 2;
-        } else if (getLeafNumber(ItemRegister.half_dried_tea) > 0)
-        {
-            return 3;
-        } else if (getLeafNumber(ItemRegister.dried_tea) > 0)
-        {
-            return 4;
-        } else if (getLeafNumber(ItemRegister.yellow_tea) > 0)
-        {
-            return 5;
-        }
-        return 0;
-    }
+	@Override
+	public void update()
+	{
+		if (!world.isRemote)
+		{
+			Biome biome = this.getWorld().getBiome(pos);
+			switch (this.getMode())
+			{
+				case -1:
+				{
+					refreshTotalTicks(0);
+					getWet();
+					return;
+				}
+				case 1:
+				{
+					refreshTotalTicks(EntironmentHelper.getFermentationTicks(biome.getRainfall(), biome.getTemperature(pos)));
+					process(RecipeRegister.managerTeapanIndoors);
+					return;
+				}
+				default:
+				{
+					if (!this.isWorldRaining())
+					{
+						refreshTotalTicks(EntironmentHelper.getDryingTicks(biome.getRainfall(), biome.getTemperature(pos)));
+						process(RecipeRegister.managerTeapanInSun);
+					}
+					return;
+				}
+			}
+		}
+	}
 
-    public int getTotalTicks()
-    {
-        return this.totalTicks;
-    }
+	private boolean process(IRecipeManager<ITeaMakingRecipe> recipeManager)
+	{
+		ItemStack input = this.inputInventory.getStackInSlot(0).copy();
+		if (input.isEmpty())
+		{
+			return false;
+		}
+		if (!usedRecipe.isTheSameInput(this.inputInventory.getStackInSlot(0)))
+		{
+			usedRecipe = recipeManager.getRecipe(this.inputInventory.getStackInSlot(0));
+		}
+		if (!usedRecipe.getOutput().isEmpty())
+		{
+			ItemStack output = usedRecipe.getOutput().copy();
+			output.setCount(input.getCount());
+			if (this.outputInventory.insertItem(0, output, true).isEmpty())
+			{
+				if (++this.processTicks >= this.totalTicks)
+				{
+					this.outputInventory.insertItem(0, output, false);
+					this.inputInventory.extractItem(0, output.getCount(), false);
+					refresh();
+					this.processTicks = 0;
+				}
+				this.markDirty();
+				return true;
+			}
+		}
+		this.processTicks = 0;
+		this.markDirty();
+		return false;
+	}
 
-    public boolean isRaining()
-    {
-        return this.getWorld().isRaining();
-    }
+	private void getWet()
+	{
+		this.processTicks = 0;
+		if (!usedRecipe.isTheSameInput(this.inputInventory.getStackInSlot(0)))
+		{
+			usedRecipe = RecipeRegister.managerWet.getRecipe(this.inputInventory.getStackInSlot(0));
+		}
+		if (!usedRecipe.getOutput().isEmpty())
+		{
+			ItemStack wetOutput = usedRecipe.getOutput().copy();
+			wetOutput.setCount(inputInventory.getStackInSlot(0).getCount());
+			this.inputInventory.setStackInSlot(0, wetOutput);
+			refresh();
+		}
+		this.markDirty();
+	}
 
-    public boolean enoughLight()
-    {
-        return this.getWorld().getLightFromNeighbors(pos) >= 10;
-    }
+	/*
+		-1 for in rain, 0 for drying, 1 for fermentation, 2 for bake.
+	 */
+	public int getMode()
+	{
+		if (this.isInRain())
+		{
+			return -1;
+		}
+		else if (!this.getWorld().canSeeSky(this.getPos()))
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 
-    public int getRealTicks()
-    {
-        return this.realTicks;
-    }
+	public NonNullList<ItemStack> getContents()
+	{
+		NonNullList<ItemStack> list = NonNullList.create();
+		for (int i = this.outputInventory.getStackInSlot(0).getCount(); i > 0; i -= 16)
+		{
+			list.add(this.outputInventory.getStackInSlot(0));
+		}
+		for (int i = this.inputInventory.getStackInSlot(0).getCount(); i > 0; i -= 16)
+		{
+			list.add(this.inputInventory.getStackInSlot(0));
+		}
+		return list;
+	}
 
-    public int getLeafNumber(Item leaf)
-    {
-        int leafNumber = 0;
-        for (int i = 0; i < 3; i++)
-        {
-            if (leafInventory.getStackInSlot(i) != null && leafInventory.getStackInSlot(i).getItem() == leaf)
-            {
-                leafNumber += leafInventory.getStackInSlot(i).getCount();
-            }
-        }
-        return leafNumber;
-    }
+	public void refreshTotalTicks(int basicTime)
+	{
+		if (inputInventory.getStackInSlot(0).getCount() >= 32)
+		{
+			this.totalTicks = 32;
+		}
+		else if (inputInventory.getStackInSlot(0).getCount() > 0 && inputInventory.getStackInSlot(0).getCount() <= 8)
+		{
+			this.totalTicks = 8;
+		}
+		else
+		{
+			this.totalTicks = inputInventory.getStackInSlot(0).getCount();
+		}
+		this.totalTicks *= basicTime;
+	}
+
+	public int getTotalTicks()
+	{
+		return this.totalTicks;
+	}
+
+	public boolean isWorldRaining()
+	{
+		return this.getWorld().isRaining();
+	}
+
+	public boolean isInRain()
+	{
+		return this.getWorld().isRainingAt(pos.up());
+	}
+
+	public boolean hasEnoughLight()
+	{
+		return this.getWorld().getLightFromNeighbors(pos) >= 9;
+	}
+
+	public int getProcessTicks()
+	{
+		return this.processTicks;
+	}
+
+	@Override
+	public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
+	{
+		return oldState.getBlock() != newSate.getBlock();
+	}
+
+	void refresh()
+	{
+		if (hasWorld() && !world.isRemote)
+		{
+			IBlockState state = world.getBlockState(pos);
+			world.markAndNotifyBlock(pos, null, state, state, 11);
+		}
+	}
 }

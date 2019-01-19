@@ -17,58 +17,64 @@ import net.minecraft.world.World;
 public interface ISeat
 {
 
-    public Vec3d getSeat(IBlockState state);
+	public Vec3d getSeat(IBlockState state);
 
-    public static class Seat extends Entity
-    {
+	public static class Seat extends Entity
+	{
 
-        public Seat(World world, Vec3d pos)
-        {
-            this(world);
-            setPosition(pos.x, pos.y + 0.001, pos.z);
-        }
+		public Seat(World world, Vec3d pos)
+		{
+			this(world);
+			setPosition(pos.x, pos.y + 0.001, pos.z);
+		}
 
-        public Seat(World par1World)
-        {
-            super(par1World);
-            setSize(0F, 0F);
-        }
+		public Seat(World par1World)
+		{
+			super(par1World);
+			setSize(0F, 0F);
+		}
 
-        @Override
-        public void onUpdate()
-        {
-            super.onUpdate();
+		@Override
+		public void onUpdate()
+		{
+			super.onUpdate();
 
-            // if (worldObj.isRemote) {
-            BlockPos pos = getPosition();
-            if (pos == null || !(getEntityWorld().getBlockState(pos).getBlock() instanceof ISeat))
-            {
-                setDead();
-                return;
-            }
+			// if (worldObj.isRemote) {
+			BlockPos pos = getPosition();
+			if (pos == null || !(getEntityWorld().getBlockState(pos).getBlock() instanceof ISeat))
+			{
+				setDead();
+				return;
+			}
 
-            List<Entity> passangers = getPassengers();
-            if (passangers.isEmpty())
-                setDead();
-            for (Entity e : passangers)
-                if (e.isSneaking())
-                    setDead();
-            // }
-        }
+			List<Entity> passangers = getPassengers();
+			if (passangers.isEmpty())
+			{
+				setDead();
+			}
+			for (Entity e : passangers)
+			{
+				if (e.isSneaking())
+				{
+					setDead();
+				}
+			}
+			// }
+		}
 
-        @Override
-        protected void entityInit()
-        {
-        }
+		@Override
+		protected void entityInit()
+		{
+		}
 
-        @Override
-        protected void readEntityFromNBT(NBTTagCompound nbttagcompound)
-        {
-        }
+		@Override
+		protected void readEntityFromNBT(NBTTagCompound nbttagcompound)
+		{
+		}
 
-        @Override
-        protected void writeEntityToNBT(NBTTagCompound nbttagcompound)
-        {
-        }
-    }
+		@Override
+		protected void writeEntityToNBT(NBTTagCompound nbttagcompound)
+		{
+		}
+	}
 }

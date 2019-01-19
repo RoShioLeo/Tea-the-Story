@@ -7,12 +7,12 @@ import roito.teastory.TeaStory;
 
 public class TSItem extends Item
 {
-    public TSItem(String name, int maxStack, CreativeTabs creativeTab)
-    {
-        super();
-        this.setTranslationKey(name);
-        this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
-        this.setMaxStackSize(maxStack);
-        this.setCreativeTab(creativeTab);
-    }
+	public TSItem(String name, int maxStack, CreativeTabs creativeTab)
+	{
+		super();
+		this.setTranslationKey(name);
+		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
+		this.setMaxStackSize(maxStack);
+		this.setCreativeTab(creativeTab);
+	}
 }

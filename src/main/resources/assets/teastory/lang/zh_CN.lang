@@ -234,10 +234,11 @@ teastory.message.bed.excited=你现在太兴奋了，以致于无法入睡。
 teastory.container.tea_stove=茶炉
 teastory.container.tea_table=沏茶台
 teastory.container.teapan=茶簸箕
-teastory.container.barrel=发酵桶
-teastory.container.time=剩余时间：%1$s分钟%2$s秒
-teastory.container.rain=下雨天暂停
-teastory.container.light=光照不足
+teastory.container.teapan.rain=下雨天，暂停
+teastory.container.teapan.in_rain=淋雨中，暂停
+teastory.container.teapan.time=剩余%1$s分钟%2$s秒 %3$s模式
+teastory.container.teapan.mode.0=干燥
+teastory.container.teapan.mode.1=发酵
 
 #JEI
 jei.teastory.category.teastove=杀青

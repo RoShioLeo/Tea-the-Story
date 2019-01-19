@@ -14,31 +14,6 @@
         },
         {
             "apply": { "model": "teastory:teapan_side", "y": 270, "uvlock": true }
-        },
-		{   "when": { "step": "2" },
-            "apply":[
-				{ "model": "teastory:teapan_full"}
-			]
-        },
-		{   "when": { "step": "3" },
-            "apply":[
-				{ "model": "teastory:teapan_matcha"}
-			]
-        },
-		{   "when": { "step": "4" },
-            "apply":[
-				{ "model": "teastory:teapan_dried"}
-			]
-        },
-		{   "when": { "step": "5" },
-            "apply":[
-				{ "model": "teastory:teapan_yellow"}
-			]
-        },
-		{   "when": { "step": "1" },
-            "apply":[
-				{ "model": "teastory:teapan_wet"}
-			]
         }
     ]
 }
