@@ -230,20 +230,6 @@ public class EventRegister
 	}
 
 	@SubscribeEvent
-	public void onPlayerWakeUp(PlayerWakeUpEvent event)
-	{
-		EntityPlayer player = event.getEntityPlayer();
-		World world = player.world;
-		BlockPos pos = player.bedLocation;
-		IBlockState state = world.getBlockState(pos);
-		if (state.getBlock() instanceof StrawBlanket)
-		{
-			BlockPos pos1 = pos.offset(state.getValue(BlockHorizontal.FACING).getOpposite());
-			world.setBlockToAir(pos1);
-		}
-	}
-
-	@SubscribeEvent
 	public void onPlayerSetSpawn(PlayerSetSpawnEvent event)
 	{
 		World world = event.getEntityPlayer().getEntityWorld();

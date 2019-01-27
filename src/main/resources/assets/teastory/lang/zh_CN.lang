@@ -229,6 +229,7 @@ teastory.message.cooking_pan.lid=请盖上木锅盖。
 teastory.message.cooking_pan.ignite=请用打火石点火。
 teastory.message.cooking_pan.rice=距离米饭出锅还有%1$s秒。
 teastory.message.bed.excited=你现在太兴奋了，以致于无法入睡。
+teastory.message.record=您未安装“茶风·纪事”唱片资源包，无法播放音乐。
 
 #Container GUI
 teastory.container.tea_stove=茶炉

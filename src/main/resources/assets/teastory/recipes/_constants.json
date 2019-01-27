@@ -110,5 +110,12 @@
 			"type": "forge:ore_dict",
 			"ore": "string"
 		}
+	},
+	{
+		"name": "record",
+		"ingredient": {
+			"type": "forge:ore_dict",
+			"ore": "record"
+		}
 	}
 ]

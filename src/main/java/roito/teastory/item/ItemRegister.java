@@ -137,8 +137,8 @@ public final class ItemRegister
 	public static Item sickle = new ItemSickle();
 	public static Item lemon = new ItemLemon();
 	public static ItemSword shennongruler = new ShennongRuler();
-	public static ItemRecord caichawuqu_g20 = new Record("caichawuqu_g20", "record_caichawuqu_g20", "records.caichawuqu_g20");
-	public static ItemRecord caichawuqu_folk = new Record("caichawuqu_folk", "record_caichawuqu_folk", "records.caichawuqu_folk");
+	public static ItemRecord caichawuqu_g20 = new Record("caichawuqu_g20", "record_caichawuqu_g20", new ResourceLocation(TeaStory.MODID, "records.caichawuqu_g20"));
+	public static ItemRecord caichawuqu_folk = new Record("caichawuqu_folk", "record_caichawuqu_folk", new ResourceLocation(TeaStory.MODID, "records.caichawuqu_folk"));
 
 	public ItemRegister(FMLPreInitializationEvent event)
 	{

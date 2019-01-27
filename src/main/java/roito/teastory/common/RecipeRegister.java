@@ -157,9 +157,12 @@ public class RecipeRegister
 	{
 		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.tea_leaf)), new ItemStack(ItemRegister.wet_tea)));
 		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.half_dried_tea)), new ItemStack(ItemRegister.wet_tea)));
-		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.dried_tea)), new ItemStack(ItemRegister.wet_tea)));
-		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_leaf)), new ItemStack(ItemRegister.wet_tea)));
-		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_leaf)), new ItemStack(ItemRegister.wet_tea)));
+		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.dried_tea)), new ItemStack(ItemRegister.tea_residue, 1, 0)));
+		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf)), new ItemStack(ItemRegister.tea_residue, 1, 1)));
+		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_leaf)), new ItemStack(ItemRegister.tea_residue, 1, 2)));
+		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_leaf)), new ItemStack(ItemRegister.tea_residue, 1, 3)));
+		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.oolong_tea_leaf)), new ItemStack(ItemRegister.tea_residue, 1, 4)));
+		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.puer_tea_leaf)), new ItemStack(ItemRegister.tea_residue, 1, 5)));
 		managerWet.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.matcha_leaf)), new ItemStack(ItemRegister.wet_tea)));
 	}
 }

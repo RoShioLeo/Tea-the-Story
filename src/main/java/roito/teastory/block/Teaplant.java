@@ -115,13 +115,17 @@ public class Teaplant extends BlockBush implements IGrowable
 			{
 				if (rand.nextInt((int) (25.0F / f) + 1) == 0)
 				{
-					if (i < 15)
+					if (i < 11)
 					{
 						worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
 					}
-					else
+					else if (i == 11 || i >= 15)
 					{
-						worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(7)), 2);
+						worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(6)), 2);
+					}
+					else if (i > 11 && i < 15)
+					{
+						worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(6)), 2);
 					}
 				}
 			}
@@ -201,11 +205,11 @@ public class Teaplant extends BlockBush implements IGrowable
 					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemRegister.broken_tea, playerIn.getRNG().nextInt(4) + 1)));
 					return true;
 				case 14:
-					worldIn.setBlockState(pos, this.getStateFromMeta(7));
+					worldIn.setBlockState(pos, this.getStateFromMeta(6));
 					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getSeed(), playerIn.getRNG().nextInt(4) + 1)));
 					return true;
 				case 15:
-					worldIn.setBlockState(pos, this.getStateFromMeta(7));
+					worldIn.setBlockState(pos, this.getStateFromMeta(6));
 					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(this.getSeed(), playerIn.getRNG().nextInt(4) + 1)));
 					return true;
 			}
@@ -299,6 +303,6 @@ public class Teaplant extends BlockBush implements IGrowable
 
 	protected int getBonemealAgeIncrease(World worldIn)
 	{
-		return 1;
+		return 2;
 	}
 }
