@@ -22,7 +22,7 @@ public class MatchaDrink extends ItemTeaDrink
 	{
 		if (!world.isRemote)
 		{
-			int tier = itemstack.getItemDamage();
+			int tier = itemstack.getItemDamage() / 2;
 			addPotion(tier, world, entityplayer);
 		}
 	}

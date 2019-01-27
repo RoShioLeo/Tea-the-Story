@@ -18,7 +18,6 @@ public class ContainerTeapan extends Container
 {
 	public TileEntityTeapan tileEntity;
 	private IItemHandler inputItem;
-	private IItemHandler outputItem;
 	protected int processTicks = 0;
 	protected int totalTicks = 0;
 	protected int isRaining = 0;
@@ -29,16 +28,7 @@ public class ContainerTeapan extends Container
 	{
 		super();
 		this.inputItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-		this.outputItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
-		this.addSlotToContainer(new SlotItemHandler(this.inputItem, 0, 53, 31));
-		this.addSlotToContainer(new SlotItemHandler(this.outputItem, 0, 107, 31)
-		{
-			@Override
-			public boolean isItemValid(ItemStack stack)
-			{
-				return false;
-			}
-		});
+		this.addSlotToContainer(new SlotItemHandler(this.inputItem, 0, 80, 31));
 
 		for (int i = 0; i < 3; ++i)
 		{
@@ -75,19 +65,19 @@ public class ContainerTeapan extends Container
 
 		boolean isMerged = false;
 
-		if (index >= 0 && index < 2)
+		if (index >= 0 && index < 1)
 		{
-			isMerged = mergeItemStack(newStack, 2, 38, true);
+			isMerged = mergeItemStack(newStack, 1, 37, true);
 		}
-		else if (index >= 2 && index < 29)
+		else if (index >= 1 && index < 28)
 		{
-			isMerged = mergeItemStack(newStack, 0, 2, false)
+			isMerged = mergeItemStack(newStack, 0, 1, false)
 					|| mergeItemStack(newStack, 29, 38, false);
 		}
-		else if (index >= 29 && index < 38)
+		else if (index >= 28 && index < 37)
 		{
-			isMerged = mergeItemStack(newStack, 0, 2, false)
-					|| mergeItemStack(newStack, 2, 29, false);
+			isMerged = mergeItemStack(newStack, 0, 1, false)
+					|| mergeItemStack(newStack, 1, 28, false);
 		}
 
 		if (!isMerged)

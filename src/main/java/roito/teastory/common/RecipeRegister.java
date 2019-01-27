@@ -16,33 +16,30 @@ import java.util.stream.Collectors;
 public class RecipeRegister
 {
 	@Nonnull
-	public static ITeaTableRecipeManager<ITeaTableRecipe> managerTeaTable;
-	public static IRecipeManager<ITeaMakingRecipe> managerDryingPan, managerCookingPan, managerTeapanInSun, managerTeapanIndoors, managerWet, managerTeaStoveDrying, managerTeaStoveSteam;
+	public final static ITeaTableRecipeManager<ITeaTableRecipe> managerTeaTable = new TeaTableRecipeManager();
+	public final static IRecipeManager<ITeaMakingRecipe> managerDryingPan = new TeaDryingPanRecipeManager();
+	public final static IRecipeManager<ITeaMakingRecipe> managerCookingPan = new CookingPanRecipeManager();
+	public final static IRecipeManager<ITeaMakingRecipe> managerTeapanInSun = new TeaMakingDryingInSunRecipeManager();
+	public final static IRecipeManager<ITeaMakingRecipe> managerTeapanIndoors = new TeaMakingDryingIndoorsRecipeManager();
+	public final static IRecipeManager<ITeaMakingRecipe> managerWet = new TeaMakingWetRecipeManager();
+	public final static IRecipeManager<ITeaMakingRecipe> managerStoveDrying = new TeaStoveDryingRecipeManager();
+	public final static IRecipeManager<ITeaMakingRecipe> managerStoveSteam = new TeaStoveSteamRecipeManager();
 
 	public RecipeRegister()
 	{
-		managerTeaStoveDrying = new TeaStoveDryingRecipeManager();
-		managerTeaStoveSteam = new TeaStoveSteamRecipeManager();
-		managerTeaTable = new TeaTableRecipeManager();
-		managerDryingPan = new TeaDryingPanRecipeManager();
-		managerCookingPan = new CookingPanRecipeManager();
-		managerTeapanInSun = new TeaMakingDryingInSunRecipeManager();
-		managerTeapanIndoors = new TeaMakingDryingIndoorsRecipeManager();
-		managerWet = new TeaMakingWetRecipeManager();
-
-		addTeaStoveRecipe();
 		addTeaTableRecipe();
 		addDryingPanRecipe();
 		addCookingPanRecipe();
 		addTeapanRecipe();
 		addBarrelRecipe();
 		addWetRecipe();
+		addTeaStoveRecipe();
 	}
 
 	private static void addTeaStoveRecipe()
 	{
-		managerTeaStoveSteam.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.tea_leaf)), new ItemStack(ItemRegister.matcha_leaf)));
-		managerTeaStoveDrying.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.half_dried_tea)), new ItemStack(ItemRegister.white_tea_leaf)));
+		managerStoveSteam.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.tea_leaf)), new ItemStack(ItemRegister.matcha_leaf)));
+		managerStoveDrying.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.half_dried_tea)), new ItemStack(ItemRegister.white_tea_leaf)));
 	}
 
 	private static void addTeapanRecipe()
@@ -50,13 +47,13 @@ public class RecipeRegister
 		managerTeapanInSun.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.wet_tea)), new ItemStack(ItemRegister.tea_leaf)));
 		managerTeapanInSun.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.tea_leaf)), new ItemStack(ItemRegister.half_dried_tea)));
 		managerTeapanInSun.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.half_dried_tea)), new ItemStack(ItemRegister.dried_tea)));
-		managerTeapanIndoors.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.dried_tea)), new ItemStack(ItemRegister.yellow_tea_leaf)));
 	}
 
 	private static void addBarrelRecipe()
 	{
 		managerTeapanIndoors.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.half_dried_tea)), new ItemStack(ItemRegister.black_tea_leaf)));
 		managerTeapanIndoors.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf)), new ItemStack(ItemRegister.puer_tea_leaf)));
+		managerTeapanIndoors.add(new TeaMakingRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.dried_tea)), new ItemStack(ItemRegister.yellow_tea_leaf)));
 	}
 
 	public static void addCookingPanRecipe()
@@ -91,6 +88,8 @@ public class RecipeRegister
 	private static void addTeaTableRecipe()
 	{
 		NonNullList<ItemStack> sugar3 = NonNullListHelper.createNonNullList(getActualInputs(ItemStack.class, "listAllsugar", 3));
+		NonNullList<ItemStack> sugar12 = NonNullListHelper.createNonNullList(getActualInputs(ItemStack.class, "listAllsugar", 12));
+		NonNullList<ItemStack> sugar24 = NonNullListHelper.createNonNullList(getActualInputs(ItemStack.class, "listAllsugar", 24));
 		NonNullList<ItemStack> tea_whisk = NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.tea_whisk, 1, OreDictionary.WILDCARD_VALUE));
 		for (int i = 0; i <= 5; i++)
 		{
@@ -116,42 +115,42 @@ public class RecipeRegister
 			}
 		}
 
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), OreDictionary.getOres("listAllmilk"), new ItemStack(BlockRegister.empty_porcelain_kettle), sugar3, new ItemStack(BlockRegister.milk_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), OreDictionary.getOres("listAllmilk"), new ItemStack(BlockRegister.empty_porcelain_kettle), sugar3, new ItemStack(BlockRegister.milk_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), OreDictionary.getOres("cropLemon"), new ItemStack(BlockRegister.empty_porcelain_kettle), sugar3, new ItemStack(BlockRegister.lemon_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), OreDictionary.getOres("cropLemon"), new ItemStack(BlockRegister.empty_porcelain_kettle), sugar3, new ItemStack(BlockRegister.lemon_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.matcha_powder, 8)), tea_whisk, new ItemStack(BlockRegister.empty_porcelain_kettle), sugar3, new ItemStack(BlockRegister.matcha_drink_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.black_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.black_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.green_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.green_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.dried_tea, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.green_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.yellow_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.yellow_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.white_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.white_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.oolong_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.oolong_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.oolong_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.oolong_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.puer_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.puer_tea_porcelain_kettle, 1, 3)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.puer_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.puer_tea_porcelain_kettle, 1, 3)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), OreDictionary.getOres("listAllmilk"), new ItemStack(BlockRegister.empty_porcelain_kettle), sugar12, new ItemStack(BlockRegister.milk_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), OreDictionary.getOres("listAllmilk"), new ItemStack(BlockRegister.empty_porcelain_kettle), sugar12, new ItemStack(BlockRegister.milk_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), OreDictionary.getOres("cropLemon"), new ItemStack(BlockRegister.empty_porcelain_kettle), sugar12, new ItemStack(BlockRegister.lemon_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), OreDictionary.getOres("cropLemon"), new ItemStack(BlockRegister.empty_porcelain_kettle), sugar12, new ItemStack(BlockRegister.lemon_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.matcha_powder, 8)), tea_whisk, new ItemStack(BlockRegister.empty_porcelain_kettle), sugar12, new ItemStack(BlockRegister.matcha_drink_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.black_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.black_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.green_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.green_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.dried_tea, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.green_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.yellow_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.yellow_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.white_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.white_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.oolong_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.oolong_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.oolong_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.oolong_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.puer_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.puer_tea_porcelain_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.puer_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_porcelain_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.puer_tea_porcelain_kettle)));
 
 
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), OreDictionary.getOres("listAllmilk"), new ItemStack(BlockRegister.empty_zisha_kettle), sugar3, new ItemStack(BlockRegister.milk_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), OreDictionary.getOres("listAllmilk"), new ItemStack(BlockRegister.empty_zisha_kettle), sugar3, new ItemStack(BlockRegister.milk_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), OreDictionary.getOres("cropLemon"), new ItemStack(BlockRegister.empty_zisha_kettle), sugar3, new ItemStack(BlockRegister.lemon_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), OreDictionary.getOres("cropLemon"), new ItemStack(BlockRegister.empty_zisha_kettle), sugar3, new ItemStack(BlockRegister.lemon_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.matcha_powder, 8)), tea_whisk, new ItemStack(BlockRegister.empty_zisha_kettle), sugar3, new ItemStack(BlockRegister.matcha_drink_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.black_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.black_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.green_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.green_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.dried_tea, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.green_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.yellow_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.yellow_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.white_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.white_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.oolong_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.oolong_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.oolong_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.oolong_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.puer_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.puer_tea_zisha_kettle, 1, 7)));
-		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.puer_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.puer_tea_zisha_kettle, 1, 7)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), OreDictionary.getOres("listAllmilk"), new ItemStack(BlockRegister.empty_zisha_kettle), sugar24, new ItemStack(BlockRegister.milk_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), OreDictionary.getOres("listAllmilk"), new ItemStack(BlockRegister.empty_zisha_kettle), sugar24, new ItemStack(BlockRegister.milk_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), OreDictionary.getOres("cropLemon"), new ItemStack(BlockRegister.empty_zisha_kettle), sugar24, new ItemStack(BlockRegister.lemon_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), OreDictionary.getOres("cropLemon"), new ItemStack(BlockRegister.empty_zisha_kettle), sugar24, new ItemStack(BlockRegister.lemon_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.matcha_powder, 8)), tea_whisk, new ItemStack(BlockRegister.empty_zisha_kettle), sugar24, new ItemStack(BlockRegister.matcha_drink_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.black_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.black_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.black_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.green_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.green_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.dried_tea, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.green_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.yellow_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.yellow_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.yellow_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.white_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.white_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.white_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.oolong_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.oolong_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.oolong_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.oolong_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.puer_tea_bag, 1)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.puer_tea_zisha_kettle)));
+		managerTeaTable.add(new TeaTableRecipe(NonNullListHelper.createNonNullList(new ItemStack(ItemRegister.puer_tea_leaf, 8)), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.empty_zisha_kettle), NonNullListHelper.createNonNullList(ItemStack.EMPTY), new ItemStack(BlockRegister.puer_tea_zisha_kettle)));
 	}
 
 	private static void addWetRecipe()

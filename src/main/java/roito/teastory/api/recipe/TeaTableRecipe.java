@@ -53,8 +53,6 @@ public class TeaTableRecipe implements ITeaTableRecipe
 	@Override
 	public boolean isTheSameInput(ItemStack leaf, ItemStack tool, ItemStack cup, ItemStack sugar)
 	{
-		return !this.output.isEmpty() && OreDictionary.containsMatch(true, teaLeaf, leaf) && OreDictionary.containsMatch(false, this.tool, tool) && OreDictionary.containsMatch(false, this.sugar, sugar) && OreDictionary.itemMatches(this.cup, cup, true);
+		return !this.output.isEmpty() && OreDictionary.containsMatch(true, teaLeaf, leaf) && OreDictionary.itemMatches(this.cup, cup, true) && OreDictionary.containsMatch(false, this.tool, tool) && OreDictionary.containsMatch(false, this.sugar, sugar);
 	}
-
-
 }

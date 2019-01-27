@@ -33,14 +33,7 @@ public class ContainerTeaStove extends Container
 		this.leafItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
 		this.fuelItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
 		this.driedItem = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
-		this.addSlotToContainer(new SlotItemHandler(this.leafItem, 0, 53, 20)
-		{
-			@Override
-			public boolean isItemValid(ItemStack stack)
-			{
-				return stack.getItem() == ItemRegister.tea_leaf || stack.getItem() == ItemRegister.half_dried_tea;
-			}
-		});
+		this.addSlotToContainer(new SlotItemHandler(this.leafItem, 0, 53, 20));
 		this.addSlotToContainer(new SlotItemHandler(this.fuelItem, 0, 53, 56));
 		this.addSlotToContainer(new SlotItemHandler(this.driedItem, 0, 116, 38)
 		{

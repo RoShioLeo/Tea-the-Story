@@ -37,7 +37,7 @@ public class TeaStoveSteamRecipeManager implements IRecipeManager<ITeaMakingReci
 	}
 
 	@Override
-	public Collection<ITeaMakingRecipe> getRecipes()
+	public Collection getRecipes()
 	{
 		return recipes;
 	}
@@ -72,5 +72,4 @@ public class TeaStoveSteamRecipeManager implements IRecipeManager<ITeaMakingReci
 	}
 
 	private static ArrayList<ITeaMakingRecipe> recipes = new ArrayList<>();
-
 }

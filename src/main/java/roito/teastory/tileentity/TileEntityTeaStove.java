@@ -32,6 +32,9 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 	protected ItemStackHandler fuelInventory = new ItemStackHandler();
 	protected ItemStackHandler outputInventory = new ItemStackHandler();
 
+	protected ITeaMakingRecipe usedSteamRecipe = new TeaMakingRecipe(NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY);
+	protected ITeaMakingRecipe usedDryingRecipe = new TeaMakingRecipe(NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY);
+
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
 	{
@@ -82,103 +85,117 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 	@Override
 	public void update()
 	{
-		//TODO 改用Recipe
-		ItemStack teaLeaf = leafInventory.extractItem(0, 1, true).copy();
-		if (!this.getWorld().isRemote)
+		if (!world.isRemote)
 		{
-			if (!teaLeaf.isEmpty())
-			{
-				ITeaMakingRecipe recipeIn = new TeaMakingRecipe(NonNullListHelper.createNonNullList(teaLeaf), ItemStack.EMPTY);
-				ITeaMakingRecipe recipeUse = new TeaMakingRecipe(NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY);
-
-				for (ITeaMakingRecipe recipe : RecipeRegister.managerTeaStoveDrying.getRecipes())
-				{
-					if (recipe.equals(recipeIn))
-					{
-						recipeUse = recipe;
-						break;
-					}
-				}
-				if (recipeUse.getOutput() == ItemStack.EMPTY)
-				{
-					recipeIn = new TeaMakingRecipe(NonNullListHelper.createNonNullList(teaLeaf), ItemStack.EMPTY);
-					for (ITeaMakingRecipe recipe : RecipeRegister.managerTeaStoveDrying.getRecipes())
-					{
-						if (recipe.equals(recipeIn))
-						{
-							recipeUse = recipe;
-							break;
-						}
-					}
-				}
-				if (recipeUse.getOutput() != ItemStack.EMPTY && outputInventory.insertItem(0, recipeUse.getOutput().copy(), true).isEmpty())
-				{
-					if (false)
-					{
-						if (this.hasWaterOrSteam())
-						{
-							if (this.hasFuelOrIsBurning())
-							{
-								if (!(this.getSteam() > 0))
-								{
-									this.getWorld().setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater() - 1));
-									this.steam = this.getTotalSteam();
-								}
-								this.dryTime++;
-							}
-							else
-							{
-								this.dryTime = 0;
-							}
-						}
-						else
-						{
-							this.dryTime = 0;
-						}
-					}
-					else
-					{
-						if (this.hasFuelOrIsBurning())
-						{
-							this.dryTime++;
-						}
-						else
-						{
-							this.dryTime = 0;
-						}
-					}
-				}
-				else
-				{
-					this.dryTime = 0;
-				}
-				if (this.dryTime == this.getTotalDryTime())
-				{
-					leafInventory.extractItem(0, 1, false);
-					outputInventory.insertItem(0, recipeUse.getOutput().copy(), false);
-					if (false)
-					{
-						this.steam--;
-					}
-					this.dryTime = 0;
-				}
-				this.markDirty();
-			}
-			else
+			ItemStack input = this.leafInventory.getStackInSlot(0).copy();
+			if (input.isEmpty())
 			{
 				this.dryTime = 0;
+				reduceFuelTime();
 				this.markDirty();
+				return;
 			}
-			if (this.fuelTime > 0)
+			if (hasWaterOrSteam())      // 蒸青模式
 			{
-				this.fuelTime--;
+				if (!usedSteamRecipe.isTheSameInput(input))
+				{
+					usedSteamRecipe = RecipeRegister.managerStoveSteam.getRecipe(input);
+				}
+				if (!usedSteamRecipe.getOutput().isEmpty())
+				{
+					process(true);
+					reduceFuelTime();
+					this.markDirty();
+					return;
+				}
+			}
+			//烘青模式
+			if (!usedDryingRecipe.isTheSameInput(input))
+			{
+				usedDryingRecipe = RecipeRegister.managerStoveDrying.getRecipe(input);
+			}
+			if (!usedDryingRecipe.getOutput().isEmpty())
+			{
+				process(false);
+				reduceFuelTime();
+				this.markDirty();
+				return;
+			}
+		}
+	}
 
-				if (this.fuelTime == 0)
+	public void reduceFuelTime()
+	{
+		if (isBurning())
+		{
+			this.fuelTime--;
+
+			if (this.fuelTime == 0)
+			{
+				ItemStack itemFuel = fuelInventory.extractItem(0, 1, true);
+				if (!isItemFuel(itemFuel))
 				{
 					TeaStove.setState(false, this.getWorld(), this.pos);
 				}
 			}
 		}
+	}
+
+	public void process(boolean needWater)
+	{
+		if (needWater && (outputInventory.insertItem(0, usedSteamRecipe.getOutput().copy(), true).isEmpty()))
+		{
+			if (this.hasWaterOrSteam())
+			{
+				if (this.hasFuelOrIsBurning())
+				{
+					if (!(this.getSteam() > 0))
+					{
+						this.getWorld().setBlockState(pos.up(), Blocks.CAULDRON.getStateFromMeta(this.hasWater() - 1));
+						this.steam = this.getTotalSteam();
+					}
+					this.dryTime++;
+				}
+				else
+				{
+					this.dryTime = 0;
+				}
+			}
+			else
+			{
+				this.dryTime = 0;
+			}
+		}
+		else if (!needWater && (outputInventory.insertItem(0, usedDryingRecipe.getOutput().copy(), true).isEmpty()))
+		{
+			if (this.hasFuelOrIsBurning())
+			{
+				this.dryTime++;
+			}
+			else
+			{
+				this.dryTime = 0;
+			}
+		}
+		else
+		{
+			this.dryTime = 0;
+		}
+		if (this.dryTime == this.getTotalDryTime())
+		{
+			leafInventory.extractItem(0, 1, false);
+			if (needWater)
+			{
+				outputInventory.insertItem(0, usedSteamRecipe.getOutput().copy(), false);
+				this.steam--;
+			}
+			else
+			{
+				outputInventory.insertItem(0, usedDryingRecipe.getOutput().copy(), false);
+			}
+			this.dryTime = 0;
+		}
+		this.markDirty();
 	}
 
 	public boolean hasFuelOrIsBurning()

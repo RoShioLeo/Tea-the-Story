@@ -17,19 +17,18 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import roito.teastory.api.recipe.IRecipeManager;
 import roito.teastory.api.recipe.ITeaMakingRecipe;
+import roito.teastory.api.recipe.TeaMakingRecipe;
 import roito.teastory.common.RecipeRegister;
 import roito.teastory.helper.EntironmentHelper;
-
-import static roito.teastory.api.recipe.TeaMakingRecipe.EMPTY_RECIPE;
+import roito.teastory.helper.NonNullListHelper;
 
 public class TileEntityTeapan extends TileEntity implements ITickable
 {
 	protected int processTicks = 0;
 	protected int totalTicks = 0;
-	protected ITeaMakingRecipe usedRecipe = EMPTY_RECIPE;
+	protected ITeaMakingRecipe usedRecipe = new TeaMakingRecipe(NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY);
 
-	protected ItemStackHandler inputInventory = new ItemStackHandler();
-	protected ItemStackHandler outputInventory = new ItemStackHandler();
+	protected ItemStackHandler leafInventory = new ItemStackHandler();
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
@@ -46,14 +45,7 @@ public class TileEntityTeapan extends TileEntity implements ITickable
 	{
 		if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(capability))
 		{
-			if (facing != EnumFacing.DOWN)
-			{
-				return (T) inputInventory;
-			}
-			else
-			{
-				return (T) outputInventory;
-			}
+			return (T) leafInventory;
 		}
 		return super.getCapability(capability, facing);
 	}
@@ -62,16 +54,14 @@ public class TileEntityTeapan extends TileEntity implements ITickable
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
-		this.inputInventory.deserializeNBT(compound.getCompoundTag("InputInventory"));
-		this.outputInventory.deserializeNBT(compound.getCompoundTag("OutputInventory"));
+		this.leafInventory.deserializeNBT(compound.getCompoundTag("LeafInventory"));
 		this.processTicks = compound.getInteger("ProcessTick");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
-		compound.setTag("InputInventory", this.inputInventory.serializeNBT());
-		compound.setTag("OutputInventory", this.outputInventory.serializeNBT());
+		compound.setTag("LeafInventory", this.leafInventory.serializeNBT());
 		compound.setInteger("ProcessTick", this.processTicks);
 		return super.writeToNBT(compound);
 	}
@@ -131,31 +121,29 @@ public class TileEntityTeapan extends TileEntity implements ITickable
 
 	private boolean process(IRecipeManager<ITeaMakingRecipe> recipeManager)
 	{
-		ItemStack input = this.inputInventory.getStackInSlot(0).copy();
+		ItemStack input = this.leafInventory.getStackInSlot(0).copy();
 		if (input.isEmpty())
 		{
+			this.processTicks = 0;
+			this.markDirty();
 			return false;
 		}
-		if (!usedRecipe.isTheSameInput(this.inputInventory.getStackInSlot(0)))
+		if (!usedRecipe.isTheSameInput(input))
 		{
-			usedRecipe = recipeManager.getRecipe(this.inputInventory.getStackInSlot(0));
+			usedRecipe = recipeManager.getRecipe(input);
 		}
 		if (!usedRecipe.getOutput().isEmpty())
 		{
-			ItemStack output = usedRecipe.getOutput().copy();
-			output.setCount(input.getCount());
-			if (this.outputInventory.insertItem(0, output, true).isEmpty())
+			if (++this.processTicks >= this.totalTicks)
 			{
-				if (++this.processTicks >= this.totalTicks)
-				{
-					this.outputInventory.insertItem(0, output, false);
-					this.inputInventory.extractItem(0, output.getCount(), false);
-					refresh();
-					this.processTicks = 0;
-				}
-				this.markDirty();
-				return true;
+				ItemStack output = usedRecipe.getOutput().copy();
+				output.setCount(input.getCount());
+				this.leafInventory.setStackInSlot(0, output);
+				refresh();
+				this.processTicks = 0;
 			}
+			this.markDirty();
+			return true;
 		}
 		this.processTicks = 0;
 		this.markDirty();
@@ -164,16 +152,17 @@ public class TileEntityTeapan extends TileEntity implements ITickable
 
 	private void getWet()
 	{
+		ItemStack input = this.leafInventory.getStackInSlot(0).copy();
 		this.processTicks = 0;
-		if (!usedRecipe.isTheSameInput(this.inputInventory.getStackInSlot(0)))
+		if (!usedRecipe.isTheSameInput(input))
 		{
-			usedRecipe = RecipeRegister.managerWet.getRecipe(this.inputInventory.getStackInSlot(0));
+			usedRecipe = RecipeRegister.managerWet.getRecipe(input);
 		}
 		if (!usedRecipe.getOutput().isEmpty())
 		{
 			ItemStack wetOutput = usedRecipe.getOutput().copy();
-			wetOutput.setCount(inputInventory.getStackInSlot(0).getCount());
-			this.inputInventory.setStackInSlot(0, wetOutput);
+			wetOutput.setCount(input.getCount());
+			this.leafInventory.setStackInSlot(0, wetOutput);
 			refresh();
 		}
 		this.markDirty();
@@ -201,30 +190,26 @@ public class TileEntityTeapan extends TileEntity implements ITickable
 	public NonNullList<ItemStack> getContents()
 	{
 		NonNullList<ItemStack> list = NonNullList.create();
-		for (int i = this.outputInventory.getStackInSlot(0).getCount(); i > 0; i -= 16)
+		for (int i = this.leafInventory.getStackInSlot(0).getCount(); i > 0; i -= 16)
 		{
-			list.add(this.outputInventory.getStackInSlot(0));
-		}
-		for (int i = this.inputInventory.getStackInSlot(0).getCount(); i > 0; i -= 16)
-		{
-			list.add(this.inputInventory.getStackInSlot(0));
+			list.add(this.leafInventory.getStackInSlot(0));
 		}
 		return list;
 	}
 
 	public void refreshTotalTicks(int basicTime)
 	{
-		if (inputInventory.getStackInSlot(0).getCount() >= 32)
+		if (leafInventory.getStackInSlot(0).getCount() >= 32)
 		{
 			this.totalTicks = 32;
 		}
-		else if (inputInventory.getStackInSlot(0).getCount() > 0 && inputInventory.getStackInSlot(0).getCount() <= 8)
+		else if (leafInventory.getStackInSlot(0).getCount() > 0 && leafInventory.getStackInSlot(0).getCount() <= 8)
 		{
 			this.totalTicks = 8;
 		}
 		else
 		{
-			this.totalTicks = inputInventory.getStackInSlot(0).getCount();
+			this.totalTicks = leafInventory.getStackInSlot(0).getCount();
 		}
 		this.totalTicks *= basicTime;
 	}

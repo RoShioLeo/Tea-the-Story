@@ -109,15 +109,17 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 			ItemStack water = InventoryWater.getStackInSlot(0).copy();
 			ItemStack sugar = InventorySugar.getStackInSlot(0).copy();
 			ItemStack tool = InventoryTool.getStackInSlot(0).copy();
+			ItemStack toolRecipe = tool.copy();
+			toolRecipe.setItemDamage(32767);
 			if (water.isEmpty() || !(water.getItem() instanceof ItemWaterPot))
 			{
 				this.teaTime = 0;
 				this.markDirty();
 				return;
 			}
-			if (!usedRecipe.isTheSameInput(leaf, tool, cup, sugar))
+			if (!usedRecipe.isTheSameInput(leaf, toolRecipe, cup, sugar))
 			{
-				usedRecipe = managerTeaTable.getRecipe(leaf, tool, cup, sugar);
+				usedRecipe = managerTeaTable.getRecipe(leaf, toolRecipe, cup, sugar);
 			}
 			if (!usedRecipe.getOutput().isEmpty())
 			{
@@ -150,6 +152,12 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 						{
 							InventoryTool.setStackInSlot(0, tool.getItem().getContainerItem(tool));
 						}
+
+						if (!sugar.isEmpty())
+						{
+							InventorySugar.extractItem(0, sugar.getCount(), false);
+						}
+
 						this.teaTime = 0;
 					}
 					this.markDirty();

@@ -9,7 +9,6 @@ import javax.annotation.Nonnull;
 
 public class TeaMakingRecipe implements ITeaMakingRecipe
 {
-	public static final ITeaMakingRecipe EMPTY_RECIPE = new TeaMakingRecipe(NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY);
 	private final NonNullList<ItemStack> inputs;
 	private final ItemStack output;
 
@@ -34,5 +33,10 @@ public class TeaMakingRecipe implements ITeaMakingRecipe
 	public boolean isTheSameInput(@Nonnull ItemStack input)
 	{
 		return !this.output.isEmpty() && OreDictionary.containsMatch(false, inputs, input);
+	}
+
+	public String toString()
+	{
+		return inputs + "@" + output;
 	}
 }

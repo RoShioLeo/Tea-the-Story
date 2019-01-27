@@ -47,9 +47,9 @@ public class GuiContainerTeapan extends GuiContainer
 		int textureWidth = 0;
 		if (totalTicks != 0)
 		{
-			textureWidth = (int) Math.ceil(24.0 * processTicks / totalTicks);
+			textureWidth = (int) Math.ceil(110.0 * processTicks / totalTicks);
 		}
-		this.drawTexturedModalRect(offsetX + 76, offsetY + 31, 176, 0, textureWidth, 17);
+		this.drawTexturedModalRect(offsetX + 33, offsetY + 62, 0, 166, textureWidth, 17);
 	}
 
 	@Override

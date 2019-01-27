@@ -16,8 +16,6 @@ public final class BlockRendering
 	@SubscribeEvent
 	public static void onModelRegister(ModelRegistryEvent event)
 	{
-		OBJLoader.INSTANCE.addDomain(TeaStory.MODID);
-
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeapan.class, new TESRTeapan());
 	}
 }
