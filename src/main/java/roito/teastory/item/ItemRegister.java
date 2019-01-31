@@ -140,24 +140,9 @@ public final class ItemRegister
 	public static ItemRecord caichawuqu_g20 = new Record("caichawuqu_g20", "record_caichawuqu_g20", new ResourceLocation(TeaStory.MODID, "records.caichawuqu_g20"));
 	public static ItemRecord caichawuqu_folk = new Record("caichawuqu_folk", "record_caichawuqu_folk", new ResourceLocation(TeaStory.MODID, "records.caichawuqu_folk"));
 
-	public ItemRegister(FMLPreInitializationEvent event)
+	public ItemRegister()
 	{
 		MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	public static void loadExtraResourceLocation()
-	{
-		ModelBakery.registerItemVariants(tea_residue, new ResourceLocation(TeaStory.MODID, "tea_residue_green"), new ResourceLocation(TeaStory.MODID, "tea_residue_black"), new ResourceLocation(TeaStory.MODID, "tea_residue_yellow"), new ResourceLocation(TeaStory.MODID, "tea_residue_white"), new ResourceLocation(TeaStory.MODID, "tea_residue_oolong"), new ResourceLocation(TeaStory.MODID, "tea_residue_puer"));
-		ModelBakery.registerItemVariants(cup, new ResourceLocation(TeaStory.MODID, "cup_wood"), new ResourceLocation(TeaStory.MODID, "cup_stone"), new ResourceLocation(TeaStory.MODID, "cup_glass"), new ResourceLocation(TeaStory.MODID, "cup_porcelain"), new ResourceLocation(TeaStory.MODID, "cup_zisha"));
-		ModelBakery.registerItemVariants(green_tea, new ResourceLocation(TeaStory.MODID, "green_tea_wood"), new ResourceLocation(TeaStory.MODID, "green_tea_stone"), new ResourceLocation(TeaStory.MODID, "green_tea_glass"), new ResourceLocation(TeaStory.MODID, "green_tea_porcelain"), new ResourceLocation(TeaStory.MODID, "green_tea_zisha"));
-		ModelBakery.registerItemVariants(black_tea, new ResourceLocation(TeaStory.MODID, "black_tea_wood"), new ResourceLocation(TeaStory.MODID, "black_tea_stone"), new ResourceLocation(TeaStory.MODID, "black_tea_glass"), new ResourceLocation(TeaStory.MODID, "black_tea_porcelain"), new ResourceLocation(TeaStory.MODID, "black_tea_zisha"));
-		ModelBakery.registerItemVariants(matcha_drink, new ResourceLocation(TeaStory.MODID, "matcha_drink_wood"), new ResourceLocation(TeaStory.MODID, "matcha_drink_stone"), new ResourceLocation(TeaStory.MODID, "matcha_drink_glass"), new ResourceLocation(TeaStory.MODID, "matcha_drink_porcelain"), new ResourceLocation(TeaStory.MODID, "matcha_drink_zisha"));
-		ModelBakery.registerItemVariants(lemon_tea, new ResourceLocation(TeaStory.MODID, "lemon_tea_wood"), new ResourceLocation(TeaStory.MODID, "lemon_tea_stone"), new ResourceLocation(TeaStory.MODID, "lemon_tea_glass"), new ResourceLocation(TeaStory.MODID, "lemon_tea_porcelain"), new ResourceLocation(TeaStory.MODID, "lemon_tea_zisha"));
-		ModelBakery.registerItemVariants(milk_tea, new ResourceLocation(TeaStory.MODID, "milk_tea_wood"), new ResourceLocation(TeaStory.MODID, "milk_tea_stone"), new ResourceLocation(TeaStory.MODID, "milk_tea_glass"), new ResourceLocation(TeaStory.MODID, "milk_tea_porcelain"), new ResourceLocation(TeaStory.MODID, "milk_tea_zisha"));
-		ModelBakery.registerItemVariants(yellow_tea, new ResourceLocation(TeaStory.MODID, "yellow_tea_wood"), new ResourceLocation(TeaStory.MODID, "yellow_tea_stone"), new ResourceLocation(TeaStory.MODID, "yellow_tea_glass"), new ResourceLocation(TeaStory.MODID, "yellow_tea_porcelain"), new ResourceLocation(TeaStory.MODID, "yellow_tea_zisha"));
-		ModelBakery.registerItemVariants(white_tea, new ResourceLocation(TeaStory.MODID, "white_tea_wood"), new ResourceLocation(TeaStory.MODID, "white_tea_stone"), new ResourceLocation(TeaStory.MODID, "white_tea_glass"), new ResourceLocation(TeaStory.MODID, "white_tea_porcelain"), new ResourceLocation(TeaStory.MODID, "white_tea_zisha"));
-		ModelBakery.registerItemVariants(oolong_tea, new ResourceLocation(TeaStory.MODID, "oolong_tea_wood"), new ResourceLocation(TeaStory.MODID, "oolong_tea_stone"), new ResourceLocation(TeaStory.MODID, "oolong_tea_glass"), new ResourceLocation(TeaStory.MODID, "oolong_tea_porcelain"), new ResourceLocation(TeaStory.MODID, "oolong_tea_zisha"));
-		ModelBakery.registerItemVariants(puer_tea, new ResourceLocation(TeaStory.MODID, "puer_tea_wood"), new ResourceLocation(TeaStory.MODID, "puer_tea_stone"), new ResourceLocation(TeaStory.MODID, "puer_tea_glass"), new ResourceLocation(TeaStory.MODID, "puer_tea_porcelain"), new ResourceLocation(TeaStory.MODID, "puer_tea_zisha"));
 	}
 
 	@SideOnly(Side.CLIENT)

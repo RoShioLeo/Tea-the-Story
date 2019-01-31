@@ -13,6 +13,10 @@ public interface ITeaTableRecipeManager<R>
 
 	void remove(R recipe);
 
+	void remove(NonNullList<ItemStack> teaLeaves, NonNullList<ItemStack> tools, ItemStack cup, NonNullList<ItemStack> sugars, ItemStack output);
+
+	void removeAll();
+
 	Collection<R> getRecipes();
 
 	R getRecipe(ItemStack teaLeaf, ItemStack tool, ItemStack cup, ItemStack sugar);

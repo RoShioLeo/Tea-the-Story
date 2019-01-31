@@ -15,7 +15,7 @@ public class PotionRegister
 	public static Potion PotionDefence;
 	public static Potion PotionExcitement;
 
-	public PotionRegister(FMLPreInitializationEvent event)
+	public PotionRegister()
 	{
 		PotionAgility = new PotionAgility();
 		PotionLifeDrain = new PotionLifeDrain();

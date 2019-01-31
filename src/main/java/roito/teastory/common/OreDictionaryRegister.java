@@ -7,7 +7,7 @@ import roito.teastory.item.ItemRegister;
 
 public class OreDictionaryRegister
 {
-	public OreDictionaryRegister(FMLInitializationEvent event)
+	public OreDictionaryRegister()
 	{
 		OreDictionary.registerOre("cropLemon", ItemRegister.lemon);
 		OreDictionary.registerOre("cropRice", ItemRegister.xian_rice);

@@ -9,10 +9,13 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
+import roito.teastory.api.drink.DailyDrink;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.config.ConfigMain;
+import roito.teastory.helper.DrinkingHelper;
 import roito.teastory.item.ItemRegister;
 import roito.teastory.potion.PotionRegister;
 
@@ -35,10 +38,17 @@ public class LemonTea extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
+		DailyDrink dailyDrink = DrinkingHelper.getLevelAndTimeImprovement(world, entityplayer);
+		tier += dailyDrink.getLevel();
+		int time = ConfigMain.drink.lemonTeaDrink_Time;
+		time *= 1.0F + dailyDrink.getTime();
+
+		int addedTimePercent = (int) (dailyDrink.getTime() * 100);
+		entityplayer.sendMessage(new TextComponentTranslation("teastory.message.daily_drinking.normal", dailyDrink.getInstantDay(), addedTimePercent + "%", dailyDrink.getLevel()));
+
 		if (ConfigMain.general.useTeaResidueAsBoneMeal)
 		{
 			ItemHandlerHelper.giveItemToPlayer(entityplayer, new ItemStack(ItemRegister.tea_residue, 1, 1));
-			;
 		}
 		if (entityplayer.isBurning())
 		{
@@ -46,9 +56,9 @@ public class LemonTea extends ItemTeaDrink
 		}
 		if (Potion.getPotionFromResourceLocation(ConfigMain.drink.lemonTeaDrink_Effect) != null)
 		{
-			entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.lemonTeaDrink_Effect), ConfigMain.drink.lemonTeaDrink_Time / (tier + 1), tier));
+			entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.lemonTeaDrink_Effect), time / (tier + 1), tier));
 		}
-		entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.lemonTeaDrink_Time / (tier + 1), 0));
+		entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, time / (tier + 1), 0));
 		for (int x = -1 - tier; x <= 1 + tier; x++)
 		{
 			for (int y = 0; y <= 2 + 2 * tier; y++)

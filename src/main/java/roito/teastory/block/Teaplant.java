@@ -41,7 +41,7 @@ public class Teaplant extends BlockBush implements IGrowable
 	{
 		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
 		this.setTickRandomly(true);
-		this.setCreativeTab((CreativeTabs) null);
+		this.setCreativeTab(null);
 		this.setTranslationKey("teaplant");
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "teaplant"));
 		this.setHardness(0.0F);
@@ -63,7 +63,7 @@ public class Teaplant extends BlockBush implements IGrowable
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[]{AGE});
+		return new BlockStateContainer(this, AGE);
 	}
 
 	@Override

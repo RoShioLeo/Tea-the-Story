@@ -99,14 +99,7 @@ public class Field extends Block
 
 	public boolean isSameField(IBlockAccess worldIn, BlockPos pos)
 	{
-		if (worldIn.getBlockState(pos).getBlock() == this)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return worldIn.getBlockState(pos).getBlock() == this;
 	}
 
 	@Override
@@ -148,6 +141,6 @@ public class Field extends Block
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[]{NORTH, EAST, WEST, SOUTH});
+		return new BlockStateContainer(this, NORTH, EAST, WEST, SOUTH);
 	}
 }

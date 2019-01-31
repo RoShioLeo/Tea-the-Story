@@ -29,7 +29,7 @@ import java.util.Random;
 
 public class StrawBlanket extends BlockHorizontal
 {
-	public static final PropertyEnum<StrawBlanket.EnumPartType> PART = PropertyEnum.<StrawBlanket.EnumPartType>create("part", StrawBlanket.EnumPartType.class);
+	public static final PropertyEnum<StrawBlanket.EnumPartType> PART = PropertyEnum.create("part", StrawBlanket.EnumPartType.class);
 	public static final PropertyBool OCCUPIED = PropertyBool.create("occupied");
 	protected static final AxisAlignedBB STRAWBLANKET_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
 
@@ -72,7 +72,7 @@ public class StrawBlanket extends BlockHorizontal
 
 					if (entityplayer != null)
 					{
-						playerIn.sendMessage(new TextComponentTranslation("tile.bed.occupied", new Object[0]));
+						playerIn.sendMessage(new TextComponentTranslation("tile.bed.occupied"));
 						return true;
 					}
 
@@ -92,11 +92,11 @@ public class StrawBlanket extends BlockHorizontal
 				{
 					if (entityplayer$sleepresult == EntityPlayer.SleepResult.NOT_POSSIBLE_NOW)
 					{
-						playerIn.sendMessage(new TextComponentTranslation("tile.bed.noSleep", new Object[0]));
+						playerIn.sendMessage(new TextComponentTranslation("tile.bed.noSleep"));
 					}
 					else if (entityplayer$sleepresult == EntityPlayer.SleepResult.NOT_SAFE)
 					{
-						playerIn.sendMessage(new TextComponentTranslation("tile.bed.notSafe", new Object[0]));
+						playerIn.sendMessage(new TextComponentTranslation("tile.bed.notSafe"));
 					}
 
 					return true;
@@ -112,7 +112,7 @@ public class StrawBlanket extends BlockHorizontal
 					worldIn.setBlockToAir(blockpos);
 				}
 
-				worldIn.newExplosion((Entity) null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 5.0F, true, true);
+				worldIn.newExplosion(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 5.0F, true, true);
 				return true;
 			}
 		}
@@ -320,17 +320,17 @@ public class StrawBlanket extends BlockHorizontal
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[]{FACING, PART, OCCUPIED});
+		return new BlockStateContainer(this, FACING, PART, OCCUPIED);
 	}
 
-	public static enum EnumPartType implements IStringSerializable
+	public enum EnumPartType implements IStringSerializable
 	{
 		HEAD("head"),
 		FOOT("foot");
 
 		private final String name;
 
-		private EnumPartType(String name)
+		EnumPartType(String name)
 		{
 			this.name = name;
 		}

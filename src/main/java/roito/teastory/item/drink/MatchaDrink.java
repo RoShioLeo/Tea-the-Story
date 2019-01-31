@@ -5,9 +5,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import roito.teastory.api.drink.DailyDrink;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.config.ConfigMain;
+import roito.teastory.helper.DrinkingHelper;
 import roito.teastory.potion.PotionRegister;
 
 public class MatchaDrink extends ItemTeaDrink
@@ -29,11 +32,19 @@ public class MatchaDrink extends ItemTeaDrink
 
 	public static void addPotion(int tier, World world, EntityPlayer entityplayer)
 	{
+		DailyDrink dailyDrink = DrinkingHelper.getLevelAndTimeImprovement(world, entityplayer);
+		tier += dailyDrink.getLevel();
+		int time = ConfigMain.drink.matchaDrink_Time;
+		time *= 1.0F + dailyDrink.getTime();
+
+		int addedTimePercent = (int) (dailyDrink.getTime() * 100);
+		entityplayer.sendMessage(new TextComponentTranslation("teastory.message.daily_drinking.normal", dailyDrink.getInstantDay(), addedTimePercent + "%", dailyDrink.getLevel()));
+
 		if (Potion.getPotionFromResourceLocation(ConfigMain.drink.matchaDrink_Effect) != null)
 		{
-			entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.matchaDrink_Effect), ConfigMain.drink.matchaDrink_Time / (tier + 1), tier));
+			entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(ConfigMain.drink.matchaDrink_Effect), time / (tier + 1), tier));
 		}
-		entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, ConfigMain.drink.matchaDrink_Time / (tier + 1), 0));
+		entityplayer.addPotionEffect(new PotionEffect(PotionRegister.PotionExcitement, time / (tier + 1), 0));
 	}
 
 	@Override

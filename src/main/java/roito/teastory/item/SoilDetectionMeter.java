@@ -59,12 +59,12 @@ public class SoilDetectionMeter extends TSItem
 			playerIn.sendMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.fermentation", fermentationTime, (int) (fermentationTime * 1.5F)));
 
 			float teaChance = ((int) (EntironmentHelper.getTeaPlantGrowPercent(temperature, height) * 1000)) / 10;
-			Object f = (teaChance < 80) ? (teaChance < 40) ? TextFormatting.RED + String.valueOf(teaChance + "%") : TextFormatting.YELLOW + String.valueOf(teaChance + "%") : TextFormatting.GREEN + String.valueOf(teaChance + "%");
+			Object f = (teaChance < 80) ? (teaChance < 40) ? TextFormatting.RED.toString() + teaChance + "%" : TextFormatting.YELLOW.toString() + teaChance + "%" : TextFormatting.GREEN.toString() + teaChance + "%";
 			String h = (height <= 110) ? (height < 80) ? I18n.format("teastory.message.soil_detection_meter.height.low") : I18n.format("teastory.message.soil_detection_meter.height.medium") : I18n.format("teastory.message.soil_detection_meter.height.high");
 			playerIn.sendMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.teaplant", f, h));
 
 			float riceChance = ((int) (EntironmentHelper.getRiceCropsGrowPercent(temperature, humidity) * 1000)) / 10;
-			Object g = (riceChance < 80) ? (riceChance < 40) ? TextFormatting.RED + String.valueOf(riceChance + "%") : TextFormatting.YELLOW + String.valueOf(riceChance + "%") : TextFormatting.GREEN + String.valueOf(riceChance + "%");
+			Object g = (riceChance < 80) ? (riceChance < 40) ? TextFormatting.RED.toString() + riceChance + "%" : TextFormatting.YELLOW.toString() + riceChance + "%" : TextFormatting.GREEN.toString() + riceChance + "%";
 			playerIn.sendMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.ricecrop", g));
 			return EnumActionResult.SUCCESS;
 		}

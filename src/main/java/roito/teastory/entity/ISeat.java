@@ -17,9 +17,9 @@ import net.minecraft.world.World;
 public interface ISeat
 {
 
-	public Vec3d getSeat(IBlockState state);
+	Vec3d getSeat(IBlockState state);
 
-	public static class Seat extends Entity
+	class Seat extends Entity
 	{
 
 		public Seat(World world, Vec3d pos)

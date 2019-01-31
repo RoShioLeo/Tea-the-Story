@@ -13,6 +13,10 @@ public interface IRecipeManager<R>
 
 	void remove(R recipe);
 
+	void remove(NonNullList<ItemStack> listIn, ItemStack output);
+
+	void removeAll();
+
 	Collection<R> getRecipes();
 
 	R getRecipe(ItemStack input);

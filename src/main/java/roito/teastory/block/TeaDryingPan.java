@@ -82,7 +82,7 @@ public class TeaDryingPan extends Block
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[]{STEP});
+		return new BlockStateContainer(this, STEP);
 	}
 
 	protected PropertyInteger getStepProperty()
@@ -213,13 +213,13 @@ public class TeaDryingPan extends Block
 			double d0 = pos.getX();
 			double d1 = pos.getY();
 			double d2 = pos.getZ();
-			worldIn.spawnParticle(EnumParticleTypes.CLOUD, d0 + 0.5D, d1 + 1.0D, d2 + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+			worldIn.spawnParticle(EnumParticleTypes.CLOUD, d0 + 0.5D, d1 + 1.0D, d2 + 0.5D, 0.0D, 0.1D, 0.0D);
 		}
 	}
 
 	public static String getSpecialName(ItemStack stack)
 	{
 		int meta = stack.getItemDamage();
-		return "." + String.valueOf(meta);
+		return "." + meta;
 	}
 }

@@ -74,6 +74,10 @@ repositories {
         // Redstone Flux
         url = "http://maven.covers1624.net"
     }
+	maven {
+        // CraftTweaker2
+        url = "http://maven.blamejared.com"
+    }
 
     flatDir {
         dirs 'libs'
@@ -86,7 +90,11 @@ dependencies {
     deobfCompile("mcjty.theoneprobe:TheOneProbe-1.12:${theoneprobe_version}") {
         exclude group: 'cofh'
     }
-    deobfCompile "info.amerifrance.guideapi:Guide-API:${guideapi_version}"
+	deobfCompile("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${ct_version}") {
+        exclude group: 'org.ow2.asm'
+    }
+    deobfCompile "CraftTweaker2:CraftTweaker2-API:${ct_version}"
+    deobfCompile "CraftTweaker2:ZenScript:${ct_version}"
     compile files(
         'libs/ToughAsNails-1.12.2-3.1.0.129-universal.jar'
     )

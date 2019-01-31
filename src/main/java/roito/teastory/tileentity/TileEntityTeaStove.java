@@ -18,6 +18,7 @@ import roito.teastory.api.recipe.ITeaMakingRecipe;
 import roito.teastory.api.recipe.TeaMakingRecipe;
 import roito.teastory.block.TeaStove;
 import roito.teastory.common.RecipeRegister;
+import roito.teastory.config.ConfigMain;
 import roito.teastory.helper.NonNullListHelper;
 
 public class TileEntityTeaStove extends TileEntity implements ITickable
@@ -234,14 +235,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 
 	public boolean isBurning()
 	{
-		if (this.fuelTime > 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return this.fuelTime > 0;
 	}
 
 	public static int getItemBurnTime(ItemStack stack)
@@ -261,7 +255,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 
 	public int getTotalDryTime()
 	{
-		return 1200;
+		return ConfigMain.teaMaking.steamingBasicTime;
 	}
 
 	public int getFuelTime()
@@ -301,14 +295,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 		}
 		else
 		{
-			if (this.hasWater() > 0)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			return this.hasWater() > 0;
 		}
 	}
 

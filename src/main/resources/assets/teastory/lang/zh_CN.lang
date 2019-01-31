@@ -230,6 +230,8 @@ teastory.message.cooking_pan.ignite=请用打火石点火。
 teastory.message.cooking_pan.rice=距离米饭出锅还有%1$s秒。
 teastory.message.bed.excited=你现在太兴奋了，以致于无法入睡。
 teastory.message.record=您未安装“茶风·纪事”唱片资源包，无法播放音乐。
+teastory.message.daily_drinking.normal=这是您连续第%1$s天喝茶，本次时间增加%2$s， 效果等级提升%3$s级。
+teastory.message.daily_drinking.time_only=这是您连续第%1$s天喝茶，本次时间增加%2$s。
 
 #Container GUI
 teastory.container.tea_stove=茶炉
@@ -300,6 +302,7 @@ teastory.config.teamaking.limited.teaplant=种茶是否有限制
 teastory.config.teamaking.limited.rice=水稻生长是否有限制
 teastory.config.teamaking.dryingbasictime=晒制基础时间
 teastory.config.teamaking.fermentationbasictime=发酵基础时间
+teastory.config.teamaking.steamingbasictime=蒸青基础时间
 teastory.config.others=其他设置
 teastory.config.others.lemon=食用柠檬时是否会反胃
 teastory.config.others.ricecookingbasictime=煮饭基础时间

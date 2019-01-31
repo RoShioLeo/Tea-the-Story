@@ -18,18 +18,20 @@ public class CommonProxy
 {
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		new CreativeTabsRegister(event);
-		new ItemRegister(event);
-		new BlockRegister(event);
-		new PotionRegister(event);
+		new CreativeTabsRegister();
+		new ItemRegister();
+		new BlockRegister();
+		new PotionRegister();
 		new EntityRegister();
-		new TileEntityRegister(event);
+		new TileEntityRegister();
+		new CapabilityRegister();
 	}
 
 	public void init(FMLInitializationEvent event)
 	{
-		new OreDictionaryRegister(event);
+		new OreDictionaryRegister();
 		new RecipeRegister();
+		RecipeRegister.doDelayTask();
 		new SmeltingReipeRegister();
 		new EventRegister();
 		new GuiElementRegister();

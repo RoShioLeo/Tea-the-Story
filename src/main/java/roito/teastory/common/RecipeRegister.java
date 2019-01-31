@@ -1,21 +1,24 @@
 package roito.teastory.common;
 
+import crafttweaker.CraftTweakerAPI;
+import crafttweaker.IAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.api.recipe.*;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.config.ConfigMain;
+import roito.teastory.helper.LogHelper;
 import roito.teastory.helper.NonNullListHelper;
 import roito.teastory.item.ItemRegister;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RecipeRegister
 {
-	@Nonnull
 	public final static ITeaTableRecipeManager<ITeaTableRecipe> managerTeaTable = new TeaTableRecipeManager();
 	public final static IRecipeManager<ITeaMakingRecipe> managerDryingPan = new TeaDryingPanRecipeManager();
 	public final static IRecipeManager<ITeaMakingRecipe> managerCookingPan = new CookingPanRecipeManager();
@@ -24,6 +27,8 @@ public class RecipeRegister
 	public final static IRecipeManager<ITeaMakingRecipe> managerWet = new TeaMakingWetRecipeManager();
 	public final static IRecipeManager<ITeaMakingRecipe> managerStoveDrying = new TeaStoveDryingRecipeManager();
 	public final static IRecipeManager<ITeaMakingRecipe> managerStoveSteam = new TeaStoveSteamRecipeManager();
+
+	public static List<IAction> actions = new ArrayList<IAction>();
 
 	public RecipeRegister()
 	{
@@ -34,6 +39,15 @@ public class RecipeRegister
 		addBarrelRecipe();
 		addWetRecipe();
 		addTeaStoveRecipe();
+	}
+
+	public static void doDelayTask()
+	{
+		for (IAction act : actions)
+		{
+			CraftTweakerAPI.apply(act);
+		}
+		actions.clear();
 	}
 
 	private static void addTeaStoveRecipe()

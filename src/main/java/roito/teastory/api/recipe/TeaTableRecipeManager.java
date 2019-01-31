@@ -2,6 +2,7 @@ package roito.teastory.api.recipe;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.helper.NonNullListHelper;
 
 import java.util.ArrayList;
@@ -33,6 +34,22 @@ public class TeaTableRecipeManager implements ITeaTableRecipeManager<ITeaTableRe
 				return;
 			}
 		}
+	}
+
+	@Override
+	public void remove(NonNullList<ItemStack> teaLeaves, NonNullList<ItemStack> tools, ItemStack cup, NonNullList<ItemStack> sugars, ItemStack output)
+	{
+		ITeaTableRecipe recipe = getRecipe(teaLeaves, tools, cup, sugars);
+		if (OreDictionary.itemMatches(output, recipe.getOutput(), false))
+		{
+			remove(recipe);
+		}
+	}
+
+	@Override
+	public void removeAll()
+	{
+		recipes.clear();
 	}
 
 	@Override

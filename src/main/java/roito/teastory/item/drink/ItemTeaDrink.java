@@ -119,7 +119,7 @@ public class ItemTeaDrink extends ItemFood implements IDrink
 				pos = pos.offset(facing);
 			}
 
-			if (player.getHeldItem(hand).getCount() != 0 && player.canPlayerEdit(pos, facing, player.getHeldItem(hand)) && worldIn.mayPlace(drinkblock, pos, false, facing, (Entity) null))
+			if (player.getHeldItem(hand).getCount() != 0 && player.canPlayerEdit(pos, facing, player.getHeldItem(hand)) && worldIn.mayPlace(drinkblock, pos, false, facing, null))
 			{
 				IBlockState iblockstate1 = drinkblock.getDefaultState();
 

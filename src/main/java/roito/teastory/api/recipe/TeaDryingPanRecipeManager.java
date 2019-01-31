@@ -2,11 +2,13 @@ package roito.teastory.api.recipe;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.helper.NonNullListHelper;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class TeaDryingPanRecipeManager implements IRecipeManager<ITeaMakingRecipe>
 {
@@ -25,7 +27,7 @@ public class TeaDryingPanRecipeManager implements IRecipeManager<ITeaMakingRecip
 	@Override
 	public void remove(ITeaMakingRecipe recipe)
 	{
-		java.util.Iterator<ITeaMakingRecipe> iter = recipes.iterator();
+		Iterator<ITeaMakingRecipe> iter = recipes.iterator();
 		while (iter.hasNext())
 		{
 			if (iter.next().equals(recipe))
@@ -34,6 +36,22 @@ public class TeaDryingPanRecipeManager implements IRecipeManager<ITeaMakingRecip
 				return;
 			}
 		}
+	}
+
+	@Override
+	public void remove(NonNullList<ItemStack> listIn, ItemStack output)
+	{
+		ITeaMakingRecipe recipe = getRecipe(listIn);
+		if (OreDictionary.itemMatches(output, recipe.getOutput(), false))
+		{
+			remove(recipe);
+		}
+	}
+
+	@Override
+	public void removeAll()
+	{
+		recipes.clear();
 	}
 
 	@Override

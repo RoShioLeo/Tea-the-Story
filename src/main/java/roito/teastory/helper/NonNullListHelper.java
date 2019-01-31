@@ -5,7 +5,7 @@ import net.minecraft.util.NonNullList;
 
 import java.util.List;
 
-public class NonNullListHelper
+public final class NonNullListHelper
 {
 	public static NonNullList<ItemStack> createNonNullList(ItemStack stackIn)
 	{

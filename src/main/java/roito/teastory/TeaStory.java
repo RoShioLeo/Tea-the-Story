@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.Logger;
 import roito.teastory.common.CommonProxy;
 
 @Mod(modid = TeaStory.MODID,
@@ -29,6 +30,8 @@ public class TeaStory
 	public static final String VERSION = "@version@";
 	public static final String CONFIG_GUI_CLASS = "roito.teastory.config.ConfigGuiFactory";
 
+	public static Logger logger;
+
 	@Instance(TeaStory.MODID)
 	public static TeaStory instance;
 
@@ -39,6 +42,7 @@ public class TeaStory
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		logger = event.getModLog();
 		proxy.preInit(event);
 	}
 

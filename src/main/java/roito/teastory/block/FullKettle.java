@@ -152,6 +152,6 @@ public class FullKettle extends Kettle implements ITileEntityProvider
 		return te;
 	}
 
-	public static final PropertyInteger CAPACITY = PropertyInteger.create("capacity", 0, 7);
+	public static final PropertyInteger CAPACITY = PropertyInteger.create("capability", 0, 7);
 }
 

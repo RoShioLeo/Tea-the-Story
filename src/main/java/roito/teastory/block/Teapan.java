@@ -75,14 +75,7 @@ public class Teapan extends BlockContainer implements ITileEntityProvider
 
 	public boolean isTeapan(IBlockAccess worldIn, BlockPos pos)
 	{
-		if (worldIn.getBlockState(pos).getBlock() == BlockRegister.teapan)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+		return worldIn.getBlockState(pos).getBlock() != BlockRegister.teapan;
 	}
 
 	@Override

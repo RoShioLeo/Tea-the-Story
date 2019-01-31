@@ -2,6 +2,7 @@ package roito.teastory.api.recipe;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.helper.NonNullListHelper;
 
 import javax.annotation.Nonnull;
@@ -34,6 +35,22 @@ public class CookingPanRecipeManager implements IRecipeManager<ITeaMakingRecipe>
 				return;
 			}
 		}
+	}
+
+	@Override
+	public void remove(NonNullList<ItemStack> listIn, ItemStack output)
+	{
+		ITeaMakingRecipe recipe = getRecipe(listIn);
+		if (OreDictionary.itemMatches(output, recipe.getOutput(), false))
+		{
+			remove(recipe);
+		}
+	}
+
+	@Override
+	public void removeAll()
+	{
+		recipes.clear();
 	}
 
 	@Override

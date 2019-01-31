@@ -2,7 +2,7 @@ package roito.teastory.helper;
 
 import roito.teastory.config.ConfigMain;
 
-public class EntironmentHelper
+public final class EntironmentHelper
 {
 	public static int getDryingTemperatureLevel(float temp)
 	{

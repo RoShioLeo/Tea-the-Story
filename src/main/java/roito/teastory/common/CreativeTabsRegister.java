@@ -11,7 +11,7 @@ public class CreativeTabsRegister
 	public static CreativeTabs tabRice;
 	public static CreativeTabs tabDrink;
 
-	public CreativeTabsRegister(FMLPreInitializationEvent event)
+	public CreativeTabsRegister()
 	{
 		tabTeaStory = new CreativeTabs("tabTeaStory")
 		{

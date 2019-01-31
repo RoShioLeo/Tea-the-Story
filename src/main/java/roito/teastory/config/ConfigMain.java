@@ -75,8 +75,8 @@ public final class ConfigMain
 		@Config.Comment("The ticks of the effect of green tea. (1 second = 20 ticks)")
 		@Config.LangKey("teastory.config.drink.greentea.time")
 		@Config.Name("GreenTeaDrinksEffectTime")
-		@Config.RangeInt(min = 0, max = 12000)
-		public int greenTeaDrink_Time = 3600;
+		@Config.RangeInt(min = 0, max = 72000)
+		public int greenTeaDrink_Time = 7200;
 
 		@Config.Comment("The effect of green tea.")
 		@Config.LangKey("teastory.config.drink.greentea.effect")
@@ -86,7 +86,7 @@ public final class ConfigMain
 		@Config.Comment("The ticks of the effect of matcha. (1 second = 20 ticks)")
 		@Config.LangKey("teastory.config.drink.matchadrink.time")
 		@Config.Name("MatchaDrinksEffectTime")
-		@Config.RangeInt(min = 0, max = 12000)
+		@Config.RangeInt(min = 0, max = 72000)
 		public int matchaDrink_Time = 4800;
 
 		@Config.Comment("The effect of matcha.")
@@ -97,8 +97,8 @@ public final class ConfigMain
 		@Config.Comment("The ticks of the effect of black tea. (1 second = 20 ticks)")
 		@Config.LangKey("teastory.config.drink.blacktea.time")
 		@Config.Name("BlackTeaDrinksEffectTime")
-		@Config.RangeInt(min = 0, max = 12000)
-		public int blackTeaDrink_Time = 3600;
+		@Config.RangeInt(min = 0, max = 72000)
+		public int blackTeaDrink_Time = 7200;
 
 		@Config.Comment("The effect of black tea.")
 		@Config.LangKey("teastory.config.drink.blacktea.effect")
@@ -108,8 +108,8 @@ public final class ConfigMain
 		@Config.Comment("The ticks of the effect of milk tea. (1 second = 20 ticks)")
 		@Config.LangKey("teastory.config.drink.milktea.time")
 		@Config.Name("MilkTeaDrinksEffectTime")
-		@Config.RangeInt(min = 0, max = 12000)
-		public int milkTeaDrink_Time = 800;
+		@Config.RangeInt(min = 0, max = 72000)
+		public int milkTeaDrink_Time = 600;
 
 		@Config.Comment("The effect of milk tea.")
 		@Config.LangKey("teastory.config.drink.milktea.effect")
@@ -119,8 +119,8 @@ public final class ConfigMain
 		@Config.Comment("The ticks of the effect of lemon tea. (1 second = 20 ticks)")
 		@Config.LangKey("teastory.config.drink.lemontea.time")
 		@Config.Name("LemonTeaDrinksEffectTime")
-		@Config.RangeInt(min = 0, max = 12000)
-		public int lemonTeaDrink_Time = 800;
+		@Config.RangeInt(min = 0, max = 72000)
+		public int lemonTeaDrink_Time = 1200;
 
 		@Config.Comment("The effect of lemon tea.")
 		@Config.LangKey("teastory.config.drink.lemontea.effect")
@@ -130,7 +130,7 @@ public final class ConfigMain
 		@Config.Comment("The ticks of the effect of yellow tea. (1 second = 20 ticks)")
 		@Config.LangKey("teastory.config.drink.yellowtea.time")
 		@Config.Name("YellowTeaDrinksEffectTime")
-		@Config.RangeInt(min = 0, max = 12000)
+		@Config.RangeInt(min = 0, max = 72000)
 		public int yellowTeaDrink_Time = 600;
 
 		@Config.Comment("The effect of yellow tea.")
@@ -141,7 +141,7 @@ public final class ConfigMain
 		@Config.Comment("The ticks of the effect of white tea. (1 second = 20 ticks)")
 		@Config.LangKey("teastory.config.drink.whitetea.time")
 		@Config.Name("WhiteTeaDrinksEffectTime")
-		@Config.RangeInt(min = 0, max = 12000)
+		@Config.RangeInt(min = 0, max = 72000)
 		public int whiteTeaDrink_Time = 3600;
 
 		@Config.Comment("The effect of white tea.")
@@ -152,8 +152,8 @@ public final class ConfigMain
 		@Config.Comment("The ticks of the effect of oolong tea. (1 second = 20 ticks)")
 		@Config.LangKey("teastory.config.drink.oolongtea.time")
 		@Config.Name("OolongTeaDrinksEffectTime")
-		@Config.RangeInt(min = 0, max = 12000)
-		public int oolongTeaDrink_Time = 3600;
+		@Config.RangeInt(min = 0, max = 72000)
+		public int oolongTeaDrink_Time = 7200;
 
 		@Config.Comment("The effect of oolong tea.")
 		@Config.LangKey("teastory.config.drink.oolongtea.effect")
@@ -163,7 +163,7 @@ public final class ConfigMain
 		@Config.Comment("The ticks of the effect of pu'er tea. (1 second = 20 ticks)")
 		@Config.LangKey("teastory.config.drink.puertea.time")
 		@Config.Name("PuerTeaDrinksEffectTime")
-		@Config.RangeInt(min = 0, max = 12000)
+		@Config.RangeInt(min = 0, max = 72000)
 		public int puerTeaDrink_Time = 3600;
 
 		@Config.Comment("The effect of pu'er tea.")
@@ -205,6 +205,12 @@ public final class ConfigMain
 		@Config.Name("FermentationBasicTime")
 		@Config.RangeInt(min = 0, max = 12000)
 		public int fermentationBasicTime = 1200;
+
+		@Config.Comment("The ticks of steaming per leaf. (1 second = 20 ticks)")
+		@Config.LangKey("teastory.config.teamaking.steamingbasictime")
+		@Config.Name("SteamingBasicTime")
+		@Config.RangeInt(min = 0, max = 12000)
+		public int steamingBasicTime = 1200;
 	}
 
 	public static final class Others

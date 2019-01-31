@@ -4,6 +4,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
@@ -12,13 +13,19 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
@@ -34,8 +41,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.TeaStory;
+import roito.teastory.api.capability.IDailyDrink;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.block.StrawBlanket;
+import roito.teastory.capability.CapabilityDailyDrink;
 import roito.teastory.config.ConfigMain;
 import roito.teastory.helper.NonNullListHelper;
 import roito.teastory.item.ItemRegister;
@@ -123,24 +132,6 @@ public class EventRegister
 				event.setCanceled(true);
 			}
 		}
-	}
-
-	@SubscribeEvent
-	public void onPlayerItemCrafted(PlayerEvent.ItemCraftedEvent event)
-	{
-
-	}
-
-	@SubscribeEvent
-	public void onPlayerItemSmelted(PlayerEvent.ItemSmeltedEvent event)
-	{
-
-	}
-
-	@SubscribeEvent
-	public void onPlayerItemPickedup(PlayerEvent.ItemPickupEvent event)
-	{
-
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -256,6 +247,29 @@ public class EventRegister
 				event.setResult(SleepResult.OTHER_PROBLEM);
 				event.getEntityPlayer().sendMessage(new TextComponentTranslation("teastory.message.bed.excited"));
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onAttachCapabilitiesEntity(AttachCapabilitiesEvent<Entity> event)
+	{
+		if (event.getObject() instanceof EntityPlayer)
+		{
+			ICapabilitySerializable<NBTTagCompound> provider = new CapabilityDailyDrink.ProviderPlayer();
+			event.addCapability(new ResourceLocation(TeaStory.MODID, "daily_drink"), provider);
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerClone(net.minecraftforge.event.entity.player.PlayerEvent.Clone event)
+	{
+		Capability<IDailyDrink> capability = CapabilityRegister.dailyDrink;
+		Capability.IStorage<IDailyDrink> storage = capability.getStorage();
+
+		if (event.getOriginal().hasCapability(capability, null) && event.getEntityPlayer().hasCapability(capability, null))
+		{
+			NBTBase nbt = storage.writeNBT(capability, event.getOriginal().getCapability(capability, null), null);
+			storage.readNBT(capability, event.getEntityPlayer().getCapability(capability, null), null, nbt);
 		}
 	}
 }

@@ -39,7 +39,7 @@ public class PotionPhotosynthesis extends Potion
 			BlockPos pos = entityLivingBaseIn.getPosition();
 			if ((!entityLivingBaseIn.getEntityWorld().isRainingAt(pos)) && ((isDaytime && (entityLivingBaseIn.getEntityWorld().getLight(pos) >= 13 - 2 * p_76394_2_)) || ((!isDaytime) && (entityLivingBaseIn.getEntityWorld().getLightFor(EnumSkyBlock.BLOCK, pos) >= 13 - 2 * p_76394_2_))))
 			{
-				entityLivingBaseIn.heal(4);
+				entityLivingBaseIn.heal(1);
 			}
 		}
 	}

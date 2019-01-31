@@ -124,14 +124,9 @@ public final class BlockRegister
 	public static TeaDrinkFull oolongtea_zisha_cup = new TeaDrinkFull(1.5F, "oolongtea_zisha_cup", Material.ROCK, SoundType.STONE, 8, 5);
 	public static TeaDrinkFull puertea_zisha_cup = new TeaDrinkFull(1.5F, "puertea_zisha_cup", Material.ROCK, SoundType.STONE, 9, 5);
 
-	public BlockRegister(FMLPreInitializationEvent event)
+	public BlockRegister()
 	{
 		MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	public static void loadExtraResourceLocation()
-	{
-		ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockRegister.lit_tea_drying_pan), new ResourceLocation(TeaStory.MODID, "tea_drying_pan"));
 	}
 
 	@SideOnly(Side.CLIENT)
