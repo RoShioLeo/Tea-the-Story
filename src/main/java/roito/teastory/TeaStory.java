@@ -13,14 +13,15 @@ import roito.teastory.common.CommonProxy;
 @Mod(modid = TeaStory.MODID,
 		name = TeaStory.NAME,
 		version = TeaStory.VERSION,
-		updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.10.2-3.X/update.json",
+		updateJSON = "https://raw.githubusercontent.com/LuoXiao-Wing/Tea-TheStory/1.12.2-3.X/update.json",
 		guiFactory = TeaStory.CONFIG_GUI_CLASS,
 		acceptedMinecraftVersions = "[1.12.2,1.13)",
 		dependencies = "required-after:forge@[14.23.4.2741,);" +
 				"after:jei@[4.12.0.215,);" +
 				"after:waila@[1.8.23-B38,);" +
 				"after:theoneprobe@[1.4.22,);" +
-				"after:toughasnails@[3.1.0,);"
+				"after:toughasnails@[3.1.0,);" +
+				"after:crafttweaker@[4.1.9,);"
 )
 
 public class TeaStory

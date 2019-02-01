@@ -13,9 +13,9 @@ import roito.teastory.helper.CraftTweakerHelper;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.teastory.Teapan.DryInSun")
+@ZenClass("mods.teastory.Teapan.Indoors")
 @ZenRegister
-public class CTTeapanDryInSun
+public class CTTeapanIndoors
 {
 	@ZenMethod
 	public static void add(IIngredient input, IItemStack output)
@@ -38,13 +38,13 @@ public class CTTeapanDryInSun
 		@Override
 		public void apply()
 		{
-			RecipeRegister.managerTeapanInSun.add(new TeaMakingRecipe(inputs, output));
+			RecipeRegister.managerTeapanIndoors.add(new TeaMakingRecipe(inputs, output));
 		}
 
 		@Override
 		public String describe()
 		{
-			return String.format("Add Teastory Teapan dry-in-sun recipe: input %s -> output %s", inputs, output);
+			return String.format("Add Teapan indoor recipe: input %s -> output %s", inputs, output);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class CTTeapanDryInSun
 		@Override
 		public void apply()
 		{
-			RecipeRegister.managerTeapanInSun.remove(inputs, output);
+			RecipeRegister.managerTeapanIndoors.remove(inputs, output);
 		}
 
 		@Override
@@ -90,13 +90,13 @@ public class CTTeapanDryInSun
 		@Override
 		public void apply()
 		{
-			RecipeRegister.managerTeapanInSun.removeAll();
+			RecipeRegister.managerTeapanIndoors.removeAll();
 		}
 
 		@Override
 		public String describe()
 		{
-			return "Removing all dry-in-sun recipes from Teapan";
+			return "Removing all indoor recipes from Teapan";
 		}
 	}
 }

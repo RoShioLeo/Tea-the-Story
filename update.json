@@ -1,0 +1,10 @@
+{
+	"homepage": "https://minecraft.curseforge.com/projects/tea-the-story",
+	"promos": {
+		"1.12.2-latest": "3.3.0-B21.201",
+		"1.12.2-recommended": "3.3.0-B21.201"
+	}
+	"1.12.2": {
+		"3.3.0-B21.201": "Please see the changelog on the CurseForge."
+	}
+}

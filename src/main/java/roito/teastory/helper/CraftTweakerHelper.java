@@ -5,6 +5,7 @@ import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public final class CraftTweakerHelper
 {
+	@Optional.Method(modid = "crafttweaker")
 	public static NonNullList<ItemStack> getItemStacks(@Nonnull IIngredient input)
 	{
 		List<IItemStack> list = input.getItems();
