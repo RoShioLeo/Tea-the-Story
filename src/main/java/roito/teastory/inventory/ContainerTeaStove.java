@@ -12,7 +12,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import roito.teastory.item.ItemRegister;
 import roito.teastory.tileentity.TileEntityTeaStove;
 
 public class ContainerTeaStove extends Container

@@ -7,10 +7,10 @@ import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import roito.teastory.api.recipe.TeaMakingRecipe;
 import roito.teastory.api.recipe.TeaTableRecipe;
 import roito.teastory.common.RecipeRegister;
 import roito.teastory.helper.CraftTweakerHelper;
+import roito.teastory.helper.NonNullListHelper;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -19,11 +19,35 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class CTTeaTable
 {
 	@ZenMethod
-	public static void add(IIngredient teaLeaf, IIngredient tool, IItemStack cup, IIngredient sugar, IItemStack output)
+	public static void addNormalRecipe(IIngredient teaLeaf, IIngredient tool, IItemStack cup, IIngredient sugar, IItemStack output)
 	{
 		ItemStack out = CraftTweakerMC.getItemStack(output);
 		ItemStack teacup = CraftTweakerMC.getItemStack(cup);
 		RecipeRegister.actions.add(new Addition(CraftTweakerHelper.getItemStacks(teaLeaf), CraftTweakerHelper.getItemStacks(tool), teacup, CraftTweakerHelper.getItemStacks(sugar), out));
+	}
+
+	@ZenMethod
+	public static void addNoSugarRecipe(IIngredient teaLeaf, IItemStack cup, IIngredient sugar, IItemStack output)
+	{
+		ItemStack out = CraftTweakerMC.getItemStack(output);
+		ItemStack teacup = CraftTweakerMC.getItemStack(cup);
+		RecipeRegister.actions.add(new Addition(CraftTweakerHelper.getItemStacks(teaLeaf), NonNullListHelper.createNonNullList(ItemStack.EMPTY), teacup, CraftTweakerHelper.getItemStacks(sugar), out));
+	}
+
+	@ZenMethod
+	public static void addNoToolRecipe(IIngredient teaLeaf, IIngredient tool, IItemStack cup, IItemStack output)
+	{
+		ItemStack out = CraftTweakerMC.getItemStack(output);
+		ItemStack teacup = CraftTweakerMC.getItemStack(cup);
+		RecipeRegister.actions.add(new Addition(CraftTweakerHelper.getItemStacks(teaLeaf), CraftTweakerHelper.getItemStacks(tool), teacup, NonNullListHelper.createNonNullList(ItemStack.EMPTY), out));
+	}
+
+	@ZenMethod
+	public static void addPureTeaRecipe(IIngredient teaLeaf, IItemStack cup, IItemStack output)
+	{
+		ItemStack out = CraftTweakerMC.getItemStack(output);
+		ItemStack teacup = CraftTweakerMC.getItemStack(cup);
+		RecipeRegister.actions.add(new Addition(CraftTweakerHelper.getItemStacks(teaLeaf), NonNullListHelper.createNonNullList(ItemStack.EMPTY), teacup, NonNullListHelper.createNonNullList(ItemStack.EMPTY), out));
 	}
 
 	private static final class Addition implements IAction
@@ -54,11 +78,35 @@ public class CTTeaTable
 	}
 
 	@ZenMethod
-	public static void remove(IIngredient teaLeaf, IIngredient tool, IItemStack cup, IIngredient sugar, IItemStack output)
+	public static void removeNormalRecipe(IIngredient teaLeaf, IIngredient tool, IItemStack cup, IIngredient sugar, IItemStack output)
 	{
 		ItemStack out = CraftTweakerMC.getItemStack(output);
 		ItemStack teacup = CraftTweakerMC.getItemStack(cup);
 		RecipeRegister.actions.add(new Removal(CraftTweakerHelper.getItemStacks(teaLeaf), CraftTweakerHelper.getItemStacks(tool), teacup, CraftTweakerHelper.getItemStacks(sugar), out));
+	}
+
+	@ZenMethod
+	public static void removeNoSugarRecipe(IIngredient teaLeaf, IItemStack cup, IIngredient sugar, IItemStack output)
+	{
+		ItemStack out = CraftTweakerMC.getItemStack(output);
+		ItemStack teacup = CraftTweakerMC.getItemStack(cup);
+		RecipeRegister.actions.add(new Removal(CraftTweakerHelper.getItemStacks(teaLeaf), NonNullListHelper.createNonNullList(ItemStack.EMPTY), teacup, CraftTweakerHelper.getItemStacks(sugar), out));
+	}
+
+	@ZenMethod
+	public static void removeNoToolRecipe(IIngredient teaLeaf, IIngredient tool, IItemStack cup, IItemStack output)
+	{
+		ItemStack out = CraftTweakerMC.getItemStack(output);
+		ItemStack teacup = CraftTweakerMC.getItemStack(cup);
+		RecipeRegister.actions.add(new Removal(CraftTweakerHelper.getItemStacks(teaLeaf), CraftTweakerHelper.getItemStacks(tool), teacup, NonNullListHelper.createNonNullList(ItemStack.EMPTY), out));
+	}
+
+	@ZenMethod
+	public static void removePureTeaRecipe(IIngredient teaLeaf, IItemStack cup, IItemStack output)
+	{
+		ItemStack out = CraftTweakerMC.getItemStack(output);
+		ItemStack teacup = CraftTweakerMC.getItemStack(cup);
+		RecipeRegister.actions.add(new Removal(CraftTweakerHelper.getItemStacks(teaLeaf), NonNullListHelper.createNonNullList(ItemStack.EMPTY), teacup, NonNullListHelper.createNonNullList(ItemStack.EMPTY), out));
 	}
 
 	private static final class Removal implements IAction

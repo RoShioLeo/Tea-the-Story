@@ -21,9 +21,7 @@ public class TOPFullKettle implements IProbeInfoProvider
 			FullKettle kettle = (FullKettle) blockState.getBlock();
 			if (data.getPickBlock() != null)
 			{
-				probeInfo.text(I18n.format("teastory.tooltip.kettle.remain",
-						kettle.getMaxCapacity() - data.getPickBlock().getItemDamage(),
-						kettle.getMaxCapacity()));
+				probeInfo.text(I18n.format("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - data.getPickBlock().getItemDamage(), kettle.getMaxCapacity()));
 			}
 		}
 	}

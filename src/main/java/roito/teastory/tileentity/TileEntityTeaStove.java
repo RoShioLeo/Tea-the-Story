@@ -91,9 +91,9 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 			ItemStack input = this.leafInventory.getStackInSlot(0).copy();
 			if (input.isEmpty())
 			{
-				this.dryTime = 0;
+				dryTime = 0;
 				reduceFuelTime();
-				this.markDirty();
+				markDirty();
 				return;
 			}
 			if (hasWaterOrSteam())      // 蒸青模式
@@ -106,7 +106,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 				{
 					process(true);
 					reduceFuelTime();
-					this.markDirty();
+					markDirty();
 					return;
 				}
 			}
@@ -119,7 +119,7 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 			{
 				process(false);
 				reduceFuelTime();
-				this.markDirty();
+				markDirty();
 				return;
 			}
 		}
@@ -129,9 +129,9 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 	{
 		if (isBurning())
 		{
-			this.fuelTime--;
+			fuelTime--;
 
-			if (this.fuelTime == 0)
+			if (fuelTime == 0)
 			{
 				ItemStack itemFuel = fuelInventory.extractItem(0, 1, true);
 				if (!isItemFuel(itemFuel))
@@ -139,6 +139,10 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 					TeaStove.setState(false, this.getWorld(), this.pos);
 				}
 			}
+		}
+		else
+		{
+			TeaStove.setState(false, this.getWorld(), this.pos);
 		}
 	}
 
@@ -313,5 +317,22 @@ public class TileEntityTeaStove extends TileEntity implements ITickable
 	public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState)
 	{
 		return oldState.getBlock() != newState.getBlock();
+	}
+
+	public ItemStack getInput()
+	{
+		return this.leafInventory.getStackInSlot(0).copy();
+	}
+
+	public ItemStack getOutput()
+	{
+		if (hasWaterOrSteam())
+		{
+			return usedSteamRecipe.getOutput();
+		}
+		else
+		{
+			return usedDryingRecipe.getOutput();
+		}
 	}
 }

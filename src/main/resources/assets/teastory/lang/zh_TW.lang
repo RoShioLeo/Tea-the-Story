@@ -2,6 +2,7 @@
 itemGroup.tabTeaStory=茶風·紀事·茶韻
 itemGroup.tabTeaRice=茶風·紀事·稻香
 itemGroup.tabTeaDrink=茶風·紀事·品茗
+itemGroup.tabRecords=茶風·紀事·音韻
 
 #Tooltip
 teastory.tooltip.tea_seeds.height=適宜海拔：80~110米
@@ -44,6 +45,22 @@ item.record_caichawuqu_g20.name=音樂唱片
 item.record.caichawuqu_g20.desc=採茶舞曲（G20晚會）
 item.record_caichawuqu_folk.name=音樂唱片
 item.record.caichawuqu_folk.desc=採茶舞曲（傳統民樂）
+item.record_bubugao.name=音樂唱片
+item.record.bubugao.desc=步步高
+item.record_caichaji_erhu.name=音樂唱片
+item.record.caichaji_erhu.desc=採茶紀（陸二胡版）
+item.record_chunjiexuqu.name=音樂唱片
+item.record.chunjiexuqu.desc=春節序曲
+item.record_huahaoyueyuan.name=音樂唱片
+item.record.huahaoyueyuan.desc=花好月圓
+item.record_jinshekuangwu.name=音樂唱片
+item.record.jinshekuangwu.desc=金蛇狂舞
+item.record_xiyangyang.name=音樂唱片
+item.record.xiyangyang.desc=喜洋洋
+item.record_yangliuqing.name=音樂唱片
+item.record.yangliuqing.desc=楊柳青
+item.record_zizhudiao.name=音樂唱片
+item.record.zizhudiao.desc=紫竹調
 item.tea_egg.name=茶葉蛋
 item.matcha_cookie.name=抹茶餅乾
 item.empty_tea_bag.name=空茶包
@@ -199,7 +216,7 @@ teastory.info.welcome=[§2§oTeaStory§f]感謝安裝§2§o茶風·紀事§f，�
 #Message
 teastory.message.soil_detection_meter.total=當前地區溫度狀況： %1$s， 幹濕度狀況： %2$s， 海拔高度：%3$s§8米§r， 氣候： %4$s。
 teastory.message.soil_detection_meter.drying=此處茶葉曬制速率： %1$s秒/片。
-teastory.message.soil_detection_meter.fermentation=此處紅茶發酵速率： %1$s秒/片（非露天下），%2$s秒/片（露天下）。
+teastory.message.soil_detection_meter.fermentation=此處紅茶發酵速率： %1$s秒/片。
 teastory.message.soil_detection_meter.teaplant=此處茶樹生長適宜程度為%1$s， %2$s
 teastory.message.soil_detection_meter.ricecrop=此處水稻生長適宜程度為%1$s。
 teastory.message.soil_detection_meter.temperature.frozen=§1冰凍
@@ -229,28 +246,31 @@ teastory.message.cooking_pan.lid=請蓋上木鍋蓋。
 teastory.message.cooking_pan.ignite=請用打火石點火。
 teastory.message.cooking_pan.rice=距離米飯出鍋還有%1$s秒。
 teastory.message.bed.excited=你現在太興奮了，以致於無法入睡。
+teastory.message.record=您未安裝“茶風·紀事”唱片資源包，無法播放音樂。
+teastory.message.daily_drinking.normal=這是您連續第%1$s天喝茶，本次時間增加%2$s， 效果等級提升%3$s級。
+teastory.message.daily_drinking.time_only=這是您連續第%1$s天喝茶，本次時間增加%2$s。
 
 #Container GUI
 teastory.container.tea_stove=茶爐
 teastory.container.tea_table=沏茶台
 teastory.container.teapan=茶簸箕
-teastory.container.barrel=發酵桶
-teastory.container.time=剩餘時間：%1$s分鐘%2$s秒
-teastory.container.rain=下雨天暫停
-teastory.container.light=光照不足
+teastory.container.teapan.rain=下雨天，暫停
+teastory.container.teapan.in_rain=淋雨中，暫停
+teastory.container.teapan.time=大約剩餘%1$s分鐘 %2$s
+teastory.container.teapan.mode.0=乾燥模式
+teastory.container.teapan.mode.1=發酵模式
 
 #JEI
-jei.teastory.category.teastove=殺青
+jei.teastory.category.teastove.steam=蒸青
+jei.teastory.category.teastove.bake=烘青
 jei.teastory.category.teatable=沏茶
-jei.teastory.category.barrel=發酵
+jei.teastory.category.teapan.fermentation=發酵
+jei.teastory.category.teapan.drying=曬青
+jei.teastory.category.teapan.in_rain=淋雨
 jei.teastory.category.cookingpan=烹飪
 jei.teastory.category.dryingpan=炒青
-jei.teastory.category.teapan=曬青
 
 #Waila
-waila.teastory.hud.step=目前狀態：
-waila.teastory.hud.next=下一階段：
-waila.teastory.hud.empty=空
 waila.teastory.hud.tea_plant_stage.title=階段：
 waila.teastory.hud.tea_plant_stage.seed=種子
 waila.teastory.hud.tea_plant_stage.sapling=幼苗
@@ -298,6 +318,7 @@ teastory.config.teamaking.limited.teaplant=種茶是否有限制
 teastory.config.teamaking.limited.rice=水稻生長是否有限制
 teastory.config.teamaking.dryingbasictime=曬制基礎時間
 teastory.config.teamaking.fermentationbasictime=發酵基礎時間
+teastory.config.teamaking.steamingbasictime=蒸青基礎時間
 teastory.config.others=其他設置
 teastory.config.others.lemon=食用檸檬時是否會反胃
 teastory.config.others.ricecookingbasictime=煮飯基礎時間

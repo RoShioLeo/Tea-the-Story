@@ -1,6 +1,5 @@
 package roito.teastory.compat.crafttweaker;
 
-import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
@@ -8,17 +7,11 @@ import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import roito.teastory.TeaStory;
-import roito.teastory.api.recipe.ITeaMakingRecipe;
 import roito.teastory.api.recipe.TeaMakingRecipe;
 import roito.teastory.common.RecipeRegister;
 import roito.teastory.helper.CraftTweakerHelper;
-import roito.teastory.helper.LogHelper;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-
-import javax.annotation.Nonnull;
-import java.util.List;
 
 @ZenClass("mods.teastory.Teapan.DryInSun")
 @ZenRegister

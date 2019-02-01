@@ -46,6 +46,10 @@ public class RecipeRegister
 		for (IAction act : actions)
 		{
 			CraftTweakerAPI.apply(act);
+			if (act.describe() != null)
+			{
+				LogHelper.info(act.describe());
+			}
 		}
 		actions.clear();
 	}

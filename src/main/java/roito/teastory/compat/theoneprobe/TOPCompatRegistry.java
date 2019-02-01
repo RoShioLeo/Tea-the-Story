@@ -13,7 +13,6 @@ public class TOPCompatRegistry implements Function<ITheOneProbe, Void>
 	public Void apply(ITheOneProbe theOneProbe)
 	{
 		theOneProbe.registerProvider(new TOPFullKettle());
-		theOneProbe.registerProvider(new TOPTeapan());
 		theOneProbe.registerProvider(new TOPTeaPlant());
 		return null;
 	}

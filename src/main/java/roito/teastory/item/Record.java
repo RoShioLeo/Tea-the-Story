@@ -20,7 +20,7 @@ public class Record extends ItemRecord
 		this.res = res;
 		this.setTranslationKey(name2);
 		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name2));
-		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
+		this.setCreativeTab(CreativeTabsRegister.tabRecords);
 	}
 
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)

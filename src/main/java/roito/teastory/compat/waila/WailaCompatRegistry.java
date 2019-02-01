@@ -9,7 +9,6 @@ public class WailaCompatRegistry
 	{
 		if (Loader.isModLoaded("waila"))
 		{
-			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaTeapan.register");
 			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaFullKettle.register");
 			FMLInterModComms.sendMessage("waila", "register", "roito.teastory.compat.waila.WailaTeaPlant.register");
 		}

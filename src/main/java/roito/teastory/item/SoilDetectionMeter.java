@@ -56,7 +56,7 @@ public class SoilDetectionMeter extends TSItem
 			playerIn.sendMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.drying", dryingTime));
 
 			int fermentationTime = EntironmentHelper.getFermentationTicks(temperature, humidity) / 20;
-			playerIn.sendMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.fermentation", fermentationTime, (int) (fermentationTime * 1.5F)));
+			playerIn.sendMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.fermentation", fermentationTime));
 
 			float teaChance = ((int) (EntironmentHelper.getTeaPlantGrowPercent(temperature, height) * 1000)) / 10;
 			Object f = (teaChance < 80) ? (teaChance < 40) ? TextFormatting.RED.toString() + teaChance + "%" : TextFormatting.YELLOW.toString() + teaChance + "%" : TextFormatting.GREEN.toString() + teaChance + "%";
@@ -66,11 +66,7 @@ public class SoilDetectionMeter extends TSItem
 			float riceChance = ((int) (EntironmentHelper.getRiceCropsGrowPercent(temperature, humidity) * 1000)) / 10;
 			Object g = (riceChance < 80) ? (riceChance < 40) ? TextFormatting.RED.toString() + riceChance + "%" : TextFormatting.YELLOW.toString() + riceChance + "%" : TextFormatting.GREEN.toString() + riceChance + "%";
 			playerIn.sendMessage(new TextComponentTranslation("teastory.message.soil_detection_meter.ricecrop", g));
-			return EnumActionResult.SUCCESS;
 		}
-		else
-		{
-			return EnumActionResult.SUCCESS;
-		}
+		return EnumActionResult.SUCCESS;
 	}
 }

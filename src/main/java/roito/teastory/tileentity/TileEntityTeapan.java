@@ -253,4 +253,14 @@ public class TileEntityTeapan extends TileEntity implements ITickable
 			world.markAndNotifyBlock(pos, null, state, state, 11);
 		}
 	}
+
+	public ItemStack getInput()
+	{
+		return this.leafInventory.getStackInSlot(0).copy();
+	}
+
+	public ItemStack getOutput()
+	{
+		return usedRecipe.getOutput();
+	}
 }

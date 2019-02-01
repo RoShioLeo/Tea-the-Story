@@ -2,8 +2,7 @@ package roito.teastory.api.recipe;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.oredict.OreDictionary;
-import roito.teastory.helper.NonNullListHelper;
+import roito.teastory.helper.CraftTweakerHelper;
 
 import javax.annotation.Nonnull;
 
@@ -32,7 +31,7 @@ public class TeaMakingRecipe implements ITeaMakingRecipe
 
 	public boolean isTheSameInput(@Nonnull ItemStack input)
 	{
-		return !this.output.isEmpty() && OreDictionary.containsMatch(false, inputs, input);
+		return !this.output.isEmpty() && CraftTweakerHelper.containsMatch(false, inputs, input);
 	}
 
 	public String toString()

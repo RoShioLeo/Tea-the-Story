@@ -2,6 +2,7 @@
 itemGroup.tabTeaStory=茶风·纪事·茶韵
 itemGroup.tabTeaRice=茶风·纪事·稻香
 itemGroup.tabTeaDrink=茶风·纪事·品茗
+itemGroup.tabRecords=茶风·纪事·音韵
 
 #Tooltip
 teastory.tooltip.tea_seeds.height=适宜海拔：80~110米
@@ -44,6 +45,22 @@ item.record_caichawuqu_g20.name=音乐唱片
 item.record.caichawuqu_g20.desc=采茶舞曲（G20晚会）
 item.record_caichawuqu_folk.name=音乐唱片
 item.record.caichawuqu_folk.desc=采茶舞曲（传统民乐）
+item.record_bubugao.name=音乐唱片
+item.record.bubugao.desc=步步高
+item.record_caichaji_erhu.name=音乐唱片
+item.record.caichaji_erhu.desc=采茶纪（陆二胡版）
+item.record_chunjiexuqu.name=音乐唱片
+item.record.chunjiexuqu.desc=春节序曲
+item.record_huahaoyueyuan.name=音乐唱片
+item.record.huahaoyueyuan.desc=花好月圆
+item.record_jinshekuangwu.name=音乐唱片
+item.record.jinshekuangwu.desc=金蛇狂舞
+item.record_xiyangyang.name=音乐唱片
+item.record.xiyangyang.desc=喜洋洋
+item.record_yangliuqing.name=音乐唱片
+item.record.yangliuqing.desc=杨柳青
+item.record_zizhudiao.name=音乐唱片
+item.record.zizhudiao.desc=紫竹调
 item.tea_egg.name=茶叶蛋
 item.matcha_cookie.name=抹茶饼干
 item.empty_tea_bag.name=空茶包
@@ -199,7 +216,7 @@ teastory.info.welcome=[§2§oTeaStory§f]感谢安装§2§o茶风·纪事§f，�
 #Message
 teastory.message.soil_detection_meter.total=当前地区温度状况： %1$s， 干湿度状况： %2$s， 海拔高度：%3$s§8米§r， 气候： %4$s。
 teastory.message.soil_detection_meter.drying=此处茶叶晒制速率： %1$s秒/片。
-teastory.message.soil_detection_meter.fermentation=此处红茶发酵速率： %1$s秒/片（非露天下），%2$s秒/片（露天下）。
+teastory.message.soil_detection_meter.fermentation=此处红茶发酵速率： %1$s秒/片。
 teastory.message.soil_detection_meter.teaplant=此处茶树生长适宜程度为%1$s， %2$s
 teastory.message.soil_detection_meter.ricecrop=此处水稻生长适宜程度为%1$s。
 teastory.message.soil_detection_meter.temperature.frozen=§1冰冻
@@ -239,22 +256,21 @@ teastory.container.tea_table=沏茶台
 teastory.container.teapan=茶簸箕
 teastory.container.teapan.rain=下雨天，暂停
 teastory.container.teapan.in_rain=淋雨中，暂停
-teastory.container.teapan.time=剩余%1$s分钟%2$s秒 %3$s模式
-teastory.container.teapan.mode.0=干燥
-teastory.container.teapan.mode.1=发酵
+teastory.container.teapan.time=大约剩余%1$s分钟 %2$s
+teastory.container.teapan.mode.0=干燥模式
+teastory.container.teapan.mode.1=发酵模式
 
 #JEI
-jei.teastory.category.teastove=杀青
+jei.teastory.category.teastove.steam=蒸青
+jei.teastory.category.teastove.bake=烘青
 jei.teastory.category.teatable=沏茶
-jei.teastory.category.barrel=发酵
+jei.teastory.category.teapan.fermentation=发酵
+jei.teastory.category.teapan.drying=晒青
+jei.teastory.category.teapan.in_rain=淋雨
 jei.teastory.category.cookingpan=烹饪
 jei.teastory.category.dryingpan=炒青
-jei.teastory.category.teapan=晒青
 
 #Waila
-waila.teastory.hud.step=目前状态：
-waila.teastory.hud.next=下一阶段：
-waila.teastory.hud.empty=空
 waila.teastory.hud.tea_plant_stage.title=阶段：
 waila.teastory.hud.tea_plant_stage.seed=种子
 waila.teastory.hud.tea_plant_stage.sapling=幼苗

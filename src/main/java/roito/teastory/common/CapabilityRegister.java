@@ -3,7 +3,6 @@ package roito.teastory.common;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import roito.teastory.api.capability.IDailyDrink;
 import roito.teastory.capability.CapabilityDailyDrink;
 

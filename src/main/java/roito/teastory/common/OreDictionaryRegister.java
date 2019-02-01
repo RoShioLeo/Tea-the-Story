@@ -1,7 +1,6 @@
 package roito.teastory.common;
 
 import net.minecraft.init.Items;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.item.ItemRegister;
 

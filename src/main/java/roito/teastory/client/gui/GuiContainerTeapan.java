@@ -49,7 +49,7 @@ public class GuiContainerTeapan extends GuiContainer
 		{
 			textureWidth = (int) Math.ceil(110.0 * processTicks / totalTicks);
 		}
-		this.drawTexturedModalRect(offsetX + 33, offsetY + 62, 0, 166, textureWidth, 17);
+		this.drawTexturedModalRect(offsetX + 33, offsetY + 62, 0, 166, textureWidth, 6);
 	}
 
 	@Override
@@ -59,7 +59,6 @@ public class GuiContainerTeapan extends GuiContainer
 		this.fontRenderer.drawString(title, (this.xSize - this.fontRenderer.getStringWidth(title)) / 2, 6, 0x404040);
 		int remainSeconds = inventory.getProcessTicks() == 0 ? 0 : (inventory.getTotalTicks() - inventory.getProcessTicks()) / 20;
 		int remainMinutes = remainSeconds / 60;
-		remainSeconds %= 60;
 
 		if (this.inventory.isInRain())
 		{
@@ -74,7 +73,7 @@ public class GuiContainerTeapan extends GuiContainer
 		else
 		{
 			String selectMode = I18n.format("teastory.container.teapan.mode." + inventory.getMode());
-			String time = I18n.format("teastory.container.teapan.time", remainMinutes, remainSeconds, selectMode);
+			String time = I18n.format("teastory.container.teapan.time", remainMinutes, selectMode);
 			this.fontRenderer.drawString(time, (this.xSize - this.fontRenderer.getStringWidth(time)) / 2, 70, 0x404040);
 		}
 	}

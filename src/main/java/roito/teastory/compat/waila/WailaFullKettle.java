@@ -37,8 +37,11 @@ public class WailaFullKettle implements IWailaDataProvider
 	@Override
 	public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config)
 	{
-		FullKettle kettle = (FullKettle) accessor.getBlock();
-		currenttip.add(I18n.format("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - itemStack.getItemDamage(), kettle.getMaxCapacity()));
+		if (accessor.getBlock() instanceof FullKettle)
+		{
+			FullKettle kettle = (FullKettle) accessor.getBlock();
+			currenttip.add(I18n.format("teastory.tooltip.kettle.remain", kettle.getMaxCapacity() - itemStack.getItemDamage(), kettle.getMaxCapacity()));
+		}
 		return currenttip;
 	}
 

@@ -11,7 +11,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.oredict.OreDictionary;
 import roito.teastory.api.recipe.ITeaTableRecipe;
 import roito.teastory.item.ItemWaterPot;
 
@@ -109,17 +108,15 @@ public class TileEntityTeaTable extends TileEntity implements ITickable
 			ItemStack water = InventoryWater.getStackInSlot(0).copy();
 			ItemStack sugar = InventorySugar.getStackInSlot(0).copy();
 			ItemStack tool = InventoryTool.getStackInSlot(0).copy();
-			ItemStack toolRecipe = tool.copy();
-			toolRecipe.setItemDamage(32767);
 			if (water.isEmpty() || !(water.getItem() instanceof ItemWaterPot))
 			{
 				this.teaTime = 0;
 				this.markDirty();
 				return;
 			}
-			if (!usedRecipe.isTheSameInput(leaf, toolRecipe, cup, sugar))
+			if (!usedRecipe.isTheSameInput(leaf, tool, cup, sugar))
 			{
-				usedRecipe = managerTeaTable.getRecipe(leaf, toolRecipe, cup, sugar);
+				usedRecipe = managerTeaTable.getRecipe(leaf, tool, cup, sugar);
 			}
 			if (!usedRecipe.getOutput().isEmpty())
 			{

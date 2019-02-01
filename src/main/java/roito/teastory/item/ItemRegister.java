@@ -10,28 +10,18 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import roito.teastory.TeaStory;
 import roito.teastory.block.BlockRegister;
 import roito.teastory.common.CreativeTabsRegister;
-import roito.teastory.item.drink.BlackTea;
-import roito.teastory.item.drink.GreenTea;
-import roito.teastory.item.drink.ItemTeaDrink;
-import roito.teastory.item.drink.LemonTea;
-import roito.teastory.item.drink.MatchaDrink;
-import roito.teastory.item.drink.MilkTea;
-import roito.teastory.item.drink.OolongTea;
-import roito.teastory.item.drink.PuerTea;
-import roito.teastory.item.drink.WhiteTea;
-import roito.teastory.item.drink.YellowTea;
+import roito.teastory.item.drink.*;
 
 @Mod.EventBusSubscriber(modid = TeaStory.MODID)
 public final class ItemRegister
 {
-	//茶叶
+	// 茶叶 Tea Leaves
 	public static Item tea_leaf = new TSItem("tea_leaf", 64, CreativeTabsRegister.tabTeaStory);
 	public static Item half_dried_tea = new TSItem("half_dried_tea", 64, CreativeTabsRegister.tabTeaStory);
 	public static Item matcha_leaf = new TSItem("matcha_leaf", 64, CreativeTabsRegister.tabTeaStory);
@@ -56,7 +46,7 @@ public final class ItemRegister
 	public static ItemTeaLeaf oolong_tea_bag = new ItemTeaLeaf("oolong_tea_bag", 64);
 	public static ItemTeaLeaf puer_tea_bag = new ItemTeaLeaf("puer_tea_bag", 64);
 
-	//稻米
+	// 稻米 Rice
 	public static Item xian_rice_seeds = new ItemSeeds(BlockRegister.xian_rice_seedling, Blocks.FARMLAND).setTranslationKey("xian_rice_seeds").setRegistryName(new ResourceLocation(TeaStory.MODID, "xian_rice_seeds")).setCreativeTab(CreativeTabsRegister.tabRice);
 	public static Item xian_rice_seedlings = new ItemRiceSeedling();
 	public static Item straw = new TSItem("straw", 64, CreativeTabsRegister.tabRice)
@@ -86,7 +76,7 @@ public final class ItemRegister
 	public static Item potato_rice = new TSItemFoodWithBowl("potato_rice", 15, 0.5F);
 	public static Item rabbit_rice = new TSItemFoodWithBowl("rabbit_rice", 15, 0.5F);
 
-	//茶具
+	// 茶具 Tea Sets
 	public static Item pot_stone = new ItemEmptyPot("pot_stone");
 	public static Item pot_iron = new ItemEmptyPot("pot_iron");
 	public static Item pot_porcelain = new ItemEmptyPot("pot_porcelain");
@@ -104,7 +94,7 @@ public final class ItemRegister
 
 	public static Item zisha_clay = new TSItem("zisha_clay", 64, CreativeTabsRegister.tabDrink);
 
-	//茶饮
+	// 茶饮 Tea Drink
 	public static Item hw_pot_stone = new ItemWaterPot("pot_stone", 2);
 	public static Item hw_pot_iron = new ItemWaterPot("pot_iron", 4);
 	public static Item hw_pot_porcelain = new ItemWaterPot("pot_porcelain", 8);
@@ -123,7 +113,7 @@ public final class ItemRegister
 	public static ItemFood tea_egg = new TeaEgg();
 	public static ItemFood matcha_cookie = new MatchaCookie();
 
-	//其他工具
+	// 其他工具 Other Tools
 	public static Item wooden_mortar_and_pestle = new MortarAndPestle("wooden_mortar_and_pestle", 128);
 	public static Item soil_detection_meter = new SoilDetectionMeter();
 	public static Item straw_blanket = new ItemStrawBlanket()
@@ -137,8 +127,18 @@ public final class ItemRegister
 	public static Item sickle = new ItemSickle();
 	public static Item lemon = new ItemLemon();
 	public static ItemSword shennongruler = new ShennongRuler();
+
+	// 唱片 Records
 	public static ItemRecord caichawuqu_g20 = new Record("caichawuqu_g20", "record_caichawuqu_g20", new ResourceLocation(TeaStory.MODID, "records.caichawuqu_g20"));
 	public static ItemRecord caichawuqu_folk = new Record("caichawuqu_folk", "record_caichawuqu_folk", new ResourceLocation(TeaStory.MODID, "records.caichawuqu_folk"));
+	public static ItemRecord bubugao = new Record("bubugao", "record_bubugao", new ResourceLocation(TeaStory.MODID, "records.bubugao"));
+	public static ItemRecord caichaji_erhu = new Record("caichaji_erhu", "record_caichaji_erhu", new ResourceLocation(TeaStory.MODID, "records.caichaji_erhu"));
+	public static ItemRecord chunjiexuqu = new Record("chunjiexuqu", "record_chunjiexuqu", new ResourceLocation(TeaStory.MODID, "records.chunjiexuqu"));
+	public static ItemRecord huahaoyueyuan = new Record("huahaoyueyuan", "record_huahaoyueyuan", new ResourceLocation(TeaStory.MODID, "records.huahaoyueyuan"));
+	public static ItemRecord jinshekuangwu = new Record("jinshekuangwu", "record_jinshekuangwu", new ResourceLocation(TeaStory.MODID, "records.jinshekuangwu"));
+	public static ItemRecord xiyangyang = new Record("xiyangyang", "record_xiyangyang", new ResourceLocation(TeaStory.MODID, "records.xiyangyang"));
+	public static ItemRecord yangliuqing = new Record("yangliuqing", "record_yangliuqing", new ResourceLocation(TeaStory.MODID, "records.yangliuqing"));
+	public static ItemRecord zizhudiao = new Record("zizhudiao", "record_zizhudiao", new ResourceLocation(TeaStory.MODID, "records.zizhudiao"));
 
 	public ItemRegister()
 	{
@@ -186,6 +186,14 @@ public final class ItemRegister
 		registerRender(shennongruler);
 		registerRender(caichawuqu_g20);
 		registerRender(caichawuqu_folk);
+		registerRender(bubugao);
+		registerRender(caichaji_erhu);
+		registerRender(chunjiexuqu);
+		registerRender(huahaoyueyuan);
+		registerRender(jinshekuangwu);
+		registerRender(xiyangyang);
+		registerRender(yangliuqing);
+		registerRender(zizhudiao);
 		registerRender(xian_rice_seeds);
 		registerRender(xian_rice_seedlings);
 		registerRender(straw);
@@ -232,7 +240,7 @@ public final class ItemRegister
 				wooden_mortar_and_pestle, soil_detection_meter, tea_whisk, lemon,
 				green_tea, matcha_drink, black_tea, milk_tea, lemon_tea, yellow_tea, white_tea, oolong_tea, puer_tea,
 				tea_residue, matcha_cookie, tea_egg,
-				shennongruler, caichawuqu_g20, caichawuqu_folk,
+				shennongruler, caichawuqu_g20, caichawuqu_folk, bubugao, caichaji_erhu, chunjiexuqu, huahaoyueyuan, jinshekuangwu, xiyangyang, yangliuqing, zizhudiao,
 				xian_rice_seeds, xian_rice_seedlings, straw, xian_rice, washed_rice, wooden_lid, rice_ball, straw_rope, straw_blanket, sickle,
 				porkchop_rice, steak_rice, chicken_rice, potato_rice, rabbit_rice,
 				pot_stone, pot_iron, pot_porcelain, pot_zisha, pot_clay, pot_zisha_clay,

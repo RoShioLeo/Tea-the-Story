@@ -3,6 +3,7 @@ package roito.teastory.api.recipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
+import roito.teastory.helper.CraftTweakerHelper;
 import roito.teastory.helper.NonNullListHelper;
 
 public class TeaTableRecipe implements ITeaTableRecipe
@@ -53,6 +54,6 @@ public class TeaTableRecipe implements ITeaTableRecipe
 	@Override
 	public boolean isTheSameInput(ItemStack leaf, ItemStack tool, ItemStack cup, ItemStack sugar)
 	{
-		return !this.output.isEmpty() && OreDictionary.containsMatch(true, teaLeaf, leaf) && OreDictionary.itemMatches(this.cup, cup, true) && OreDictionary.containsMatch(false, this.tool, tool) && OreDictionary.containsMatch(false, this.sugar, sugar);
+		return !this.output.isEmpty() && CraftTweakerHelper.containsMatch(true, teaLeaf, leaf) && OreDictionary.itemMatches(this.cup, cup, true) && CraftTweakerHelper.containsMatch(false, this.tool, tool) && CraftTweakerHelper.containsMatch(false, this.sugar, sugar);
 	}
 }

@@ -2,7 +2,6 @@ package roito.teastory.common;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import roito.teastory.item.ItemRegister;
 
 public class CreativeTabsRegister
@@ -10,6 +9,7 @@ public class CreativeTabsRegister
 	public static CreativeTabs tabTeaStory;
 	public static CreativeTabs tabRice;
 	public static CreativeTabs tabDrink;
+	public static CreativeTabs tabRecords;
 
 	public CreativeTabsRegister()
 	{
@@ -35,6 +35,14 @@ public class CreativeTabsRegister
 			public ItemStack createIcon()
 			{
 				return new ItemStack(ItemRegister.xian_rice);
+			}
+		};
+		tabRecords = new CreativeTabs("tabRecords")
+		{
+			@Override
+			public ItemStack createIcon()
+			{
+				return new ItemStack(ItemRegister.caichawuqu_folk);
 			}
 		};
 	}
