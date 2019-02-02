@@ -1,0 +1,15 @@
+{
+	"type": "forge:ore_shapeless",
+	"result": {
+		"item": "teastory:record_caichaji_erhu",
+		"count": 1
+	},
+	"ingredients": [
+		{
+			"item": "#record"
+		},
+		{
+			"item": "teastory:half_dried_tea"
+		}
+	]
+}
