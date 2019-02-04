@@ -113,15 +113,11 @@ public class Teaplant extends BlockBush implements IGrowable
 			{
 				if (rand.nextInt((int) (25.0F / f) + 1) == 0)
 				{
-					if (i < 11)
+					if (i < 11 || (i > 11 && i < 15))
 					{
 						worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
 					}
 					else if (i == 11 || i >= 15)
-					{
-						worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(6)), 2);
-					}
-					else if (i > 11 && i < 15)
 					{
 						worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(6)), 2);
 					}
