@@ -182,10 +182,13 @@ public class EventRegister
 				{
 					for (int i = 0; i < ConfigMain.general.spadeList.length; i++)
 					{
-						if (Item.getByNameOrId(ConfigMain.general.spadeList[i]).equals(event.getItemStack().getItem()))
+						if (ConfigMain.general.spadeList[i] != null)
 						{
-							flag = true;
-							break;
+							if (Item.getByNameOrId(ConfigMain.general.spadeList[i]) == event.getItemStack().getItem())
+							{
+								flag = true;
+								break;
+							}
 						}
 					}
 				}
@@ -200,10 +203,13 @@ public class EventRegister
 				{
 					for (int i = 0; i < ConfigMain.general.hoeList.length; i++)
 					{
-						if (Item.getByNameOrId(ConfigMain.general.hoeList[i]).equals(event.getItemStack().getItem()))
+						if (ConfigMain.general.hoeList[i] != null)
 						{
-							flag = true;
-							break;
+							if (Item.getByNameOrId(ConfigMain.general.hoeList[i]) == event.getItemStack().getItem())
+							{
+								flag = true;
+								break;
+							}
 						}
 					}
 				}
