@@ -124,11 +124,16 @@ public class PaddyField extends Block
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (!playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == Items.BUCKET)
+		if (!playerIn.getHeldItem(hand).isEmpty())
 		{
-			worldIn.setBlockState(pos, BlockRegister.field.getDefaultState());
-			playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
-			return true;
+			if (playerIn.getHeldItem(hand).getItem() == Items.BUCKET)
+			{
+				worldIn.setBlockState(pos, BlockRegister.field.getDefaultState());
+				playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
+				return true;
+			}
+			if (playerIn.getHeldItem(hand).getItem() == Items.WATER_BUCKET)
+				return true;
 		}
 		return false;
 	}

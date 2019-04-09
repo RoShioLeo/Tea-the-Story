@@ -26,7 +26,9 @@ public class TileEntityTeapan extends TileEntity implements ITickable
 {
 	protected int processTicks = 0;
 	protected int totalTicks = 0;
+
 	protected ITeaMakingRecipe usedRecipe = new TeaMakingRecipe(NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY);
+	protected int mode = -2;
 
 	protected ItemStackHandler leafInventory = new ItemStackHandler();
 
@@ -128,9 +130,10 @@ public class TileEntityTeapan extends TileEntity implements ITickable
 			this.markDirty();
 			return false;
 		}
-		if (!usedRecipe.isTheSameInput(input))
+		if (!usedRecipe.isTheSameInput(input) || mode != getMode())
 		{
 			usedRecipe = recipeManager.getRecipe(input);
+			mode = getMode();
 		}
 		if (!usedRecipe.getOutput().isEmpty())
 		{
@@ -154,9 +157,10 @@ public class TileEntityTeapan extends TileEntity implements ITickable
 	{
 		ItemStack input = this.leafInventory.getStackInSlot(0).copy();
 		this.processTicks = 0;
-		if (!usedRecipe.isTheSameInput(input))
+		if (!usedRecipe.isTheSameInput(input) || mode != getMode())
 		{
 			usedRecipe = RecipeRegister.managerWet.getRecipe(input);
+			mode = getMode();
 		}
 		if (!usedRecipe.getOutput().isEmpty())
 		{

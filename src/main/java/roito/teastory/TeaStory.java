@@ -27,7 +27,7 @@ import roito.teastory.common.CommonProxy;
 public class TeaStory
 {
 	public static final String MODID = "teastory";
-	public static final String NAME = "Tea: The Story";
+	public static final String NAME = "Tea the Story";
 	public static final String VERSION = "@version@";
 	public static final String CONFIG_GUI_CLASS = "roito.teastory.config.ConfigGuiFactory";
 
