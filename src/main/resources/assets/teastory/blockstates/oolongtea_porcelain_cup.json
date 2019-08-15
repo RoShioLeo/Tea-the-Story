@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "teastory:oolongtea_porcelain_cup" }
+        "normal": {
+            "model": "teastory:oolongtea_porcelain_cup"
+        }
     }
 }

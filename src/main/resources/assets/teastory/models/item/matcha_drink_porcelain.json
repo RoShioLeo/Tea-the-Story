@@ -2,5 +2,5 @@
     "parent": "item/generated",
     "textures": {
         "layer0": "teastory:items/matcha_drink_porcelain"
-	}
+    }
 }

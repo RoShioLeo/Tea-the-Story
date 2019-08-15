@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "teastory:tea_table" }
+        "normal": {
+            "model": "teastory:tea_table"
+        }
     }
 }

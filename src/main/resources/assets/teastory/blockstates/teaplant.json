@@ -1,101 +1,279 @@
 {
     "variants": {
         "age=0": [
-		{ "model": "teastory:teaplant_0" },
-		{ "model": "teastory:teaplant_0", "y": 90 },
-		{ "model": "teastory:teaplant_0", "y": 180 },
-		{ "model": "teastory:teaplant_0", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_0"
+            },
+            {
+                "model": "teastory:teaplant_0",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_0",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_0",
+                "y": 270
+            }
+        ],
         "age=1": [
-		{ "model": "teastory:teaplant_0" },
-		{ "model": "teastory:teaplant_0", "y": 90 },
-		{ "model": "teastory:teaplant_0", "y": 180 },
-		{ "model": "teastory:teaplant_0", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_0"
+            },
+            {
+                "model": "teastory:teaplant_0",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_0",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_0",
+                "y": 270
+            }
+        ],
         "age=2": [
-		{ "model": "teastory:teaplant_1" },
-		{ "model": "teastory:teaplant_1", "y": 90 },
-		{ "model": "teastory:teaplant_1", "y": 180 },
-		{ "model": "teastory:teaplant_1", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_1"
+            },
+            {
+                "model": "teastory:teaplant_1",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_1",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_1",
+                "y": 270
+            }
+        ],
         "age=3": [
-		{ "model": "teastory:teaplant_1" },
-		{ "model": "teastory:teaplant_1", "y": 90 },
-		{ "model": "teastory:teaplant_1", "y": 180 },
-		{ "model": "teastory:teaplant_1", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_1"
+            },
+            {
+                "model": "teastory:teaplant_1",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_1",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_1",
+                "y": 270
+            }
+        ],
         "age=4": [
-		{ "model": "teastory:teaplant_2" },
-		{ "model": "teastory:teaplant_2", "y": 90 },
-		{ "model": "teastory:teaplant_2", "y": 180 },
-		{ "model": "teastory:teaplant_2", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_2"
+            },
+            {
+                "model": "teastory:teaplant_2",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_2",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_2",
+                "y": 270
+            }
+        ],
         "age=5": [
-		{ "model": "teastory:teaplant_2" },
-		{ "model": "teastory:teaplant_2", "y": 90 },
-		{ "model": "teastory:teaplant_2", "y": 180 },
-		{ "model": "teastory:teaplant_2", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_2"
+            },
+            {
+                "model": "teastory:teaplant_2",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_2",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_2",
+                "y": 270
+            }
+        ],
         "age=6": [
-		{ "model": "teastory:teaplant_3" },
-		{ "model": "teastory:teaplant_3", "y": 90 },
-		{ "model": "teastory:teaplant_3", "y": 180 },
-		{ "model": "teastory:teaplant_3", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_3"
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 270
+            }
+        ],
         "age=7": [
-		{ "model": "teastory:teaplant_3" },
-		{ "model": "teastory:teaplant_3", "y": 90 },
-		{ "model": "teastory:teaplant_3", "y": 180 },
-		{ "model": "teastory:teaplant_3", "y": 270 }
-		],
-		"age=8": [
-		{ "model": "teastory:teaplant_4" },
-		{ "model": "teastory:teaplant_4", "y": 90 },
-		{ "model": "teastory:teaplant_4", "y": 180 },
-		{ "model": "teastory:teaplant_4", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_3"
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 270
+            }
+        ],
+        "age=8": [
+            {
+                "model": "teastory:teaplant_4"
+            },
+            {
+                "model": "teastory:teaplant_4",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_4",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_4",
+                "y": 270
+            }
+        ],
         "age=9": [
-		{ "model": "teastory:teaplant_4" },
-		{ "model": "teastory:teaplant_4", "y": 90 },
-		{ "model": "teastory:teaplant_4", "y": 180 },
-		{ "model": "teastory:teaplant_4", "y": 270 }
-		],
-		"age=10": [
-		{ "model": "teastory:teaplant_3" },
-		{ "model": "teastory:teaplant_3", "y": 90 },
-		{ "model": "teastory:teaplant_3", "y": 180 },
-		{ "model": "teastory:teaplant_3", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_4"
+            },
+            {
+                "model": "teastory:teaplant_4",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_4",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_4",
+                "y": 270
+            }
+        ],
+        "age=10": [
+            {
+                "model": "teastory:teaplant_3"
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 270
+            }
+        ],
         "age=11": [
-		{ "model": "teastory:teaplant_3" },
-		{ "model": "teastory:teaplant_3", "y": 90 },
-		{ "model": "teastory:teaplant_3", "y": 180 },
-		{ "model": "teastory:teaplant_3", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_3"
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_3",
+                "y": 270
+            }
+        ],
         "age=12": [
-		{ "model": "teastory:teaplant_5" },
-		{ "model": "teastory:teaplant_5", "y": 90 },
-		{ "model": "teastory:teaplant_5", "y": 180 },
-		{ "model": "teastory:teaplant_5", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_5"
+            },
+            {
+                "model": "teastory:teaplant_5",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_5",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_5",
+                "y": 270
+            }
+        ],
         "age=13": [
-		{ "model": "teastory:teaplant_5" },
-		{ "model": "teastory:teaplant_5", "y": 90 },
-		{ "model": "teastory:teaplant_5", "y": 180 },
-		{ "model": "teastory:teaplant_5", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_5"
+            },
+            {
+                "model": "teastory:teaplant_5",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_5",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_5",
+                "y": 270
+            }
+        ],
         "age=14": [
-		{ "model": "teastory:teaplant_6" },
-		{ "model": "teastory:teaplant_6", "y": 90 },
-		{ "model": "teastory:teaplant_6", "y": 180 },
-		{ "model": "teastory:teaplant_6", "y": 270 }
-		],
+            {
+                "model": "teastory:teaplant_6"
+            },
+            {
+                "model": "teastory:teaplant_6",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_6",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_6",
+                "y": 270
+            }
+        ],
         "age=15": [
-		{ "model": "teastory:teaplant_6" },
-		{ "model": "teastory:teaplant_6", "y": 90 },
-		{ "model": "teastory:teaplant_6", "y": 180 },
-		{ "model": "teastory:teaplant_6", "y": 270 }
-		],
-		"inventory": {"model": "teastory:teaplant_5"}
+            {
+                "model": "teastory:teaplant_6"
+            },
+            {
+                "model": "teastory:teaplant_6",
+                "y": 90
+            },
+            {
+                "model": "teastory:teaplant_6",
+                "y": 180
+            },
+            {
+                "model": "teastory:teaplant_6",
+                "y": 270
+            }
+        ],
+        "inventory": {
+            "model": "teastory:teaplant_5"
+        }
     }
 }

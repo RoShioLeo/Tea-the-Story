@@ -1,17 +1,17 @@
 {
-	"type": "forge:ore_shaped",
-	"result": {
-		"item": "teastory:straw_rope",
-		"count": 1
-	},
-	"pattern": [
-		"#  ",
-		" # ",
-		"  #"
-	],
-	"key": {
-		"#": {
-			"item": "#crop_straw"
-		}
-	}
+    "type": "forge:ore_shaped",
+    "result": {
+        "item": "teastory:straw_rope",
+        "count": 1
+    },
+    "pattern": [
+        "#  ",
+        " # ",
+        "  #"
+    ],
+    "key": {
+        "#": {
+            "item": "#crop_straw"
+        }
+    }
 }

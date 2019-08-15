@@ -1,26 +1,26 @@
 {
-	"type": "forge:ore_shaped",
-	"result": {
-		"item": "teastory:tea_table",
-		"count": 1
-	},
-	"pattern": [
-		"+*-",
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "#plank_wood"
-		},
-		"*": {
-			"item": "teastory:empty_porcelain_kettle"
-		},
-		"+": {
-			"item": "teastory:cup",
-			"data": 0
-		},
-		"-": {
-			"item": "teastory:pot_stone"
-		}
-	}
+    "type": "forge:ore_shaped",
+    "result": {
+        "item": "teastory:tea_table",
+        "count": 1
+    },
+    "pattern": [
+        "+*-",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "#plank_wood"
+        },
+        "*": {
+            "item": "teastory:empty_porcelain_kettle"
+        },
+        "+": {
+            "item": "teastory:cup",
+            "data": 0
+        },
+        "-": {
+            "item": "teastory:pot_stone"
+        }
+    }
 }

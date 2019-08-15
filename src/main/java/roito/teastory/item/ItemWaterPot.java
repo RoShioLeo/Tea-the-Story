@@ -7,45 +7,45 @@ import roito.teastory.common.CreativeTabsRegister;
 
 public class ItemWaterPot extends TSItem
 {
-	String container;
+    String container;
 
-	public ItemWaterPot(String name, int maxDamageIn)
-	{
-		super("boiled_water_" + name, 1, CreativeTabsRegister.tabDrink);
-		this.container = TeaStory.MODID + ":" + name;
-		this.setMaxDamage(maxDamageIn);
-		this.setNoRepair();
-	}
+    public ItemWaterPot(String name, int maxDamageIn)
+    {
+        super("boiled_water_" + name, 1, CreativeTabsRegister.tabDrink);
+        this.container = TeaStory.MODID + ":" + name;
+        this.setMaxDamage(maxDamageIn);
+        this.setNoRepair();
+    }
 
-	@Override
-	public boolean isEnchantable(ItemStack stack)
-	{
-		return false;
-	}
+    @Override
+    public boolean isEnchantable(ItemStack stack)
+    {
+        return false;
+    }
 
-	public int getRemainWater(ItemStack stack)
-	{
-		return this.getMaxDamage(stack) - this.getDamage(stack);
-	}
+    public int getRemainWater(ItemStack stack)
+    {
+        return this.getMaxDamage(stack) - this.getDamage(stack);
+    }
 
-	public Item getEmptyPot()
-	{
-		return Item.getByNameOrId(container);
-	}
+    public Item getEmptyPot()
+    {
+        return Item.getByNameOrId(container);
+    }
 
-	public ItemStack getNext(ItemStack stack, int use)
-	{
-		ItemStack itemStack = stack.copy();
-		itemStack.setItemDamage(itemStack.getItemDamage() + use);
-		if (itemStack.getItemDamage() >= itemStack.getMaxDamage())
-		{
-			return new ItemStack(Item.getByNameOrId(this.container));
-		}
-		else
-		{
-			return itemStack;
-		}
-	}
+    public ItemStack getNext(ItemStack stack, int use)
+    {
+        ItemStack itemStack = stack.copy();
+        itemStack.setItemDamage(itemStack.getItemDamage() + use);
+        if (itemStack.getItemDamage() >= itemStack.getMaxDamage())
+        {
+            return new ItemStack(Item.getByNameOrId(this.container));
+        }
+        else
+        {
+            return itemStack;
+        }
+    }
 	
 	/*@Override
 	public ItemStack getContainerItem(ItemStack itemStack)

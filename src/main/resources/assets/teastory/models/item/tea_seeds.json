@@ -2,6 +2,7 @@
     "parent": "item/generated",
     "textures": {
         "layer0": "teastory:items/tea_seeds"
-    }  }
     }
+}
+}
 }

@@ -19,68 +19,68 @@ import roito.teastory.common.CreativeTabsRegister;
 
 public class ItemStrawBlanket extends TSItem
 {
-	public ItemStrawBlanket()
-	{
-		super("item_straw_blanket", 64, CreativeTabsRegister.tabRice);
-	}
+    public ItemStrawBlanket()
+    {
+        super("item_straw_blanket", 64, CreativeTabsRegister.tabRice);
+    }
 
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		if (worldIn.isRemote)
-		{
-			return EnumActionResult.SUCCESS;
-		}
-		else if (facing != EnumFacing.UP)
-		{
-			return EnumActionResult.FAIL;
-		}
-		else
-		{
-			IBlockState iblockstate = worldIn.getBlockState(pos);
-			Block block = iblockstate.getBlock();
-			boolean flag = block.isReplaceable(worldIn, pos);
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if (worldIn.isRemote)
+        {
+            return EnumActionResult.SUCCESS;
+        }
+        else if (facing != EnumFacing.UP)
+        {
+            return EnumActionResult.FAIL;
+        }
+        else
+        {
+            IBlockState iblockstate = worldIn.getBlockState(pos);
+            Block block = iblockstate.getBlock();
+            boolean flag = block.isReplaceable(worldIn, pos);
 
-			if (!flag)
-			{
-				pos = pos.up();
-			}
+            if (!flag)
+            {
+                pos = pos.up();
+            }
 
-			int i = MathHelper.floor(playerIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-			EnumFacing enumfacing = EnumFacing.byHorizontalIndex(i);
-			BlockPos blockpos = pos.offset(enumfacing);
-			ItemStack itemstack = playerIn.getHeldItem(hand);
+            int i = MathHelper.floor(playerIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+            EnumFacing enumfacing = EnumFacing.byHorizontalIndex(i);
+            BlockPos blockpos = pos.offset(enumfacing);
+            ItemStack itemstack = playerIn.getHeldItem(hand);
 
-			if (playerIn.canPlayerEdit(pos, facing, itemstack) && playerIn.canPlayerEdit(blockpos, facing, itemstack))
-			{
-				boolean flag1 = worldIn.getBlockState(blockpos).getBlock().isReplaceable(worldIn, blockpos);
-				boolean flag2 = flag || worldIn.isAirBlock(pos);
-				boolean flag3 = flag1 || worldIn.isAirBlock(blockpos);
+            if (playerIn.canPlayerEdit(pos, facing, itemstack) && playerIn.canPlayerEdit(blockpos, facing, itemstack))
+            {
+                boolean flag1 = worldIn.getBlockState(blockpos).getBlock().isReplaceable(worldIn, blockpos);
+                boolean flag2 = flag || worldIn.isAirBlock(pos);
+                boolean flag3 = flag1 || worldIn.isAirBlock(blockpos);
 
-				if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isTopSolid() && worldIn.getBlockState(blockpos.down()).isFullCube())
-				{
-					IBlockState iblockstate1 = BlockRegister.straw_blanket.getDefaultState().withProperty(StrawBlanket.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockHorizontal.FACING, enumfacing).withProperty(StrawBlanket.PART, StrawBlanket.EnumPartType.FOOT);
+                if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isTopSolid() && worldIn.getBlockState(blockpos.down()).isFullCube())
+                {
+                    IBlockState iblockstate1 = BlockRegister.straw_blanket.getDefaultState().withProperty(StrawBlanket.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockHorizontal.FACING, enumfacing).withProperty(StrawBlanket.PART, StrawBlanket.EnumPartType.FOOT);
 
-					if (worldIn.setBlockState(pos, iblockstate1, 11))
-					{
-						IBlockState iblockstate2 = iblockstate1.withProperty(StrawBlanket.PART, StrawBlanket.EnumPartType.HEAD);
-						worldIn.setBlockState(blockpos, iblockstate2, 11);
-					}
+                    if (worldIn.setBlockState(pos, iblockstate1, 11))
+                    {
+                        IBlockState iblockstate2 = iblockstate1.withProperty(StrawBlanket.PART, StrawBlanket.EnumPartType.HEAD);
+                        worldIn.setBlockState(blockpos, iblockstate2, 11);
+                    }
 
-					SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, playerIn);
-					worldIn.playSound(null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-					itemstack.shrink(1);
-					return EnumActionResult.SUCCESS;
-				}
-				else
-				{
-					return EnumActionResult.FAIL;
-				}
-			}
-			else
-			{
-				return EnumActionResult.FAIL;
-			}
-		}
-	}
+                    SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, playerIn);
+                    worldIn.playSound(null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                    itemstack.shrink(1);
+                    return EnumActionResult.SUCCESS;
+                }
+                else
+                {
+                    return EnumActionResult.FAIL;
+                }
+            }
+            else
+            {
+                return EnumActionResult.FAIL;
+            }
+        }
+    }
 }

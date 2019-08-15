@@ -8,11 +8,11 @@ import roito.teastory.capability.CapabilityDailyDrink;
 
 public class CapabilityRegister
 {
-	@CapabilityInject(IDailyDrink.class)
-	public static Capability<IDailyDrink> dailyDrink;
+    @CapabilityInject(IDailyDrink.class)
+    public static Capability<IDailyDrink> dailyDrink;
 
-	public CapabilityRegister()
-	{
-		CapabilityManager.INSTANCE.register(IDailyDrink.class, new CapabilityDailyDrink.Storage(), CapabilityDailyDrink.Implementation::new);
-	}
+    public CapabilityRegister()
+    {
+        CapabilityManager.INSTANCE.register(IDailyDrink.class, new CapabilityDailyDrink.Storage(), CapabilityDailyDrink.Implementation::new);
+    }
 }

@@ -14,37 +14,37 @@ import java.util.List;
 
 public class RecipeTeapanFermentation implements IRecipeWrapper
 {
-	public static List<RecipeTeapanFermentation> getWrappedRecipeList()
-	{
-		List<RecipeTeapanFermentation> recipesToReturn = new ArrayList<>();
-		for (ITeaMakingRecipe recipe : RecipeRegister.managerTeapanIndoors.getRecipes())
-		{
-			recipesToReturn.add(new RecipeTeapanFermentation(recipe));
-		}
-		return recipesToReturn;
-	}
+    public static List<RecipeTeapanFermentation> getWrappedRecipeList()
+    {
+        List<RecipeTeapanFermentation> recipesToReturn = new ArrayList<>();
+        for (ITeaMakingRecipe recipe : RecipeRegister.managerTeapanIndoors.getRecipes())
+        {
+            recipesToReturn.add(new RecipeTeapanFermentation(recipe));
+        }
+        return recipesToReturn;
+    }
 
-	private final ITeaMakingRecipe recipe;
+    private final ITeaMakingRecipe recipe;
 
-	public RecipeTeapanFermentation(ITeaMakingRecipe recipe)
-	{
-		this.recipe = recipe;
-	}
+    public RecipeTeapanFermentation(ITeaMakingRecipe recipe)
+    {
+        this.recipe = recipe;
+    }
 
-	@Override
-	public void getIngredients(IIngredients ingredients)
-	{
-		ingredients.setInputs(VanillaTypes.ITEM, getInputs());
-		ingredients.setOutputs(VanillaTypes.ITEM, getOutputs());
-	}
+    @Override
+    public void getIngredients(IIngredients ingredients)
+    {
+        ingredients.setInputs(VanillaTypes.ITEM, getInputs());
+        ingredients.setOutputs(VanillaTypes.ITEM, getOutputs());
+    }
 
-	public NonNullList<ItemStack> getInputs()
-	{
-		return NonNullListHelper.createNonNullList(recipe.getInputs());
-	}
+    public NonNullList<ItemStack> getInputs()
+    {
+        return NonNullListHelper.createNonNullList(recipe.getInputs());
+    }
 
-	public NonNullList<ItemStack> getOutputs()
-	{
-		return NonNullListHelper.createNonNullList(recipe.getOutput());
-	}
+    public NonNullList<ItemStack> getOutputs()
+    {
+        return NonNullListHelper.createNonNullList(recipe.getOutput());
+    }
 }

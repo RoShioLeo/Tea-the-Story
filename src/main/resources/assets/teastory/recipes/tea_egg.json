@@ -1,21 +1,21 @@
 {
-	"type": "minecraft:crafting_shapeless",
-	"result": {
-		"item": "teastory:tea_egg",
-		"count": 1
-	},
-	"ingredients": [
-		{
-			"item": "teastory:dried_tea"
-		},
-		{
-			"item": "teastory:dried_tea"
-		},
-		{
-			"item": "teastory:dried_tea"
-		},
-		{
-			"item": "minecraft:egg"
-		}
-	]
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "teastory:tea_egg",
+        "count": 1
+    },
+    "ingredients": [
+        {
+            "item": "teastory:dried_tea"
+        },
+        {
+            "item": "teastory:dried_tea"
+        },
+        {
+            "item": "teastory:dried_tea"
+        },
+        {
+            "item": "minecraft:egg"
+        }
+    ]
 }

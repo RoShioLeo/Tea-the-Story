@@ -1,21 +1,67 @@
 {
     "variants": {
-        "facing=north,occupied=false,part=foot": { "model": "teastory:straw_blanket", "y": 180 },
-        "facing=east,occupied=false,part=foot":  { "model": "teastory:straw_blanket", "y": 270 },
-        "facing=south,occupied=false,part=foot": { "model": "teastory:straw_blanket" },
-        "facing=west,occupied=false,part=foot":  { "model": "teastory:straw_blanket", "y": 90 },
-        "facing=north,occupied=false,part=head": { "model": "teastory:straw_blanket", "y": 180 },
-        "facing=east,occupied=false,part=head":  { "model": "teastory:straw_blanket", "y": 270 },
-        "facing=south,occupied=false,part=head": { "model": "teastory:straw_blanket" },
-        "facing=west,occupied=false,part=head":  { "model": "teastory:straw_blanket", "y": 90 },
-		"facing=north,occupied=true,part=foot": { "model": "teastory:straw_blanket", "y": 180 },
-        "facing=east,occupied=true,part=foot":  { "model": "teastory:straw_blanket", "y": 270 },
-        "facing=south,occupied=true,part=foot": { "model": "teastory:straw_blanket" },
-        "facing=west,occupied=true,part=foot":  { "model": "teastory:straw_blanket", "y": 90 },
-        "facing=north,occupied=true,part=head": { "model": "teastory:straw_blanket", "y": 180 },
-        "facing=east,occupied=true,part=head":  { "model": "teastory:straw_blanket", "y": 270 },
-        "facing=south,occupied=true,part=head": { "model": "teastory:straw_blanket" },
-        "facing=west,occupied=true,part=head":  { "model": "teastory:straw_blanket", "y": 90 },
-		"inventory": { "model": "teastory:straw_blanket" }
+        "facing=north,occupied=false,part=foot": {
+            "model": "teastory:straw_blanket",
+            "y": 180
+        },
+        "facing=east,occupied=false,part=foot": {
+            "model": "teastory:straw_blanket",
+            "y": 270
+        },
+        "facing=south,occupied=false,part=foot": {
+            "model": "teastory:straw_blanket"
+        },
+        "facing=west,occupied=false,part=foot": {
+            "model": "teastory:straw_blanket",
+            "y": 90
+        },
+        "facing=north,occupied=false,part=head": {
+            "model": "teastory:straw_blanket",
+            "y": 180
+        },
+        "facing=east,occupied=false,part=head": {
+            "model": "teastory:straw_blanket",
+            "y": 270
+        },
+        "facing=south,occupied=false,part=head": {
+            "model": "teastory:straw_blanket"
+        },
+        "facing=west,occupied=false,part=head": {
+            "model": "teastory:straw_blanket",
+            "y": 90
+        },
+        "facing=north,occupied=true,part=foot": {
+            "model": "teastory:straw_blanket",
+            "y": 180
+        },
+        "facing=east,occupied=true,part=foot": {
+            "model": "teastory:straw_blanket",
+            "y": 270
+        },
+        "facing=south,occupied=true,part=foot": {
+            "model": "teastory:straw_blanket"
+        },
+        "facing=west,occupied=true,part=foot": {
+            "model": "teastory:straw_blanket",
+            "y": 90
+        },
+        "facing=north,occupied=true,part=head": {
+            "model": "teastory:straw_blanket",
+            "y": 180
+        },
+        "facing=east,occupied=true,part=head": {
+            "model": "teastory:straw_blanket",
+            "y": 270
+        },
+        "facing=south,occupied=true,part=head": {
+            "model": "teastory:straw_blanket"
+        },
+        "facing=west,occupied=true,part=head": {
+            "model": "teastory:straw_blanket",
+            "y": 90
+        },
+        "inventory": {
+            "model": "teastory:straw_blanket"
+        }
     }
 }

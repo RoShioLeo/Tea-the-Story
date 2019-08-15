@@ -1,12 +1,12 @@
 {
-	"type": "minecraft:crafting_shapeless",
-	"result": {
-		"item": "teastory:record_caichawuqu_folk",
-		"count": 1
-	},
-	"ingredients": [
-		{
-			"item": "teastory:record_caichawuqu_g20"
-		}
-	]
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "teastory:record_caichawuqu_folk",
+        "count": 1
+    },
+    "ingredients": [
+        {
+            "item": "teastory:record_caichawuqu_g20"
+        }
+    ]
 }

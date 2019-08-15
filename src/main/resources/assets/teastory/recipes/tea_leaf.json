@@ -1,18 +1,16 @@
 {
     "type": "minecraft:crafting_shaped",
-	"result":{
+    "result": {
         "item": "teastory:tea_leaf",
-		"count": 1
+        "count": 1
     },
-    "pattern":[
+    "pattern": [
         "BBB",
         "BBB",
-		"BBB"
+        "BBB"
     ],
-    "key":
-    {
-        "B":
-        {
+    "key": {
+        "B": {
             "item": "teastory:broken_tea"
         }
     }

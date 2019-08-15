@@ -1,20 +1,20 @@
 {
-	"type": "forge:ore_shaped",
-	"result": {
-		"item": "teastory:sickle",
-		"count": 1
-	},
-	"pattern": [
-		" ##",
-		"# *",
-		"  *"
-	],
-	"key": {
-		"#": {
-			"item": "#ingot_iron"
-		},
-		"*": {
-			"item": "#stick_wood"
-		}
-	}
+    "type": "forge:ore_shaped",
+    "result": {
+        "item": "teastory:sickle",
+        "count": 1
+    },
+    "pattern": [
+        " ##",
+        "# *",
+        "  *"
+    ],
+    "key": {
+        "#": {
+            "item": "#ingot_iron"
+        },
+        "*": {
+            "item": "#stick_wood"
+        }
+    }
 }

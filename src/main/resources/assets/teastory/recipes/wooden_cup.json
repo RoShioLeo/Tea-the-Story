@@ -1,20 +1,20 @@
 {
-	"type": "forge:ore_shaped",
-	"result": {
-		"item": "teastory:cup",
-		"count": 1,
-		"data": 0
-	},
-	"pattern": [
-		"# #", 
-		"*#*"
-	],
-	"key": {
-		"#": {
-			"item": "#plank_wood"
-		},
-		"*": {
-			"item": "#stick_wood"
-		}
-	}
+    "type": "forge:ore_shaped",
+    "result": {
+        "item": "teastory:cup",
+        "count": 1,
+        "data": 0
+    },
+    "pattern": [
+        "# #",
+        "*#*"
+    ],
+    "key": {
+        "#": {
+            "item": "#plank_wood"
+        },
+        "*": {
+            "item": "#stick_wood"
+        }
+    }
 }

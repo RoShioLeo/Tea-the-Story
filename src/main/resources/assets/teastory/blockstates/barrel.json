@@ -1,9 +1,19 @@
 {
     "variants": {
-	    "step=0": { "model":"teastory:barrel_empty" },
-        "step=1": { "model":"teastory:barrel_full" },
-		"step=2": { "model":"teastory:barrel_fermentation" },
-		"step=3": { "model":"teastory:barrel_blacktea" },
-        "step=4": { "model":"teastory:barrel_puer" }
+        "step=0": {
+            "model": "teastory:barrel_empty"
+        },
+        "step=1": {
+            "model": "teastory:barrel_full"
+        },
+        "step=2": {
+            "model": "teastory:barrel_fermentation"
+        },
+        "step=3": {
+            "model": "teastory:barrel_blacktea"
+        },
+        "step=4": {
+            "model": "teastory:barrel_puer"
+        }
     }
 }

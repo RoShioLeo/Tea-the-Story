@@ -1,16 +1,16 @@
 {
-	"type": "forge:ore_shapeless",
-	"result": {
-		"item": "teastory:record_zizhudiao",
-		"count": 1
-	},
-	"ingredients": [
-		{
-			"item": "#record"
-		},
-		{
-			"item": "minecraft:wool",
-			"data": 10
-		}
-	]
+    "type": "forge:ore_shapeless",
+    "result": {
+        "item": "teastory:record_zizhudiao",
+        "count": 1
+    },
+    "ingredients": [
+        {
+            "item": "#record"
+        },
+        {
+            "item": "minecraft:wool",
+            "data": 10
+        }
+    ]
 }

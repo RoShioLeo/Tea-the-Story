@@ -1,23 +1,23 @@
 {
-	"type": "forge:ore_shaped",
-	"result": {
-		"item": "teastory:wooden_mortar_and_pestle",
-		"count": 1
-	},
-	"pattern": [
-		"S",
-		"P",
-		"B"
-	],
-	"key": {
-		"S": {
-			"item": "#stick_wood"
-		},
-		"P": {
-			"item": "#plank_wood"
-		},
-		"B": {
-			"item": "minecraft:bowl"
-		}
-	}
+    "type": "forge:ore_shaped",
+    "result": {
+        "item": "teastory:wooden_mortar_and_pestle",
+        "count": 1
+    },
+    "pattern": [
+        "S",
+        "P",
+        "B"
+    ],
+    "key": {
+        "S": {
+            "item": "#stick_wood"
+        },
+        "P": {
+            "item": "#plank_wood"
+        },
+        "B": {
+            "item": "minecraft:bowl"
+        }
+    }
 }

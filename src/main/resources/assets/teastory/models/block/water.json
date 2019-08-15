@@ -1,16 +1,19 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
-		"0": "blocks/water_still",
-		"particle": "blocks/water_still"
-	},
-	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [16, 14, 16],
-			"faces": {
-				"up": {"uv": [0, 0, 16, 16], "texture": "#0"}
-			}
-		}
-	]
+    "credit": "Made with Blockbench",
+    "textures": {
+        "0": "blocks/water_still",
+        "particle": "blocks/water_still"
+    },
+    "elements": [
+        {
+            "from": [0, 0, 0],
+            "to": [16, 14, 16],
+            "faces": {
+                "up": {
+                    "uv": [0, 0, 16, 16],
+                    "texture": "#0"
+                }
+            }
+        }
+    ]
 }

@@ -1,33 +1,33 @@
 {
-	"type": "forge:ore_shaped",
-	"result": {
-		"item": "teastory:soil_detection_meter",
-		"count": 1
-	},
-	"pattern": [
-		"+-+",
-		"#d#",
-		"*s*"
-	],
-	"key": {
-		"#": {
-			"item": "#cobblestone"
-		},
-		"*": {
-			"item": "#gem_quartz"
-		},
-		"+": {
-			"item": "#dust_redstone"
-		},
-		"-": {
-			"item": "teastory:broken_tea"
-		},
-		"d": {
-			"item": "teastory:xian_rice_seeds"
-		},
-		"s": {
-			"item": "minecraft:dirt",
-			"data": 1
-		}
-	}
+    "type": "forge:ore_shaped",
+    "result": {
+        "item": "teastory:soil_detection_meter",
+        "count": 1
+    },
+    "pattern": [
+        "+-+",
+        "#d#",
+        "*s*"
+    ],
+    "key": {
+        "#": {
+            "item": "#cobblestone"
+        },
+        "*": {
+            "item": "#gem_quartz"
+        },
+        "+": {
+            "item": "#dust_redstone"
+        },
+        "-": {
+            "item": "teastory:broken_tea"
+        },
+        "d": {
+            "item": "teastory:xian_rice_seeds"
+        },
+        "s": {
+            "item": "minecraft:dirt",
+            "data": 1
+        }
+    }
 }

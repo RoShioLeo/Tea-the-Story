@@ -1,23 +1,20 @@
 {
     "type": "minecraft:crafting_shaped",
-	"result":{
+    "result": {
         "item": "teastory:pot_zisha_clay",
-		"count": 1
+        "count": 1
     },
-    "pattern":[
+    "pattern": [
         "# #",
-		"#+#",
-		" # "
+        "#+#",
+        " # "
     ],
-    "key":
-    {
-		"#":
-		{
-			"item": "teastory:zisha_clay"
-		},
-		"+":
-		{
-			"item": "teastory:pot_porcelain"
-		}
+    "key": {
+        "#": {
+            "item": "teastory:zisha_clay"
+        },
+        "+": {
+            "item": "teastory:pot_porcelain"
+        }
     }
 }

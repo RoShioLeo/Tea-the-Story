@@ -1,15 +1,15 @@
 {
-	"type": "forge:ore_shapeless",
-	"result": {
-		"item": "teastory:record_yangliuqing",
-		"count": 1
-	},
-	"ingredients": [
-		{
-			"item": "#record"
-		},
-		{
-			"item": "#tree_leaves"
-		}
-	]
+    "type": "forge:ore_shapeless",
+    "result": {
+        "item": "teastory:record_yangliuqing",
+        "count": 1
+    },
+    "ingredients": [
+        {
+            "item": "#record"
+        },
+        {
+            "item": "#tree_leaves"
+        }
+    ]
 }

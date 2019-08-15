@@ -17,86 +17,86 @@ import stanhebben.zenscript.annotations.ZenMethod;
 @ZenRegister
 public class CTTeapanWet
 {
-	@ZenMethod
-	public static void add(IIngredient input, IItemStack output)
-	{
-		ItemStack out = CraftTweakerMC.getItemStack(output);
-		RecipeRegister.actions.add(new Addition(CraftTweakerHelper.getItemStacks(input), out));
-	}
+    @ZenMethod
+    public static void add(IIngredient input, IItemStack output)
+    {
+        ItemStack out = CraftTweakerMC.getItemStack(output);
+        RecipeRegister.actions.add(new Addition(CraftTweakerHelper.getItemStacks(input), out));
+    }
 
-	private static final class Addition implements IAction
-	{
-		private final NonNullList<ItemStack> inputs;
-		private final ItemStack output;
+    private static final class Addition implements IAction
+    {
+        private final NonNullList<ItemStack> inputs;
+        private final ItemStack output;
 
-		private Addition(NonNullList<ItemStack> inputs, ItemStack output)
-		{
-			this.inputs = inputs;
-			this.output = output;
-		}
+        private Addition(NonNullList<ItemStack> inputs, ItemStack output)
+        {
+            this.inputs = inputs;
+            this.output = output;
+        }
 
-		@Override
-		public void apply()
-		{
-			RecipeRegister.managerWet.add(new TeaMakingRecipe(inputs, output));
-		}
+        @Override
+        public void apply()
+        {
+            RecipeRegister.managerWet.add(new TeaMakingRecipe(inputs, output));
+        }
 
-		@Override
-		public String describe()
-		{
-			return String.format("Add Teapan wet recipe: input %s -> output %s", inputs, output);
-		}
-	}
+        @Override
+        public String describe()
+        {
+            return String.format("Add Teapan wet recipe: input %s -> output %s", inputs, output);
+        }
+    }
 
-	@ZenMethod
-	public static void remove(IIngredient input, IItemStack output)
-	{
-		ItemStack out = CraftTweakerMC.getItemStack(output);
-		RecipeRegister.actions.add(new Removal(CraftTweakerHelper.getItemStacks(input), out));
-	}
+    @ZenMethod
+    public static void remove(IIngredient input, IItemStack output)
+    {
+        ItemStack out = CraftTweakerMC.getItemStack(output);
+        RecipeRegister.actions.add(new Removal(CraftTweakerHelper.getItemStacks(input), out));
+    }
 
-	private static final class Removal implements IAction
-	{
-		private final NonNullList<ItemStack> inputs;
-		private final ItemStack output;
+    private static final class Removal implements IAction
+    {
+        private final NonNullList<ItemStack> inputs;
+        private final ItemStack output;
 
-		private Removal(NonNullList<ItemStack> inputs, ItemStack output)
-		{
-			this.inputs = inputs;
-			this.output = output;
-		}
+        private Removal(NonNullList<ItemStack> inputs, ItemStack output)
+        {
+            this.inputs = inputs;
+            this.output = output;
+        }
 
-		@Override
-		public void apply()
-		{
-			RecipeRegister.managerWet.remove(inputs, output);
-		}
+        @Override
+        public void apply()
+        {
+            RecipeRegister.managerWet.remove(inputs, output);
+        }
 
-		@Override
-		public String describe()
-		{
-			return null;
-		}
-	}
+        @Override
+        public String describe()
+        {
+            return null;
+        }
+    }
 
-	@ZenMethod
-	public static void removeAll()
-	{
-		RecipeRegister.actions.add(new Clear());
-	}
+    @ZenMethod
+    public static void removeAll()
+    {
+        RecipeRegister.actions.add(new Clear());
+    }
 
-	private static final class Clear implements IAction
-	{
-		@Override
-		public void apply()
-		{
-			RecipeRegister.managerWet.removeAll();
-		}
+    private static final class Clear implements IAction
+    {
+        @Override
+        public void apply()
+        {
+            RecipeRegister.managerWet.removeAll();
+        }
 
-		@Override
-		public String describe()
-		{
-			return "Removing all wet recipes from Teapan";
-		}
-	}
+        @Override
+        public String describe()
+        {
+            return "Removing all wet recipes from Teapan";
+        }
+    }
 }

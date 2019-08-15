@@ -5,9 +5,9 @@ import net.minecraft.util.NonNullList;
 
 public interface ITeaMakingRecipe
 {
-	NonNullList<ItemStack> getInputs();
+    NonNullList<ItemStack> getInputs();
 
-	ItemStack getOutput();
+    ItemStack getOutput();
 
-	boolean isTheSameInput(ItemStack input);
+    boolean isTheSameInput(ItemStack input);
 }

@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shapeless",
-	"result": {
-		"item": "teastory:matcha_powder",
-		"count": 1
-	},
-	"ingredients": [
-		{
-			"item": "teastory:matcha_leaf"
-		},
-		{
-			"item": "teastory:wooden_mortar_and_pestle",
-			"data": 32767
-		}
-	]
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "teastory:matcha_powder",
+        "count": 1
+    },
+    "ingredients": [
+        {
+            "item": "teastory:matcha_leaf"
+        },
+        {
+            "item": "teastory:wooden_mortar_and_pestle",
+            "data": 32767
+        }
+    ]
 }

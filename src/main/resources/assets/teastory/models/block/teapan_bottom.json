@@ -1,5 +1,5 @@
 {
-	"ambientocclusion": false,
+    "ambientocclusion": false,
     "textures": {
         "side": "blocks/planks_oak",
         "top": "blocks/planks_oak",
@@ -9,15 +9,29 @@
     },
     "elements": [
         {
-            "from": [0,0,0],
-            "to": [16,1,16],
+            "from": [0, 0, 0],
+            "to": [16, 1, 16],
             "faces": {
-                "up": {"texture": "#up"},
-                "down": {"texture": "#bottom"},
-                "west": {"uv": [0,15,16,16], "texture": "#side"},
-                "east": {"texture": "#side"},
-                "north": {"texture": "#side"},
-                "south": {"uv": [0,15,16,16], "texture": "#side"}
+                "up": {
+                    "texture": "#up"
+                },
+                "down": {
+                    "texture": "#bottom"
+                },
+                "west": {
+                    "uv": [0, 15, 16, 16],
+                    "texture": "#side"
+                },
+                "east": {
+                    "texture": "#side"
+                },
+                "north": {
+                    "texture": "#side"
+                },
+                "south": {
+                    "uv": [0, 15, 16, 16],
+                    "texture": "#side"
+                }
             }
         }
     ]

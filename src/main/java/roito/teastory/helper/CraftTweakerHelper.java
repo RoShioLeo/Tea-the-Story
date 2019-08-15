@@ -13,27 +13,27 @@ import java.util.List;
 
 public final class CraftTweakerHelper
 {
-	@Optional.Method(modid = "crafttweaker")
-	public static NonNullList<ItemStack> getItemStacks(@Nonnull IIngredient input)
-	{
-		List<IItemStack> list = input.getItems();
-		NonNullList<ItemStack> result = NonNullList.create();
-		for (IItemStack in : list)
-		{
-			result.add(CraftTweakerMC.getItemStack(in));
-		}
-		return result;
-	}
+    @Optional.Method(modid = "crafttweaker")
+    public static NonNullList<ItemStack> getItemStacks(@Nonnull IIngredient input)
+    {
+        List<IItemStack> list = input.getItems();
+        NonNullList<ItemStack> result = NonNullList.create();
+        for (IItemStack in : list)
+        {
+            result.add(CraftTweakerMC.getItemStack(in));
+        }
+        return result;
+    }
 
-	public static boolean containsMatch(boolean strict, NonNullList<ItemStack> inputs, @Nonnull ItemStack target)
-	{
-		for (ItemStack input : inputs)
-		{
-			if (OreDictionary.itemMatches(input, target, strict))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+    public static boolean containsMatch(boolean strict, NonNullList<ItemStack> inputs, @Nonnull ItemStack target)
+    {
+        for (ItemStack input : inputs)
+        {
+            if (OreDictionary.itemMatches(input, target, strict))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

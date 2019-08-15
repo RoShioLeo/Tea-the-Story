@@ -1,18 +1,18 @@
 {
-	"type": "forge:ore_shaped",
-	"result": {
-		"item": "teastory:matcha_cookie",
-		"count": 8
-	},
-	"pattern": [
-		"#*#"
-	],
-	"key": {
-		"#": {
-			"item": "#crop_wheat"
-		},
-		"*": {
-			"item": "teastory:matcha_powder"
-		}
-	}
+    "type": "forge:ore_shaped",
+    "result": {
+        "item": "teastory:matcha_cookie",
+        "count": 8
+    },
+    "pattern": [
+        "#*#"
+    ],
+    "key": {
+        "#": {
+            "item": "#crop_wheat"
+        },
+        "*": {
+            "item": "teastory:matcha_powder"
+        }
+    }
 }

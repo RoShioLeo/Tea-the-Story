@@ -1,13 +1,31 @@
 {
     "variants": {
-        "age=0": { "model": "teastory:rice_seedling_0" },
-        "age=1": { "model": "teastory:rice_seedling_0" },
-        "age=2": { "model": "teastory:rice_seedling_1" },
-        "age=3": { "model": "teastory:rice_seedling_1" },
-		"age=4": { "model": "teastory:rice_seedling_1" },
-		"age=5": { "model": "teastory:rice_seedling_2" },
-		"age=6": { "model": "teastory:rice_seedling_2" },
-		"age=7": { "model": "teastory:rice_seedling_3" },
-		"inventory": {"model": "teastory:rice_seedling_3"}
+        "age=0": {
+            "model": "teastory:rice_seedling_0"
+        },
+        "age=1": {
+            "model": "teastory:rice_seedling_0"
+        },
+        "age=2": {
+            "model": "teastory:rice_seedling_1"
+        },
+        "age=3": {
+            "model": "teastory:rice_seedling_1"
+        },
+        "age=4": {
+            "model": "teastory:rice_seedling_1"
+        },
+        "age=5": {
+            "model": "teastory:rice_seedling_2"
+        },
+        "age=6": {
+            "model": "teastory:rice_seedling_2"
+        },
+        "age=7": {
+            "model": "teastory:rice_seedling_3"
+        },
+        "inventory": {
+            "model": "teastory:rice_seedling_3"
+        }
     }
 }

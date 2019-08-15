@@ -22,68 +22,72 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsRegister;
+import roito.teastory.config.ConfigMain;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class ShennongRuler extends ItemSword
 {
-	public static final Item.ToolMaterial SHENNONGTOOL = EnumHelper.addToolMaterial("SHENNONGTOOL", 3, 768, 8.0F, 1.0F, 10).setRepairItem(new ItemStack(ItemRegister.dried_tea, 1));
+    public static final Item.ToolMaterial SHENNONGTOOL = EnumHelper.addToolMaterial("SHENNONGTOOL", 3, 768, 8.0F, 1.0F, 10).setRepairItem(new ItemStack(ItemRegister.dried_tea, 1));
 
-	public ShennongRuler()
-	{
-		super(SHENNONGTOOL);
-		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
-		this.setMaxStackSize(1);
-		this.setTranslationKey("shennong_ruler");
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "shennong_ruler"));
-	}
+    public ShennongRuler()
+    {
+        super(SHENNONGTOOL);
+        this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
+        this.setMaxStackSize(1);
+        this.setTranslationKey("shennong_ruler");
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, "shennong_ruler"));
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
-	{
-		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-		{
-			tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.shennong_ruler"));
-		}
-		else
-		{
-			tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
-		}
-	}
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        if (ConfigMain.general.tooltips)
+        {
+            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+            {
+                tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.shennong_ruler"));
+            }
+            else
+            {
+                tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
+            }
+        }
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack stack)
-	{
-		return true;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack stack)
+    {
+        return true;
+    }
 
-	@Override
-	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
-	{
-		if (player.isServerWorld() && entity instanceof EntityLivingBase)
-		{
-			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 100, 1));
-		}
-		return false;
-	}
+    @Override
+    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
+    {
+        if (player.isServerWorld() && entity instanceof EntityLivingBase)
+        {
+            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 100, 1));
+        }
+        return false;
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
-	{
-		if (!worldIn.isRemote)
-		{
-			playerIn.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0));
-		}
-		if (!playerIn.capabilities.isCreativeMode)
-		{
-			playerIn.getHeldItem(hand).setItemDamage(playerIn.getHeldItem(hand).getItemDamage() + 5);
-			if (playerIn.getHeldItem(hand).getItemDamage() > 768)
-			{
-				playerIn.getHeldItem(hand).shrink(1);
-			}
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
+    {
+        if (!worldIn.isRemote)
+        {
+            playerIn.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0));
+        }
+        if (!playerIn.capabilities.isCreativeMode)
+        {
+            playerIn.getHeldItem(hand).setItemDamage(playerIn.getHeldItem(hand).getItemDamage() + 5);
+            if (playerIn.getHeldItem(hand).getItemDamage() > 768)
+            {
+                playerIn.getHeldItem(hand).shrink(1);
+            }
+        }
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
+    }
 }

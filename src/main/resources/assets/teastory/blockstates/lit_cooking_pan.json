@@ -1,5 +1,7 @@
 {
     "variants": {
-	    "normal": { "model":"teastory:lit_cooking_pan" }
+        "normal": {
+            "model": "teastory:lit_cooking_pan"
+        }
     }
 }

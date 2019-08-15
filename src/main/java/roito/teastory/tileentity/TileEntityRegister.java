@@ -7,19 +7,19 @@ import roito.teastory.TeaStory;
 
 public class TileEntityRegister
 {
-	public TileEntityRegister()
-	{
-		registerTileEntity(TileEntityTeaStove.class, "TeaStove");
-		registerTileEntity(TileEntityTeaDrink.class, "TeaDrink");
-		registerTileEntity(TileEntityTeaDryingPan.class, "TeaDryingPan");
-		registerTileEntity(TileEntityCookingPan.class, "CookingPan");
-		registerTileEntity(TileEntityTeaTable.class, "TeaTable");
-		registerTileEntity(TileEntityTeapan.class, "Teapan");
-		registerTileEntity(TileEntityKettle.class, "Kettle");
-	}
+    public TileEntityRegister()
+    {
+        registerTileEntity(TileEntityTeaStove.class, "TeaStove");
+        registerTileEntity(TileEntityTeaDrink.class, "TeaDrink");
+        registerTileEntity(TileEntityTeaDryingPan.class, "TeaDryingPan");
+        registerTileEntity(TileEntityCookingPan.class, "CookingPan");
+        registerTileEntity(TileEntityTeaTable.class, "TeaTable");
+        registerTileEntity(TileEntityTeapan.class, "Teapan");
+        registerTileEntity(TileEntityKettle.class, "Kettle");
+    }
 
-	public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id)
-	{
-		GameRegistry.registerTileEntity(tileEntityClass, new ResourceLocation(TeaStory.MODID, id));
-	}
+    public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id)
+    {
+        GameRegistry.registerTileEntity(tileEntityClass, new ResourceLocation(TeaStory.MODID, id));
+    }
 }

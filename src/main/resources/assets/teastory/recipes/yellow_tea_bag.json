@@ -1,30 +1,30 @@
 {
-	"type": "minecraft:crafting_shapeless",
-	"result": {
-		"item": "teastory:yellow_tea_bag",
-		"count": 1
-	},
-	"ingredients": [
-		{
-			"item": "teastory:empty_tea_bag"
-		},
-		{
-			"item": "teastory:yellow_tea_leaf"
-		},
-		{
-			"item": "teastory:yellow_tea_leaf"
-		},
-		{
-			"item": "teastory:yellow_tea_leaf"
-		},
-		{
-			"item": "teastory:yellow_tea_leaf"
-		},
-		{
-			"item": "teastory:yellow_tea_leaf"
-		},
-		{
-			"item": "teastory:yellow_tea_leaf"
-		}
-	]
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "teastory:yellow_tea_bag",
+        "count": 1
+    },
+    "ingredients": [
+        {
+            "item": "teastory:empty_tea_bag"
+        },
+        {
+            "item": "teastory:yellow_tea_leaf"
+        },
+        {
+            "item": "teastory:yellow_tea_leaf"
+        },
+        {
+            "item": "teastory:yellow_tea_leaf"
+        },
+        {
+            "item": "teastory:yellow_tea_leaf"
+        },
+        {
+            "item": "teastory:yellow_tea_leaf"
+        },
+        {
+            "item": "teastory:yellow_tea_leaf"
+        }
+    ]
 }

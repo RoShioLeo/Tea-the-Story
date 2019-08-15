@@ -7,11 +7,11 @@ import roito.teastory.common.CreativeTabsRegister;
 
 public class TeaEgg extends ItemFood
 {
-	public TeaEgg()
-	{
-		super(5, false);
-		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
-		this.setTranslationKey("tea_egg");
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_egg"));
-	}
+    public TeaEgg()
+    {
+        super(5, false);
+        this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
+        this.setTranslationKey("tea_egg");
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, "tea_egg"));
+    }
 }

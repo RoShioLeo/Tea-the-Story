@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "teastory:puertea_wood_cup" }
+        "normal": {
+            "model": "teastory:puertea_wood_cup"
+        }
     }
 }

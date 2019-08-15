@@ -1,10 +1,10 @@
-#Tab
+# Tab
 itemGroup.tabTeaStory=茶风·纪事·茶韵
 itemGroup.tabTeaRice=茶风·纪事·稻香
 itemGroup.tabTeaDrink=茶风·纪事·品茗
 itemGroup.tabRecords=茶风·纪事·音韵
 
-#Tooltip
+# Tooltip
 teastory.tooltip.tea_seeds.height=适宜海拔：80~110米
 teastory.tooltip.tea_seeds.temperature=适宜温度：凉爽或温暖
 teastory.tooltip.tea_residue=可以当骨粉催熟
@@ -18,7 +18,7 @@ teastory.tooltip.rice_seedling.temperature=适宜温度：凉爽或温暖
 teastory.tooltip.rice_seedling.humidity=适宜湿度：半湿润或湿润
 teastory.tooltip.sickle=右击成熟农作物收获
 
-#Items
+# Items
 item.tea_leaf.name=绿茶鲜叶
 item.half_dried_tea.name=绿茶青叶
 item.dried_tea.name=绿茶干叶
@@ -41,6 +41,7 @@ item.tea_seeds.name=茶籽
 item.wooden_mortar_and_pestle.name=木质研钵
 item.soil_detection_meter.name=土壤检测计
 item.shennong_ruler.name=神农尺
+item.tea_egg.name=茶叶蛋
 item.record_caichawuqu_g20.name=音乐唱片
 item.record.caichawuqu_g20.desc=采茶舞曲（G20晚会）
 item.record_caichawuqu_folk.name=音乐唱片
@@ -61,7 +62,6 @@ item.record_yangliuqing.name=音乐唱片
 item.record.yangliuqing.desc=杨柳青
 item.record_zizhudiao.name=音乐唱片
 item.record.zizhudiao.desc=紫竹调
-item.tea_egg.name=茶叶蛋
 item.matcha_cookie.name=抹茶饼干
 item.empty_tea_bag.name=空茶包
 item.green_tea_bag.name=绿茶茶包
@@ -158,17 +158,16 @@ item.rabbit_rice.name=兔肉饭
 item.straw_rope.name=草绳
 item.item_straw_blanket.name=草席
 
-
-#Blocks
+# Blocks
 tile.teapan.name=茶簸箕
 tile.barrel.name=发酵桶
 tile.half_dried_leaf_block.name=青叶块
 tile.teaplant.name=茶树
 tile.tea_drying_pan.name=炒茶（煮饭）锅
 tile.lit_tea_drying_pan.name=炒茶锅-点燃
-tile.lit_cooking_pan.name=煮饭锅-点燃
 tile.tea_stove.name=茶炉
 tile.lit_tea_stove.name=茶炉-点燃
+tile.lit_cooking_pan.name=煮饭锅-点燃
 tile.clay_kettle.name=白瓷壶坯
 tile.empty_porcelain_kettle.name=白瓷壶
 tile.green_tea_porcelain_kettle.name=白瓷壶-绿茶
@@ -203,17 +202,17 @@ tile.puer_tea_zisha_kettle2.name=紫砂壶-黑茶
 tile.straw_cushion.name=草垫
 tile.tea_table.name=沏茶台
 
-#Potion
+# Potion
 teastory.potion.agility=云身
 teastory.potion.life_drain=生命汲取
 teastory.potion.photosynthesis=光合作用
 teastory.potion.defence=金钟罩
 teastory.potion.excitement=提神
 
-#Info
+# Info
 teastory.info.welcome=[§2§oTeaStory§f]感谢安装§2§o茶风·纪事§f，当前模组版本：%1$s
 
-#Message
+# Message
 teastory.message.soil_detection_meter.total=当前地区温度状况： %1$s， 干湿度状况： %2$s， 海拔高度：%3$s§8米§r， 气候： %4$s。
 teastory.message.soil_detection_meter.drying=此处茶叶晒制速率： %1$s秒/片。
 teastory.message.soil_detection_meter.fermentation=此处红茶发酵速率： %1$s秒/片。
@@ -250,7 +249,7 @@ teastory.message.record=您未安装“茶风·纪事”唱片资源包，无法
 teastory.message.daily_drinking.normal=这是您连续第%1$s天喝茶，本次时间增加%2$s， 效果等级提升%3$s级。
 teastory.message.daily_drinking.time_only=这是您连续第%1$s天喝茶，本次时间增加%2$s。
 
-#Container GUI
+# Container GUI
 teastory.container.tea_stove=茶炉
 teastory.container.tea_table=沏茶台
 teastory.container.teapan=茶簸箕
@@ -260,7 +259,7 @@ teastory.container.teapan.time=大约剩余%1$s分钟 %2$s
 teastory.container.teapan.mode.0=干燥模式
 teastory.container.teapan.mode.1=发酵模式
 
-#JEI
+# JEI
 jei.teastory.category.teastove.steam=蒸青
 jei.teastory.category.teastove.bake=烘青
 jei.teastory.category.teatable=沏茶
@@ -270,7 +269,7 @@ jei.teastory.category.teapan.in_rain=淋雨
 jei.teastory.category.cookingpan=烹饪
 jei.teastory.category.dryingpan=炒青
 
-#Waila
+# Waila
 waila.teastory.hud.tea_plant_stage.title=阶段：
 waila.teastory.hud.tea_plant_stage.seed=种子
 waila.teastory.hud.tea_plant_stage.sapling=幼苗
@@ -280,7 +279,7 @@ waila.teastory.hud.tea_plant_stage.plant_2=植株（二次）
 waila.teastory.hud.tea_plant_stage.blossom=开花
 waila.teastory.hud.tea_plant_stage.last=结籽
 
-#Config
+# Config
 teastory.config=配置选项
 teastory.config.3=茶风·纪事
 teastory.config.general=通用设置
@@ -292,6 +291,9 @@ teastory.config.general.residues=茶叶渣可以用作骨粉
 teastory.config.general.washrice=淘米时使用矿物词典
 teastory.config.general.hoelist=自定义锄识别列表
 teastory.config.general.spadelist=自定义锹识别列表
+teastory.config.general.tooltips=启用工具提示
+teastory.config.general.blockMessage=启用方块提示消息
+teastory.config.general.guiMessage=启用图形界面消息
 teastory.config.drink=茶饮相关
 teastory.config.drink.greentea.time=绿茶效果时间
 teastory.config.drink.greentea.effect=绿茶效果

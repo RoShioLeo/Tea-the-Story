@@ -12,27 +12,27 @@ import roito.teastory.common.CreativeTabsRegister;
 
 public class Record extends ItemRecord
 {
-	private final ResourceLocation res;
+    private final ResourceLocation res;
 
-	protected Record(String name, String name2, ResourceLocation res)
-	{
-		super(name, new SoundEvent(res));
-		this.res = res;
-		this.setTranslationKey(name2);
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name2));
-		this.setCreativeTab(CreativeTabsRegister.tabRecords);
-	}
+    protected Record(String name, String name2, ResourceLocation res)
+    {
+        super(name, new SoundEvent(res));
+        this.res = res;
+        this.setTranslationKey(name2);
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, name2));
+        this.setCreativeTab(CreativeTabsRegister.tabRecords);
+    }
 
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		EnumActionResult result = super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-		if (worldIn.isRemote && result == EnumActionResult.SUCCESS)
-		{
-			if (Minecraft.getMinecraft().getSoundHandler().getAccessor(res) == null)
-			{
-				player.sendMessage(new TextComponentTranslation("teastory.message.record"));
-			}
-		}
-		return result;
-	}
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        EnumActionResult result = super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+        if (worldIn.isRemote && result == EnumActionResult.SUCCESS)
+        {
+            if (Minecraft.getMinecraft().getSoundHandler().getAccessor(res) == null)
+            {
+                player.sendMessage(new TextComponentTranslation("teastory.message.record"));
+            }
+        }
+        return result;
+    }
 }

@@ -1,5 +1,7 @@
 {
     "variants": {
-	    "normal": { "model": "teastory:half_dried_leaf_block" }
+        "normal": {
+            "model": "teastory:half_dried_leaf_block"
+        }
     }
 }

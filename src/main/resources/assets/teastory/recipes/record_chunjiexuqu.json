@@ -1,16 +1,16 @@
 {
-	"type": "forge:ore_shapeless",
-	"result": {
-		"item": "teastory:record_chunjiexuqu",
-		"count": 1
-	},
-	"ingredients": [
-		{
-			"item": "#record"
-		},
-		{
-			"item": "minecraft:dye",
-			"data": 1
-		}
-	]
+    "type": "forge:ore_shapeless",
+    "result": {
+        "item": "teastory:record_chunjiexuqu",
+        "count": 1
+    },
+    "ingredients": [
+        {
+            "item": "#record"
+        },
+        {
+            "item": "minecraft:dye",
+            "data": 1
+        }
+    ]
 }

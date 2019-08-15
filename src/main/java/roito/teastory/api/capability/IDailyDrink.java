@@ -2,11 +2,11 @@ package roito.teastory.api.capability;
 
 public interface IDailyDrink
 {
-	long getLastDay();
+    long getLastDay();
 
-	long getInstantDay();
+    long getInstantDay();
 
-	void updateDay(long nowDay);
+    void updateDay(long nowDay);
 
-	void setDay(long lastDay, long instantDay);
+    void setDay(long lastDay, long instantDay);
 }

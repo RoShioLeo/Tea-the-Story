@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "teastory:straw_cushion" }
+        "normal": {
+            "model": "teastory:straw_cushion"
+        }
     }
 }

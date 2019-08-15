@@ -1,18 +1,18 @@
 {
-	"type": "minecraft:crafting_shapeless",
-	"result": {
-		"item": "teastory:rabbit_rice",
-		"count": 1
-	},
-	"ingredients": [
-		{
-			"item": "minecraft:cooked_rabbit"
-		},
-		{
-			"item": "teastory:rice_ball"
-		},
-		{
-			"item": "minecraft:bowl"
-		}
-	]
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "teastory:rabbit_rice",
+        "count": 1
+    },
+    "ingredients": [
+        {
+            "item": "minecraft:cooked_rabbit"
+        },
+        {
+            "item": "teastory:rice_ball"
+        },
+        {
+            "item": "minecraft:bowl"
+        }
+    ]
 }

@@ -1,29 +1,25 @@
 {
     "type": "minecraft:crafting_shaped",
-	"result":{
+    "result": {
         "item": "teastory:zisha_clay",
-		"count": 1
+        "count": 1
     },
-    "pattern":[
+    "pattern": [
         "*+*",
-		"+#+",
-		"*+*"
+        "+#+",
+        "*+*"
     ],
-    "key":
-    {
-        "+":
-        {
+    "key": {
+        "+": {
             "item": "minecraft:dirt",
-			"data": 1
+            "data": 1
         },
-		"*":
-        {
+        "*": {
             "item": "minecraft:clay_ball"
         },
-		"#":
-		{
-			"item": "minecraft:sand",
-			"data": 1
-		}
+        "#": {
+            "item": "minecraft:sand",
+            "data": 1
+        }
     }
 }

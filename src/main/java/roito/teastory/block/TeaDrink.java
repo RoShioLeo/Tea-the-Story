@@ -15,41 +15,41 @@ import roito.teastory.TeaStory;
 
 public class TeaDrink extends Block
 {
-	public int meta;
-	protected static final AxisAlignedBB TEADRINK_AABB = new AxisAlignedBB(0.3125F, 0F, 0.3125F, 0.6875F, 0.3125F, 0.6875F);
+    public int meta;
+    protected static final AxisAlignedBB TEADRINK_AABB = new AxisAlignedBB(0.3125F, 0F, 0.3125F, 0.6875F, 0.3125F, 0.6875F);
 
-	public TeaDrink(float hardness, String name, Material materialIn, SoundType soundType, int level)
-	{
-		super(materialIn);
-		this.setHardness(hardness);
-		this.setSoundType(soundType);
-		this.setTranslationKey(name);
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
-		this.meta = level;
-	}
+    public TeaDrink(float hardness, String name, Material materialIn, SoundType soundType, int level)
+    {
+        super(materialIn);
+        this.setHardness(hardness);
+        this.setSoundType(soundType);
+        this.setTranslationKey(name);
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
+        this.meta = level;
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		return TEADRINK_AABB;
-	}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return TEADRINK_AABB;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer()
-	{
-		return BlockRenderLayer.CUTOUT;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
+    }
 }

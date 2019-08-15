@@ -1,19 +1,17 @@
 {
     "type": "minecraft:crafting_shaped",
-	"result":{
+    "result": {
         "item": "teastory:straw_cushion",
-		"count": 1
+        "count": 1
     },
-    "pattern":[
+    "pattern": [
         "###",
-		"###",
-		"###"
+        "###",
+        "###"
     ],
-    "key":
-    {
-		"#":
-		{
-			"item": "teastory:straw_rope"
-		}
+    "key": {
+        "#": {
+            "item": "teastory:straw_rope"
+        }
     }
 }

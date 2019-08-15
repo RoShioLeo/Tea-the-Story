@@ -24,101 +24,105 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import roito.teastory.TeaStory;
 import roito.teastory.common.CreativeTabsRegister;
+import roito.teastory.config.ConfigMain;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemSickle extends Item
 {
-	private final float speed;
-	protected Item.ToolMaterial theToolMaterial = ToolMaterial.IRON;
+    private final float speed;
+    protected Item.ToolMaterial theToolMaterial = ToolMaterial.IRON;
 
-	protected ItemSickle()
-	{
-		this.maxStackSize = 1;
-		this.setMaxDamage(500);
-		this.setCreativeTab(CreativeTabsRegister.tabRice);
-		this.speed = theToolMaterial.getAttackDamage() + 0.5F;
-		this.setTranslationKey("sickle");
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "sickle"));
-	}
+    protected ItemSickle()
+    {
+        this.maxStackSize = 1;
+        this.setMaxDamage(500);
+        this.setCreativeTab(CreativeTabsRegister.tabRice);
+        this.speed = theToolMaterial.getAttackDamage() + 0.5F;
+        this.setTranslationKey("sickle");
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, "sickle"));
+    }
 
-	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
-	{
-		stack.damageItem(2, attacker);
-		return true;
-	}
+    @Override
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
+    {
+        stack.damageItem(2, attacker);
+        return true;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean isFull3D()
-	{
-		return true;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean isFull3D()
+    {
+        return true;
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
-	{
-		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-		{
-			tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.sickle"));
-		}
-		else
-		{
-			tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
-		}
-	}
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        if (ConfigMain.general.tooltips)
+        {
+            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+            {
+                tooltip.add(TextFormatting.WHITE + I18n.format("teastory.tooltip.sickle"));
+            }
+            else
+            {
+                tooltip.add(TextFormatting.ITALIC + I18n.format("teastory.tooltip.shiftfordetail"));
+            }
+        }
+    }
 
-	@Override
-	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
-	{
-		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
+    @Override
+    public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
+    {
+        Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
-		if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
-		{
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", theToolMaterial.getAttackDamage(), 0));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", this.speed - 4.0F, 0));
-		}
+        if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
+        {
+            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", theToolMaterial.getAttackDamage(), 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", this.speed - 4.0F, 0));
+        }
 
-		return multimap;
-	}
+        return multimap;
+    }
 
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		return harvestCrops(playerIn.getHeldItem(hand), playerIn, worldIn, pos, 0);
-	}
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        return harvestCrops(playerIn.getHeldItem(hand), playerIn, worldIn, pos, 0);
+    }
 
-	public static EnumActionResult harvestCrops(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, int time)
-	{
-		if (worldIn.getChunk(pos).isLoaded())
-		{
-			Block block = worldIn.getBlockState(pos).getBlock();
-			if (block instanceof IGrowable)
-			{
-				if (!((IGrowable) block).canGrow(worldIn, pos, worldIn.getBlockState(pos), worldIn.isRemote))
-				{
-					worldIn.destroyBlock(pos, true);
-					if (stack.getItemDamage() < stack.getMaxDamage())
-					{
-						if (time < 8)
-						{
-							stack.setItemDamage(stack.getItemDamage() + 1);
-							harvestCrops(stack, playerIn, worldIn, pos.east(), time + 1);
-							harvestCrops(stack, playerIn, worldIn, pos.north(), time + 1);
-							harvestCrops(stack, playerIn, worldIn, pos.west(), time + 1);
-							harvestCrops(stack, playerIn, worldIn, pos.south(), time + 1);
-						}
-					}
-					else
-					{
-						stack.shrink(1);
-					}
-					return EnumActionResult.SUCCESS;
-				}
-			}
-		}
-		return EnumActionResult.FAIL;
-	}
+    public static EnumActionResult harvestCrops(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, int time)
+    {
+        if (worldIn.getChunk(pos).isLoaded())
+        {
+            Block block = worldIn.getBlockState(pos).getBlock();
+            if (block instanceof IGrowable)
+            {
+                if (!((IGrowable) block).canGrow(worldIn, pos, worldIn.getBlockState(pos), worldIn.isRemote))
+                {
+                    worldIn.destroyBlock(pos, true);
+                    if (stack.getItemDamage() < stack.getMaxDamage())
+                    {
+                        if (time < 8)
+                        {
+                            stack.setItemDamage(stack.getItemDamage() + 1);
+                            harvestCrops(stack, playerIn, worldIn, pos.east(), time + 1);
+                            harvestCrops(stack, playerIn, worldIn, pos.north(), time + 1);
+                            harvestCrops(stack, playerIn, worldIn, pos.west(), time + 1);
+                            harvestCrops(stack, playerIn, worldIn, pos.south(), time + 1);
+                        }
+                    }
+                    else
+                    {
+                        stack.shrink(1);
+                    }
+                    return EnumActionResult.SUCCESS;
+                }
+            }
+        }
+        return EnumActionResult.FAIL;
+    }
 }

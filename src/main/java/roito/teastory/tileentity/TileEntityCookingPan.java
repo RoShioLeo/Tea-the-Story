@@ -8,50 +8,50 @@ import roito.teastory.config.ConfigMain;
 
 public class TileEntityCookingPan extends TileEntity implements ITickable
 {
-	protected static int totalTime = ConfigMain.others.riceCookingBasicTime;
-	protected int time = 0;
-	protected int remainingTime = totalTime;
+    protected static int totalTime = ConfigMain.others.riceCookingBasicTime;
+    protected int time = 0;
+    protected int remainingTime = totalTime;
 
-	@Override
-	public void readFromNBT(NBTTagCompound compound)
-	{
-		super.readFromNBT(compound);
-		this.time = compound.getInteger("Time");
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound compound)
+    {
+        super.readFromNBT(compound);
+        this.time = compound.getInteger("Time");
+    }
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-	{
-		compound.setInteger("Time", this.time);
-		return super.writeToNBT(compound);
-	}
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    {
+        compound.setInteger("Time", this.time);
+        return super.writeToNBT(compound);
+    }
 
-	@Override
-	public void update()
-	{
-		if (++time >= totalTime)
-		{
-			this.getWorld().setBlockState(pos, BlockRegister.tea_drying_pan.getStateFromMeta(4));
-			time = 0;
-		}
+    @Override
+    public void update()
+    {
+        if (++time >= totalTime)
+        {
+            this.getWorld().setBlockState(pos, BlockRegister.tea_drying_pan.getStateFromMeta(4));
+            time = 0;
+        }
 
-		remainingTime = totalTime - time;
+        remainingTime = totalTime - time;
 
-		this.markDirty();
-	}
+        this.markDirty();
+    }
 
-	public int getTime()
-	{
-		return this.time;
-	}
+    public int getTime()
+    {
+        return this.time;
+    }
 
-	public void setTime(int time)
-	{
-		this.time = time;
-	}
+    public void setTime(int time)
+    {
+        this.time = time;
+    }
 
-	public int getRemainingTime()
-	{
-		return this.remainingTime;
-	}
+    public int getRemainingTime()
+    {
+        return this.remainingTime;
+    }
 }

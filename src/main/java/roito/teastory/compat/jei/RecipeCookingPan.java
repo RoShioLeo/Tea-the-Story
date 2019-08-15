@@ -15,37 +15,37 @@ import java.util.List;
 public class RecipeCookingPan implements IRecipeWrapper
 {
 
-	public static List<RecipeCookingPan> getWrappedRecipeList()
-	{
-		List<RecipeCookingPan> recipesToReturn = new ArrayList<>();
-		for (ITeaMakingRecipe recipe : RecipeRegister.managerCookingPan.getRecipes())
-		{
-			recipesToReturn.add(new RecipeCookingPan(recipe));
-		}
-		return recipesToReturn;
-	}
+    public static List<RecipeCookingPan> getWrappedRecipeList()
+    {
+        List<RecipeCookingPan> recipesToReturn = new ArrayList<>();
+        for (ITeaMakingRecipe recipe : RecipeRegister.managerCookingPan.getRecipes())
+        {
+            recipesToReturn.add(new RecipeCookingPan(recipe));
+        }
+        return recipesToReturn;
+    }
 
-	private final ITeaMakingRecipe recipe;
+    private final ITeaMakingRecipe recipe;
 
-	public RecipeCookingPan(ITeaMakingRecipe recipe)
-	{
-		this.recipe = recipe;
-	}
+    public RecipeCookingPan(ITeaMakingRecipe recipe)
+    {
+        this.recipe = recipe;
+    }
 
-	@Override
-	public void getIngredients(IIngredients ingredients)
-	{
-		ingredients.setInputs(VanillaTypes.ITEM, getInputs());
-		ingredients.setOutput(VanillaTypes.ITEM, getOutput());
-	}
+    @Override
+    public void getIngredients(IIngredients ingredients)
+    {
+        ingredients.setInputs(VanillaTypes.ITEM, getInputs());
+        ingredients.setOutput(VanillaTypes.ITEM, getOutput());
+    }
 
-	public NonNullList<ItemStack> getInputs()
-	{
-		return NonNullListHelper.createNonNullList(recipe.getInputs());
-	}
+    public NonNullList<ItemStack> getInputs()
+    {
+        return NonNullListHelper.createNonNullList(recipe.getInputs());
+    }
 
-	public ItemStack getOutput()
-	{
-		return recipe.getOutput();
-	}
+    public ItemStack getOutput()
+    {
+        return recipe.getOutput();
+    }
 }

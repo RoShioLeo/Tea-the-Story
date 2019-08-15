@@ -12,9 +12,9 @@ import roito.teastory.tileentity.TileEntityTeapan;
 @Mod.EventBusSubscriber(modid = TeaStory.MODID, value = Side.CLIENT)
 public final class BlockRendering
 {
-	@SubscribeEvent
-	public static void onModelRegister(ModelRegistryEvent event)
-	{
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeapan.class, new TESRTeapan());
-	}
+    @SubscribeEvent
+    public static void onModelRegister(ModelRegistryEvent event)
+    {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeapan.class, new TESRTeapan());
+    }
 }

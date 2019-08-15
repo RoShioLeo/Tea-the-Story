@@ -1,19 +1,19 @@
 {
-	"type": "forge:ore_shaped",
-	"result": {
-		"item": "teastory:wooden_lid",
-		"count": 1
-	},
-	"pattern": [
-		" * ",
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "#slab_wood"
-		},
-		"*": {
-			"item": "#stick_wood"
-		}
-	}
+    "type": "forge:ore_shaped",
+    "result": {
+        "item": "teastory:wooden_lid",
+        "count": 1
+    },
+    "pattern": [
+        " * ",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "#slab_wood"
+        },
+        "*": {
+            "item": "#stick_wood"
+        }
+    }
 }

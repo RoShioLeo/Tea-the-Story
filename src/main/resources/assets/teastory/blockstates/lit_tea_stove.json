@@ -1,8 +1,19 @@
 {
     "variants": {
-        "facing=north": { "model": "teastory:lit_tea_stove" },
-        "facing=south": { "model": "teastory:lit_tea_stove", "y": 180 },
-        "facing=west":  { "model": "teastory:lit_tea_stove", "y": 270 },
-        "facing=east":  { "model": "teastory:lit_tea_stove", "y": 90 }
+        "facing=north": {
+            "model": "teastory:lit_tea_stove"
+        },
+        "facing=south": {
+            "model": "teastory:lit_tea_stove",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "teastory:lit_tea_stove",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "teastory:lit_tea_stove",
+            "y": 90
+        }
     }
 }

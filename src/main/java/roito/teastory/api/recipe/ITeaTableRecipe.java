@@ -5,15 +5,15 @@ import net.minecraft.util.NonNullList;
 
 public interface ITeaTableRecipe
 {
-	NonNullList<ItemStack> getTeaLeafInput();
+    NonNullList<ItemStack> getTeaLeafInput();
 
-	NonNullList<ItemStack> getToolInput();
+    NonNullList<ItemStack> getToolInput();
 
-	NonNullList<ItemStack> getSugarInput();
+    NonNullList<ItemStack> getSugarInput();
 
-	ItemStack getCupInput();
+    ItemStack getCupInput();
 
-	ItemStack getOutput();
+    ItemStack getOutput();
 
-	boolean isTheSameInput(ItemStack leaf, ItemStack tool, ItemStack sugar, ItemStack cup);
+    boolean isTheSameInput(ItemStack leaf, ItemStack tool, ItemStack sugar, ItemStack cup);
 }

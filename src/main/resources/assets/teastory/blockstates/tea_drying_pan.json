@@ -1,9 +1,19 @@
 {
     "variants": {
-	    "step=0": { "model":"teastory:tea_drying_pan" },
-        "step=1": { "model":"teastory:cooking_pan" },
-		"step=2": { "model":"teastory:cooking_pan2" },
-		"step=3": { "model":"teastory:lit_cooking_pan" },
-		"step=4": { "model":"teastory:lit_cooking_pan" }
+        "step=0": {
+            "model": "teastory:tea_drying_pan"
+        },
+        "step=1": {
+            "model": "teastory:cooking_pan"
+        },
+        "step=2": {
+            "model": "teastory:cooking_pan2"
+        },
+        "step=3": {
+            "model": "teastory:lit_cooking_pan"
+        },
+        "step=4": {
+            "model": "teastory:lit_cooking_pan"
+        }
     }
 }

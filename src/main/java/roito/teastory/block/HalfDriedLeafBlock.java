@@ -14,32 +14,32 @@ import roito.teastory.common.CreativeTabsRegister;
 public class HalfDriedLeafBlock extends Block
 {
 
-	public HalfDriedLeafBlock()
-	{
-		super(Material.GRASS);
-		this.setHardness(0.2F);
-		this.setSoundType(SoundType.PLANT);
-		this.setTranslationKey("half_dried_leaf_block");
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, "half_dried_leaf_block"));
-		this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
-	}
+    public HalfDriedLeafBlock()
+    {
+        super(Material.GRASS);
+        this.setHardness(0.2F);
+        this.setSoundType(SoundType.PLANT);
+        this.setTranslationKey("half_dried_leaf_block");
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, "half_dried_leaf_block"));
+        this.setCreativeTab(CreativeTabsRegister.tabTeaStory);
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer()
-	{
-		return BlockRenderLayer.CUTOUT_MIPPED;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer()
+    {
+        return BlockRenderLayer.CUTOUT_MIPPED;
+    }
 }

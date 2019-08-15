@@ -21,68 +21,68 @@ import roito.teastory.TeaStory;
 
 public class Kettle extends BlockHorizontal
 {
-	protected static final AxisAlignedBB KETTLE_AABB = new AxisAlignedBB(0.1875F, 0F, 0.1875F, 0.8125F, 0.5125F, 0.8125F);
+    protected static final AxisAlignedBB KETTLE_AABB = new AxisAlignedBB(0.1875F, 0F, 0.1875F, 0.8125F, 0.5125F, 0.8125F);
 
-	public Kettle(String name, Material material)
-	{
-		super(material);
-		this.setHardness(1.25F);
-		this.setSoundType(SoundType.STONE);
-		this.setTranslationKey(name);
-		this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
-	}
+    public Kettle(String name, Material material)
+    {
+        super(material);
+        this.setHardness(1.25F);
+        this.setSoundType(SoundType.STONE);
+        this.setTranslationKey(name);
+        this.setRegistryName(new ResourceLocation(TeaStory.MODID, name));
+    }
 
-	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, FACING);
-	}
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, FACING);
+    }
 
-	@Override
-	public int getMetaFromState(IBlockState state)
-	{
-		return 0;
-	}
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return 0;
+    }
 
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		return KETTLE_AABB;
-	}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return KETTLE_AABB;
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		if (worldIn.isRemote)
-		{
-			return true;
-		}
-		else
-		{
-			if (playerIn.getHeldItem(hand).isEmpty())
-			{
-				ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(state.getBlock(), 1, damageDropped(state)));
-				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-			}
-			return true;
-		}
-	}
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        if (worldIn.isRemote)
+        {
+            return true;
+        }
+        else
+        {
+            if (playerIn.getHeldItem(hand).isEmpty())
+            {
+                ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(state.getBlock(), 1, damageDropped(state)));
+                worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+            }
+            return true;
+        }
+    }
 
-	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
-	{
-		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-	}
+    @Override
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+    {
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+    }
 }

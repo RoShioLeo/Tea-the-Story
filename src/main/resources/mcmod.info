@@ -1,16 +1,16 @@
 [
-{
-  "modid": "teastory",
-  "name": "TeaStory",
-  "description": "Tea, the story of a leaf. Appreciate the culture of tea in Minecraft!",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "http://www.mcbbs.net/thread-562372-1-1.html",
-  "updateUrl": "https://minecraft.curseforge.com/projects/teastory",
-  "authorList": ["RoitoLeonine"],
-  "credits": "Made by Lemon Slice Studio",
-  "logoFile": "logo.png",
-  "screenshots": [],
-  "dependencies": []
-}
+    {
+        "modid": "teastory",
+        "name": "TeaStory",
+        "description": "Tea, the story of a leaf. Appreciate the culture of tea in Minecraft!",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "http://www.mcbbs.net/thread-562372-1-1.html",
+        "updateUrl": "https://minecraft.curseforge.com/projects/teastory",
+        "authorList": ["RoitoLeonine"],
+        "credits": "Made by Lemon Slice Studio",
+        "logoFile": "logo.png",
+        "screenshots": [],
+        "dependencies": []
+    }
 ]
