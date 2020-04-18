@@ -72,7 +72,7 @@ public class ContainerTeapan extends Container
         else if (index >= 1 && index < 28)
         {
             isMerged = mergeItemStack(newStack, 0, 1, false)
-                    || mergeItemStack(newStack, 29, 38, false);
+                    || mergeItemStack(newStack, 28, 37, false);
         }
         else if (index >= 28 && index < 37)
         {

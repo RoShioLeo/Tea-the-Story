@@ -15,7 +15,7 @@ compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
-version = mod_version + "-B${System.getenv().BUILD_NUMBER}.${System.getenv().BUILD_DATE}-${minecraft_version}"
+version = mod_version + "-${minecraft_version}"
 group = mod_group
 archivesBaseName = "TeaStory"
 

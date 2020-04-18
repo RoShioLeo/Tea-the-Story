@@ -30,7 +30,15 @@ public class TileEntityTeapan extends TileEntity implements ITickable
     protected ITeaMakingRecipe usedRecipe = new TeaMakingRecipe(NonNullListHelper.createNonNullList(ItemStack.EMPTY), ItemStack.EMPTY);
     protected int mode = -2;
 
-    protected ItemStackHandler leafInventory = new ItemStackHandler();
+    protected ItemStackHandler leafInventory = new ItemStackHandler()
+    {
+        @Override
+        protected void onContentsChanged(int slot)
+        {
+            TileEntityTeapan.this.refresh();
+            super.onContentsChanged(slot);
+        }
+    };
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing)
@@ -115,7 +123,6 @@ public class TileEntityTeapan extends TileEntity implements ITickable
                         refreshTotalTicks(EntironmentHelper.getDryingTicks(biome.getRainfall(), biome.getTemperature(pos)));
                         process(RecipeRegister.managerTeapanInSun);
                     }
-                    return;
                 }
             }
         }
@@ -142,7 +149,6 @@ public class TileEntityTeapan extends TileEntity implements ITickable
                 ItemStack output = usedRecipe.getOutput().copy();
                 output.setCount(input.getCount());
                 this.leafInventory.setStackInSlot(0, output);
-                refresh();
                 this.processTicks = 0;
             }
             this.markDirty();
@@ -167,7 +173,6 @@ public class TileEntityTeapan extends TileEntity implements ITickable
             ItemStack wetOutput = usedRecipe.getOutput().copy();
             wetOutput.setCount(input.getCount());
             this.leafInventory.setStackInSlot(0, wetOutput);
-            refresh();
         }
         this.markDirty();
     }
