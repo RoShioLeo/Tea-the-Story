@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "tea_bag",
+    "ingredients": [
+        {
+            "item": "teastory:empty_tea_bag"
+        },
+        {
+            "tag": "forge:crops/black_tea_leaf"
+        },
+        {
+            "tag": "forge:crops/black_tea_leaf"
+        },
+        {
+            "tag": "forge:crops/black_tea_leaf"
+        }
+    ],
+    "result": {
+        "item": "teastory:black_tea_bag"
+    }
+}

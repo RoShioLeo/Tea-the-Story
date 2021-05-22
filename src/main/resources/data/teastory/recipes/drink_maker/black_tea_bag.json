@@ -1,0 +1,13 @@
+{
+    "type": "teastory:drink_maker",
+    "item_ingredients": [
+        {
+            "item": "teastory:black_tea_bag"
+        }
+    ],
+    "fluid_ingredient": {
+        "fluid": "teastory:boiling_water",
+        "amount": 500
+    },
+    "drink_result": "teastory:black_tea"
+}

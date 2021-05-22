@@ -1,0 +1,7 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/agave",
+        "#forge:seeds/cactus_fruit"
+    ]
+}

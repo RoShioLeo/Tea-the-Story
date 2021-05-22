@@ -1,0 +1,10 @@
+{
+    "replace": false,
+    "values": [
+        "teastory:beef_jerky",
+        "teastory:pork_jerky",
+        "teastory:chicken_jerky",
+        "teastory:rabbit_jerky",
+        "teastory:mutton_jerky"
+    ]
+}

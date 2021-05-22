@@ -1,0 +1,111 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "post": "false",
+                "up": "false",
+                "north": "false",
+                "south": "false",
+                "east": "false",
+                "west": "false"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_center"
+            }
+        },
+        {
+            "when": {
+                "up": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_post_up"
+            }
+        },
+        {
+            "when": {
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_post"
+            }
+        },
+        {
+            "when": {
+                "north": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_bar",
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "east": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_bar",
+                "y": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "south": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_bar",
+                "y": 180,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "west": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_bar",
+                "y": 270,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "north": "true",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_support"
+            }
+        },
+        {
+            "when": {
+                "east": "true",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_support",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "south": "true",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_support",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "west": "true",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_support",
+                "y": 270
+            }
+        }
+    ]
+}

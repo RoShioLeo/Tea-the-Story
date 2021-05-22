@@ -1,0 +1,6 @@
+{
+    "parent": "teastory:block/paddy_field",
+    "textures": {
+        "1": "block/farmland"
+    }
+}

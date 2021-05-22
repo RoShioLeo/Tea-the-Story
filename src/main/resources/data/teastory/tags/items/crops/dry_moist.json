@@ -1,0 +1,25 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/amaranth",
+        "#forge:seeds/barley",
+        "#forge:seeds/bean",
+        "#forge:seeds/candle_berry",
+        "#forge:seeds/chickpea",
+        "#forge:seeds/cotton",
+        "#forge:seeds/cumin",
+        "#forge:seeds/elderberry",
+        "#forge:seeds/kenaf",
+        "#forge:seeds/kohlrabi",
+        "#forge:seeds/mulberry",
+        "#forge:seeds/mustard_seeds",
+        "#forge:seeds/onion",
+        "#forge:seeds/potato",
+        "#forge:seeds/radish",
+        "#forge:seeds/rutabaga",
+        "#forge:seeds/soybean",
+        "#forge:seeds/sweet_potato",
+        "#forge:seeds/winter_squash",
+        "#forge:seeds/wheat"
+    ]
+}

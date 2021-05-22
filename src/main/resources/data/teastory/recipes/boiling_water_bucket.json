@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "minecraft:water_bucket"
+    },
+    "result": "teastory:boiling_water_bucket",
+    "experience": 0.2,
+    "cookingtime": 200
+}

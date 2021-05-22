@@ -1,0 +1,12 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/melon",
+        "#forge:seeds/quinoa",
+        "#forge:seeds/candle_berry",
+        "#forge:seeds/artichoke",
+        "#forge:seeds/coffee_bean",
+        "#forge:seeds/honeydew",
+        "#forge:seeds/pineapple"
+    ]
+}

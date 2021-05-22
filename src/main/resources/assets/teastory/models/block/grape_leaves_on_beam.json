@@ -1,0 +1,6 @@
+{
+    "parent": "teastory:block/leaves_on_beam",
+    "textures": {
+        "leaves": "teastory:block/grape_leaves"
+    }
+}

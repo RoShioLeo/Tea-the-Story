@@ -1,0 +1,39 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "north": "true"
+            },
+            "apply": {
+                "model": "teastory:block/fresh_bamboo_wall"
+            }
+        },
+        {
+            "when": {
+                "east": "true"
+            },
+            "apply": {
+                "model": "teastory:block/fresh_bamboo_wall",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "south": "true"
+            },
+            "apply": {
+                "model": "teastory:block/fresh_bamboo_wall",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "west": "true"
+            },
+            "apply": {
+                "model": "teastory:block/fresh_bamboo_wall",
+                "y": 270
+            }
+        }
+    ]
+}

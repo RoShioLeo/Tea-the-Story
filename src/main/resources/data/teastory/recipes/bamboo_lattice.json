@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "bamboo_lattice",
+    "pattern": [
+        "x x",
+        " x ",
+        "x x"
+    ],
+    "key": {
+        "x": {
+            "item": "minecraft:bamboo"
+        }
+    },
+    "result": {
+        "item": "teastory:bamboo_lattice",
+        "count": 2
+    }
+}

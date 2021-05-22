@@ -1,0 +1,22 @@
+{
+    "type": "teastory:drink_maker",
+    "item_ingredients": [
+        {
+            "tag": "forge:crops/green_tea_leaf"
+        },
+        {
+            "tag": "forge:crops/green_tea_leaf"
+        },
+        {
+            "tag": "forge:crops/green_tea_leaf"
+        },
+        {
+            "tag": "forge:crops/green_tea_leaf"
+        }
+    ],
+    "fluid_ingredient": {
+        "fluid": "teastory:boiling_water",
+        "amount": 500
+    },
+    "drink_result": "teastory:green_tea"
+}

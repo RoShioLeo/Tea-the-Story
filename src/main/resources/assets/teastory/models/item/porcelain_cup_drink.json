@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "teastory:item/porcelain_cup",
+        "layer1": "teastory:item/porcelain_cup_overlay"
+    }
+}

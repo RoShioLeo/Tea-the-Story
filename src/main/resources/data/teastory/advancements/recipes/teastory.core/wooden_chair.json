@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:wooden_chair"
+        ]
+    },
+    "criteria": {
+        "has_plank": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "minecraft:planks"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:wooden_chair"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_plank",
+            "has_the_recipe"
+        ]
+    ]
+}

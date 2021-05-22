@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "axis=x": {
+            "model": "teastory:block/filter_screen",
+            "y": 90
+        },
+        "axis=z": {
+            "model": "teastory:block/filter_screen"
+        }
+    }
+}

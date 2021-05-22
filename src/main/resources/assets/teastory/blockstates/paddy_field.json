@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "waterlogged=false": {
+            "model": "teastory:block/dry_paddy_field"
+        },
+        "waterlogged=true": {
+            "model": "teastory:block/moist_paddy_field"
+        }
+    }
+}

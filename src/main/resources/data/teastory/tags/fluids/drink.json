@@ -1,0 +1,16 @@
+{
+    "replace": false,
+    "values": [
+        "teastory:boiling_water",
+        "teastory:sugary_water",
+        "teastory:weak_black_tea",
+        "teastory:black_tea",
+        "teastory:strong_black_tea",
+        "teastory:weak_green_tea",
+        "teastory:green_tea",
+        "teastory:strong_green_tea",
+        "teastory:weak_white_tea",
+        "teastory:white_tea",
+        "teastory:strong_white_tea"
+    ]
+}

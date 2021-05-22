@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "": [
+            {
+                "model": "teastory:block/chrysanthemum"
+            },
+            {
+                "model": "teastory:block/chrysanthemum",
+                "y": 90
+            },
+            {
+                "model": "teastory:block/chrysanthemum",
+                "y": 180
+            },
+            {
+                "model": "teastory:block/chrysanthemum",
+                "y": 270
+            }
+        ]
+    }
+}

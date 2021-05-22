@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:green_tea_bag"
+        ]
+    },
+    "criteria": {
+        "has_tea_bag": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "teastory:empty_tea_bag"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:green_tea_bag"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_tea_bag",
+            "has_the_recipe"
+        ]
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "replace": false,
+    "values": [
+        "teastory:boiling_water",
+        "teastory:boiling_water_flowing",
+        "teastory:hot_water_80",
+        "teastory:hot_water_80_flowing",
+        "teastory:hot_water_60",
+        "teastory:hot_water_60_flowing",
+        "teastory:warm_water",
+        "teastory:warm_water_flowing",
+        "teastory:sugary_water",
+        "teastory:sugary_water_flowing",
+        "teastory:weak_green_tea",
+        "teastory:weak_green_tea_flowing",
+        "teastory:weak_black_tea",
+        "teastory:weak_black_tea_flowing",
+        "teastory:weak_white_tea",
+        "teastory:weak_white_tea_flowing",
+        "teastory:green_tea",
+        "teastory:green_tea_flowing",
+        "teastory:black_tea",
+        "teastory:black_tea_flowing",
+        "teastory:white_tea",
+        "teastory:white_tea_flowing",
+        "teastory:strong_green_tea",
+        "teastory:strong_green_tea_flowing",
+        "teastory:strong_black_tea",
+        "teastory:strong_black_tea_flowing",
+        "teastory:strong_white_tea",
+        "teastory:strong_white_tea_flowing"
+    ]
+}

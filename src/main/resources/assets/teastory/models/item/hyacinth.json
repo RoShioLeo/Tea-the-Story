@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "teastory:item/hyacinth_0",
+        "layer1": "teastory:item/hyacinth_1"
+    }
+}

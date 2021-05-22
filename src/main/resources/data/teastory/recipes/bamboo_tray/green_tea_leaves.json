@@ -1,0 +1,8 @@
+{
+    "type": "teastory:bamboo_tray_outdoors",
+    "ingredient": {
+        "tag": "forge:crops/tea_leaf"
+    },
+    "result": "teastory:green_tea_leaves",
+    "workingtime": 200
+}

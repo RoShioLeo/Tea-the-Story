@@ -1,0 +1,43 @@
+{
+    "credit": "Made with Blockbench",
+    "texture_size": [32, 32],
+    "textures": {
+        "water": "block/water_still"
+    },
+    "elements": [
+        {
+            "name": "WF",
+            "from": [6.25, 1.5, 3],
+            "to": [9.75, 4.5, 6.5],
+            "rotation": {
+                "angle": 0,
+                "axis": "y",
+                "origin": [14.25, 11, 11.25]
+            },
+            "faces": {
+                "up": {
+                    "uv": [0, 0, 5, 5],
+                    "texture": "#water",
+                    "tintindex": 1
+                }
+            }
+        },
+        {
+            "name": "WF",
+            "from": [6.25, 1.5, 10],
+            "to": [9.75, 4.5, 13.5],
+            "rotation": {
+                "angle": 0,
+                "axis": "y",
+                "origin": [14.25, 11, 17.25]
+            },
+            "faces": {
+                "up": {
+                    "uv": [5, 0, 10, 5],
+                    "texture": "#water",
+                    "tintindex": 2
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "type": "teastory:bamboo_tray_bake",
+    "ingredient": {
+        "item": "minecraft:chicken"
+    },
+    "result": "teastory:chicken_jerky",
+    "workingtime": 200
+}

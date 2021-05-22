@@ -1,0 +1,8 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "teastory:item/zinnia_0",
+        "layer1": "teastory:item/zinnia_1",
+        "layer2": "teastory:item/zinnia_2"
+    }
+}

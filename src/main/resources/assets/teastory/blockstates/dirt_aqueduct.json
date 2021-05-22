@@ -1,0 +1,91 @@
+{
+    "multipart": [
+        {
+            "apply": {
+                "model": "teastory:block/aqueduct"
+            }
+        },
+        {
+            "when": {
+                "west": "false"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_wall",
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "north": "false"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_wall",
+                "y": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "east": "false"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_wall",
+                "y": 180,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "south": "false"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_wall",
+                "y": 270,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "blocked": "true",
+                "north": "true"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_blocker",
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "blocked": "true",
+                "east": "true"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_blocker",
+                "y": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "blocked": "true",
+                "south": "true"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_blocker",
+                "y": 180,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "blocked": "true",
+                "west": "true"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_blocker",
+                "y": 270,
+                "uvlock": true
+            }
+        }
+    ]
+}

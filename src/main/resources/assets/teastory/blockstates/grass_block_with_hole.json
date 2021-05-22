@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "": [
+            {
+                "model": "teastory:block/grass_block_with_hole"
+            },
+            {
+                "model": "teastory:block/grass_block_with_hole",
+                "y": 90
+            },
+            {
+                "model": "teastory:block/grass_block_with_hole",
+                "y": 180
+            },
+            {
+                "model": "teastory:block/grass_block_with_hole",
+                "y": 270
+            }
+        ]
+    }
+}

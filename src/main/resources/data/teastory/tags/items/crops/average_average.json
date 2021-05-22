@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/bell_pepper",
+        "#forge:seeds/blackberry",
+        "#forge:seeds/cauliflower",
+        "#forge:seeds/chili_pepper",
+        "#forge:seeds/pea",
+        "#forge:seeds/pepper"
+    ]
+}

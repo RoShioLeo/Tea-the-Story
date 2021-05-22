@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "bamboo_lantern",
+    "pattern": [
+        "###",
+        "#x#",
+        "###"
+    ],
+    "key": {
+        "x": {
+            "item": "minecraft:torch"
+        },
+        "#": {
+            "item": "minecraft:bamboo"
+        }
+    },
+    "result": {
+        "item": "teastory:bamboo_lantern"
+    }
+}

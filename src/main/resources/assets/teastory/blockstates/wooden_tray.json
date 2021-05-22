@@ -1,0 +1,87 @@
+{
+    "multipart": [
+        {
+            "apply": {
+                "model": "teastory:block/wooden_tray"
+            }
+        },
+        {
+            "when": {
+                "cup": "1"
+            },
+            "apply": {
+                "model": "teastory:block/teacup_1"
+            }
+        },
+        {
+            "when": {
+                "cup": "2"
+            },
+            "apply": {
+                "model": "teastory:block/teacup_2"
+            }
+        },
+        {
+            "when": {
+                "cup": "3"
+            },
+            "apply": {
+                "model": "teastory:block/teacup_3"
+            }
+        },
+        {
+            "when": {
+                "cup": "1",
+                "drink": "1"
+            },
+            "apply": {
+                "model": "teastory:block/teacup_1_1"
+            }
+        },
+        {
+            "when": {
+                "cup": "2",
+                "drink": "1"
+            },
+            "apply": {
+                "model": "teastory:block/teacup_2_1"
+            }
+        },
+        {
+            "when": {
+                "cup": "2",
+                "drink": "2"
+            },
+            "apply": {
+                "model": "teastory:block/teacup_2_2"
+            }
+        },
+        {
+            "when": {
+                "cup": "3",
+                "drink": "1"
+            },
+            "apply": {
+                "model": "teastory:block/teacup_3_1"
+            }
+        },
+        {
+            "when": {
+                "cup": "3",
+                "drink": "2"
+            },
+            "apply": {
+                "model": "teastory:block/teacup_3_2"
+            }
+        },
+        {
+            "when": {
+                "cup": "3",
+                "drink": "3"
+            },
+            "apply": {
+                "model": "teastory:block/teacup_3_3"
+            }
+        }
+    ]
+}

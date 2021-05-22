@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "teastory:block/stone_stove"
+        },
+        "facing=south": {
+            "model": "teastory:block/stone_stove",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "teastory:block/stone_stove",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "teastory:block/stone_stove",
+            "y": 90
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "type": "teastory:bamboo_tray_outdoors",
+    "ingredient": {
+        "item": "teastory:fresh_bamboo_wall"
+    },
+    "result": "teastory:dried_bamboo_wall",
+    "workingtime": 200
+}

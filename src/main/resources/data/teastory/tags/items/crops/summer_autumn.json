@@ -1,0 +1,24 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/cassava",
+        "#forge:seeds/okra",
+        "#forge:seeds/arrowroot",
+        "#forge:seeds/chili_pepper",
+        "#forge:seeds/asparagus",
+        "#forge:seeds/elderberry",
+        "#forge:seeds/chickpea",
+        "#forge:seeds/amaranth",
+        "#forge:seeds/leek",
+        "#forge:seeds/onion",
+        "#forge:seeds/parsnip",
+        "#forge:seeds/peanut",
+        "#forge:seeds/pepper",
+        "#forge:seeds/pumpkin",
+        "#forge:seeds/raspberry",
+        "#forge:seeds/rhubarb",
+        "#forge:seeds/sesame_seeds",
+        "#forge:seeds/strawberry",
+        "#forge:seeds/water_chestnut"
+    ]
+}

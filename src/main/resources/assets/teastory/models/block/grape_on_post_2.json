@@ -1,0 +1,7 @@
+{
+    "parent": "teastory:block/stem_on_post_2",
+    "textures": {
+        "stem": "teastory:block/grape_stage_2",
+        "leaf": "teastory:block/grape_small_leaves"
+    }
+}

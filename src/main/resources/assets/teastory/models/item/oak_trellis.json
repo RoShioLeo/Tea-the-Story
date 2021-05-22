@@ -1,0 +1,6 @@
+{
+    "parent": "teastory:block/trellis_inventory",
+    "textures": {
+        "texture": "block/oak_planks"
+    }
+}

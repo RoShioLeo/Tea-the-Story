@@ -1,0 +1,6 @@
+{
+    "parent": "teastory:block/catapult_board_off",
+    "textures": {
+        "1": "teastory:block/bamboo_catapult_board"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "": [
+            {
+                "model": "teastory:block/zinnia"
+            },
+            {
+                "model": "teastory:block/zinnia",
+                "y": 90
+            },
+            {
+                "model": "teastory:block/zinnia",
+                "y": 180
+            },
+            {
+                "model": "teastory:block/zinnia",
+                "y": 270
+            }
+        ]
+    }
+}

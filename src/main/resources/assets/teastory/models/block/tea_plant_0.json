@@ -1,0 +1,81 @@
+{
+    "credit": "Made with Blockbench",
+    "textures": {
+        "1": "teastory:block/tea_plant_0",
+        "particle": "teastory:block/tea_plant_0"
+    },
+    "elements": [
+        {
+            "from": [0, -1, 5],
+            "to": [16, 15, 5],
+            "faces": {
+                "north": {
+                    "uv": [0, 0, 16, 16],
+                    "texture": "#1"
+                },
+                "east": {
+                    "uv": [4, 14, 5, 15],
+                    "texture": "#1"
+                },
+                "south": {
+                    "uv": [16, 0, 0, 16],
+                    "texture": "#1"
+                }
+            }
+        },
+        {
+            "from": [11, -1, 0],
+            "to": [11, 15, 16],
+            "faces": {
+                "east": {
+                    "uv": [0, 0, 16, 16],
+                    "texture": "#1"
+                },
+                "south": {
+                    "uv": [4, 14, 5, 15],
+                    "texture": "#1"
+                },
+                "west": {
+                    "uv": [16, 0, 0, 16],
+                    "texture": "#1"
+                }
+            }
+        },
+        {
+            "from": [0, -1, 11],
+            "to": [16, 15, 11],
+            "faces": {
+                "north": {
+                    "uv": [16, 0, 0, 16],
+                    "texture": "#1"
+                },
+                "south": {
+                    "uv": [0, 0, 16, 16],
+                    "texture": "#1"
+                },
+                "west": {
+                    "uv": [4, 14, 5, 15],
+                    "texture": "#1"
+                }
+            }
+        },
+        {
+            "from": [5, -1, 0],
+            "to": [5, 15, 16],
+            "faces": {
+                "north": {
+                    "uv": [4, 14, 5, 15],
+                    "texture": "#1"
+                },
+                "east": {
+                    "uv": [16, 0, 0, 16],
+                    "texture": "#1"
+                },
+                "west": {
+                    "uv": [0, 0, 16, 16],
+                    "texture": "#1"
+                }
+            }
+        }
+    ]
+}

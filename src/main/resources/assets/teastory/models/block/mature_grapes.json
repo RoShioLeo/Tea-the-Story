@@ -1,0 +1,6 @@
+{
+    "parent": "teastory:block/grape",
+    "textures": {
+        "fruit": "teastory:block/mature_grape"
+    }
+}

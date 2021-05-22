@@ -1,0 +1,25 @@
+{
+    "credit": "Made with Blockbench",
+    "textures": {
+        "water": "block/water_still"
+    },
+    "elements": [
+        {
+            "name": "WF",
+            "from": [6.25, 1.5, 3.25],
+            "to": [9.75, 4.5, 6.75],
+            "rotation": {
+                "angle": 0,
+                "axis": "y",
+                "origin": [14.25, 11, 11.25]
+            },
+            "faces": {
+                "up": {
+                    "uv": [0, 0, 5, 5],
+                    "texture": "#water",
+                    "tintindex": 1
+                }
+            }
+        }
+    ]
+}

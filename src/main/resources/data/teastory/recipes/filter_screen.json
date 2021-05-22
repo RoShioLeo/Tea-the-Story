@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "filter_screen",
+    "pattern": [
+        "x#x",
+        "#*#",
+        "x#x"
+    ],
+    "key": {
+        "x": {
+            "tag": "forge:rods/wooden"
+        },
+        "#": {
+            "tag": "forge:string"
+        },
+        "*": {
+            "tag": "forge:dusts/redstone"
+        }
+    },
+    "result": {
+        "item": "teastory:filter_screen"
+    }
+}

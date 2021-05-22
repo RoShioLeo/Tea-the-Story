@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "catapult_board",
+    "pattern": [
+        "xxx",
+        "xxx",
+        "#*#"
+    ],
+    "key": {
+        "x": {
+            "item": "minecraft:stone"
+        },
+        "#": {
+            "tag": "forge:stone"
+        },
+        "*": {
+            "tag": "forge:dusts/redstone"
+        }
+    },
+    "result": {
+        "item": "teastory:stone_catapult_board"
+    }
+}

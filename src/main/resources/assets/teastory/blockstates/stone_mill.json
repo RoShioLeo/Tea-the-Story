@@ -1,0 +1,36 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "facing": "north"
+            },
+            "apply": {
+                "model": "teastory:stone_mill_bottom"
+            }
+        }, {
+            "when": {
+                "facing": "east"
+            },
+            "apply": {
+                "model": "teastory:stone_mill_bottom",
+                "y": 90
+            }
+        }, {
+            "when": {
+                "facing": "south"
+            },
+            "apply": {
+                "model": "teastory:stone_mill_bottom",
+                "y": 180
+            }
+        }, {
+            "when": {
+                "facing": "west"
+            },
+            "apply": {
+                "model": "teastory:stone_mill_bottom",
+                "y": 270
+            }
+        }
+    ]
+}

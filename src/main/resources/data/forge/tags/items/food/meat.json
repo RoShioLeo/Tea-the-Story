@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:food/jerky",
+        "minecraft:rabbit",
+        "minecraft:porkchop",
+        "minecraft:beef",
+        "minecraft:mutton",
+        "minecraft:chicken"
+    ]
+}

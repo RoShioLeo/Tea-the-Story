@@ -1,0 +1,12 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/cranberry",
+        "#forge:seeds/huckleberry",
+        "#forge:seeds/juniper_berry",
+        "#forge:seeds/kale",
+        "#forge:seeds/leek",
+        "#forge:seeds/rye",
+        "#forge:seeds/yam"
+    ]
+}

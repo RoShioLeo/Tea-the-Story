@@ -1,0 +1,8 @@
+{
+    "type": "teastory:bamboo_tray_outdoors",
+    "ingredient": {
+        "item": "minecraft:beetroot"
+    },
+    "result": "teastory:dried_beetroot",
+    "workingtime": 200
+}

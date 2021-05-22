@@ -1,0 +1,40 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "facing": "north",
+                "left": "true"
+            },
+            "apply": {
+                "model": "teastory:block/drink_maker",
+                "y": 180
+            }
+        }, {
+            "when": {
+                "facing": "east",
+                "left": "true"
+            },
+            "apply": {
+                "model": "teastory:block/drink_maker",
+                "y": 270
+            }
+        }, {
+            "when": {
+                "facing": "south",
+                "left": "true"
+            },
+            "apply": {
+                "model": "teastory:block/drink_maker"
+            }
+        }, {
+            "when": {
+                "facing": "west",
+                "left": "true"
+            },
+            "apply": {
+                "model": "teastory:block/drink_maker",
+                "y": 90
+            }
+        }
+    ]
+}

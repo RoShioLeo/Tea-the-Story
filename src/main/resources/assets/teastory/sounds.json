@@ -1,0 +1,9 @@
+{
+    "block.cup_broken": {
+        "sounds": [
+            {
+                "name": "teastory:block/cup_broken"
+            }
+        ]
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "teastory:block/iron_kettle"
+        },
+        "facing=south": {
+            "model": "teastory:block/iron_kettle",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "teastory:block/iron_kettle",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "teastory:block/iron_kettle",
+            "y": 90
+        }
+    }
+}

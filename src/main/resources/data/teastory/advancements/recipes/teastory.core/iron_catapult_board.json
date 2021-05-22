@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:iron_catapult_board"
+        ]
+    },
+    "criteria": {
+        "has_iron_ingot": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "forge:ingots/iron"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:iron_catapult_board"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_iron_ingot",
+            "has_the_recipe"
+        ]
+    ]
+}

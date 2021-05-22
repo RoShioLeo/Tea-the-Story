@@ -1,0 +1,8 @@
+{
+    "type": "teastory:bamboo_tray_bake",
+    "ingredient": {
+        "item": "minecraft:porkchop"
+    },
+    "result": "teastory:pork_jerky",
+    "workingtime": 200
+}

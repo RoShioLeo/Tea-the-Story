@@ -1,0 +1,39 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "north": "true"
+            },
+            "apply": {
+                "model": "teastory:block/bamboo_lattice"
+            }
+        },
+        {
+            "when": {
+                "east": "true"
+            },
+            "apply": {
+                "model": "teastory:block/bamboo_lattice",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "south": "true"
+            },
+            "apply": {
+                "model": "teastory:block/bamboo_lattice",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "west": "true"
+            },
+            "apply": {
+                "model": "teastory:block/bamboo_lattice",
+                "y": 270
+            }
+        }
+    ]
+}

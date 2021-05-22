@@ -1,0 +1,8 @@
+{
+    "type": "teastory:bamboo_tray_bake",
+    "ingredient": {
+        "tag": "forge:food/jerky"
+    },
+    "result": "minecraft:leather",
+    "workingtime": 200
+}

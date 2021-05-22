@@ -1,0 +1,34 @@
+{
+    "credit": "Made with Blockbench",
+    "ambientocclusion": false,
+    "textures": {
+        "side": "block/grass_path_side",
+        "top": "block/grass_path_top",
+        "particle": "#side"
+    },
+    "elements": [
+        {
+            "from": [0, 5, 4],
+            "to": [4, 15, 12],
+            "rotation": {
+                "angle": 0,
+                "axis": "y",
+                "origin": [8, 13, 12]
+            },
+            "faces": {
+                "east": {
+                    "uv": [4, 1, 12, 11],
+                    "texture": "#side"
+                },
+                "west": {
+                    "uv": [4, 1, 12, 11],
+                    "texture": "#side"
+                },
+                "up": {
+                    "uv": [0, 4, 4, 12],
+                    "texture": "#top"
+                }
+            }
+        }
+    ]
+}

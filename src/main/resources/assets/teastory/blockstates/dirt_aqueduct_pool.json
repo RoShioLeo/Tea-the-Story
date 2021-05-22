@@ -1,0 +1,48 @@
+{
+    "multipart": [
+        {
+            "apply": {
+                "model": "teastory:block/aqueduct_pool"
+            }
+        },
+        {
+            "when": {
+                "west": "false"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_pool_wall",
+                "y": 270,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "north": "false"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_pool_wall",
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "east": "false"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_pool_wall",
+                "y": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "south": "false"
+            },
+            "apply": {
+                "model": "teastory:block/aqueduct_pool_wall",
+                "y": 180,
+                "uvlock": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/white_mushroom",
+        "#forge:seeds/brussels_sprout"
+    ]
+}

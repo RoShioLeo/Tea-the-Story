@@ -1,0 +1,24 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/lettuce",
+        "#forge:seeds/blueberry",
+        "#forge:seeds/broccoli",
+        "#forge:seeds/cucumber",
+        "#forge:seeds/cauliflower",
+        "#forge:seeds/blackberry",
+        "#forge:seeds/rutabaga",
+        "#forge:seeds/kohlrabi",
+        "#forge:seeds/cumin",
+        "#forge:seeds/mulberry",
+        "#forge:seeds/mustard_seeds",
+        "#forge:seeds/turnip",
+        "#forge:seeds/winter_squash",
+        "#forge:seeds/grape",
+        "#forge:seeds/green_grape",
+        "#forge:seeds/cantaloupe",
+        "#forge:seeds/cranberry",
+        "#forge:seeds/huckleberry",
+        "#forge:seeds/juniper_berry"
+    ]
+}

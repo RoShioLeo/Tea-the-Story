@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "teastory:block/bamboo_chair"
+        },
+        "facing=south": {
+            "model": "teastory:block/bamboo_chair",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "teastory:block/bamboo_chair",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "teastory:block/bamboo_chair",
+            "y": 90
+        }
+    }
+}

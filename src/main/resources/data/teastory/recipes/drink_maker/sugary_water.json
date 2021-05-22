@@ -1,0 +1,22 @@
+{
+    "type": "teastory:drink_maker",
+    "item_ingredients": [
+        {
+            "item": "minecraft:sugar"
+        },
+        {
+            "item": "minecraft:sugar"
+        },
+        {
+            "item": "minecraft:sugar"
+        },
+        {
+            "item": "minecraft:sugar"
+        }
+    ],
+    "fluid_ingredient": {
+        "fluid": "teastory:boiling_water",
+        "amount": 500
+    },
+    "drink_result": "teastory:sugary_water"
+}

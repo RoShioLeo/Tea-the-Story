@@ -1,0 +1,17 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/ginger",
+        "#forge:seeds/garlic",
+        "#forge:seeds/celery",
+        "#forge:seeds/barley",
+        "#forge:seeds/agave",
+        "#forge:seeds/cactus_fruit",
+        "#forge:seeds/radish",
+        "#forge:seeds/rye",
+        "#forge:seeds/scallion",
+        "#forge:seeds/spinach",
+        "#forge:seeds/wheat",
+        "#forge:seeds/yam"
+    ]
+}

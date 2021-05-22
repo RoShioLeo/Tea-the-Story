@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/asparagus",
+        "#forge:seeds/jicama",
+        "#forge:seeds/raspberry",
+        "#forge:seeds/tomatillo",
+        "#forge:seeds/tomato",
+        "#forge:seeds/pumpkin"
+    ]
+}

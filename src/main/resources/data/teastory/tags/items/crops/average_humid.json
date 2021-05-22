@@ -1,0 +1,16 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/arrowroot",
+        "#forge:seeds/broccoli",
+        "#forge:seeds/cabbage",
+        "#forge:seeds/carrot",
+        "#forge:seeds/coffee_bean",
+        "#forge:seeds/ginger",
+        "#forge:seeds/honeydew",
+        "#forge:seeds/jute",
+        "#forge:seeds/okra",
+        "#forge:seeds/pineapple",
+        "#forge:seeds/beetroot"
+    ]
+}

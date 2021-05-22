@@ -1,0 +1,22 @@
+{
+    "type": "teastory:drink_maker",
+    "item_ingredients": [
+        {
+            "tag": "forge:crops/black_tea_leaf"
+        },
+        {
+            "tag": "forge:crops/black_tea_leaf"
+        },
+        {
+            "tag": "forge:crops/black_tea_leaf"
+        },
+        {
+            "tag": "forge:crops/black_tea_leaf"
+        }
+    ],
+    "fluid_ingredient": {
+        "fluid": "teastory:black_tea",
+        "amount": 500
+    },
+    "drink_result": "teastory:strong_black_tea"
+}

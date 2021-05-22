@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:stone_stove"
+        ]
+    },
+    "criteria": {
+        "has_dirt": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "forge:dirt"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:stone_stove"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_dirt",
+            "has_the_recipe"
+        ]
+    ]
+}

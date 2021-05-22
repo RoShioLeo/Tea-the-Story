@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "stove",
+    "pattern": [
+        "xxx",
+        "x x",
+        "xxx"
+    ],
+    "key": {
+        "x": {
+            "tag": "forge:dirt"
+        }
+    },
+    "result": {
+        "item": "teastory:dirt_stove"
+    }
+}

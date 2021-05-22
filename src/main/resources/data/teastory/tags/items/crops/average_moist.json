@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/artichoke",
+        "#forge:seeds/brussels_sprout",
+        "#forge:seeds/celery",
+        "#forge:seeds/cucumber",
+        "#forge:seeds/eggplant",
+        "#forge:seeds/flax",
+        "#forge:seeds/garlic",
+        "#forge:seeds/kiwi",
+        "#forge:seeds/peanut",
+        "#forge:seeds/rhubarb",
+        "#forge:seeds/scallion",
+        "#forge:seeds/sesame_seeds",
+        "#forge:seeds/spinach",
+        "#forge:seeds/strawberry",
+        "#forge:seeds/turnip",
+        "#forge:seeds/zucchini"
+    ]
+}

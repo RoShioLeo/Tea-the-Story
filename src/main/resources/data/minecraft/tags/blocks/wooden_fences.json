@@ -1,0 +1,18 @@
+{
+    "replace": false,
+    "values": [
+        "teastory:bamboo_lattice",
+        "teastory:oak_trellis",
+        "teastory:birch_trellis",
+        "teastory:jungle_trellis",
+        "teastory:spruce_trellis",
+        "teastory:dark_oak_trellis",
+        "teastory:acacia_trellis",
+        "teastory:oak_trellis_grape",
+        "teastory:birch_trellis_grape",
+        "teastory:jungle_trellis_grape",
+        "teastory:spruce_trellis_grape",
+        "teastory:dark_oak_trellis_grape",
+        "teastory:acacia_trellis_grape"
+    ]
+}

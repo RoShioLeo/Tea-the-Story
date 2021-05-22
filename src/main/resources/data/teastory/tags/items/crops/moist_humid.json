@@ -1,0 +1,14 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/cassava",
+        "#forge:seeds/grape",
+        "#forge:seeds/green_grape",
+        "#forge:seeds/rice",
+        "#forge:seeds/taro",
+        "#forge:seeds/melon",
+        "#forge:seeds/water_chestnut",
+        "#forge:seeds/tea_leaf",
+        "#forge:seeds/white_mushroom"
+    ]
+}

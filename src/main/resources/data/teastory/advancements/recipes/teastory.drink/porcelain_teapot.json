@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:porcelain_teapot"
+        ]
+    },
+    "criteria": {
+        "has_clay_teapot": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "teastory:clay_teapot"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:porcelain_teapot"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_clay_teapot",
+            "has_the_recipe"
+        ]
+    ]
+}

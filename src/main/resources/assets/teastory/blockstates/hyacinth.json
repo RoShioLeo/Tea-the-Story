@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "": [
+            {
+                "model": "teastory:block/hyacinth"
+            },
+            {
+                "model": "teastory:block/hyacinth",
+                "y": 90
+            },
+            {
+                "model": "teastory:block/hyacinth",
+                "y": 180
+            },
+            {
+                "model": "teastory:block/hyacinth",
+                "y": 270
+            }
+        ]
+    }
+}

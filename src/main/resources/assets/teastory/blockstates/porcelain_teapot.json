@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "teastory:block/porcelain_teapot"
+        },
+        "facing=south": {
+            "model": "teastory:block/porcelain_teapot",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "teastory:block/porcelain_teapot",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "teastory:block/porcelain_teapot",
+            "y": 90
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:filter_screen"
+        ]
+    },
+    "criteria": {
+        "has_string": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "forge:string"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:filter_screen"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_string",
+            "has_the_recipe"
+        ]
+    ]
+}

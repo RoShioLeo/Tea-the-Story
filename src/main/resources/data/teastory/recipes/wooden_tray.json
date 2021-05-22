@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "wooden_tray",
+    "pattern": [
+        "# #",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "tag": "forge:rods/wooden"
+        }
+    },
+    "result": {
+        "item": "teastory:wooden_tray"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "replace": false,
+    "values": [
+        "#forge:seeds/blueberry",
+        "#forge:seeds/lettuce"
+    ]
+}

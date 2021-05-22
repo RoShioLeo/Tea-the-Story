@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "fresh_bamboo_wall",
+    "pattern": [
+        "xxx",
+        "###",
+        "xxx"
+    ],
+    "key": {
+        "x": {
+            "item": "minecraft:bamboo"
+        },
+        "#": {
+            "tag": "forge:string"
+        }
+    },
+    "result": {
+        "item": "teastory:fresh_bamboo_wall",
+        "count": 2
+    }
+}

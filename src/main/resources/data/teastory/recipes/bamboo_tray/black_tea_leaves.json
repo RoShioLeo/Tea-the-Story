@@ -1,0 +1,8 @@
+{
+    "type": "teastory:bamboo_tray_indoors",
+    "ingredient": {
+        "tag": "forge:crops/tea_leaf"
+    },
+    "result": "teastory:black_tea_leaves",
+    "workingtime": 200
+}

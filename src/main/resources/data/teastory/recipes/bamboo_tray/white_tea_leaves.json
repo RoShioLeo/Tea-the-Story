@@ -1,0 +1,8 @@
+{
+    "type": "teastory:bamboo_tray_bake",
+    "ingredient": {
+        "tag": "forge:crops/tea_leaf"
+    },
+    "result": "teastory:white_tea_leaves",
+    "workingtime": 200
+}
