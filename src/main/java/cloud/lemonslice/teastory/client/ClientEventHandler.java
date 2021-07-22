@@ -2,15 +2,17 @@ package cloud.lemonslice.teastory.client;
 
 import cloud.lemonslice.teastory.TeaStory;
 import cloud.lemonslice.teastory.common.config.ServerConfig;
+import cloud.lemonslice.teastory.common.environment.crop.CropHumidityInfo;
+import cloud.lemonslice.teastory.common.environment.crop.CropInfoManager;
+import cloud.lemonslice.teastory.common.environment.crop.CropSeasonInfo;
 import cloud.lemonslice.teastory.common.fluid.NormalFlowingFluidBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.item.BlockItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import static cloud.lemonslice.teastory.common.handler.CommonEventHandler.addCropTooltips;
 
 @Mod.EventBusSubscriber(modid = TeaStory.MODID, value = Dist.CLIENT)
 public final class ClientEventHandler
@@ -35,7 +37,19 @@ public final class ClientEventHandler
     {
         if (ServerConfig.Season.enable.get())
         {
-            addCropTooltips(event);
+            if (event.getItemStack().getItem() instanceof BlockItem)
+            {
+                if (CropInfoManager.getHumidityCrops().contains(((BlockItem) event.getItemStack().getItem()).getBlock()))
+                {
+                    CropHumidityInfo info = CropInfoManager.getHumidityInfo(((BlockItem) event.getItemStack().getItem()).getBlock());
+                    event.getToolTip().addAll(info.getTooltip());
+                }
+                if (CropInfoManager.getSeasonCrops().contains(((BlockItem) event.getItemStack().getItem()).getBlock()))
+                {
+                    CropSeasonInfo info = CropInfoManager.getSeasonInfo(((BlockItem) event.getItemStack().getItem()).getBlock());
+                    event.getToolTip().addAll(info.getTooltip());
+                }
+            }
         }
     }
 }

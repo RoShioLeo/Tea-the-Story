@@ -67,7 +67,7 @@ public class ServerConfig
         {
             builder.push("Agriculture");
             canUseBoneMeal = builder.comment("Can bone meal be used to grow crops?")
-                    .define("BoneMeal", false);
+                    .define("BoneMeal", true);
             useAshAsBoneMeal = builder.comment("Can ash be used as bone meal?")
                     .define("Ash", true);
             builder.pop();

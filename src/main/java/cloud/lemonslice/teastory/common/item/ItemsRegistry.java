@@ -4,9 +4,7 @@ import cloud.lemonslice.teastory.common.block.BlocksRegistry;
 import cloud.lemonslice.teastory.common.item.food.FoodItem;
 import cloud.lemonslice.teastory.common.item.food.NormalFoods;
 import cloud.lemonslice.teastory.registry.RegistryModule;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.capability.ItemFluidContainer;
@@ -18,6 +16,14 @@ import static cloud.lemonslice.teastory.common.item.NormalItem.*;
 
 public final class ItemsRegistry extends RegistryModule
 {
+    // TOOL 工具
+    public static final Item WOODEN_AQUEDUCT_SHOVEL = new AqueductShovelItem("wooden_aqueduct_shovel", ItemTier.WOOD, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+    public static final Item STONE_AQUEDUCT_SHOVEL = new AqueductShovelItem("stone_aqueduct_shovel", ItemTier.STONE, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+    public static final Item GOLD_AQUEDUCT_SHOVEL = new AqueductShovelItem("gold_aqueduct_shovel", ItemTier.GOLD, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+    public static final Item IRON_AQUEDUCT_SHOVEL = new AqueductShovelItem("iron_aqueduct_shovel", ItemTier.IRON, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+    public static final Item DIAMOND_AQUEDUCT_SHOVEL = new AqueductShovelItem("diamond_aqueduct_shovel", ItemTier.DIAMOND, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+//    public static final Item NETHERITE_AQUEDUCT_SHOVEL = new AqueductShovelItem("netherite_aqueduct_shovel", ItemTier.NETHERITE, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+
     // FOOD 食物
     public static final Item DRIED_BEETROOT = new FoodItem("dried_beetroot", NormalFoods.DRIED_BEETROOT);
     public static final Item DRIED_CARROT = new FoodItem("dried_carrot", NormalFoods.DRIED_CARROT);

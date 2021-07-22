@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.world.feature;
 
 import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.block.HybridizableFlowerBlock;
+import cloud.lemonslice.teastory.common.block.crops.HybridizableFlowerBlock;
 import cloud.lemonslice.teastory.common.environment.flower.FlowerColor;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;

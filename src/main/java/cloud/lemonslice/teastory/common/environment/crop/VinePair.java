@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.environment.crop;
 
-import cloud.lemonslice.teastory.common.block.TrellisBlock;
-import cloud.lemonslice.teastory.common.block.VineType;
+import cloud.lemonslice.teastory.common.block.crops.TrellisBlock;
+import cloud.lemonslice.teastory.common.block.crops.VineType;
 
 public class VinePair
 {

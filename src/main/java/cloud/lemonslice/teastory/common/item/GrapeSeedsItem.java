@@ -1,9 +1,9 @@
 package cloud.lemonslice.teastory.common.item;
 
 import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.block.TrellisBlock;
-import cloud.lemonslice.teastory.common.block.TrellisWithVineBlock;
-import cloud.lemonslice.teastory.common.block.VineType;
+import cloud.lemonslice.teastory.common.block.crops.TrellisBlock;
+import cloud.lemonslice.teastory.common.block.crops.TrellisWithVineBlock;
+import cloud.lemonslice.teastory.common.block.crops.VineType;
 import cloud.lemonslice.teastory.common.environment.crop.CropInfoManager;
 import cloud.lemonslice.teastory.common.item.food.NormalFoods;
 import net.minecraft.block.BlockState;

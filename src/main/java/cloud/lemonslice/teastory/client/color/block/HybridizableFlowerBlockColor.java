@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.client.color.block;
 
-import cloud.lemonslice.teastory.common.block.HybridizableFlowerBlock;
+import cloud.lemonslice.teastory.common.block.crops.HybridizableFlowerBlock;
 import cloud.lemonslice.teastory.common.environment.flower.FlowerColor;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.color.IBlockColor;

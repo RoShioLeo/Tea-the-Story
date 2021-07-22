@@ -3,7 +3,7 @@ package cloud.lemonslice.teastory.common.item;
 import cloud.lemonslice.silveroak.helper.BlockHelper;
 import cloud.lemonslice.teastory.TeaStory;
 import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.block.DrinkMakerBlock;
+import cloud.lemonslice.teastory.common.block.drink.DrinkMakerBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;

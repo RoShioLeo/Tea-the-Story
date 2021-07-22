@@ -1,9 +1,9 @@
 package cloud.lemonslice.teastory.common.tileentity;
 
 import cloud.lemonslice.silveroak.common.environment.Humidity;
-import cloud.lemonslice.teastory.common.block.BambooTrayMode;
-import cloud.lemonslice.teastory.common.block.CatapultBoardBlockWithTray;
-import cloud.lemonslice.teastory.common.block.IStoveBlock;
+import cloud.lemonslice.teastory.common.block.tools.BambooTrayMode;
+import cloud.lemonslice.teastory.common.block.tools.CatapultBoardBlockWithTray;
+import cloud.lemonslice.teastory.common.block.tools.IStoveBlock;
 import cloud.lemonslice.teastory.common.inventory.BambooTrayContainer;
 import cloud.lemonslice.teastory.common.recipe.bamboo_tray.BambooTraySingleInRecipe;
 import cloud.lemonslice.teastory.common.recipe.type.NormalRecipeTypes;

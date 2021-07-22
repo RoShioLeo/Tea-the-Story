@@ -66,6 +66,7 @@ public class TeapotTileEntity extends NormalContainerTileEntity
             protected void onContentsChanged()
             {
                 TeapotTileEntity.this.markDirty();
+                TeapotTileEntity.this.refresh();
                 super.onContentsChanged();
             }
 
@@ -100,6 +101,7 @@ public class TeapotTileEntity extends NormalContainerTileEntity
     public void setFluid(Fluid fluid)
     {
         this.fluidTank.ifPresent(f -> f.setFluid(new FluidStack(fluid, getFluidAmount())));
+        this.refresh();
     }
 
     @Nullable
@@ -112,6 +114,6 @@ public class TeapotTileEntity extends NormalContainerTileEntity
     @Override
     protected boolean isOpeningContainer(Container container)
     {
-        return true;
+        return false;
     }
 }

@@ -1,5 +1,12 @@
 package cloud.lemonslice.teastory.common.block;
 
+import cloud.lemonslice.teastory.common.block.crops.*;
+import cloud.lemonslice.teastory.common.block.decorations.*;
+import cloud.lemonslice.teastory.common.block.drink.DrinkMakerBlock;
+import cloud.lemonslice.teastory.common.block.drink.IronKettleBlock;
+import cloud.lemonslice.teastory.common.block.drink.TeapotBlock;
+import cloud.lemonslice.teastory.common.block.drink.WoodenTrayBlock;
+import cloud.lemonslice.teastory.common.block.tools.*;
 import cloud.lemonslice.teastory.common.item.DrinkMakerItem;
 import cloud.lemonslice.teastory.common.item.HybridizableFlowerBlockItem;
 import cloud.lemonslice.teastory.common.item.NormalBlockItem;
@@ -136,6 +143,7 @@ public final class BlocksRegistry extends RegistryModule
     public static final Block RICE_SEEDLING = new RiceSeedlingBlock("rice_seedling");
     public static final Block RICE_PLANT = new RicePlantBlock("rice_plant");
     public static final Block GRAPE = new StemFruitBlock("grape_plant", Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP), VineType.GRAPE);
+    public static final Block WATERMELON_VINE = new MelonVineBlock("watermelon_vine", Blocks.MELON);
 
     public static final BlockItem WILD_TEA_PLANT_ITEM = new NormalBlockItem(WILD_TEA_PLANT);
     public static final BlockItem WILD_GRAPE_ITEM = new NormalBlockItem(WILD_GRAPE);

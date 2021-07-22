@@ -57,6 +57,7 @@ public class ClientProxy extends CommonProxy
         registerCutoutType(BlocksRegistry.TRELLIS_BLOCKS.toArray(new Block[0]));
         registerCutoutType(BlocksRegistry.WILD_GRAPE);
         registerCutoutType(BlocksRegistry.GRAPE);
+        registerCutoutType(BlocksRegistry.WATERMELON_VINE);
         FluidsRegistry.FLUIDS.getEntries().forEach(e -> RenderTypeLookup.setRenderLayer(e.get(), RenderType.getTranslucent()));
         RenderTypeLookup.setRenderLayer(BlocksRegistry.WOODEN_TRAY, RenderType.getTranslucent());
     }

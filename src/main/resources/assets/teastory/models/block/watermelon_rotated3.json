@@ -1,0 +1,57 @@
+{
+    "credit": "MalayP made with Blockbench",
+    "textures": {
+        "1": "teastory:block/watermelon_side",
+        "2": "teastory:block/watermelon_top",
+        "particle": "teastory:block/watermelon_leaves"
+    },
+    "elements": [
+        {
+            "from": [2, 1, 5],
+            "to": [14, 13, 17],
+            "rotation": {
+                "angle": 22.5,
+                "axis": "y",
+                "origin": [6, 5, 13]
+            },
+            "faces": {
+                "north": {
+                    "uv": [0, 0, 12, 12],
+                    "rotation": 90,
+                    "texture": "#2"
+                },
+                "east": {
+                    "uv": [0, 0, 12, 12],
+                    "rotation": 270,
+                    "texture": "#1"
+                },
+                "south": {
+                    "uv": [0, 0, 12, 12],
+                    "rotation": 90,
+                    "texture": "#2"
+                },
+                "west": {
+                    "uv": [0, 0, 12, 12],
+                    "rotation": 90,
+                    "texture": "#1"
+                },
+                "up": {
+                    "uv": [0, 0, 12, 12],
+                    "rotation": 180,
+                    "texture": "#1"
+                },
+                "down": {
+                    "uv": [0, 0, 12, 12],
+                    "texture": "#1"
+                }
+            }
+        }
+    ],
+    "groups": [
+        {
+            "name": "melon rotated 3",
+            "origin": [9, 9, 9],
+            "children": [0]
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "credit": "MalayP made with Blockbench",
+    "textures": {
+        "1": "teastory:block/watermelon_side",
+        "2": "teastory:block/watermelon_top",
+        "particle": "teastory:block/watermelon_leaves"
+    },
+    "elements": [
+        {
+            "from": [1, 1, 3],
+            "to": [13, 13, 15],
+            "rotation": {
+                "angle": 0,
+                "axis": "y",
+                "origin": [9, 9, 11]
+            },
+            "faces": {
+                "north": {
+                    "uv": [0, 0, 12, 12],
+                    "texture": "#1"
+                },
+                "east": {
+                    "uv": [0, 0, 12, 12],
+                    "texture": "#1"
+                },
+                "south": {
+                    "uv": [0, 0, 12, 12],
+                    "texture": "#1"
+                },
+                "west": {
+                    "uv": [0, 0, 12, 12],
+                    "texture": "#1"
+                },
+                "up": {
+                    "uv": [0, 0, 12, 12],
+                    "texture": "#2"
+                },
+                "down": {
+                    "uv": [0, 0, 12, 12],
+                    "texture": "#2"
+                }
+            }
+        }
+    ],
+    "groups": [
+        {
+            "name": "melon stand",
+            "origin": [15.86827, 4, 16.18198],
+            "children": [0]
+        }
+    ]
+}
