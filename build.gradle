@@ -85,7 +85,7 @@ def info = [
 repositories {
     maven {
         name = "silveroak"
-        url = "http://maven.lemonslice.cloud/releases"
+        url = "https://maven.lemonslice.cloud/releases"
     }
     maven {
         url 'https://www.dogforce-games.com/maven/'
@@ -115,58 +115,58 @@ def reobfArtifact = artifacts.add('default', reobfFile) {
     builtBy 'reobfJar'
 }
 
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = "cloud.lemonslice.teastory"
-            artifactId = "TeaStory-Forge-${minecraft_version}"
-
-            artifact reobfArtifact
-            pom {
-                name = 'TechCivilization for Minecraft 1.16.5'
-                description = 'Minecraft mod for Tea.'
-                url = 'https://github.com/lemon-slice-studio/Tea-the-Story'
-                licenses {
-                    license {
-                        name = 'BSD-3-Clause'
-                        url = 'https://github.com/lemon-slice-studio/Tea-the-Story/blob/1.16/LICENSE'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'RoitoLeo'
-                        name = 'RoitoLeo'
-                    }
-                }
-                issueManagement {
-                    system = 'GitHub Issues'
-                    url = 'https://github.com/lemon-slice-studio/Tea-the-Story/issues'
-                }
-                scm {
-                    url = 'https://github.com/lemon-slice-studio/Tea-the-Story'
-                    connection = 'scm:git:git://github.com/lemon-slice-studio/Tea-the-Story.git'
-                    developerConnection = 'scm:git:git@github.com:lemon-slice-studio/Tea-the-Story.git'
-                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            name = "archive"
-            url = "http://maven.lemonslice.cloud/releases"
-            credentials {
-                username = System.env.MAVEN_USERNAME
-                password = System.env.MAVEN_PASSWORD
-            }
-        }
-    }
-}
-
-tasks.withType(PublishToMavenRepository) {
-    onlyIf {
-        System.env.MAVEN_USERNAME && System.env.MAVEN_PASSWORD
-    }
-}
+//publishing {
+//    publications {
+//        release(MavenPublication) {
+//            groupId = "cloud.lemonslice.teastory"
+//            artifactId = "TeaStory-Forge-${minecraft_version}"
+//
+//            artifact reobfArtifact
+//            pom {
+//                name = 'TechCivilization for Minecraft 1.16.5'
+//                description = 'Minecraft mod for Tea.'
+//                url = 'https://github.com/lemon-slice-studio/Tea-the-Story'
+//                licenses {
+//                    license {
+//                        name = 'BSD-3-Clause'
+//                        url = 'https://github.com/lemon-slice-studio/Tea-the-Story/blob/1.16/LICENSE'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id = 'RoitoLeo'
+//                        name = 'RoitoLeo'
+//                    }
+//                }
+//                issueManagement {
+//                    system = 'GitHub Issues'
+//                    url = 'https://github.com/lemon-slice-studio/Tea-the-Story/issues'
+//                }
+//                scm {
+//                    url = 'https://github.com/lemon-slice-studio/Tea-the-Story'
+//                    connection = 'scm:git:git://github.com/lemon-slice-studio/Tea-the-Story.git'
+//                    developerConnection = 'scm:git:git@github.com:lemon-slice-studio/Tea-the-Story.git'
+//                }
+//            }
+//        }
+//    }
+//    repositories {
+//        maven {
+//            name = "archive"
+//            url = "https://maven.lemonslice.cloud/releases"
+//            credentials {
+//                username = System.env.MAVEN_USERNAME
+//                password = System.env.MAVEN_PASSWORD
+//            }
+//        }
+//    }
+//}
+//
+//tasks.withType(PublishToMavenRepository) {
+//    onlyIf {
+//        System.env.MAVEN_USERNAME && System.env.MAVEN_PASSWORD
+//    }
+//}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
