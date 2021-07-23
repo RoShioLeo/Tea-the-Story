@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.block.crops;
 
-import cloud.lemonslice.teastory.common.block.NormalBlock;
+import cloud.lemonslice.silveroak.common.block.NormalBlock;
 import com.google.common.collect.Lists;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;

@@ -1,8 +1,9 @@
 package cloud.lemonslice.teastory.common.item;
 
+import cloud.lemonslice.silveroak.common.item.NormalBlockItem;
 import cloud.lemonslice.silveroak.helper.BlockHelper;
 import cloud.lemonslice.teastory.TeaStory;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.block.drink.DrinkMakerBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,7 +23,7 @@ public class DrinkMakerItem extends NormalBlockItem
 {
     public DrinkMakerItem()
     {
-        super(BlocksRegistry.DRINK_MAKER, new Properties().group(TeaStory.GROUP_CORE));
+        super(BlockRegistry.DRINK_MAKER, new Properties().group(TeaStory.GROUP_CORE));
     }
 
     @Override
@@ -72,7 +73,7 @@ public class DrinkMakerItem extends NormalBlockItem
                 if (left || right)
                 {
                     BlockState iblockstate1 = worldIn.getBlockState(blockpos);
-                    BlockState iblockstate2 = BlocksRegistry.DRINK_MAKER.getDefaultState().with(DrinkMakerBlock.LEFT, left).with(DrinkMakerBlock.HORIZONTAL_FACING, enumfacing);
+                    BlockState iblockstate2 = BlockRegistry.DRINK_MAKER.getDefaultState().with(DrinkMakerBlock.LEFT, left).with(DrinkMakerBlock.HORIZONTAL_FACING, enumfacing);
                     worldIn.setBlockState(pos, iblockstate2, 10);
                     worldIn.setBlockState(blockpos, iblockstate2.with(DrinkMakerBlock.LEFT, !left), 10);
                     SoundType soundtype = iblockstate2.getBlock().getSoundType(iblockstate2, worldIn, pos, player);

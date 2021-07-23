@@ -1,5 +1,6 @@
 package cloud.lemonslice.teastory.common.item;
 
+import cloud.lemonslice.silveroak.common.item.NormalItem;
 import net.minecraft.item.ItemStack;
 
 public class NormalBurntItem extends NormalItem
@@ -14,7 +15,7 @@ public class NormalBurntItem extends NormalItem
 
     public NormalBurntItem(String name, int burnTime)
     {
-        super(name);
+        super(name, ItemRegistry.getNormalItemProperties());
         this.burnTime = burnTime;
     }
 

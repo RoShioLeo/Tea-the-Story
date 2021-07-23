@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.block.crops;
 
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -48,7 +48,7 @@ public class RicePlantBlock extends CropsBlock
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos)
     {
-        return state.getBlock() == BlocksRegistry.PADDY_FIELD;
+        return state.getBlock() == BlockRegistry.PADDY_FIELD;
     }
 
     protected boolean canPlantSeedlings(BlockState state, IBlockReader worldIn, BlockPos pos)
@@ -143,7 +143,7 @@ public class RicePlantBlock extends CropsBlock
     @Override
     protected IItemProvider getSeedsItem()
     {
-        return ItemsRegistry.RICE_SEEDS;
+        return ItemRegistry.RICE_SEEDS;
     }
 
     @Override
@@ -152,9 +152,9 @@ public class RicePlantBlock extends CropsBlock
         int age = state.get(AGE);
         if (age > 0)
         {
-            return new ItemStack(ItemsRegistry.RICE_SEEDS);
+            return new ItemStack(ItemRegistry.RICE_SEEDS);
         }
-        else return new ItemStack(ItemsRegistry.RICE_SEEDLINGS);
+        else return new ItemStack(ItemRegistry.RICE_SEEDLINGS);
     }
 
     @Override
@@ -164,11 +164,11 @@ public class RicePlantBlock extends CropsBlock
         List<ItemStack> list = Lists.newArrayList();
         if (getAge(state) < 7)
         {
-            list.add(new ItemStack(ItemsRegistry.RICE_SEEDLINGS));
+            list.add(new ItemStack(ItemRegistry.RICE_SEEDLINGS));
         }
         else
         {
-            list.add(new ItemStack(ItemsRegistry.RICE_SEEDS, builder.getWorld().rand.nextInt(4) + 1));
+            list.add(new ItemStack(ItemRegistry.RICE_SEEDS, builder.getWorld().rand.nextInt(4) + 1));
         }
         return list;
     }

@@ -3,8 +3,8 @@ package cloud.lemonslice.teastory.plugin.jei;
 import cloud.lemonslice.teastory.TeaStory;
 import cloud.lemonslice.teastory.client.gui.BambooTrayGuiContainer;
 import cloud.lemonslice.teastory.client.gui.DrinkMakerGuiContainer;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import cloud.lemonslice.teastory.common.recipe.type.NormalRecipeTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -50,19 +50,19 @@ public class JEICompat implements IModPlugin
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registration)
     {
-        registration.useNbtForSubtypes(BlocksRegistry.CHRYSANTHEMUM_ITEM, BlocksRegistry.HYACINTH_ITEM, BlocksRegistry.ZINNIA_ITEM, ItemsRegistry.BOTTLE_DRINK, ItemsRegistry.PORCELAIN_CUP_DRINK, ItemsRegistry.PORCELAIN_TEAPOT);
+        registration.useNbtForSubtypes(BlockRegistry.CHRYSANTHEMUM_ITEM, BlockRegistry.HYACINTH_ITEM, BlockRegistry.ZINNIA_ITEM, ItemRegistry.BOTTLE_DRINK, ItemRegistry.PORCELAIN_CUP_DRINK, ItemRegistry.PORCELAIN_TEAPOT);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
     {
-        registration.addRecipeCatalyst(new ItemStack(BlocksRegistry.BAMBOO_TRAY),
+        registration.addRecipeCatalyst(new ItemStack(BlockRegistry.BAMBOO_TRAY),
                 new ResourceLocation(TeaStory.MODID, IN_RAIN),
                 new ResourceLocation(TeaStory.MODID, OUTDOORS),
                 new ResourceLocation(TeaStory.MODID, INDOORS),
                 new ResourceLocation(TeaStory.MODID, BAKE)
         );
-        registration.addRecipeCatalyst(new ItemStack(BlocksRegistry.DRINK_MAKER), new ResourceLocation(TeaStory.MODID, DRINK_MAKER));
+        registration.addRecipeCatalyst(new ItemStack(BlockRegistry.DRINK_MAKER), new ResourceLocation(TeaStory.MODID, DRINK_MAKER));
     }
 
     @Override

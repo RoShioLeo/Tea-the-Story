@@ -1,12 +1,12 @@
 package cloud.lemonslice.teastory.common.block.tools;
 
+import cloud.lemonslice.silveroak.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.block.NormalHorizontalBlock;
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import cloud.lemonslice.teastory.common.tileentity.NormalContainerTileEntity;
 import cloud.lemonslice.teastory.common.tileentity.StoveTileEntity;
-import cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry;
+import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -121,7 +121,7 @@ public class StoveBlock extends NormalHorizontalBlock implements IStoveBlock
     {
         TileEntity te = worldIn.getTileEntity(pos);
         Item held = player.getHeldItem(handIn).getItem();
-        if (held == BlocksRegistry.BAMBOO_TRAY_ITEM || held == ItemsRegistry.IRON_KETTLE)
+        if (held == BlockRegistry.BAMBOO_TRAY_ITEM || held == ItemRegistry.IRON_KETTLE)
         {
             return ActionResultType.PASS;
         }
@@ -177,7 +177,7 @@ public class StoveBlock extends NormalHorizontalBlock implements IStoveBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return TileEntityTypesRegistry.STOVE_TILE.create();
+        return TileEntityTypeRegistry.STOVE_TILE.create();
     }
 
     private void dropAsh(World worldIn, BlockPos pos)

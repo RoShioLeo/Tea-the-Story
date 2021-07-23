@@ -1,11 +1,11 @@
 package cloud.lemonslice.teastory.common.block.tools;
 
+import cloud.lemonslice.silveroak.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
-import cloud.lemonslice.teastory.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.teastory.common.recipe.bamboo_tray.BambooTraySingleInRecipe;
 import cloud.lemonslice.teastory.common.tileentity.BambooTrayTileEntity;
 import cloud.lemonslice.teastory.common.tileentity.NormalContainerTileEntity;
-import cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry;
+import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -231,6 +231,6 @@ public class CatapultBoardBlockWithTray extends NormalHorizontalBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return TileEntityTypesRegistry.BAMBOO_TRAY.create();
+        return TileEntityTypeRegistry.BAMBOO_TRAY.create();
     }
 }

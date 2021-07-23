@@ -1,7 +1,8 @@
 package cloud.lemonslice.teastory.common.item;
 
+import cloud.lemonslice.silveroak.common.item.NormalBlockItem;
 import cloud.lemonslice.teastory.TeaStory;
-import cloud.lemonslice.teastory.common.fluid.FluidsRegistry;
+import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
@@ -137,7 +138,7 @@ public class TeapotItem extends NormalBlockItem
             }
             ItemStack itemStack = new ItemStack(this);
             CompoundNBT fluidTag = new CompoundNBT();
-            new FluidStack(FluidsRegistry.BOILING_WATER_STILL.get(), capacity).writeToNBT(fluidTag);
+            new FluidStack(FluidRegistry.BOILING_WATER_STILL.get(), capacity).writeToNBT(fluidTag);
             itemStack.getOrCreateTag().put(FLUID_NBT_KEY, fluidTag);
             items.add(itemStack);
         }

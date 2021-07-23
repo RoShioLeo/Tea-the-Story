@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.block.crops;
 
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.block.HorizontalConnectedBlock;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
@@ -41,7 +41,7 @@ public class TrellisBlock extends HorizontalConnectedBlock implements IWaterLogg
     {
         super(name, properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL, false).with(POST, false).with(UP, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
-        BlocksRegistry.TRELLIS_BLOCKS.add(this);
+        BlockRegistry.TRELLIS_BLOCKS.add(this);
     }
 
     @Override

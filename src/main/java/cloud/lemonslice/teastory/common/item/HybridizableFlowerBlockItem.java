@@ -1,5 +1,6 @@
 package cloud.lemonslice.teastory.common.item;
 
+import cloud.lemonslice.silveroak.common.item.NormalBlockItem;
 import cloud.lemonslice.teastory.common.environment.flower.FlowerColor;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -15,11 +16,12 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
+
 public class HybridizableFlowerBlockItem extends NormalBlockItem
 {
     public HybridizableFlowerBlockItem(Block blockIn)
     {
-        super(blockIn);
+        super(blockIn, ItemRegistry.getNormalItemProperties());
     }
 
     @Override

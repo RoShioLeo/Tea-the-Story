@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "half=lower": {
+            "model": "teastory:block/dry_haystack_down"
+        },
+        "half=upper": {
+            "model": "teastory:block/dry_haystack_up"
+        }
+    }
+}

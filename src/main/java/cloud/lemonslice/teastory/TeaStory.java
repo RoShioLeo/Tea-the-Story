@@ -5,24 +5,24 @@ import cloud.lemonslice.teastory.client.color.block.BlockColorsRegistry;
 import cloud.lemonslice.teastory.client.color.item.ItemColorsRegistry;
 import cloud.lemonslice.teastory.client.sound.SoundEventsRegistry;
 import cloud.lemonslice.teastory.common.CommonProxy;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.capability.CapabilitiesRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
+import cloud.lemonslice.teastory.common.capability.CapabilityRegistry;
 import cloud.lemonslice.teastory.common.command.SolarCommand;
 import cloud.lemonslice.teastory.common.config.NormalConfigs;
-import cloud.lemonslice.teastory.common.entity.EntityTypesRegistry;
+import cloud.lemonslice.teastory.common.entity.EntityTypeRegistry;
 import cloud.lemonslice.teastory.common.environment.crop.CropInfoManager;
 import cloud.lemonslice.teastory.common.environment.solar.BiomeTemperatureManager;
-import cloud.lemonslice.teastory.common.fluid.FluidsRegistry;
+import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
 import cloud.lemonslice.teastory.common.group.GroupCore;
 import cloud.lemonslice.teastory.common.group.GroupDrink;
-import cloud.lemonslice.teastory.common.inventory.ContainerTypesRegistry;
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.inventory.ContainerTypeRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import cloud.lemonslice.teastory.common.network.SimpleNetworkHandler;
-import cloud.lemonslice.teastory.common.potion.EffectsRegistry;
-import cloud.lemonslice.teastory.common.recipe.drink.DrinkEffectsManager;
-import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializersRegistry;
-import cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry;
-import cloud.lemonslice.teastory.common.world.feature.FeaturesRegistry;
+import cloud.lemonslice.teastory.common.potion.EffectRegistry;
+import cloud.lemonslice.teastory.common.recipe.drink.DrinkEffectManager;
+import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializerRegistry;
+import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
+import cloud.lemonslice.teastory.common.world.feature.FeatureRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -54,24 +54,24 @@ public final class TeaStory
         MinecraftForge.EVENT_BUS.addListener(this::serverStarting);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, NormalConfigs.SERVER_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, NormalConfigs.CLIENT_CONFIG);
-        FluidsRegistry.FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        FluidsRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        FluidsRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        RecipeSerializersRegistry.RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        new BlocksRegistry();
-        new ItemsRegistry();
-        new EffectsRegistry();
-        new TileEntityTypesRegistry();
-        new EntityTypesRegistry();
-        new FeaturesRegistry();
+        FluidRegistry.FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        FluidRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        FluidRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        RecipeSerializerRegistry.RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        new BlockRegistry();
+        new ItemRegistry();
+        new EffectRegistry();
+        new TileEntityTypeRegistry();
+        new EntityTypeRegistry();
+        new FeatureRegistry();
         new SoundEventsRegistry();
-        new ContainerTypesRegistry();
+        new ContainerTypeRegistry();
     }
 
     public void setup(FMLCommonSetupEvent event)
     {
-        DrinkEffectsManager.init();
-        CapabilitiesRegistry.init();
+        DrinkEffectManager.init();
+        CapabilityRegistry.init();
         SimpleNetworkHandler.init();
         BiomeTemperatureManager.init();
         CommonProxy.registerCompostable();
@@ -85,7 +85,7 @@ public final class TeaStory
         ClientProxy.initBiomeColors();
         ClientProxy.registerRenderType();
         ClientProxy.registerEntityRenderer();
-        ContainerTypesRegistry.clientInit();
+        ContainerTypeRegistry.clientInit();
     }
 
     public void serverStarting(FMLServerStartingEvent event)
@@ -95,7 +95,7 @@ public final class TeaStory
 
     public void interModEnqueue(InterModEnqueueEvent event)
     {
-        BlocksRegistry.TRELLIS_BLOCKS = null;
+        BlockRegistry.TRELLIS_BLOCKS = null;
     }
 
     public static final ItemGroup GROUP_CORE = new GroupCore();

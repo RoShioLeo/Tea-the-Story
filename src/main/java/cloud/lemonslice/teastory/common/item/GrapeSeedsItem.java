@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.item;
 
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.block.crops.TrellisBlock;
 import cloud.lemonslice.teastory.common.block.crops.TrellisWithVineBlock;
 import cloud.lemonslice.teastory.common.block.crops.VineType;
@@ -14,13 +14,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Tags;
 
-import static cloud.lemonslice.teastory.common.item.NormalItem.getNormalItemProperties;
+import static cloud.lemonslice.teastory.common.item.ItemRegistry.getNormalItemProperties;
 
 public class GrapeSeedsItem extends BlockNamedItem
 {
     public GrapeSeedsItem()
     {
-        super(BlocksRegistry.GRAPE, getNormalItemProperties().food(NormalFoods.GRAPE));
+        super(BlockRegistry.GRAPE, getNormalItemProperties().food(NormalFoods.GRAPE));
         this.setRegistryName("grapes");
     }
 

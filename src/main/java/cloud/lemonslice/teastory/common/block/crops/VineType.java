@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.block.crops;
 
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 
@@ -12,7 +12,7 @@ public enum VineType
     {
         if (getName().equals("grape"))
         {
-            return BlocksRegistry.GRAPE;
+            return BlockRegistry.GRAPE;
         }
         else return Blocks.AIR;
     }

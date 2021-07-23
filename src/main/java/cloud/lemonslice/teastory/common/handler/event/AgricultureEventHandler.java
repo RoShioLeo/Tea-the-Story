@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.handler.event;
 
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.block.crops.AqueductBlock;
 import cloud.lemonslice.teastory.common.block.crops.MelonVineBlock;
 import cloud.lemonslice.teastory.common.block.crops.TeaPlantBlock;
@@ -66,13 +66,15 @@ public final class AgricultureEventHandler
         {
             if (event.getState().getBlock() instanceof FarmlandBlock)
             {
-                event.setFinalState(BlocksRegistry.PADDY_FIELD.getDefaultState());
+                event.setFinalState(BlockRegistry.PADDY_FIELD.getDefaultState());
+                event.setCanceled(true);
                 return;
             }
             if (event.getState().getBlock().isIn(Tags.Blocks.DIRT) || event.getState().getMaterial() == Material.EARTH)
             {
-                event.setFinalState(((AqueductBlock) BlocksRegistry.DIRT_AQUEDUCT).getStateForPlacement((World) event.getWorld(), event.getPos()));
-                event.getWorld().getPendingBlockTicks().scheduleTick(event.getPos(), BlocksRegistry.DIRT_AQUEDUCT, Fluids.WATER.getTickRate(event.getWorld()));
+                event.setFinalState(((AqueductBlock) BlockRegistry.DIRT_AQUEDUCT).getStateForPlacement((World) event.getWorld(), event.getPos()));
+                event.getWorld().getPendingBlockTicks().scheduleTick(event.getPos(), BlockRegistry.DIRT_AQUEDUCT, Fluids.WATER.getTickRate(event.getWorld()));
+                event.setCanceled(true);
             }
         }
     }
@@ -89,7 +91,7 @@ public final class AgricultureEventHandler
         {
             if (melon_seeds.getItem() == Items.MELON_SEEDS && toPlace.isAir())
             {
-                event.getWorld().setBlockState(posToPlace, BlocksRegistry.WATERMELON_VINE.getDefaultState());
+                event.getWorld().setBlockState(posToPlace, BlockRegistry.WATERMELON_VINE.getDefaultState());
                 event.getWorld().playSound(null, posToPlace, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 if (!event.getPlayer().isCreative())
                 {

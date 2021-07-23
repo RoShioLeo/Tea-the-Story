@@ -16,7 +16,7 @@ public class SeatEntity extends Entity
 {
     public SeatEntity(World worldIn)
     {
-        super(EntityTypesRegistry.SEAT_ENTITY, worldIn);
+        super(EntityTypeRegistry.SEAT_ENTITY, worldIn);
     }
 
     private SeatEntity(World world, BlockPos pos, double height, double x, double z)

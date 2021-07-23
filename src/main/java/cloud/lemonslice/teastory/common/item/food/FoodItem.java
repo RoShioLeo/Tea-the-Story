@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.item.food;
 
-import cloud.lemonslice.teastory.common.item.NormalItem;
+import cloud.lemonslice.silveroak.common.item.NormalItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.ItemGroup;
 

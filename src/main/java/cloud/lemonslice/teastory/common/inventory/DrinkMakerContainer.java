@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.inventory;
 
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.tileentity.DrinkMakerTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -19,7 +19,7 @@ public class DrinkMakerContainer extends NormalContainer
 
     public DrinkMakerContainer(int windowId, PlayerInventory inv, BlockPos pos, World world)
     {
-        super(ContainerTypesRegistry.DRINK_MAKER_CONTAINER, windowId);
+        super(ContainerTypeRegistry.DRINK_MAKER_CONTAINER, windowId);
         this.tileEntity = (DrinkMakerTileEntity) world.getTileEntity(pos);
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.UP).ifPresent(h ->
         {
@@ -44,7 +44,7 @@ public class DrinkMakerContainer extends NormalContainer
     @Override
     public boolean canInteractWith(PlayerEntity playerIn)
     {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, BlocksRegistry.DRINK_MAKER);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, BlockRegistry.DRINK_MAKER);
     }
 
     @Override

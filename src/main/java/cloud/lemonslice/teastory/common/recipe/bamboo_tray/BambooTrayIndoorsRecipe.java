@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.recipe.bamboo_tray;
 
-import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializersRegistry;
+import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializerRegistry;
 import cloud.lemonslice.teastory.common.recipe.type.NormalRecipeTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -18,7 +18,7 @@ public class BambooTrayIndoorsRecipe extends BambooTraySingleInRecipe
     @Override
     public IRecipeSerializer<?> getSerializer()
     {
-        return RecipeSerializersRegistry.BAMBOO_TRAY_INDOORS.get();
+        return RecipeSerializerRegistry.BAMBOO_TRAY_INDOORS.get();
     }
 
     @Override

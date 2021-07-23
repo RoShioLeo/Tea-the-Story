@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.handler.event;
 
-import cloud.lemonslice.teastory.common.potion.EffectsRegistry;
+import cloud.lemonslice.teastory.common.potion.EffectRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundEvents;
@@ -16,7 +16,7 @@ public final class DrinkEffectEventHandler
     {
         if (event.getEntityLiving().isServerWorld())
         {
-            EffectInstance effect = event.getEntityLiving().getActivePotionEffect(EffectsRegistry.AGILITY);
+            EffectInstance effect = event.getEntityLiving().getActivePotionEffect(EffectRegistry.AGILITY);
             if (effect != null)
             {
                 if (event.getEntityLiving().getRNG().nextFloat() < ((effect.getAmplifier() + 1) * 0.15F + 0.05F))
@@ -31,7 +31,7 @@ public final class DrinkEffectEventHandler
     {
         if (event.getEntityLiving().isServerWorld())
         {
-            if (event.getEntityLiving().getActivePotionEffect(EffectsRegistry.DEFENCE) != null)
+            if (event.getEntityLiving().getActivePotionEffect(EffectRegistry.DEFENCE) != null)
             {
                 if (event instanceof LivingHurtEvent)
                 {
@@ -46,7 +46,7 @@ public final class DrinkEffectEventHandler
     {
         if (event.getEntityLiving().isServerWorld())
         {
-            EffectInstance effect = event.getEntityLiving().getActivePotionEffect(EffectsRegistry.LIFE_DRAIN);
+            EffectInstance effect = event.getEntityLiving().getActivePotionEffect(EffectRegistry.LIFE_DRAIN);
             if (effect != null)
             {
                 int level = effect.getAmplifier() + 1;
@@ -64,7 +64,7 @@ public final class DrinkEffectEventHandler
     {
         if (!event.getPlayer().world.isRemote)
         {
-            EffectInstance effect = event.getPlayer().getActivePotionEffect(EffectsRegistry.EXCITEMENT);
+            EffectInstance effect = event.getPlayer().getActivePotionEffect(EffectRegistry.EXCITEMENT);
             if (effect != null)
             {
                 event.setResult(PlayerEntity.SleepResult.OTHER_PROBLEM);

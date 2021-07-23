@@ -1,8 +1,8 @@
 package cloud.lemonslice.teastory.common.item;
 
 import cloud.lemonslice.teastory.TeaStory;
-import cloud.lemonslice.teastory.common.fluid.FluidsRegistry;
-import cloud.lemonslice.teastory.common.recipe.drink.DrinkEffectsManager;
+import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
+import cloud.lemonslice.teastory.common.recipe.drink.DrinkEffectManager;
 import cloud.lemonslice.teastory.data.tag.NormalTags;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -91,7 +91,7 @@ public class CupDrinkItem extends ItemFluidContainer
             }
             ItemStack itemStack = new ItemStack(this);
             CompoundNBT fluidTag = new CompoundNBT();
-            new FluidStack(FluidsRegistry.BOILING_WATER_STILL.get(), capacity).writeToNBT(fluidTag);
+            new FluidStack(FluidRegistry.BOILING_WATER_STILL.get(), capacity).writeToNBT(fluidTag);
             itemStack.getOrCreateTag().put(FLUID_NBT_KEY, fluidTag);
             items.add(itemStack);
         }
@@ -132,7 +132,7 @@ public class CupDrinkItem extends ItemFluidContainer
         if (canDrink(stack))
         {
             worldIn.playSound(null, entityLiving.getPosX(), entityLiving.getPosY(), entityLiving.getPosZ(), entityLiving.getEatSound(stack), SoundCategory.NEUTRAL, 1.0F, 1.0F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.4F);
-            FluidUtil.getFluidContained(stack).ifPresent(h -> DrinkEffectsManager.getEffects(h.getFluid()).accept(entityLiving, h.getAmount()));
+            FluidUtil.getFluidContained(stack).ifPresent(h -> DrinkEffectManager.getEffects(h.getFluid()).accept(entityLiving, h.getAmount()));
             if (entityLiving instanceof PlayerEntity)
             {
                 ItemHandlerHelper.giveItemToPlayer((PlayerEntity) entityLiving, new ItemStack(this.getContainerItem()));
@@ -146,7 +146,7 @@ public class CupDrinkItem extends ItemFluidContainer
     {
         if (stack.getChildTag(FLUID_NBT_KEY) != null)
         {
-            return FluidUtil.getFluidContained(stack).map(f -> DrinkEffectsManager.getEffects(f.getFluid()) != null).orElse(false);
+            return FluidUtil.getFluidContained(stack).map(f -> DrinkEffectManager.getEffects(f.getFluid()) != null).orElse(false);
         }
         return false;
     }

@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.plugin.jei;
 
 import cloud.lemonslice.teastory.TeaStory;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.recipe.drink.DrinkRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -29,7 +29,7 @@ public class DrinkMakerCategory implements IRecipeCategory<DrinkRecipe>
     public DrinkMakerCategory(IGuiHelper guiHelper)
     {
         this.guiHelper = guiHelper;
-        icon = guiHelper.createDrawableIngredient(BlocksRegistry.DRINK_MAKER_ITEM.getDefaultInstance());
+        icon = guiHelper.createDrawableIngredient(BlockRegistry.DRINK_MAKER_ITEM.getDefaultInstance());
     }
 
     @Override

@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.group;
 
-import cloud.lemonslice.teastory.common.fluid.FluidsRegistry;
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -20,9 +20,9 @@ public class GroupDrink extends ItemGroup
     @Override
     public ItemStack createIcon()
     {
-        ItemStack itemStack = new ItemStack(ItemsRegistry.PORCELAIN_CUP_DRINK);
+        ItemStack itemStack = new ItemStack(ItemRegistry.PORCELAIN_CUP_DRINK);
         CompoundNBT fluidTag = new CompoundNBT();
-        new FluidStack(FluidsRegistry.SUGARY_WATER_STILL.get(), 500).writeToNBT(fluidTag);
+        new FluidStack(FluidRegistry.SUGARY_WATER_STILL.get(), 500).writeToNBT(fluidTag);
         itemStack.getOrCreateTag().put(FLUID_NBT_KEY, fluidTag);
         return itemStack;
     }

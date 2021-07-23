@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.world.feature;
 
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -23,7 +23,7 @@ public class BambooDirtFeature extends Feature<NoFeatureConfig>
     @Override
     public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config)
     {
-        BlockState blockstate = BlocksRegistry.GRASS_BLOCK_WITH_HOLE.getDefaultState();
+        BlockState blockstate = BlockRegistry.GRASS_BLOCK_WITH_HOLE.getDefaultState();
         int i = 0;
         for (int j = 0; j < 4; ++j)
         {

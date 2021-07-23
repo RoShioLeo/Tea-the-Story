@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.block.crops;
 
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -54,7 +54,7 @@ public class WildGrapeBlock extends BushBlock
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
     {
         List<ItemStack> list = Lists.newArrayList();
-        list.add(new ItemStack(ItemsRegistry.GRAPES, builder.getWorld().rand.nextInt(4) + 1));
+        list.add(new ItemStack(ItemRegistry.GRAPES, builder.getWorld().rand.nextInt(4) + 1));
         return list;
     }
 }

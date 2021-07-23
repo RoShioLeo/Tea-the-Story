@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-import static cloud.lemonslice.teastory.common.inventory.ContainerTypesRegistry.BAMBOO_TRAY_CONTAINER;
+import static cloud.lemonslice.teastory.common.inventory.ContainerTypeRegistry.BAMBOO_TRAY_CONTAINER;
 
 public class BambooTrayContainer extends Container
 {

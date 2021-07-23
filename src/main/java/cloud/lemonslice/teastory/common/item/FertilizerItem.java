@@ -1,5 +1,6 @@
 package cloud.lemonslice.teastory.common.item;
 
+import cloud.lemonslice.silveroak.common.item.NormalItem;
 import cloud.lemonslice.teastory.TeaStory;
 import cloud.lemonslice.teastory.common.config.ServerConfig;
 import net.minecraft.item.ItemUseContext;

@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-import static cloud.lemonslice.teastory.common.inventory.ContainerTypesRegistry.STOVE_CONTAINER;
+import static cloud.lemonslice.teastory.common.inventory.ContainerTypeRegistry.STOVE_CONTAINER;
 
 public class StoveContainer extends Container
 {

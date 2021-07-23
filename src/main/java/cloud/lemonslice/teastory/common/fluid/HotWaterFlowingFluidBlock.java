@@ -81,22 +81,22 @@ public class HotWaterFlowingFluidBlock extends NormalFlowingFluidBlock
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
     {
-        if (state.getBlock() == FluidsRegistry.WARM_WATER.get() && worldIn.getBlockState(pos.down(2)).getBlock() instanceof CampfireBlock)
+        if (state.getBlock() == FluidRegistry.WARM_WATER.get() && worldIn.getBlockState(pos.down(2)).getBlock() instanceof CampfireBlock)
         {
         }
         else if (state.getFluidState().getLevel() == 8 && random.nextInt(10) == 0)
         {
             if (state.getFluidState().getFluid().getAttributes().getTemperature() >= 373)
             {
-                worldIn.setBlockState(pos, FluidsRegistry.HOT_WATER_80.get().getDefaultState());
+                worldIn.setBlockState(pos, FluidRegistry.HOT_WATER_80.get().getDefaultState());
             }
             else if (state.getFluidState().getFluid().getAttributes().getTemperature() >= 353)
             {
-                worldIn.setBlockState(pos, FluidsRegistry.HOT_WATER_60.get().getDefaultState());
+                worldIn.setBlockState(pos, FluidRegistry.HOT_WATER_60.get().getDefaultState());
             }
             else if (state.getFluidState().getFluid().getAttributes().getTemperature() >= 318)
             {
-                worldIn.setBlockState(pos, FluidsRegistry.WARM_WATER.get().getDefaultState());
+                worldIn.setBlockState(pos, FluidRegistry.WARM_WATER.get().getDefaultState());
             }
             else
             {

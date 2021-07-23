@@ -1,11 +1,11 @@
 package cloud.lemonslice.teastory.common.block.drink;
 
+import cloud.lemonslice.silveroak.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.teastory.client.sound.SoundEventsRegistry;
-import cloud.lemonslice.teastory.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.teastory.common.block.tools.IStoveBlock;
-import cloud.lemonslice.teastory.common.fluid.FluidsRegistry;
+import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
 import cloud.lemonslice.teastory.common.tileentity.TeapotTileEntity;
-import cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry;
+import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -71,7 +71,7 @@ public class TeapotBlock extends NormalHorizontalBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return TileEntityTypesRegistry.TEAPOT.create();
+        return TileEntityTypeRegistry.TEAPOT.create();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class TeapotBlock extends NormalHorizontalBlock
         double d2 = pos.getZ() + 0.5D;
         double d4 = rand.nextDouble() * 0.6D - 0.3D;
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        if (tileentity instanceof TeapotTileEntity && ((TeapotTileEntity) tileentity).getFluid() == FluidsRegistry.BOILING_WATER_STILL.get())
+        if (tileentity instanceof TeapotTileEntity && ((TeapotTileEntity) tileentity).getFluid() == FluidRegistry.BOILING_WATER_STILL.get())
         {
             worldIn.addParticle(ParticleTypes.CLOUD, false, d0 + d4, d1 + 0.5D, d2 + d4, 0.0D, 0.1D, 0.0D);
         }
@@ -105,7 +105,7 @@ public class TeapotBlock extends NormalHorizontalBlock
         {
             if (IStoveBlock.isBurning(worldIn, pos.down()) && ((TeapotTileEntity) tileentity).getFluid() == Fluids.WATER)
             {
-                ((TeapotTileEntity) tileentity).setFluid(FluidsRegistry.BOILING_WATER_STILL.get());
+                ((TeapotTileEntity) tileentity).setFluid(FluidRegistry.BOILING_WATER_STILL.get());
             }
         }
     }

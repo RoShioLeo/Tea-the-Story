@@ -2,7 +2,7 @@ package cloud.lemonslice.teastory.common.tileentity;
 
 import cloud.lemonslice.teastory.common.block.tools.StoveBlock;
 import cloud.lemonslice.teastory.common.inventory.StoveContainer;
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -22,7 +22,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry.STOVE_TILE;
+import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry.STOVE_TILE;
 import static net.minecraft.state.properties.BlockStateProperties.LIT;
 
 public class StoveTileEntity extends NormalContainerTileEntity implements ITickableTileEntity
@@ -138,7 +138,7 @@ public class StoveTileEntity extends NormalContainerTileEntity implements ITicka
                 {
                     this.fuelInventory.orElse(new ItemStackHandler()).extractItem(0, 1, false);
                 }
-                this.ashInventory.orElse(new ItemStackHandler()).insertItem(0, new ItemStack(ItemsRegistry.ASH), false);
+                this.ashInventory.orElse(new ItemStackHandler()).insertItem(0, new ItemStack(ItemRegistry.ASH), false);
                 this.markDirty();
                 StoveBlock.setState(true, getWorld(), pos);
                 this.lit = true;
@@ -205,7 +205,7 @@ public class StoveTileEntity extends NormalContainerTileEntity implements ITicka
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack)
             {
-                return stack.getItem().equals(ItemsRegistry.ASH);
+                return stack.getItem().equals(ItemRegistry.ASH);
             }
         };
     }

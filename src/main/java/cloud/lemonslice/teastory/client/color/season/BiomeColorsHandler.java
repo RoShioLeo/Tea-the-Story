@@ -1,8 +1,8 @@
 package cloud.lemonslice.teastory.client.color.season;
 
+import cloud.lemonslice.silveroak.helper.ColorHelper;
 import cloud.lemonslice.teastory.common.capability.CapabilitySolarTermTime;
 import cloud.lemonslice.teastory.common.environment.solar.SolarTerm;
-import cloud.lemonslice.teastory.helper.ColorHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.FoliageColors;

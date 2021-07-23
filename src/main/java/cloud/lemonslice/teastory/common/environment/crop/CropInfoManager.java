@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.environment.crop;
 
 import cloud.lemonslice.teastory.TeaStory;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.block.crops.TrellisBlock;
 import cloud.lemonslice.teastory.common.block.crops.TrellisWithVineBlock;
 import cloud.lemonslice.teastory.common.block.crops.VineType;
@@ -39,12 +39,12 @@ public final class CropInfoManager
 
     public static void initTrellisBlocks()
     {
-        registerVineTypeConnections(VineType.GRAPE, BlocksRegistry.OAK_TRELLIS, BlocksRegistry.OAK_TRELLIS_GRAPE);
-        registerVineTypeConnections(VineType.GRAPE, BlocksRegistry.BIRCH_TRELLIS, BlocksRegistry.BIRCH_TRELLIS_GRAPE);
-        registerVineTypeConnections(VineType.GRAPE, BlocksRegistry.JUNGLE_TRELLIS, BlocksRegistry.JUNGLE_TRELLIS_GRAPE);
-        registerVineTypeConnections(VineType.GRAPE, BlocksRegistry.SPRUCE_TRELLIS, BlocksRegistry.SPRUCE_TRELLIS_GRAPE);
-        registerVineTypeConnections(VineType.GRAPE, BlocksRegistry.DARK_OAK_TRELLIS, BlocksRegistry.DARK_OAK_TRELLIS_GRAPE);
-        registerVineTypeConnections(VineType.GRAPE, BlocksRegistry.ACACIA_TRELLIS, BlocksRegistry.ACACIA_TRELLIS_GRAPE);
+        registerVineTypeConnections(VineType.GRAPE, BlockRegistry.OAK_TRELLIS, BlockRegistry.OAK_TRELLIS_GRAPE);
+        registerVineTypeConnections(VineType.GRAPE, BlockRegistry.BIRCH_TRELLIS, BlockRegistry.BIRCH_TRELLIS_GRAPE);
+        registerVineTypeConnections(VineType.GRAPE, BlockRegistry.JUNGLE_TRELLIS, BlockRegistry.JUNGLE_TRELLIS_GRAPE);
+        registerVineTypeConnections(VineType.GRAPE, BlockRegistry.SPRUCE_TRELLIS, BlockRegistry.SPRUCE_TRELLIS_GRAPE);
+        registerVineTypeConnections(VineType.GRAPE, BlockRegistry.DARK_OAK_TRELLIS, BlockRegistry.DARK_OAK_TRELLIS_GRAPE);
+        registerVineTypeConnections(VineType.GRAPE, BlockRegistry.ACACIA_TRELLIS, BlockRegistry.ACACIA_TRELLIS_GRAPE);
     }
 
     @SubscribeEvent
@@ -76,19 +76,19 @@ public final class CropInfoManager
         registerCropHumidityInfo(ForgeRegistries.ITEMS.getValue(new ResourceLocation("pamhc2crops:whitemushroomseeditem")), CropHumidityType.MOIST_HUMID);
         registerCropHumidityInfo(ForgeRegistries.ITEMS.getValue(new ResourceLocation("pamhc2crops:wintersquashseeditem")), CropHumidityType.DRY_MOIST);
 
-        registerCropHumidityInfo(BlocksRegistry.OAK_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
-        registerCropHumidityInfo(BlocksRegistry.BIRCH_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
-        registerCropHumidityInfo(BlocksRegistry.JUNGLE_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
-        registerCropHumidityInfo(BlocksRegistry.SPRUCE_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
-        registerCropHumidityInfo(BlocksRegistry.DARK_OAK_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
-        registerCropHumidityInfo(BlocksRegistry.ACACIA_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
+        registerCropHumidityInfo(BlockRegistry.OAK_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
+        registerCropHumidityInfo(BlockRegistry.BIRCH_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
+        registerCropHumidityInfo(BlockRegistry.JUNGLE_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
+        registerCropHumidityInfo(BlockRegistry.SPRUCE_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
+        registerCropHumidityInfo(BlockRegistry.DARK_OAK_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
+        registerCropHumidityInfo(BlockRegistry.ACACIA_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
 
-        registerCropSeasonInfo(BlocksRegistry.OAK_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
-        registerCropSeasonInfo(BlocksRegistry.BIRCH_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
-        registerCropSeasonInfo(BlocksRegistry.JUNGLE_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
-        registerCropSeasonInfo(BlocksRegistry.SPRUCE_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
-        registerCropSeasonInfo(BlocksRegistry.DARK_OAK_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
-        registerCropSeasonInfo(BlocksRegistry.ACACIA_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.OAK_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.BIRCH_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.JUNGLE_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.SPRUCE_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.DARK_OAK_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.ACACIA_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
 
         ForgeRegistries.BLOCKS.forEach(block ->
         {

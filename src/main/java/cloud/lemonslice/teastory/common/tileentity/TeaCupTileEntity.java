@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry.PORCELAIN_CUP;
+import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry.PORCELAIN_CUP;
 
 public class TeaCupTileEntity extends TileEntity
 {

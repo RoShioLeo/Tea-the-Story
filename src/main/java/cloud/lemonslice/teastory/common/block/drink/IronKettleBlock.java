@@ -3,7 +3,7 @@ package cloud.lemonslice.teastory.common.block.drink;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
 import cloud.lemonslice.teastory.common.fluid.HotWaterFlowingFluidBlock;
 import cloud.lemonslice.teastory.common.tileentity.TeapotTileEntity;
-import cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry;
+import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -38,7 +38,7 @@ public class IronKettleBlock extends TeapotBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return TileEntityTypesRegistry.IRON_KETTLE.create();
+        return TileEntityTypeRegistry.IRON_KETTLE.create();
     }
 
     @Override

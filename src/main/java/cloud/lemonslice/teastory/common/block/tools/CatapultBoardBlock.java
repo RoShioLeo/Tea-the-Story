@@ -1,8 +1,8 @@
 package cloud.lemonslice.teastory.common.block.tools;
 
+import cloud.lemonslice.silveroak.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.block.NormalHorizontalBlock;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -101,10 +101,10 @@ public class CatapultBoardBlock extends NormalHorizontalBlock
     @SuppressWarnings("deprecation")
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
-        if (player.getHeldItem(handIn).getItem() == BlocksRegistry.BAMBOO_TRAY.asItem())
+        if (player.getHeldItem(handIn).getItem() == BlockRegistry.BAMBOO_TRAY.asItem())
         {
-            worldIn.setBlockState(pos, BlocksRegistry.STONE_CATAPULT_BOARD_WITH_TRAY.getDefaultState().with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
-            SoundType soundtype = BlocksRegistry.BAMBOO_TRAY.getDefaultState().getSoundType(worldIn, pos, player);
+            worldIn.setBlockState(pos, BlockRegistry.STONE_CATAPULT_BOARD_WITH_TRAY.getDefaultState().with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            SoundType soundtype = BlockRegistry.BAMBOO_TRAY.getDefaultState().getSoundType(worldIn, pos, player);
             worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
             return ActionResultType.SUCCESS;
         }

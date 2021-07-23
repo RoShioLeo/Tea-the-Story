@@ -2,7 +2,7 @@ package cloud.lemonslice.teastory.data.builder;
 
 import cloud.lemonslice.teastory.common.recipe.bamboo_tray.BambooTraySingleInRecipe;
 import cloud.lemonslice.teastory.common.recipe.serializer.BambooTraySingleInRecipeSerializer;
-import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializersRegistry;
+import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializerRegistry;
 import com.google.gson.JsonObject;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
@@ -37,22 +37,22 @@ public class BambooTrayRecipeBuilder
 
     public static BambooTrayRecipeBuilder outdoorsRecipe(Ingredient ingredientIn, IItemProvider resultIn, int workingTimeIn)
     {
-        return workingRecipe(ingredientIn, resultIn, workingTimeIn, RecipeSerializersRegistry.BAMBOO_TRAY_OUTDOORS.get());
+        return workingRecipe(ingredientIn, resultIn, workingTimeIn, RecipeSerializerRegistry.BAMBOO_TRAY_OUTDOORS.get());
     }
 
     public static BambooTrayRecipeBuilder indoorsRecipe(Ingredient ingredientIn, IItemProvider resultIn, int workingTimeIn)
     {
-        return workingRecipe(ingredientIn, resultIn, workingTimeIn, RecipeSerializersRegistry.BAMBOO_TRAY_INDOORS.get());
+        return workingRecipe(ingredientIn, resultIn, workingTimeIn, RecipeSerializerRegistry.BAMBOO_TRAY_INDOORS.get());
     }
 
     public static BambooTrayRecipeBuilder wetRecipe(Ingredient ingredientIn, IItemProvider resultIn, int workingTimeIn)
     {
-        return workingRecipe(ingredientIn, resultIn, workingTimeIn, RecipeSerializersRegistry.BAMBOO_TRAY_IN_RAIN.get());
+        return workingRecipe(ingredientIn, resultIn, workingTimeIn, RecipeSerializerRegistry.BAMBOO_TRAY_IN_RAIN.get());
     }
 
     public static BambooTrayRecipeBuilder bakeRecipe(Ingredient ingredientIn, IItemProvider resultIn, int workingTimeIn)
     {
-        return workingRecipe(ingredientIn, resultIn, workingTimeIn, RecipeSerializersRegistry.BAMBOO_TRAY_BAKE.get());
+        return workingRecipe(ingredientIn, resultIn, workingTimeIn, RecipeSerializerRegistry.BAMBOO_TRAY_BAKE.get());
     }
 
     public void build(Consumer<IFinishedRecipe> consumerIn)

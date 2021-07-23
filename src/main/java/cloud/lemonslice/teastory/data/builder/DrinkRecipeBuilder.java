@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.data.builder;
 
 import cloud.lemonslice.silveroak.common.recipe.FluidIngredient;
-import cloud.lemonslice.teastory.common.fluid.FluidsRegistry;
+import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
 import cloud.lemonslice.teastory.common.recipe.serializer.DrinkRecipeSerializer;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -16,7 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
-import static cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializersRegistry.DRINK_MAKER;
+import static cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializerRegistry.DRINK_MAKER;
 
 public class DrinkRecipeBuilder
 {
@@ -39,7 +39,7 @@ public class DrinkRecipeBuilder
 
     public static DrinkRecipeBuilder boilingRecipe(Fluid resultIn, Ingredient... ingredientsIn)
     {
-        return new DrinkRecipeBuilder(resultIn, FluidIngredient.fromFluid(500, FluidsRegistry.BOILING_WATER_STILL.get()), NonNullList.from(Ingredient.EMPTY, ingredientsIn));
+        return new DrinkRecipeBuilder(resultIn, FluidIngredient.fromFluid(500, FluidRegistry.BOILING_WATER_STILL.get()), NonNullList.from(Ingredient.EMPTY, ingredientsIn));
     }
 
     public void build(Consumer<IFinishedRecipe> consumerIn)

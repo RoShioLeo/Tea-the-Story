@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.group;
 
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -16,6 +16,6 @@ public class GroupCore extends ItemGroup
     @Override
     public ItemStack createIcon()
     {
-        return new ItemStack(ItemsRegistry.TEA_LEAVES);
+        return new ItemStack(ItemRegistry.TEA_LEAVES);
     }
 }

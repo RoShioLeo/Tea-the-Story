@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.block.decorations;
 
+import cloud.lemonslice.silveroak.common.block.NormalBlock;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
-import cloud.lemonslice.teastory.common.block.NormalBlock;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

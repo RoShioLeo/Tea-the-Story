@@ -1,8 +1,8 @@
 package cloud.lemonslice.teastory.client.color.item;
 
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.fluid.FluidsRegistry;
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
+import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IItemColor;
 
@@ -16,10 +16,10 @@ public final class ItemColorsRegistry
 
     public static void init()
     {
-        FluidsRegistry.ITEMS.getEntries().forEach(e -> Minecraft.getInstance().getItemColors().register(BUCKET_COLOR, e.get()));
-        Minecraft.getInstance().getItemColors().register(CUP_COLOR, ItemsRegistry.PORCELAIN_CUP_DRINK);
-        Minecraft.getInstance().getItemColors().register(BOTTLE_COLOR, ItemsRegistry.BOTTLE_DRINK);
-        Minecraft.getInstance().getItemColors().register(HYBRIDIZABLE_FLOWER_COLOR, BlocksRegistry.CHRYSANTHEMUM_ITEM, BlocksRegistry.HYACINTH_ITEM, BlocksRegistry.ZINNIA_ITEM);
-        Minecraft.getInstance().getItemColors().register(GRASS_BLOCK_COLOR, BlocksRegistry.GRASS_BLOCK_WITH_HOLE_ITEM);
+        FluidRegistry.ITEMS.getEntries().forEach(e -> Minecraft.getInstance().getItemColors().register(BUCKET_COLOR, e.get()));
+        Minecraft.getInstance().getItemColors().register(CUP_COLOR, ItemRegistry.PORCELAIN_CUP_DRINK);
+        Minecraft.getInstance().getItemColors().register(BOTTLE_COLOR, ItemRegistry.BOTTLE_DRINK);
+        Minecraft.getInstance().getItemColors().register(HYBRIDIZABLE_FLOWER_COLOR, BlockRegistry.CHRYSANTHEMUM_ITEM, BlockRegistry.HYACINTH_ITEM, BlockRegistry.ZINNIA_ITEM);
+        Minecraft.getInstance().getItemColors().register(GRASS_BLOCK_COLOR, BlockRegistry.GRASS_BLOCK_WITH_HOLE_ITEM);
     }
 }

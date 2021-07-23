@@ -22,10 +22,10 @@ public final class DataGatherHandler
             ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
             ForgeBlockTagsProvider blockTags = new ForgeBlockTagsProvider(gen, existingFileHelper);
             gen.addProvider(new CropInfoProvider(gen, blockTags, existingFileHelper));
-            gen.addProvider(new NormalItemTagsProvider(gen, blockTags, existingFileHelper));
-            gen.addProvider(new NormalBlockTagsProvider(gen, existingFileHelper));
-            gen.addProvider(new NormalFluidTagsProvider(gen, existingFileHelper));
-            gen.addProvider(new RecipesProvider(gen));
+            gen.addProvider(new NormalItemTagProvider(gen, blockTags, existingFileHelper));
+            gen.addProvider(new NormalBlockTagProvider(gen, existingFileHelper));
+            gen.addProvider(new NormalFluidTagProvider(gen, existingFileHelper));
+            gen.addProvider(new RecipeProvider(gen));
         }
     }
 }

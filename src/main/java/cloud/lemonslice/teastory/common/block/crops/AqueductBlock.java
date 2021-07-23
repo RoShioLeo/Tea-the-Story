@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.block.crops;
 
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.block.HorizontalConnectedBlock;
 import cloud.lemonslice.teastory.data.tag.NormalTags;
 import net.minecraft.block.Block;
@@ -84,7 +84,7 @@ public class AqueductBlock extends HorizontalConnectedBlock implements IWaterLog
         }
         else if (player.getHeldItem(handIn).getItem().isIn(Tags.Items.COBBLESTONE))
         {
-            worldIn.setBlockState(pos, BlocksRegistry.DIRT_AQUEDUCT_POOL.getDefaultState());
+            worldIn.setBlockState(pos, BlockRegistry.DIRT_AQUEDUCT_POOL.getDefaultState());
             return ActionResultType.SUCCESS;
         }
         return ActionResultType.PASS;

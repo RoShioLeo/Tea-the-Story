@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.block.crops;
 
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
@@ -59,7 +59,7 @@ public class RiceSeedlingBlock extends CropsBlock
     @Override
     protected IItemProvider getSeedsItem()
     {
-        return ItemsRegistry.RICE_SEEDS;
+        return ItemRegistry.RICE_SEEDS;
     }
 
     @Override
@@ -68,8 +68,8 @@ public class RiceSeedlingBlock extends CropsBlock
         int age = state.get(AGE);
         if (age > 0)
         {
-            return new ItemStack(ItemsRegistry.RICE_SEEDS);
+            return new ItemStack(ItemRegistry.RICE_SEEDS);
         }
-        else return new ItemStack(ItemsRegistry.RICE_SEEDS);
+        else return new ItemStack(ItemRegistry.RICE_SEEDS);
     }
 }

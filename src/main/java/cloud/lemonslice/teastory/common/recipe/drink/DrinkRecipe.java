@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.recipe.drink;
 
 import cloud.lemonslice.silveroak.common.recipe.FluidIngredient;
-import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializersRegistry;
+import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializerRegistry;
 import cloud.lemonslice.teastory.common.recipe.type.NormalRecipeTypes;
 import com.google.common.collect.Lists;
 import net.minecraft.fluid.Fluid;
@@ -138,7 +138,7 @@ public class DrinkRecipe implements IRecipe<IInventory>
     @Override
     public IRecipeSerializer<?> getSerializer()
     {
-        return RecipeSerializersRegistry.DRINK_MAKER.get();
+        return RecipeSerializerRegistry.DRINK_MAKER.get();
     }
 
     @Override

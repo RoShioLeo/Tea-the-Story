@@ -3,9 +3,9 @@ package cloud.lemonslice.teastory.client;
 import cloud.lemonslice.teastory.client.color.season.BiomeColorsHandler;
 import cloud.lemonslice.teastory.client.render.SeatEntityRenderer;
 import cloud.lemonslice.teastory.common.CommonProxy;
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
-import cloud.lemonslice.teastory.common.entity.EntityTypesRegistry;
-import cloud.lemonslice.teastory.common.fluid.FluidsRegistry;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
+import cloud.lemonslice.teastory.common.entity.EntityTypeRegistry;
+import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
@@ -39,27 +39,29 @@ public class ClientProxy extends CommonProxy
 
     public static void registerEntityRenderer()
     {
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypesRegistry.SEAT_ENTITY, SeatEntityRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypeRegistry.SEAT_ENTITY, SeatEntityRenderer::new);
     }
 
     public static void registerRenderType()
     {
-        registerCutoutType(BlocksRegistry.CHRYSANTHEMUM);
-        registerCutoutType(BlocksRegistry.ZINNIA);
-        registerCutoutType(BlocksRegistry.HYACINTH);
-        registerCutoutType(BlocksRegistry.TEA_PLANT);
-        registerCutoutType(BlocksRegistry.RICE_SEEDLING);
-        registerCutoutType(BlocksRegistry.WILD_TEA_PLANT);
-        registerCutoutType(BlocksRegistry.GRASS_BLOCK_WITH_HOLE);
-        registerCutoutType(BlocksRegistry.BAMBOO_GLASS_DOOR);
-        registerCutoutType(BlocksRegistry.DRINK_MAKER);
-        registerCutoutType(BlocksRegistry.RICE_PLANT);
-        registerCutoutType(BlocksRegistry.TRELLIS_BLOCKS.toArray(new Block[0]));
-        registerCutoutType(BlocksRegistry.WILD_GRAPE);
-        registerCutoutType(BlocksRegistry.GRAPE);
-        registerCutoutType(BlocksRegistry.WATERMELON_VINE);
-        FluidsRegistry.FLUIDS.getEntries().forEach(e -> RenderTypeLookup.setRenderLayer(e.get(), RenderType.getTranslucent()));
-        RenderTypeLookup.setRenderLayer(BlocksRegistry.WOODEN_TRAY, RenderType.getTranslucent());
+        registerCutoutType(BlockRegistry.CHRYSANTHEMUM);
+        registerCutoutType(BlockRegistry.ZINNIA);
+        registerCutoutType(BlockRegistry.HYACINTH);
+        registerCutoutType(BlockRegistry.TEA_PLANT);
+        registerCutoutType(BlockRegistry.RICE_SEEDLING);
+        registerCutoutType(BlockRegistry.WILD_TEA_PLANT);
+        registerCutoutType(BlockRegistry.GRASS_BLOCK_WITH_HOLE);
+        registerCutoutType(BlockRegistry.BAMBOO_GLASS_DOOR);
+        registerCutoutType(BlockRegistry.DRINK_MAKER);
+        registerCutoutType(BlockRegistry.RICE_PLANT);
+        registerCutoutType(BlockRegistry.TRELLIS_BLOCKS.toArray(new Block[0]));
+        registerCutoutType(BlockRegistry.WILD_GRAPE);
+        registerCutoutType(BlockRegistry.GRAPE);
+        registerCutoutType(BlockRegistry.WATERMELON_VINE);
+        registerCutoutType(BlockRegistry.WET_HAYSTACK);
+        registerCutoutType(BlockRegistry.DRY_HAYSTACK);
+        FluidRegistry.FLUIDS.getEntries().forEach(e -> RenderTypeLookup.setRenderLayer(e.get(), RenderType.getTranslucent()));
+        RenderTypeLookup.setRenderLayer(BlockRegistry.WOODEN_TRAY, RenderType.getTranslucent());
     }
 
     private static void registerCutoutType(Block... blocks)

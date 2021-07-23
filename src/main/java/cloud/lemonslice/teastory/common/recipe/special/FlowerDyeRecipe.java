@@ -2,7 +2,7 @@ package cloud.lemonslice.teastory.common.recipe.special;
 
 import cloud.lemonslice.teastory.common.environment.flower.FlowerColor;
 import cloud.lemonslice.teastory.common.item.HybridizableFlowerBlockItem;
-import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializersRegistry;
+import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializerRegistry;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -81,6 +81,6 @@ public class FlowerDyeRecipe extends SpecialRecipe
     @Override
     public IRecipeSerializer<?> getSerializer()
     {
-        return RecipeSerializersRegistry.CRAFTING_SPECIAL_FLOWERDYE.get();
+        return RecipeSerializerRegistry.CRAFTING_SPECIAL_FLOWERDYE.get();
     }
 }

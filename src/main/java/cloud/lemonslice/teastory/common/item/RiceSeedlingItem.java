@@ -1,6 +1,7 @@
 package cloud.lemonslice.teastory.common.item;
 
-import cloud.lemonslice.teastory.common.block.BlocksRegistry;
+import cloud.lemonslice.silveroak.common.item.NormalItem;
+import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,7 +24,7 @@ public class RiceSeedlingItem extends NormalItem
 {
     public RiceSeedlingItem(String name)
     {
-        super(name);
+        super(name, ItemRegistry.getNormalItemProperties());
     }
 
     @Override
@@ -50,10 +51,10 @@ public class RiceSeedlingItem extends NormalItem
                 BlockPos blockpos1 = blockpos.up();
                 BlockState blockstate = worldIn.getBlockState(blockpos);
                 FluidState ifluidstate = worldIn.getFluidState(blockpos);
-                if ((ifluidstate.getFluid() == Fluids.WATER || blockstate.getBlock() == BlocksRegistry.PADDY_FIELD) && worldIn.isAirBlock(blockpos1))
+                if ((ifluidstate.getFluid() == Fluids.WATER || blockstate.getBlock() == BlockRegistry.PADDY_FIELD) && worldIn.isAirBlock(blockpos1))
                 {
                     net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.create(worldIn.getDimensionKey(), worldIn, blockpos1);
-                    worldIn.setBlockState(blockpos1, BlocksRegistry.RICE_PLANT.getDefaultState(), 11);
+                    worldIn.setBlockState(blockpos1, BlockRegistry.RICE_PLANT.getDefaultState(), 11);
                     if (net.minecraftforge.event.ForgeEventFactory.onBlockPlace(playerIn, blocksnapshot, net.minecraft.util.Direction.UP))
                     {
                         blocksnapshot.restore(true, false);
@@ -71,7 +72,7 @@ public class RiceSeedlingItem extends NormalItem
                     }
 
                     playerIn.addStat(Stats.ITEM_USED.get(this));
-                    worldIn.playSound(playerIn, blockpos, BlocksRegistry.RICE_PLANT.getDefaultState().getSoundType(worldIn, blockpos, playerIn).getPlaceSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    worldIn.playSound(playerIn, blockpos, BlockRegistry.RICE_PLANT.getDefaultState().getSoundType(worldIn, blockpos, playerIn).getPlaceSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
                     return ActionResult.resultSuccess(itemstack);
                 }
             }

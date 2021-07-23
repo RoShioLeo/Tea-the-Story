@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry.TEAPOT;
+import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry.TEAPOT;
 
 public class TeapotTileEntity extends NormalContainerTileEntity
 {

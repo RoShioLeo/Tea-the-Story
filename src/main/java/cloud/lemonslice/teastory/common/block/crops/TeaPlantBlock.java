@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.block.crops;
 
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -85,7 +85,7 @@ public class TeaPlantBlock extends BushBlock implements IGrowable
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
     {
         List<ItemStack> list = super.getDrops(state, builder);
-        list.add(new ItemStack(ItemsRegistry.TEA_SEEDS));
+        list.add(new ItemStack(ItemRegistry.TEA_SEEDS));
         int age = state.get(AGE);
         if (age >= 2)
         {
@@ -93,12 +93,12 @@ public class TeaPlantBlock extends BushBlock implements IGrowable
         }
         if (age >= 6 && age <= 10)
         {
-            list.add(new ItemStack(ItemsRegistry.TEA_LEAVES, 2));
+            list.add(new ItemStack(ItemRegistry.TEA_LEAVES, 2));
         }
         else if (age >= 11)
         {
-            list.add(new ItemStack(ItemsRegistry.TEA_LEAVES, 1));
-            list.add(new ItemStack(ItemsRegistry.TEA_SEEDS, 4));
+            list.add(new ItemStack(ItemRegistry.TEA_LEAVES, 1));
+            list.add(new ItemStack(ItemRegistry.TEA_SEEDS, 4));
         }
         return list;
     }
@@ -198,12 +198,12 @@ public class TeaPlantBlock extends BushBlock implements IGrowable
             {
                 case 8:
                     worldIn.setBlockState(pos, this.getDefaultState().with(AGE, worldIn.rand.nextInt(3) + 4));
-                    worldIn.addEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemsRegistry.TEA_LEAVES, worldIn.rand.nextInt(5) + 1)));
+                    worldIn.addEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemRegistry.TEA_LEAVES, worldIn.rand.nextInt(5) + 1)));
                     return ActionResultType.SUCCESS;
                 case 11:
                     worldIn.setBlockState(pos, this.getDefaultState().with(AGE, worldIn.rand.nextInt(3) + 4));
-                    worldIn.addEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemsRegistry.TEA_SEEDS, worldIn.rand.nextInt(5) + 1)));
-                    worldIn.addEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemsRegistry.TEA_LEAVES, 1)));
+                    worldIn.addEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemRegistry.TEA_SEEDS, worldIn.rand.nextInt(5) + 1)));
+                    worldIn.addEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(ItemRegistry.TEA_LEAVES, 1)));
                     return ActionResultType.SUCCESS;
             }
             return ActionResultType.FAIL;
@@ -238,7 +238,7 @@ public class TeaPlantBlock extends BushBlock implements IGrowable
 
     protected IItemProvider getSeedsItem()
     {
-        return ItemsRegistry.TEA_SEEDS;
+        return ItemRegistry.TEA_SEEDS;
     }
 
     @Override

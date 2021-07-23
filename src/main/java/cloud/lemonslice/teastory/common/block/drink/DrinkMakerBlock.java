@@ -1,11 +1,11 @@
 package cloud.lemonslice.teastory.common.block.drink;
 
+import cloud.lemonslice.silveroak.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.silveroak.helper.BlockHelper;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
-import cloud.lemonslice.teastory.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.teastory.common.tileentity.DrinkMakerTileEntity;
 import cloud.lemonslice.teastory.common.tileentity.NormalContainerTileEntity;
-import cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry;
+import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -208,6 +208,6 @@ public class DrinkMakerBlock extends NormalHorizontalBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return TileEntityTypesRegistry.DRINK_MAKER.create();
+        return TileEntityTypeRegistry.DRINK_MAKER.create();
     }
 }

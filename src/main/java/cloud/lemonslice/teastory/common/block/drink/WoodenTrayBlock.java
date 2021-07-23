@@ -1,10 +1,10 @@
 package cloud.lemonslice.teastory.common.block.drink;
 
+import cloud.lemonslice.silveroak.common.block.NormalBlock;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
-import cloud.lemonslice.teastory.common.block.NormalBlock;
-import cloud.lemonslice.teastory.common.item.ItemsRegistry;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import cloud.lemonslice.teastory.common.tileentity.TeaCupTileEntity;
-import cloud.lemonslice.teastory.common.tileentity.TileEntityTypesRegistry;
+import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -80,7 +80,7 @@ public class WoodenTrayBlock extends NormalBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return TileEntityTypesRegistry.PORCELAIN_CUP.create();
+        return TileEntityTypeRegistry.PORCELAIN_CUP.create();
     }
 
     @Override
@@ -98,7 +98,7 @@ public class WoodenTrayBlock extends NormalBlock
                 {
                     ItemStack itemStack = getCup((TeaCupTileEntity) te, index);
                     ItemHandlerHelper.giveItemToPlayer(player, itemStack);
-                    if (itemStack.getItem() == ItemsRegistry.PORCELAIN_CUP)
+                    if (itemStack.getItem() == ItemRegistry.PORCELAIN_CUP)
                     {
                         worldIn.setBlockState(pos, state.with(CUP, state.get(CUP) - 1));
                     }
@@ -113,7 +113,7 @@ public class WoodenTrayBlock extends NormalBlock
                 int index = state.get(CUP);
                 if (!setCup((TeaCupTileEntity) te, index, held, worldIn, pos, state))
                 {
-                    if (held.getItem() == ItemsRegistry.PORCELAIN_TEAPOT)
+                    if (held.getItem() == ItemRegistry.PORCELAIN_TEAPOT)
                     {
                         FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(player.getHeldItem(handIn), 1)).ifPresent(item ->
                         {
@@ -147,7 +147,7 @@ public class WoodenTrayBlock extends NormalBlock
         {
             return false;
         }
-        if (itemStack.getItem() == ItemsRegistry.PORCELAIN_CUP_DRINK || itemStack.getItem() == ItemsRegistry.PORCELAIN_CUP)
+        if (itemStack.getItem() == ItemRegistry.PORCELAIN_CUP_DRINK || itemStack.getItem() == ItemRegistry.PORCELAIN_CUP)
         {
             FluidStack stack = FluidUtil.getFluidContained(itemStack).orElse(FluidStack.EMPTY);
             if (!stack.isEmpty())
@@ -179,11 +179,11 @@ public class WoodenTrayBlock extends NormalBlock
         FluidStack fluidStack = te.getFluidTank(index).getFluidInTank(0);
         if (fluidStack.isEmpty())
         {
-            return new ItemStack(ItemsRegistry.PORCELAIN_CUP);
+            return new ItemStack(ItemRegistry.PORCELAIN_CUP);
         }
         else
         {
-            ItemStack itemStack = new ItemStack(ItemsRegistry.PORCELAIN_CUP_DRINK);
+            ItemStack itemStack = new ItemStack(ItemRegistry.PORCELAIN_CUP_DRINK);
             CompoundNBT fluidTag = new CompoundNBT();
             fluidStack.writeToNBT(fluidTag);
             itemStack.getOrCreateTag().put(FLUID_NBT_KEY, fluidTag);
