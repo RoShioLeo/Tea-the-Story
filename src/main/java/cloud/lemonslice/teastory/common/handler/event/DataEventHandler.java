@@ -3,11 +3,13 @@ package cloud.lemonslice.teastory.common.handler.event;
 import cloud.lemonslice.teastory.TeaStory;
 import cloud.lemonslice.teastory.common.capability.CapabilitySolarTermTime;
 import cloud.lemonslice.teastory.common.config.ServerConfig;
+import cloud.lemonslice.teastory.common.environment.solar.SolarTerm;
 import cloud.lemonslice.teastory.common.network.SimpleNetworkHandler;
 import cloud.lemonslice.teastory.common.network.SolarTermsMessage;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -41,7 +43,14 @@ public final class DataEventHandler
         {
             if (ServerConfig.Season.enable.get())
             {
-                event.getPlayer().getEntityWorld().getCapability(CapabilitySolarTermTime.WORLD_SOLAR_TIME).ifPresent(t -> SimpleNetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) event.getPlayer()), new SolarTermsMessage(t.getSolarTermsDay())));
+                event.getPlayer().getEntityWorld().getCapability(CapabilitySolarTermTime.WORLD_SOLAR_TIME).ifPresent(t ->
+                {
+                    SimpleNetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) event.getPlayer()), new SolarTermsMessage(t.getSolarTermsDay()));
+                    if (t.getSolarTermsDay() % ServerConfig.Season.lastingDaysOfEachTerm.get() == 0)
+                    {
+                        event.getPlayer().sendStatusMessage(new TranslationTextComponent("info.teastory.environment.solar_term.message", SolarTerm.get(t.getSolarTermIndex()).getAlternationText()), false);
+                    }
+                });
             }
         }
     }

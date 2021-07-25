@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static cloud.lemonslice.teastory.common.handler.event.AgricultureEventHandler.*;
+import static cloud.lemonslice.teastory.common.handler.event.BattleEventHandler.onShennongChiAttack;
 import static cloud.lemonslice.teastory.common.handler.event.BlockEventHandler.dropAsh;
 import static cloud.lemonslice.teastory.common.handler.event.DrinkEffectEventHandler.*;
 
@@ -66,5 +67,11 @@ public final class CommonEventHandler
     public static void onFarmlandTrampled(BlockEvent.FarmlandTrampleEvent event)
     {
         stopTramplingMelonField(event);
+    }
+
+    @SubscribeEvent
+    public static void onEntityHurt(LivingHurtEvent event)
+    {
+        onShennongChiAttack(event);
     }
 }

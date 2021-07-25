@@ -2,13 +2,11 @@ package cloud.lemonslice.teastory.common.network;
 
 import cloud.lemonslice.silveroak.network.INormalMessage;
 import cloud.lemonslice.teastory.TeaStory;
+import cloud.lemonslice.teastory.client.color.season.BiomeColorsHandler;
 import cloud.lemonslice.teastory.common.capability.CapabilitySolarTermTime;
-import cloud.lemonslice.teastory.common.config.ServerConfig;
 import cloud.lemonslice.teastory.common.environment.solar.BiomeTemperatureManager;
 import cloud.lemonslice.teastory.common.environment.solar.SolarTerm;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -47,11 +45,8 @@ public class SolarTermsMessage implements INormalMessage
                     data.setSolarTermsDay(solarDay);
                     ForgeRegistries.BIOMES.forEach(biome ->
                             biome.climate.temperature = BiomeTemperatureManager.getDefaultTemperature(biome) + SolarTerm.get(data.getSolarTermIndex()).getTemperatureChange());
-                    if (solarDay % ServerConfig.Season.lastingDaysOfEachTerm.get() == 0 && Minecraft.getInstance().player != null)
-                    {
-                        Minecraft.getInstance().player.sendStatusMessage(new TranslationTextComponent("info.teastory.environment.solar_term.message", SolarTerm.get(data.getSolarTermIndex()).getAlternationText()), false);
-                    }
                 });
+                BiomeColorsHandler.needRefresh = true;
             }
         });
     }

@@ -22,7 +22,8 @@ public final class ItemRegistry extends RegistryModule
     public static final Item GOLD_AQUEDUCT_SHOVEL = new AqueductShovelItem("gold_aqueduct_shovel", ItemTier.GOLD, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
     public static final Item IRON_AQUEDUCT_SHOVEL = new AqueductShovelItem("iron_aqueduct_shovel", ItemTier.IRON, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
     public static final Item DIAMOND_AQUEDUCT_SHOVEL = new AqueductShovelItem("diamond_aqueduct_shovel", ItemTier.DIAMOND, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
-//    public static final Item NETHERITE_AQUEDUCT_SHOVEL = new AqueductShovelItem("netherite_aqueduct_shovel", ItemTier.NETHERITE, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+    //    public static final Item NETHERITE_AQUEDUCT_SHOVEL = new AqueductShovelItem("netherite_aqueduct_shovel", ItemTier.NETHERITE, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+    public static final Item SHENNONG_CHI = new ShennongChiItem();
 
     // FOOD 食物
     public static final Item DRIED_BEETROOT = new FoodItem("dried_beetroot", NormalFoods.DRIED_BEETROOT);

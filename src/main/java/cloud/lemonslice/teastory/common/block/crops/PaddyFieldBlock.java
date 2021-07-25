@@ -32,7 +32,6 @@ public class PaddyFieldBlock extends NormalBlock implements IWaterLoggable
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<Water> WATER = EnumProperty.create("water", Water.class);
     protected static final VoxelShape SHAPE_DRY = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
-    protected static final VoxelShape SHAPE_WET = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D);
 
     public PaddyFieldBlock()
     {
@@ -44,7 +43,7 @@ public class PaddyFieldBlock extends NormalBlock implements IWaterLoggable
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
-        return VoxelShapes.fullCube();
+        return state.get(WATERLOGGED) ? VoxelShapes.fullCube() : SHAPE_DRY;
     }
 
     @Override
@@ -175,9 +174,7 @@ public class PaddyFieldBlock extends NormalBlock implements IWaterLoggable
     @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
     {
-        List<ItemStack> list = Lists.newArrayList();
-        list.add(new ItemStack(Blocks.DIRT));
-        return list;
+        return Lists.newArrayList(new ItemStack(Blocks.DIRT));
     }
 
     @Override

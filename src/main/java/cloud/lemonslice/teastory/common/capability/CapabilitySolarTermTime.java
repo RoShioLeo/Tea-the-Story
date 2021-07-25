@@ -9,6 +9,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -100,6 +101,10 @@ public class CapabilitySolarTermTime
             for (ServerPlayerEntity player : world.getServer().getPlayerList().getPlayers())
             {
                 SimpleNetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new SolarTermsMessage(solarTermsDay));
+                if (getSolarTermsDay() % ServerConfig.Season.lastingDaysOfEachTerm.get() == 0)
+                {
+                    player.sendStatusMessage(new TranslationTextComponent("info.teastory.environment.solar_term.message", SolarTerm.get(getSolarTermIndex()).getAlternationText()), false);
+                }
             }
         }
     }

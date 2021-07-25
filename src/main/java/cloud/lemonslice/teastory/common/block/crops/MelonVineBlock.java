@@ -1,11 +1,13 @@
 package cloud.lemonslice.teastory.common.block.crops;
 
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
+import com.google.common.collect.Lists;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootContext;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -22,6 +24,8 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.Tags;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class MelonVineBlock extends BushBlock implements IGrowable
@@ -82,6 +86,10 @@ public class MelonVineBlock extends BushBlock implements IGrowable
         {
             return;
         }
+        if (hasNearMelon(worldIn, pos, this))
+        {
+            return;
+        }
         if (worldIn.getLightSubtracted(pos, 0) >= 9)
         {
             float f = getGrowthChance(this, worldIn, pos);
@@ -105,8 +113,20 @@ public class MelonVineBlock extends BushBlock implements IGrowable
                 }
                 net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
             }
-
         }
+    }
+
+    public static boolean hasNearMelon(IBlockReader worldIn, BlockPos pos, Block melon)
+    {
+        for (Direction direction : Direction.Plane.HORIZONTAL)
+        {
+            BlockState state = worldIn.getBlockState(pos.offset(direction));
+            if (state.matchesBlock(melon) && state.get(AGE) == 7)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -186,7 +206,13 @@ public class MelonVineBlock extends BushBlock implements IGrowable
                 f /= 2.0F;
             }
         }
-
         return f;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
+    {
+        return state.get(AGE) == 7 ? Lists.newArrayList(new ItemStack(Blocks.MELON)) : Collections.emptyList();
     }
 }

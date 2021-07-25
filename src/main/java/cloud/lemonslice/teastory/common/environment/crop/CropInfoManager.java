@@ -90,6 +90,9 @@ public final class CropInfoManager
         registerCropSeasonInfo(BlockRegistry.DARK_OAK_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
         registerCropSeasonInfo(BlockRegistry.ACACIA_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
 
+        registerCropHumidityInfo(BlockRegistry.WATERMELON_VINE, CropHumidityType.MOIST_HUMID, true);
+        registerCropSeasonInfo(BlockRegistry.WATERMELON_VINE, CropSeasonType.SUMMER, true);
+
         ForgeRegistries.BLOCKS.forEach(block ->
         {
             registerCropHumidityInfo(block, CropHumidityType.AVERAGE_MOIST, false);

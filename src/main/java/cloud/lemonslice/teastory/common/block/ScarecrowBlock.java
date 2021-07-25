@@ -2,6 +2,7 @@ package cloud.lemonslice.teastory.common.block;
 
 import cloud.lemonslice.silveroak.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -11,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -25,6 +27,8 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
 
 public class ScarecrowBlock extends NormalHorizontalBlock
 {
@@ -129,6 +133,13 @@ public class ScarecrowBlock extends NormalHorizontalBlock
         BlockPos blockpos = pos.down();
         BlockState blockstate = worldIn.getBlockState(blockpos);
         return state.get(HALF) == DoubleBlockHalf.LOWER ? blockstate.isSolidSide(worldIn, blockpos, Direction.UP) : blockstate.matchesBlock(this);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
+    {
+        return state.get(HALF) == DoubleBlockHalf.LOWER ? Lists.newArrayList(new ItemStack(this)) : Collections.emptyList();
     }
 
     static

@@ -1,7 +1,9 @@
 package cloud.lemonslice.teastory.common.block;
 
 import cloud.lemonslice.silveroak.common.block.NormalBlock;
+import cloud.lemonslice.silveroak.common.environment.Humidity;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -11,6 +13,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -24,8 +27,13 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class HaystackBlock extends NormalBlock
 {
@@ -35,7 +43,7 @@ public class HaystackBlock extends NormalBlock
 
     public HaystackBlock(String name)
     {
-        super(name, Properties.create(Material.ORGANIC).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.5F));
+        super(name, Properties.create(Material.ORGANIC).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.5F).tickRandomly());
         this.setDefaultState(this.stateContainer.getBaseState().with(HALF, DoubleBlockHalf.UPPER));
     }
 
@@ -66,7 +74,7 @@ public class HaystackBlock extends NormalBlock
         DoubleBlockHalf doubleblockhalf = stateIn.get(HALF);
         if (facing.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (facing == Direction.UP))
         {
-            return facingState.matchesBlock(this) && facingState.get(HALF) != doubleblockhalf ? stateIn : Blocks.AIR.getDefaultState();
+            return facingState.getBlock() instanceof HaystackBlock && facingState.get(HALF) != doubleblockhalf ? stateIn : Blocks.AIR.getDefaultState();
         }
         else
         {
@@ -130,6 +138,32 @@ public class HaystackBlock extends NormalBlock
         BlockPos blockpos = pos.down();
         BlockState blockstate = worldIn.getBlockState(blockpos);
         return state.get(HALF) == DoubleBlockHalf.LOWER ? blockstate.isSolidSide(worldIn, blockpos, Direction.UP) : blockstate.matchesBlock(this);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
+    {
+        if (state.get(HALF) == DoubleBlockHalf.LOWER)
+        {
+            Biome biome = worldIn.getBiome(pos);
+            Humidity humidity = Humidity.getHumid(biome.getDownfall(), biome.getTemperature(pos));
+            if (state.matchesBlock(BlockRegistry.WET_HAYSTACK))
+            {
+                if (random.nextInt(60 / (6 - humidity.getId())) == 0)
+                {
+                    worldIn.setBlockState(pos, BlockRegistry.DRY_HAYSTACK.getDefaultState().with(HALF, DoubleBlockHalf.LOWER), 2);
+                    worldIn.setBlockState(pos.up(), BlockRegistry.DRY_HAYSTACK.getDefaultState().with(HALF, DoubleBlockHalf.UPPER), 2);
+                }
+            }
+        }
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
+    {
+        return state.get(HALF) == DoubleBlockHalf.LOWER ? Lists.newArrayList(new ItemStack(this)) : Collections.emptyList();
     }
 
     static
