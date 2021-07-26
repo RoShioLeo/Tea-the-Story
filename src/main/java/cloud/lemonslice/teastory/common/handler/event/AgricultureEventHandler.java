@@ -1,17 +1,13 @@
 package cloud.lemonslice.teastory.common.handler.event;
 
 import cloud.lemonslice.teastory.common.block.BlockRegistry;
-import cloud.lemonslice.teastory.common.block.crops.AqueductBlock;
 import cloud.lemonslice.teastory.common.block.crops.MelonVineBlock;
 import cloud.lemonslice.teastory.common.block.crops.TeaPlantBlock;
 import cloud.lemonslice.teastory.common.config.ServerConfig;
-import cloud.lemonslice.teastory.common.item.AqueductShovelItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FarmlandBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
@@ -22,11 +18,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -62,21 +56,7 @@ public final class AgricultureEventHandler
 
     public static void onAqueductShovelUsing(BlockEvent.BlockToolInteractEvent event)
     {
-        if (event.getHeldItemStack().getItem() instanceof AqueductShovelItem)
-        {
-            if (event.getState().getBlock() instanceof FarmlandBlock)
-            {
-                event.setFinalState(BlockRegistry.PADDY_FIELD.getDefaultState());
-                event.setCanceled(true);
-                return;
-            }
-            if (event.getState().getBlock().isIn(Tags.Blocks.DIRT) || event.getState().getMaterial() == Material.EARTH)
-            {
-                event.setFinalState(((AqueductBlock) BlockRegistry.DIRT_AQUEDUCT).getStateForPlacement((World) event.getWorld(), event.getPos()));
-                event.getWorld().getPendingBlockTicks().scheduleTick(event.getPos(), BlockRegistry.DIRT_AQUEDUCT, Fluids.WATER.getTickRate(event.getWorld()));
-                event.setCanceled(true);
-            }
-        }
+
     }
 
     @SuppressWarnings("deprecation")

@@ -16,12 +16,12 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class BambooTraySingleInRecipeSerializer<T extends BambooTraySingleInRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T>
 {
-    private final int workingTime;
+    private final int workTime;
     private final IFactory<T> factory;
 
     public BambooTraySingleInRecipeSerializer(IFactory<T> factory, int timeIn)
     {
-        this.workingTime = timeIn;
+        this.workTime = timeIn;
         this.factory = factory;
     }
 
@@ -43,7 +43,7 @@ public class BambooTraySingleInRecipeSerializer<T extends BambooTraySingleInReci
                 throw new JsonSyntaxException("Result cannot be null");
             }
         }
-        int i = JSONUtils.getInt(json, "workingtime", this.workingTime);
+        int i = JSONUtils.getInt(json, "work_time", this.workTime);
         return this.factory.create(recipeId, group, ingredient, result, i);
     }
 

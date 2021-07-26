@@ -37,6 +37,7 @@ public class RiceSeedlingBlock extends CropsBlock
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand)
     {
         super.tick(state, worldIn, pos, rand);
@@ -59,7 +60,7 @@ public class RiceSeedlingBlock extends CropsBlock
     @Override
     protected IItemProvider getSeedsItem()
     {
-        return ItemRegistry.RICE_SEEDS;
+        return ItemRegistry.RICE_GRAINS;
     }
 
     @Override
@@ -68,8 +69,8 @@ public class RiceSeedlingBlock extends CropsBlock
         int age = state.get(AGE);
         if (age > 0)
         {
-            return new ItemStack(ItemRegistry.RICE_SEEDS);
+            return new ItemStack(ItemRegistry.RICE_GRAINS);
         }
-        else return new ItemStack(ItemRegistry.RICE_SEEDS);
+        else return new ItemStack(ItemRegistry.RICE_GRAINS);
     }
 }

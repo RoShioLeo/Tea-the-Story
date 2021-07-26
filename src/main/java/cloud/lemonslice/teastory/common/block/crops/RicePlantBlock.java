@@ -84,7 +84,7 @@ public class RicePlantBlock extends CropsBlock
                     return;
                 }
                 float f = getGrowthChance(this, worldIn, pos);
-                if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0))
+                if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (50.0F / f) + 1) == 0))
                 {
                     worldIn.setBlockState(pos, this.withAge(i + 1), 2);
                     net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
@@ -143,7 +143,7 @@ public class RicePlantBlock extends CropsBlock
     @Override
     protected IItemProvider getSeedsItem()
     {
-        return ItemRegistry.RICE_SEEDS;
+        return ItemRegistry.RICE_GRAINS;
     }
 
     @Override
@@ -152,7 +152,7 @@ public class RicePlantBlock extends CropsBlock
         int age = state.get(AGE);
         if (age > 0)
         {
-            return new ItemStack(ItemRegistry.RICE_SEEDS);
+            return new ItemStack(ItemRegistry.RICE_GRAINS);
         }
         else return new ItemStack(ItemRegistry.RICE_SEEDLINGS);
     }
@@ -168,7 +168,7 @@ public class RicePlantBlock extends CropsBlock
         }
         else
         {
-            list.add(new ItemStack(ItemRegistry.RICE_SEEDS, builder.getWorld().rand.nextInt(4) + 1));
+            list.add(new ItemStack(ItemRegistry.RICE_GRAINS, builder.getWorld().rand.nextInt(4) + 1));
         }
         return list;
     }

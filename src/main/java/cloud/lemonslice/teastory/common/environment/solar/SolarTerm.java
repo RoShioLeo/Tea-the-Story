@@ -13,7 +13,7 @@ public enum SolarTerm
     RAIN_WATER(-0.15F, 11000),
     INSECTS_AWAKENING(-0.1F, 11500),
     SPRING_EQUINOX(0, 12000),
-    FRESH_GREEN(0, 1250070),
+    FRESH_GREEN(0, 12500),
     GRAIN_RAIN(0.05F, 13000),
 
     // Summer Solar Terms

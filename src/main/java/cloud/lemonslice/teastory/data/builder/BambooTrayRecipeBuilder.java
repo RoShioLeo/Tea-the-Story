@@ -19,14 +19,14 @@ public class BambooTrayRecipeBuilder
 {
     private final Item result;
     private final Ingredient ingredient;
-    private final int workingTime;
+    private final int workTime;
     private final BambooTraySingleInRecipeSerializer<?> recipeSerializer;
 
-    private BambooTrayRecipeBuilder(IItemProvider resultIn, Ingredient ingredientIn, int workingTimeIn, BambooTraySingleInRecipeSerializer<?> serializer)
+    private BambooTrayRecipeBuilder(IItemProvider resultIn, Ingredient ingredientIn, int workTimeIn, BambooTraySingleInRecipeSerializer<?> serializer)
     {
         this.result = resultIn.asItem();
         this.ingredient = ingredientIn;
-        this.workingTime = workingTimeIn;
+        this.workTime = workTimeIn;
         this.recipeSerializer = serializer;
     }
 
@@ -76,7 +76,7 @@ public class BambooTrayRecipeBuilder
 
     public void build(Consumer<IFinishedRecipe> consumerIn, ResourceLocation id)
     {
-        consumerIn.accept(new BambooTrayRecipeBuilder.Result(id, this.ingredient, this.result, this.workingTime, this.recipeSerializer));
+        consumerIn.accept(new BambooTrayRecipeBuilder.Result(id, this.ingredient, this.result, this.workTime, this.recipeSerializer));
     }
 
     public static class Result implements IFinishedRecipe
@@ -100,7 +100,7 @@ public class BambooTrayRecipeBuilder
         {
             json.add("ingredient", this.ingredient.serialize());
             json.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
-            json.addProperty("workingtime", this.workingTime);
+            json.addProperty("work_time", this.workingTime);
         }
 
         public IRecipeSerializer<?> getSerializer()

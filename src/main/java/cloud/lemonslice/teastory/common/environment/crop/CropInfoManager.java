@@ -45,6 +45,12 @@ public final class CropInfoManager
         registerVineTypeConnections(VineType.GRAPE, BlockRegistry.SPRUCE_TRELLIS, BlockRegistry.SPRUCE_TRELLIS_GRAPE);
         registerVineTypeConnections(VineType.GRAPE, BlockRegistry.DARK_OAK_TRELLIS, BlockRegistry.DARK_OAK_TRELLIS_GRAPE);
         registerVineTypeConnections(VineType.GRAPE, BlockRegistry.ACACIA_TRELLIS, BlockRegistry.ACACIA_TRELLIS_GRAPE);
+        registerVineTypeConnections(VineType.CUCUMBER, BlockRegistry.OAK_TRELLIS, BlockRegistry.OAK_TRELLIS_CUCUMBER);
+        registerVineTypeConnections(VineType.CUCUMBER, BlockRegistry.BIRCH_TRELLIS, BlockRegistry.BIRCH_TRELLIS_CUCUMBER);
+        registerVineTypeConnections(VineType.CUCUMBER, BlockRegistry.JUNGLE_TRELLIS, BlockRegistry.JUNGLE_TRELLIS_CUCUMBER);
+        registerVineTypeConnections(VineType.CUCUMBER, BlockRegistry.SPRUCE_TRELLIS, BlockRegistry.SPRUCE_TRELLIS_CUCUMBER);
+        registerVineTypeConnections(VineType.CUCUMBER, BlockRegistry.DARK_OAK_TRELLIS, BlockRegistry.DARK_OAK_TRELLIS_CUCUMBER);
+        registerVineTypeConnections(VineType.CUCUMBER, BlockRegistry.ACACIA_TRELLIS, BlockRegistry.ACACIA_TRELLIS_CUCUMBER);
     }
 
     @SubscribeEvent
@@ -82,6 +88,12 @@ public final class CropInfoManager
         registerCropHumidityInfo(BlockRegistry.SPRUCE_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
         registerCropHumidityInfo(BlockRegistry.DARK_OAK_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
         registerCropHumidityInfo(BlockRegistry.ACACIA_TRELLIS_GRAPE, CropHumidityType.MOIST_HUMID, true);
+        registerCropHumidityInfo(BlockRegistry.OAK_TRELLIS_CUCUMBER, CropHumidityType.AVERAGE_MOIST, true);
+        registerCropHumidityInfo(BlockRegistry.BIRCH_TRELLIS_CUCUMBER, CropHumidityType.AVERAGE_MOIST, true);
+        registerCropHumidityInfo(BlockRegistry.JUNGLE_TRELLIS_CUCUMBER, CropHumidityType.AVERAGE_MOIST, true);
+        registerCropHumidityInfo(BlockRegistry.SPRUCE_TRELLIS_CUCUMBER, CropHumidityType.AVERAGE_MOIST, true);
+        registerCropHumidityInfo(BlockRegistry.DARK_OAK_TRELLIS_CUCUMBER, CropHumidityType.AVERAGE_MOIST, true);
+        registerCropHumidityInfo(BlockRegistry.ACACIA_TRELLIS_CUCUMBER, CropHumidityType.AVERAGE_MOIST, true);
 
         registerCropSeasonInfo(BlockRegistry.OAK_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
         registerCropSeasonInfo(BlockRegistry.BIRCH_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
@@ -89,6 +101,12 @@ public final class CropInfoManager
         registerCropSeasonInfo(BlockRegistry.SPRUCE_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
         registerCropSeasonInfo(BlockRegistry.DARK_OAK_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
         registerCropSeasonInfo(BlockRegistry.ACACIA_TRELLIS_GRAPE, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.OAK_TRELLIS_CUCUMBER, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.BIRCH_TRELLIS_CUCUMBER, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.JUNGLE_TRELLIS_CUCUMBER, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.SPRUCE_TRELLIS_CUCUMBER, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.DARK_OAK_TRELLIS_CUCUMBER, CropSeasonType.SP_SU, true);
+        registerCropSeasonInfo(BlockRegistry.ACACIA_TRELLIS_CUCUMBER, CropSeasonType.SP_SU, true);
 
         registerCropHumidityInfo(BlockRegistry.WATERMELON_VINE, CropHumidityType.MOIST_HUMID, true);
         registerCropSeasonInfo(BlockRegistry.WATERMELON_VINE, CropSeasonType.SUMMER, true);

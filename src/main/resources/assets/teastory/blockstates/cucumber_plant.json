@@ -1,0 +1,29 @@
+{
+    "variants": {
+        "age=0": [
+            {
+                "model": "teastory:block/cucumber_flowers"
+            }
+        ],
+        "age=1": [
+            {
+                "model": "teastory:block/cucumber_flowers"
+            }
+        ],
+        "age=2": [
+            {
+                "model": "teastory:block/cucumber_flowers"
+            }
+        ],
+        "age=3": [
+            {
+                "model": "teastory:block/cucumber_flowers"
+            }
+        ],
+        "age=4": [
+            {
+                "model": "teastory:block/cucumber"
+            }
+        ]
+    }
+}

@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.client.render;
 
-import cloud.lemonslice.teastory.common.block.tools.CatapultBoardBlockWithTray;
+import cloud.lemonslice.teastory.common.block.craft.CatapultBoardBlockWithTray;
 import cloud.lemonslice.teastory.common.tileentity.BambooTrayTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;

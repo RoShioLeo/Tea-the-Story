@@ -29,6 +29,6 @@ public class NormalBlockTagProvider extends BlockTagsProvider
     @Override
     public String getName()
     {
-        return "After the Drizzle Block Tags";
+        return "Tea the Story Block Tags";
     }
 }

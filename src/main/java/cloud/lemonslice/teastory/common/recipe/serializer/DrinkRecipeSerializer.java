@@ -34,16 +34,14 @@ public class DrinkRecipeSerializer<T extends DrinkRecipe> extends ForgeRegistryE
     {
         String group = JSONUtils.getString(json, "group", "");
         NonNullList<Ingredient> ingredients = readIngredients(JSONUtils.getJsonArray(json, "item_ingredients"));
-        FluidIngredient fluidIngredient;
-        Fluid result;
         if (ingredients.isEmpty())
         {
             throw new JsonParseException("No ingredients for drink recipe");
         }
         else
         {
-            fluidIngredient = FluidIngredient.deserialize(JSONUtils.getJsonObject(json, "fluid_ingredient"));
-            result = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(JSONUtils.getString(json, "drink_result")));
+            FluidIngredient fluidIngredient = FluidIngredient.deserialize(JSONUtils.getJsonObject(json, "fluid_ingredient"));
+            Fluid result = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(JSONUtils.getString(json, "drink_result")));
             if (result == null || result == Fluids.EMPTY)
             {
                 throw new JsonSyntaxException("Result cannot be null");

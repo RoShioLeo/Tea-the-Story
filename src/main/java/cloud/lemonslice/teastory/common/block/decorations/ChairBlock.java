@@ -3,9 +3,12 @@ package cloud.lemonslice.teastory.common.block.decorations;
 import cloud.lemonslice.silveroak.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
 import cloud.lemonslice.teastory.common.entity.SeatEntity;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -17,6 +20,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ChairBlock extends NormalHorizontalBlock
 {
@@ -93,6 +98,13 @@ public class ChairBlock extends NormalHorizontalBlock
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(HORIZONTAL_FACING);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
+    {
+        return Lists.newArrayList(new ItemStack(this));
     }
 
     static

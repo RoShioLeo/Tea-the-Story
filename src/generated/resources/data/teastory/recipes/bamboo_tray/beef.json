@@ -1,0 +1,8 @@
+{
+  "type": "teastory:bamboo_tray_in_rain",
+  "ingredient": {
+    "item": "teastory:beef_jerky"
+  },
+  "result": "minecraft:beef",
+  "work_time": 0
+}

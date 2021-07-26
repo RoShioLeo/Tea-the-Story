@@ -57,9 +57,9 @@ public class NormalItemTagProvider extends ItemTagsProvider
         getOrCreateBuilder(COFFEE_BEAN);
         getOrCreateBuilder(CORN);
         getOrCreateBuilder(COTTON);
-        getOrCreateBuilder(CRANBERRY);
-        getOrCreateBuilder(CUCUMBER);
-        getOrCreateBuilder(CUMIN);
+        getOrCreateBuilder(CRANBERRY);*/
+        getOrCreateBuilder(SEEDS_CUCUMBER).add(ItemRegistry.CUCUMBER);
+        /*getOrCreateBuilder(CUMIN);
         getOrCreateBuilder(EGGPLANT);
         getOrCreateBuilder(ELDERBERRY);
         getOrCreateBuilder(FLAX);
@@ -95,7 +95,7 @@ public class NormalItemTagProvider extends ItemTagsProvider
         getOrCreateBuilder(RADISH);
         getOrCreateBuilder(RASPBERRY);
         getOrCreateBuilder(RHUBARB);*/
-        getOrCreateBuilder(SEEDS_RICE).add(ItemRegistry.RICE_SEEDS);
+        getOrCreateBuilder(SEEDS_RICE).add(ItemRegistry.RICE_GRAINS);
         /*getOrCreateBuilder(RUTABAGA);
         getOrCreateBuilder(RYE);
         getOrCreateBuilder(SCALLION);
@@ -122,6 +122,7 @@ public class NormalItemTagProvider extends ItemTagsProvider
         getOrCreateBuilder(CROPS_TEA_LEAF).add(ItemRegistry.TEA_LEAVES);
         getOrCreateBuilder(CROPS_WHITE_TEA_LEAF).add(ItemRegistry.WHITE_TEA_LEAVES);
         getOrCreateBuilder(CROPS_GRAPE).add(ItemRegistry.GRAPES);
+        getOrCreateBuilder(CROPS_CUCUMBER).add(ItemRegistry.CUCUMBER);
     }
 
     @Override

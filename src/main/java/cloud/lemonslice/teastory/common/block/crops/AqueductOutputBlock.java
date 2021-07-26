@@ -162,9 +162,7 @@ public class AqueductOutputBlock extends AqueductBlock
     @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
     {
-        List<ItemStack> list = Lists.newArrayList();
-        list.add(new ItemStack(Blocks.COBBLESTONE));
-        return list;
+        return Lists.newArrayList(new ItemStack(Blocks.COBBLESTONE), new ItemStack(Blocks.DIRT));
     }
 
     static

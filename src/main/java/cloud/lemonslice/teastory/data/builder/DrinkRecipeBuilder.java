@@ -23,7 +23,6 @@ public class DrinkRecipeBuilder
     private final Fluid result;
     private final FluidIngredient fluidIngredient;
     private final NonNullList<Ingredient> ingredients;
-    private final DrinkRecipeSerializer<?> recipeSerializer = DRINK_MAKER.get();
 
     private DrinkRecipeBuilder(Fluid resultIn, FluidIngredient fluidIngredientIn, NonNullList<Ingredient> ingredientsIn)
     {

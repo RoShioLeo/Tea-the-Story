@@ -26,6 +26,12 @@ public abstract class BambooTraySingleInRecipe implements IRecipe<IInventory>
     }
 
     @Override
+    public boolean isDynamic()
+    {
+        return true;
+    }
+
+    @Override
     public boolean matches(IInventory inv, World worldIn)
     {
         return this.ingredient.test(inv.getStackInSlot(0));

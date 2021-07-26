@@ -7,6 +7,7 @@ import cloud.lemonslice.teastory.common.recipe.bamboo_tray.BambooTrayIndoorsReci
 import cloud.lemonslice.teastory.common.recipe.bamboo_tray.BambooTrayOutdoorsRecipe;
 import cloud.lemonslice.teastory.common.recipe.drink.DrinkRecipe;
 import cloud.lemonslice.teastory.common.recipe.special.FlowerDyeRecipe;
+import cloud.lemonslice.teastory.common.recipe.stone_mill.StoneMillRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraftforge.fml.RegistryObject;
@@ -25,4 +26,6 @@ public final class RecipeSerializerRegistry
     public final static RegistryObject<BambooTraySingleInRecipeSerializer<BambooTrayBakeRecipe>> BAMBOO_TRAY_BAKE = RECIPE_SERIALIZERS.register("bamboo_tray_bake", () -> new BambooTraySingleInRecipeSerializer<>(BambooTrayBakeRecipe::new, 200));
 
     public final static RegistryObject<DrinkRecipeSerializer<DrinkRecipe>> DRINK_MAKER = RECIPE_SERIALIZERS.register("drink_maker", () -> new DrinkRecipeSerializer<>(DrinkRecipe::new));
+
+    public final static RegistryObject<StoneMillRecipeSerializer<StoneMillRecipe>> STONE_MILL = RECIPE_SERIALIZERS.register("stone_mill", () -> new StoneMillRecipeSerializer<>(StoneMillRecipe::new, 200));
 }

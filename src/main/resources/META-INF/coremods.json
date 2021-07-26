@@ -1,3 +1,4 @@
 {
-    "atd_celestial_angle": "transformers/celestial-angle.js"
+    "ts_celestial_angle": "transformers/celestial-angle.js",
+    "ts_client_recipe_book": "transformers/log-message.js"
 }

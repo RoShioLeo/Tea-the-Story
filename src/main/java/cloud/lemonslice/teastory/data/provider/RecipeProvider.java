@@ -7,13 +7,15 @@ import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializerRegistry;
 import cloud.lemonslice.teastory.data.builder.BambooTrayRecipeBuilder;
 import cloud.lemonslice.teastory.data.builder.DrinkRecipeBuilder;
+import cloud.lemonslice.teastory.data.builder.StoneMillRecipeBuilder;
 import cloud.lemonslice.teastory.data.tag.NormalTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -81,21 +83,21 @@ public final class RecipeProvider extends net.minecraft.data.RecipeProvider
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(Items.BAMBOO), ItemRegistry.BAMBOO_CHARCOAL, 0.2F, 200).addCriterion("has_bamboo", this.hasItem(Items.BAMBOO)).build(consumer);
 
         // Bamboo Tray In-rain Recipes 竹篾匾淋雨配方
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.RABBIT_JERKY), Items.RABBIT, 0).build(consumer);
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.PORK_JERKY), Items.PORKCHOP, 0).build(consumer);
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.BEEF_JERKY), Items.BEEF, 0).build(consumer);
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.MUTTON_JERKY), Items.MUTTON, 0).build(consumer);
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.CHICKEN_JERKY), Items.CHICKEN, 0).build(consumer);
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.DRIED_CARROT), Items.CARROT, 0).build(consumer);
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.DRIED_BEETROOT), Items.BEETROOT, 0).build(consumer);
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_TEA_LEAF), ItemRegistry.TEA_RESIDUES, 0).build(consumer);
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_BLACK_TEA_LEAF), ItemRegistry.TEA_RESIDUES, 0).build(consumer, new ResourceLocation("teastory:black_tea_residue"));
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_GREEN_TEA_LEAF), ItemRegistry.TEA_RESIDUES, 0).build(consumer, new ResourceLocation("teastory:green_tea_residue"));
-        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), ItemRegistry.TEA_RESIDUES, 0).build(consumer, new ResourceLocation("teastory:white_tea_residue"));
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.RABBIT_JERKY), Items.RABBIT, 0).build(consumer, "teastory:rabbit");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.PORK_JERKY), Items.PORKCHOP, 0).build(consumer, "teastory:porkchop");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.BEEF_JERKY), Items.BEEF, 0).build(consumer, "teastory:beef");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.MUTTON_JERKY), Items.MUTTON, 0).build(consumer, "teastory:mutton");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.CHICKEN_JERKY), Items.CHICKEN, 0).build(consumer, "teastory:chicken");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.DRIED_CARROT), Items.CARROT, 0).build(consumer, "teastory:carrot");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromItems(ItemRegistry.DRIED_BEETROOT), Items.BEETROOT, 0).build(consumer, "teastory:beetroot");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_TEA_LEAF), ItemRegistry.TEA_RESIDUES, 0).build(consumer, "teastory:tea_residue");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_BLACK_TEA_LEAF), ItemRegistry.TEA_RESIDUES, 0).build(consumer, "teastory:black_tea_residue");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_GREEN_TEA_LEAF), ItemRegistry.TEA_RESIDUES, 0).build(consumer, "teastory:green_tea_residue");
+        BambooTrayRecipeBuilder.wetRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), ItemRegistry.TEA_RESIDUES, 0).build(consumer, "teastory:white_tea_residue");
 
         // Bamboo Tray Outdoors Recipes 竹篾匾户外配方
         BambooTrayRecipeBuilder.outdoorsRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_TEA_LEAF), ItemRegistry.GREEN_TEA_LEAVES, 200).build(consumer);
-        BambooTrayRecipeBuilder.outdoorsRecipe(Ingredient.fromItems(Items.ROTTEN_FLESH), Items.LEATHER, 200).build(consumer);
+        BambooTrayRecipeBuilder.outdoorsRecipe(Ingredient.fromItems(Items.ROTTEN_FLESH), Items.LEATHER, 200).build(consumer, "teastory:leather");
         BambooTrayRecipeBuilder.outdoorsRecipe(Ingredient.fromItems(Items.RABBIT), ItemRegistry.RABBIT_JERKY, 200).build(consumer);
         BambooTrayRecipeBuilder.outdoorsRecipe(Ingredient.fromItems(Items.PORKCHOP), ItemRegistry.PORK_JERKY, 200).build(consumer);
         BambooTrayRecipeBuilder.outdoorsRecipe(Ingredient.fromItems(Items.BEEF), ItemRegistry.BEEF_JERKY, 200).build(consumer);
@@ -108,8 +110,8 @@ public final class RecipeProvider extends net.minecraft.data.RecipeProvider
         BambooTrayRecipeBuilder.outdoorsRecipe(Ingredient.fromItems(BlockRegistry.FRESH_BAMBOO_WALL), BlockRegistry.DRIED_BAMBOO_WALL, 200).build(consumer);
 
         // Bamboo Tray Indoors Recipes 竹篾匾室内配方
-        BambooTrayRecipeBuilder.indoorsRecipe(Ingredient.fromTag(NormalTags.Items.FOOD_MEAT), Items.ROTTEN_FLESH, 200).build(consumer);
-        BambooTrayRecipeBuilder.indoorsRecipe(Ingredient.fromItems(Items.SPIDER_EYE), Items.FERMENTED_SPIDER_EYE, 200).build(consumer);
+        BambooTrayRecipeBuilder.indoorsRecipe(Ingredient.fromTag(NormalTags.Items.FOOD_MEAT), Items.ROTTEN_FLESH, 200).build(consumer, "teastory:rotten_flesh");
+        BambooTrayRecipeBuilder.indoorsRecipe(Ingredient.fromItems(Items.SPIDER_EYE), Items.FERMENTED_SPIDER_EYE, 200).build(consumer, "teastory:fermented_spider_eye");
         BambooTrayRecipeBuilder.indoorsRecipe(Ingredient.fromTag(NormalTags.Items.CROPS_TEA_LEAF), ItemRegistry.BLACK_TEA_LEAVES, 200).build(consumer);
 
         // Bamboo Tray Bake Recipes 竹篾匾烘焙配方
@@ -145,11 +147,15 @@ public final class RecipeProvider extends net.minecraft.data.RecipeProvider
         DrinkRecipeBuilder.drinkRecipe(FluidRegistry.WHITE_TEA_STILL.get(), FluidIngredient.fromFluid(500, FluidRegistry.WEAK_WHITE_TEA_STILL.get()), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF)).build(consumer, "teastory:weak_to_white_tea");
         DrinkRecipeBuilder.boilingRecipe(FluidRegistry.WHITE_TEA_STILL.get(), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF)).build(consumer);
         DrinkRecipeBuilder.drinkRecipe(FluidRegistry.STRONG_WHITE_TEA_STILL.get(), FluidIngredient.fromFluid(500, FluidRegistry.WHITE_TEA_STILL.get()), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF)).build(consumer);
+
+        // Stone Mill Recipes 石磨配方
+        StoneMillRecipeBuilder.recipe(200, Ingredient.fromTag(Tags.Items.STONE), FluidIngredient.fromFluid(200, Fluids.WATER), Fluids.LAVA, new ItemStack(Blocks.GRAVEL)).build(consumer, "teastory:lava");
+        StoneMillRecipeBuilder.recipeWithoutFluid(200, Ingredient.fromTag(Tags.Items.STONE), new ItemStack(Blocks.GRAVEL, 3)).build(consumer, "teastory:gravel");
     }
 
     @Override
     public String getName()
     {
-        return "After the Drizzle Recipes";
+        return "Tea the Story Recipes";
     }
 }

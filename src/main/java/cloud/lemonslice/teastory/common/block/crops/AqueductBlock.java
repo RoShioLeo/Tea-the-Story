@@ -4,6 +4,7 @@ import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
 import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.block.HorizontalConnectedBlock;
 import cloud.lemonslice.teastory.data.tag.NormalTags;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,6 +16,7 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
@@ -33,6 +35,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class AqueductBlock extends HorizontalConnectedBlock implements IWaterLoggable
@@ -296,6 +299,13 @@ public class AqueductBlock extends HorizontalConnectedBlock implements IWaterLog
             return state.get(WATERLOGGED);
         }
         return false;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
+    {
+        return Lists.newArrayList(new ItemStack(Blocks.DIRT));
     }
 
     static

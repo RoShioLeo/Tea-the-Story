@@ -41,6 +41,12 @@ public class DrinkRecipe implements IRecipe<IInventory>
     }
 
     @Override
+    public boolean isDynamic()
+    {
+        return true;
+    }
+
+    @Override
     public boolean matches(IInventory inv, World worldIn)
     {
         List<ItemStack> inputs = Lists.newArrayList();

@@ -1,0 +1,14 @@
+{
+  "type": "teastory:stone_mill",
+  "item_ingredient": {
+    "tag": "forge:stone"
+  },
+  "output_items": [
+    {
+      "item": "minecraft:gravel",
+      "count": 3
+    }
+  ],
+  "output_fluid": "minecraft:empty",
+  "work_time": 200
+}

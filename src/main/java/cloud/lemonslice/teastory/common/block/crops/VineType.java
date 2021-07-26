@@ -6,15 +6,20 @@ import net.minecraft.block.Blocks;
 
 public enum VineType
 {
-    GRAPE;
+    GRAPE,
+    CUCUMBER;
 
     public Block getFruit()
     {
-        if (getName().equals("grape"))
+        switch (this.ordinal())
         {
-            return BlockRegistry.GRAPE;
+            case 0:
+                return BlockRegistry.GRAPE;
+            case 1:
+                return BlockRegistry.CUCUMBER;
+            default:
+                return Blocks.AIR;
         }
-        else return Blocks.AIR;
     }
 
     public String getName()

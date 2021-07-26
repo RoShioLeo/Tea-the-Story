@@ -2,11 +2,11 @@ package cloud.lemonslice.teastory.common.block.crops;
 
 import cloud.lemonslice.silveroak.common.block.NormalBlock;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.IGrowable;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.state.IntegerProperty;
@@ -30,20 +30,14 @@ import java.util.Random;
 public class StemFruitBlock extends NormalBlock implements IGrowable, IPlantable
 {
     public final VineType type;
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
+    public static final IntegerProperty AGE_0_4 = IntegerProperty.create("age", 0, 4);
     private static final VoxelShape SHAPE = VoxelShapeHelper.createVoxelShape(3.5, 6.0, 3.5, 9.0, 10.0, 9.0);
 
     public StemFruitBlock(String name, Properties properties, VineType type)
     {
         super(name, properties);
         this.type = type;
-        this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0));
-    }
-
-    @Override
-    public Item asItem()
-    {
-        return super.asItem();
+        this.setDefaultState(this.stateContainer.getBaseState().with(AGE_0_4, 0));
     }
 
     @Override
@@ -83,13 +77,13 @@ public class StemFruitBlock extends NormalBlock implements IGrowable, IPlantable
         if (!worldIn.isAreaLoaded(pos, 1)) return;
         if (worldIn.getLightSubtracted(pos, 0) >= 9)
         {
-            int i = state.get(AGE);
+            int i = state.get(AGE_0_4);
             if (i < 4)
             {
                 float f = getGrowthChance(this, worldIn, pos, type);
                 if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0))
                 {
-                    worldIn.setBlockState(pos, state.with(AGE, i + 1), 2);
+                    worldIn.setBlockState(pos, state.with(AGE_0_4, i + 1), 2);
                     ForgeHooks.onCropsGrowPost(worldIn, pos, state);
                 }
             }
@@ -146,7 +140,7 @@ public class StemFruitBlock extends NormalBlock implements IGrowable, IPlantable
     @Override
     public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient)
     {
-        return state.get(AGE) < 4;
+        return state.get(AGE_0_4) < 4;
     }
 
     @Override
@@ -158,13 +152,13 @@ public class StemFruitBlock extends NormalBlock implements IGrowable, IPlantable
     @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state)
     {
-        int i = state.get(AGE) + 2;
+        int i = state.get(AGE_0_4) + 2;
         if (i > 4)
         {
             i = 4;
         }
 
-        worldIn.setBlockState(pos, state.with(AGE, i), 2);
+        worldIn.setBlockState(pos, state.with(AGE_0_4, i), 2);
     }
 
     @Override
@@ -178,14 +172,15 @@ public class StemFruitBlock extends NormalBlock implements IGrowable, IPlantable
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
-        builder.add(AGE);
+        builder.add(AGE_0_4);
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
     {
-        if (state.get(AGE) == 4)
-            return super.getDrops(state, builder);
+        if (state.get(AGE_0_4) == 4)
+            return Lists.newArrayList(new ItemStack(this));
         else
             return Collections.emptyList();
     }

@@ -1,0 +1,8 @@
+{
+  "type": "teastory:bamboo_tray_outdoors",
+  "ingredient": {
+    "item": "minecraft:rotten_flesh"
+  },
+  "result": "minecraft:leather",
+  "work_time": 200
+}

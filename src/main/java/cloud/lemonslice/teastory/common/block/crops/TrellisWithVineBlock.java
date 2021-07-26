@@ -6,7 +6,6 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.state.IntegerProperty;
@@ -37,9 +36,9 @@ public class TrellisWithVineBlock extends TrellisBlock
 
     public TrellisWithVineBlock(String name, VineType type, Properties properties)
     {
-        super(name, properties.tickRandomly());
+        super(name + "_" + type.getName(), properties.tickRandomly());
         this.type = type;
-        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL, false).with(AGE, 0).with(DISTANCE, 0).with(POST, false).with(UP, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
+        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL, false).with(AGE, 0).with(DISTANCE, 0).with(POST, false).with(UP, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
     }
 
     @Override
@@ -91,7 +90,7 @@ public class TrellisWithVineBlock extends TrellisBlock
                     }
                     else // Bear fruit.
                     {
-                        if (worldIn.getBlockState(pos.down()).isAir() && (state.get(DISTANCE) + state.get(AGE)) % 3 == 0)
+                        if (worldIn.getBlockState(pos.down()).isAir() && !hasNearFruit(worldIn, pos.down(), type.getFruit()))
                         {
                             worldIn.setBlockState(pos, state.with(AGE, (i + 1) % 4));
                             worldIn.setBlockState(pos.down(), type.getFruit().getDefaultState());
@@ -123,6 +122,19 @@ public class TrellisWithVineBlock extends TrellisBlock
                 ForgeHooks.onCropsGrowPost(worldIn, pos, state);
             }
         }
+    }
+
+    public static boolean hasNearFruit(IBlockReader worldIn, BlockPos pos, Block fruit)
+    {
+        for (Direction direction : Direction.Plane.HORIZONTAL)
+        {
+            BlockState state = worldIn.getBlockState(pos.offset(direction));
+            if (state.matchesBlock(fruit))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -159,10 +171,6 @@ public class TrellisWithVineBlock extends TrellisBlock
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
     {
         // Update the connecting state of trellis. 更新棚架方块的连接状态。
-        if (stateIn.get(WATERLOGGED))
-        {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-        }
         if (facing.getAxis().getPlane() == Direction.Plane.HORIZONTAL)
         {
             stateIn = stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), this.canConnect(facingState, facingState.isSolidSide(worldIn, facingPos, facing.getOpposite())));
@@ -240,9 +248,7 @@ public class TrellisWithVineBlock extends TrellisBlock
     @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
     {
-        List<ItemStack> list = Lists.newArrayList();
-        list.add(new ItemStack(getEmptyTrellis()));
-        return list;
+        return Lists.newArrayList(new ItemStack(getEmptyTrellis()));
     }
 
     public VineType getType()

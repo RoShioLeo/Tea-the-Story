@@ -6,9 +6,6 @@ import cloud.lemonslice.teastory.common.block.HorizontalConnectedBlock;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
@@ -29,19 +26,30 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class TrellisBlock extends HorizontalConnectedBlock implements IWaterLoggable
+public class TrellisBlock extends HorizontalConnectedBlock
 {
     public static final BooleanProperty POST = BooleanProperty.create("post");
     public static final BooleanProperty UP = BlockStateProperties.UP;
     public static final BooleanProperty HORIZONTAL = BooleanProperty.create("horizontal");
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private static final VoxelShape[] SHAPES;
 
     public TrellisBlock(String name, Properties properties)
     {
         super(name, properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL, false).with(POST, false).with(UP, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
+        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL, false).with(POST, false).with(UP, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
         BlockRegistry.TRELLIS_BLOCKS.add(this);
+    }
+
+    @Override
+    public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face)
+    {
+        return 20;
+    }
+
+    @Override
+    public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face)
+    {
+        return 5;
     }
 
     @Override
@@ -100,8 +108,7 @@ public class TrellisBlock extends HorizontalConnectedBlock implements IWaterLogg
                 state = state.with(FACING_TO_PROPERTY_MAP.get(facing), true);
             }
         }
-        state = state.with(HORIZONTAL, hasHorizontalBar(state));
-        return state.with(WATERLOGGED, world.getFluidState(pos).getFluid() == Fluids.WATER);
+        return state.with(HORIZONTAL, hasHorizontalBar(state));
     }
 
     @Override
@@ -123,10 +130,6 @@ public class TrellisBlock extends HorizontalConnectedBlock implements IWaterLogg
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
     {
         // Update the connecting state of trellis. 更新棚架方块的连接状态。
-        if (stateIn.get(WATERLOGGED))
-        {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-        }
         if (facing.getAxis().getPlane() == Direction.Plane.HORIZONTAL)
         {
             stateIn = stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), this.canConnect(facingState, facingState.isSolidSide(worldIn, facingPos, facing.getOpposite())));
@@ -150,36 +153,27 @@ public class TrellisBlock extends HorizontalConnectedBlock implements IWaterLogg
     @Override
     public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos)
     {
-        return !state.get(WATERLOGGED);
+        return true;
     }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         super.fillStateContainer(builder);
-        builder.add(HORIZONTAL, POST, UP, WATERLOGGED);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public FluidState getFluidState(BlockState state)
-    {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        builder.add(HORIZONTAL, POST, UP);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
     {
-        List<ItemStack> list = Lists.newArrayList();
-        list.add(new ItemStack(this));
-        return list;
+        return Lists.newArrayList(new ItemStack(this));
     }
 
     public BlockState getRelevantState(BlockState old)
     {
         BlockState newState = this.getDefaultState();
-        return newState.with(NORTH, old.get(NORTH)).with(SOUTH, old.get(SOUTH)).with(WEST, old.get(WEST)).with(EAST, old.get(EAST)).with(POST, old.get(POST)).with(UP, old.get(UP)).with(HORIZONTAL, old.get(HORIZONTAL)).with(WATERLOGGED, old.get(WATERLOGGED));
+        return newState.with(NORTH, old.get(NORTH)).with(SOUTH, old.get(SOUTH)).with(WEST, old.get(WEST)).with(EAST, old.get(EAST)).with(POST, old.get(POST)).with(UP, old.get(UP)).with(HORIZONTAL, old.get(HORIZONTAL));
     }
 
     static

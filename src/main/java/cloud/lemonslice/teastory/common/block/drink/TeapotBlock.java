@@ -2,7 +2,7 @@ package cloud.lemonslice.teastory.common.block.drink;
 
 import cloud.lemonslice.silveroak.common.block.NormalHorizontalBlock;
 import cloud.lemonslice.teastory.client.sound.SoundEventsRegistry;
-import cloud.lemonslice.teastory.common.block.tools.IStoveBlock;
+import cloud.lemonslice.teastory.common.block.craft.IStoveBlock;
 import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
 import cloud.lemonslice.teastory.common.tileentity.TeapotTileEntity;
 import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;

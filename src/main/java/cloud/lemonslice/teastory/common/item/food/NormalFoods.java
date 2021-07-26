@@ -14,5 +14,6 @@ public final class NormalFoods
     public static final Food MUTTON_JERKY = (new Food.Builder()).hunger(8).saturation(1.0F).meat().build();
 
     public static final Food GRAPE = (new Food.Builder()).hunger(2).saturation(0.3F).build();
+    public static final Food CUCUMBER = (new Food.Builder()).hunger(2).saturation(0.2F).build();
     public static final Food RAISINS = (new Food.Builder()).hunger(4).saturation(0.5F).build();
 }

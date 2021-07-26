@@ -3,6 +3,7 @@ package cloud.lemonslice.teastory.common.item;
 import cloud.lemonslice.silveroak.common.item.NormalItem;
 import cloud.lemonslice.teastory.TeaStory;
 import cloud.lemonslice.teastory.common.block.BlockRegistry;
+import cloud.lemonslice.teastory.common.block.crops.VineType;
 import cloud.lemonslice.teastory.common.item.food.FoodItem;
 import cloud.lemonslice.teastory.common.item.food.NormalFoods;
 import cloud.lemonslice.teastory.registry.RegistryModule;
@@ -55,9 +56,10 @@ public final class ItemRegistry extends RegistryModule
 
     // CROPS 作物
     public static final Item TEA_SEEDS = new BlockNamedItem(BlockRegistry.TEA_PLANT, getNormalItemProperties()).setRegistryName("tea_seeds");
-    public static final Item RICE_SEEDS = new BlockNamedItem(BlockRegistry.RICE_SEEDLING, getNormalItemProperties()).setRegistryName("rice_seeds");
+    public static final Item RICE_GRAINS = new BlockNamedItem(BlockRegistry.RICE_SEEDLING, getNormalItemProperties()).setRegistryName("rice_grains");
     public static final Item RICE_SEEDLINGS = new BlockNamedItem(BlockRegistry.RICE_PLANT, getNormalItemProperties()).setRegistryName("rice_seedlings");
-    public static final Item GRAPES = new GrapeSeedsItem();
+    public static final Item GRAPES = new VineSeedsItem("grapes", VineType.GRAPE, NormalFoods.GRAPE);
+    public static final Item CUCUMBER = new VineSeedsItem("cucumber", VineType.CUCUMBER, NormalFoods.CUCUMBER);
 
     // DRINK 饮品
     public static final Item CLAY_CUP = new NormalItem("clay_cup", getDrinkItemProperties());

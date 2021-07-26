@@ -10,21 +10,17 @@ function initializeCoreMod() {
         'calculate-celestial-angle': {
             'target': {
                 'type': 'CLASS',
-                'name': 'net/minecraft/world/IWorld'
+                'name': 'net/minecraft/world/IDayTimeReader'
             },
-            'transformer': function (cn)
-            {
-                cn.methods.forEach(function (mn)
-                {
-                    if (mn.name === ASM.mapMethod('func_242415_f'))
-                    {
-                        for (var iterator = mn.instructions.iterator(); iterator.hasNext();)
-                        {
+            'transformer': function (cn) {
+                cn.methods.forEach(function (mn) {
+                    if (mn.name === ASM.mapMethod('func_242415_f')) {
+                        for (var iterator = mn.instructions.iterator(); iterator.hasNext();) {
                             var node = iterator.next();
-                            if (node.getOpcode() === Opcodes.INVOKEVIRTUAL && node.name === ASM.mapMethod("func_236032_b_"))
-                            {
+                            if (node.getOpcode() === Opcodes.INVOKEVIRTUAL && node.name === ASM.mapMethod("func_236032_b_")) {
                                 mn.instructions.insertBefore(node, new VarInsnNode(Opcodes.ALOAD, 0));
                                 iterator.set(new MethodInsnNode(Opcodes.INVOKESTATIC, "cloud/lemonslice/teastory/common/handler/AsmHandler", "getSeasonCelestialAngle", "(JLnet/minecraft/world/IDayTimeReader;)F", false));
+                                ASM.log("INFO", "Inserted season celestial angle callback", {});
                             }
                         }
                     }

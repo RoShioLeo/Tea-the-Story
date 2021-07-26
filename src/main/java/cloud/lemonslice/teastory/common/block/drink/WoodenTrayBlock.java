@@ -5,12 +5,14 @@ import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
 import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import cloud.lemonslice.teastory.common.tileentity.TeaCupTileEntity;
 import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -29,6 +31,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import java.util.List;
 
 import static net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack.FLUID_NBT_KEY;
 
@@ -210,5 +214,12 @@ public class WoodenTrayBlock extends NormalBlock
             }
         }
         super.onReplaced(state, worldIn, pos, newState, isMoving);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
+    {
+        return Lists.newArrayList(new ItemStack(this));
     }
 }
