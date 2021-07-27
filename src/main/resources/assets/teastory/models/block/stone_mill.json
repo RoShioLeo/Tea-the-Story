@@ -73,10 +73,6 @@
             "from": [7, 4, 14],
             "to": [9, 6, 19],
             "faces": {
-                "north": {
-                    "uv": [0, 0, 2, 2],
-                    "texture": "#missing"
-                },
                 "east": {
                     "uv": [14, 0, 15, 2.5],
                     "rotation": 90,
@@ -773,12 +769,12 @@
         },
         "firstperson_righthand": {
             "rotation": [0, 45, 0],
-            "translation": [0, 0, 0],
+            "translation": [0, 3, 0],
             "scale": [0.40, 0.40, 0.40]
         },
         "firstperson_lefthand": {
             "rotation": [0, 225, 0],
-            "translation": [0, 0, 0],
+            "translation": [0, 3, 0],
             "scale": [0.40, 0.40, 0.40]
         }
     }

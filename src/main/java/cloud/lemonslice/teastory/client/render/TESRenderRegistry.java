@@ -16,5 +16,6 @@ public final class TESRenderRegistry
         ClientRegistry.bindTileEntityRenderer(TileEntityTypeRegistry.STOVE_TILE, StoveTESR::new);
         ClientRegistry.bindTileEntityRenderer(TileEntityTypeRegistry.BAMBOO_TRAY, BambooTrayTESR::new);
         ClientRegistry.bindTileEntityRenderer(TileEntityTypeRegistry.DRINK_MAKER, DrinkMakerTESR::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntityTypeRegistry.STONE_MILL, StoneMillTESR::new);
     }
 }

@@ -17,6 +17,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.Consumer;
 
@@ -149,7 +150,7 @@ public final class RecipeProvider extends net.minecraft.data.RecipeProvider
         DrinkRecipeBuilder.drinkRecipe(FluidRegistry.STRONG_WHITE_TEA_STILL.get(), FluidIngredient.fromFluid(500, FluidRegistry.WHITE_TEA_STILL.get()), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF), Ingredient.fromTag(NormalTags.Items.CROPS_WHITE_TEA_LEAF)).build(consumer);
 
         // Stone Mill Recipes 石磨配方
-        StoneMillRecipeBuilder.recipe(200, Ingredient.fromTag(Tags.Items.STONE), FluidIngredient.fromFluid(200, Fluids.WATER), Fluids.LAVA, new ItemStack(Blocks.GRAVEL)).build(consumer, "teastory:lava");
+        StoneMillRecipeBuilder.recipe(200, Ingredient.fromTag(Tags.Items.STONE), FluidIngredient.fromFluid(200, Fluids.WATER), new FluidStack(Fluids.LAVA, 200), new ItemStack(Blocks.GRAVEL)).build(consumer, "teastory:lava");
         StoneMillRecipeBuilder.recipeWithoutFluid(200, Ingredient.fromTag(Tags.Items.STONE), new ItemStack(Blocks.GRAVEL, 3)).build(consumer, "teastory:gravel");
     }
 

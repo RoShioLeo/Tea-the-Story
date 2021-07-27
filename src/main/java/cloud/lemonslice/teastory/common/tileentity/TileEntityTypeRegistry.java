@@ -12,4 +12,5 @@ public final class TileEntityTypeRegistry extends RegistryModule
     public static final TileEntityType<TeapotTileEntity> TEAPOT = (TileEntityType<TeapotTileEntity>) TileEntityType.Builder.create(() -> new TeapotTileEntity(1000), BlockRegistry.TEAPOT).build(null).setRegistryName("teapot");
     public static final TileEntityType<TeapotTileEntity> IRON_KETTLE = (TileEntityType<TeapotTileEntity>) TileEntityType.Builder.create(() -> new TeapotTileEntity(4000), BlockRegistry.IRON_KETTLE).build(null).setRegistryName("iron_kettle");
     public static final TileEntityType<TeaCupTileEntity> PORCELAIN_CUP = (TileEntityType<TeaCupTileEntity>) TileEntityType.Builder.create(() -> new TeaCupTileEntity(250), BlockRegistry.WOODEN_TRAY).build(null).setRegistryName("porcelain_cup");
+    public static final TileEntityType<StoneMillTileEntity> STONE_MILL = (TileEntityType<StoneMillTileEntity>) TileEntityType.Builder.create(() -> new StoneMillTileEntity(), BlockRegistry.STONE_MILL).build(null).setRegistryName("stone_mill");
 }

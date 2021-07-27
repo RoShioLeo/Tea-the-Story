@@ -25,6 +25,7 @@ public final class ItemRegistry extends RegistryModule
     public static final Item DIAMOND_AQUEDUCT_SHOVEL = new AqueductShovelItem("diamond_aqueduct_shovel", ItemTier.DIAMOND, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
     //    public static final Item NETHERITE_AQUEDUCT_SHOVEL = new AqueductShovelItem("netherite_aqueduct_shovel", ItemTier.NETHERITE, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
     public static final Item SHENNONG_CHI = new ShennongChiItem();
+    public static final Item IRON_SICKLE = new SickleItem("iron_sickle", ItemTier.IRON, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
 
     // FOOD 食物
     public static final Item DRIED_BEETROOT = new FoodItem("dried_beetroot", NormalFoods.DRIED_BEETROOT);
@@ -45,6 +46,8 @@ public final class ItemRegistry extends RegistryModule
     public static final Item BAMBOO_CHARCOAL = new NormalBurntItem("bamboo_charcoal", 800);
     public static final Item HONEYCOMB_BRIQUETTE = new NormalBurntItem("honeycomb_briquette", 2000);
 
+    public static final Item STONE_MILL_TOP = new NormalItem("stone_mill_top", new Item.Properties());
+
     // INGREDIENTS 原料
     public static final Item TEA_LEAVES = new NormalItem("tea_leaves", getNormalItemProperties());
     public static final Item GREEN_TEA_LEAVES = new NormalItem("green_tea_leaves", getTeaLeavesItemProperties());
@@ -53,6 +56,9 @@ public final class ItemRegistry extends RegistryModule
     public static final Item EMPTY_TEA_BAG = new NormalItem("empty_tea_bag", getTeaLeavesItemProperties());
     public static final Item GREEN_TEA_BAG = new NormalItem("green_tea_bag", getTeaLeavesItemProperties());
     public static final Item BLACK_TEA_BAG = new NormalItem("black_tea_bag", getTeaLeavesItemProperties());
+
+    public static final Item RICE = new NormalItem("rice", getNormalItemProperties());
+    public static final Item WASHED_RICE = new NormalItem("washed_rice", getNormalItemProperties());
 
     // CROPS 作物
     public static final Item TEA_SEEDS = new BlockNamedItem(BlockRegistry.TEA_PLANT, getNormalItemProperties()).setRegistryName("tea_seeds");

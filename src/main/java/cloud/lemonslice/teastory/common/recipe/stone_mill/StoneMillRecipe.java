@@ -3,7 +3,6 @@ package cloud.lemonslice.teastory.common.recipe.stone_mill;
 import cloud.lemonslice.silveroak.common.recipe.FluidIngredient;
 import cloud.lemonslice.teastory.common.recipe.type.NormalRecipeTypes;
 import cloud.lemonslice.teastory.common.tileentity.StoneMillTileEntity;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -24,10 +23,10 @@ public class StoneMillRecipe implements IRecipe<IInventory>
     protected final FluidIngredient inputFluid;
     protected final Ingredient inputItem;
     protected final NonNullList<ItemStack> outputItems;
-    protected final Fluid outputFluid;
+    protected final FluidStack outputFluid;
     protected final int workTime;
 
-    public StoneMillRecipe(ResourceLocation idIn, String groupIn, Ingredient inputItem, FluidIngredient inputFluid, NonNullList<ItemStack> outputItems, Fluid outputFluid, int workTime)
+    public StoneMillRecipe(ResourceLocation idIn, String groupIn, Ingredient inputItem, FluidIngredient inputFluid, NonNullList<ItemStack> outputItems, FluidStack outputFluid, int workTime)
     {
         this.id = idIn;
         this.group = groupIn;
@@ -49,17 +48,10 @@ public class StoneMillRecipe implements IRecipe<IInventory>
     {
         if (this.inputItem.test(inv.getStackInSlot(0)))
         {
-            if (this.inputFluid.hasNoMatchingFluids())
+            if (inv instanceof StoneMillTileEntity)
             {
-                return true;
-            }
-            else
-            {
-                if (inv instanceof StoneMillTileEntity)
-                {
-                    FluidStack fluidStack = ((StoneMillTileEntity) inv).getFluidTank().getFluidInTank(0).copy();
-                    return inputFluid.test(fluidStack);
-                }
+                FluidStack fluidStack = ((StoneMillTileEntity) inv).getFluidTank().getFluidInTank(0).copy();
+                return inputFluid.test(fluidStack);
             }
         }
         return false;
@@ -88,7 +80,7 @@ public class StoneMillRecipe implements IRecipe<IInventory>
         return inputItem;
     }
 
-    public Fluid getOutputFluid()
+    public FluidStack getOutputFluid()
     {
         return outputFluid;
     }

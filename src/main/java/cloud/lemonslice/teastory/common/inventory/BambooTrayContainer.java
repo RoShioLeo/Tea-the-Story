@@ -24,9 +24,7 @@ public class BambooTrayContainer extends Container
         super(BAMBOO_TRAY_CONTAINER, windowId);
         this.tileEntity = (BambooTrayTileEntity) world.getTileEntity(pos);
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.UP).ifPresent(h ->
-        {
-            addSlot(new SlotItemHandler(h, 0, 107, 31));
-        });
+                addSlot(new SlotItemHandler(h, 0, 107, 31)));
         for (int i = 0; i < 3; ++i)
         {
 

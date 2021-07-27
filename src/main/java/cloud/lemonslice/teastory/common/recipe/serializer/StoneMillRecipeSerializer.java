@@ -7,7 +7,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
@@ -57,14 +56,24 @@ public class StoneMillRecipeSerializer<T extends StoneMillRecipe> extends ForgeR
         if (!json.has("output_fluid") && !json.has("output_items"))
             throw new JsonSyntaxException("Missing output, expected to find a string or object");
 
-        Fluid outputFluid;
+        FluidStack outputFluid;
         if (json.has("output_fluid"))
         {
-            outputFluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(JSONUtils.getString(json, "output_fluid")));
+            JsonObject jsonOutputFluid = JSONUtils.getJsonObject(json, "output_fluid");
+            Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(JSONUtils.getString(jsonOutputFluid, "fluid")));
+            if (fluid == null)
+            {
+                outputFluid = FluidStack.EMPTY;
+            }
+            else
+            {
+                int amount = JSONUtils.getInt(jsonOutputFluid, "amount");
+                outputFluid = new FluidStack(fluid, amount);
+            }
         }
         else
         {
-            outputFluid = Fluids.EMPTY;
+            outputFluid = FluidStack.EMPTY;
         }
 
         NonNullList<ItemStack> outputItems;
@@ -117,7 +126,7 @@ public class StoneMillRecipeSerializer<T extends StoneMillRecipe> extends ForgeR
             outputItems.set(j, buffer.readItemStack());
         }
 
-        Fluid outputFluid = buffer.readFluidStack().getFluid();
+        FluidStack outputFluid = buffer.readFluidStack();
 
         int workTime = buffer.readVarInt();
 
@@ -137,13 +146,13 @@ public class StoneMillRecipeSerializer<T extends StoneMillRecipe> extends ForgeR
             buffer.writeItemStack(ingredient);
         }
 
-        buffer.writeFluidStack(new FluidStack(recipe.getOutputFluid(), 1));
+        buffer.writeFluidStack(recipe.getOutputFluid());
 
         buffer.writeVarInt(recipe.getWorkTime());
     }
 
     interface IFactory<T extends StoneMillRecipe>
     {
-        T create(ResourceLocation idIn, String groupIn, Ingredient inputItem, FluidIngredient inputFluid, NonNullList<ItemStack> outputItems, Fluid outputFluid, int workTime);
+        T create(ResourceLocation idIn, String groupIn, Ingredient inputItem, FluidIngredient inputFluid, NonNullList<ItemStack> outputItems, FluidStack outputFluid, int workTime);
     }
 }

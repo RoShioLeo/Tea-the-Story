@@ -1,31 +1,59 @@
 package cloud.lemonslice.teastory.common.tileentity;
 
+import cloud.lemonslice.teastory.common.recipe.stone_mill.StoneMillRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static cloud.lemonslice.teastory.common.recipe.type.NormalRecipeTypes.STONE_MILL;
+import static net.minecraft.block.HorizontalBlock.HORIZONTAL_FACING;
+
 public class StoneMillTileEntity extends NormalContainerTileEntity implements ITickableTileEntity, IInventory
 {
     private int angel = 0;
-    private int processTicks = 0;
-    private static final int TOTAL_TICKS = 200;
+    private boolean isWorking = false;
 
-    private ItemStackHandler inputInventory = new ItemStackHandler();
-    private ItemStackHandler outputInventory = new ItemStackHandler(3);
+    private int processTicks = 0;
+    private StoneMillRecipe currentRecipe;
+
+    private ItemStackHandler inputInventory = new ItemStackHandler()
+    {
+        @Override
+        protected void onContentsChanged(int slot)
+        {
+            StoneMillTileEntity.this.markDirty();
+            StoneMillTileEntity.this.refresh();
+        }
+    };
+    private ItemStackHandler outputInventory = new ItemStackHandler(3)
+    {
+        @Override
+        protected void onContentsChanged(int slot)
+        {
+            StoneMillTileEntity.this.markDirty();
+        }
+    };
     private FluidTank fluidTank = new FluidTank(2000)
     {
         @Override
@@ -35,9 +63,9 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
         }
     };
 
-    public StoneMillTileEntity(TileEntityType<?> tileEntityType)
+    public StoneMillTileEntity()
     {
-        super(tileEntityType);
+        super(TileEntityTypeRegistry.STONE_MILL);
     }
 
     @Override
@@ -48,7 +76,6 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
         this.outputInventory.deserializeNBT(nbt.getCompound("OutputInventory"));
         this.fluidTank.readFromNBT(nbt.getCompound("FluidTank"));
         this.processTicks = nbt.getInt("ProcessTicks");
-        this.angel = nbt.getInt("Angel");
     }
 
     @Override
@@ -58,7 +85,6 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
         compound.put("OutputInventory", this.outputInventory.serializeNBT());
         compound.put("FluidTank", this.fluidTank.writeToNBT(new CompoundNBT()));
         compound.putInt("ProcessTicks", this.processTicks);
-        compound.putInt("Angel", this.angel);
         return super.write(compound);
     }
 
@@ -66,6 +92,20 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side)
     {
+        if (!this.removed)
+        {
+            if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(cap))
+            {
+                if (side == Direction.DOWN)
+                    return LazyOptional.of(() -> outputInventory).cast();
+                else
+                    return LazyOptional.of(() -> inputInventory).cast();
+            }
+            else if (CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.equals(cap))
+            {
+                return LazyOptional.of(this::getFluidTank).cast();
+            }
+        }
         return super.getCapability(cap, side);
     }
 
@@ -85,49 +125,69 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
     @Override
     public int getSizeInventory()
     {
-        return 0;
+        return 4;
     }
 
     @Override
     public boolean isEmpty()
     {
-        return false;
+        return inputInventory.getStackInSlot(0).isEmpty();
     }
 
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        return null;
+        if (index == 0)
+        {
+            return this.inputInventory.getStackInSlot(0);
+        }
+        else if (index > 0 && index < 4)
+        {
+            return this.outputInventory.getStackInSlot(index - 1);
+        }
+        return ItemStack.EMPTY;
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        return null;
+        return getStackInSlot(index).split(count);
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        return null;
+        ItemStack stack = getStackInSlot(index).copy();
+        setInventorySlotContents(index, ItemStack.EMPTY);
+        return stack;
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack)
     {
-
+        if (index == 0)
+        {
+            inputInventory.setStackInSlot(0, stack);
+        }
+        else if (index > 0 && index < 4)
+        {
+            outputInventory.setStackInSlot(index - 1, stack);
+        }
     }
 
     @Override
     public boolean isUsableByPlayer(PlayerEntity player)
     {
-        return false;
+        return true;
     }
 
     @Override
     public void clear()
     {
-
+        for (int i = 0; i < getSizeInventory(); i++)
+        {
+            removeStackFromSlot(i);
+        }
     }
 
     public FluidTank getFluidTank()
@@ -138,59 +198,118 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
     @Override
     public void tick()
     {
-//        angel += 3.0F;
-//        angel %= 360;
-//        ItemStack input = getInput();
-//        if (input.isEmpty())
-//        {
-//            this.processTicks = 0;
-//            this.markDirty();
-//        }
-//
-//        if (!this.currentRecipe.canWork(fluidTank.getFluid(), input))
-//        {
-//            this.currentRecipe = RecipesRegistry.MANAGER_STONE_MILL.getRecipe(fluidTank.getFluid(), input);
-//        }
-//        if (!this.currentRecipe.getOutputStacks().isEmpty())
-//        {
-//            boolean flag = true;
-//            for (ItemStack out : this.currentRecipe.getOutputStacks())
-//            {
-//                if (!ItemHandlerHelper.insertItem(this.outputInventory, out, true).isEmpty())
-//                {
-//                    flag = false;
-//                }
-//            }
-//            if (flag)
-//            {
-//                this.angel += 3;
-//                this.angel %= 360;
-//                if (++this.processTicks >= totalTicks)
-//                {
-//                    for (ItemStack out : this.currentRecipe.getOutputStacks())
-//                    {
-//                        ItemHandlerHelper.insertItem(this.outputInventory, out, false);
-//                    }
-//                    this.inputInventory.extractItem(0, 1, false);
-//                    this.fluidTank.drain(currentRecipe.getFluidAmount(), true);
-//                    if (this.currentRecipe.getOutputFluid() != null && this.currentRecipe.getOutputFluid().amount != 0)
-//                    {
-//                        IFluidHandler handler = FluidUtil.getFluidHandler(world, pos.down().offset(((BlockStoneMill) this.getBlockType()).getFacing(this.getBlockMetadata())), EnumFacing.UP);
-//                        if (handler != null)
-//                        {
-//                            handler.fill(this.currentRecipe.getOutputFluid(), true);
-//                            world.getTileEntity(pos.down().offset(((BlockStoneMill) this.getBlockType()).getFacing(this.getBlockMetadata()))).markDirty();
-//                        }
-//                    }
-//                    this.processTicks = 0;
-//                }
-//                this.syncToTrackingClients();
-//            }
-//        }
-//        else
-//        {
-//            this.processTicks = 0;
-//        }
-//        this.markDirty();
+        ItemStack input = getStackInSlot(0);
+        if (!this.world.isRemote)
+        {
+            if (input.isEmpty())
+            {
+                setProcessTicks(0);
+                this.currentRecipe = null;
+                return;
+            }
+
+            if (this.currentRecipe == null || !this.currentRecipe.matches(this, getWorld()))
+            {
+                this.currentRecipe = this.world.getRecipeManager().getRecipe(STONE_MILL, this, this.world).orElse(null);
+            }
+
+            if (this.currentRecipe != null)
+            {
+                boolean flag = true;
+                for (ItemStack out : this.currentRecipe.getOutputItems())
+                {
+                    if (!ItemHandlerHelper.insertItem(this.outputInventory, out.copy(), true).isEmpty())
+                    {
+                        flag = false;
+                    }
+                }
+                if (flag)
+                {
+                    if (++this.processTicks >= currentRecipe.getWorkTime())
+                    {
+                        for (ItemStack out : this.currentRecipe.getOutputItems())
+                        {
+                            ItemHandlerHelper.insertItem(this.outputInventory, out.copy(), false);
+                        }
+                        this.inputInventory.extractItem(0, 1, false);
+
+                        if (!currentRecipe.getInputFluid().hasNoMatchingFluids())
+                        {
+                            FluidStack[] fluidStacks = currentRecipe.getInputFluid().getMatchingStacks();
+                            for (FluidStack fluidStack : fluidStacks)
+                            {
+                                if (fluidStack.getFluid() == this.fluidTank.getFluid().getFluid())
+                                {
+                                    this.fluidTank.drain(fluidStack.getAmount(), IFluidHandler.FluidAction.EXECUTE);
+                                }
+                            }
+                        }
+
+                        if (!this.currentRecipe.getOutputFluid().isEmpty())
+                        {
+                            FluidUtil.getFluidHandler(world, pos.down().offset(this.getBlockState().get(HORIZONTAL_FACING)), Direction.UP).ifPresent(handler ->
+                                    handler.fill(this.currentRecipe.getOutputFluid(), IFluidHandler.FluidAction.EXECUTE));
+                        }
+                        processTicks = 0;
+                    }
+                }
+            }
+            else
+            {
+                setProcessTicks(0);
+            }
+        }
+        else
+        {
+            if (input.isEmpty())
+            {
+                this.currentRecipe = null;
+                return;
+            }
+
+            if (this.currentRecipe == null || !this.currentRecipe.matches(this, getWorld()))
+            {
+                this.currentRecipe = this.world.getRecipeManager().getRecipe(STONE_MILL, this, this.world).orElse(null);
+            }
+
+            if (this.currentRecipe != null)
+            {
+                angel += 3;
+                angel %= 360;
+            }
+        }
+    }
+
+    public Fluid getOutputFluid()
+    {
+        if (currentRecipe != null)
+        {
+            return currentRecipe.getOutputFluid().getFluid();
+        }
+        else return Fluids.EMPTY;
+    }
+
+    private void setProcessTicks(int ticks)
+    {
+        if (ticks != this.processTicks)
+        {
+            this.processTicks = ticks;
+            markDirty();
+        }
+    }
+
+    public boolean isCompleted()
+    {
+        return this.currentRecipe == null;
+    }
+
+    public int getAngel()
+    {
+        return angel;
+    }
+
+    public boolean isWorking()
+    {
+        return isWorking;
     }
 }

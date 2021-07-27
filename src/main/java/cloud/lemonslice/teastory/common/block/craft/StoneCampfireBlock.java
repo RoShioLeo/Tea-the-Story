@@ -5,10 +5,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 
-public class SaucepanBlock extends NormalHorizontalBlock
+public class StoneCampfireBlock extends NormalHorizontalBlock
 {
-    public SaucepanBlock()
+    public StoneCampfireBlock()
     {
-        super(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(3.5F), "saucepan");
+        super(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(3.5F), "stone_campfire");
     }
 }

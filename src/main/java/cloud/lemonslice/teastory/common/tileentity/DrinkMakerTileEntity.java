@@ -126,7 +126,6 @@ public class DrinkMakerTileEntity extends NormalContainerTileEntity implements I
             if (currentRecipe != null && isEnoughAmount())
             {
                 this.processTicks++;
-                this.markDirty();
                 if (this.processTicks >= totalTicks)
                 {
                     this.ingredientsInventory.ifPresent(inv ->

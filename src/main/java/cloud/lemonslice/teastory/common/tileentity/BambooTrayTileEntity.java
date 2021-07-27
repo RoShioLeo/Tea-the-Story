@@ -148,8 +148,8 @@ public class BambooTrayTileEntity extends NormalContainerTileEntity implements I
                     CatapultBoardBlockWithTray.shoot(world, pos);
                     world.getPendingBlockTicks().scheduleTick(pos, this.getBlockState().getBlock(), 5);
                 }
+                this.markDirty();
             }
-            this.markDirty();
             return true;
         }
         setToZero();
