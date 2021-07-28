@@ -1,8 +1,0 @@
-{
-    "type": "teastory:bamboo_tray_indoors",
-    "ingredient": {
-        "tag": "forge:food/meat"
-    },
-    "result": "minecraft:rotten_flesh",
-    "workingtime": 200
-}

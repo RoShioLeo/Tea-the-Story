@@ -10,13 +10,9 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.util.RecipeBookCategories;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.ItemModelsProperties;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -35,6 +31,18 @@ public class ClientProxy extends CommonProxy
     public PlayerEntity getClientPlayer()
     {
         return Minecraft.getInstance().player;
+    }
+
+    public static void registerProperties()
+    {
+        ItemModelsProperties.registerProperty(BlockRegistry.SAUCEPAN.asItem(), new ResourceLocation("lid"), (itemStack, world, entity) ->
+        {
+            if (itemStack.getOrCreateTag().contains("lid"))
+            {
+                return itemStack.getOrCreateTag().getBoolean("lid") ? 1 : 0;
+            }
+            return 1;
+        });
     }
 
     public static void initBiomeColors()
@@ -69,67 +77,11 @@ public class ClientProxy extends CommonProxy
         registerCutoutType(BlockRegistry.DRY_HAYSTACK);
         FluidRegistry.FLUIDS.getEntries().forEach(e -> RenderTypeLookup.setRenderLayer(e.get(), RenderType.getTranslucent()));
         RenderTypeLookup.setRenderLayer(BlockRegistry.WOODEN_TRAY, RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.SAUCEPAN, RenderType.getTranslucent());
     }
 
     private static void registerCutoutType(Block... blocks)
     {
         Arrays.asList(blocks).forEach(block -> RenderTypeLookup.setRenderLayer(block, RenderType.getCutout()));
-    }
-
-    public static RecipeBookCategories getRecipeCategory(IRecipe<?> recipe)
-    {
-        IRecipeType<?> irecipetype = recipe.getType();
-        if (irecipetype == IRecipeType.CRAFTING)
-        {
-            ItemStack itemstack = recipe.getRecipeOutput();
-            ItemGroup itemgroup = itemstack.getItem().getGroup();
-            if (itemgroup == ItemGroup.BUILDING_BLOCKS)
-            {
-                return RecipeBookCategories.CRAFTING_BUILDING_BLOCKS;
-            }
-            else if (itemgroup != ItemGroup.TOOLS && itemgroup != ItemGroup.COMBAT)
-            {
-                return itemgroup == ItemGroup.REDSTONE ? RecipeBookCategories.CRAFTING_REDSTONE : RecipeBookCategories.CRAFTING_MISC;
-            }
-            else
-            {
-                return RecipeBookCategories.CRAFTING_EQUIPMENT;
-            }
-        }
-        else if (irecipetype == IRecipeType.SMELTING)
-        {
-            if (recipe.getRecipeOutput().getItem().isFood())
-            {
-                return RecipeBookCategories.FURNACE_FOOD;
-            }
-            else
-            {
-                return recipe.getRecipeOutput().getItem() instanceof BlockItem ? RecipeBookCategories.FURNACE_BLOCKS : RecipeBookCategories.FURNACE_MISC;
-            }
-        }
-        else if (irecipetype == IRecipeType.BLASTING)
-        {
-            return recipe.getRecipeOutput().getItem() instanceof BlockItem ? RecipeBookCategories.BLAST_FURNACE_BLOCKS : RecipeBookCategories.BLAST_FURNACE_MISC;
-        }
-        else if (irecipetype == IRecipeType.SMOKING)
-        {
-            return RecipeBookCategories.SMOKER_FOOD;
-        }
-        else if (irecipetype == IRecipeType.STONECUTTING)
-        {
-            return RecipeBookCategories.STONECUTTER;
-        }
-        else if (irecipetype == IRecipeType.CAMPFIRE_COOKING)
-        {
-            return RecipeBookCategories.CAMPFIRE;
-        }
-        else if (irecipetype == IRecipeType.SMITHING)
-        {
-            return RecipeBookCategories.SMITHING;
-        }
-        else
-        {
-            return RecipeBookCategories.UNKNOWN;
-        }
     }
 }

@@ -1,8 +1,0 @@
-{
-    "type": "teastory:bamboo_tray_in_rain",
-    "ingredient": {
-        "item": "teastory:mutton_jerky"
-    },
-    "result": "minecraft:mutton",
-    "workingtime": 0
-}

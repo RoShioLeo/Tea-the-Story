@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "aqueduct_shovel",
+    "pattern": [
+        " * ",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:golden_shovel"
+        },
+        "*": {
+            "tag": "forge:ingots/gold"
+        }
+    },
+    "result": {
+        "item": "teastory:gold_aqueduct_shovel"
+    }
+}

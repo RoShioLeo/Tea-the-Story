@@ -1,5 +1,6 @@
 package cloud.lemonslice.teastory.common.tileentity;
 
+import cloud.lemonslice.teastory.common.container.StoneMillContainer;
 import cloud.lemonslice.teastory.common.recipe.stone_mill.StoneMillRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -60,6 +61,7 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
         protected void onContentsChanged()
         {
             StoneMillTileEntity.this.markDirty();
+            StoneMillTileEntity.this.refresh();
         }
     };
 
@@ -112,14 +114,14 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
     @Override
     protected boolean isOpeningContainer(Container container)
     {
-        return false;
+        return container instanceof StoneMillContainer;
     }
 
     @Nullable
     @Override
     public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity playerEntity)
     {
-        return null;
+        return new StoneMillContainer(id, playerInventory, pos, world);
     }
 
     @Override
@@ -199,84 +201,64 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
     public void tick()
     {
         ItemStack input = getStackInSlot(0);
-        if (!this.world.isRemote)
+        if (input.isEmpty())
         {
-            if (input.isEmpty())
-            {
-                setProcessTicks(0);
-                this.currentRecipe = null;
-                return;
-            }
+            setProcessTicks(0);
+            this.currentRecipe = null;
+            return;
+        }
 
-            if (this.currentRecipe == null || !this.currentRecipe.matches(this, getWorld()))
-            {
-                this.currentRecipe = this.world.getRecipeManager().getRecipe(STONE_MILL, this, this.world).orElse(null);
-            }
+        if (this.currentRecipe == null || !this.currentRecipe.matches(this, getWorld()))
+        {
+            this.currentRecipe = this.world.getRecipeManager().getRecipe(STONE_MILL, this, this.world).orElse(null);
+        }
 
-            if (this.currentRecipe != null)
+        if (this.currentRecipe != null)
+        {
+            angel += 3;
+            angel %= 360;
+            boolean flag = true;
+            for (ItemStack out : this.currentRecipe.getOutputItems())
             {
-                boolean flag = true;
-                for (ItemStack out : this.currentRecipe.getOutputItems())
+                if (!ItemHandlerHelper.insertItem(this.outputInventory, out.copy(), true).isEmpty())
                 {
-                    if (!ItemHandlerHelper.insertItem(this.outputInventory, out.copy(), true).isEmpty())
-                    {
-                        flag = false;
-                    }
+                    flag = false;
                 }
-                if (flag)
+            }
+            if (flag)
+            {
+                if (++this.processTicks >= currentRecipe.getWorkTime())
                 {
-                    if (++this.processTicks >= currentRecipe.getWorkTime())
+                    for (ItemStack out : this.currentRecipe.getOutputItems())
                     {
-                        for (ItemStack out : this.currentRecipe.getOutputItems())
-                        {
-                            ItemHandlerHelper.insertItem(this.outputInventory, out.copy(), false);
-                        }
-                        this.inputInventory.extractItem(0, 1, false);
+                        ItemHandlerHelper.insertItem(this.outputInventory, out.copy(), false);
+                    }
+                    this.inputInventory.extractItem(0, 1, false);
 
-                        if (!currentRecipe.getInputFluid().hasNoMatchingFluids())
+                    if (!currentRecipe.getInputFluid().hasNoMatchingFluids())
+                    {
+                        FluidStack[] fluidStacks = currentRecipe.getInputFluid().getMatchingStacks();
+                        for (FluidStack fluidStack : fluidStacks)
                         {
-                            FluidStack[] fluidStacks = currentRecipe.getInputFluid().getMatchingStacks();
-                            for (FluidStack fluidStack : fluidStacks)
+                            if (fluidStack.getFluid() == this.fluidTank.getFluid().getFluid())
                             {
-                                if (fluidStack.getFluid() == this.fluidTank.getFluid().getFluid())
-                                {
-                                    this.fluidTank.drain(fluidStack.getAmount(), IFluidHandler.FluidAction.EXECUTE);
-                                }
+                                this.fluidTank.drain(fluidStack.getAmount(), IFluidHandler.FluidAction.EXECUTE);
                             }
                         }
-
-                        if (!this.currentRecipe.getOutputFluid().isEmpty())
-                        {
-                            FluidUtil.getFluidHandler(world, pos.down().offset(this.getBlockState().get(HORIZONTAL_FACING)), Direction.UP).ifPresent(handler ->
-                                    handler.fill(this.currentRecipe.getOutputFluid(), IFluidHandler.FluidAction.EXECUTE));
-                        }
-                        processTicks = 0;
                     }
+
+                    if (!this.currentRecipe.getOutputFluid().isEmpty())
+                    {
+                        FluidUtil.getFluidHandler(world, pos.down().offset(this.getBlockState().get(HORIZONTAL_FACING)), Direction.UP).ifPresent(handler ->
+                                handler.fill(this.currentRecipe.getOutputFluid(), IFluidHandler.FluidAction.EXECUTE));
+                    }
+                    processTicks = 0;
                 }
-            }
-            else
-            {
-                setProcessTicks(0);
             }
         }
         else
         {
-            if (input.isEmpty())
-            {
-                this.currentRecipe = null;
-                return;
-            }
-
-            if (this.currentRecipe == null || !this.currentRecipe.matches(this, getWorld()))
-            {
-                this.currentRecipe = this.world.getRecipeManager().getRecipe(STONE_MILL, this, this.world).orElse(null);
-            }
-
-            if (this.currentRecipe != null)
-            {
-                angel += 3;
-                angel %= 360;
-            }
+            setProcessTicks(0);
         }
     }
 
@@ -311,5 +293,15 @@ public class StoneMillTileEntity extends NormalContainerTileEntity implements IT
     public boolean isWorking()
     {
         return isWorking;
+    }
+
+    public int getProcessTicks()
+    {
+        return processTicks;
+    }
+
+    public StoneMillRecipe getCurrentRecipe()
+    {
+        return currentRecipe;
     }
 }

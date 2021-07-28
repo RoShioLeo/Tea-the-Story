@@ -124,7 +124,7 @@ public class StoveBlock extends NormalHorizontalBlock implements IStoveBlock
     {
         TileEntity te = worldIn.getTileEntity(pos);
         Item held = player.getHeldItem(handIn).getItem();
-        if (held == BlockRegistry.BAMBOO_TRAY_ITEM || held == ItemRegistry.IRON_KETTLE)
+        if (held == BlockRegistry.BAMBOO_TRAY.asItem() || held == ItemRegistry.IRON_KETTLE)
         {
             return ActionResultType.PASS;
         }

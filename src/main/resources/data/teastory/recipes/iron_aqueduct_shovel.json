@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "aqueduct_shovel",
+    "pattern": [
+        " * ",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_shovel"
+        },
+        "*": {
+            "tag": "forge:ingots/iron"
+        }
+    },
+    "result": {
+        "item": "teastory:iron_aqueduct_shovel"
+    }
+}

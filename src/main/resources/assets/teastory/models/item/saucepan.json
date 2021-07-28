@@ -1,0 +1,11 @@
+{
+    "parent": "teastory:block/saucepan_pan",
+    "overrides": [
+        {
+            "predicate": {
+                "lid": 1
+            },
+            "model": "teastory:block/saucepan"
+        }
+    ]
+}

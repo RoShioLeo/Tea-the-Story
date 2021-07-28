@@ -1,6 +1,7 @@
 package cloud.lemonslice.teastory.common.block.craft;
 
 import cloud.lemonslice.silveroak.common.block.NormalHorizontalBlock;
+import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
 import cloud.lemonslice.teastory.common.tileentity.NormalContainerTileEntity;
 import cloud.lemonslice.teastory.common.tileentity.StoneMillTileEntity;
 import com.google.common.collect.Lists;
@@ -10,6 +11,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.tileentity.TileEntity;
@@ -18,10 +21,13 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -33,9 +39,18 @@ import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry
 
 public class StoneMillBlock extends NormalHorizontalBlock
 {
+    private static final VoxelShape SHAPE = VoxelShapeHelper.createVoxelShape(0, 0, 0, 16, 9, 16);
+
     public StoneMillBlock()
     {
         super(AbstractBlock.Properties.create(Material.ROCK).notSolid().hardnessAndResistance(1.5F).sound(SoundType.STONE), "stone_mill");
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
+    {
+        return SHAPE;
     }
 
     @Override
@@ -153,6 +168,7 @@ public class StoneMillBlock extends NormalHorizontalBlock
                 }
                 else
                 {
+                    NetworkHooks.openGui((ServerPlayerEntity) playerIn, (INamedContainerProvider) te, te.getPos());
                     return ActionResultType.SUCCESS;
                 }
             }

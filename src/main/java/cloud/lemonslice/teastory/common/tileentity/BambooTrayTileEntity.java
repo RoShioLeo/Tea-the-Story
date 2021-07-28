@@ -4,7 +4,7 @@ import cloud.lemonslice.silveroak.common.environment.Humidity;
 import cloud.lemonslice.teastory.common.block.craft.BambooTrayMode;
 import cloud.lemonslice.teastory.common.block.craft.CatapultBoardBlockWithTray;
 import cloud.lemonslice.teastory.common.block.craft.IStoveBlock;
-import cloud.lemonslice.teastory.common.inventory.BambooTrayContainer;
+import cloud.lemonslice.teastory.common.container.BambooTrayContainer;
 import cloud.lemonslice.teastory.common.recipe.bamboo_tray.BambooTraySingleInRecipe;
 import cloud.lemonslice.teastory.common.recipe.type.NormalRecipeTypes;
 import net.minecraft.block.BlockState;

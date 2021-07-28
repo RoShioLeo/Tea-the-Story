@@ -1,8 +1,8 @@
 package cloud.lemonslice.teastory.plugin.jei;
 
 import cloud.lemonslice.teastory.TeaStory;
-import cloud.lemonslice.teastory.client.gui.BambooTrayGuiContainer;
-import cloud.lemonslice.teastory.client.gui.DrinkMakerGuiContainer;
+import cloud.lemonslice.teastory.client.gui.BambooTrayGui;
+import cloud.lemonslice.teastory.client.gui.DrinkMakerGui;
 import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import cloud.lemonslice.teastory.common.recipe.type.NormalRecipeTypes;
@@ -50,7 +50,7 @@ public class JEICompat implements IModPlugin
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registration)
     {
-        registration.useNbtForSubtypes(BlockRegistry.CHRYSANTHEMUM_ITEM, BlockRegistry.HYACINTH_ITEM, BlockRegistry.ZINNIA_ITEM, ItemRegistry.BOTTLE_DRINK, ItemRegistry.PORCELAIN_CUP_DRINK, ItemRegistry.PORCELAIN_TEAPOT);
+        registration.useNbtForSubtypes(BlockRegistry.CHRYSANTHEMUM.asItem(), BlockRegistry.HYACINTH.asItem(), BlockRegistry.ZINNIA.asItem(), ItemRegistry.BOTTLE_DRINK, ItemRegistry.PORCELAIN_CUP_DRINK, ItemRegistry.PORCELAIN_TEAPOT);
     }
 
     @Override
@@ -68,13 +68,13 @@ public class JEICompat implements IModPlugin
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration)
     {
-        registration.addRecipeClickArea(BambooTrayGuiContainer.class, 77, 32, 22, 17,
+        registration.addRecipeClickArea(BambooTrayGui.class, 77, 32, 22, 17,
                 new ResourceLocation(TeaStory.MODID, IN_RAIN),
                 new ResourceLocation(TeaStory.MODID, OUTDOORS),
                 new ResourceLocation(TeaStory.MODID, INDOORS),
                 new ResourceLocation(TeaStory.MODID, BAKE)
         );
-        registration.addRecipeClickArea(DrinkMakerGuiContainer.class, 98, 37, 24, 17, new ResourceLocation(TeaStory.MODID, DRINK_MAKER));
+        registration.addRecipeClickArea(DrinkMakerGui.class, 98, 37, 24, 17, new ResourceLocation(TeaStory.MODID, DRINK_MAKER));
     }
 
     @Override

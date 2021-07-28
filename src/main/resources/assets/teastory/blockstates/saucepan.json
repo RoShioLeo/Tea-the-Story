@@ -1,0 +1,124 @@
+{
+    "variants": {
+        "facing=north,step=empty,lid=false": {
+            "model": "teastory:block/saucepan_pan"
+        },
+        "facing=north,step=raw,lid=false": {
+            "model": "teastory:block/saucepan_with_raw_rice"
+        },
+        "facing=north,step=water,lid=false": {
+            "model": "teastory:block/saucepan_with_water"
+        },
+        "facing=north,step=cooked,lid=false": {
+            "model": "teastory:block/saucepan_with_cooked_rice"
+        },
+        "facing=north,step=empty,lid=true": {
+            "model": "teastory:block/saucepan"
+        },
+        "facing=north,step=raw,lid=true": {
+            "model": "teastory:block/saucepan"
+        },
+        "facing=north,step=water,lid=true": {
+            "model": "teastory:block/saucepan"
+        },
+        "facing=north,step=cooked,lid=true": {
+            "model": "teastory:block/saucepan"
+        },
+        "facing=south,step=empty,lid=false": {
+            "model": "teastory:block/saucepan_pan",
+            "y": 180
+        },
+        "facing=south,step=raw,lid=false": {
+            "model": "teastory:block/saucepan_with_raw_rice",
+            "y": 180
+        },
+        "facing=south,step=water,lid=false": {
+            "model": "teastory:block/saucepan_with_water",
+            "y": 180
+        },
+        "facing=south,step=cooked,lid=false": {
+            "model": "teastory:block/saucepan_with_cooked_rice",
+            "y": 180
+        },
+        "facing=south,step=empty,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 180
+        },
+        "facing=south,step=raw,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 180
+        },
+        "facing=south,step=water,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 180
+        },
+        "facing=south,step=cooked,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 180
+        },
+        "facing=west,step=empty,lid=false": {
+            "model": "teastory:block/saucepan_pan",
+            "y": 270
+        },
+        "facing=west,step=raw,lid=false": {
+            "model": "teastory:block/saucepan_with_raw_rice",
+            "y": 270
+        },
+        "facing=west,step=water,lid=false": {
+            "model": "teastory:block/saucepan_with_water",
+            "y": 270
+        },
+        "facing=west,step=cooked,lid=false": {
+            "model": "teastory:block/saucepan_with_cooked_rice",
+            "y": 270
+        },
+        "facing=west,step=empty,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 270
+        },
+        "facing=west,step=raw,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 270
+        },
+        "facing=west,step=water,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 270
+        },
+        "facing=west,step=cooked,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 270
+        },
+        "facing=east,step=empty,lid=false": {
+            "model": "teastory:block/saucepan_pan",
+            "y": 90
+        },
+        "facing=east,step=raw,lid=false": {
+            "model": "teastory:block/saucepan_with_raw_rice",
+            "y": 90
+        },
+        "facing=east,step=water,lid=false": {
+            "model": "teastory:block/saucepan_with_water",
+            "y": 90
+        },
+        "facing=east,step=cooked,lid=false": {
+            "model": "teastory:block/saucepan_with_cooked_rice",
+            "y": 90
+        },
+        "facing=east,step=empty,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 90
+        },
+        "facing=east,step=raw,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 90
+        },
+        "facing=east,step=water,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 90
+        },
+        "facing=east,step=cooked,lid=true": {
+            "model": "teastory:block/saucepan",
+            "y": 90
+        }
+    }
+}

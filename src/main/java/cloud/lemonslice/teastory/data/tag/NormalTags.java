@@ -135,6 +135,8 @@ public final class NormalTags
         public final static Tags.IOptionalNamedTag<Item> CROPS_WHITE_TEA_LEAF = ItemTags.createOptional(new ResourceLocation("forge:crops/white_tea_leaf"));
         public final static Tags.IOptionalNamedTag<Item> CROPS_GRAPE = ItemTags.createOptional(new ResourceLocation("forge:crops/grape"));
         public final static Tags.IOptionalNamedTag<Item> CROPS_CUCUMBER = ItemTags.createOptional(new ResourceLocation("forge:crops/cucumber"));
+        public final static Tags.IOptionalNamedTag<Item> CROPS_STRAW = ItemTags.createOptional(new ResourceLocation("forge:crops/straw"));
+        public final static Tags.IOptionalNamedTag<Item> CROPS_RICE = ItemTags.createOptional(new ResourceLocation("forge:crops/rice"));
 
         public final static Tags.IOptionalNamedTag<Item> FOOD_JERKY = ItemTags.createOptional(new ResourceLocation("forge:food/jerky"));
         public final static Tags.IOptionalNamedTag<Item> FOOD_MEAT = ItemTags.createOptional(new ResourceLocation("forge:food/meat"));

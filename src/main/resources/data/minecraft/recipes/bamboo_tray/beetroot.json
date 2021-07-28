@@ -1,8 +1,0 @@
-{
-    "type": "teastory:bamboo_tray_in_rain",
-    "ingredient": {
-        "item": "teastory:dried_beetroot"
-    },
-    "result": "minecraft:beetroot",
-    "workingtime": 0
-}

@@ -30,7 +30,7 @@ public class NormalItemTagProvider extends ItemTagsProvider
         getOrCreateBuilder(NormalTags.Items.DIRT).add(Blocks.DIRT.asItem(), COARSE_DIRT.asItem(), GRASS_BLOCK.asItem(), MYCELIUM.asItem(), PODZOL.asItem());
         getOrCreateBuilder(FOOD_JERKY).add(ItemRegistry.BEEF_JERKY, ItemRegistry.PORK_JERKY, ItemRegistry.CHICKEN_JERKY, ItemRegistry.RABBIT_JERKY, ItemRegistry.MUTTON_JERKY);
         getOrCreateBuilder(FOOD_MEAT).addTags(FOOD_JERKY).add(RABBIT, PORKCHOP, BEEF, MUTTON, CHICKEN);
-        getOrCreateBuilder(ItemTags.SMALL_FLOWERS).add(BlockRegistry.CHRYSANTHEMUM_ITEM, BlockRegistry.HYACINTH_ITEM, BlockRegistry.ZINNIA_ITEM);
+        getOrCreateBuilder(ItemTags.SMALL_FLOWERS).add(BlockRegistry.CHRYSANTHEMUM.asItem(), BlockRegistry.HYACINTH.asItem(), BlockRegistry.ZINNIA.asItem());
         getOrCreateBuilder(DUSTS_ASH).add(ItemRegistry.ASH);
         /*getOrCreateBuilder(AGAVE);
         getOrCreateBuilder(AMARANTH);
@@ -123,6 +123,8 @@ public class NormalItemTagProvider extends ItemTagsProvider
         getOrCreateBuilder(CROPS_WHITE_TEA_LEAF).add(ItemRegistry.WHITE_TEA_LEAVES);
         getOrCreateBuilder(CROPS_GRAPE).add(ItemRegistry.GRAPES);
         getOrCreateBuilder(CROPS_CUCUMBER).add(ItemRegistry.CUCUMBER);
+        getOrCreateBuilder(CROPS_STRAW).add(ItemRegistry.DRY_STRAW);
+        getOrCreateBuilder(CROPS_RICE).add(ItemRegistry.RICE);
     }
 
     @Override

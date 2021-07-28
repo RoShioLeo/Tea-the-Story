@@ -7,7 +7,10 @@ import cloud.lemonslice.teastory.common.block.crops.VineType;
 import cloud.lemonslice.teastory.common.item.food.FoodItem;
 import cloud.lemonslice.teastory.common.item.food.NormalFoods;
 import cloud.lemonslice.teastory.registry.RegistryModule;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockNamedItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTier;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.capability.ItemFluidContainer;
@@ -18,14 +21,15 @@ import javax.annotation.Nullable;
 public final class ItemRegistry extends RegistryModule
 {
     // TOOL 工具
-    public static final Item WOODEN_AQUEDUCT_SHOVEL = new AqueductShovelItem("wooden_aqueduct_shovel", ItemTier.WOOD, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
-    public static final Item STONE_AQUEDUCT_SHOVEL = new AqueductShovelItem("stone_aqueduct_shovel", ItemTier.STONE, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
-    public static final Item GOLD_AQUEDUCT_SHOVEL = new AqueductShovelItem("gold_aqueduct_shovel", ItemTier.GOLD, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
-    public static final Item IRON_AQUEDUCT_SHOVEL = new AqueductShovelItem("iron_aqueduct_shovel", ItemTier.IRON, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
-    public static final Item DIAMOND_AQUEDUCT_SHOVEL = new AqueductShovelItem("diamond_aqueduct_shovel", ItemTier.DIAMOND, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
-    //    public static final Item NETHERITE_AQUEDUCT_SHOVEL = new AqueductShovelItem("netherite_aqueduct_shovel", ItemTier.NETHERITE, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+    // TODO 配方
+    public static final Item WOODEN_AQUEDUCT_SHOVEL = new AqueductShovelItem("wooden_aqueduct_shovel", ItemTier.WOOD, 1.5F, -2.5F, getNormalItemProperties());
+    public static final Item STONE_AQUEDUCT_SHOVEL = new AqueductShovelItem("stone_aqueduct_shovel", ItemTier.STONE, 1.5F, -2.5F, getNormalItemProperties());
+    public static final Item GOLD_AQUEDUCT_SHOVEL = new AqueductShovelItem("gold_aqueduct_shovel", ItemTier.GOLD, 1.5F, -2.5F, getNormalItemProperties());
+    public static final Item IRON_AQUEDUCT_SHOVEL = new AqueductShovelItem("iron_aqueduct_shovel", ItemTier.IRON, 1.5F, -2.5F, getNormalItemProperties());
+    public static final Item DIAMOND_AQUEDUCT_SHOVEL = new AqueductShovelItem("diamond_aqueduct_shovel", ItemTier.DIAMOND, 1.5F, -2.5F, getNormalItemProperties());
+    //    public static final Item NETHERITE_AQUEDUCT_SHOVEL = new AqueductShovelItem("netherite_aqueduct_shovel", ItemTier.NETHERITE, 1.5F, -2.5F, getNormalItemProperties());
     public static final Item SHENNONG_CHI = new ShennongChiItem();
-    public static final Item IRON_SICKLE = new SickleItem("iron_sickle", ItemTier.IRON, 1.5F, -2.5F, new Item.Properties().group(ItemGroup.TOOLS));
+    public static final Item IRON_SICKLE = new SickleItem("iron_sickle", ItemTier.IRON, 1.5F, -2.5F, getNormalItemProperties());
 
     // FOOD 食物
     public static final Item DRIED_BEETROOT = new FoodItem("dried_beetroot", NormalFoods.DRIED_BEETROOT);
@@ -42,11 +46,17 @@ public final class ItemRegistry extends RegistryModule
     public static final Item BAMBOO_PLANK = new NormalItem("bamboo_plank", getNormalItemProperties());
     public static final Item ASH = new FertilizerItem("ash");
     public static final Item TEA_RESIDUES = new NormalItem("tea_residues", getNormalItemProperties());
+    public static final Item WET_STRAW = new NormalItem("wet_straw", getNormalItemProperties());
+    public static final Item DRY_STRAW = new NormalItem("dry_straw", getNormalItemProperties());
+    public static final Item CRUSHED_STRAW = new NormalItem("crushed_straw", getNormalItemProperties());
 
     public static final Item BAMBOO_CHARCOAL = new NormalBurntItem("bamboo_charcoal", 800);
-    public static final Item HONEYCOMB_BRIQUETTE = new NormalBurntItem("honeycomb_briquette", 2000);
+    public static final Item HONEYCOMB_BRIQUETTE = new NormalBurntItem("honeycomb_briquette", 6000);
 
     public static final Item STONE_MILL_TOP = new NormalItem("stone_mill_top", new Item.Properties());
+    public static final Item STONE_ROLLER_TOP = new NormalItem("stone_roller_top", new Item.Properties());
+    public static final Item STONE_ROLLER_WOODEN_FRAME = new NormalItem("stone_roller_wooden_frame", new Item.Properties());
+    public static final Item SAUCEPAN_LID = new NormalItem("saucepan_lid", new Item.Properties());
 
     // INGREDIENTS 原料
     public static final Item TEA_LEAVES = new NormalItem("tea_leaves", getNormalItemProperties());
@@ -58,6 +68,7 @@ public final class ItemRegistry extends RegistryModule
     public static final Item BLACK_TEA_BAG = new NormalItem("black_tea_bag", getTeaLeavesItemProperties());
 
     public static final Item RICE = new NormalItem("rice", getNormalItemProperties());
+    // TODO 洗米事件
     public static final Item WASHED_RICE = new NormalItem("washed_rice", getNormalItemProperties());
 
     // CROPS 作物
@@ -87,7 +98,7 @@ public final class ItemRegistry extends RegistryModule
     }.setRegistryName("bottle");
     public static final Item CLAY_TEAPOT = new NormalItem("clay_teapot", getDrinkItemProperties());
     public static final Item PORCELAIN_TEAPOT = new TeapotItem(BlockRegistry.TEAPOT, 1000, false);
-    public static final Item IRON_KETTLE = new IronKettleItem(BlockRegistry.IRON_KETTLE, 4000);
+    public static final Item IRON_KETTLE = new IronKettleItem(BlockRegistry.IRON_KETTLE, 2000);
     public static final Item PORCELAIN_CUP_DRINK = new CupDrinkItem(250, PORCELAIN_CUP, "porcelain_cup_drink");
     public static final Item BOTTLE_DRINK = new CupDrinkItem(500, BOTTLE, "bottle_drink");
 

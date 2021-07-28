@@ -162,12 +162,17 @@ public class RicePlantBlock extends CropsBlock
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
     {
         List<ItemStack> list = Lists.newArrayList();
-        if (getAge(state) < 7)
+        if (getAge(state) < 3)
         {
             list.add(new ItemStack(ItemRegistry.RICE_SEEDLINGS));
         }
+        else if (getAge(state) < 7)
+        {
+            list.add(new ItemStack(ItemRegistry.WET_STRAW));
+        }
         else
         {
+            list.add(new ItemStack(ItemRegistry.WET_STRAW));
             list.add(new ItemStack(ItemRegistry.RICE_GRAINS, builder.getWorld().rand.nextInt(4) + 1));
         }
         return list;

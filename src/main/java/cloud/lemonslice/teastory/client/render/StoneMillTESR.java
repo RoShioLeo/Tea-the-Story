@@ -91,33 +91,232 @@ public class StoneMillTESR extends TileEntityRenderer<StoneMillTileEntity>
             {
                 case EAST:
                 {
-                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0, 0.065F, 1).color(r, g, b, a).tex(flowing.getMinU(), flowing.getMinV()).lightmap(combinedLightIn).endVertex();
-                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1, 0.065F, 1).color(r, g, b, a).tex(flowing.getMinU(), flowing.getMaxV()).lightmap(combinedLightIn).endVertex();
-                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1, 0.065F, 0).color(r, g, b, a).tex(flowing.getMaxU(), flowing.getMaxV()).lightmap(combinedLightIn).endVertex();
-                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0, 0.065F, 0).color(r, g, b, a).tex(flowing.getMaxU(), flowing.getMinV()).lightmap(combinedLightIn).endVertex();
+                    float min_u_0 = getPosition(0.0625F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_0 = getPosition(0.9375F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_0 = getPosition(0.125F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_0 = getPosition(1F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.9375F).color(r, g, b, a).tex(min_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.9375F).color(r, g, b, a).tex(min_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.0625F).color(r, g, b, a).tex(max_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.0625F).color(r, g, b, a).tex(max_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_1 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_1 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_1 = getPosition(0.0000F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_1 = getPosition(0.25F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.5625F).color(r, g, b, a).tex(min_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, 0.065F, 0.5625F).color(r, g, b, a).tex(min_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, 0.065F, 0.4375F).color(r, g, b, a).tex(max_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.4375F).color(r, g, b, a).tex(max_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_2 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_2 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_2 = getPosition(0.25F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_2 = getPosition(1F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, 0.065F, 0.5625F).color(r, g, b, a).tex(min_u_2, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, -0.7435F, 0.5625F).color(r, g, b, a).tex(min_u_2, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, -0.7435F, 0.4375F).color(r, g, b, a).tex(max_u_2, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, 0.065F, 0.4375F).color(r, g, b, a).tex(max_u_2, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_3 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_3 = getPosition(0.6875F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, 0.065F, 0.4375F).color(r, g, b, a).tex(min_u_3, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, -0.7435F, 0.4375F).color(r, g, b, a).tex(min_u_3, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.0625F, -0.7435F, 0.4375F).color(r, g, b, a).tex(max_u_3, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.0625F, 0.065F, 0.4375F).color(r, g, b, a).tex(max_u_3, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_4 = getPosition(0.3125F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_4 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.0625F, 0.065F, 0.5625F).color(r, g, b, a).tex(min_u_4, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.0625F, -0.7435F, 0.5625F).color(r, g, b, a).tex(min_u_4, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, -0.7435F, 0.5625F).color(r, g, b, a).tex(max_u_4, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.1875F, 0.065F, 0.5625F).color(r, g, b, a).tex(max_u_4, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_5 = getPosition(0.1875F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_5 = getPosition(0.3125F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.0625F, 0.065F, 0.4375F).color(r, g, b, a).tex(min_u_5, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.0625F, -0.7435F, 0.4375F).color(r, g, b, a).tex(min_u_5, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.0625F, -0.7435F, 0.5625F).color(r, g, b, a).tex(max_u_5, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 1.0625F, 0.065F, 0.5625F).color(r, g, b, a).tex(max_u_5, min_v_2).lightmap(combinedLightIn).endVertex();
+                    break;
+                }
+                case WEST:
+                {
+                    float min_u_0 = getPosition(0.0625F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_0 = getPosition(0.9375F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_0 = getPosition(0.125F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_0 = getPosition(1F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.0625F).color(r, g, b, a).tex(min_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.0625F).color(r, g, b, a).tex(min_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.9375F).color(r, g, b, a).tex(max_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.9375F).color(r, g, b, a).tex(max_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_1 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_1 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_1 = getPosition(0.0000F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_1 = getPosition(0.25F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.4375F).color(r, g, b, a).tex(min_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, 0.065F, 0.4375F).color(r, g, b, a).tex(min_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, 0.065F, 0.5625F).color(r, g, b, a).tex(max_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.5625F).color(r, g, b, a).tex(max_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_2 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_2 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_2 = getPosition(0.25F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_2 = getPosition(1F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, 0.065F, 0.4375F).color(r, g, b, a).tex(min_u_2, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, -0.7435F, 0.4375F).color(r, g, b, a).tex(min_u_2, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, -0.7435F, 0.5625F).color(r, g, b, a).tex(max_u_2, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, 0.065F, 0.5625F).color(r, g, b, a).tex(max_u_2, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_3 = getPosition(0.3125F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_3 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, 0.065F, 0.5625F).color(r, g, b, a).tex(min_u_3, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, -0.7435F, 0.5625F).color(r, g, b, a).tex(min_u_3, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.0625F, -0.7435F, 0.5625F).color(r, g, b, a).tex(max_u_3, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.0625F, 0.065F, 0.5625F).color(r, g, b, a).tex(max_u_3, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_4 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_4 = getPosition(0.6875F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.0625F, 0.065F, 0.4375F).color(r, g, b, a).tex(min_u_4, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.0625F, -0.7435F, 0.4375F).color(r, g, b, a).tex(min_u_4, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, -0.7435F, 0.4375F).color(r, g, b, a).tex(max_u_4, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.1875F, 0.065F, 0.4375F).color(r, g, b, a).tex(max_u_4, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_5 = getPosition(0.1875F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_5 = getPosition(0.3125F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.0625F, 0.065F, 0.5625F).color(r, g, b, a).tex(min_u_5, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.0625F, -0.7435F, 0.5625F).color(r, g, b, a).tex(min_u_5, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.0625F, -0.7435F, 0.4375F).color(r, g, b, a).tex(max_u_5, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), -0.0625F, 0.065F, 0.4375F).color(r, g, b, a).tex(max_u_5, min_v_2).lightmap(combinedLightIn).endVertex();
+                    break;
+                }
+                case NORTH:
+                {
+                    float min_u_0 = getPosition(0.0625F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_0 = getPosition(0.9375F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_0 = getPosition(0.125F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_0 = getPosition(1F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.9375F).color(r, g, b, a).tex(min_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.0625F).color(r, g, b, a).tex(min_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.0625F).color(r, g, b, a).tex(max_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.9375F).color(r, g, b, a).tex(max_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_1 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_1 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_1 = getPosition(0.0000F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_1 = getPosition(0.25F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, 0.0625F).color(r, g, b, a).tex(min_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, -0.1875F).color(r, g, b, a).tex(min_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, -0.1875F).color(r, g, b, a).tex(max_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, 0.0625F).color(r, g, b, a).tex(max_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_2 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_2 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_2 = getPosition(0.25F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_2 = getPosition(1F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, -0.1875F).color(r, g, b, a).tex(min_u_2, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, -0.7435F, -0.1875F).color(r, g, b, a).tex(min_u_2, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, -0.7435F, -0.1875F).color(r, g, b, a).tex(max_u_2, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, -0.1875F).color(r, g, b, a).tex(max_u_2, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_3 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_3 = getPosition(0.6875F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, -0.1875F).color(r, g, b, a).tex(min_u_3, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, -0.7435F, -0.1875F).color(r, g, b, a).tex(min_u_3, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, -0.7435F, -0.0625F).color(r, g, b, a).tex(max_u_3, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, -0.0625F).color(r, g, b, a).tex(max_u_3, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_4 = getPosition(0.3125F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_4 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, -0.0625F).color(r, g, b, a).tex(min_u_4, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, -0.7435F, -0.0625F).color(r, g, b, a).tex(min_u_4, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, -0.7435F, -0.1875F).color(r, g, b, a).tex(max_u_4, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, -0.1875F).color(r, g, b, a).tex(max_u_4, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_5 = getPosition(0.1875F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_5 = getPosition(0.3125F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, -0.0625F).color(r, g, b, a).tex(min_u_5, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, -0.7435F, -0.0625F).color(r, g, b, a).tex(min_u_5, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, -0.7435F, -0.0625F).color(r, g, b, a).tex(max_u_5, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, -0.0625F).color(r, g, b, a).tex(max_u_5, min_v_2).lightmap(combinedLightIn).endVertex();
+                    break;
+                }
+                case SOUTH:
+                {
+                    float min_u_0 = getPosition(0.0625F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_0 = getPosition(0.9375F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_0 = getPosition(0.125F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_0 = getPosition(1F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.0625F).color(r, g, b, a).tex(min_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.0625F, 0.065F, 0.9375F).color(r, g, b, a).tex(min_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.9375F).color(r, g, b, a).tex(max_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.9375F, 0.065F, 0.0625F).color(r, g, b, a).tex(max_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_1 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_1 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_1 = getPosition(0.0000F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_1 = getPosition(0.25F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, 0.9375F).color(r, g, b, a).tex(min_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, 1.1875F).color(r, g, b, a).tex(min_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, 1.1875F).color(r, g, b, a).tex(max_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, 0.9375F).color(r, g, b, a).tex(max_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_2 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_2 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float min_v_2 = getPosition(0.25F, flowing.getMinV(), flowing.getMaxV());
+                    float max_v_2 = getPosition(1F, flowing.getMinV(), flowing.getMaxV());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, 1.1875F).color(r, g, b, a).tex(min_u_2, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, -0.7435F, 1.1875F).color(r, g, b, a).tex(min_u_2, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, -0.7435F, 1.1875F).color(r, g, b, a).tex(max_u_2, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, 1.1875F).color(r, g, b, a).tex(max_u_2, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_3 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_3 = getPosition(0.6875F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, 1.1875F).color(r, g, b, a).tex(min_u_3, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, -0.7435F, 1.1875F).color(r, g, b, a).tex(min_u_3, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, -0.7435F, 1.0625F).color(r, g, b, a).tex(max_u_3, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, 1.0625F).color(r, g, b, a).tex(max_u_3, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_4 = getPosition(0.3125F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_4 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, 1.0625F).color(r, g, b, a).tex(min_u_4, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, -0.7435F, 1.0625F).color(r, g, b, a).tex(min_u_4, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, -0.7435F, 1.1875F).color(r, g, b, a).tex(max_u_4, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, 1.1875F).color(r, g, b, a).tex(max_u_4, min_v_2).lightmap(combinedLightIn).endVertex();
+
+                    float min_u_5 = getPosition(0.1875F, flowing.getMinU(), flowing.getMaxU());
+                    float max_u_5 = getPosition(0.3125F, flowing.getMinU(), flowing.getMaxU());
+
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, 0.065F, 1.0625F).color(r, g, b, a).tex(min_u_5, min_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.5625F, -0.7435F, 1.0625F).color(r, g, b, a).tex(min_u_5, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, -0.7435F, 1.0625F).color(r, g, b, a).tex(max_u_5, max_v_2).lightmap(combinedLightIn).endVertex();
+                    buffer.pos(matrixStackIn.getLast().getMatrix(), 0.4375F, 0.065F, 1.0625F).color(r, g, b, a).tex(max_u_5, min_v_2).lightmap(combinedLightIn).endVertex();
                 }
             }
-
-
-            float min_u_0 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
-            float max_u_0 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
-            float min_v_0 = getPosition(0.0000F, flowing.getMinV(), flowing.getMaxV());
-            float max_v_0 = getPosition(0.09375F, flowing.getMinV(), flowing.getMaxV());
-
-            buffer.pos(matrixStackIn.getLast().getMatrix(), 1F, 0.065F, 0.5625F).color(r, g, b, a).tex(min_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
-            buffer.pos(matrixStackIn.getLast().getMatrix(), 1.09375F, 0.065F, 0.5625F).color(r, g, b, a).tex(min_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
-            buffer.pos(matrixStackIn.getLast().getMatrix(), 1.09375F, 0.065F, 0.4375F).color(r, g, b, a).tex(max_u_0, max_v_0).lightmap(combinedLightIn).endVertex();
-            buffer.pos(matrixStackIn.getLast().getMatrix(), 1F, 0.065F, 0.4375F).color(r, g, b, a).tex(max_u_0, min_v_0).lightmap(combinedLightIn).endVertex();
-
-            float min_u_1 = getPosition(0.4375F, flowing.getMinU(), flowing.getMaxU());
-            float max_u_1 = getPosition(0.5625F, flowing.getMinU(), flowing.getMaxU());
-            float min_v_1 = getPosition(0.09375F, flowing.getMinV(), flowing.getMaxV());
-            float max_v_1 = getPosition(1F, flowing.getMinV(), flowing.getMaxV());
-
-            buffer.pos(matrixStackIn.getLast().getMatrix(), 1.09375F, 0.065F, 0.5625F).color(r, g, b, a).tex(min_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
-            buffer.pos(matrixStackIn.getLast().getMatrix(), 1.09375F, -0.84125F, 0.5625F).color(r, g, b, a).tex(min_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
-            buffer.pos(matrixStackIn.getLast().getMatrix(), 1.09375F, -0.84125F, 0.4375F).color(r, g, b, a).tex(max_u_1, max_v_1).lightmap(combinedLightIn).endVertex();
-            buffer.pos(matrixStackIn.getLast().getMatrix(), 1.09375F, 0.065F, 0.4375F).color(r, g, b, a).tex(max_u_1, min_v_1).lightmap(combinedLightIn).endVertex();
 
             tessellator.draw();
             matrixStackIn.pop();

@@ -27,9 +27,15 @@ public class CommonProxy
         CHANCES.put(ItemRegistry.GREEN_TEA_LEAVES, 0.3F);
         CHANCES.put(ItemRegistry.BLACK_TEA_LEAVES, 0.4F);
         CHANCES.put(ItemRegistry.TEA_RESIDUES, 0.5F);
-        CHANCES.put(BlockRegistry.CHRYSANTHEMUM_ITEM, 0.3F);
-        CHANCES.put(BlockRegistry.ZINNIA_ITEM, 0.3F);
-        CHANCES.put(BlockRegistry.HYACINTH_ITEM, 0.3F);
+        CHANCES.put(ItemRegistry.ASH, 0.3F);
+        CHANCES.put(ItemRegistry.WET_STRAW, 0.25F);
+        CHANCES.put(ItemRegistry.DRY_STRAW, 0.2F);
+        CHANCES.put(ItemRegistry.CRUSHED_STRAW, 0.2F);
+        CHANCES.put(ItemRegistry.GRAPES, 0.2F);
+        CHANCES.put(ItemRegistry.CUCUMBER, 0.2F);
+        CHANCES.put(BlockRegistry.CHRYSANTHEMUM, 0.3F);
+        CHANCES.put(BlockRegistry.ZINNIA, 0.3F);
+        CHANCES.put(BlockRegistry.HYACINTH, 0.3F);
         CHANCES.put(Items.POISONOUS_POTATO, 0.3F);
     }
 }

@@ -1,7 +1,7 @@
 package cloud.lemonslice.teastory.common.tileentity;
 
 import cloud.lemonslice.teastory.common.block.craft.StoveBlock;
-import cloud.lemonslice.teastory.common.inventory.StoveContainer;
+import cloud.lemonslice.teastory.common.container.StoveContainer;
 import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

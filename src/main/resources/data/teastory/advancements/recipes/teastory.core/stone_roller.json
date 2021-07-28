@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:stone_roller"
+        ]
+    },
+    "criteria": {
+        "has_smooth_stone": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:smooth_stone"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:stone_roller"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_smooth_stone",
+            "has_the_recipe"
+        ]
+    ]
+}

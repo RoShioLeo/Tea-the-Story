@@ -1,7 +1,7 @@
 {
     "variants": {
-        "normal": {
-            "model": "teastory:wooden_barrel"
+        "": {
+            "model": "teastory:block/wooden_barrel"
         }
     }
 }

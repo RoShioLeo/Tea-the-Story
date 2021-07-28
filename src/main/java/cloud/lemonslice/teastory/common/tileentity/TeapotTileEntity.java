@@ -7,6 +7,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -17,6 +18,7 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry.IRON_KETTLE;
 import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry.TEAPOT;
 
 public class TeapotTileEntity extends NormalContainerTileEntity
@@ -26,8 +28,17 @@ public class TeapotTileEntity extends NormalContainerTileEntity
 
     public TeapotTileEntity(int capacity)
     {
-        super(TEAPOT);
+        super(getTeapotTileEntityType(capacity));
         this.capacity = capacity;
+    }
+
+    public static TileEntityType<?> getTeapotTileEntityType(int capacity)
+    {
+        if (capacity == 2000)
+        {
+            return IRON_KETTLE;
+        }
+        return TEAPOT;
     }
 
     @Nonnull

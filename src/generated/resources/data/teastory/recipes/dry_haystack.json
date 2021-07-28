@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "haystack",
+    "pattern": [
+        " # ",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "tag": "forge:crops/straw"
+        }
+    },
+    "result": {
+        "item": "teastory:dry_haystack"
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:wet_haystack"
+        ]
+    },
+    "criteria": {
+        "has_straw": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "teastory:wet_straw"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:wet_haystack"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_straw",
+            "has_the_recipe"
+        ]
+    ]
+}

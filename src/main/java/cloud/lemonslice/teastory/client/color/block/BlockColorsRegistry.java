@@ -14,6 +14,7 @@ public final class BlockColorsRegistry
     public static final IBlockColor GRASS_BLOCK_COLOR = new GrassBlockColor();
     public static final IBlockColor BIRCH_LEAVES_COLOR = new BirchLeavesColor();
     public static final IBlockColor TEA_CUP_COLOR = new TeaCupBlockColor();
+    public static final IBlockColor SAUCEPAN_COLOR = new SaucepanBlockColor();
 
     public static void init()
     {
@@ -23,5 +24,6 @@ public final class BlockColorsRegistry
         BlockRegistry.TRELLIS_BLOCKS.stream().filter(block -> block instanceof TrellisWithVineBlock).forEach(block -> Minecraft.getInstance().getBlockColors().register(GRASS_BLOCK_COLOR, block));
         Minecraft.getInstance().getBlockColors().register(BIRCH_LEAVES_COLOR, Blocks.BIRCH_LEAVES);
         Minecraft.getInstance().getBlockColors().register(TEA_CUP_COLOR, BlockRegistry.WOODEN_TRAY);
+        Minecraft.getInstance().getBlockColors().register(SAUCEPAN_COLOR, BlockRegistry.SAUCEPAN);
     }
 }

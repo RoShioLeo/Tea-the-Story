@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "scarecrow",
+    "pattern": [
+        " # ",
+        "/*/",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "tag": "forge:crops/straw"
+        },
+        "*": {
+            "item": "teastory:dry_haystack"
+        },
+        "/": {
+            "tag": "forge:rods/wooden"
+        }
+    },
+    "result": {
+        "item": "teastory:scarecrow"
+    }
+}

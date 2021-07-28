@@ -1,0 +1,12 @@
+{
+    "type": "teastory:stone_roller",
+    "item_ingredient": {
+        "tag": "forge:seeds/rice"
+    },
+    "output_items": [
+        {
+            "item": "teastory:rice"
+        }
+    ],
+    "work_time": 200
+}

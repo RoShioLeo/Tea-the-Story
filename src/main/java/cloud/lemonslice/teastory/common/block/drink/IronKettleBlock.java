@@ -45,13 +45,13 @@ public class IronKettleBlock extends TeapotBlock
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        double d0 = pos.getX() + 0.5D;
-        double d1 = pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
-        double d2 = pos.getZ() + 0.5D;
-        double d4 = rand.nextDouble() * 0.6D - 0.3D;
         TileEntity tileentity = worldIn.getTileEntity(pos);
         if (tileentity instanceof TeapotTileEntity && ((TeapotTileEntity) tileentity).getFluid().getAttributes().getTemperature() >= 333)
         {
+            double d0 = pos.getX() + 0.5D;
+            double d1 = pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
+            double d2 = pos.getZ() + 0.5D;
+            double d4 = rand.nextDouble() * 0.6D - 0.3D;
             worldIn.addParticle(ParticleTypes.CLOUD, false, d0 + d4, d1 + 0.5D, d2 + d4, 0.0D, 0.1D, 0.0D);
         }
     }

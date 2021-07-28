@@ -1,6 +1,6 @@
 package cloud.lemonslice.teastory.common.tileentity;
 
-import cloud.lemonslice.teastory.common.inventory.DrinkMakerContainer;
+import cloud.lemonslice.teastory.common.container.DrinkMakerContainer;
 import cloud.lemonslice.teastory.common.recipe.drink.DrinkRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;

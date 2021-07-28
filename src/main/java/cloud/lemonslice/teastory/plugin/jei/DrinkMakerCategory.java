@@ -29,7 +29,7 @@ public class DrinkMakerCategory implements IRecipeCategory<DrinkRecipe>
     public DrinkMakerCategory(IGuiHelper guiHelper)
     {
         this.guiHelper = guiHelper;
-        icon = guiHelper.createDrawableIngredient(BlockRegistry.DRINK_MAKER_ITEM.getDefaultInstance());
+        icon = guiHelper.createDrawableIngredient(BlockRegistry.DRINK_MAKER.asItem().getDefaultInstance());
     }
 
     @Override

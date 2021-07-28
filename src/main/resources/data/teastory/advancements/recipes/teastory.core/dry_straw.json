@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:dry_straw"
+        ]
+    },
+    "criteria": {
+        "has_dry_haystack": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "teastory:dry_haystack"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:dry_straw"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_dry_haystack",
+            "has_the_recipe"
+        ]
+    ]
+}

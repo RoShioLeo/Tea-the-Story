@@ -19,7 +19,7 @@ public final class ItemColorsRegistry
         FluidRegistry.ITEMS.getEntries().forEach(e -> Minecraft.getInstance().getItemColors().register(BUCKET_COLOR, e.get()));
         Minecraft.getInstance().getItemColors().register(CUP_COLOR, ItemRegistry.PORCELAIN_CUP_DRINK);
         Minecraft.getInstance().getItemColors().register(BOTTLE_COLOR, ItemRegistry.BOTTLE_DRINK);
-        Minecraft.getInstance().getItemColors().register(HYBRIDIZABLE_FLOWER_COLOR, BlockRegistry.CHRYSANTHEMUM_ITEM, BlockRegistry.HYACINTH_ITEM, BlockRegistry.ZINNIA_ITEM);
-        Minecraft.getInstance().getItemColors().register(GRASS_BLOCK_COLOR, BlockRegistry.GRASS_BLOCK_WITH_HOLE_ITEM);
+        Minecraft.getInstance().getItemColors().register(HYBRIDIZABLE_FLOWER_COLOR, BlockRegistry.CHRYSANTHEMUM, BlockRegistry.HYACINTH, BlockRegistry.ZINNIA);
+        Minecraft.getInstance().getItemColors().register(GRASS_BLOCK_COLOR, BlockRegistry.GRASS_BLOCK_WITH_HOLE);
     }
 }

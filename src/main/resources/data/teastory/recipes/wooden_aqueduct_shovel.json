@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "aqueduct_shovel",
+    "pattern": [
+        " * ",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:wooden_shovel"
+        },
+        "*": {
+            "tag": "minecraft:planks"
+        }
+    },
+    "result": {
+        "item": "teastory:wooden_aqueduct_shovel"
+    }
+}

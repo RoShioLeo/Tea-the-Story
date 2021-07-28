@@ -43,9 +43,10 @@ public final class BlockRegistry extends RegistryModule
     public static final Block FILTER_SCREEN = new FilterScreenBlock();
     public static final Block WOODEN_TRAY = new WoodenTrayBlock();
     public static final Block STONE_MILL = new StoneMillBlock();
-    public static final Block SAUCEPAN = new SaucepanBlock();
+    public static final Block STONE_ROLLER = new StoneRollerBlock();
+    public static final Block SAUCEPAN = new SaucepanBlock();//TODO 煮饭，配方
     public static final Block WOODEN_BARREL = new WoodenBarrelBlock();
-    public static final Block STONE_CAMPFIRE = new StoneCampfireBlock();
+    public static final Block STONE_CAMPFIRE = new StoneCampfireBlock();//TODO 竹筒饭
 
     public static final TrellisBlock OAK_TRELLIS = new TrellisBlock("oak_trellis", Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(0.6F).notSolid());
     public static final TrellisBlock BIRCH_TRELLIS = new TrellisBlock("birch_trellis", Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(0.6F).notSolid());
@@ -89,6 +90,9 @@ public final class BlockRegistry extends RegistryModule
     public static final BlockItem DIRT_AQUEDUCT_POOL_ITEM = new NormalBlockItem(DIRT_AQUEDUCT_POOL, TeaStory.GROUP_CORE);
     public static final BlockItem WOODEN_TRAY_ITEM = new NormalBlockItem(WOODEN_TRAY, TeaStory.GROUP_CORE);
     public static final BlockItem STONE_MILL_ITEM = new NormalBlockItem(STONE_MILL, TeaStory.GROUP_CORE);
+    public static final BlockItem STONE_ROLLER_ITEM = new NormalBlockItem(STONE_ROLLER, TeaStory.GROUP_CORE);
+    public static final BlockItem WOODEN_BARREL_ITEM = new NormalBlockItem(WOODEN_BARREL, TeaStory.GROUP_CORE);
+    public static final BlockItem SAUCEPAN_ITEM = new NormalBlockItem(SAUCEPAN, TeaStory.GROUP_CORE);
 
     // DECORATIONS 装饰
     public static final Block WOODEN_TABLE = new TableBlock("wooden_table", Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(0.6F).notSolid());

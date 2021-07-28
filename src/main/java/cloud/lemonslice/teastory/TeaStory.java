@@ -9,13 +9,13 @@ import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.capability.CapabilityRegistry;
 import cloud.lemonslice.teastory.common.command.SolarCommand;
 import cloud.lemonslice.teastory.common.config.NormalConfigs;
+import cloud.lemonslice.teastory.common.container.ContainerTypeRegistry;
 import cloud.lemonslice.teastory.common.entity.EntityTypeRegistry;
 import cloud.lemonslice.teastory.common.environment.crop.CropInfoManager;
 import cloud.lemonslice.teastory.common.environment.solar.BiomeTemperatureManager;
 import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
 import cloud.lemonslice.teastory.common.group.GroupCore;
 import cloud.lemonslice.teastory.common.group.GroupDrink;
-import cloud.lemonslice.teastory.common.inventory.ContainerTypeRegistry;
 import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import cloud.lemonslice.teastory.common.network.SimpleNetworkHandler;
 import cloud.lemonslice.teastory.common.potion.EffectRegistry;
@@ -82,6 +82,7 @@ public final class TeaStory
     {
         ItemColorsRegistry.init();
         BlockColorsRegistry.init();
+        ClientProxy.registerProperties();
         ClientProxy.initBiomeColors();
         ClientProxy.registerRenderType();
         ClientProxy.registerEntityRenderer();

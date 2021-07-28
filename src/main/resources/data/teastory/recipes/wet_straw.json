@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "wet_straw",
+    "ingredients": [
+        {
+            "item": "teastory:wet_haystack"
+        }
+    ],
+    "result": {
+        "item": "teastory:wet_straw",
+        "count": 7
+    }
+}
