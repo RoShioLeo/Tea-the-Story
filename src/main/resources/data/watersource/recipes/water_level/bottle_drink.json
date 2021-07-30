@@ -1,0 +1,14 @@
+{
+    "type": "watersource:water_level_item",
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "watersource"
+        }
+    ],
+    "ingredient": {
+        "item": "minecraft:bottle_drink"
+    },
+    "waterLevel": 8,
+    "waterSaturationLevel": 4
+}

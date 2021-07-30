@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 
 import static cloud.lemonslice.teastory.TeaStory.MODID;
 
-public class NormalBlockTagProvider extends BlockTagsProvider
+public final class NormalBlockTagProvider extends BlockTagsProvider
 {
     public NormalBlockTagProvider(DataGenerator dataGenerator, @Nullable ExistingFileHelper existingFileHelper)
     {

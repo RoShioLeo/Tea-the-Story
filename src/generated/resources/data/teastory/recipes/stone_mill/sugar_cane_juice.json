@@ -1,0 +1,16 @@
+{
+    "type": "teastory:stone_mill",
+    "item_ingredient": {
+        "tag": "forge:crops/sugar_cane"
+    },
+    "output_items": [
+        {
+            "item": "minecraft:air"
+        }
+    ],
+    "output_fluid": {
+        "fluid": "teastory:sugary_water",
+        "amount": 100
+    },
+    "work_time": 200
+}

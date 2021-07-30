@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "teastory:diamond_aqueduct_shovel"
+        ]
+    },
+    "criteria": {
+        "has_shovel": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:diamond_shovel"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "teastory:diamond_aqueduct_shovel"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_shovel",
+            "has_the_recipe"
+        ]
+    ]
+}

@@ -17,7 +17,7 @@ import static cloud.lemonslice.teastory.TeaStory.MODID;
 import static cloud.lemonslice.teastory.data.tag.NormalTags.Items.*;
 import static net.minecraft.item.Items.*;
 
-public class NormalItemTagProvider extends ItemTagsProvider
+public final class NormalItemTagProvider extends ItemTagsProvider
 {
     public NormalItemTagProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider, @Nullable ExistingFileHelper existingFileHelper)
     {
@@ -125,6 +125,8 @@ public class NormalItemTagProvider extends ItemTagsProvider
         getOrCreateBuilder(CROPS_CUCUMBER).add(ItemRegistry.CUCUMBER);
         getOrCreateBuilder(CROPS_STRAW).add(ItemRegistry.DRY_STRAW);
         getOrCreateBuilder(CROPS_RICE).add(ItemRegistry.RICE);
+        getOrCreateBuilder(CROPS_APPLE).add(APPLE);
+        getOrCreateBuilder(CROPS_SUGAR_CANE).add(SUGAR_CANE);
     }
 
     @Override

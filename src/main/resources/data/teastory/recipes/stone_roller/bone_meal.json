@@ -1,0 +1,13 @@
+{
+    "type": "teastory:stone_roller",
+    "item_ingredient": {
+        "tag": "forge:bones"
+    },
+    "output_items": [
+        {
+            "item": "minecraft:bone_meal",
+            "count": 4
+        }
+    ],
+    "work_time": 200
+}

@@ -8,6 +8,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -43,6 +44,7 @@ public final class DrinkEffectManager
         DRINK_EFFECTS.put(fluid, doEffects);
     }
 
+    @Nullable
     public static BiConsumer<LivingEntity, Integer> getEffects(Fluid key)
     {
         return DRINK_EFFECTS.get(key);

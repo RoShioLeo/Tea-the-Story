@@ -31,6 +31,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 import static net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack.FLUID_NBT_KEY;
 
@@ -132,7 +133,18 @@ public class CupDrinkItem extends ItemFluidContainer
         if (canDrink(stack))
         {
             worldIn.playSound(null, entityLiving.getPosX(), entityLiving.getPosY(), entityLiving.getPosZ(), entityLiving.getEatSound(stack), SoundCategory.NEUTRAL, 1.0F, 1.0F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.4F);
-            FluidUtil.getFluidContained(stack).ifPresent(h -> DrinkEffectManager.getEffects(h.getFluid()).accept(entityLiving, h.getAmount()));
+            FluidUtil.getFluidContained(stack).ifPresent(handler ->
+            {
+                BiConsumer<LivingEntity, Integer> action = DrinkEffectManager.getEffects(handler.getFluid());
+                if (action != null)
+                {
+                    action.accept(entityLiving, handler.getAmount());
+                }
+                else if (entityLiving instanceof PlayerEntity)
+                {
+                    ((PlayerEntity) entityLiving).getFoodStats().addStats((int) (1.2F * this.capacity / 100), 0.4F);
+                }
+            });
             if (entityLiving instanceof PlayerEntity)
             {
                 ItemHandlerHelper.giveItemToPlayer((PlayerEntity) entityLiving, new ItemStack(this.getContainerItem()));

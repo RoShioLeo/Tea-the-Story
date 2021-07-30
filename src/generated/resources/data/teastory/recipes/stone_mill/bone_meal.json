@@ -1,12 +1,12 @@
 {
     "type": "teastory:stone_mill",
     "item_ingredient": {
-        "tag": "forge:crops/straw"
+        "tag": "forge:bones"
     },
     "output_items": [
         {
-            "item": "teastory:crushed_straw",
-            "count": 2
+            "item": "minecraft:bone_meal",
+            "count": 4
         }
     ],
     "work_time": 200

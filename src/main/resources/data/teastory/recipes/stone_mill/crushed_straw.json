@@ -5,7 +5,8 @@
     },
     "output_items": [
         {
-            "item": "teastory:crushed_straw"
+            "item": "teastory:crushed_straw",
+            "count": 2
         }
     ],
     "work_time": 200

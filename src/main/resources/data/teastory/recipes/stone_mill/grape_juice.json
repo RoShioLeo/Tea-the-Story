@@ -1,0 +1,16 @@
+{
+    "type": "teastory:stone_mill",
+    "item_ingredient": {
+        "tag": "forge:crops/grape"
+    },
+    "output_items": [
+        {
+            "item": "minecraft:air"
+        }
+    ],
+    "output_fluid": {
+        "fluid": "teastory:grape_juice",
+        "amount": 100
+    },
+    "work_time": 200
+}

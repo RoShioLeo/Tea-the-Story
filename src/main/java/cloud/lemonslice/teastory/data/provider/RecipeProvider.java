@@ -171,10 +171,17 @@ public final class RecipeProvider extends net.minecraft.data.RecipeProvider
 
         // Stone Mill Recipes 石磨配方
         StoneMillRecipeBuilder.recipe(600, Ingredient.fromTag(Tags.Items.STONE), FluidIngredient.fromFluid(100, Fluids.WATER), new FluidStack(Fluids.WATER, 100), new ItemStack(Blocks.GRAVEL)).build(consumer, "teastory:gravel");
+        StoneMillRecipeBuilder.recipeWithDefaultTime(Ingredient.fromTag(NormalTags.Items.CROPS_CUCUMBER), FluidIngredient.EMPTY, new FluidStack(FluidRegistry.CUCUMBER_JUICE_STILL.get(), 100), ItemStack.EMPTY).build(consumer, "teastory:cucumber_juice");
+        StoneMillRecipeBuilder.recipeWithDefaultTime(Ingredient.fromTag(NormalTags.Items.CROPS_GRAPE), FluidIngredient.EMPTY, new FluidStack(FluidRegistry.GRAPE_JUICE_STILL.get(), 100), ItemStack.EMPTY).build(consumer, "teastory:grape_juice");
+        StoneMillRecipeBuilder.recipeWithDefaultTime(Ingredient.fromTag(NormalTags.Items.CROPS_SUGAR_CANE), FluidIngredient.EMPTY, new FluidStack(FluidRegistry.SUGARY_WATER_STILL.get(), 100), ItemStack.EMPTY).build(consumer, "teastory:sugar_cane_juice");
+        StoneMillRecipeBuilder.recipeWithDefaultTime(Ingredient.fromTag(Tags.Items.CROPS_CARROT), FluidIngredient.EMPTY, new FluidStack(FluidRegistry.CARROT_JUICE_STILL.get(), 100), ItemStack.EMPTY).build(consumer, "teastory:carrot_juice");
+        StoneMillRecipeBuilder.recipeWithDefaultTime(Ingredient.fromTag(NormalTags.Items.CROPS_APPLE), FluidIngredient.EMPTY, new FluidStack(FluidRegistry.APPLE_JUICE_STILL.get(), 100), ItemStack.EMPTY).build(consumer, "teastory:apple_juice");
         StoneMillRecipeBuilder.recipeWithDefaultTimeWithoutFluid(Ingredient.fromTag(NormalTags.Items.CROPS_STRAW), new ItemStack(ItemRegistry.CRUSHED_STRAW, 2)).build(consumer, "teastory:crushed_straw");
+        StoneMillRecipeBuilder.recipeWithDefaultTimeWithoutFluid(Ingredient.fromTag(Tags.Items.BONES), new ItemStack(Items.BONE_MEAL, 4)).build(consumer, "teastory:bone_meal");
 
         // Stone Roller Recipes 石碾配方
         StoneRollerRecipeBuilder.recipeWithDefaultTime(Ingredient.fromTag(NormalTags.Items.SEEDS_RICE), new ItemStack(ItemRegistry.RICE)).build(consumer, "teastory:rice");
+        StoneRollerRecipeBuilder.recipeWithDefaultTime(Ingredient.fromTag(Tags.Items.BONES), new ItemStack(Items.BONE_MEAL, 4)).build(consumer, "teastory:bone_meal");
     }
 
     @Override

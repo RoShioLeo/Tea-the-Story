@@ -14,7 +14,7 @@ import java.util.List;
 
 import static cloud.lemonslice.teastory.TeaStory.MODID;
 
-public class NormalFluidTagProvider extends FluidTagsProvider
+public final class NormalFluidTagProvider extends FluidTagsProvider
 {
     public NormalFluidTagProvider(DataGenerator dataGenerator, @Nullable ExistingFileHelper existingFileHelper)
     {
@@ -25,8 +25,8 @@ public class NormalFluidTagProvider extends FluidTagsProvider
     protected void registerTags()
     {
         getOrCreateBuilder(NormalTags.Fluids.DRINK).add(FluidRegistry.BOILING_WATER_STILL.get(), FluidRegistry.SUGARY_WATER_STILL.get(), FluidRegistry.WEAK_BLACK_TEA_STILL.get(), FluidRegistry.BLACK_TEA_STILL.get(), FluidRegistry.STRONG_BLACK_TEA_STILL.get(),
-                FluidRegistry.WEAK_GREEN_TEA_STILL.get(), FluidRegistry.GREEN_TEA_STILL.get(), FluidRegistry.STRONG_GREEN_TEA_STILL.get(),
-                FluidRegistry.WEAK_WHITE_TEA_STILL.get(), FluidRegistry.WHITE_TEA_STILL.get(), FluidRegistry.STRONG_WHITE_TEA_STILL.get());
+                FluidRegistry.WEAK_GREEN_TEA_STILL.get(), FluidRegistry.GREEN_TEA_STILL.get(), FluidRegistry.STRONG_GREEN_TEA_STILL.get(), FluidRegistry.WEAK_WHITE_TEA_STILL.get(), FluidRegistry.WHITE_TEA_STILL.get(), FluidRegistry.STRONG_WHITE_TEA_STILL.get(),
+                FluidRegistry.APPLE_JUICE_STILL.get(), FluidRegistry.CARROT_JUICE_STILL.get(), FluidRegistry.SUGAR_CANE_JUICE_STILL.get(), FluidRegistry.GRAPE_JUICE_STILL.get(), FluidRegistry.CUCUMBER_JUICE_STILL.get());
 
         List<Fluid> water = Lists.newArrayList();
         FluidRegistry.FLUIDS.getEntries().forEach(fluid -> water.add(fluid.get()));

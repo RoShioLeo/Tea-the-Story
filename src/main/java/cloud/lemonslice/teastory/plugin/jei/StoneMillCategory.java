@@ -68,17 +68,22 @@ public class StoneMillCategory implements IRecipeCategory<StoneMillRecipe>
     @Override
     public void setIngredients(StoneMillRecipe recipe, IIngredients iIngredients)
     {
-        FluidStack fluidOut = recipe.getOutputFluid();
-        List<FluidStack> fluidIn = Arrays.asList(recipe.getInputFluid().getMatchingStacks());
         iIngredients.setInputIngredients(Collections.singletonList(recipe.getInputItem()));
+        List<FluidStack> fluidIn = Arrays.asList(recipe.getInputFluid().getMatchingStacks());
         iIngredients.setInputs(VanillaTypes.FLUID, fluidIn);
+
         List<List<ItemStack>> outputs = Lists.newArrayList();
         for (ItemStack output : recipe.getOutputItems())
         {
             outputs.add(Lists.newArrayList(output));
         }
         iIngredients.setOutputLists(VanillaTypes.ITEM, outputs);
-        iIngredients.setOutput(VanillaTypes.FLUID, fluidOut);
+
+        FluidStack fluidOut = recipe.getOutputFluid();
+        if (!fluidOut.isEmpty())
+        {
+            iIngredients.setOutput(VanillaTypes.FLUID, fluidOut);
+        }
     }
 
     @Override
