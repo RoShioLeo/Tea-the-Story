@@ -7,7 +7,7 @@
         }
     ],
     "ingredient": {
-        "item": "minecraft:porcelain_cup_drink"
+        "item": "teastory:porcelain_cup_drink"
     },
     "waterLevel": 5,
     "waterSaturationLevel": 4

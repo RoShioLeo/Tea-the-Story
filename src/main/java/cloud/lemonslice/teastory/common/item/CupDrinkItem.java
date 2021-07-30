@@ -3,7 +3,6 @@ package cloud.lemonslice.teastory.common.item;
 import cloud.lemonslice.teastory.TeaStory;
 import cloud.lemonslice.teastory.common.fluid.FluidRegistry;
 import cloud.lemonslice.teastory.common.recipe.drink.DrinkEffectManager;
-import cloud.lemonslice.teastory.data.tag.NormalTags;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,6 +32,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import static cloud.lemonslice.teastory.data.tag.NormalTags.Fluids.DRINK;
 import static net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack.FLUID_NBT_KEY;
 
 public class CupDrinkItem extends ItemFluidContainer
@@ -60,7 +60,7 @@ public class CupDrinkItem extends ItemFluidContainer
             @Override
             public boolean isFluidValid(int tank, @Nonnull FluidStack stack)
             {
-                return stack.getFluid().isIn(NormalTags.Fluids.DRINK);
+                return stack.getFluid().isIn(DRINK);
             }
         };
     }
@@ -140,7 +140,7 @@ public class CupDrinkItem extends ItemFluidContainer
                 {
                     action.accept(entityLiving, handler.getAmount());
                 }
-                else if (entityLiving instanceof PlayerEntity)
+                else if (entityLiving instanceof PlayerEntity && handler.getFluid() != FluidRegistry.BOILING_WATER_STILL.get())
                 {
                     ((PlayerEntity) entityLiving).getFoodStats().addStats((int) (1.2F * this.capacity / 100), 0.4F);
                 }
@@ -158,7 +158,7 @@ public class CupDrinkItem extends ItemFluidContainer
     {
         if (stack.getChildTag(FLUID_NBT_KEY) != null)
         {
-            return FluidUtil.getFluidContained(stack).map(f -> DrinkEffectManager.getEffects(f.getFluid()) != null).orElse(false);
+            return FluidUtil.getFluidContained(stack).map(f -> f.getFluid().isIn(DRINK)).orElse(false);
         }
         return false;
     }
