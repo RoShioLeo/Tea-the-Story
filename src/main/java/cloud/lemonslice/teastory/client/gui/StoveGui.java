@@ -41,7 +41,7 @@ public class StoveGui extends ContainerScreen<StoveContainer>
 
         int fuelTicks = this.container.getTileEntity().getFuelTicks();
         int remainTicks = this.container.getTileEntity().getRemainTicks();
-        int textureHeight = fuelTicks == 0 ? 0 : (int) Math.ceil(14 * remainTicks / fuelTicks);
+        int textureHeight = fuelTicks == 0 ? 0 : (int) Math.ceil(14.0F * remainTicks / fuelTicks);
 
         blit(matrixStack, offsetX + 81, offsetY + 16 + 14 - textureHeight, 176, 14 - textureHeight, 14, textureHeight);
     }

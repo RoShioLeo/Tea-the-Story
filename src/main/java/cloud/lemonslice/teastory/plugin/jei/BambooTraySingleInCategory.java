@@ -24,11 +24,11 @@ public class BambooTraySingleInCategory implements IRecipeCategory<BambooTraySin
     private final IGuiHelper guiHelper;
     protected final IDrawable arrow;
 
-    public BambooTraySingleInCategory(IGuiHelper guiHelper, String uid, ResourceLocation resourceLocation, int i)
+    public BambooTraySingleInCategory(IGuiHelper guiHelper, ResourceLocation uid, int i)
     {
         this.guiHelper = guiHelper;
-        this.uid = uid;
-        icon = guiHelper.createDrawable(resourceLocation, i * 20, 0, 20, 20);
+        this.uid = uid.getPath();
+        icon = guiHelper.createDrawable(new ResourceLocation(TeaStory.MODID, "textures/gui/jei/bamboo_tray.png"), i * 20, 0, 20, 20);
         this.arrow = guiHelper.drawableBuilder(Constants.RECIPE_GUI_VANILLA, 82, 128, 24, 17).build();
     }
 
@@ -83,7 +83,7 @@ public class BambooTraySingleInCategory implements IRecipeCategory<BambooTraySin
         guiItemStacks.init(0, true, 5, 1);
         guiItemStacks.set(0, iIngredients.getInputs(VanillaTypes.ITEM).get(0));
         guiItemStacks.setBackground(0, guiHelper.getSlotDrawable());
-        guiItemStacks.init(1, true, 56, 1);
+        guiItemStacks.init(1, false, 56, 1);
         guiItemStacks.set(1, iIngredients.getOutputs(VanillaTypes.ITEM).get(0));
         guiItemStacks.setBackground(1, guiHelper.getSlotDrawable());
     }

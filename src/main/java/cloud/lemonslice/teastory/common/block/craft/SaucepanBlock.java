@@ -20,6 +20,8 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -33,7 +35,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import java.util.List;
 import java.util.Random;
@@ -42,21 +44,27 @@ public class SaucepanBlock extends NormalHorizontalBlock
 {
     public static final EnumProperty<CookStep> STEP = EnumProperty.create("step", CookStep.class);
     public static final BooleanProperty LID = BooleanProperty.create("lid");
-    private static final VoxelShape SHAPE;
+    private static final VoxelShape PAN_SHAPE;
+    private static final VoxelShape LID_SHAPE;
 
     // TODO 方块掉落
     public SaucepanBlock()
     {
-        super(Block.Properties.create(Material.IRON).notSolid().sound(SoundType.METAL).hardnessAndResistance(3.5F), "saucepan");
+        super(Block.Properties.create(Material.IRON).notSolid().sound(SoundType.METAL).hardnessAndResistance(3.5F).tickRandomly(), "saucepan");
         this.setDefaultState(this.stateContainer.getBaseState().with(STEP, CookStep.EMPTY).with(LID, true));
+    }
+
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos)
+    {
+        return true;
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
-        //TODO to add lid true
-        return SHAPE;
+        return state.get(LID) ? LID_SHAPE : PAN_SHAPE;
     }
 
     @Override
@@ -96,33 +104,34 @@ public class SaucepanBlock extends NormalHorizontalBlock
             else if (state.get(STEP) == CookStep.COOKED)
             {
                 worldIn.setBlockState(pos, state.with(STEP, CookStep.EMPTY));
+                player.addItemStackToInventory(new ItemStack(ItemRegistry.RICE_BALL, 3));
                 return ActionResultType.SUCCESS;
             }
             else if (held.getItem() == ItemRegistry.SAUCEPAN_LID)
             {
                 worldIn.setBlockState(pos, state.with(LID, true));
                 held.shrink(1);
+                worldIn.playSound(null, player.getPosX(), player.getPosY() + 0.5, player.getPosZ(), SoundEvents.BLOCK_METAL_HIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                return ActionResultType.SUCCESS;
             }
             else if (state.get(STEP) == CookStep.RAW && FluidUtil.getFluidContained(held).isPresent())
             {
                 FluidStack fluidStack = FluidUtil.getFluidContained(held).get();
                 if (fluidStack.getFluid() == Fluids.WATER && fluidStack.getAmount() >= 1000)
                 {
-                    FluidUtil.getFluidHandler(held).ifPresent(handler ->
+                    if (FluidUtil.interactWithFluidHandler(player, handIn, new FluidTank(1000)))
                     {
-                        FluidStack out = handler.drain(1000, IFluidHandler.FluidAction.EXECUTE);
-                        if (!out.isEmpty())
-                        {
-                            worldIn.setBlockState(pos, state.with(STEP, CookStep.WATER));
-                        }
-                    });
-                    return ActionResultType.SUCCESS;
+                        worldIn.setBlockState(pos, state.with(STEP, CookStep.WATER));
+                        return ActionResultType.SUCCESS;
+                    }
+                    return ActionResultType.FAIL;
                 }
                 return ActionResultType.FAIL;
             }
             else if (state.get(STEP) == CookStep.EMPTY && held.getItem() == ItemRegistry.WASHED_RICE && held.getCount() >= 8)
             {
                 worldIn.setBlockState(pos, state.with(STEP, CookStep.RAW));
+                worldIn.playSound(null, player.getPosX(), player.getPosY() + 0.5, player.getPosZ(), SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 if (!player.isCreative())
                 {
                     held.shrink(8);
@@ -131,7 +140,7 @@ public class SaucepanBlock extends NormalHorizontalBlock
             }
             return ActionResultType.FAIL;
         }
-        else return ActionResultType.SUCCESS;
+        return ActionResultType.SUCCESS;
     }
 
     @Override
@@ -149,9 +158,21 @@ public class SaucepanBlock extends NormalHorizontalBlock
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
     {
-        if (state.get(STEP) == CookStep.WATER && state.get(LID))
+        BlockState stove = worldIn.getBlockState(pos.down());
+        if (IStoveBlock.isBurning(stove) && state.get(STEP) == CookStep.WATER)
         {
-            worldIn.setBlockState(pos, state.with(STEP, CookStep.COOKED));
+            int fuelPower = ((IStoveBlock) stove.getBlock()).getFuelPower();
+            if (state.get(LID))
+            {
+                if (random.nextInt(6 / fuelPower) == 0)
+                {
+                    worldIn.setBlockState(pos, state.with(STEP, CookStep.COOKED));
+                }
+            }
+            else if (random.nextInt(24 / fuelPower) == 0)
+            {
+                worldIn.setBlockState(pos, state.with(STEP, CookStep.COOKED));
+            }
         }
     }
 
@@ -173,6 +194,7 @@ public class SaucepanBlock extends NormalHorizontalBlock
     {
         VoxelShape outer = VoxelShapeHelper.createVoxelShape(1, 0, 1, 14, 12, 14);
         VoxelShape inner = VoxelShapeHelper.createVoxelShape(2, 1, 2, 12, 11, 12);
-        SHAPE = VoxelShapes.combineAndSimplify(outer, inner, IBooleanFunction.NOT_SAME);
+        LID_SHAPE = VoxelShapeHelper.createVoxelShape(1, 0, 1, 14, 13, 14);
+        PAN_SHAPE = VoxelShapes.combineAndSimplify(outer, inner, IBooleanFunction.NOT_SAME);
     }
 }

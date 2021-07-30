@@ -38,7 +38,7 @@ public class TrellisWithVineBlock extends TrellisBlock
     {
         super(name + "_" + type.getName(), properties.tickRandomly());
         this.type = type;
-        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL, false).with(AGE, 0).with(DISTANCE, 0).with(POST, false).with(UP, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
+        this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(DISTANCE, 0).with(POST, false).with(UP, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
     }
 
     @Override
@@ -174,7 +174,6 @@ public class TrellisWithVineBlock extends TrellisBlock
         if (facing.getAxis().getPlane() == Direction.Plane.HORIZONTAL)
         {
             stateIn = stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), this.canConnect(facingState, facingState.isSolidSide(worldIn, facingPos, facing.getOpposite())));
-            stateIn = stateIn.with(HORIZONTAL, hasHorizontalBar(stateIn));
         }
         else if (facing == Direction.DOWN)
         {

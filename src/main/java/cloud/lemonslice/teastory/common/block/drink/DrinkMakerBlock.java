@@ -9,6 +9,7 @@ import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
@@ -28,6 +29,8 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -115,23 +118,67 @@ public class DrinkMakerBlock extends NormalHorizontalBlock
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving)
+    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player)
     {
-        super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
-        Direction enumfacing = state.get(HORIZONTAL_FACING);
-
-        if (state.get(LEFT))
+        if (!worldIn.isRemote)
         {
-            if (worldIn.getBlockState(pos.offset(BlockHelper.getNextHorizontal(enumfacing))).getBlock() != this)
+            if (player.isCreative())
             {
-                worldIn.destroyBlock(pos, true);
+                removeBottomHalf(worldIn, pos, state, player);
             }
         }
-        else if (worldIn.getBlockState(pos.offset(BlockHelper.getPreviousHorizontal(enumfacing))).getBlock() != this)
+        super.onBlockHarvested(worldIn, pos, state, player);
+    }
+
+    protected static void removeBottomHalf(World world, BlockPos pos, BlockState state, PlayerEntity player)
+    {
+        if (!state.get(LEFT))
         {
-            worldIn.destroyBlock(pos, true);
+            Direction facing = state.get(HORIZONTAL_FACING);
+            BlockPos blockPos = pos.offset(BlockHelper.getPreviousHorizontal(facing));
+            BlockState blockstate = world.getBlockState(blockPos);
+            if (blockstate.getBlock() == state.getBlock() && blockstate.get(LEFT))
+            {
+                world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 35);
+                world.playEvent(player, 2001, blockPos, Block.getStateId(blockstate));
+            }
         }
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
+    {
+        if (state.get(LEFT))
+        {
+            BlockState blockstate = worldIn.getBlockState(pos.down());
+            return blockstate.isSolidSide(worldIn, pos.down(), Direction.UP);
+        }
+        else
+        {
+            Direction facing = state.get(HORIZONTAL_FACING);
+            BlockPos blockPos = pos.offset(BlockHelper.getPreviousHorizontal(facing));
+            BlockState blockstate = worldIn.getBlockState(blockPos);
+            return blockstate.matchesBlock(this);
+        }
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
+    {
+        if (stateIn.get(LEFT))
+        {
+            if (facing == BlockHelper.getNextHorizontal(stateIn.get(HORIZONTAL_FACING)))
+            {
+                return facingState.getBlock() == this && !facingState.get(LEFT) ? stateIn : Blocks.AIR.getDefaultState();
+            }
+        }
+        else if (facing == BlockHelper.getPreviousHorizontal(stateIn.get(HORIZONTAL_FACING)))
+        {
+            return facingState.getBlock() == this && facingState.get(LEFT) ? stateIn : Blocks.AIR.getDefaultState();
+        }
+        return stateIn;
     }
 
     @Override
@@ -193,6 +240,7 @@ public class DrinkMakerBlock extends NormalHorizontalBlock
                 return ActionResultType.SUCCESS;
             if (te instanceof DrinkMakerTileEntity)
             {
+                ((DrinkMakerTileEntity) te).refresh();
                 NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) te, te.getPos());
             }
         }

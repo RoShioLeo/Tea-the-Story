@@ -77,7 +77,7 @@ public class ClientProxy extends CommonProxy
         registerCutoutType(BlockRegistry.DRY_HAYSTACK);
         FluidRegistry.FLUIDS.getEntries().forEach(e -> RenderTypeLookup.setRenderLayer(e.get(), RenderType.getTranslucent()));
         RenderTypeLookup.setRenderLayer(BlockRegistry.WOODEN_TRAY, RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.SAUCEPAN, RenderType.getTranslucent());
+//        RenderTypeLookup.setRenderLayer(BlockRegistry.SAUCEPAN, RenderType.getTranslucent());
     }
 
     private static void registerCutoutType(Block... blocks)

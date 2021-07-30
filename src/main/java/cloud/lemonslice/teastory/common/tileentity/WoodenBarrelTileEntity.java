@@ -22,6 +22,7 @@ import static cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry
 public class WoodenBarrelTileEntity extends NormalContainerTileEntity
 {
     private final LazyOptional<FluidTank> fluidTank = LazyOptional.of(this::createFluidHandler);
+    private Fluid remainFluid = Fluids.EMPTY;
     private final int capacity;
     private int heightAmount = 0;
 
@@ -49,7 +50,11 @@ public class WoodenBarrelTileEntity extends NormalContainerTileEntity
     public void read(BlockState state, CompoundNBT tag)
     {
         super.read(state, tag);
-        this.fluidTank.ifPresent(f -> f.readFromNBT(tag.getCompound("FluidTank")));
+        this.fluidTank.ifPresent(f ->
+        {
+            f.readFromNBT(tag.getCompound("FluidTank"));
+            recordPreviousFluid(f.getFluid());
+        });
     }
 
     @Override
@@ -68,6 +73,7 @@ public class WoodenBarrelTileEntity extends NormalContainerTileEntity
             {
                 WoodenBarrelTileEntity.this.markDirty();
                 WoodenBarrelTileEntity.this.refresh();
+                WoodenBarrelTileEntity.this.recordPreviousFluid(this.fluid);
                 super.onContentsChanged();
             }
 
@@ -105,6 +111,19 @@ public class WoodenBarrelTileEntity extends NormalContainerTileEntity
         this.refresh();
     }
 
+    public void recordPreviousFluid(FluidStack fluid)
+    {
+        if (!fluid.isEmpty() && fluid.getAmount() > 0)
+        {
+            remainFluid = fluid.getFluid();
+        }
+    }
+
+    public Fluid getRemainFluid()
+    {
+        return remainFluid;
+    }
+
     @Nullable
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity)
@@ -122,22 +141,15 @@ public class WoodenBarrelTileEntity extends NormalContainerTileEntity
     {
         if (this.world.isRemote)
         {
-            if (this.getFluidAmount() != 0)
+            int viscosity = this.remainFluid.getAttributes().getViscosity() / 50;
+            if (heightAmount > this.getFluidAmount())
             {
-                int viscosity = this.getFluidTank().getFluid().getFluid().getAttributes().getViscosity() / 50;
-                if (heightAmount > this.getFluidAmount())
-                {
-                    heightAmount -= Math.max(1, (heightAmount - this.getFluidAmount()) / viscosity);
-                }
-                else if (heightAmount < this.getFluidAmount())
-                {
-                    heightAmount += Math.max(1, (this.getFluidAmount() - heightAmount) / viscosity);
-                }
+                heightAmount -= Math.max(1, (heightAmount - this.getFluidAmount()) / viscosity);
             }
-        }
-        else
-        {
-            heightAmount = this.getFluidAmount();
+            else if (heightAmount < this.getFluidAmount())
+            {
+                heightAmount += Math.max(1, (this.getFluidAmount() - heightAmount) / viscosity);
+            }
         }
     }
 

@@ -88,28 +88,25 @@ public class StoveTileEntity extends NormalContainerTileEntity implements ITicka
     @Override
     public void tick()
     {
-        if (!this.world.isRemote)
+        if (doubleClickTicks > 0)
         {
-            if (doubleClickTicks > 0)
+            doubleClickTicks--;
+        }
+        if (this.lit)
+        {
+            this.addFuel();
+        }
+        if (this.remainTicks > 0)
+        {
+            this.remainTicks--;
+            this.markDirty();
+        }
+        else
+        {
+            if (!this.lit && this.getBlockState().get(LIT))
             {
-                doubleClickTicks--;
-            }
-            if (this.lit)
-            {
-                this.addFuel();
-            }
-            if (this.remainTicks > 0)
-            {
-                this.remainTicks--;
-                this.markDirty();
-            }
-            else
-            {
-                if (!this.lit && this.getBlockState().get(LIT))
-                {
-                    StoveBlock.setState(false, this.world, this.pos);
-                    refresh();
-                }
+                StoveBlock.setState(false, this.world, this.pos);
+                refresh();
             }
         }
     }

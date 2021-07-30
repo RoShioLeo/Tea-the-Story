@@ -35,7 +35,7 @@ public class DrinkMakerCategory implements IRecipeCategory<DrinkRecipe>
     @Override
     public ResourceLocation getUid()
     {
-        return new ResourceLocation(TeaStory.MODID, DRINK_MAKER);
+        return DRINK_MAKER;
     }
 
     @Override
@@ -82,10 +82,12 @@ public class DrinkMakerCategory implements IRecipeCategory<DrinkRecipe>
             guiItemStacks.init(i, true, 39 + i * 18, 29);
             guiItemStacks.set(i, ingredients.getInputs(VanillaTypes.ITEM).get(i));
         }
+
         IGuiFluidStackGroup fluidStackGroup = recipeLayout.getFluidStacks();
         fluidStackGroup.init(n, true, new FluidStackRenderer(1000, false, 16, 64, (IDrawable) null), 6, 6, 16, 64, 0, 0);
         fluidStackGroup.set(n, ingredients.getInputs(VanillaTypes.FLUID).get(0));
-        fluidStackGroup.init(n + 1, true, new FluidStackRenderer(1000, false, 16, 64, (IDrawable) null), 127, 6, 16, 64, 0, 0);
+
+        fluidStackGroup.init(n + 1, false, new FluidStackRenderer(1000, false, 16, 64, (IDrawable) null), 127, 6, 16, 64, 0, 0);
         fluidStackGroup.set(n + 1, ingredients.getOutputs(VanillaTypes.FLUID).get(0));
     }
 }

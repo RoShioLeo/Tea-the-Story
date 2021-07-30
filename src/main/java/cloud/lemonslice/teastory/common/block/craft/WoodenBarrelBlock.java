@@ -2,12 +2,20 @@ package cloud.lemonslice.teastory.common.block.craft;
 
 import cloud.lemonslice.silveroak.common.block.NormalBlock;
 import cloud.lemonslice.silveroak.helper.VoxelShapeHelper;
+import cloud.lemonslice.teastory.common.item.ItemRegistry;
 import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
+import cloud.lemonslice.teastory.common.tileentity.WoodenBarrelTileEntity;
+import cloud.lemonslice.teastory.data.tag.NormalTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -68,6 +76,36 @@ public class WoodenBarrelBlock extends NormalBlock
             }
         }
         return ActionResultType.SUCCESS;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
+    {
+        TileEntity te = worldIn.getTileEntity(pos);
+        if (te instanceof WoodenBarrelTileEntity)
+        {
+            int i = ((WoodenBarrelTileEntity) te).getFluidAmount();
+            float f = pos.getY() + 0.0625F + 0.875F * i / 2000;
+            if (!worldIn.isRemote)
+            {
+                if (entityIn.isBurning())
+                {
+                    if (((WoodenBarrelTileEntity) te).getFluid().isIn(FluidTags.WATER) && i > 250 && entityIn.getPosY() <= f)
+                    {
+                        entityIn.extinguish();
+                    }
+                }
+                else if (entityIn instanceof ItemEntity && ((WoodenBarrelTileEntity) te).getFluid() == Fluids.WATER)
+                {
+                    ItemStack item = ((ItemEntity) entityIn).getItem();
+                    if (item.getItem().isIn(NormalTags.Items.CROPS_RICE))
+                    {
+                        ((ItemEntity) entityIn).setItem(new ItemStack(ItemRegistry.WASHED_RICE, item.getCount()));
+                    }
+                }
+            }
+        }
     }
 
     static

@@ -1,14 +1,14 @@
 package cloud.lemonslice.teastory.common.item.food;
 
 import cloud.lemonslice.silveroak.common.item.NormalItem;
+import cloud.lemonslice.teastory.TeaStory;
 import net.minecraft.item.Food;
-import net.minecraft.item.ItemGroup;
 
 public class FoodItem extends NormalItem
 {
     public FoodItem(String name, Properties properties)
     {
-        super(name, properties.group(ItemGroup.FOOD));
+        super(name, properties.group(TeaStory.GROUP_CORE));
     }
 
     public FoodItem(String name, Food food)

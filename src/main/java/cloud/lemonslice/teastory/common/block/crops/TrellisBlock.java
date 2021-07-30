@@ -36,7 +36,7 @@ public class TrellisBlock extends HorizontalConnectedBlock
     public TrellisBlock(String name, Properties properties)
     {
         super(name, properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL, false).with(POST, false).with(UP, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
+        this.setDefaultState(this.stateContainer.getBaseState().with(POST, false).with(UP, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
         BlockRegistry.TRELLIS_BLOCKS.add(this);
     }
 
@@ -108,7 +108,7 @@ public class TrellisBlock extends HorizontalConnectedBlock
                 state = state.with(FACING_TO_PROPERTY_MAP.get(facing), true);
             }
         }
-        return state.with(HORIZONTAL, hasHorizontalBar(state));
+        return state;
     }
 
     @Override
@@ -133,7 +133,6 @@ public class TrellisBlock extends HorizontalConnectedBlock
         if (facing.getAxis().getPlane() == Direction.Plane.HORIZONTAL)
         {
             stateIn = stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), this.canConnect(facingState, facingState.isSolidSide(worldIn, facingPos, facing.getOpposite())));
-            stateIn = stateIn.with(HORIZONTAL, hasHorizontalBar(stateIn));
         }
         else if (facing == Direction.DOWN)
         {
@@ -160,7 +159,7 @@ public class TrellisBlock extends HorizontalConnectedBlock
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         super.fillStateContainer(builder);
-        builder.add(HORIZONTAL, POST, UP);
+        builder.add(POST, UP);
     }
 
     @Override
@@ -173,7 +172,7 @@ public class TrellisBlock extends HorizontalConnectedBlock
     public BlockState getRelevantState(BlockState old)
     {
         BlockState newState = this.getDefaultState();
-        return newState.with(NORTH, old.get(NORTH)).with(SOUTH, old.get(SOUTH)).with(WEST, old.get(WEST)).with(EAST, old.get(EAST)).with(POST, old.get(POST)).with(UP, old.get(UP)).with(HORIZONTAL, old.get(HORIZONTAL));
+        return newState.with(NORTH, old.get(NORTH)).with(SOUTH, old.get(SOUTH)).with(WEST, old.get(WEST)).with(EAST, old.get(EAST)).with(POST, old.get(POST)).with(UP, old.get(UP));
     }
 
     static

@@ -133,7 +133,10 @@ public class StoveBlock extends NormalHorizontalBlock implements IStoveBlock
             if (player.isSneaking())
             {
                 if (!worldIn.isRemote)
+                {
+                    ((StoveTileEntity) te).refresh();
                     NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) te, te.getPos());
+                }
                 return ActionResultType.SUCCESS;
             }
             else

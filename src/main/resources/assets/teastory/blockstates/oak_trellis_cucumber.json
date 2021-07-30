@@ -173,7 +173,20 @@
         },
         {
             "when": {
-                "horizontal": "true"
+                "OR": [
+                    {
+                        "north": "true"
+                    },
+                    {
+                        "south": "true"
+                    },
+                    {
+                        "east": "true"
+                    },
+                    {
+                        "west": "true"
+                    }
+                ]
             },
             "apply": {
                 "model": "teastory:block/grape_leaves_on_beam"
