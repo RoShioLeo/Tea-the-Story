@@ -15,6 +15,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -214,5 +215,11 @@ public class MelonVineBlock extends BushBlock implements IGrowable
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
     {
         return state.get(AGE) == 7 ? Lists.newArrayList(new ItemStack(Blocks.MELON)) : Collections.emptyList();
+    }
+
+    @Override
+    public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player)
+    {
+        return new ItemStack(Items.MELON_SEEDS);
     }
 }
