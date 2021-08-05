@@ -75,11 +75,16 @@ public class RicePlantBlock extends CropsBlock
             int i = this.getAge(state);
             if (i < this.getMaxAge())
             {
-                if (i <= 2 && !worldIn.getBlockState(pos.down()).get(WATERLOGGED))
+                BlockState paddy = worldIn.getBlockState(pos.down());
+                if (!(paddy.getBlock() instanceof PaddyFieldBlock))
                 {
                     return;
                 }
-                else if (i >= 6 && worldIn.getBlockState(pos.down()).get(WATERLOGGED))
+                if (i <= 2 && !paddy.get(WATERLOGGED))
+                {
+                    return;
+                }
+                else if (i >= 6 && paddy.get(WATERLOGGED))
                 {
                     return;
                 }
