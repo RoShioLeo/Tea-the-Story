@@ -9,7 +9,7 @@
         }
     ],
     "output_fluid": {
-        "fluid": "teastory:sugary_water",
+        "fluid": "teastory:sugar_cane_juice",
         "amount": 100
     },
     "work_time": 200

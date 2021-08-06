@@ -75,7 +75,10 @@ public class StoneMillCategory implements IRecipeCategory<StoneMillRecipe>
         List<List<ItemStack>> outputs = Lists.newArrayList();
         for (ItemStack output : recipe.getOutputItems())
         {
-            outputs.add(Lists.newArrayList(output));
+            if (!output.isEmpty())
+            {
+                outputs.add(Lists.newArrayList(output));
+            }
         }
         iIngredients.setOutputLists(VanillaTypes.ITEM, outputs);
 
