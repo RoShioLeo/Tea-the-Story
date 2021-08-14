@@ -144,11 +144,11 @@ public class WoodenBarrelTileEntity extends NormalContainerTileEntity
             int viscosity = this.remainFluid.getAttributes().getViscosity() / 50;
             if (heightAmount > this.getFluidAmount())
             {
-                heightAmount -= Math.max(1, (heightAmount - this.getFluidAmount()) / viscosity);
+                heightAmount -= Math.max(1, (heightAmount - this.getFluidAmount()));
             }
             else if (heightAmount < this.getFluidAmount())
             {
-                heightAmount += Math.max(1, (this.getFluidAmount() - heightAmount) / viscosity);
+                heightAmount += Math.max(1, (this.getFluidAmount() - heightAmount));
             }
         }
     }
