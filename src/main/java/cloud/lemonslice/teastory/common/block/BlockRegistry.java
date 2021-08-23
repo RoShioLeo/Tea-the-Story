@@ -62,6 +62,12 @@ public final class BlockRegistry extends RegistryModule
     public static final TrellisWithVineBlock SPRUCE_TRELLIS_CUCUMBER = new TrellisWithVineBlock("spruce_trellis", VineType.CUCUMBER, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
     public static final TrellisWithVineBlock DARK_OAK_TRELLIS_CUCUMBER = new TrellisWithVineBlock("dark_oak_trellis", VineType.CUCUMBER, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
     public static final TrellisWithVineBlock ACACIA_TRELLIS_CUCUMBER = new TrellisWithVineBlock("acacia_trellis", VineType.CUCUMBER, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
+    public static final TrellisWithVineBlock OAK_TRELLIS_BITTER_GOURD = new TrellisWithVineBlock("oak_trellis", VineType.BITTER_GOURD, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
+    public static final TrellisWithVineBlock BIRCH_TRELLIS_BITTER_GOURD = new TrellisWithVineBlock("birch_trellis", VineType.BITTER_GOURD, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
+    public static final TrellisWithVineBlock JUNGLE_TRELLIS_BITTER_GOURD = new TrellisWithVineBlock("jungle_trellis", VineType.BITTER_GOURD, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
+    public static final TrellisWithVineBlock SPRUCE_TRELLIS_BITTER_GOURD = new TrellisWithVineBlock("spruce_trellis", VineType.BITTER_GOURD, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
+    public static final TrellisWithVineBlock DARK_OAK_TRELLIS_BITTER_GOURD = new TrellisWithVineBlock("dark_oak_trellis", VineType.BITTER_GOURD, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
+    public static final TrellisWithVineBlock ACACIA_TRELLIS_BITTER_GOURD = new TrellisWithVineBlock("acacia_trellis", VineType.BITTER_GOURD, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
 
     public static final Block DIRT_AQUEDUCT = new AqueductBlock("dirt_aqueduct", Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND).notSolid());
     public static final Block DIRT_AQUEDUCT_POOL = new AqueductOutputBlock("dirt_aqueduct_pool", Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND).notSolid());
@@ -94,8 +100,10 @@ public final class BlockRegistry extends RegistryModule
     public static final Block RICE_PLANT = new RicePlantBlock("rice_plant");
     public static final Block GRAPE = new StemFruitBlock("grape_plant", Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP), VineType.GRAPE);
     public static final Block CUCUMBER = new StemFruitBlock("cucumber_plant", Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP), VineType.CUCUMBER);
+    public static final Block BITTER_GOURD = new StemFruitBlock("bitter_gourd_plant", Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP), VineType.BITTER_GOURD);
     public static final Block WATERMELON_VINE = new MelonVineBlock("watermelon_vine", Blocks.MELON);
-
+    public static final Block CHILI_PLANT = new ChiliBlock("chili_plant");
+    public static final Block CHINESE_CABBAGE_PLANT = new ChineseCabbageBlock("chinese_cabbage_plant");
     // FLOWERS 花朵
     public static final Block CHRYSANTHEMUM = new HybridizableFlowerBlock("chrysanthemum");
     public static final Block HYACINTH = new HybridizableFlowerBlock("hyacinth");

@@ -7,7 +7,8 @@ import net.minecraft.block.Blocks;
 public enum VineType
 {
     GRAPE,
-    CUCUMBER;
+    CUCUMBER,
+    BITTER_GOURD;
 
     public Block getFruit()
     {
@@ -17,6 +18,8 @@ public enum VineType
                 return BlockRegistry.GRAPE;
             case 1:
                 return BlockRegistry.CUCUMBER;
+            case 2:
+                return BlockRegistry.BITTER_GOURD;
             default:
                 return Blocks.AIR;
         }

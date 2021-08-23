@@ -1,0 +1,196 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "post": "false",
+                "up": "false",
+                "north": "false",
+                "south": "false",
+                "east": "false",
+                "west": "false"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_center"
+            }
+        },
+        {
+            "when": {
+                "up": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_post_up"
+            }
+        },
+        {
+            "when": {
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_post"
+            }
+        },
+        {
+            "when": {
+                "north": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_bar",
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "east": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_bar",
+                "y": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "south": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_bar",
+                "y": 180,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "west": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_bar",
+                "y": 270,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "north": "true",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_support"
+            }
+        },
+        {
+            "when": {
+                "east": "true",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_support",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "south": "true",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_support",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "west": "true",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/dark_oak_trellis_support",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "age": "0",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/grape_on_post_0"
+            }
+        },
+        {
+            "when": {
+                "age": "1",
+                "post": "true"
+            },
+            "apply": {
+                "model": "teastory:block/grape_on_post_1"
+            }
+        },
+        {
+            "when": {
+                "age": "2",
+                "post": "true"
+            },
+            "apply": [
+                {
+                    "model": "teastory:block/grape_on_post_2"
+                },
+                {
+                    "model": "teastory:block/grape_on_post_2",
+                    "y": 90
+                },
+                {
+                    "model": "teastory:block/grape_on_post_2",
+                    "y": 180
+                },
+                {
+                    "model": "teastory:block/grape_on_post_2",
+                    "y": 270
+                }
+            ]
+        },
+        {
+            "when": {
+                "age": "3",
+                "post": "true"
+            },
+            "apply": [
+                {
+                    "model": "teastory:block/grape_on_post_3"
+                },
+                {
+                    "model": "teastory:block/grape_on_post_3",
+                    "y": 90
+                },
+                {
+                    "model": "teastory:block/grape_on_post_3",
+                    "y": 180
+                },
+                {
+                    "model": "teastory:block/grape_on_post_3",
+                    "y": 270
+                }
+            ]
+        },
+        {
+            "when": {
+                "OR": [
+                    {
+                        "north": "true"
+                    },
+                    {
+                        "south": "true"
+                    },
+                    {
+                        "east": "true"
+                    },
+                    {
+                        "west": "true"
+                    }
+                ]
+            },
+            "apply": {
+                "model": "teastory:block/grape_leaves_on_beam"
+            }
+        }
+    ]
+}

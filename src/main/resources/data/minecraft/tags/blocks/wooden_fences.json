@@ -19,6 +19,12 @@
     "teastory:jungle_trellis_cucumber",
     "teastory:spruce_trellis_cucumber",
     "teastory:dark_oak_trellis_cucumber",
-    "teastory:acacia_trellis_cucumber"
+    "teastory:acacia_trellis_cucumber",
+    "teastory:oak_trellis_bitter_gourd",
+    "teastory:birch_trellis_bitter_gourd",
+    "teastory:jungle_trellis_bitter_gourd",
+    "teastory:spruce_trellis_bitter_gourd",
+    "teastory:dark_oak_trellis_bitter_gourd",
+    "teastory:acacia_trellis_bitter_gourd"
   ]
 }

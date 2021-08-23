@@ -51,6 +51,12 @@ public final class CropInfoManager
         registerVineTypeConnections(VineType.CUCUMBER, BlockRegistry.SPRUCE_TRELLIS, BlockRegistry.SPRUCE_TRELLIS_CUCUMBER);
         registerVineTypeConnections(VineType.CUCUMBER, BlockRegistry.DARK_OAK_TRELLIS, BlockRegistry.DARK_OAK_TRELLIS_CUCUMBER);
         registerVineTypeConnections(VineType.CUCUMBER, BlockRegistry.ACACIA_TRELLIS, BlockRegistry.ACACIA_TRELLIS_CUCUMBER);
+        registerVineTypeConnections(VineType.BITTER_GOURD, BlockRegistry.OAK_TRELLIS, BlockRegistry.OAK_TRELLIS_BITTER_GOURD);
+        registerVineTypeConnections(VineType.BITTER_GOURD, BlockRegistry.BIRCH_TRELLIS, BlockRegistry.BIRCH_TRELLIS_BITTER_GOURD);
+        registerVineTypeConnections(VineType.BITTER_GOURD, BlockRegistry.JUNGLE_TRELLIS, BlockRegistry.JUNGLE_TRELLIS_BITTER_GOURD);
+        registerVineTypeConnections(VineType.BITTER_GOURD, BlockRegistry.SPRUCE_TRELLIS, BlockRegistry.SPRUCE_TRELLIS_BITTER_GOURD);
+        registerVineTypeConnections(VineType.BITTER_GOURD, BlockRegistry.DARK_OAK_TRELLIS, BlockRegistry.DARK_OAK_TRELLIS_BITTER_GOURD);
+        registerVineTypeConnections(VineType.BITTER_GOURD, BlockRegistry.ACACIA_TRELLIS, BlockRegistry.ACACIA_TRELLIS_BITTER_GOURD);
     }
 
     @SubscribeEvent

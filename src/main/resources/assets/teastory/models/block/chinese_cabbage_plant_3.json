@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "teastory:block/chinese_cabbage_3"
+    }
+}

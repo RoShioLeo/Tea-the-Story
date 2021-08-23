@@ -1,0 +1,7 @@
+{
+	"parent": "teastory:block/cucumber_flower",
+	"textures": {
+		"particle": "teastory:block/bitter_gourd_flower",
+		"flower": "teastory:block/bitter_gourd_flower"
+	}
+}

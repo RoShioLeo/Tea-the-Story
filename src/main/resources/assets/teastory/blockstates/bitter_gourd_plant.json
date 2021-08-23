@@ -1,0 +1,29 @@
+{
+    "variants": {
+        "age=0": [
+            {
+                "model": "teastory:block/bitter_gourd_flower"
+            }
+        ],
+        "age=1": [
+            {
+                "model": "teastory:block/bitter_gourd_flower"
+            }
+        ],
+        "age=2": [
+            {
+                "model": "teastory:block/bitter_gourd_flower"
+            }
+        ],
+        "age=3": [
+            {
+                "model": "teastory:block/bitter_gourd_flower"
+            }
+        ],
+        "age=4": [
+            {
+                "model": "teastory:block/bitter_gourd"
+            }
+        ]
+    }
+}

@@ -74,6 +74,7 @@ public final class ItemRegistry extends RegistryModule
     public static final BlockItem WET_HAYSTACK_ITEM = new NormalBlockItem(WET_HAYSTACK, TeaStory.GROUP_CORE);
 
     public static final BlockItem GRASS_BLOCK_WITH_HOLE_ITEM = new NormalBlockItem(GRASS_BLOCK_WITH_HOLE, TeaStory.GROUP_CORE);
+    public static final BlockItem CHILI_PLANT_ITEM = new NormalBlockItem(CHILI_PLANT, (ItemGroup) null);
 
     // TOOL 工具
     public static final Item WOODEN_AQUEDUCT_SHOVEL = new AqueductShovelItem("wooden_aqueduct_shovel", ItemTier.WOOD, 1.5F, -2.5F, getNormalItemProperties());
@@ -103,7 +104,11 @@ public final class ItemRegistry extends RegistryModule
     public static final Item RICE_SEEDLINGS = new BlockNamedItem(BlockRegistry.RICE_PLANT, getNormalItemProperties()).setRegistryName("rice_seedlings");
     public static final Item GRAPES = new VineSeedsItem("grapes", VineType.GRAPE, NormalFoods.GRAPE);
     public static final Item CUCUMBER = new VineSeedsItem("cucumber", VineType.CUCUMBER, NormalFoods.CUCUMBER);
-
+    public static final Item BITTER_GOURD = new VineSeedsItem("bitter_gourd", VineType.BITTER_GOURD, NormalFoods.BITTER_GOURD);
+    public static final Item CHILI = new NormalItem("chili", getNormalItemProperties());
+    public static final Item CHILI_SEEDS = new BlockNamedItem(BlockRegistry.CHILI_PLANT, getNormalItemProperties()).setRegistryName("chili_seeds");
+    public static final Item CHINESE_CABBAGE = new NormalItem("chinese_cabbage", getNormalItemProperties());
+    public static final Item CHINESE_CABBAGE_SEEDS = new BlockNamedItem(BlockRegistry.CHINESE_CABBAGE_PLANT, getNormalItemProperties()).setRegistryName("chinese_cabbage_seeds");
     // DRINK 饮品
     public static final Item CLAY_CUP = new NormalItem("clay_cup", getDrinkItemProperties());
     public static final Item CLAY_TEAPOT = new NormalItem("clay_teapot", getDrinkItemProperties());
@@ -141,6 +146,18 @@ public final class ItemRegistry extends RegistryModule
     public static final Item RICE_BALL = new FoodItem("rice_ball", NormalFoods.RICE_BALL);
     public static final Item RICE_BALL_WITH_KELP = new FoodItem("rice_ball_with_kelp", NormalFoods.RICE_BALL_WITH_KELP);
 
+    public static final Item NETHER_WART_RICE_BOWL = new FoodItem("nether_wart_rice_bowl", NormalFoods.NETHER_WART_RICE_BOWL);
+    public static final Item SPICY_BEEF_RICE_BOWL = new FoodItem("spicy_beef_rice_bowl", NormalFoods.SPICY_BEEF_RICE_BOWL);
+    public static final Item BEEF_RICE_BOWL = new FoodItem("beef_rice_bowl", NormalFoods.BEEF_RICE_BOWL);
+    public static final Item RISE_BOWL = new FoodItem("rise_bowl", NormalFoods.RISE_BOWL);
+    public static final Item PICKLED_CABBAGE_WITH_FISH = new FoodItem("pickled_cabbage_with_fish", NormalFoods.PICKLED_CABBAGE_WITH_FISH);
+    public static final Item STEAMED_CHINESE_CABBAGE = new FoodItem("steamed_chinese_cabbage", NormalFoods.STEAMED_CHINESE_CABBAGE);
+    public static final Item HONEY_BITTER_GOURD = new FoodItem("honey_bitter_gourd", NormalFoods.HONEY_BITTER_GOURD);
+    public static final Item SHREDDED_CUCUMBER_SALAD = new FoodItem("shredded_cucumber_salad", NormalFoods.SHREDDED_CUCUMBER_SALAD);
+    public static final Item PORK_BAOZI = new FoodItem("pork_baozi", NormalFoods.PORK_BAOZI);
+    public static final Item BEEF_BURGER = new FoodItem("beef_burger", NormalFoods.BEEF_BURGER);
+    public static final Item CHICKEN_BURGER = new FoodItem("chicken_burger", NormalFoods.CHICKEN_BURGER);
+
     // MISC 杂项
     public static final Item BAMBOO_PLANK = new NormalItem("bamboo_plank", getNormalItemProperties());
     public static final Item ASH = new FertilizerItem("ash");
@@ -167,6 +184,8 @@ public final class ItemRegistry extends RegistryModule
     public static final Item PURPLE_BAMBOO_MELODY_RECORD = new RecordItem("purple_bamboo_melody", () -> RECORD_PURPLE_BAMBOO_MELODY, 8);
     public static final Item WELCOME_MARCH_RECORD = new RecordItem("welcome_march", () -> RECORD_WELCOME_MARCH, 9);
 
+    public static final Item WOODEN_BOWL = new NormalItem("wooden_bowl", new Item.Properties());
+    public static final Item WOODEN_DISH = new NormalItem("wooden_disk", new Item.Properties());
     public static Item.Properties getNormalItemProperties()
     {
         return new Item.Properties().group(TeaStory.GROUP_CORE);

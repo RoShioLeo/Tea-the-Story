@@ -33,9 +33,11 @@ public class CommonProxy
         CHANCES.put(ItemRegistry.CRUSHED_STRAW, 0.2F);
         CHANCES.put(ItemRegistry.GRAPES, 0.2F);
         CHANCES.put(ItemRegistry.CUCUMBER, 0.2F);
+        CHANCES.put(ItemRegistry.BITTER_GOURD, 0.2F);
         CHANCES.put(BlockRegistry.CHRYSANTHEMUM, 0.3F);
         CHANCES.put(BlockRegistry.ZINNIA, 0.3F);
         CHANCES.put(BlockRegistry.HYACINTH, 0.3F);
         CHANCES.put(Items.POISONOUS_POTATO, 0.3F);
+        CHANCES.put(ItemRegistry.CHILI_SEEDS, 0.3F);
     }
 }
