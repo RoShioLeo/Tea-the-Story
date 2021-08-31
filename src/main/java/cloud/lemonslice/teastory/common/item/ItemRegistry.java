@@ -75,7 +75,9 @@ public final class ItemRegistry extends RegistryModule
 
     public static final BlockItem GRASS_BLOCK_WITH_HOLE_ITEM = new NormalBlockItem(GRASS_BLOCK_WITH_HOLE, TeaStory.GROUP_CORE);
     public static final BlockItem CHILI_PLANT_ITEM = new NormalBlockItem(CHILI_PLANT, (ItemGroup) null);
+    public static final BlockItem CHINESE_CABBAGE_PLANT_ITEM = new NormalBlockItem(CHINESE_CABBAGE_PLANT, (ItemGroup) null);
 
+    public static final BlockItem WOODEN_BOWL_ITEM = new NormalBlockItem(BlockRegistry.WOODEN_BOWL, TeaStory.GROUP_CORE);
     // TOOL 工具
     public static final Item WOODEN_AQUEDUCT_SHOVEL = new AqueductShovelItem("wooden_aqueduct_shovel", ItemTier.WOOD, 1.5F, -2.5F, getNormalItemProperties());
     public static final Item STONE_AQUEDUCT_SHOVEL = new AqueductShovelItem("stone_aqueduct_shovel", ItemTier.STONE, 1.5F, -2.5F, getNormalItemProperties());
@@ -183,9 +185,6 @@ public final class ItemRegistry extends RegistryModule
     public static final Item GREEN_WILLOW_RECORD = new RecordItem("green_willow", () -> RECORD_GREEN_WILLOW, 7);
     public static final Item PURPLE_BAMBOO_MELODY_RECORD = new RecordItem("purple_bamboo_melody", () -> RECORD_PURPLE_BAMBOO_MELODY, 8);
     public static final Item WELCOME_MARCH_RECORD = new RecordItem("welcome_march", () -> RECORD_WELCOME_MARCH, 9);
-
-    public static final Item WOODEN_BOWL = new NormalItem("wooden_bowl", new Item.Properties());
-    public static final Item WOODEN_DISH = new NormalItem("wooden_disk", new Item.Properties());
     public static Item.Properties getNormalItemProperties()
     {
         return new Item.Properties().group(TeaStory.GROUP_CORE);

@@ -20,8 +20,8 @@ public final class NormalFoods
     public static final Food RICE_BALL = new Food.Builder().hunger(4).saturation(0.5F).build();
     public static final Food RICE_BALL_WITH_KELP = new Food.Builder().hunger(4).saturation(0.5F).fastToEat().build();
 
-    public static final Food BEEF_BURGER = new Food.Builder().hunger(8).saturation(1.2F).fastToEat().build();
-    public static final Food CHICKEN_BURGER = new Food.Builder().hunger(8).saturation(1.2F).fastToEat().build();
+    public static final Food BEEF_BURGER = new Food.Builder().hunger(8).saturation(1.2F).build();
+    public static final Food CHICKEN_BURGER = new Food.Builder().hunger(8).saturation(1.2F).build();
     //碗装类
     public static final Food NETHER_WART_RICE_BOWL = new Food.Builder().hunger(10).saturation(1.2F).build();
     public static final Food SPICY_BEEF_RICE_BOWL = new Food.Builder().hunger(10).saturation(1.2F).build();

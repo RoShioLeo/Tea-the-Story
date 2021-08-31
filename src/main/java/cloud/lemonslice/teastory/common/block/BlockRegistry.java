@@ -1,5 +1,6 @@
 package cloud.lemonslice.teastory.common.block;
 
+import cloud.lemonslice.silveroak.common.block.NormalBlock;
 import cloud.lemonslice.teastory.common.block.craft.*;
 import cloud.lemonslice.teastory.common.block.crops.*;
 import cloud.lemonslice.teastory.common.block.decorations.*;
@@ -15,6 +16,7 @@ import net.minecraft.block.GrassBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraftforge.common.ToolType;
 
 import java.util.List;
 
@@ -111,4 +113,5 @@ public final class BlockRegistry extends RegistryModule
 
     // MISC 杂项
     public static final Block GRASS_BLOCK_WITH_HOLE = new GrassBlock(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("grass_block_with_hole");
+    public static final Block WOODEN_BOWL = new BowlBlock("wooden_bowl", Block.Properties.create(Material.WOOD).notSolid().hardnessAndResistance(0.4f).harvestTool(ToolType.AXE));
 }
