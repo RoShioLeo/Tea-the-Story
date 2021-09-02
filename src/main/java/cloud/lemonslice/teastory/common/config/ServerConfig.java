@@ -62,6 +62,7 @@ public class ServerConfig
     {
         public static ForgeConfigSpec.BooleanValue canUseBoneMeal;
         public static ForgeConfigSpec.BooleanValue useAshAsBoneMeal;
+        public static ForgeConfigSpec.BooleanValue dropRiceGrains;
 
         private static void load(ForgeConfigSpec.Builder builder)
         {
@@ -70,6 +71,8 @@ public class ServerConfig
                     .define("BoneMeal", true);
             useAshAsBoneMeal = builder.comment("Can ash be used as bone meal?")
                     .define("Ash", true);
+            dropRiceGrains = builder.comment("Can grass drop rice grains?")
+                    .define("DropRiceGrains", true);
             builder.pop();
         }
     }

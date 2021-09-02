@@ -1,6 +1,5 @@
 package cloud.lemonslice.teastory.common.block;
 
-import cloud.lemonslice.silveroak.common.block.NormalBlock;
 import cloud.lemonslice.teastory.common.block.craft.*;
 import cloud.lemonslice.teastory.common.block.crops.*;
 import cloud.lemonslice.teastory.common.block.decorations.*;
@@ -41,7 +40,7 @@ public final class BlockRegistry extends RegistryModule
     public static final Block WOODEN_TRAY = new WoodenTrayBlock();
     public static final Block STONE_MILL = new StoneMillBlock();
     public static final Block STONE_ROLLER = new StoneRollerBlock();
-    public static final Block SAUCEPAN = new SaucepanBlock();//TODO 煮饭
+    public static final Block SAUCEPAN = new SaucepanBlock();
     public static final Block WOODEN_BARREL = new WoodenBarrelBlock();
     public static final Block STONE_CAMPFIRE = new StoneCampfireBlock();//TODO 竹筒饭
 
@@ -106,6 +105,7 @@ public final class BlockRegistry extends RegistryModule
     public static final Block WATERMELON_VINE = new MelonVineBlock("watermelon_vine", Blocks.MELON);
     public static final Block CHILI_PLANT = new ChiliBlock("chili_plant");
     public static final Block CHINESE_CABBAGE_PLANT = new ChineseCabbageBlock("chinese_cabbage_plant");
+
     // FLOWERS 花朵
     public static final Block CHRYSANTHEMUM = new HybridizableFlowerBlock("chrysanthemum");
     public static final Block HYACINTH = new HybridizableFlowerBlock("hyacinth");

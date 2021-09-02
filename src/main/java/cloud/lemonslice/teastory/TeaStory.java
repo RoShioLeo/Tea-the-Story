@@ -23,6 +23,7 @@ import cloud.lemonslice.teastory.common.recipe.drink.DrinkEffectManager;
 import cloud.lemonslice.teastory.common.recipe.serializer.RecipeSerializerRegistry;
 import cloud.lemonslice.teastory.common.tileentity.TileEntityTypeRegistry;
 import cloud.lemonslice.teastory.common.world.feature.FeatureRegistry;
+import cloud.lemonslice.teastory.data.loot.GlobalLootModifierSerializerRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -66,6 +67,7 @@ public final class TeaStory
         new FeatureRegistry();
         new SoundEventsRegistry();
         new ContainerTypeRegistry();
+        GlobalLootModifierSerializerRegistry.LOOT_MODIFIER_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     public void setup(FMLCommonSetupEvent event)
