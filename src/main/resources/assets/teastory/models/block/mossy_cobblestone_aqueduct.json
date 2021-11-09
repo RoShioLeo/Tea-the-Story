@@ -1,0 +1,6 @@
+{
+  "parent": "teastory:block/aqueduct",
+  "textures": {
+    "4": "block/mossy_cobblestone"
+  }
+}

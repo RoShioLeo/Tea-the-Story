@@ -2,7 +2,7 @@
     "multipart": [
         {
             "apply": {
-                "model": "teastory:block/aqueduct"
+                "model": "teastory:block/cobblestone_aqueduct"
             }
         },
         {
@@ -10,8 +10,8 @@
                 "west": "false"
             },
             "apply": {
-                "model": "teastory:block/aqueduct_wall",
-                "uvlock": true
+              "model": "teastory:block/cobblestone_aqueduct_wall",
+              "uvlock": true
             }
         },
         {
@@ -19,9 +19,9 @@
                 "north": "false"
             },
             "apply": {
-                "model": "teastory:block/aqueduct_wall",
-                "y": 90,
-                "uvlock": true
+              "model": "teastory:block/cobblestone_aqueduct_wall",
+              "y": 90,
+              "uvlock": true
             }
         },
         {
@@ -29,32 +29,40 @@
                 "east": "false"
             },
             "apply": {
-                "model": "teastory:block/aqueduct_wall",
-                "y": 180,
-                "uvlock": true
+              "model": "teastory:block/cobblestone_aqueduct_wall",
+              "y": 180,
+              "uvlock": true
             }
         },
         {
-            "when": {
-                "south": "false"
-            },
-            "apply": {
-                "model": "teastory:block/aqueduct_wall",
-                "y": 270,
-                "uvlock": true
-            }
+          "when": {
+            "south": "false"
+          },
+          "apply": {
+            "model": "teastory:block/cobblestone_aqueduct_wall",
+            "y": 270,
+            "uvlock": true
+          }
         },
-        {
-            "when": {
-                "blocked": "true",
-                "north": "true"
-            },
-            "apply": {
-                "model": "teastory:block/aqueduct_blocker",
-                "uvlock": true
-            }
+      {
+        "when": {
+          "bottom": "false"
         },
-        {
+        "apply": {
+          "model": "teastory:block/cobblestone_aqueduct_bottom"
+        }
+      },
+      {
+        "when": {
+          "blocked": "true",
+          "north": "true"
+        },
+        "apply": {
+          "model": "teastory:block/aqueduct_blocker",
+          "uvlock": true
+        }
+      },
+      {
             "when": {
                 "blocked": "true",
                 "east": "true"

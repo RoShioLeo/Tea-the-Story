@@ -1,9 +1,91 @@
 {
-    "block.cup_broken": {
-        "sounds": [
-            {
-                "name": "teastory:block/cup_broken"
-            }
-        ]
-    }
+  "block.cup_broken": {
+    "category": "blocks",
+    "sounds": [
+      {
+        "name": "teastory:block/cup_broken"
+      }
+    ]
+  },
+  "record.picking_tea": {
+    "category": "records",
+    "sounds": [
+      {
+        "name": "teastory:record/picking_tea",
+        "stream": true
+      }
+    ]
+  },
+  "record.moving_up": {
+    "category": "records",
+    "sounds": [
+      {
+        "name": "teastory:record/moving_up",
+        "stream": true
+      }
+    ]
+  },
+  "record.spring_festival_overture": {
+    "category": "records",
+    "sounds": [
+      {
+        "name": "teastory:record/spring_festival_overture",
+        "stream": true
+      }
+    ]
+  },
+  "record.flowers_and_moon": {
+    "category": "records",
+    "sounds": [
+      {
+        "name": "teastory:record/flowers_and_moon",
+        "stream": true
+      }
+    ]
+  },
+  "record.dancing_golden_snake": {
+    "category": "records",
+    "sounds": [
+      {
+        "name": "teastory:record/dancing_golden_snake",
+        "stream": true
+      }
+    ]
+  },
+  "record.joyful": {
+    "category": "records",
+    "sounds": [
+      {
+        "name": "teastory:record/joyful",
+        "stream": true
+      }
+    ]
+  },
+  "record.green_willow": {
+    "category": "records",
+    "sounds": [
+      {
+        "name": "teastory:record/green_willow",
+        "stream": true
+      }
+    ]
+  },
+  "record.purple_bamboo_melody": {
+    "category": "records",
+    "sounds": [
+      {
+        "name": "teastory:record/purple_bamboo_melody",
+        "stream": true
+      }
+    ]
+  },
+  "record.welcome_march": {
+    "category": "records",
+    "sounds": [
+      {
+        "name": "teastory:record/welcome_march",
+        "stream": true
+      }
+    ]
+  }
 }

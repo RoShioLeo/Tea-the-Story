@@ -1,10 +1,59 @@
 {
-    "variants": {
-        "waterlogged=false": {
-            "model": "teastory:block/dry_paddy_field"
+    "multipart": [
+        {
+            "when": {
+                "north": "false"
+            },
+            "apply": {
+                "model": "teastory:block/paddy_field_wall",
+                "uvlock": true
+            }
         },
-        "waterlogged=true": {
-            "model": "teastory:block/moist_paddy_field"
+        {
+            "when": {
+                "east": "false"
+            },
+            "apply": {
+                "model": "teastory:block/paddy_field_wall",
+                "y": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "south": "false"
+            },
+            "apply": {
+                "model": "teastory:block/paddy_field_wall",
+                "y": 180,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "west": "false"
+            },
+            "apply": {
+                "model": "teastory:block/paddy_field_wall",
+                "y": 270,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "waterlogged": "false"
+            },
+            "apply": {
+                "model": "teastory:block/dry_paddy_field"
+            }
+        },
+        {
+            "when": {
+                "waterlogged": "true"
+            },
+            "apply": {
+                "model": "teastory:block/moist_paddy_field"
+            }
         }
-    }
+    ]
 }

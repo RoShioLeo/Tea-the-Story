@@ -70,8 +70,8 @@ public final class BlockRegistry extends RegistryModule
     public static final TrellisWithVineBlock DARK_OAK_TRELLIS_BITTER_GOURD = new TrellisWithVineBlock("dark_oak_trellis", VineType.BITTER_GOURD, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
     public static final TrellisWithVineBlock ACACIA_TRELLIS_BITTER_GOURD = new TrellisWithVineBlock("acacia_trellis", VineType.BITTER_GOURD, Block.Properties.create(Material.WOOD).sound(SoundType.PLANT).hardnessAndResistance(0.6F).notSolid());
 
-    public static final Block DIRT_AQUEDUCT = new AqueductBlock("dirt_aqueduct", Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND).notSolid());
-    public static final Block DIRT_AQUEDUCT_POOL = new AqueductOutputBlock("dirt_aqueduct_pool", Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND).notSolid());
+    public static final Block COBBLESTONE_AQUEDUCT = new AqueductBlock("cobblestone_aqueduct", Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F).sound(SoundType.STONE).notSolid());
+    public static final Block MOSSY_COBBLESTONE_AQUEDUCT = new AqueductConnectorBlock("mossy_cobblestone_aqueduct", Block.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(1.5F).sound(SoundType.STONE).notSolid());
 
     // DECORATIONS 装饰
     public static final Block WOODEN_TABLE = new TableBlock("wooden_table", Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(0.6F).notSolid());

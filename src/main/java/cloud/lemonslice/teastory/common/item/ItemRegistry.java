@@ -43,8 +43,8 @@ public final class ItemRegistry extends RegistryModule
     public static final BlockItem DARK_OAK_TRELLIS_ITEM = new NormalBlockItem(DARK_OAK_TRELLIS, TeaStory.GROUP_CORE);
     public static final BlockItem ACACIA_TRELLIS_ITEM = new NormalBlockItem(ACACIA_TRELLIS, TeaStory.GROUP_CORE);
 
-    public static final BlockItem DIRT_AQUEDUCT_ITEM = new NormalBlockItem(DIRT_AQUEDUCT, TeaStory.GROUP_CORE);
-    public static final BlockItem DIRT_AQUEDUCT_POOL_ITEM = new NormalBlockItem(DIRT_AQUEDUCT_POOL, TeaStory.GROUP_CORE);
+    public static final BlockItem COBBLESTONE_AQUEDUCT_ITEM = new NormalBlockItem(COBBLESTONE_AQUEDUCT, TeaStory.GROUP_CORE);
+    public static final BlockItem MOSSY_COBBLESTONE_AQUEDUCT_ITEM = new NormalBlockItem(MOSSY_COBBLESTONE_AQUEDUCT, TeaStory.GROUP_CORE);
 
     public static final BlockItem WOODEN_TRAY_ITEM = new NormalBlockItem(WOODEN_TRAY, TeaStory.GROUP_DRINK);
 

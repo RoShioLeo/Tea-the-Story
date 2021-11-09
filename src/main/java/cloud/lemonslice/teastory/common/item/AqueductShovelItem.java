@@ -2,34 +2,29 @@ package cloud.lemonslice.teastory.common.item;
 
 import cloud.lemonslice.teastory.common.block.BlockRegistry;
 import cloud.lemonslice.teastory.common.block.crops.AqueductBlock;
+import cloud.lemonslice.teastory.common.block.crops.PaddyFieldBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.FarmlandBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.ToolItem;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.ToolType;
 
-import java.util.Collections;
-
-public class AqueductShovelItem extends ToolItem
+public class AqueductShovelItem extends ShovelItem
 {
     public AqueductShovelItem(String id, IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties builder)
     {
-        super(attackDamageIn, attackSpeedIn, tier, Collections.emptySet(), builder.addToolType(ToolType.SHOVEL, tier.getHarvestLevel()));
+        super(tier, attackDamageIn, attackSpeedIn, builder);
         this.setRegistryName(id);
     }
 
@@ -52,64 +47,48 @@ public class AqueductShovelItem extends ToolItem
         World world = context.getWorld();
         BlockPos blockPos = context.getPos();
         BlockState blockState = world.getBlockState(blockPos);
-        if (context.getFace() == Direction.DOWN)
+        PlayerEntity playerEntity = context.getPlayer();
+        if (blockState.getBlock().isIn(Tags.Blocks.COBBLESTONE))
         {
-            return ActionResultType.PASS;
+            if (!world.isRemote)
+            {
+                world.setBlockState(blockPos, ((AqueductBlock) BlockRegistry.COBBLESTONE_AQUEDUCT).getStateForPlacement(world, blockPos), 3);
+                world.getPendingBlockTicks().scheduleTick(blockPos, BlockRegistry.COBBLESTONE_AQUEDUCT, Fluids.WATER.getTickRate(world));
+                if (playerEntity != null)
+                {
+                    context.getItem().damageItem(1, playerEntity, player -> player.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                }
+            }
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            return ActionResultType.SUCCESS;
         }
-        else
+        else if (blockState.getBlock() == Blocks.MOSSY_COBBLESTONE)
         {
-            PlayerEntity playerEntity = context.getPlayer();
-
-            if (blockState.getBlock() instanceof FarmlandBlock)
+            if (!world.isRemote)
             {
-                if (!world.isRemote)
+                world.setBlockState(blockPos, ((AqueductBlock) BlockRegistry.MOSSY_COBBLESTONE_AQUEDUCT).getStateForPlacement(world, blockPos), 3);
+                world.getPendingBlockTicks().scheduleTick(blockPos, BlockRegistry.MOSSY_COBBLESTONE_AQUEDUCT, Fluids.WATER.getTickRate(world));
+                if (playerEntity != null)
                 {
-                    world.setBlockState(blockPos, BlockRegistry.PADDY_FIELD.getDefaultState(), 3);
-                    if (playerEntity != null)
-                    {
-                        context.getItem().damageItem(1, playerEntity, player -> player.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                    }
+                    context.getItem().damageItem(1, playerEntity, player -> player.sendBreakAnimation(EquipmentSlotType.MAINHAND));
                 }
-                world.playSound(playerEntity, blockPos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                return ActionResultType.SUCCESS;
             }
-            else if (blockState.getBlock().isIn(Tags.Blocks.DIRT) || blockState.getMaterial() == Material.EARTH)
-            {
-                if (!world.isRemote)
-                {
-                    world.setBlockState(blockPos, ((AqueductBlock) BlockRegistry.DIRT_AQUEDUCT).getStateForPlacement(world, blockPos), 3);
-                    world.getPendingBlockTicks().scheduleTick(blockPos, BlockRegistry.DIRT_AQUEDUCT, Fluids.WATER.getTickRate(world));
-                    if (playerEntity != null)
-                    {
-                        context.getItem().damageItem(1, playerEntity, player -> player.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                    }
-                }
-                world.playSound(playerEntity, blockPos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                return ActionResultType.SUCCESS;
-            }
-            else if (blockState.getBlock() instanceof CampfireBlock && blockState.get(CampfireBlock.LIT))
-            {
-                if (!world.isRemote())
-                {
-                    world.playEvent(null, 1009, blockPos, 0);
-                }
-
-                CampfireBlock.extinguish(world, blockPos, blockState);
-
-                if (!world.isRemote)
-                {
-                    world.setBlockState(blockPos, blockState.with(CampfireBlock.LIT, false), 11);
-                    if (playerEntity != null)
-                    {
-                        context.getItem().damageItem(1, playerEntity, (player) -> player.sendBreakAnimation(context.getHand()));
-                    }
-                }
-                return ActionResultType.func_233537_a_(world.isRemote);
-            }
-            else
-            {
-                return ActionResultType.PASS;
-            }
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            return ActionResultType.SUCCESS;
         }
+        else if (blockState.getBlock() instanceof FarmlandBlock)
+        {
+            if (!world.isRemote)
+            {
+                world.setBlockState(blockPos, ((PaddyFieldBlock) BlockRegistry.PADDY_FIELD).getStateForPlacement(world, blockPos), 3);
+                if (playerEntity != null)
+                {
+                    context.getItem().damageItem(1, playerEntity, player -> player.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                }
+            }
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            return ActionResultType.SUCCESS;
+        }
+        else return super.onItemUse(context);
     }
 }
